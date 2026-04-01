@@ -123,7 +123,8 @@
       }
     ],
     "poster_path": "/rRjfH3ckTYz8z8aSkJshFL4VyK9.jpg",
-    "franchise": "Your Lie in April"
+    "franchise": "Your Lie in April",
+    "release_date": "2014-10-10"
   },
   {
     "title": "Orange",
@@ -204,7 +205,8 @@
       }
     ],
     "poster_path": "/6GGkAhfjZy9rOvUD7K927vnltZA.jpg",
-    "franchise": "Orange"
+    "franchise": "Orange",
+    "release_date": "2016-07-04"
   },
   {
     "title": "A Silent Voice",
@@ -302,7 +304,8 @@
         ]
       }
     ],
-    "franchise": "Inexpressive Kashiwada and Expressive Oota"
+    "franchise": "Inexpressive Kashiwada and Expressive Oota",
+    "release_date": "2025-10-04"
   },
   {
     "title": "Umamusume: Pretty Derby",
@@ -525,7 +528,8 @@
         ]
       }
     ],
-    "franchise": "Umamusume"
+    "franchise": "Umamusume",
+    "release_date": "2018-04-02"
   },
   {
     "title": "My Matchmaking Partner Is My Student, An Agg...",
@@ -608,7 +612,8 @@
         ]
       }
     ],
-    "franchise": "Pseudo Harem"
+    "franchise": "Pseudo Harem",
+    "release_date": "2024-07-05"
   },
   {
     "title": "Chitose Is in the Ramune Bottle",
@@ -694,7 +699,8 @@
         ]
       }
     ],
-    "franchise": "Chitose Is in the Ramune Bottle"
+    "franchise": "Chitose Is in the Ramune Bottle",
+    "release_date": "2025-10-07"
   },
   {
     "title": "Food for the Soul",
@@ -770,7 +776,8 @@
         ]
       }
     ],
-    "franchise": "Food for the Soul"
+    "franchise": "Food for the Soul",
+    "release_date": "2025-04-13"
   },
   {
     "title": "Makeine: Too Many Losing Heroines!",
@@ -851,7 +858,8 @@
         "episodes": []
       }
     ],
-    "franchise": "Makeine"
+    "franchise": "Makeine",
+    "release_date": "2024-07-14"
   },
   {
     "title": "The Melancholy of Haruhi Suzumiya",
@@ -1007,7 +1015,8 @@
         ]
       }
     ],
-    "franchise": "The Melancholy of Haruhi Suzumiya"
+    "franchise": "The Melancholy of Haruhi Suzumiya",
+    "release_date": "2006-04-03"
   },
   {
     "title": "Classroom of the Elite",
@@ -1230,22 +1239,22 @@
         "episodes": [
           {
             "number": 1,
-            "name": "Episode 1",
+            "name": "Assassin From the White Room",
             "status": -1
           },
           {
             "number": 2,
-            "name": "Episode 2",
+            "name": "Contract and Payment",
             "status": -1
           },
           {
             "number": 3,
-            "name": "Episode 3",
+            "name": "Determination of a Leader",
             "status": -1
           },
           {
             "number": 4,
-            "name": "Episode 4",
+            "name": "To Whom the Blade Turns",
             "status": -1
           },
           {
@@ -1311,7 +1320,8 @@
         ]
       }
     ],
-    "franchise": "Classroom of the Elite"
+    "franchise": "Classroom of the Elite",
+    "release_date": "2017-07-12"
   },
   {
     "title": "Azumanga Daioh",
@@ -1457,7 +1467,8 @@
         ]
       }
     ],
-    "franchise": "Azumanga Daioh"
+    "franchise": "Azumanga Daioh",
+    "release_date": "2002-04-08"
   },
   {
     "title": "Teasing Master Takagi-san",
@@ -1665,7 +1676,8 @@
       }
     ],
     "poster_path": "/hKwpd9K5AXsDhcBhJ7hyP7iBJhN.jpg",
-    "franchise": "Teasing Master Takagi-san"
+    "franchise": "Teasing Master Takagi-san",
+    "release_date": "2018-01-08"
   },
   {
     "title": "Clannad",
@@ -1907,7 +1919,8 @@
         ]
       }
     ],
-    "franchise": "Clannad"
+    "franchise": "Clannad",
+    "release_date": "2007-10-05"
   },
   {
     "title": "The Ryuo's Work is Never Done!",
@@ -1983,7 +1996,8 @@
         ]
       }
     ],
-    "franchise": "The Ryuo's Work is Never Done!"
+    "franchise": "The Ryuo's Work is Never Done!",
+    "release_date": "2018-01-08"
   },
   {
     "title": "Tune In to the Midnight Heart",
@@ -2059,7 +2073,8 @@
         ]
       }
     ],
-    "franchise": "Tune In to the Midnight Heart"
+    "franchise": "Tune In to the Midnight Heart",
+    "release_date": "2026-01-06"
   },
   {
     "title": "AHO-GIRL",
@@ -2135,7 +2150,8 @@
         ]
       }
     ],
-    "franchise": "AHO-GIRL"
+    "franchise": "AHO-GIRL",
+    "release_date": "2017-07-04"
   },
   {
     "title": "Ghost Stories",
@@ -2222,7 +2238,8 @@
         ]
       }
     ],
-    "franchise": "The Comic Artist and His Assistants"
+    "franchise": "The Comic Artist and His Assistants",
+    "release_date": "2014-04-08"
   },
   {
     "title": "Re:ZERO - Starting Life in Another World",
@@ -2237,335 +2254,347 @@
           {
             "number": 1,
             "name": "The End of the Beginning and the Beginning of the End",
-            "status": 0
+            "status": 1
           },
           {
             "number": 2,
             "name": "Reunion with the Witch",
-            "status": 0
+            "status": 1
           },
           {
             "number": 3,
             "name": "Starting Life from Zero in Another World",
-            "status": 0
+            "status": 1
           },
           {
             "number": 4,
             "name": "The Happy Roswaal Mansion Family",
-            "status": 0
+            "status": 1
           },
           {
             "number": 5,
             "name": "The Morning of Our Promise Is Still Distant",
-            "status": 0
+            "status": 1
           },
           {
             "number": 6,
             "name": "The Sound of Chains",
-            "status": 0
+            "status": 1
           },
           {
             "number": 7,
             "name": "Natsuki Subaru’s Restart",
-            "status": 0
+            "status": 1
           },
           {
             "number": 8,
             "name": "I Cried, Cried My Lungs Out, and Stopped Crying",
-            "status": 0
+            "status": 1
           },
           {
             "number": 9,
             "name": "The Meaning of Courage",
-            "status": 0
+            "status": 1
           },
           {
             "number": 10,
             "name": "Demonically Inspired Methods",
-            "status": 0
+            "status": 1
           },
           {
             "number": 11,
             "name": "Rem",
-            "status": 0
+            "status": 1
           },
           {
             "number": 12,
             "name": "Return to the Capital",
-            "status": 0
+            "status": 1
           },
           {
             "number": 13,
             "name": "Self-Proclaimed Knight Natsuki Subaru",
-            "status": 0
+            "status": 1
           },
           {
             "number": 14,
             "name": "The Sickness Called Despair",
-            "status": 0
+            "status": 1
           },
           {
             "number": 15,
             "name": "The Outside of Madness",
-            "status": 0
+            "status": 1
           },
           {
             "number": 16,
             "name": "A Pig's Greed",
-            "status": 0
+            "status": 1
           },
           {
             "number": 17,
             "name": "Disgrace in the Extreme",
-            "status": 0
+            "status": 1
           },
           {
             "number": 18,
             "name": "From Zero",
-            "status": 0
+            "status": 1
           },
           {
             "number": 19,
             "name": "Battle Against the White Whale",
-            "status": 0
+            "status": 1
           },
           {
             "number": 20,
             "name": "Wilhelm van Astrea",
-            "status": 0
+            "status": 1
           },
           {
             "number": 21,
             "name": "A Wager That Defies Despair",
-            "status": 0
+            "status": 1
           },
           {
             "number": 22,
             "name": "A Flash of Sloth",
-            "status": 0
+            "status": 1
           },
           {
             "number": 23,
             "name": "Nefarious Sloth",
-            "status": 0
+            "status": 1
           },
           {
             "number": 24,
             "name": "The Self-Proclaimed Knight and the Greatest of Knights",
-            "status": 0
+            "status": 1
           },
           {
             "number": 25,
             "name": "That’s All This Story Is About",
-            "status": 0
-          },
+            "status": 1
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "name": "Season 2",
+        "episodes": [
           {
-            "number": 26,
+            "number": 1,
             "name": "Each One's Promise",
-            "status": 0
+            "status": 1
           },
           {
-            "number": 27,
+            "number": 2,
             "name": "The Next Location",
-            "status": 0
+            "status": 1
           },
           {
-            "number": 28,
+            "number": 3,
             "name": "The Long-Awaited Reunion",
-            "status": 0
+            "status": 1
           },
           {
-            "number": 29,
+            "number": 4,
             "name": "Parent and Child",
-            "status": 0
+            "status": 1
           },
           {
-            "number": 30,
+            "number": 5,
             "name": "A Step Forward",
-            "status": 0
+            "status": 1
           },
           {
-            "number": 31,
+            "number": 6,
             "name": "The Maiden's Gospel",
             "status": 0
           },
           {
-            "number": 32,
+            "number": 7,
             "name": "Friend",
             "status": 0
           },
           {
-            "number": 33,
+            "number": 8,
             "name": "The Value of Life",
             "status": 0
           },
           {
-            "number": 34,
+            "number": 9,
             "name": "Love Love Love Love Love Love You",
             "status": 0
           },
           {
-            "number": 35,
+            "number": 10,
             "name": "I Know Hell",
             "status": 0
           },
           {
-            "number": 36,
+            "number": 11,
             "name": "The Taste of Death",
             "status": 0
           },
           {
-            "number": 37,
+            "number": 12,
             "name": "The Witches’ Tea Party",
             "status": 0
           },
           {
-            "number": 38,
+            "number": 13,
             "name": "The Sounds That Make You Want to Cry",
             "status": 0
           },
           {
-            "number": 39,
+            "number": 14,
             "name": "Straight Bet",
             "status": 0
           },
           {
-            "number": 40,
+            "number": 15,
             "name": "Otto Suwen / A Reason to Believe",
             "status": 0
           },
           {
-            "number": 41,
+            "number": 16,
             "name": "Nobody Can Lift a Quain Stone Alone",
             "status": 0
           },
           {
-            "number": 42,
+            "number": 17,
             "name": "A Journey Through Memories",
             "status": 0
           },
           {
-            "number": 43,
+            "number": 18,
             "name": "The Day Betelgeuse Laughed",
             "status": 0
           },
           {
-            "number": 44,
+            "number": 19,
             "name": "The Permafrost of Elior Forest",
             "status": 0
           },
           {
-            "number": 45,
+            "number": 20,
             "name": "The Beginning of the Sanctuary and the Beginning of the End",
             "status": 0
           },
           {
-            "number": 46,
+            "number": 21,
             "name": "Reunion of Roars",
             "status": 0
           },
           {
-            "number": 47,
+            "number": 22,
             "name": "Happiness Reflected on the Water's Surface",
             "status": 0
           },
           {
-            "number": 48,
+            "number": 23,
             "name": "Love Me Down to My Blood and Guts",
             "status": 0
           },
           {
-            "number": 49,
+            "number": 24,
             "name": "Choose Me",
             "status": 0
           },
           {
-            "number": 50,
+            "number": 25,
             "name": "Offbeat Steps Under the Moonlight",
             "status": 0
-          },
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "name": "Season 3",
+        "episodes": [
           {
-            "number": 51,
+            "number": 1,
             "name": "Theatrical Malice",
             "status": 0
           },
           {
-            "number": 52,
+            "number": 2,
             "name": "A Showdown of Fire and Ice",
             "status": 0
           },
           {
-            "number": 53,
+            "number": 3,
             "name": "Gorgeous Tiger",
             "status": 0
           },
           {
-            "number": 54,
+            "number": 4,
             "name": "Operation: Take Back the Government Office",
             "status": 0
           },
           {
-            "number": 55,
+            "number": 5,
             "name": "A Dark Torrent",
             "status": 0
           },
           {
-            "number": 56,
+            "number": 6,
             "name": "Conditions of the Knight",
             "status": 0
           },
           {
-            "number": 57,
+            "number": 7,
             "name": "The Newest of Heroes and the Most Ancient of Heroes",
             "status": 0
           },
           {
-            "number": 58,
+            "number": 8,
             "name": "The One I'll Love Someday",
             "status": 0
           },
           {
-            "number": 59,
+            "number": 9,
             "name": "City Scramble",
             "status": 0
           },
           {
-            "number": 60,
+            "number": 10,
             "name": "The Plan to Conquer Greed",
             "status": 0
           },
           {
-            "number": 61,
+            "number": 11,
             "name": "Liliana Masquerade",
             "status": 0
           },
           {
-            "number": 62,
+            "number": 12,
             "name": "Regulus Corneas",
             "status": 0
           },
           {
-            "number": 63,
+            "number": 13,
             "name": "The Warrior's Commendation",
             "status": 0
           },
           {
-            "number": 64,
+            "number": 14,
             "name": "Theresia van Astrea",
             "status": 0
           },
           {
-            "number": 65,
+            "number": 15,
             "name": "A Hideous Dinner Party",
             "status": 0
           },
           {
-            "number": 66,
+            "number": 16,
             "name": "The Result of the Battle for Priestella",
             "status": 0
           },
           {
-            "number": 67,
+            "number": 17,
             "name": "Episode 67",
             "status": 0
           }
@@ -2573,7 +2602,9 @@
       }
     ],
     "poster_path": "/aRwmcX36r1ZpR5Xq5mmFcpUDQ8J.jpg",
-    "franchise": "Re"
+    "franchise": "Re:ZERO",
+    "release_date": "2016-04-04",
+    "manual_seasons": true
   },
   {
     "title": "Spy x Family",
@@ -2851,7 +2882,8 @@
         ]
       }
     ],
-    "franchise": "Spy x Family"
+    "franchise": "Spy x Family",
+    "release_date": "2022-04-09"
   },
   {
     "title": "Rascal Does Not Dream",
@@ -3003,7 +3035,8 @@
       }
     ],
     "poster_path": "/fbqDG7GjodvaNecgv1q8kfSNPl5.jpg",
-    "franchise": "Rascal Does Not Dream"
+    "franchise": "Rascal Does Not Dream",
+    "release_date": "2018-10-04"
   },
   {
     "title": "Horimiya",
@@ -3084,7 +3117,8 @@
         ]
       }
     ],
-    "franchise": "Horimiya"
+    "franchise": "Horimiya",
+    "release_date": "2021-01-10"
   },
   {
     "title": "Oregairu SNAFU",
@@ -3302,7 +3336,8 @@
         ]
       }
     ],
-    "franchise": "Oregairu SNAFU"
+    "franchise": "Oregairu SNAFU",
+    "release_date": "2013-04-05"
   },
   {
     "title": "KonoSuba",
@@ -3490,7 +3525,8 @@
       }
     ],
     "poster_path": "/oRaOeQlwktbGSd2T31FYAcgHZlh.jpg",
-    "franchise": "KonoSuba"
+    "franchise": "KonoSuba",
+    "release_date": "2016-01-14"
   },
   {
     "title": "100 Girlfriends Who Really, Really Love You",
@@ -3626,7 +3662,8 @@
       }
     ],
     "poster_path": "/kBiPU7I7TEJdDXu8tHgVrgL5zAU.jpg",
-    "franchise": "100 Girlfriends Who Really, Really Love You"
+    "franchise": "100 Girlfriends Who Really, Really Love You",
+    "release_date": "2023-10-08"
   },
   {
     "title": "High School DxD",
@@ -3905,7 +3942,8 @@
         ]
       }
     ],
-    "franchise": "High School DxD"
+    "franchise": "High School DxD",
+    "release_date": "2012-01-06"
   },
   {
     "title": "Kaguya-sama: Love is War",
@@ -4118,7 +4156,8 @@
         ]
       }
     ],
-    "franchise": "Kaguya-sama"
+    "franchise": "Kaguya-sama",
+    "release_date": "2019-01-12"
   },
   {
     "title": "Fruits Basket",
@@ -4461,7 +4500,8 @@
         ]
       }
     ],
-    "franchise": "Fruits Basket"
+    "franchise": "Fruits Basket",
+    "release_date": "2019-04-06"
   },
   {
     "title": "Toradora!",
@@ -4602,7 +4642,8 @@
         ]
       }
     ],
-    "franchise": "Toradora!"
+    "franchise": "Toradora!",
+    "release_date": "2008-10-02"
   },
   {
     "title": "The Angel Next Door Spoils Me Rotten",
@@ -4689,7 +4730,8 @@
         ]
       }
     ],
-    "franchise": "The Angel Next Door Spoils Me Rotten"
+    "franchise": "The Angel Next Door Spoils Me Rotten",
+    "release_date": "2023-01-07"
   },
   {
     "title": "Alya Sometimes Hides Her Feelings in Russian",
@@ -4776,7 +4818,8 @@
         ]
       }
     ],
-    "franchise": "Alya Sometimes Hides Her Feelings in Russian"
+    "franchise": "Alya Sometimes Hides Her Feelings in Russian",
+    "release_date": "2024-07-03"
   },
   {
     "title": "ReLIFE",
@@ -4857,7 +4900,8 @@
         ]
       }
     ],
-    "franchise": "ReLIFE"
+    "franchise": "ReLIFE",
+    "release_date": "2016-07-02"
   },
   {
     "title": "The Fragrant Flower Blooms with Dignity",
@@ -4938,7 +4982,8 @@
         ]
       }
     ],
-    "franchise": "The Fragrant Flower Blooms with Dignity"
+    "franchise": "The Fragrant Flower Blooms with Dignity",
+    "release_date": "2025-07-06"
   },
   {
     "title": "The Pet Girl of Sakurasou",
@@ -5074,7 +5119,8 @@
         ]
       }
     ],
-    "franchise": "The Pet Girl of Sakurasou"
+    "franchise": "The Pet Girl of Sakurasou",
+    "release_date": "2012-10-09"
   },
   {
     "title": "My Dress-Up Darling",
@@ -5210,7 +5256,8 @@
         ]
       }
     ],
-    "franchise": "My Dress-Up Darling"
+    "franchise": "My Dress-Up Darling",
+    "release_date": "2022-01-09"
   },
   {
     "title": "A Couple of Cuckoos",
@@ -5412,7 +5459,8 @@
         ]
       }
     ],
-    "franchise": "A Couple of Cuckoos"
+    "franchise": "A Couple of Cuckoos",
+    "release_date": "2022-04-24"
   },
   {
     "title": "Class President is a Maid!",
@@ -5558,7 +5606,8 @@
         ]
       }
     ],
-    "franchise": "Class President is a Maid!"
+    "franchise": "Class President is a Maid!",
+    "release_date": "2010-04-02"
   },
   {
     "title": "And you thought there is never a girl online?",
@@ -5634,7 +5683,8 @@
         ]
       }
     ],
-    "franchise": "And you thought there is never a girl online?"
+    "franchise": "And you thought there is never a girl online?",
+    "release_date": "2016-04-07"
   },
   {
     "title": "Love, Chunibyo & Other Delusions!",
@@ -5776,7 +5826,8 @@
         ]
       }
     ],
-    "franchise": "Love, Chunibyo & Other Delusions!"
+    "franchise": "Love, Chunibyo & Other Delusions!",
+    "release_date": "2012-10-04"
   },
   {
     "title": "The Iceblade Sorcerer Shall Rule the World",
@@ -5852,7 +5903,8 @@
         ]
       }
     ],
-    "franchise": "The Iceblade Sorcerer Shall Rule the World"
+    "franchise": "The Iceblade Sorcerer Shall Rule the World",
+    "release_date": "2023-01-06"
   },
   {
     "title": "Danganronpa: The Animation",
@@ -5999,7 +6051,8 @@
         ]
       }
     ],
-    "franchise": "Danganronpa"
+    "franchise": "Danganronpa",
+    "release_date": "2013-07-05"
   },
   {
     "title": "My Little Sister Can't Be This Cute",
@@ -6146,7 +6199,8 @@
         ]
       }
     ],
-    "franchise": "My Little Sister Can't Be This Cute"
+    "franchise": "My Little Sister Can't Be This Cute",
+    "release_date": "2010-10-03"
   },
   {
     "title": "The Dreaming Boy is a Realist",
@@ -6222,7 +6276,8 @@
         ]
       }
     ],
-    "franchise": "The Dreaming Boy is a Realist"
+    "franchise": "The Dreaming Boy is a Realist",
+    "release_date": "2023-07-04"
   },
   {
     "title": "Prison School",
@@ -6298,7 +6353,8 @@
         ]
       }
     ],
-    "franchise": "Prison School"
+    "franchise": "Prison School",
+    "release_date": "2015-07-11"
   },
   {
     "title": "Trinity Seven",
@@ -6374,7 +6430,8 @@
         ]
       }
     ],
-    "franchise": "Trinity Seven"
+    "franchise": "Trinity Seven",
+    "release_date": "2014-10-08"
   },
   {
     "title": "Akashic Records of Bastard Magic Instructor",
@@ -6450,7 +6507,8 @@
         ]
       }
     ],
-    "franchise": "Akashic Records of Bastard Magic Instructor"
+    "franchise": "Akashic Records of Bastard Magic Instructor",
+    "release_date": "2017-04-04"
   },
   {
     "title": "Masamune-kun's Revenge",
@@ -6592,7 +6650,8 @@
         ]
       }
     ],
-    "franchise": "Masamune-kun's Revenge"
+    "franchise": "Masamune-kun's Revenge",
+    "release_date": "2017-01-05"
   },
   {
     "title": "Shikimori's Not Just a Cutie",
@@ -6668,7 +6727,8 @@
         ]
       }
     ],
-    "franchise": "Shikimori's Not Just a Cutie"
+    "franchise": "Shikimori's Not Just a Cutie",
+    "release_date": "2022-04-10"
   },
   {
     "title": "The Dangers in My Heart",
@@ -6809,7 +6869,8 @@
         ]
       }
     ],
-    "franchise": "The Dangers in My Heart"
+    "franchise": "The Dangers in My Heart",
+    "release_date": "2023-04-02"
   },
   {
     "title": "More than a married couple, but not lovers.",
@@ -6885,7 +6946,8 @@
         ]
       }
     ],
-    "franchise": "More than a married couple, but not lovers."
+    "franchise": "More than a married couple, but not lovers.",
+    "release_date": "2022-10-09"
   },
   {
     "title": "Golden Time",
@@ -7021,7 +7083,8 @@
         ]
       }
     ],
-    "franchise": "Golden Time"
+    "franchise": "Golden Time",
+    "release_date": "2013-10-03"
   },
   {
     "title": "Haganai: I don't have many friends",
@@ -7163,7 +7226,8 @@
         ]
       }
     ],
-    "franchise": "Haganai"
+    "franchise": "Haganai",
+    "release_date": "2011-10-07"
   },
   {
     "title": "Eromanga Sensei",
@@ -7239,7 +7303,8 @@
         ]
       }
     ],
-    "franchise": "Eromanga Sensei"
+    "franchise": "Eromanga Sensei",
+    "release_date": "2017-04-09"
   },
   {
     "title": "SHIMONETA",
@@ -7315,7 +7380,8 @@
         ]
       }
     ],
-    "franchise": "SHIMONETA"
+    "franchise": "SHIMONETA",
+    "release_date": "2015-07-04"
   },
   {
     "title": "The Genius Prince's Guide to Raising a Nation Out of Debt",
@@ -7391,7 +7457,8 @@
         ]
       }
     ],
-    "franchise": "The Genius Prince's Guide to Raising a Nation Out of Debt"
+    "franchise": "The Genius Prince's Guide to Raising a Nation Out of Debt",
+    "release_date": "2022-01-11"
   },
   {
     "title": "Don't Toy with Me, Miss Nagatoro",
@@ -7533,7 +7600,8 @@
         ]
       }
     ],
-    "franchise": "Don't Toy with Me, Miss Nagatoro"
+    "franchise": "Don't Toy with Me, Miss Nagatoro",
+    "release_date": "2021-04-11"
   },
   {
     "title": "Medaka Kuroiwa is Impervious to My Charms",
@@ -7614,7 +7682,8 @@
         "episodes": []
       }
     ],
-    "franchise": "Medaka Kuroiwa is Impervious to My Charms"
+    "franchise": "Medaka Kuroiwa is Impervious to My Charms",
+    "release_date": "2025-01-07"
   },
   {
     "title": "My Girlfriend is Shobitch",
@@ -7680,7 +7749,8 @@
         ]
       }
     ],
-    "franchise": "My Girlfriend is Shobitch"
+    "franchise": "My Girlfriend is Shobitch",
+    "release_date": "2017-10-12"
   },
   {
     "title": "Bottom-Tier Character Tomozaki",
@@ -7827,7 +7897,8 @@
         ]
       }
     ],
-    "franchise": "Bottom-Tier Character Tomozaki"
+    "franchise": "Bottom-Tier Character Tomozaki",
+    "release_date": "2021-01-08"
   },
   {
     "title": "Can a Boy and Girl Friendship Hold Up?",
@@ -7903,7 +7974,8 @@
         ]
       }
     ],
-    "franchise": "Can a Boy and Girl Friendship Hold Up?"
+    "franchise": "Can a Boy and Girl Friendship Hold Up?",
+    "release_date": "2025-04-04"
   },
   {
     "title": "Hensuki: Are you willing to fall in love with a pervert, as long as she's a cutie?",
@@ -7979,7 +8051,8 @@
         ]
       }
     ],
-    "franchise": "Hensuki"
+    "franchise": "Hensuki",
+    "release_date": "2019-07-08"
   },
   {
     "title": "My Little Monster",
@@ -8060,7 +8133,8 @@
         ]
       }
     ],
-    "franchise": "My Little Monster"
+    "franchise": "My Little Monster",
+    "release_date": "2012-10-02"
   },
   {
     "title": "Blue Box",
@@ -8212,7 +8286,8 @@
         ]
       }
     ],
-    "franchise": "Blue Box"
+    "franchise": "Blue Box",
+    "release_date": "2024-10-03"
   },
   {
     "title": "The Children of Shiunji Family",
@@ -8288,7 +8363,8 @@
         ]
       }
     ],
-    "franchise": "The Children of Shiunji Family"
+    "franchise": "The Children of Shiunji Family",
+    "release_date": "2025-04-08"
   },
   {
     "title": "Gamers!",
@@ -8364,7 +8440,8 @@
         ]
       }
     ],
-    "franchise": "Gamers!"
+    "franchise": "Gamers!",
+    "release_date": "2017-07-13"
   },
   {
     "title": "Redo of Healer",
@@ -8440,7 +8517,8 @@
         ]
       }
     ],
-    "franchise": "Redo of Healer"
+    "franchise": "Redo of Healer",
+    "release_date": "2021-01-13"
   },
   {
     "title": "Kiss x Sis OVA",
@@ -8714,7 +8792,8 @@
         ]
       }
     ],
-    "franchise": "Re"
+    "franchise": "Rent-a-Girlfriend",
+    "release_date": "2020-07-11"
   },
   {
     "title": "Undefeated Bahamut Chronicles",
@@ -8790,7 +8869,8 @@
           }
         ]
       }
-    ]
+    ],
+    "release_date": "2016-01-11"
   },
   {
     "title": "Plastic Memories",
@@ -8871,7 +8951,8 @@
           }
         ]
       }
-    ]
+    ],
+    "release_date": "2015-04-05"
   },
   {
     "title": "Tonikaku Kawaii",
@@ -9013,7 +9094,8 @@
           }
         ]
       }
-    ]
+    ],
+    "release_date": "2020-10-03"
   },
   {
     "title": "Chivalry of a Failed Knight",
@@ -9089,7 +9171,8 @@
           }
         ]
       }
-    ]
+    ],
+    "release_date": "2015-10-03"
   },
   {
     "title": "Tonikawa: Over the Moon for You",
@@ -9231,7 +9314,8 @@
           }
         ]
       }
-    ]
+    ],
+    "release_date": "2020-10-03"
   },
   {
     "title": "Studio Apartment, Good Lighting, Angel Included",
@@ -9307,12 +9391,89 @@
           }
         ]
       }
-    ]
+    ],
+    "release_date": "2024-04-06"
   },
   {
     "title": "Rascal Does Not Dream of Santa Claus",
     "rating": -1,
-    "franchise": "Rascal Does Not Dream of Santa Claus",
-    "type": "movie"
+    "franchise": "Rascal Does Not Dream",
+    "type": "tv",
+    "tmdb_id": 312016,
+    "poster_path": "/3WmEcB8RreMRbKGyyDN8WfCzjba.jpg",
+    "seasons": [
+      {
+        "number": 1,
+        "name": "Rascal Does Not Dream Of Santa Claus",
+        "episodes": [
+          {
+            "number": 1,
+            "name": "Puberty Continues",
+            "status": -1
+          },
+          {
+            "number": 2,
+            "name": "What Flavor Is the Atmosphere?",
+            "status": -1
+          },
+          {
+            "number": 3,
+            "name": "Idol Song",
+            "status": -1
+          },
+          {
+            "number": 4,
+            "name": "Heroism",
+            "status": -1
+          },
+          {
+            "number": 5,
+            "name": "Dissonant Notes",
+            "status": -1
+          },
+          {
+            "number": 6,
+            "name": "You and I Within the Realm of Memories",
+            "status": -1
+          },
+          {
+            "number": 7,
+            "name": "From Beyond the Hilbert Space",
+            "status": -1
+          },
+          {
+            "number": 8,
+            "name": "Secrets and Promises",
+            "status": -1
+          },
+          {
+            "number": 9,
+            "name": "I Need You",
+            "status": -1
+          },
+          {
+            "number": 10,
+            "name": "Holy Night",
+            "status": -1
+          },
+          {
+            "number": 11,
+            "name": "The World Dreams",
+            "status": -1
+          },
+          {
+            "number": 12,
+            "name": "Reindeer's Work",
+            "status": -1
+          },
+          {
+            "number": 13,
+            "name": "No Dreams of Santa Claus",
+            "status": -1
+          }
+        ]
+      }
+    ],
+    "release_date": "2025-07-05"
   }
 ]

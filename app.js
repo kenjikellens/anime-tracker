@@ -79,6 +79,7 @@ async function lazyFetchPosters() {
 async function lazySyncSeasons() {
     for (const item of state.animeList) {
         if (item.type === 'movie') continue;
+        if (item.manual_seasons) continue;
         // OOK syncen als seasons nog ontbreken (voor eerste migratie)
         if (!item.tmdb_id) continue;
 
@@ -144,6 +145,7 @@ async function fetchTmdbId(item) {
             item.tmdb_id = best.id;
             item.type = best.media_type === 'movie' ? 'movie' : 'tv';
             item.poster_path = best.poster_path;
+            item.release_date = best.release_date || best.first_air_date;
             save();
             return { id: best.id, type: item.type };
         }
@@ -168,48 +170,47 @@ async function fetchSeasonData(item) {
         });
     }
 
-    // Legacy migratie: als het item nog een _legacyStatus heeft, gebruik die voor de eerste keer
-    const legacyDefault = item._legacyStatus !== undefined ? item._legacyStatus : -1;
-    const isFirstFetch = existingSeasons.size === 0;
+    // Geavanceerde statusbeheer: Maak een map van alle huidige afleveringen (op titel)
+    const statusByTitle = new Map();
+    if (item.seasons) {
+        item.seasons.forEach(s => {
+            s.episodes.forEach(ep => {
+                const cleanTitle = ep.name.toLowerCase().trim();
+                statusByTitle.set(cleanTitle, ep.status);
+            });
+        });
+    }
 
     try {
-        // Haal show details op voor seizoenaantallen
         const showRes = await fetch(`https://api.themoviedb.org/3/tv/${info.id}?api_key=${TMDB_API_KEY}&language=en-US`);
         const showData = await showRes.json();
-
+        
         item.seasons = [];
+        item.release_date = showData.first_air_date;
 
         for (const s of showData.seasons) {
-            if (s.season_number === 0) continue; // skip specials
+            if (s.season_number === 0) continue;
 
-            // Haal afleveringen per seizoen op
             const seasonRes = await fetch(`https://api.themoviedb.org/3/tv/${info.id}/season/${s.season_number}?api_key=${TMDB_API_KEY}&language=en-US`);
             const seasonData = await seasonRes.json();
 
-            const existingEps = existingSeasons.get(s.season_number);
-
-            const episodes = (seasonData.episodes || []).map(ep => ({
-                number: ep.episode_number,
-                name: ep.name || `Aflevering ${ep.episode_number}`,
-                // Bestaande status behouden, anders:
-                // - Eerste keer ophalen: legacy status gebruiken
-                // - Niet eerste keer (sync): -1 (nieuw seizoen/aflevering!)
-                status: existingEps
-                    ? (existingEps.get(ep.episode_number) ?? -1)
-                    : (isFirstFetch ? legacyDefault : -1)
-            }));
+            const episodes = (seasonData.episodes || []).map(ep => {
+                const cleanTitle = (ep.name || "").toLowerCase().trim();
+                const matchedStatus = statusByTitle.get(cleanTitle);
+                
+                return {
+                    number: ep.episode_number,
+                    name: ep.name || `Episode ${ep.episode_number}`,
+                    status: matchedStatus !== undefined ? matchedStatus : -1
+                };
+            });
 
             item.seasons.push({
                 number: s.season_number,
-                name: s.name || `Seizoen ${s.season_number}`,
+                name: s.name || `Season ${s.season_number}`,
                 episodes: episodes
             });
         }
-
-        // Verwijder oude/redundante velden
-        delete item.season;
-        delete item.episode;
-        delete item.status;
         delete item._legacyStatus;
         save();
     } catch (e) {
@@ -252,18 +253,43 @@ function getVidsrcUrl(item, seasonNum, episodeNum) {
 // --- Render ---
 
 function getFilteredSorted() {
-    // Dedupliceren op basis van titel (om '6x Golden Time' bugs te voorkomen)
-    const seen = new Set();
-    let list = state.animeList.filter(item => {
-        if (!item || !item.title || seen.has(item.title)) return false;
-        seen.add(item.title);
-        return true;
-    }).map(item => {
-        const computed = window.StatusCalculator.getAnimeStatus(item);
-        return { ...item, _computedStatus: computed, _ref: item };
+    const franchises = new Map();
+    
+    state.animeList.forEach(item => {
+        if (!item || !item.title) return;
+        const fName = item.franchise || item.title;
+        if (!franchises.has(fName)) {
+            franchises.set(fName, {
+                title: fName,
+                items: [],
+                _computedStatus: -1,
+                rating: -1,
+                poster_path: null,
+                tmdb_id: null,
+                _isGroup: true
+            });
+        }
+        const group = franchises.get(fName);
+        group.items.push(item);
     });
 
-    // Filter op actieve statussen (multi-select)
+    let list = Array.from(franchises.values()).map(group => {
+        const itemWithPoster = group.items.find(i => i.poster_path) || group.items[0];
+        group.poster_path = itemWithPoster?.poster_path;
+        group.tmdb_id = itemWithPoster?.tmdb_id; // Voor vidsrc backup
+
+        // Bereken gezamenlijke status: 2 (Nieuw) > 0 (Bezig) > -1 (Te Bekijken) > 1 (Bekeken)
+        const statuses = group.items.map(item => window.StatusCalculator.getAnimeStatus(item));
+        if (statuses.includes(2)) group._computedStatus = 2;
+        else if (statuses.includes(0)) group._computedStatus = 0;
+        else if (statuses.includes(-1)) group._computedStatus = -1;
+        else group._computedStatus = 1;
+
+        group.rating = Math.max(...group.items.map(i => i.rating || -1));
+        return group;
+    });
+
+    // Filter op actieve statussen
     list = list.filter(a => activeFilters.has(a._computedStatus));
 
     if (currentSearch) {
@@ -318,8 +344,8 @@ function render() {
         `;
         column.appendChild(header);
 
-        group.items.forEach(wrapper => {
-            column.appendChild(buildCard(wrapper._ref, wrapper._computedStatus));
+        group.items.forEach(fr => {
+            column.appendChild(buildCard(fr, fr._computedStatus));
         });
 
         container.appendChild(column);
@@ -403,22 +429,22 @@ function buildStatusDropdown(currentStatus, onChange) {
     return div;
 }
 
-function buildCard(item, computedStatus) {
+function buildCard(group, computedStatus) {
     const card = document.createElement('div');
     card.className = 'anime-card';
     card.dataset.status = computedStatus;
     if (computedStatus === 1) card.classList.add('status-watched');
     if (computedStatus === 2) card.classList.add('status-new');
 
-    const isMovie = item.type === 'movie';
-    const isExpanded = expandedItems.has(item.title);
-    const isRated = item.rating !== undefined && item.rating > -1;
-    const ratingDisplay = isRated ? item.rating.toFixed(1) : '—';
+    const isGroup = group.items.length > 1 || (group.items[0].type === 'tv' && group.items[0].seasons?.length > 1);
+    const isExpanded = expandedItems.has(group.title);
+    const isRated = group.rating !== undefined && group.rating > -1;
+    const ratingDisplay = isRated ? group.rating.toFixed(1) : '—';
 
     // Glow effects
     if (isRated) {
-        if (item.rating >= 9) card.classList.add('glow-gold');
-        else if (item.rating < 2) card.classList.add('glow-red');
+        if (group.rating >= 9) card.classList.add('glow-gold');
+        else if (group.rating < 2) card.classList.add('glow-red');
     }
 
     // Status Indicator (alleen in list view)
@@ -439,8 +465,8 @@ function buildCard(item, computedStatus) {
     // Poster Section
     const posterContainer = document.createElement('div');
     posterContainer.className = 'card-poster';
-    if (item.poster_path) {
-        posterContainer.innerHTML = `<img src="https://image.tmdb.org/t/p/w500${item.poster_path}" alt="${item.title}" loading="lazy">`;
+    if (group.poster_path) {
+        posterContainer.innerHTML = `<img src="https://image.tmdb.org/t/p/w500${group.poster_path}" alt="${group.title}" loading="lazy">`;
     } else {
         posterContainer.innerHTML = `<div class="poster-placeholder"><i class="fas fa-image"></i></div>`;
     }
@@ -455,8 +481,9 @@ function buildCard(item, computedStatus) {
     header.className = 'card-header';
     header.innerHTML = `
         <div class="card-title">
-            <span>${item.title}</span>
-            ${!isMovie ? `<i class="fas fa-chevron-${isExpanded ? 'up' : 'down'} expand-icon"></i>` : ''}
+            <span>${group.title}</span>
+            ${group.items.length > 1 ? `<span class="group-count-badge">${group.items.length}</span>` : ''}
+            ${isGroup ? `<i class="fas fa-chevron-${isExpanded ? 'up' : 'down'} expand-icon"></i>` : ''}
         </div>
     `;
     info.appendChild(header);
@@ -467,12 +494,14 @@ function buildCard(item, computedStatus) {
 
     // Status dropdown (top-level)
     const statusDd = buildStatusDropdown(computedStatus, (newStatus) => {
-        if (newStatus === 1 && computedStatus !== 1) {
-            showRatingModal(item, true);
-        } else {
+        group.items.forEach(item => {
+            if (newStatus === 1 && window.StatusCalculator.getAnimeStatus(item) !== 1) {
+                // We show rating modal for each unrated item or just first?
+                // User might want to rate the whole franchise.
+            }
             setAnimeAllStatus(item, newStatus);
-            save(); render();
-        }
+        });
+        save(); render();
     });
     actions.appendChild(statusDd);
 
@@ -482,317 +511,229 @@ function buildCard(item, computedStatus) {
     playBtn.innerHTML = '<i class="fas fa-play"></i>';
     playBtn.addEventListener('click', async (e) => {
         e.stopPropagation();
-        playBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-        const infoData = await fetchTmdbId(item);
-        playBtn.innerHTML = '<i class="fas fa-play"></i>';
-        if (!infoData) { alert('Niet gevonden op TMDB: ' + item.title); return; }
-        // Zoek eerste onbekeken aflevering
-        let s = 1, eNum = 1;
-        if (item.seasons) {
-            for (const season of item.seasons) {
-                const unwatched = season.episodes.find(ep => ep.status !== 1);
-                if (unwatched) { s = season.number; eNum = unwatched.number; break; }
+        // Zoek eerste onbekeken item in de groep
+        for (const item of group.items) {
+            if (window.StatusCalculator.getAnimeStatus(item) !== 1) {
+                let s = 1, eNum = 1;
+                if (item.seasons) {
+                    for (const season of item.seasons) {
+                        const unwatched = season.episodes.find(ep => ep.status !== 1);
+                        if (unwatched) { s = season.number; eNum = unwatched.number; break; }
+                    }
+                }
+                const url = getVidsrcUrl(item, s, eNum);
+                if (url) { window.open(url, '_blank'); return; }
             }
         }
-        const url = getVidsrcUrl(item, s, eNum);
+        // Als alles bekeken is, speel gewoon het eerste
+        const first = group.items[0];
+        const url = getVidsrcUrl(first, 1, 1);
         if (url) window.open(url, '_blank');
     });
     actions.appendChild(playBtn);
 
     // Rating badge
     const ratingBadge = document.createElement('span');
-    const rClass = getRatingClass(item.rating);
+    const rClass = getRatingClass(group.rating);
     ratingBadge.className = `rating-badge ${rClass}`;
     ratingBadge.style.cursor = 'pointer';
     ratingBadge.title = 'Klik om te beoordelen';
     ratingBadge.innerHTML = `<i class="fas fa-star" style="font-size:0.7em;"></i> ${ratingDisplay}`;
     ratingBadge.addEventListener('click', (e) => {
         e.stopPropagation();
-        showRatingModal(item, false);
+        showRatingModal(group.items[0], false); // Rate first item for now
     });
     actions.appendChild(ratingBadge);
 
     info.appendChild(actions);
     card.appendChild(info);
 
-    // Klik op hele kaart opent detail of inline (werkt nu ook voor films)
+    // Inline expanded content (alleen in list view)
+    if (currentView === 'list' && isExpanded) {
+        card.appendChild(buildDetailGroup(group));
+    }
+
+    // Klik op hele kaart opent detail of inline
     card.style.cursor = 'pointer';
     card.addEventListener('click', async (e) => {
-        // Niet openen als er op een interactief element geklikt is
-        if (e.target.closest('.status-dropdown, .action-btn, .rating-badge, input, select, .card-detail')) return;
-
-        if (!isMovie && (!item.seasons || item.seasons.length === 0)) {
-            const icon = card.querySelector('.expand-icon');
-            if (icon) icon.className = 'fas fa-spinner fa-spin expand-icon';
-            await fetchSeasonData(item);
-        }
+        // Alleen doorklikken als het geen interactief element is
+        if (e.target.closest('button, .status-dropdown, input, select, .action-btn, .rating-badge')) return;
 
         if (currentView === 'grid') {
-            showDetailModal(item);
+            showDetailModal(group);
         } else {
-            if (expandedItems.has(item.title)) expandedItems.delete(item.title);
-            else expandedItems.add(item.title);
+            if (expandedItems.has(group.title)) expandedItems.delete(group.title);
+            else expandedItems.add(group.title);
             render();
         }
     });
 
-    // Inline expanded content (alleen in list view)
-    if (currentView === 'list' && isExpanded) {
-        card.appendChild(buildDetail(item));
-    }
-
     return card;
 }
 
-function buildDetail(item) {
+function buildDetailGroup(group) {
     const detail = document.createElement('div');
-    detail.className = 'card-detail';
-    detail.addEventListener('click', e => {
-        // Clear selection if clicking the background area of the detail list
-        if (e.target === detail) {
-            clearSelection();
-        } else {
-            e.stopPropagation();
-        }
+    detail.className = 'card-detail-group card-detail';
+    
+    // Sorteer items in de groep op release_date
+    const sortedItems = [...group.items].sort((a, b) => {
+        const da = a.release_date || '0000-00-00';
+        const db = b.release_date || '0000-00-00';
+        return da.localeCompare(db);
     });
 
-    if (item.seasons && item.seasons.length > 0) {
-        item.seasons.forEach(season => {
-            const seasonKey = `${item.title}-S${season.number}`;
-            const isOpen = expandedSeasons.has(seasonKey);
+    sortedItems.forEach(item => {
+        const itemBlock = document.createElement('div');
+        itemBlock.className = 'item-block';
+        
+        const itHeader = document.createElement('div');
+        itHeader.className = 'item-header';
+        itHeader.innerHTML = `
+            <div class="item-title-row">
+                <span class="item-type-badge">${item.type === 'movie' ? 'Movie' : 'Series'}</span>
+                <span class="item-title-text">${item.title}</span>
+                <span class="item-year-text">${item.release_date ? `(${item.release_date.substring(0, 4)})` : ''}</span>
+            </div>
+        `;
+        itemBlock.appendChild(itHeader);
 
-            const sBlock = document.createElement('div');
-            sBlock.className = 'season-block';
-
-            const sHeader = document.createElement('div');
-            sHeader.className = 'season-header';
-            sHeader.style.cursor = 'pointer';
-
-            const sStatusDd = buildStatusDropdown(getSeasonStatus(season), (newStatus) => {
-                setSeasonStatus(item, season, newStatus);
-                save();
-                if (currentView === 'grid') showDetailModal(item);
-                else render();
+        if (item.type === 'movie') {
+            const movieRow = document.createElement('div');
+            movieRow.className = 'movie-row';
+            
+            const movieStatusDd = buildStatusDropdown(item.status || -1, (newStatus) => {
+                item.status = newStatus;
+                save(); render();
             });
-
-            const sChevron = document.createElement('i');
-            sChevron.className = `fas fa-chevron-${isOpen ? 'up' : 'down'} expand-icon`;
-
-            const sTitle = document.createElement('span');
-            sTitle.className = 'season-title';
-            sTitle.textContent = `${season.name || `Seizoen ${season.number}`} (${season.episodes.length} afl.)`;
-
-            const sPlay = document.createElement('button');
-            sPlay.className = 'action-btn btn-play btn-small';
-            sPlay.innerHTML = '<i class="fas fa-play"></i>';
-            sPlay.title = 'Speel eerste onbekeken aflevering';
-            sPlay.addEventListener('click', (e) => {
+            movieRow.appendChild(movieStatusDd);
+            
+            const moviePlay = document.createElement('button');
+            moviePlay.className = 'action-btn btn-play btn-tiny';
+            moviePlay.innerHTML = '<i class="fas fa-play"></i>';
+            moviePlay.addEventListener('click', (e) => {
                 e.stopPropagation();
-                const unwatched = season.episodes.find(ep => ep.status !== 1);
-                const epNum = unwatched ? unwatched.number : 1;
-                const url = getVidsrcUrl(item, season.number, epNum);
+                const url = getVidsrcUrl(item, 1, 1);
                 if (url) window.open(url, '_blank');
             });
-
-            // Split season button
-            const sSplit = document.createElement('button');
-            sSplit.className = 'action-btn btn-small';
-            sSplit.innerHTML = '<i class="fas fa-scissors"></i>';
-            sSplit.title = 'Splits in een nieuw seizoen';
-            sSplit.addEventListener('click', (e) => {
-                e.stopPropagation();
-                if (season.episodes.length < 2) return alert('Niet genoeg afleveringen.');
-                const ans = prompt(`Dit seizoen heeft ${season.episodes.length} afleveringen.\n\nTip: Typ 'reset' om vanaf thetvdb/tmdb te herladen (en alle handmatige splits en statussen te verliezen).\n\nOF: typ een **aflevering-nummer** vanaf waar het een nieuw seizoen moet worden (bv. 26).`);
-                
-                if (ans && ans.toLowerCase().trim() === 'reset') {
-                    if (confirm('Zeker dat je alles wilt herladen? Je raakt al je splits en statussen voor deze anime kwijt.')) {
-                        delete item.seasons;
-                        fetchSeasonData(item).then(() => {
-                            if (currentView === 'grid') showDetailModal(item);
-                            else render();
-                        });
-                    }
-                    return;
-                }
-
-                const splitAt = parseInt(ans);
-                if (!splitAt || splitAt <= 1 || splitAt > season.episodes.length) return;
-                
-                const idx = splitAt - 1;
-                const movedEps = season.episodes.splice(idx);
-                
-                // Hernummer de nieuwe afleveringen (voor correcte vidsrc url)
-                movedEps.forEach((ep, i) => {
-                    // Simpele regex om "Episode 26" in "Episode 1" te veranderen
-                    ep.name = ep.name.replace(new RegExp(`(\\s|^)${splitAt + i}(\\s|$)`), `$1${i + 1}$2`);
-                    ep.number = i + 1;
+            movieRow.appendChild(moviePlay);
+            
+            itemBlock.appendChild(movieRow);
+        } else {
+            // TV Seasons
+            if (!item.seasons || item.seasons.length === 0) {
+                const fetchBtn = document.createElement('button');
+                fetchBtn.className = 'action-btn btn-small';
+                fetchBtn.textContent = 'Haal seizoenen op';
+                fetchBtn.addEventListener('click', async (e) => {
+                    e.stopPropagation();
+                    await fetchSeasonData(item);
+                    render();
+                    if (currentView === 'grid') showDetailModal(group);
                 });
-                
-                const newSNum = Math.max(...item.seasons.map(s => s.number)) + 1;
-                item.seasons.push({
-                    number: newSNum,
-                    name: `Season ${newSNum}`,
-                    episodes: movedEps
+                itemBlock.appendChild(fetchBtn);
+            } else {
+                item.seasons.forEach(season => {
+                    itemBlock.appendChild(buildSeasonRow(item, season));
                 });
-                
-                item.seasons.sort((a,b) => a.number - b.number);
-                save();
-                if (currentView === 'grid') showDetailModal(item);
-                else render();
-            });
-
-
-            sHeader.addEventListener('click', (e) => {
-                if (e.target.closest('.status-dropdown, .action-btn')) return;
-                if (expandedSeasons.has(seasonKey)) expandedSeasons.delete(seasonKey);
-                else expandedSeasons.add(seasonKey);
-                if (currentView === 'grid') showDetailModal(item);
-                else render();
-            });
-
-            sHeader.appendChild(sStatusDd);
-            sHeader.appendChild(sChevron);
-            sHeader.appendChild(sTitle);
-            sHeader.appendChild(sSplit);
-            sHeader.appendChild(sPlay);
-            sBlock.appendChild(sHeader);
-
-            if (isOpen) {
-                const epList = document.createElement('div');
-                epList.className = 'episode-list';
-
-                season.episodes.forEach(ep => {
-                    const epRow = document.createElement('div');
-                    epRow.className = 'episode-row';
-                    epRow.dataset.status = ep.status;
-
-                    const epStatusDd = buildStatusDropdown(ep.status, (newStatus) => {
-                        setEpisodeStatus(item, season, ep, newStatus);
-                        save();
-                        if (currentView === 'grid') showDetailModal(item);
-                        else render();
-                    });
-
-                    const epTitle = document.createElement('span');
-                    epTitle.className = 'ep-title';
-                    epTitle.textContent = `E${ep.number} — ${ep.name}`;
-
-                    const epKey = `${item.title}|${season.number}|${ep.number}`;
-                    if (selectedEpisodes.has(epKey)) epRow.classList.add('selected');
-
-                    epRow.style.cursor = 'pointer';
-                    epRow.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const wasSelected = selectedEpisodes.has(epKey);
-
-                        if (e.ctrlKey || e.metaKey) {
-                            // Toggle selection
-                            if (wasSelected) {
-                                selectedEpisodes.delete(epKey);
-                                epRow.classList.remove('selected');
-                            } else {
-                                selectedEpisodes.set(epKey, { item, season, episode: ep });
-                                epRow.classList.add('selected');
-                            }
-                        } else {
-                            // Normal click: Clear everything and select just THIS one (Explorer style)
-                            clearSelection(); // This clears the Map and the DOM classes
-                            selectedEpisodes.set(epKey, { item, season, episode: ep });
-                            epRow.classList.add('selected');
-                        }
-                    });
-
-                    epRow.addEventListener('contextmenu', (e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        
-                        // If user right-clicks an unselected item, focus ONLY on it (like Explorer)
-                        if (!selectedEpisodes.has(epKey)) {
-                            selectedEpisodes.clear();
-                            // We need to visually clear others since clearSelection() calls render() 
-                            // which might close the modal. We'll do it manually on the DOM first.
-                            document.querySelectorAll('.episode-row.selected').forEach(r => r.classList.remove('selected'));
-                            
-                            selectedEpisodes.set(epKey, { item, season, episode: ep });
-                            epRow.classList.add('selected');
-                        }
-                        
-                        renderBatchBar(e.clientX, e.clientY);
-                    });
-
-                    const epPlay = document.createElement('button');
-                    epPlay.className = 'action-btn btn-play btn-tiny';
-                    epPlay.innerHTML = '<i class="fas fa-play"></i>';
-                    epPlay.addEventListener('click', () => {
-                        const url = getVidsrcUrl(item, season.number, ep.number);
-                        if (url) window.open(url, '_blank');
-                    });
-
-                    epRow.appendChild(epStatusDd);
-                    epRow.appendChild(epTitle);
-                    epRow.appendChild(epPlay);
-                    epList.appendChild(epRow);
-                });
-
-                sBlock.appendChild(epList);
             }
-
-            detail.appendChild(sBlock);
-        });
-    }
-
-    // Franchise koppeling in detailpaneel
-    const franchiseRow = document.createElement('div');
-    franchiseRow.className = 'franchise-edit-row';
-    franchiseRow.innerHTML = `
-        <i class="fas fa-link" style="color:var(--text-muted);font-size:12px;"></i>
-        <input type="text" class="franchise-name-input" value="${item.franchise || ''}" placeholder="Franchise naam (bv. KonoSuba)...">
-        <button class="action-btn btn-play btn-small" id="save-franchise-link">Koppel</button>
-    `;
-    franchiseRow.querySelector('#save-franchise-link').addEventListener('click', () => {
-        const val = franchiseRow.querySelector('.franchise-name-input').value.trim();
-        if (val) item.franchise = val;
-        else delete item.franchise;
-        save();
-        if (currentView === 'grid') document.getElementById('detail-overlay').classList.add('hidden');
-        render();
+        }
+        detail.appendChild(itemBlock);
     });
-    detail.appendChild(franchiseRow);
 
     return detail;
 }
 
-// --- Detail Modal (grid view) ---
+function buildSeasonRow(item, season) {
+    const seasonKey = `${item.title}-S${season.number}`;
+    const isOpen = expandedSeasons.has(seasonKey);
 
-function showDetailModal(item) {
-    currentlyShownItem = item;
+    const sBlock = document.createElement('div');
+    sBlock.className = 'season-block';
+
+    const sHeader = document.createElement('div');
+    sHeader.className = 'season-header';
+    
+    const sStatusDd = buildStatusDropdown(getSeasonStatus(season), (newStatus) => {
+        setSeasonStatus(item, season, newStatus);
+        save(); render();
+    });
+
+    const sTitle = document.createElement('span');
+    sTitle.className = 'season-title';
+    sTitle.textContent = `${season.name || `Season ${season.number}`} (${season.episodes.length} afl.)`;
+
+    sHeader.appendChild(sStatusDd);
+    sHeader.appendChild(sTitle);
+    
+    // Chevron en Play
+    const sChevron = document.createElement('i');
+    sChevron.className = `fas fa-chevron-${isOpen ? 'up' : 'down'} expand-icon`;
+    sHeader.appendChild(sChevron);
+
+    sHeader.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (e.target.closest('.status-dropdown, .action-btn')) return;
+        if (expandedSeasons.has(seasonKey)) expandedSeasons.delete(seasonKey);
+        else expandedSeasons.add(seasonKey);
+        render();
+        if (currentlyShownItem) showDetailModal(currentlyShownItem);
+    });
+
+    sBlock.appendChild(sHeader);
+
+    if (isOpen) {
+        const epList = document.createElement('div');
+        epList.className = 'episode-list';
+        season.episodes.forEach(ep => {
+            const epRow = document.createElement('div');
+            epRow.className = 'episode-row';
+            
+            const epStatusDd = buildStatusDropdown(ep.status, (newStatus) => {
+                setEpisodeStatus(item, season, ep, newStatus);
+                save(); render();
+            });
+            
+            const epTitle = document.createElement('span');
+            epTitle.className = 'ep-title';
+            epTitle.textContent = `E${ep.number} — ${ep.name}`;
+            
+            const epPlay = document.createElement('button');
+            epPlay.className = 'action-btn btn-play btn-tiny';
+            epPlay.innerHTML = '<i class="fas fa-play"></i>';
+            epPlay.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const url = getVidsrcUrl(item, season.number, ep.number);
+                if (url) window.open(url, '_blank');
+            });
+
+            epRow.appendChild(epStatusDd);
+            epRow.appendChild(epTitle);
+            epRow.appendChild(epPlay);
+            epList.appendChild(epRow);
+        });
+        sBlock.appendChild(epList);
+    }
+    return sBlock;
+}
+
+function showDetailModal(group) {
+    currentlyShownItem = group;
     const titleEl = document.getElementById('detail-title');
-    titleEl.innerHTML = '';
+    titleEl.innerHTML = `<span>${group.title}</span>`;
     
-    // Titel
-    const txtSpan = document.createElement('span');
-    txtSpan.textContent = item.title;
-    titleEl.appendChild(txtSpan);
-    
-    // Globale status in detail venster (Oplossing 4)
-    const computedStatus = getAnimeStatus(item);
-    const topDd = buildStatusDropdown(computedStatus, (newStatus) => {
-        setAnimeAllStatus(item, newStatus);
-        save();
-        showDetailModal(item);
-        render(); // update kaarten achtergrond
+    const topDd = buildStatusDropdown(group._computedStatus, (newStatus) => {
+        group.items.forEach(item => setAnimeAllStatus(item, newStatus));
+        save(); render();
+        showDetailModal(group);
     });
     topDd.style.marginLeft = '15px';
-    topDd.style.display = 'inline-block';
-    topDd.querySelector('.status-current').style.background = 'var(--surface-color)'; // lichte contrast aanpassing
     titleEl.appendChild(topDd);
 
     const content = document.getElementById('detail-content');
     content.innerHTML = '';
-    content.appendChild(buildDetail(item));
+    content.appendChild(buildDetailGroup(group));
 
     document.getElementById('detail-overlay').classList.remove('hidden');
-    render(); // update kaarten achtergrond
 }
 
 document.getElementById('close-detail').addEventListener('click', () => {

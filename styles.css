@@ -269,16 +269,34 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
     width: 100%;
 }
 
-/* Grid View S/M/L: Pas de grootte van de kaarten aan */
+/* Grid View S/M/L: Vaste kolomverdeling (S=6, M=5, L=3) */
 #anime-container.grid-view.size-l .status-column {
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 }
 #anime-container.grid-view.size-m .status-column {
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
 }
 #anime-container.grid-view.size-s .status-column {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(6, 1fr);
     gap: 10px;
+}
+#anime-container.grid-view .anime-card {
+    flex-direction: row;
+    min-height: 140px;
+    align-items: stretch;
+    overflow: hidden;
+}
+#anime-container.grid-view .anime-card .card-poster {
+    width: 100px;
+    height: 150px;
+    flex-shrink: 0;
+    margin-right: 4px;
+}
+#anime-container.grid-view .anime-card .card-info {
+    flex: 1;
+    min-width: 0;
 }
 
 /* ---------------- LIST VIEW LAYOUT ---------------- */
@@ -295,9 +313,9 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
     grid-template-columns: 36px 36px minmax(0, 1fr) 140px 60px 40px 24px;
     gap: 12px;
     align-items: center;
-    padding: 10px 16px; 
+    padding: 4px 16px; 
     border-radius: 8px;
-    min-height: 64px;
+    min-height: 42px;
     width: 100%;
     box-sizing: border-box;
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
@@ -306,17 +324,28 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
-/* Maak de kaarten smaller voor S en M standen */
-#anime-container.size-m .list-view .anime-card {
-    grid-template-columns: 32px 30px minmax(0, 1fr) 90px 40px 36px 20px;
-    padding: 8px 12px;
-    min-height: 54px;
+#anime-container.size-m.list-view .anime-card {
+    grid-template-columns: 36px 36px minmax(0, 1fr) 140px 60px 40px 24px;
+    padding: 6px 16px;
+    min-height: 48px;
 }
-#anime-container.size-s .list-view .anime-card {
-    grid-template-columns: 24px 24px minmax(0, 1fr) 30px 30px 16px;
-    gap: 6px;
-    padding: 6px 8px;
-    min-height: 44px;
+#anime-container.size-s.list-view .anime-card {
+    grid-template-columns: 32px 30px minmax(0, 1fr) 110px 50px 36px 20px;
+    padding: 4px 12px;
+    min-height: 40px !important;
+    height: auto !important;
+}
+#anime-container.size-s.list-view .card-poster {
+    height: 24px !important;
+    width: 17px !important;
+    grid-area: 1 / 2;
+}
+#anime-container.size-s.list-view .card-title span {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 12px !important;
+    display: block !important;
 }
 
 /* Verberg de hoofd Status-dropdown in S stand om ruimte te maken (ALLEEN IN LIJST) */
@@ -338,17 +367,17 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
     height: auto;
 }
 #anime-container.list-view .status-indicator { grid-area: 1 / 1; }
-#anime-container.list-view .card-poster { grid-area: 1 / 2; height: 50px; width: 34px; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
-#anime-container.size-m .list-view .card-poster { height: 40px; width: 27px; }
-#anime-container.size-s .list-view .card-poster { height: 32px; width: 21px; border-radius: 2px; box-shadow: none; }
+#anime-container.list-view .card-poster { grid-area: 1 / 2; height: 32px; width: 22px; border-radius: 3px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+#anime-container.size-m .list-view .card-poster { height: 28px; width: 19px; }
+#anime-container.size-s .list-view .card-poster { height: 20px; width: 14px; border-radius: 2px; }
 
 #anime-container.list-view .card-title span { 
     grid-area: 1 / 3; 
     white-space: nowrap; 
     overflow: hidden; 
     text-overflow: ellipsis; 
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 13px;
+    font-weight: 600;
 }
 #anime-container.list-view .status-dropdown { grid-area: 1 / 4; margin: 0; }
 #anime-container.list-view .rating-badge { grid-area: 1 / 5; justify-self: center; margin: 0; }
@@ -382,7 +411,6 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
     box-shadow: var(--shadow);
     transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
     overflow: visible; /* Fix: allow dropdowns to pop out */
-    min-height: 120px;
 }
 
 .card-poster, .card-info {
@@ -446,28 +474,33 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 }
 
 /* S/M/L Scaling */
-/* SMALL */
+/* SMALL (6 per row, compact horizontal) */
 .size-s { font-size: 13px; }
-.size-s .anime-card { padding: 8px; min-height: unset; gap: 8px; }
-.size-s .card-title { font-size: 14px; margin-bottom: 4px; }
-.size-s .card-poster { width: 70px; }
+#anime-container.grid-view.size-s .anime-card { padding: 6px; min-height: 100px; gap: 8px; flex-direction: row !important; }
+#anime-container.grid-view.size-s .card-poster { width: 60px !important; height: 90px !important; margin: 0 !important; }
+#anime-container.grid-view.size-s .card-info { flex: 1; display: flex; flex-direction: column; gap: 4px; justify-content: center; }
+#anime-container.grid-view.size-s .card-actions { flex-wrap: wrap; gap: 4px; }
+#anime-container.grid-view.size-s .status-current, 
+#anime-container.grid-view.size-s .action-btn { padding: 4px 8px; font-size: 11px; }
+#anime-container.grid-view.size-s .card-title { font-size: 13px; margin-bottom: 2px; }
 .size-s .status-indicator { width: 28px; height: 28px; font-size: 12px; }
-.size-s .action-btn, .size-s .status-current, .size-s .rating-badge { padding: 4px 8px; font-size: 11px; }
-.size-s .status-group-header { font-size: 1rem; padding: 8px 14px; }
+.size-s .status-group-header { font-size: 1.1rem; padding: 10px 16px; }
 
-/* MEDIUM (Default) */
+/* MEDIUM (5 per row) */
 .size-m { font-size: 15px; }
-.size-m .card-poster { width: 100px; }
+.size-m .card-poster { width: 100px; height: 150px; }
 .size-m .card-title { font-size: 16px; margin-bottom: 6px; }
+.size-m .status-indicator { width: 36px; height: 36px; font-size: 14px; }
 .size-m .action-btn, .size-m .status-current, .size-m .rating-badge { padding: 8px 12px; font-size: 13px; }
+.size-m .status-group-header { font-size: 1.3rem; padding: 16px; }
 
-/* LARGE */
-.size-l { font-size: 17px; }
-.size-l .anime-card { padding: 24px; border-radius: 12px; gap: 24px; }
-.size-l .card-title { font-size: 20px; font-weight: 800; }
-.size-l .card-poster { width: 160px; }
-.size-l .status-indicator { width: 50px; height: 50px; font-size: 20px; }
-.size-l .action-btn, .size-l .status-current, .size-l .rating-badge { padding: 10px 20px; font-size: 15px; }
+/* LARGE (3 per row, Extra Premium) */
+.size-l { font-size: 18px; }
+.size-l .anime-card { padding: 20px; border-radius: 12px; gap: 20px; }
+.size-l .card-title { font-size: 22px; font-weight: 800; }
+.size-l .card-poster { width: 150px; height: 225px; }
+.size-l .status-indicator { width: 48px; height: 48px; font-size: 22px; }
+.size-l .action-btn, .size-l .status-current, .size-l .rating-badge { padding: 10px 20px; font-size: 16px; }
 .size-l .status-group-header { font-size: 1.6rem; padding: 24px; }
 
 .anime-card::before {
@@ -611,9 +644,10 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 [data-theme="midnight"] .status-option img { filter: invert(1); }
 
 .status-menu {
-    display: none; position: absolute; top: 100%; left: 0; margin-top: 4px;
+    display: none; position: absolute; top: calc(100% + 4px); right: 0;
     background: var(--surface); border: var(--border-width, 1px) solid var(--border); border-radius: 6px;
-    overflow: hidden; z-index: 100; min-width: 140px;
+    overflow: hidden; z-index: 9999; min-width: 140px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
 }
 .status-dropdown.open .status-menu { display: block; }
 
@@ -626,11 +660,15 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 
 
 .rating-badge {
-    padding: 4px 10px;
+    padding: 4px 12px;
     border-radius: 4px; font-weight: 700; color: var(--white);
     font-size: 12px; border: var(--border-width, 1px) solid var(--border);
     transition: all 0.2s ease;
     background: var(--surface-2);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
 }
 .rating-badge.unrated { color: var(--text-muted); font-weight: 400; opacity: 0.6; }
 
@@ -745,28 +783,152 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 .btn-small { padding: 4px 8px; font-size: 11px; }
 .btn-tiny { padding: 3px 6px; font-size: 10px; }
 
-/* Franchise */
-.franchise-count {
-    background: var(--surface-2); border: var(--border-width, 1px) solid var(--border);
-    padding: 1px 7px; border-radius: 10px; font-size: 11px;
-    color: var(--text-muted); margin-left: auto;
+/* Franchise Grouping */
+.group-count-badge {
+    background: var(--surface-2);
+    color: var(--text-muted);
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 600;
+    border: 1px solid var(--border);
+    margin-left: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    vertical-align: middle;
 }
-.franchise-item {
-    padding: 8px 0; border-bottom: var(--border-width, 1px) solid var(--border);
+.group-count-badge::after {
+    content: ' titels';
+    font-weight: 400;
+    opacity: 0.8;
 }
-.franchise-item:last-of-type { border-bottom: none; }
-.franchise-item-header {
-    display: flex; align-items: center; gap: 8px; font-size: 13px;
+
+.card-detail-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 6px 0;
 }
-.franchise-item-title { flex: 1; font-weight: 500; }
-.franchise-edit-row {
-    display: flex; align-items: center; gap: 8px;
-    margin-top: 16px; padding-top: 12px; border-top: var(--border-width, 1px) solid var(--border);
+
+.item-block {
+    background: var(--surface-2);
+    border-radius: 8px;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
 }
-.franchise-name-input {
-    flex: 1; background: var(--surface-2); border: var(--border-width, 1px) solid var(--border);
-    color: var(--text); padding: 6px 10px; border-radius: 4px;
-    font-family: 'Outfit', sans-serif; font-size: 13px; outline: none;
+
+.item-header {
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+}
+
+.item-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.item-type-badge {
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: 800;
+    background: var(--text-muted);
+    color: var(--bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.item-title-text {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--white);
+}
+
+.item-year-text {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.movie-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.season-block {
+    margin-bottom: 8px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 6px;
+    padding: 0 4px;
+    border-left: 2px solid transparent; /* reserved space for alignment */
+}
+
+.season-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+.season-header:hover { background: rgba(255,255,255,0.05); }
+
+.season-title {
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.2px;
+    color: var(--text);
+    flex: 1;
+}
+
+.episode-list {
+    position: relative;
+    margin-left: 28px;
+    padding-left: 4px;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+/* De verticale stam van de boom */
+.episode-list:before {
+    content: '';
+    position: absolute;
+    left: -14px;
+    top: -10px;
+    bottom: 16px;
+    width: 2px;
+    background: var(--border);
+    opacity: 0.5;
+}
+
+.episode-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.episode-row:before {
+    content: '';
+    position: absolute;
+    left: -14px;
+    top: 50%;
+    width: 14px;
+    height: 1px;
+    background: var(--border);
+    opacity: 0.5;
+}
+
+.episode-row:hover {
+    background: var(--surface);
+    transform: translateX(4px);
 }
 
 /* Modal */
