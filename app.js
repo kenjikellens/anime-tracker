@@ -676,25 +676,48 @@ function buildDetail(item) {
                     epRow.style.cursor = 'pointer';
                     epRow.addEventListener('click', (e) => {
                         e.stopPropagation();
+                        const wasSelected = selectedEpisodes.has(epKey);
+
                         if (e.ctrlKey || e.metaKey) {
-                            if (selectedEpisodes.has(epKey)) {
+                            // Toggle selection
+                            if (wasSelected) {
                                 selectedEpisodes.delete(epKey);
                                 epRow.classList.remove('selected');
                             } else {
                                 selectedEpisodes.set(epKey, { item, season, episode: ep });
                                 epRow.classList.add('selected');
                             }
-                        } else if (selectedEpisodes.size > 0) {
-                            // Normal click after selection should clear everything or at least this one
-                            // User asked: "clicking normally afterwards should unselect it!"
-                            if (selectedEpisodes.has(epKey)) {
+                        } else {
+                            // Normal click
+                            if (wasSelected) {
+                                // De-select just this one
                                 selectedEpisodes.delete(epKey);
                                 epRow.classList.remove('selected');
                             } else {
-                                // If they click a non-selected item normally, clear everything
+                                // Clear others and select this one
                                 clearSelection();
+                                selectedEpisodes.set(epKey, { item, season, episode: ep });
+                                epRow.classList.add('selected');
                             }
                         }
+                        renderBatchBar(e.clientX, e.clientY);
+                    });
+
+                    epRow.addEventListener('contextmenu', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        // If user right-clicks an unselected item, focus ONLY on it (like Explorer)
+                        if (!selectedEpisodes.has(epKey)) {
+                            selectedEpisodes.clear();
+                            // We need to visually clear others since clearSelection() calls render() 
+                            // which might close the modal. We'll do it manually on the DOM first.
+                            document.querySelectorAll('.episode-row.selected').forEach(r => r.classList.remove('selected'));
+                            
+                            selectedEpisodes.set(epKey, { item, season, episode: ep });
+                            epRow.classList.add('selected');
+                        }
+                        
                         renderBatchBar(e.clientX, e.clientY);
                     });
 
