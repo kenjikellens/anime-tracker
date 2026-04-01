@@ -547,7 +547,14 @@ function buildCard(item, computedStatus) {
 function buildDetail(item) {
     const detail = document.createElement('div');
     detail.className = 'card-detail';
-    detail.addEventListener('click', e => e.stopPropagation());
+    detail.addEventListener('click', e => {
+        // Clear selection if clicking the background area of the detail list
+        if (e.target === detail) {
+            clearSelection();
+        } else {
+            e.stopPropagation();
+        }
+    });
 
     if (item.seasons && item.seasons.length > 0) {
         item.seasons.forEach(season => {
@@ -688,17 +695,10 @@ function buildDetail(item) {
                                 epRow.classList.add('selected');
                             }
                         } else {
-                            // Normal click
-                            if (wasSelected) {
-                                // De-select just this one
-                                selectedEpisodes.delete(epKey);
-                                epRow.classList.remove('selected');
-                            } else {
-                                // Clear others and select this one
-                                clearSelection();
-                                selectedEpisodes.set(epKey, { item, season, episode: ep });
-                                epRow.classList.add('selected');
-                            }
+                            // Normal click: Clear everything and select just THIS one (Explorer style)
+                            clearSelection(); // This clears the Map and the DOM classes
+                            selectedEpisodes.set(epKey, { item, season, episode: ep });
+                            epRow.classList.add('selected');
                         }
                     });
 
@@ -840,6 +840,11 @@ function renderBatchBar(x, y) {
 window.clearSelection = function() {
     selectedEpisodes.clear();
     renderBatchBar();
+    
+    // Manually clear classes to avoid a full re-render flickering
+    document.querySelectorAll('.episode-row.selected').forEach(r => r.classList.remove('selected'));
+    
+    // Refresh main view for background items
     render();
 };
 
