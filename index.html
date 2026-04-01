@@ -42,7 +42,6 @@
                 <button class="filter-btn" data-filter="-1">Te Bekijken</button>
                 <button class="filter-btn" data-filter="0">Bezig</button>
                 <button class="filter-btn" data-filter="1">Bekeken</button>
-                <button class="filter-btn" data-filter="2"><i class="fas fa-sparkles"></i> Nieuw</button>
             </div>
 
             <!-- Sort -->
@@ -54,6 +53,15 @@
                     <option value="rating-desc">Rating ↓</option>
                     <option value="rating-asc">Rating ↑</option>
                     <option value="status">Status</option>
+                </select>
+            </div>
+
+            <!-- Embed bron -->
+            <div class="sort-group">
+                <select id="source-select" title="Kies embed-bron">
+                    <option value="vsembed">▶ VSEmbed</option>
+                    <option value="embedsu">▶ Embed.su</option>
+                    <option value="autoembed">▶ AutoEmbed</option>
                 </select>
             </div>
 
@@ -114,6 +122,11 @@
 
     <script src="domein/StatusCalculator.js"></script>
     <script src="domein/AnimeActions.js"></script>
+    <script src="domein/State.js"></script>
+    <script src="domein/Storage.js"></script>
+    <script src="domein/TmdbApi.js"></script>
+    <script src="domein/EmbedSources.js"></script>
+    <script src="domein/ListTransformer.js"></script>
     <script src="app.js?v=1.2"></script>
 </body>
 </html>

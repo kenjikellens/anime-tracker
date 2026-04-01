@@ -29,3 +29,6 @@
 - Chivalry of a Failed Knight
 - Tonikawa: Over the Moon for You
 - Studio Apartment, Good Lighting, Angel Included
+- To Love Ru
+- The Eminence in Shadow
+- A Sister's All You Need

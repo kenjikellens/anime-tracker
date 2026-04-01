@@ -1,19 +1,9 @@
-const TMDB_API_KEY = 'a341dc9a3c2dffa62668b614a98c1188';
-const isGitHub = window.location.hostname.includes('github.io');
+// Globals are now in domein/State.js// --- Init ---
 
-let state = { animeList: [] };
-let activeFilters = new Set(JSON.parse(localStorage.getItem('rascal_filters')) || [-1, 0, 1, 2]); // Alle statussen standaard aan
-let currentSearch = '';
-let currentSort = 'default';
-let currentView = localStorage.getItem('rascal_view') || 'grid';
-let currentSize = localStorage.getItem('rascal_size') || 'm'; // s, m, l
-let expandedItems = new Set(); // set van anime titels die zijn uitgeklapt
-let expandedSeasons = new Set(); // welke seizoenen zijn uitgeklapt (key: "title-S1")
-let selectedEpisodes = new Map(); // key: "title|S|E", value: { item, season, episode }
-let currentlyShownItem = null; // item in de geopende detail modal
-
-// --- Init ---
-
+/**
+ * Laadt de anime-data (data.json of localStorage op GitHub),
+ * voert datamigaties uit en start de render + lazy fetches.
+ */
 async function init() {
     try {
         const res = await fetch('data.json');
@@ -68,246 +58,44 @@ async function init() {
     lazySyncSeasons();
 }
 
-async function lazyFetchPosters() {
-    for (const item of state.animeList) {
-        if (!item.poster_path) {
-            await fetchTmdbId(item);
-        }
-    }
-}
-
-async function lazySyncSeasons() {
-    for (const item of state.animeList) {
-        if (item.type === 'movie') continue;
-        if (item.manual_seasons) continue;
-        // OOK syncen als seasons nog ontbreken (voor eerste migratie)
-        if (!item.tmdb_id) continue;
-
-
-        const oldStatus = window.StatusCalculator.getAnimeStatus(item);
-        await fetchSeasonData(item);
-        const newStatus = window.StatusCalculator.getAnimeStatus(item);
-        if (oldStatus !== newStatus) {
-            console.log(`[Sync] ${item.title}: status ${oldStatus} → ${newStatus}`);
-            render();
-        }
-    }
-}
-
-async function save() {
-    try {
-        if (isGitHub) {
-            // Sla op in localStorage en markeer als 'sync nodig'
-            localStorage.setItem('rascal_data', JSON.stringify(state.animeList));
-            const dlBtn = document.getElementById('download-btn');
-            dlBtn.classList.remove('hidden');
-            dlBtn.classList.add('sync-needed');
-            console.log('Opgeslagen in localStorage (GitHub mode)');
-        } else {
-            await fetch('/save', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(state.animeList, null, 2)
-            });
-        }
-    } catch (e) {
-        console.error('Opslaan mislukt:', e);
-    }
-}
-
-function exportData() {
-    const dataStr = JSON.stringify(state.animeList, null, 2);
-    const blob = new Blob([dataStr], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'data.json';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    
-    // Na downloaden de pulse weghalen
-    document.getElementById('download-btn').classList.remove('sync-needed');
-}
-
-// --- TMDB ---
-
-async function fetchTmdbId(item) {
-    if (item.tmdb_id && item.poster_path) return { id: item.tmdb_id, type: item.type };
-    try {
-        const res = await fetch(
-            `https://api.themoviedb.org/3/search/multi?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(item.title)}&language=en-US`
-        );
-        const data = await res.json();
-        if (data.results && data.results.length > 0) {
-            const best = data.results[0];
-            item.tmdb_id = best.id;
-            item.type = best.media_type === 'movie' ? 'movie' : 'tv';
-            item.poster_path = best.poster_path;
-            item.release_date = best.release_date || best.first_air_date;
-            save();
-            return { id: best.id, type: item.type };
-        }
-        return null;
-    } catch (e) {
-        console.error('TMDB fetch error:', e);
-        return null;
-    }
-}
-
-async function fetchSeasonData(item) {
-    const info = await fetchTmdbId(item);
-    if (!info || info.type === 'movie') return;
-
-    // Bewaar bestaande seizoen-/afleveringsstatussen
-    const existingSeasons = new Map();
-    if (item.seasons) {
-        item.seasons.forEach(s => {
-            const epMap = new Map();
-            s.episodes.forEach(ep => epMap.set(ep.number, ep.status));
-            existingSeasons.set(s.number, epMap);
-        });
-    }
-
-    // Geavanceerde statusbeheer: Maak een map van alle huidige afleveringen (op titel)
-    const statusByTitle = new Map();
-    if (item.seasons) {
-        item.seasons.forEach(s => {
-            s.episodes.forEach(ep => {
-                const cleanTitle = ep.name.toLowerCase().trim();
-                statusByTitle.set(cleanTitle, ep.status);
-            });
-        });
-    }
-
-    try {
-        const showRes = await fetch(`https://api.themoviedb.org/3/tv/${info.id}?api_key=${TMDB_API_KEY}&language=en-US`);
-        const showData = await showRes.json();
-        
-        item.seasons = [];
-        item.release_date = showData.first_air_date;
-
-        for (const s of showData.seasons) {
-            if (s.season_number === 0) continue;
-
-            const seasonRes = await fetch(`https://api.themoviedb.org/3/tv/${info.id}/season/${s.season_number}?api_key=${TMDB_API_KEY}&language=en-US`);
-            const seasonData = await seasonRes.json();
-
-            const episodes = (seasonData.episodes || []).map(ep => {
-                const cleanTitle = (ep.name || "").toLowerCase().trim();
-                const matchedStatus = statusByTitle.get(cleanTitle);
-                
-                return {
-                    number: ep.episode_number,
-                    name: ep.name || `Episode ${ep.episode_number}`,
-                    status: matchedStatus !== undefined ? matchedStatus : -1
-                };
-            });
-
-            item.seasons.push({
-                number: s.season_number,
-                name: s.name || `Season ${s.season_number}`,
-                episodes: episodes
-            });
-        }
-        delete item._legacyStatus;
-        save();
-    } catch (e) {
-        console.error('Season fetch error:', e);
-    }
-}
+// lazyFetchPosters, lazySyncSeasons, save, exportData, fetchTmdbId, fetchSeasonData are now in domein modules
 
 // --- Status helpers ---
 
+/** Berekent de gecombineerde status van een anime-item op basis van zijn afleveringen. */
 function getAnimeStatus(item) {
     return window.StatusCalculator.getAnimeStatus(item);
 }
 
+/** Berekent de status van een seizoen op basis van de afleveringsstatussen. */
 function getSeasonStatus(season) {
     return window.StatusCalculator.getSeasonStatus(season);
 }
 
+/** Stelt alle afleveringen van een seizoen in op de gegeven status. */
 function setSeasonStatus(item, season, status) {
     window.AnimeActions.setSeasonStatusLocally(item, season, status);
 }
 
+/** Stelt alle afleveringen van een volledig anime-item in op de gegeven status. */
 function setAnimeAllStatus(item, status) {
     window.AnimeActions.setAnimeStatusLocally(item, status);
 }
 
+/** Stelt de status in van één specifieke aflevering. */
 function setEpisodeStatus(item, season, episode, status) {
     window.AnimeActions.setEpisodeStatusLocally(item, season, episode, status);
 }
 
-// --- VidSrc ---
-
-function getVidsrcUrl(item, seasonNum, episodeNum) {
-    if (!item.tmdb_id) return null;
-    if (item.type === 'movie') {
-        return `https://vidsrc.to/embed/movie/${item.tmdb_id}`;
-    }
-    return `https://vidsrc.to/embed/tv/${item.tmdb_id}/${seasonNum || 1}/${episodeNum || 1}`;
-}
+// EMBED_SOURCES and getVidsrcUrl are now in domein/EmbedSources.js
 
 // --- Render ---
 
-function getFilteredSorted() {
-    const franchises = new Map();
-    
-    state.animeList.forEach(item => {
-        if (!item || !item.title) return;
-        const fName = item.franchise || item.title;
-        if (!franchises.has(fName)) {
-            franchises.set(fName, {
-                title: fName,
-                items: [],
-                _computedStatus: -1,
-                rating: -1,
-                poster_path: null,
-                tmdb_id: null,
-                _isGroup: true
-            });
-        }
-        const group = franchises.get(fName);
-        group.items.push(item);
-    });
-
-    let list = Array.from(franchises.values()).map(group => {
-        const itemWithPoster = group.items.find(i => i.poster_path) || group.items[0];
-        group.poster_path = itemWithPoster?.poster_path;
-        group.tmdb_id = itemWithPoster?.tmdb_id; // Voor vidsrc backup
-
-        // Bereken gezamenlijke status: 2 (Nieuw) > 0 (Bezig) > -1 (Te Bekijken) > 1 (Bekeken)
-        const statuses = group.items.map(item => window.StatusCalculator.getAnimeStatus(item));
-        if (statuses.includes(2)) group._computedStatus = 2;
-        else if (statuses.includes(0)) group._computedStatus = 0;
-        else if (statuses.includes(-1)) group._computedStatus = -1;
-        else group._computedStatus = 1;
-
-        group.rating = Math.max(...group.items.map(i => i.rating || -1));
-        return group;
-    });
-
-    // Filter op actieve statussen
-    list = list.filter(a => activeFilters.has(a._computedStatus));
-
-    if (currentSearch) {
-        const normalize = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
-        const s = normalize(currentSearch);
-        list = list.filter(a => normalize(a.title).includes(s));
-    }
-
-    switch (currentSort) {
-        case 'title-asc':  list.sort((a, b) => a.title.localeCompare(b.title)); break;
-        case 'title-desc': list.sort((a, b) => b.title.localeCompare(a.title)); break;
-        case 'rating-desc': list.sort((a, b) => (b.rating > -1 ? b.rating : -2) - (a.rating > -1 ? a.rating : -2)); break;
-        case 'rating-asc':  list.sort((a, b) => (a.rating > -1 ? a.rating : -2) - (b.rating > -1 ? b.rating : -2)); break;
-        case 'status': list.sort((a, b) => a._computedStatus - b._computedStatus); break;
-    }
-    return list;
-}
-
+// getFilteredSorted is now in domein/ListTransformer.js
+/**
+ * Herbouwt de volledige UI op basis van de huidige state, filters en view-modus.
+ * Groepeert kaarten per status in kolommen en synchroniseert filterknop-staat.
+ */
 function render() {
     const container = document.getElementById('anime-container');
     container.className = `${currentView}-view size-${currentSize}`;
@@ -316,7 +104,6 @@ function render() {
     const items = getFilteredSorted();
 
     const statusGroups = {
-        '2': { label: 'Nieuwe Seizoenen', icon: 'fas fa-sparkles', items: [] },
         '0': { label: 'Bezig', icon: 'fas fa-play', items: [] },
         '-1': { label: 'Te Bekijken', icon: 'fas fa-clock', items: [] },
         '1': { label: 'Bekeken', icon: 'fas fa-check', items: [] }
@@ -327,7 +114,7 @@ function render() {
         if (statusGroups[status]) statusGroups[status].items.push(wrapper);
     });
 
-    const order = ['2', '0', '-1', '1'];
+    const order = ['0', '-1', '1'];
     order.forEach(statusKey => {
         const group = statusGroups[statusKey];
         if (group.items.length === 0) return;
@@ -357,7 +144,7 @@ function render() {
     document.querySelectorAll('.filter-btn').forEach(btn => {
         const f = btn.dataset.filter;
         if (f === 'all') {
-            btn.classList.toggle('active', activeFilters.size === 4);
+            btn.classList.toggle('active', activeFilters.size === 3);
         } else {
             btn.classList.toggle('active', activeFilters.has(parseInt(f)));
         }
@@ -368,22 +155,37 @@ function render() {
     if (sInput.value !== currentSearch) sInput.value = currentSearch;
 }
 
+/**
+ * Geeft de Font Awesome CSS-klasse terug passend bij de gegeven status.
+ * @param {number|null} status
+ * @returns {string} FontAwesome klasse
+ */
 function statusIcon(status) {
     if (status === null) return 'fas fa-clock';
-    const icons = { 
-        '-1': 'fas fa-clock', 
-        '0': 'fas fa-play', 
-        '1': 'fas fa-check', 
-        '2': 'fas fa-sparkles' 
+    const icons = {
+        '-1': 'fas fa-clock',
+        '0': 'fas fa-play',
+        '1': 'fas fa-check'
     };
     return icons[String(status)] || icons['-1'];
 }
+/**
+ * Geeft de Nederlandse statuslabel terug voor de gegeven numerieke status.
+ * @param {number|null} status
+ * @returns {string}
+ */
 function statusLabel(status) {
     if (status === null) return 'Gepland';
-    return status === -1 ? 'Te Bekijken' : status === 0 ? 'Bezig' : status === 2 ? 'Nieuw Seizoen' : 'Bekeken';
+    return status === -1 ? 'Te Bekijken' : status === 0 ? 'Bezig' : 'Bekeken';
 }
 
 
+/**
+ * Bepaalt de CSS-klasse voor de ratingbadge op basis van het cijfer.
+ * Klassen r-0 t/m r-9 regelen kleur en stijl van de badge.
+ * @param {number} rating
+ * @returns {string} CSS-klasse
+ */
 function getRatingClass(rating) {
     if (rating === undefined || rating === null || rating < 0) return 'unrated';
     if (rating >= 9) return 'r-9';
@@ -397,6 +199,13 @@ function getRatingClass(rating) {
 
 
 
+/**
+ * Bouwt een herbruikbaar status-dropdown-element.
+ * Sluit andere open dropdowns wanneer dit exemplaar wordt geopend.
+ * @param {number} currentStatus - Huidige geselecteerde status
+ * @param {function(number): void} onChange - Callback bij statuswijziging
+ * @returns {HTMLElement} Het dropdown-div-element
+ */
 function buildStatusDropdown(currentStatus, onChange) {
     const div = document.createElement('div');
     div.className = 'status-dropdown';
@@ -411,7 +220,6 @@ function buildStatusDropdown(currentStatus, onChange) {
             <div class="status-option" data-val="-1"><i class="fas fa-clock" style="opacity:0.7;"></i> Te Bekijken</div>
             <div class="status-option" data-val="0"><i class="fas fa-play" style="opacity:0.7;"></i> Bezig</div>
             <div class="status-option" data-val="1"><i class="fas fa-check" style="opacity:0.7;"></i> Bekeken</div>
-            <div class="status-option" data-val="2" style="display:none;"><i class="fas fa-sparkles" style="opacity:0.7;"></i> Nieuw Seizoen</div>
         </div>
     `;
     div.querySelector('.status-current').addEventListener('click', e => {
@@ -429,34 +237,37 @@ function buildStatusDropdown(currentStatus, onChange) {
     return div;
 }
 
+/**
+ * Bouwt een anime-kaart voor een franchise-groep.
+ * In grid view opent klikken de detail-modal.
+ * In list view klapt klikken de inline seizoenenlijst open/dicht.
+ * @param {Object} group - Franchise-groepsobject met items[], title, poster_path, etc.
+ * @param {number} computedStatus - Gecombineerde status van de groep
+ * @returns {HTMLElement} De volledige kaart als DOM-element
+ */
 function buildCard(group, computedStatus) {
     const card = document.createElement('div');
     card.className = 'anime-card';
     card.dataset.status = computedStatus;
     if (computedStatus === 1) card.classList.add('status-watched');
-    if (computedStatus === 2) card.classList.add('status-new');
 
     const isGroup = group.items.length > 1 || (group.items[0].type === 'tv' && group.items[0].seasons?.length > 1);
     const isExpanded = expandedItems.has(group.title);
     const isRated = group.rating !== undefined && group.rating > -1;
     const ratingDisplay = isRated ? group.rating.toFixed(1) : '—';
 
-    // Glow effects
     if (isRated) {
         if (group.rating >= 9) card.classList.add('glow-gold');
         else if (group.rating < 2) card.classList.add('glow-red');
     }
 
-    // Status Indicator (alleen in list view)
     if (currentView === 'list') {
         const indicator = document.createElement('div');
-        const sClass = computedStatus === 1 ? 'status-done' : 
-                      computedStatus === 0 ? 'status-watching' : 
-                      computedStatus === 2 ? 'status-new' : 'status-none';
-        const sIcon = computedStatus === 1 ? '<i class="fas fa-check"></i>' : 
-                     computedStatus === 0 ? '<i class="fas fa-play"></i>' : 
-                     computedStatus === 2 ? '<i class="fas fa-sparkles"></i>' : '<i class="fas fa-clock"></i>';
-        
+        const sClass = computedStatus === 1 ? 'status-done' :
+                      computedStatus === 0 ? 'status-watching' : 'status-none';
+        const sIcon = computedStatus === 1 ? '<i class="fas fa-check"></i>' :
+                     computedStatus === 0 ? '<i class="fas fa-play"></i>' : '<i class="fas fa-clock"></i>';
+
         indicator.className = `status-indicator ${sClass}`;
         indicator.innerHTML = sIcon;
         card.prepend(indicator);
@@ -482,7 +293,6 @@ function buildCard(group, computedStatus) {
     header.innerHTML = `
         <div class="card-title">
             <span>${group.title}</span>
-            ${group.items.length > 1 ? `<span class="group-count-badge">${group.items.length}</span>` : ''}
             ${isGroup ? `<i class="fas fa-chevron-${isExpanded ? 'up' : 'down'} expand-icon"></i>` : ''}
         </div>
     `;
@@ -571,6 +381,14 @@ function buildCard(group, computedStatus) {
     return card;
 }
 
+/**
+ * Bouwt het uitgevouwen detailblok voor een franchise-groep.
+ * Toont per item een header, en afhankelijk van het type:
+ * - Movie: status-dropdown + play-knop
+ * - Series: lijst van seizoenrijen via buildSeasonRow()
+ * @param {Object} group - Franchise-groepsobject
+ * @returns {HTMLElement}
+ */
 function buildDetailGroup(group) {
     const detail = document.createElement('div');
     detail.className = 'card-detail-group card-detail';
@@ -588,14 +406,22 @@ function buildDetailGroup(group) {
         
         const itHeader = document.createElement('div');
         itHeader.className = 'item-header';
-        itHeader.innerHTML = `
-            <div class="item-title-row">
-                <span class="item-type-badge">${item.type === 'movie' ? 'Movie' : 'Series'}</span>
-                <span class="item-title-text">${item.title}</span>
-                <span class="item-year-text">${item.release_date ? `(${item.release_date.substring(0, 4)})` : ''}</span>
-            </div>
-        `;
-        itemBlock.appendChild(itHeader);
+        const lowerItem = item.title.toLowerCase();
+        const lowerGroup = group.title.toLowerCase();
+        const isRedundantTitle = lowerItem === lowerGroup || lowerItem.includes(lowerGroup) || lowerGroup.includes(lowerItem);
+        
+        // Als de titel redundant is, voegen we de header alleen toe als er MEERDERE items zijn (om verwarring te voorkomen)
+        // Of als het typespecifiek is (movie vs series)
+        if (!isRedundantTitle || group.items.length > 1) {
+            itHeader.innerHTML = `
+                <div class="item-title-row">
+                    <span class="item-type-badge">${item.type === 'movie' ? 'Movie' : 'Series'}</span>
+                    ${isRedundantTitle ? '' : `<span class="item-title-text">${item.title}</span>`}
+                    <span class="item-year-text">${item.release_date ? `(${item.release_date.substring(0, 4)})` : ''}</span>
+                </div>
+            `;
+            itemBlock.appendChild(itHeader);
+        }
 
         if (item.type === 'movie') {
             const movieRow = document.createElement('div');
@@ -643,12 +469,21 @@ function buildDetailGroup(group) {
     return detail;
 }
 
+/**
+ * Bouwt een seizoenrij met status-dropdown, naam en uitvouwbare afleveringenlijst.
+ * Klikken op de rij togglet de afleveringenlijst (via expandedSeasons Set).
+ * Klikken op een aflevering selecteert deze voor batch-acties (Ctrl = multi-select).
+ * @param {Object} item - Het anime-item (series)
+ * @param {Object} season - Het seizoenobject met episodes[]
+ * @returns {HTMLElement}
+ */
 function buildSeasonRow(item, season) {
     const seasonKey = `${item.title}-S${season.number}`;
     const isOpen = expandedSeasons.has(seasonKey);
 
     const sBlock = document.createElement('div');
     sBlock.className = 'season-block';
+    if (season.number === 0) sBlock.classList.add('season-specials');
 
     const sHeader = document.createElement('div');
     sHeader.className = 'season-header';
@@ -660,7 +495,8 @@ function buildSeasonRow(item, season) {
 
     const sTitle = document.createElement('span');
     sTitle.className = 'season-title';
-    sTitle.textContent = `${season.name || `Season ${season.number}`} (${season.episodes.length} afl.)`;
+    const sName = season.number === 0 ? 'Specials' : (season.name || `Season ${season.number}`);
+    sTitle.textContent = `${sName} (${season.episodes.length} afl.)`;
 
     sHeader.appendChild(sStatusDd);
     sHeader.appendChild(sTitle);
@@ -706,6 +542,30 @@ function buildSeasonRow(item, season) {
                 if (url) window.open(url, '_blank');
             });
 
+            epRow.addEventListener('click', (e) => {
+                // Voorkom dat de klik omhoog bubbled naar de kaart-handler
+                // (wat de kaart zou dichtvouwen of de modal zou sluiten)
+                e.stopPropagation();
+
+                // Negeer klikken op de status-dropdown of de play-knop zelf
+                if (e.target.closest('.status-dropdown, .btn-play')) return;
+
+                const key = `${item.title}|S${season.number}|E${ep.number}`;
+
+                // Alleen Ctrl+klik selecteert/deselecteert een aflevering voor batch-acties
+                if (e.ctrlKey) {
+                    if (selectedEpisodes.has(key)) {
+                        selectedEpisodes.delete(key);
+                        epRow.classList.remove('selected');
+                    } else {
+                        selectedEpisodes.set(key, { item, season, episode: ep });
+                        epRow.classList.add('selected');
+                    }
+                    // Toon of verberg de batch-actiebalk nabij de muisaanwijzer
+                    renderBatchBar(e.clientX, e.clientY);
+                }
+            });
+
             epRow.appendChild(epStatusDd);
             epRow.appendChild(epTitle);
             epRow.appendChild(epPlay);
@@ -716,6 +576,12 @@ function buildSeasonRow(item, season) {
     return sBlock;
 }
 
+/**
+ * Opent de detail-modal voor een franchise-groep.
+ * Vult de titel, status-dropdown en seizoen/afleveringinhoud in.
+ * Slaat de groep op in currentlyShownItem zodat de modal ook na re-renders hersteld kan worden.
+ * @param {Object} group - Franchise-groepsobject
+ */
 function showDetailModal(group) {
     currentlyShownItem = group;
     const titleEl = document.getElementById('detail-title');
@@ -748,6 +614,13 @@ document.getElementById('detail-overlay').addEventListener('click', (e) => {
     }
 });
 
+/**
+ * Toont of verbergt de zwevende batch-actiebalk.
+ * Als er geen afleveringen geselecteerd zijn wordt de balk verwijderd.
+ * Anders wordt de balk gepositioneerd nabij de muiscoördinaten.
+ * @param {number} [x] - Horizontale muispositie (clientX)
+ * @param {number} [y] - Verticale muispositie (clientY)
+ */
 function renderBatchBar(x, y) {
     let bar = document.getElementById('batch-bar');
     if (selectedEpisodes.size === 0) {
@@ -814,6 +687,11 @@ window.applyBatchStatus = function(status) {
 let currentItem = null;
 let ratingChangeStatus = false;
 
+/**
+ * Opent de beoordelingsmodal voor het gegeven anime-item.
+ * @param {Object} item - Het item dat beoordeeld wordt
+ * @param {boolean} [changeStatus=true] - Als true wordt de status ook op 'Bekeken' gezet bij opslaan
+ */
 function showRatingModal(item, changeStatus = true) {
     currentItem = item;
     ratingChangeStatus = changeStatus;
@@ -875,6 +753,14 @@ document.getElementById('sort-select').addEventListener('change', e => {
     render();
 });
 
+// Stel de bron-selector in op de opgeslagen waarde bij laden
+const sourceSelect = document.getElementById('source-select');
+sourceSelect.value = currentSource;
+sourceSelect.addEventListener('change', e => {
+    currentSource = e.target.value;
+    localStorage.setItem('rascal_source', currentSource);
+});
+
 document.getElementById('grid-btn').addEventListener('click', () => {
     currentView = 'grid';
     localStorage.setItem('rascal_view', currentView);
@@ -903,6 +789,10 @@ document.getElementById('search-input').addEventListener('input', e => {
     render();
 });
 
+/**
+ * Voegt een nieuw anime-item toe aan het begin van de lijst
+ * op basis van de waarde in het invoerveld #new-anime-input.
+ */
 function addNew() {
     const input = document.getElementById('new-anime-input');
     const val = input.value.trim();
@@ -915,6 +805,12 @@ function addNew() {
 
 // --- Theme ---
 
+/**
+ * Initialiseert het thema bij het laden:
+ * - Leest de opgeslagen voorkeur uit localStorage
+ * - Valt terug op het systeemvoorkeur (prefers-color-scheme)
+ * - Luistert naar wijzigingen in het systeemthema
+ */
 function initTheme() {
     const manual = localStorage.getItem('rascal_theme');
     let theme;
@@ -927,6 +823,11 @@ function initTheme() {
     });
 }
 
+/**
+ * Past het gegeven thema toe op het <html>-element via data-theme
+ * en updatet het icoontje van de thema-knop.
+ * @param {'light'|'dark'|'midnight'} theme
+ */
 function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     const icon = document.getElementById('theme-toggle').querySelector('i');

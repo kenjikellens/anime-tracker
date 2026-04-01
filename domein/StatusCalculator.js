@@ -3,6 +3,16 @@
 
 window.StatusCalculator = (function () {
 
+    /**
+     * Berekent in real-time de "gecombineerde" status van een specifieke seizoenarray (`season.episodes`).
+     * De gouden regel: 
+     * - Als je alle episodes gezien hebt: "Bekeken" (1).
+     * - Als ook maar één aflevering "Bekeken" (1) of "Bezig" (0) is: "Bezig" (0).
+     * - Voor al het overige: "Te Bekijken" (-1).
+     * 
+     * @param {Object} season - Seizoenselement bevat een `episodes` array.
+     * @returns {number|null} De herberekende status, of null indien er geen afleveringsdata is.
+     */
     function getSeasonStatus(season) {
         if (!season.episodes || season.episodes.length === 0) return null; // Leeg / nog niet uitgekomen
 
@@ -13,6 +23,14 @@ window.StatusCalculator = (function () {
         return -1;
     }
 
+    /**
+     * Berekent iteratief over alle aanwezige seizoenen van de show the all-round animestatus.
+     * Een show is pas écht "Bekeken" als IEDERE aflevering van IEDER seizoen status 1 is.
+     * Valt (indien seizoenen nog niet zijn gesynct) organisch terug op the raw properties .status of ._legacyStatus.
+     * 
+     * @param {Object} item - Het anime data object.
+     * @returns {number} De macro-status voor the franchise.
+     */
     function getAnimeStatus(item) {
         if (item.type === 'movie') {
             const s = (item.status !== undefined && item.status !== -1) ? item.status : (item._legacyStatus !== undefined ? item._legacyStatus : -1);
@@ -30,25 +48,10 @@ window.StatusCalculator = (function () {
             return item._legacyStatus !== undefined ? Number(item._legacyStatus) : -1;
         }
 
-        // GOUDEN REGEL: Als alle beschikbare afleveringen bekeken zijn: 1
+        // Als alle afleveringen bekeken zijn: Bekeken (1)
         if (allEps.every(e => e.status === 1)) return 1;
 
-        // Check voor "Nieuw Seizoen (2)"
-        // We berekenen de statussen van alle NIET-LEGE seizoenen
-        const activeSeasonStatuses = item.seasons
-            .map(s => getSeasonStatus(s))
-            .filter(s => s !== null); // Filter lege seizoenen eruit
-
-        const hasWatchedSeason = activeSeasonStatuses.some(s => s === 1);
-        const hasUnwatchedSeason = activeSeasonStatuses.some(s => s === -1);
-        const hasActiveSeason = activeSeasonStatuses.some(s => s === 0);
-        const hasActiveEpisode = allEps.some(e => e.status === 0);
-
-        if (hasWatchedSeason && hasUnwatchedSeason && !hasActiveEpisode && !hasActiveSeason) {
-            return 2; // Nieuw Seizoen!
-        }
-
-        // Als het geen 1 is en geen 2 is, is het dan "Te Bekijken" (-1) of "Bezig" (0)?
+        // Te Bekijken (-1) als niemand begonnen is
         if (allEps.every(e => e.status === -1)) return -1;
 
         return 0; // Bezig

@@ -1,62 +1,65 @@
-/* Light mode (default) */
+/* Lichte modus (standaard): CSS-variabelen voor achtergrond, vlakken, randen en tekst */
 :root {
-    --bg: #f5f5f5;
-    --surface: #eaeaea; /* Wat donkerder in lichte modus */
-    --surface-2: #e0e0e0;
-    --border: #ddd;
-    --text: #1a1a1a;
-    --text-muted: #888;
-    --white: #ffffff;
-    --status-none: #bbb;
-    --status-watching: #888;
-    --status-done: #007acc; /* Lichtblauw */
-    --modal-bg: rgba(0,0,0,0.3);
-    --shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Donkere schaduw */
-    --header-bg: #e8e8e8; /* Unieke tint voor header */
+    --bg: #f5f5f5;               /* Paginaachtergrond */
+    --surface: #eaeaea;          /* Kaart- en inputvlak */
+    --surface-2: #e0e0e0;        /* Dieper genest vlak (b.v. detail-blok) */
+    --border: #ddd;              /* Randkleur voor dividers, inputs, kaarten */
+    --text: #1a1a1a;             /* Primaire tekstkleur */
+    --text-muted: #888;          /* Secundaire/gedempte tekst */
+    --white: #ffffff;            /* Actieve elementen (knoppen, titels) */
+    --status-none: #bbb;         /* Kleur voor status 'Te Bekijken' (-1) zijbalk */
+    --status-watching: #888;     /* Kleur voor status 'Bezig' (0) zijbalk */
+    --status-done: #007acc;      /* Lichtblauw voor status 'Bekeken' (1) */
+    --modal-bg: rgba(0,0,0,0.3); /* Overlay-achtergrond voor modals */
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Kaartschaduw */
+    --header-bg: #e8e8e8;        /* Aparte achtergrond voor de header */
 }
 
-/* Dark mode */
+/* Donkere modus: overschrijft de CSS-variabelen voor een donker kleurenpalet */
 [data-theme="dark"] {
     --bg: #1e1e1e;
-    --surface: #383838; /* Wat lichter in donkere modus */
-    --surface-2: #444; 
+    --surface: #383838;
+    --surface-2: #444;
     --border: #505050;
     --text: #d4d4d4;
     --text-muted: #999;
     --white: #eee;
     --status-none: #666;
     --status-watching: #999;
-    --status-done: #4da6ff; /* Lichtblauw */
+    --status-done: #4da6ff;       /* Lichtblauw in donkere modus */
     --modal-bg: rgba(0,0,0,0.5);
-    --shadow: 0 4px 20px rgba(255, 255, 255, 0.05); /* Witte schaduw */
-    --header-bg: #282828; /* Unieke tint voor header */
+    --shadow: 0 4px 20px rgba(255, 255, 255, 0.05);
+    --header-bg: #282828;
 }
 
-/* Midnight mode */
+/* Midnight modus: hoog contrast met witte randen op pure zwarte achtergrond */
 [data-theme="midnight"] {
     --bg: #000000;
     --surface: #0a0a0a;
     --surface-2: #141414;
-    --border: #f0f0f0; /* Hoog contrast pure witte randen */
+    --border: #f0f0f0;           /* Hoog contrast: bijna witte randen */
     --text: #ffffff;
     --text-muted: #a0a0a0;
     --white: #ffffff;
     --status-none: #444;
     --status-watching: #aaa;
-    --status-done: #77c3ff; /* Helderder blauw in hoog contrast */
+    --status-done: #77c3ff;      /* Helderder blauw voor hoog contrast */
     --modal-bg: rgba(0,0,0,0.85);
-    --shadow: none; /* Geen schaduw */
-    --border-width: 2px; /* Dikkere borders overhaul! */
-    --header-bg: #141414; /* Iets lichter dan #000000 */
+    --shadow: none;              /* Geen schaduw want hele donkere achtergrond */
+    --border-width: 2px;         /* Dikkere borders voor extra definitie */
+    --header-bg: #141414;
 }
 
+/* Reset: verwijder standaard margins/paddings en gebruik Outfit als font voor alle elementen */
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
 
+/* Body: paginaachtergrond en standaard tekst; minimale hoogte voor lege pagina's */
 body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 15px; }
 
+/* Hoofdcontainer: maximale breedte en gecentreerd met padding */
 #app { max-width: 1400px; margin: 0 auto; padding: 24px 20px; }
 
-/* Header */
+/* Headerbar bovenaan de pagina: plakt boven de inhoud (sticky z-index) */
 .header-main {
     width: 100%;
     background: var(--header-bg);
@@ -79,6 +82,7 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 
 .header-left { display: flex; align-items: center; }
 
+/* RASCAL logo: lettertype en spatiëring voor de merkidentiteit in de header */
 .logo-rascal {
     font-size: 1.8rem;
     font-weight: 800;
@@ -87,6 +91,7 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
     user-select: none;
 }
 
+/* Logo kleuraccenten: 'RAS' = geel, 'CAL' = wit */
 .logo-rascal .ras { color: #FFCC00; text-shadow: 0 0 10px rgba(255, 204, 0, 0.3); }
 .logo-rascal .cal { color: #FFFFFF; }
 
@@ -95,6 +100,7 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
     max-width: 500px;
 }
 
+/* Zoekbalk: flex-rij met icoon en textveld; licht gekleurd vlak met afgeronde hoeken */
 .search-bar {
     display: flex;
     align-items: center;
@@ -105,6 +111,7 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
     transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
+/* Zoekbalk focus: gele rand + zachte gloed als de gebruiker erin typt */
 .search-bar:focus-within {
     border-color: #FFCC00;
     box-shadow: 0 0 0 2px rgba(255, 204, 0, 0.1);
@@ -143,6 +150,8 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 #theme-toggle { margin-right: 0; }
 #theme-toggle:hover, #download-btn:hover { background: var(--surface-2); }
 
+/* Download-knop in 'sync nodig'-staat: geel met pulserende animatie
+   Verschijnt als er lokale wijzigingen zijn die nog niet gedownload zijn (GitHub-modus) */
 #download-btn.sync-needed {
     background: #FFCC00;
     color: #000;
@@ -179,12 +188,13 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 }
 .add-anime button:hover { opacity: 0.8; }
 
-/* Toolbar */
+/* Toolbar: rij met filterknopen, sorteer-select, weergave- en grootteknopen */
 .toolbar {
     display: flex; align-items: center; gap: 10px;
     margin-bottom: 20px; flex-wrap: wrap;
 }
 .filter-group { display: flex; gap: 4px; }
+/* Filterknop: status-filterknop (Te Bekijken / Bezig / Bekeken / Nieuw) */
 .filter-btn {
     background: var(--surface); border: var(--border-width, 1px) solid var(--border);
     color: var(--text-muted); padding: 8px 16px; border-radius: 4px;
@@ -192,7 +202,8 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
     font-family: 'Outfit', sans-serif;
     transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-.filter-btn.active { 
+/* Actieve filterknop: witte achtergrond + donkere tekst = geselecteerde status */
+.filter-btn.active {
     background: var(--white); 
     color: var(--bg); 
     border-color: var(--white); 
@@ -238,7 +249,7 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 .size-btn.active { background: var(--white); color: var(--bg); border-color: var(--white); }
 .size-btn:not(.active):hover { border-color: var(--text-muted); }
 
-/* Main Container Layouts */
+/* Hoofdcontainer voor alle anime-kaarten: geordend in statuskolommen */
 #anime-container {
     display: flex;
     flex-direction: column;
@@ -247,14 +258,14 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
     width: 100%;
 }
 
-/* Base Status Column (Fallback) */
+/* Statuskolom: verticale stapel van kaarten per statusgroep (Te Bekijken / Bezig / etc.) */
 .status-column {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-/* Ensure headers span full width of their column if in grid */
+/* Statusgroep-header strekt zich over alle grid-kolommen in grid view */
 .status-group-header {
     grid-column: 1 / -1;
     margin-top: 0 !important;
@@ -282,6 +293,7 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
     grid-template-columns: repeat(6, 1fr);
     gap: 10px;
 }
+/* Grid-kaart hoogte en uitlijning in grid view: horizontaal met poster links */
 #anime-container.grid-view .anime-card {
     flex-direction: row;
     min-height: 140px;
@@ -299,15 +311,15 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
     min-width: 0;
 }
 
-/* ---------------- LIST VIEW LAYOUT ---------------- */
-.list-view .status-column { 
+/* List view: statuskolom als een verticale flex-lijst ipv grid */
+.list-view .status-column {
     display: flex; 
     flex-direction: column; 
     gap: 6px; 
     width: 100%;
 }
 
-/* List Row Card */
+/* List view kaart: 7-koloms grid (status-icon, poster, titel, status-dd, rating, play, chevron) */
 #anime-container.list-view .anime-card {
     display: grid;
     grid-template-columns: 36px 36px minmax(0, 1fr) 140px 60px 40px 24px;
@@ -402,7 +414,8 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
     box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
 }
 
-/* Card */
+/* Basisstijl van een anime-kaart: oppervlaktekleur, rand, subtiele schaduw en overloop zichtbaar
+   (overflow: visible zodat status-dropdowns buiten de kaart kunnen uitkomen) */
 .anime-card {
     background: var(--surface); border: var(--border-width, 1px) solid var(--border);
     border-radius: 8px;    padding: 10px; 
@@ -417,18 +430,20 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
     position: relative;
     z-index: 1;
 }
-.anime-card:hover, .anime-card:focus-within { 
+/* Hover/focus-within: toont een subtiele binnenste contour op de kaart */
+.anime-card:hover, .anime-card:focus-within {
     border-color: var(--text-muted); 
     box-shadow: var(--shadow), inset 0 0 0 1px var(--text-muted);
 }
 
-/* Glow effects op basis van rating */
+/* Gouden gloed op kaarten met rating >= 9 */
 .anime-card.glow-gold {
     box-shadow: var(--shadow), inset 0 0 60px rgba(255, 215, 0, 0.25) !important;
 }
 .anime-card.glow-gold:hover, .anime-card.glow-gold:focus-within {
     box-shadow: var(--shadow), inset 0 0 80px rgba(255, 215, 0, 0.35), inset 0 0 0 1px var(--text-muted) !important;
 }
+/* Rode gloed op kaarten met rating < 2 */
 .anime-card.glow-red {
     box-shadow: var(--shadow), inset 0 0 60px rgba(231, 76, 60, 0.25) !important;
 }
@@ -503,14 +518,15 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 .size-l .action-btn, .size-l .status-current, .size-l .rating-badge { padding: 10px 20px; font-size: 16px; }
 .size-l .status-group-header { font-size: 1.6rem; padding: 24px; }
 
+/* Gekleurde linkerzijbalk per kaart: geeft de status visueel aan via een dunne balk */
 .anime-card::before {
     content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
     z-index: 2;
 }
-.anime-card[data-status="-1"]::before { background: var(--status-none); }
-.anime-card[data-status="0"]::before  { background: var(--status-watching); }
-.anime-card[data-status="1"]::before  { display: none; } /* Blauwe balk weg voor bekeken */
-.anime-card[data-status="2"]::before  { background: #ff6b35; }
+/* Zijbalk kleuren op basis van data-status attribuut op de kaart */
+.anime-card[data-status="-1"]::before { background: var(--status-none); }   /* Te Bekijken */
+.anime-card[data-status="0"]::before  { background: var(--status-watching); } /* Bezig */
+.anime-card[data-status="1"]::before  { display: none; }                     /* Bekeken: geen balk */
 
 /* SVG Watermark removed */
 
@@ -519,6 +535,7 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
     color: #ffffff !important;
 }
 
+/* Bekeken-kaarten: iets donkerder vlak met subtiele blauwe binnengloed */
 .anime-card[data-status="1"],
 .anime-card.status-watched {
     background: var(--surface-2);
@@ -550,13 +567,9 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
     background: rgba(187, 187, 187, 0.05);
     color: var(--status-none);
 }
-.list-view .anime-card .status-indicator.status-new {
-    background: rgba(255, 107, 53, 0.1);
-    color: #ff6b35;
-    border-color: rgba(255, 107, 53, 0.3);
-}
 
-/* Status Headers */
+
+/* Statusgroep-header: plakkerige sectieheader boven elke statusgroep in de lijst */
 .status-group-header {
     grid-column: 1 / -1; /* Stretch across all grid columns */
     display: flex;
@@ -587,6 +600,7 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
     color: #FFCC00;
 }
 
+/* Teller badge rechts in de sectieheader: toont het aantal kaarten in die groep */
 .group-count {
     background: var(--surface-2);
     color: var(--text-muted);
@@ -626,6 +640,7 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 .btn-play { background: var(--white); color: var(--bg); border-color: var(--white); }
 .btn-play:hover { opacity: 0.8; }
 
+/* Status-dropdown container: relatief gepositioneerd zodat het menu absoluut uitklapt */
 .status-dropdown { position: relative; }
 .status-current {
     background: var(--surface-2); color: var(--text); border: var(--border-width, 1px) solid var(--border);
@@ -643,6 +658,7 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 [data-theme="midnight"] .status-current img,
 [data-theme="midnight"] .status-option img { filter: invert(1); }
 
+/* Uitklapmenu van de status-dropdown: absoluut gepositioneerd onder de knop */
 .status-menu {
     display: none; position: absolute; top: calc(100% + 4px); right: 0;
     background: var(--surface); border: var(--border-width, 1px) solid var(--border); border-radius: 6px;
@@ -651,6 +667,7 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 }
 .status-dropdown.open .status-menu { display: block; }
 
+/* Statusoptie in het dropdown-menu: klikbare rij met icoon + label */
 .status-option {
     padding: 8px 12px; font-size: 12px; cursor: pointer;
     display: flex; align-items: center; gap: 8px;
@@ -659,6 +676,7 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 .status-option:hover { background: var(--surface-2); }
 
 
+/* Rating-badge: toont het cijfer rechts in de kaart; klasse r-0..r-9 bepaalt de kleur */
 .rating-badge {
     padding: 4px 12px;
     border-radius: 4px; font-weight: 700; color: var(--white);
@@ -672,7 +690,7 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 }
 .rating-badge.unrated { color: var(--text-muted); font-weight: 400; opacity: 0.6; }
 
-/* Ratings Graph Scale */
+/* Ratingbadge kleurschaal van r-9 (blauw/uitstekend) tot r-0 (paars/slecht) */
 .rating-badge.r-9 { background: rgba(52, 152, 219, 0.25) !important; color: #3498db !important; border-color: rgba(52, 152, 219, 0.5) !important; box-shadow: 0 0 10px rgba(52, 152, 219, 0.1); }
 .rating-badge.r-8 { background: rgba(39, 174, 96, 0.25)  !important; color: #27ae60 !important; border-color: rgba(39, 174, 96, 0.5)  !important; }
 .rating-badge.r-7 { background: rgba(46, 204, 113, 0.25)  !important; color: #2ecc71 !important; border-color: rgba(46, 204, 113, 0.5)  !important; }
@@ -687,7 +705,7 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 .card-title { display: flex; align-items: center; gap: 8px; }
 .expand-icon { font-size: 10px; color: var(--text-muted); margin-left: auto; }
 
-/* Expanded detail */
+/* Uitgevouwen detailblok onder een kaart in list view of in de grid-modal */
 .card-detail {
     margin-top: 12px; padding-top: 12px;
     border-top: var(--border-width, 1px) solid var(--border);
@@ -699,7 +717,10 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
     padding: 6px 0;
 }
 .season-title { font-weight: 600; font-size: 13px; flex: 1; }
+.season-specials .season-title { color: #FFCC00; opacity: 0.9; }
+.season-specials { background: rgba(255, 204, 0, 0.03); border-radius: 4px; border: 1px dashed rgba(255, 204, 0, 0.1); padding: 4px 8px; margin-bottom: 12px; }
 
+/* Lijst van afleveringen: ingedenteerd met een verticale lijn als boomstructuur */
 .episode-list {
     margin-left: 18px; border-left: var(--border-width, 1px) solid var(--border);
     padding-left: 12px;
@@ -712,6 +733,7 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
     border: 1px solid transparent;
 }
 .episode-row:hover { background: rgba(255, 255, 255, 0.05); }
+/* Geselecteerde afleveringsrij: blauwe markering voor batch-acties */
 .episode-row.selected {
     background: rgba(0, 122, 204, 0.15) !important;
     border-color: rgba(0, 122, 204, 0.5);
@@ -720,7 +742,7 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 .episode-row[data-status="1"] .ep-title { color: var(--text-muted); }
 .ep-title { flex: 1; color: var(--text); }
 
-/* --- BATCH BAR --- */
+/* Zwevende batch-actiebalk: verschijnt bij de muiscursor bij selectie van afleveringen */
 .batch-bar {
     position: fixed;
     z-index: 10000;
@@ -784,25 +806,7 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 .btn-tiny { padding: 3px 6px; font-size: 10px; }
 
 /* Franchise Grouping */
-.group-count-badge {
-    background: var(--surface-2);
-    color: var(--text-muted);
-    font-size: 10px;
-    padding: 2px 8px;
-    border-radius: 12px;
-    font-weight: 600;
-    border: 1px solid var(--border);
-    margin-left: 8px;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    vertical-align: middle;
-}
-.group-count-badge::after {
-    content: ' titels';
-    font-weight: 400;
-    opacity: 0.8;
-}
+
 
 .card-detail-group {
     display: flex;
@@ -928,10 +932,9 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 
 .episode-row:hover {
     background: var(--surface);
-    transform: translateX(4px);
 }
 
-/* Modal */
+/* Modal overlay: fullscreen semi-transparante laag achter rating- en detail-modals */
 #modal-overlay, #detail-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: var(--modal-bg);
@@ -980,9 +983,10 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 .btn-primary  { background: var(--white); color: var(--bg); border-color: var(--white); }
 .btn-secondary { background: var(--surface-2); color: var(--text); }
 
+/* Hulpklasse: verbergt een element volledig (ook voor screen readers via display: none) */
 .hidden { display: none !important; }
 
-/* --- FOOTER --- */
+/* Voettekst: gecentreerd, gedempte kleur, met bovenste scheidingslijn */
 footer {
     text-align: center;
     padding: 3rem 0;
@@ -1059,7 +1063,7 @@ footer {
     text-overflow: ellipsis;
 }
 
-/* Lijstweergave vinkje kolom fix */
+/* Lijst view: bekeken-kaart status-indicator override: wit vinkje op blauwe achtergrond */
 .list-view .anime-card.status-watched .status-indicator,
 .list-view .anime-card[data-status="1"] .status-indicator {
     background: rgba(0, 122, 204, 0.2) !important;
@@ -1068,4 +1072,101 @@ footer {
     display: flex !important;
     align-items: center;
     justify-content: center;
+}
+
+/* ==========================================================================
+   RESPONSIVE LAYOUT BREAKPOINTS
+   ========================================================================== */
+
+/* --- TABLET / SMALL DESKTOP (Max 1200px) --- */
+@media (max-width: 1200px) {
+    /* Header layout compacter (zoekbalk relatief langer ten opzichte van title) */
+    .header-content {
+        grid-template-columns: 1fr 2fr 1fr;
+    }
+
+    /* Grid kolommen verkleinen zodat er niet 5-6 op een te smal scherm gepropt worden */
+    #anime-container.grid-view.size-m .status-column { grid-template-columns: repeat(4, 1fr) !important; }
+    #anime-container.grid-view.size-s .status-column { grid-template-columns: repeat(5, 1fr) !important; }
+}
+
+/* --- MOBILE (Max 768px) --- */
+@media (max-width: 768px) {
+    /* Hoofdgedeelte padding op mobiel halveren */
+    #app {
+        padding: 16px 10px;
+    }
+
+    /* Header splitsen in 2 rijen: Logo + Knoppen boven, zoekbalk hele breedte beneden */
+    .header-content {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 12px;
+    }
+    .header-center {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        max-width: 100%;
+    }
+    
+    /* Toolbar compacter, en elementen wrappen sneller naar een nieuwe regel */
+    .toolbar {
+        justify-content: flex-start;
+        gap: 8px;
+    }
+    .filter-btn {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+    .view-toggle {
+        margin-left: 0; /* Laat view toggle meevloeien in plaats van naar in de hoek geduwd te worden */
+    }
+
+    /* Grid kolommen voor mobiel: Forceer naar maximum hoeveelheid zodat kaarten nog touchable zijn */
+    #anime-container.grid-view.size-l .status-column { grid-template-columns: repeat(1, 1fr) !important; }
+    #anime-container.grid-view.size-m .status-column { grid-template-columns: repeat(2, 1fr) !important; }
+    #anime-container.grid-view.size-s .status-column { grid-template-columns: repeat(3, 1fr) !important; }
+    
+    /* Grid kaarten iets compacter op mobiel */
+    #anime-container.grid-view .anime-card { min-height: 120px; }
+    #anime-container.grid-view .anime-card .card-poster { width: 85px; height: 125px; }
+
+    /* Mobiele list-view: Verberg de status dropdown en de rating om ruimte te besparen */
+    #anime-container.list-view .card-actions > .status-dropdown,
+    #anime-container.list-view .rating-badge {
+        display: none !important;
+    }
+
+    /* Herzie de list-view kolommen voor mobiele weergave en dwing de layout af */
+    #anime-container.list-view .anime-card, 
+    #anime-container.size-m.list-view .anime-card {
+        /* Status | Poster | Title | Play | Chevron */
+        grid-template-columns: 28px 25px minmax(0, 1fr) 35px 24px !important;
+        padding: 8px 10px;
+    }
+    
+    /* Modal / Popups over heel het scherm voor mobiel */
+    .modal-content {
+        width: 95% !important;
+        padding: 20px;
+    }
+    .detail-modal-custom {
+        width: 100%;
+        max-height: 90vh;
+        border-radius: 12px 12px 0 0;
+        bottom: 0;
+        top: auto;
+        transform: translateY(100%); /* Setup voor slide-up als je dat zou willen */
+    }
+    .detail-overlay:not(.hidden) .detail-modal-custom {
+        transform: translateY(0);
+    }
+    
+    /* Batch acties bar compacter maken onderaan */
+    .batch-bar {
+        left: 10px !important;
+        bottom: 10px !important;
+        top: auto !important;
+        width: calc(100vw - 20px);
+    }
 }
