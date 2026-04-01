@@ -9,6 +9,8 @@ let currentView = localStorage.getItem('rascal_view') || 'grid';
 let currentSize = localStorage.getItem('rascal_size') || 'm'; // s, m, l
 let expandedItems = new Set(); // set van anime titels die zijn uitgeklapt
 let expandedSeasons = new Set(); // welke seizoenen zijn uitgeklapt (key: "title-S1")
+let selectedEpisodes = new Map(); // key: "title|S|E", value: { item, season, episode }
+let currentlyShownItem = null; // item in de geopende detail modal
 
 // --- Init ---
 
@@ -668,6 +670,34 @@ function buildDetail(item) {
                     epTitle.className = 'ep-title';
                     epTitle.textContent = `E${ep.number} — ${ep.name}`;
 
+                    const epKey = `${item.title}|${season.number}|${ep.number}`;
+                    if (selectedEpisodes.has(epKey)) epRow.classList.add('selected');
+
+                    epRow.style.cursor = 'pointer';
+                    epRow.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        if (e.ctrlKey || e.metaKey) {
+                            if (selectedEpisodes.has(epKey)) {
+                                selectedEpisodes.delete(epKey);
+                                epRow.classList.remove('selected');
+                            } else {
+                                selectedEpisodes.set(epKey, { item, season, episode: ep });
+                                epRow.classList.add('selected');
+                            }
+                        } else if (selectedEpisodes.size > 0) {
+                            // Normal click after selection should clear everything or at least this one
+                            // User asked: "clicking normally afterwards should unselect it!"
+                            if (selectedEpisodes.has(epKey)) {
+                                selectedEpisodes.delete(epKey);
+                                epRow.classList.remove('selected');
+                            } else {
+                                // If they click a non-selected item normally, clear everything
+                                clearSelection();
+                            }
+                        }
+                        renderBatchBar(e.clientX, e.clientY);
+                    });
+
                     const epPlay = document.createElement('button');
                     epPlay.className = 'action-btn btn-play btn-tiny';
                     epPlay.innerHTML = '<i class="fas fa-play"></i>';
@@ -713,6 +743,7 @@ function buildDetail(item) {
 // --- Detail Modal (grid view) ---
 
 function showDetailModal(item) {
+    currentlyShownItem = item;
     const titleEl = document.getElementById('detail-title');
     titleEl.innerHTML = '';
     
@@ -743,14 +774,72 @@ function showDetailModal(item) {
 }
 
 document.getElementById('close-detail').addEventListener('click', () => {
+    currentlyShownItem = null;
     document.getElementById('detail-overlay').classList.add('hidden');
 });
 
 document.getElementById('detail-overlay').addEventListener('click', (e) => {
     if (e.target === e.currentTarget) {
+        currentlyShownItem = null;
         document.getElementById('detail-overlay').classList.add('hidden');
     }
 });
+
+function renderBatchBar(x, y) {
+    let bar = document.getElementById('batch-bar');
+    if (selectedEpisodes.size === 0) {
+        if (bar) bar.remove();
+        return;
+    }
+
+    if (!bar) {
+        bar = document.createElement('div');
+        bar.id = 'batch-bar';
+        bar.className = 'batch-bar';
+        document.body.appendChild(bar);
+    }
+
+    bar.style.left = `${Math.min(window.innerWidth - 220, x + 15)}px`;
+    bar.style.top = `${Math.min(window.innerHeight - 150, y + 15)}px`;
+
+    bar.innerHTML = `
+        <div class="batch-header">
+            <span><b>${selectedEpisodes.size}</b> geselecteerd</span>
+            <button class="batch-close" onclick="clearSelection()">&times;</button>
+        </div>
+        <div class="batch-options">
+            <button onclick="applyBatchStatus(1)"><i class="fas fa-check"></i> Bekeken</button>
+            <button onclick="applyBatchStatus(0)"><i class="fas fa-play"></i> Bezig</button>
+            <button onclick="applyBatchStatus(-1)"><i class="fas fa-clock"></i> Te Bekijken</button>
+        </div>
+    `;
+}
+
+window.clearSelection = function() {
+    selectedEpisodes.clear();
+    renderBatchBar();
+    render();
+};
+
+window.applyBatchStatus = function(status) {
+    if (selectedEpisodes.size === 0) return;
+    
+    console.log(`Applying status ${status} to ${selectedEpisodes.size} episodes`);
+    
+    selectedEpisodes.forEach(({ item, season, episode }) => {
+        // Direct mutation and ensuring it sticks
+        episode.status = parseInt(status);
+    });
+    
+    save();
+    
+    // Refresh modal if open
+    if (currentlyShownItem) {
+        showDetailModal(currentlyShownItem);
+    }
+    
+    clearSelection();
+};
 
 // --- Modal ---
 
