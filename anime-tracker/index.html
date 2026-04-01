@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Tracker | Premium List</title>
+    <link rel="stylesheet" href="styles.css?v=1.9.2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header-main">
+        <div class="header-content">
+            <div class="header-left">
+                <h1 class="logo-rascal"><span class="ras">RAS</span><span class="cal">CAL</span></h1>
+            </div>
+            <div class="header-center">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Zoeken in je lijst...">
+                </div>
+            </div>
+            <div class="header-right">
+                <button id="theme-toggle" title="Wissel thema"><i class="fas fa-moon"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <div id="app">
+
+        <div class="toolbar">
+            <div class="add-anime">
+                <input type="text" id="new-anime-input" placeholder="Serie toevoegen...">
+                <button id="add-btn"><i class="fas fa-plus"></i></button>
+            </div>
+            <!-- Filter -->
+            <div class="filter-group">
+                <button class="filter-btn active" data-filter="all">Alles</button>
+                <button class="filter-btn" data-filter="-1">Te Bekijken</button>
+                <button class="filter-btn" data-filter="0">Bezig</button>
+                <button class="filter-btn" data-filter="1">Bekeken</button>
+                <button class="filter-btn" data-filter="2"><i class="fas fa-sparkles"></i> Nieuw</button>
+            </div>
+
+            <!-- Sort -->
+            <div class="sort-group">
+                <select id="sort-select">
+                    <option value="default">Sortering: Standaard</option>
+                    <option value="title-asc">Titel A→Z</option>
+                    <option value="title-desc">Titel Z→A</option>
+                    <option value="rating-desc">Rating ↓</option>
+                    <option value="rating-asc">Rating ↑</option>
+                    <option value="status">Status</option>
+                </select>
+            </div>
+
+            <!-- View toggle -->
+            <div class="view-toggle">
+                <button class="view-btn active" id="grid-btn" title="Grid view"><i class="fas fa-th"></i></button>
+                <button class="view-btn" id="list-btn" title="Lijstweergave"><i class="fas fa-list"></i></button>
+            </div>
+
+            <!-- Size toggle (Grid only) -->
+            <div class="size-toggle" id="size-toggle-container">
+                <button class="size-btn" data-size="s">S</button>
+                <button class="size-btn active" data-size="m">M</button>
+                <button class="size-btn" data-size="l">L</button>
+            </div>
+
+            <span class="item-count" id="item-count">0 items</span>
+        </div>
+
+        <main>
+            <div id="anime-container" class="grid-view">
+                <!-- Dynamically filled -->
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Anime Tracker &bull; Powered by <span class="vidsrc-brand">VidSrc.to</span></p>
+        </footer>
+    </div>
+
+    <!-- Rating Modal -->
+    <div id="modal-overlay" class="hidden">
+        <div class="modal">
+            <h3>Hoeveel geef je deze anime?</h3>
+            <p id="modal-title"></p>
+            <div class="rating-input">
+                <input type="number" id="rating-number" min="0" max="10" step="0.1" value="7.0">
+                <span class="max-rating">/ 10</span>
+            </div>
+            <div class="modal-buttons">
+                <button id="clear-rating" class="btn-secondary" style="margin-right:auto; color:var(--text-muted); border-color:var(--border);">Wissen</button>
+                <button id="cancel-rating" class="btn-secondary">Annuleren</button>
+                <button id="save-rating" class="btn-primary">Opslaan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detail Modal (seizoenen/afleveringen in grid view) -->
+    <div id="detail-overlay" class="hidden">
+        <div class="modal modal-detail">
+            <div class="modal-detail-header">
+                <h3 id="detail-title"></h3>
+                <button id="close-detail" class="btn-close">&times;</button>
+            </div>
+            <div id="detail-content"></div>
+        </div>
+    </div>
+
+    <script src="domein/StatusCalculator.js"></script>
+    <script src="domein/AnimeActions.js"></script>
+    <script src="app.js?v=1.2"></script>
+</body>
+</html>

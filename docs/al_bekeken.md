@@ -1,0 +1,51 @@
+# Al Bekeken Series/Films
+
+- Rascal Does Not Dream
+- Horimiya
+- Oregairu SNAFU
+- KonoSuba
+- 100 Girlfriends Who Really, Really Love You
+- High School DxD
+- Kaguya-sama: Love is War
+- Rascal Does Not Dream of Santa Claus
+- Fruits Basket
+- Toradora!
+- The Angel Next Door Spoils Me Rotten
+- Alya Sometimes Hides Her Feelings in Russian
+- ReLIFE
+- The Fragrant Flower Blooms with Dignity
+- The Pet Girl of Sakurasou
+- My Dress-Up Darling
+- A Couple of Cuckoos
+- Class President is a Maid!
+- And you thought there is never a girl online?
+- Love, Chunibyo & Other Delusions!
+- The Iceblade Sorcerer Shall Rule the World
+- Danganronpa: The Animation
+- My Little Sister Can't Be This Cute
+- The Dreaming Boy is a Realist
+- Prison School
+- Trinity Seven
+- Akashic Records of Bastard Magic Instructor
+- Masamune-kun's Revenge
+- Shikimori's Not Just a Cutie
+- The Dangers in My Heart
+- More than a married couple, but not lovers.
+- Golden Time
+- Haganai: I don't have many friends
+- Eromanga Sensei
+- SHIMONETA
+- The Genius Prince's Guide to Raising a Nation Out of Debt
+- Don't Toy with Me, Miss Nagatoro
+- Medaka Kuroiwa is Impervious to My Charms
+- My Girlfriend is Shobitch
+- Bottom-Tier Character Tomozaki
+- Can a Boy and Girl Friendship Hold Up?
+- Hensuki: Are you willing to fall in love with a pervert, as long as she's a cutie?
+- My Little Monster
+- Blue Box
+- The Children of Shiunji Family
+- Gamers!
+- Redo of Healer
+- Kiss x Sis OVA
+- Rent-a-Girlfriend

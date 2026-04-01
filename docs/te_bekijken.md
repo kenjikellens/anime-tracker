@@ -1,0 +1,25 @@
+# Te Bekijken Series/Films
+
+- Your Lie in April
+- Orange
+- A Silent Voice
+- I want to eat your pancreas
+- Inexpressive Kashiwada and Expressive Oota
+- Umamusume: Pretty Derby
+- My Matchmaking Partner Is My Student, An Agg...
+- Pseudo Harem
+- Chitose Is in the Ramune Bottle
+- Food for the Soul
+- Makeine: Too Many Losing Heroines!
+- The Melancholy of Haruhi Suzumiya
+- Classroom of the Elite
+- Azumanga Daioh
+- Teasing Master Takagi-san
+- Clannad
+- The Ryuo's Work is Never Done!
+- Tune In to the Midnight Heart
+- AHO-GIRL
+- Ghost Stories
+- The Comic Artist and His Assistants
+- Re:ZERO - Starting Life in Another World
+- Spy x Family

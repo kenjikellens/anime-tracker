@@ -1,0 +1,72 @@
+/* --- STATUS DROPDOWN STYLES --- */
+.status-dropdown {
+    position: relative;
+    display: inline-block;
+    z-index: 10;
+}
+
+.status-current {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.status-current img, .status-option img {
+    width: 16px;
+    height: 16px;
+    filter: brightness(0) invert(1);
+}
+
+.status-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin-top: 4px;
+    display: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    z-index: 20;
+    overflow: hidden;
+    min-width: 140px;
+}
+
+.status-dropdown.open .status-menu {
+    display: block;
+}
+
+.status-option {
+    padding: 10px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text);
+    transition: background 0.2s;
+}
+
+.status-option:hover {
+    background: var(--surface-2);
+}
+
+.status-option img {
+    opacity: 0.7;
+}
+
+/* Specificities for light theme */
+[data-theme="light"] .status-current img, 
+[data-theme="light"] .status-option img {
+    filter: none;
+}
