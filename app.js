@@ -700,7 +700,6 @@ function buildDetail(item) {
                                 epRow.classList.add('selected');
                             }
                         }
-                        renderBatchBar(e.clientX, e.clientY);
                     });
 
                     epRow.addEventListener('contextmenu', (e) => {
