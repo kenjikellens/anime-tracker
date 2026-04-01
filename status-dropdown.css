@@ -1,45 +1,79 @@
-/* --- STATUS DROPDOWN STYLES --- */
+/* --- PREMIUM STATUS DROPDOWN STYLES --- */
 .status-dropdown {
     position: relative;
     display: inline-block;
-    z-index: 10;
+    z-index: 50; /* Base level for the dropdown container */
 }
 
+/* The button that shows the current status */
 .status-current {
     background: var(--surface-2);
     border: 1px solid var(--border);
     color: var(--text);
-    padding: 6px 12px;
-    border-radius: 4px;
+    padding: 8px 14px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 13px;
     font-weight: 600;
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: space-between;
+    gap: 10px;
     width: 100%;
+    min-width: 120px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.status-current:hover {
+    background: var(--surface);
+    border-color: var(--text-muted);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .status-current img, .status-option img {
     width: 16px;
     height: 16px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+/* Light/Dark theme image filtering */
+[data-theme="dark"] .status-current img, 
+[data-theme="dark"] .status-option img,
+[data-theme="midnight"] .status-current img, 
+[data-theme="midnight"] .status-option img {
     filter: brightness(0) invert(1);
 }
 
+/* The actual menu that drops down */
 .status-menu {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 8px);
     left: 0;
-    right: 0;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    margin-top: 4px;
+    min-width: 180px;
+    background: rgba(40, 40, 40, 0.8);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 6px;
     display: none;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    z-index: 20;
-    overflow: hidden;
-    min-width: 140px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    z-index: 9999 !important; /* Ensure it's above everything */
+    transform-origin: top left;
+    animation: dropdownFadeScale 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="light"] .status-menu {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+@keyframes dropdownFadeScale {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 .status-dropdown.open .status-menu {
@@ -47,26 +81,39 @@
 }
 
 .status-option {
-    padding: 10px 12px;
+    padding: 10px 14px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     font-size: 13px;
+    font-weight: 500;
     color: var(--text);
-    transition: background 0.2s;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    margin-bottom: 2px;
 }
 
+.status-option:last-child { margin-bottom: 0; }
+
 .status-option:hover {
-    background: var(--surface-2);
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(4px);
+}
+
+[data-theme="light"] .status-option:hover {
+    background: rgba(0, 0, 0, 0.05);
 }
 
 .status-option img {
-    opacity: 0.7;
+    opacity: 0.9;
 }
 
-/* Specificities for light theme */
-[data-theme="light"] .status-current img, 
-[data-theme="light"] .status-option img {
-    filter: none;
+/* Custom scrollbar for some browsers if content overflows */
+.status-menu::-webkit-scrollbar {
+    width: 4px;
+}
+.status-menu::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
 }

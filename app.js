@@ -341,8 +341,13 @@ function render() {
 }
 
 function statusIcon(status) {
-    if (status === null) return 'resources/img/clock.svg';
-    const icons = { '-1': 'resources/img/clock.svg', '0': 'resources/img/playing.svg', '1': 'resources/img/check.svg', '2': 'resources/img/clock.svg' };
+    if (status === null) return 'fas fa-clock';
+    const icons = { 
+        '-1': 'fas fa-clock', 
+        '0': 'fas fa-play', 
+        '1': 'fas fa-check', 
+        '2': 'fas fa-sparkles' 
+    };
     return icons[String(status)] || icons['-1'];
 }
 function statusLabel(status) {
@@ -369,13 +374,16 @@ function buildStatusDropdown(currentStatus, onChange) {
     div.className = 'status-dropdown';
     div.innerHTML = `
         <button class="status-current" title="${statusLabel(currentStatus)}">
-            <img src="${statusIcon(currentStatus)}"> <span>${statusLabel(currentStatus)}</span>
+            <span style="display:flex; align-items:center; gap:8px;">
+                <i class="${statusIcon(currentStatus)}"></i> <span>${statusLabel(currentStatus)}</span>
+            </span>
+            <i class="fas fa-chevron-down" style="font-size: 10px; opacity: 0.6;"></i>
         </button>
         <div class="status-menu">
-            <div class="status-option" data-val="-1"><img src="resources/img/clock.svg"> Te Bekijken</div>
-            <div class="status-option" data-val="0"><img src="resources/img/playing.svg"> Bezig</div>
-            <div class="status-option" data-val="1"><img src="resources/img/check.svg"> Bekeken</div>
-            <div class="status-option" data-val="2" style="display:none;"><img src="resources/img/clock.svg"> Nieuw Seizoen</div>
+            <div class="status-option" data-val="-1"><i class="fas fa-clock" style="opacity:0.7;"></i> Te Bekijken</div>
+            <div class="status-option" data-val="0"><i class="fas fa-play" style="opacity:0.7;"></i> Bezig</div>
+            <div class="status-option" data-val="1"><i class="fas fa-check" style="opacity:0.7;"></i> Bekeken</div>
+            <div class="status-option" data-val="2" style="display:none;"><i class="fas fa-sparkles" style="opacity:0.7;"></i> Nieuw Seizoen</div>
         </div>
     `;
     div.querySelector('.status-current').addEventListener('click', e => {

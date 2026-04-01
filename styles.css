@@ -381,7 +381,7 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
     position: relative;
     box-shadow: var(--shadow);
     transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
-    overflow: hidden;
+    overflow: visible; /* Fix: allow dropdowns to pop out */
     min-height: 120px;
 }
 
@@ -724,7 +724,9 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 }
 .btn-close:hover { color: var(--text); }
 #detail-content {
-    overflow-y: auto; flex: 1;
+    overflow-y: auto; 
+    flex: 1;
+    padding-bottom: 120px; /* Space for dropdowns to flourish without clipping */
 }
 .modal h3 { margin-bottom: 4px; font-size: 16px; }
 #modal-title { color: var(--text-muted); margin-bottom: 20px; font-size: 13px; }
@@ -749,53 +751,18 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 
 .hidden { display: none !important; }
 
+/* --- FOOTER --- */
 footer {
-    text-align: center; padding: 3rem 0;
-    color: var(--text-muted); font-size: 12px;
-    border-top: 1px solid var(--border); margin-top: 40px;
-}
-.vidsrc-brand { color: var(--text); }
-
-/* --- ULTRA SPECIFICITY FIX VOOR BEKEKEN ITEMS --- */
-#app .anime-card[data-status="1"] .card-title,
-#app .anime-card.status-watched .card-title,
-#app .anime-card[data-status="1"] .card-title span,
-#app .anime-card.status-watched .card-title span,
-#app .anime-card[data-status="1"] .ep-title,
-#app .anime-card.status-watched .ep-title,
-#app .anime-card[data-status="1"] .season-title,
-#app .anime-card.status-watched .season-title {
-    color: #ffffff !important;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    text-align: center;
+    padding: 3rem 0;
+    color: var(--text-muted);
+    font-size: 12px;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
 }
 
-/* --- STATUS DROPDOWN STYLES --- */
-.status-dropdown {
-    position: relative;
-    display: inline-block;
-    z-index: 50;
-    min-width: 130px;
-}
-
-.status-current {
-    background: var(--surface-2);
-    border: 1px solid var(--border);
+.vidsrc-brand {
     color: var(--text);
-    padding: 6px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 11px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    width: 100%;
-    transition: all 0.2s;
-}
-
-.status-current:hover {
-    background: var(--bg);
-    border-color: var(--white);
 }
 
 .status-current img, .status-option img {
