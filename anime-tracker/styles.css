@@ -132,14 +132,30 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
     align-items: center;
 }
 
-#theme-toggle {
+#theme-toggle, #download-btn {
     background: var(--surface); border: var(--border-width, 1px) solid var(--border);
     color: var(--text); width: 42px; height: 42px; border-radius: 8px;
     cursor: pointer; font-size: 16px; display: flex;
     align-items: center; justify-content: center;
     transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    margin-right: 8px;
 }
-#theme-toggle:hover { background: var(--surface-2); }
+#theme-toggle { margin-right: 0; }
+#theme-toggle:hover, #download-btn:hover { background: var(--surface-2); }
+
+#download-btn.sync-needed {
+    background: #FFCC00;
+    color: #000;
+    border-color: #FFCC00;
+    animation: pulse-yellow 2s infinite;
+}
+
+@keyframes pulse-yellow {
+    0% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 204, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0); }
+}
+
 
 .add-anime {
     display: flex; background: var(--surface); border: var(--border-width, 1px) solid var(--border);

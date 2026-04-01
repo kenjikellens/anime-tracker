@@ -1,4 +1,5 @@
 const TMDB_API_KEY = 'a341dc9a3c2dffa62668b614a98c1188';
+const isGitHub = window.location.hostname.includes('github.io');
 
 let state = { animeList: [] };
 let activeFilters = new Set(JSON.parse(localStorage.getItem('rascal_filters')) || [-1, 0, 1, 2]); // Alle statussen standaard aan
@@ -13,8 +14,22 @@ let expandedSeasons = new Set(); // welke seizoenen zijn uitgeklapt (key: "title
 
 async function init() {
     try {
-        const res = await fetch('/data.json');
-        state.animeList = await res.json();
+        const res = await fetch('data.json');
+        let remoteData = await res.json();
+        
+        if (isGitHub) {
+            const localData = localStorage.getItem('rascal_data');
+            if (localData) {
+                state.animeList = JSON.parse(localData);
+                document.getElementById('download-btn').classList.remove('hidden');
+                document.getElementById('download-btn').classList.add('sync-needed');
+                console.log('Geladen vanuit localStorage (GitHub mode)');
+            } else {
+                state.animeList = remoteData;
+            }
+        } else {
+            state.animeList = remoteData;
+        }
         let needsSave = false;
         state.animeList.forEach(item => {
             // Migreer oude '0' beoordelingen naar '-1' (onbeoordeeld)
@@ -78,14 +93,39 @@ async function lazySyncSeasons() {
 
 async function save() {
     try {
-        await fetch('/save', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(state.animeList, null, 2)
-        });
+        if (isGitHub) {
+            // Sla op in localStorage en markeer als 'sync nodig'
+            localStorage.setItem('rascal_data', JSON.stringify(state.animeList));
+            const dlBtn = document.getElementById('download-btn');
+            dlBtn.classList.remove('hidden');
+            dlBtn.classList.add('sync-needed');
+            console.log('Opgeslagen in localStorage (GitHub mode)');
+        } else {
+            await fetch('/save', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(state.animeList, null, 2)
+            });
+        }
     } catch (e) {
         console.error('Opslaan mislukt:', e);
     }
+}
+
+function exportData() {
+    const dataStr = JSON.stringify(state.animeList, null, 2);
+    const blob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'data.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    // Na downloaden de pulse weghalen
+    document.getElementById('download-btn').classList.remove('sync-needed');
 }
 
 // --- TMDB ---
@@ -835,6 +875,10 @@ document.getElementById('theme-toggle').addEventListener('click', () => {
     const next = current === 'light' ? 'dark' : current === 'dark' ? 'midnight' : 'light';
     localStorage.setItem('rascal_theme', next);
     applyTheme(next);
+});
+
+document.getElementById('download-btn').addEventListener('click', () => {
+    exportData();
 });
 
 initTheme();
