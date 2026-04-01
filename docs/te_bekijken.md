@@ -23,3 +23,9 @@
 - The Comic Artist and His Assistants
 - Re:ZERO - Starting Life in Another World
 - Spy x Family
+- Undefeated Bahamut Chronicles
+- Plastic Memories
+- Tonikaku Kawaii
+- Chivalry of a Failed Knight
+- Tonikawa: Over the Moon for You
+- Studio Apartment, Good Lighting, Angel Included

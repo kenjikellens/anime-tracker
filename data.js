@@ -23,6 +23,12 @@ const animeData = [
   { title: "The Comic Artist and His Assistants", status: -1, rating: 0, season: 1, episode: 1 },
   { title: "Re:ZERO - Starting Life in Another World", status: -1, rating: 0, season: 1, episode: 1 },
   { title: "Spy x Family", status: -1, rating: 0, season: 1, episode: 1 },
+  { title: "Undefeated Bahamut Chronicles", status: -1, rating: 0, season: 1, episode: 1 },
+  { title: "Plastic Memories", status: -1, rating: 0, season: 1, episode: 1 },
+  { title: "Tonikaku Kawaii", status: -1, rating: 0, season: 1, episode: 1 },
+  { title: "Chivalry of a Failed Knight", status: -1, rating: 0, season: 1, episode: 1 },
+  { title: "Tonikawa: Over the Moon for You", status: -1, rating: 0, season: 1, episode: 1 },
+  { title: "Studio Apartment, Good Lighting, Angel Included", status: -1, rating: 0, season: 1, episode: 1 },
 
   // --- Al Bekeken (Status 1) ---
   { title: "Rascal Does Not Dream", status: 1, rating: 0, season: 1, episode: 1 },
