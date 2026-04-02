@@ -60,14 +60,8 @@ var currentView = localStorage.getItem('rascal_view') || 'grid';
 var currentSize = localStorage.getItem('rascal_size') || 'm';
 
 /**
- * Registreert welke franchises/groepen zijn uitgeklapt in list view.
- * Gebruikt de franchise titel als unieke sleutel.
- * @type {Set<string>}
- */
-var expandedItems = new Set();
-
-/**
  * Registreert welke specifieke seizoenen inline zijn uitgeklapt (detail view / list view).
+
  * Sleutel formaat is "Titel-S1" of "Titel-S2".
  * @type {Set<string>}
  */
@@ -86,9 +80,3 @@ var selectedEpisodes = new Map();
  */
 var currentlyShownItem = null;
 
-/**
- * Huidige geselecteerde videospeler bron voor alle 'Play' knoppen.
- * Terug te vinden in 'domein/EmbedSources.js'.
- * @type {string}
- */
-var currentSource = localStorage.getItem('rascal_source') || 'vsembed';

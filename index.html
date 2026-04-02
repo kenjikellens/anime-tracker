@@ -7,16 +7,14 @@
     
     <!-- Design & Fonts -->
     <link rel="stylesheet" href="styles.css?v=1.9.2">
+    <link rel="stylesheet" href="status-dropdown.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Inline styles for dynamic components -->
-    <style>
-        .anilist-status-tag { cursor: pointer; transition: transform 0.2s; }
-        .anilist-status-tag:hover { transform: scale(1.2); filter: brightness(1.2); }
-    </style>
+    <!-- AniList card actions removed -->
+
 </head>
 <body>
     <!-- Top-level Navigation & Search -->
@@ -45,7 +43,7 @@
         <div class="toolbar">
             <div class="add-anime">
                 <input type="text" id="new-anime-input" placeholder="Add series...">
-                <button id="add-btn"><button id="add-btn"><i class="fas fa-plus"></i></button></button>
+                <button id="add-btn" title="Nieuwe serie toevoegen"><i class="fas fa-plus"></i></button>
             </div>
             
             <!-- Category Filters -->
@@ -68,14 +66,6 @@
                 </select>
             </div>
 
-            <!-- Embed Video Source Provider -->
-            <div class="sort-group">
-                <select id="source-select" title="Choose embed source">
-                    <option value="vsembed">▶ VSEmbed</option>
-                    <option value="embedsu">▶ Embed.su</option>
-                    <option value="autoembed">▶ AutoEmbed</option>
-                </select>
-            </div>
 
             <!-- Display Mode Toggle -->
             <div class="view-toggle">
@@ -136,20 +126,18 @@
     </div>
 
     <!-- Logic & Domain Scripts -->
-    <script src="domein/StatusCalculator.js"></script>
-    <script src="domein/AnimeActions.js"></script>
-    <script src="domein/State.js"></script>
-    <script src="domein/Storage.js"></script>
-    <!-- Legacy TMDB support commented out, using AniList as primary database -->
-    <!-- <script src="domein/TmdbApi.js"></script> -->
-    <script src="domein/AnilistApi.js"></script>
-    <script src="domein/EmbedSources.js"></script>
-    <script src="domein/ListTransformer.js"></script>
-    <script src="domein/UIHelpers.js"></script>
-    <script src="domein/BatchActions.js"></script>
-    <script src="domein/Modals.js"></script>
-    <script src="domein/Components.js"></script>
-    <script src="app.js?v=1.2"></script>
+    <script src="domein/UIHelpers.js?v=1.4"></script>
+    <script src="domein/BatchActions.js?v=1.4"></script>
+    <script src="domein/StatusCalculator.js?v=1.4"></script>
+    <script src="domein/AnimeActions.js?v=1.4"></script>
+    <script src="domein/State.js?v=1.4"></script>
+    <script src="domein/Storage.js?v=1.4"></script>
+    <script src="domein/AnilistApi.js?v=1.4"></script>
+    <script src="domein/EmbedSources.js?v=1.4"></script>
+    <script src="domein/ListTransformer.js?v=1.4"></script>
+    <script src="domein/Components.js?v=1.5"></script>
+    <script src="domein/Modals.js?v=1.5"></script>
+    <script src="app.js?v=1.5"></script>
 
     <!-- Global Dropdown Portal: Used for context menus to prevent overflow issues -->
     <div id="global-status-menu" class="status-menu shadow-lg"></div>

@@ -25,3 +25,31 @@ This document defines the expected UI/UX behavior for the Anime Tracker applicat
 
 ## 5. Performance
 - **Lazy Loading**: Posters and large season data must load in the background to ensure a snappy initial render of the list/grid.
+
+## 6. List View Geometry
+- **3-Column Grid**: Each entry in the List view MUST follow a strict 3-column layout:
+    - **Column 1**: Poster (Standard width: 44px for M, 32px for S).
+    - **Column 2**: Title (Flex-grow: 1, min-width: 0).
+    - **Column 3**: Interaction/Indicator (Chevron, Standard width: 24px for M, 20px for S).
+
+## 7. Vertical Symmetry
+- **Centering**: ALL elements within a row (Poster, Title, Icons) MUST be perfectly centered vertically relative to the row's height.
+- **Line Height**: Use consistent line-heights to ensure titles do not shift when wrapping.
+
+## 8. Development Discipline
+- **Regression Prevention**: Never modify shared layout logic without verifying impact on both Grid and List views.
+- **State Persistence**: Active filters, search queries, and view modes MUST persist across renders.
+
+## 6. List View Geometry
+- **3-Column Grid**: Each entry in the List view MUST follow a strict 3-column layout:
+    - **Column 1**: Poster (Standard width: 44px for M, 32px for S).
+    - **Column 2**: Title (Flex-grow: 1, min-width: 0).
+    - **Column 3**: Interaction/Indicator (Chevron, Standard width: 24px for M, 20px for S).
+
+## 7. Vertical Symmetry
+- **Centering**: ALL elements within a row (Poster, Title, Icons) MUST be perfectly centered vertically relative to the row's height.
+- **Line Height**: Use consistent line-heights to ensure titles do not shift when wrapping.
+
+## 8. Development Discipline
+- **Regression Prevention**: Never modify shared layout logic without verifying impact on both Grid and List views.
+- **State Persistence**: Active filters, search queries, and view modes MUST persist across renders.

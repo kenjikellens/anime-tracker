@@ -101,6 +101,13 @@ function render() {
 
     const sInput = document.getElementById('search-input');
     if (sInput.value !== currentSearch) sInput.value = currentSearch;
+
+    // View & Size Buttons Sync
+    document.getElementById('grid-btn').classList.toggle('active', currentView === 'grid');
+    document.getElementById('list-btn').classList.toggle('active', currentView === 'list');
+    document.querySelectorAll('.size-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.size === currentSize);
+    });
 }
 
 // --- Sync Helpers ---
@@ -408,7 +415,7 @@ function applyTheme(theme) {
 document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         const f = btn.dataset.filter;
-        if (f === 'all') { activeFilters = new Set([-1, 0, 1, 2]); currentSearch = ''; }
+        if (f === 'all') { activeFilters = new Set([-1, 0, 1]); currentSearch = ''; }
         else {
             const status = parseInt(f);
             if (activeFilters.has(status)) activeFilters.delete(status); else activeFilters.add(status);
@@ -429,7 +436,7 @@ document.querySelectorAll('.size-btn').forEach(btn => {
 });
 
 document.getElementById('sort-select').addEventListener('change', e => { currentSort = e.target.value; render(); });
-document.getElementById('source-select').addEventListener('change', e => { currentSource = e.target.value; localStorage.setItem('rascal_source', currentSource); });
+
 
 document.getElementById('grid-btn').addEventListener('click', () => { currentView = 'grid'; localStorage.setItem('rascal_view', currentView); render(); });
 document.getElementById('list-btn').addEventListener('click', () => { currentView = 'list'; localStorage.setItem('rascal_view', currentView); render(); });

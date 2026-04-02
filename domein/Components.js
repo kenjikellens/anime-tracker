@@ -33,7 +33,7 @@ window.Components = (function() {
             `;
 
             // Display first, then calculate (to get dimensions if needed, though width is fixed)
-            globalMenu.style.display = 'block';
+            globalMenu.style.display = 'flex';
             
             // Position calculation
             const rect = btn.getBoundingClientRect();
@@ -95,7 +95,7 @@ window.Components = (function() {
             `).join('');
 
             // Display en positie
-            globalMenu.style.display = 'block';
+            globalMenu.style.display = 'flex';
             const rect = btn.getBoundingClientRect();
             const menuWidth = 160;
             
@@ -136,47 +136,16 @@ window.Components = (function() {
         card.className = 'anime-card';
         card.dataset.status = computedStatus;
 
-        const isAnilistLinked = group.items.some(it => it.anilist_id);
-        if (isAnilistLinked) {
-            const alIndicator = document.createElement('div');
-            alIndicator.className = 'anilist-status-tag';
-            alIndicator.innerHTML = '<i class="fa-brands fa-anilist"></i>';
-            alIndicator.title = 'Gesynchroniseerd met AniList. Klik om handmatig te pushen.';
-            alIndicator.addEventListener('click', async (e) => {
-                e.stopPropagation();
-                alIndicator.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-                for (const item of group.items) {
-                    if (item.anilist_id) await triggerAutoSync(item);
-                }
-                setTimeout(() => {
-                    alIndicator.innerHTML = '<i class="fa-brands fa-anilist"></i>';
-                }, 1000);
-            });
-            card.appendChild(alIndicator);
-        }
+        // Removed: individual AniList sync button (already present in header)
+
         if (computedStatus === 1) card.classList.add('status-watched');
-
+        
+        // Restore rating-based glows
+        if (group.rating >= 9) card.classList.add('glow-gold');
+        else if (group.rating >= 0 && group.rating < 2) card.classList.add('glow-red');
+        
+        // RULE #12-derived: We no longer expand in-line, but open a modal instead.
         const isGroup = group.items.length > 1 || (group.items[0].type === 'tv' && group.items[0].seasons?.length > 1);
-        const isExpanded = expandedItems.has(group.title);
-        const isRated = group.rating !== undefined && group.rating > -1;
-        const ratingDisplay = isRated ? group.rating.toFixed(1) : '—';
-
-        if (isRated) {
-            if (group.rating >= 9) card.classList.add('glow-gold');
-            else if (group.rating < 2) card.classList.add('glow-red');
-        }
-
-        if (currentView === 'list') {
-            const indicator = document.createElement('div');
-            const sClass = computedStatus === 1 ? 'status-done' :
-                          computedStatus === 0 ? 'status-watching' : 'status-none';
-            const sIcon = computedStatus === 1 ? '<i class="fas fa-check"></i>' :
-                         computedStatus === 0 ? '<i class="fas fa-play"></i>' : '<i class="fas fa-clock"></i>';
-
-            indicator.className = `status-indicator ${sClass}`;
-            indicator.innerHTML = sIcon;
-            card.prepend(indicator);
-        }
 
         const posterContainer = document.createElement('div');
         posterContainer.className = 'card-poster';
@@ -190,71 +159,38 @@ window.Components = (function() {
 
         const info = document.createElement('div');
         info.className = 'card-info';
-        const header = document.createElement('div');
-        header.className = 'card-header';
-        header.innerHTML = `
-            <div class="card-title">
-                <span>${group.title}</span>
-                ${isGroup ? `<i class="fas fa-chevron-${isExpanded ? 'up' : 'down'} expand-icon"></i>` : ''}
+        
+        const ratingHtml = group.rating >= 0 
+            ? `<div class="rating-badge ${UIHelpers.getRatingClass(group.rating)}"><i class="fas fa-star"></i> ${group.rating}</div>` 
+            : '';
+
+        info.innerHTML = `
+            <div class="card-header">
+                <div class="card-title">
+                    <span>${group.title}</span>
+                </div>
             </div>
         `;
-        info.appendChild(header);
-
-        const actions = document.createElement('div');
-        actions.className = 'card-actions';
-
-        const statusDd = buildStatusDropdown(computedStatus, (newStatus) => {
-            group.items.forEach(item => setAnimeAllStatus(item, newStatus));
-            save(); render();
-        });
-        actions.appendChild(statusDd);
-
-        // Zoek de meest relevante play-info (eerste onbekeken)
-        let playItem = group.items[0], sP = 1, eP = 1;
-        for (const it of group.items) {
-            if (window.StatusCalculator.getAnimeStatus(it) !== 1) {
-                playItem = it;
-                if (it.seasons) {
-                    for (const season of it.seasons) {
-                        const unwatched = season.episodes.find(ep => ep.status !== 1);
-                        if (unwatched) { sP = season.number; eP = unwatched.number; break; }
-                    }
-                }
-                break;
-            }
-        }
-        const playBtn = buildPlayDropdown(playItem, sP, eP);
-        actions.appendChild(playBtn);
-
-        const ratingBadge = document.createElement('span');
-        const rClass = UIHelpers.getRatingClass(group.rating);
-        ratingBadge.className = `rating-badge ${rClass}`;
-        ratingBadge.style.cursor = 'pointer';
-        ratingBadge.title = 'Klik om te beoordelen';
-        ratingBadge.innerHTML = `<i class="fas fa-star" style="font-size:0.7em;"></i> ${ratingDisplay}`;
-        ratingBadge.addEventListener('click', (e) => {
-            e.stopPropagation();
-            Modals.showRatingModal(group.items[0], false);
-        });
-        actions.appendChild(ratingBadge);
-
-        info.appendChild(actions);
         card.appendChild(info);
 
-        if (currentView === 'list' && isExpanded) {
-            card.appendChild(buildDetailGroup(group));
+        if (group.rating >= 0) {
+            const badge = document.createElement('div');
+            badge.className = `rating-badge ${UIHelpers.getRatingClass(group.rating)}`;
+            badge.innerHTML = `<i class="fas fa-star"></i> ${group.rating}`;
+            card.appendChild(badge);
         }
 
+        const chevron = document.createElement('i');
+        chevron.className = 'fas fa-chevron-right expand-icon';
+        card.appendChild(chevron);
+
+        // All status/play buttons removed from the card per Master's request.
+        // Interactions are consolidated into the Detail Modal.
+
         card.style.cursor = 'pointer';
-        card.addEventListener('click', async (e) => {
-            if (e.target.closest('button, .status-dropdown, input, select, .action-btn, .rating-badge')) return;
-            if (currentView === 'grid') {
-                Modals.showDetailModal(group);
-            } else {
-                if (expandedItems.has(group.title)) expandedItems.delete(group.title);
-                else expandedItems.add(group.title);
-                render();
-            }
+        card.addEventListener('click', (e) => {
+            // Unconditionally open the detail modal for all views
+            Modals.showDetailModal(group);
         });
         return card;
     }
@@ -421,6 +357,7 @@ window.Components = (function() {
 
     return {
         buildStatusDropdown,
+        buildPlayDropdown,
         buildCard,
         buildDetailGroup,
         buildSeasonRow

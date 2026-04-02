@@ -18,6 +18,8 @@
     --shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Soft interface element shadow */
     --header-bg: #e8e8e8;        /* Distinct background for top header bar */
     --border-width: 1px;
+    --primary: #FFCC00;
+    --primary-rgb: 255, 204, 0;
 }
 
 /* DARK MODE: High-vibrancy dark theme for improved night reading */
@@ -28,13 +30,15 @@
     --border: #505050;
     --text: #d4d4d4;
     --text-muted: #999;
-    --white: #eee;
+    --white: #ffffff;
     --status-none: #666;
     --status-watching: #999;
     --status-done: #4da6ff;       /* Vibrant blue for dark mode readability */
     --modal-bg: rgba(0,0,0,0.5);
     --shadow: 0 4px 20px rgba(255, 255, 255, 0.05);
     --header-bg: #282828;
+    --primary: #FFCC00;
+    --primary-rgb: 255, 204, 0;
 }
 
 /* MIDNIGHT MODE: Ultra-high contrast pure black theme */
@@ -45,7 +49,7 @@
     --border: #f0f0f0;           /* High contrast borders for definition */
     --text: #ffffff;
     --text-muted: #a0a0a0;
-    --white: #ffffff;
+    --white: #ffffff;            /* Always pure white in midnight */
     --status-none: #444;
     --status-watching: #aaa;
     --status-done: #77c3ff;      /* Bright blue for pure black accessibility */
@@ -53,6 +57,8 @@
     --shadow: none;              /* Shadows hidden on pure black backgrounds */
     --border-width: 2px;         /* Thicker borders for structural visibility */
     --header-bg: #141414;
+    --primary: #FFCC00;
+    --primary-rgb: 255, 204, 0;
 }
 
 /* ==========================================================================
@@ -159,6 +165,25 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 #theme-toggle { margin-right: 0; }
 #theme-toggle:hover, #download-btn:hover { background: var(--surface-2); }
 
+/* Premium Header Select (Source Selector) */
+.header-select {
+    background: var(--surface); 
+    border: var(--border-width, 1px) solid var(--border);
+    color: var(--text-muted);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    margin-right: 12px;
+    font-family: 'Outfit', sans-serif;
+    transition: all 0.2s ease;
+}
+.header-select:hover {
+    background: var(--surface-2);
+    border-color: var(--text-muted);
+    color: var(--text);
+}
+
 /* Download Button (Sync Needed): Triggered when local data differs from server storage (e.g. GitHub Mode) */
 #download-btn.sync-needed {
     background: #FFCC00;
@@ -242,8 +267,13 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
     border-radius: 4px; cursor: pointer; font-size: 14px;
     transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-.view-btn.active { background: var(--white); color: var(--bg); border-color: var(--white); }
-.view-btn:not(.active):hover { border-color: var(--text-muted); }
+.view-btn.active, .size-btn.active {
+    background-color: var(--white) !important;
+    color: var(--bg) !important;
+    border-color: var(--white) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+.view-btn:not(.active):hover { border-color: var(--text-muted); opacity: 1; }
 
 .item-count { color: var(--text-muted); font-size: 14px; white-space: nowrap; margin: 0 12px; }
 
@@ -254,8 +284,7 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
     border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: 700;
     transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-.size-btn.active { background: var(--white); color: var(--bg); border-color: var(--white); }
-.size-btn:not(.active):hover { border-color: var(--text-muted); }
+.size-btn:not(.active):hover { border-color: var(--text-muted); opacity: 1; }
 
 /* Hoofdcontainer voor alle anime-kaarten: geordend in statuskolommen */
 #anime-container {
@@ -330,27 +359,42 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 /* List view kaart: 7-koloms grid (status-icon, poster, titel, status-dd, rating, play, chevron) */
 #anime-container.list-view .anime-card {
     display: grid;
-    grid-template-columns: 36px 36px minmax(0, 1fr) 140px 60px 40px 24px;
-    gap: 12px;
+    grid-template-columns: 44px minmax(0, 1fr) 24px;
+    gap: 16px;
     align-items: center;
-    padding: 4px 16px; 
+    padding: 6px 16px; 
     border-radius: 8px;
-    min-height: 42px;
+    min-height: 48px;
     width: 100%;
     box-sizing: border-box;
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    position: relative;
 }
 #anime-container.list-view .anime-card:hover {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
+.list-view .expand-icon {
+    display: block;
+    font-size: 0.9em;
+    opacity: 0.4;
+    text-align: right;
+}
+
+.grid-view .expand-icon {
+    display: none;
+}
+
+/* .anilist-status-tag removed per Master's request */
+
+
 #anime-container.size-m.list-view .anime-card {
-    grid-template-columns: 36px 36px minmax(0, 1fr) 140px 60px 40px 24px;
+    grid-template-columns: 44px minmax(0, 1fr) auto 24px;
     padding: 6px 16px;
     min-height: 48px;
 }
 #anime-container.size-s.list-view .anime-card {
-    grid-template-columns: 32px 30px minmax(0, 1fr) 110px 50px 36px 20px;
+    grid-template-columns: 32px minmax(0, 1fr) auto 20px;
     padding: 4px 12px;
     min-height: 40px !important;
     height: auto !important;
@@ -358,7 +402,7 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 #anime-container.size-s.list-view .card-poster {
     height: 24px !important;
     width: 17px !important;
-    grid-area: 1 / 2;
+    
 }
 #anime-container.size-s.list-view .card-title span {
     white-space: nowrap !important;
@@ -386,23 +430,24 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 #anime-container.list-view .anime-card {
     height: auto;
 }
-#anime-container.list-view .status-indicator { grid-area: 1 / 1; }
-#anime-container.list-view .card-poster { grid-area: 1 / 2; height: 32px; width: 22px; border-radius: 3px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-#anime-container.size-m .list-view .card-poster { height: 28px; width: 19px; }
-#anime-container.size-s .list-view .card-poster { height: 20px; width: 14px; border-radius: 2px; }
-
+#anime-container.list-view .card-poster { grid-area: 1 / 1; height: 32px; width: 22px; border-radius: 3px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
 #anime-container.list-view .card-title span { 
-    grid-area: 1 / 3; 
+    grid-area: 1 / 2; 
     white-space: nowrap; 
     overflow: hidden; 
     text-overflow: ellipsis; 
     font-size: 13px;
     font-weight: 600;
 }
-#anime-container.list-view .status-dropdown { grid-area: 1 / 4; margin: 0; }
-#anime-container.list-view .rating-badge { grid-area: 1 / 5; justify-self: center; margin: 0; }
-#anime-container.list-view .btn-play { grid-area: 1 / 6; justify-self: center; margin: 0; }
-#anime-container.list-view .expand-icon { grid-area: 1 / 7; justify-self: end; margin: 0; font-size: 12px; transition: transform 0.3s ease; }
+#anime-container.list-view .rating-badge { 
+    grid-area: 1 / 3; 
+    align-self: center; 
+    margin-right: 12px;
+    font-size: 11px;
+    padding: 2px 8px;
+    box-shadow: none;
+}
+#anime-container.list-view .expand-icon { grid-area: 1 / 4; justify-self: end; margin: 0; font-size: 12px; transition: transform 0.3s ease; }
 
 /* S stand: Herpositioneren omdat status-dropdown weg is */
 #anime-container.size-s .list-view .rating-badge { grid-area: 1 / 4; }
@@ -425,13 +470,24 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 /* Basisstijl van een anime-kaart: oppervlaktekleur, rand, subtiele schaduw en overloop zichtbaar
    (overflow: visible zodat status-dropdowns buiten de kaart kunnen uitkomen) */
 .anime-card {
-    background: var(--surface); border: var(--border-width, 1px) solid var(--border);
-    border-radius: 8px;    padding: 10px; 
-    display: flex; flex-direction: row; gap: 12px;
+    background: var(--surface); 
+    border: var(--border-width, 1px) solid var(--border);
+    border-radius: 8px;    
+    padding: 10px; 
+    display: flex; 
+    flex-direction: row; 
+    gap: 12px;
     position: relative;
     box-shadow: var(--shadow);
     transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
-    overflow: visible; /* Fix: allow dropdowns to pop out */
+    overflow: visible;
+    cursor: pointer;
+    user-select: none; /* Make card feel more like a button */
+}
+
+/* Force pointer cursor on all card descendants to fix inconsistent interaction UI */
+.anime-card * { 
+    cursor: pointer !important; 
 }
 
 .card-poster, .card-info {
@@ -451,6 +507,51 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 .anime-card.glow-gold:hover, .anime-card.glow-gold:focus-within {
     box-shadow: var(--shadow), inset 0 0 80px rgba(255, 215, 0, 0.35), inset 0 0 0 1px var(--text-muted) !important;
 }
+/* Legendaire Gouden Card Upgrade (Rating >= 9.0) */
+@keyframes goldShimmer {
+    0% { left: -100px; transform: rotate(25deg); }
+    100% { left: 100%; transform: rotate(25deg) translateX(200px); }
+}
+
+.anime-card.glow-gold {
+    position: relative;
+    overflow: hidden;
+    /* Gouden bollen in plaats van een stilstaande streep */
+    background: #1a1a1a !important;
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(128, 102, 0, 0.6) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(128, 102, 0, 0.6) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 80%) !important;
+    border: 2px solid #ffd700 !important;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.3), inset 0 0 20px rgba(255, 215, 0, 0.1) !important;
+}
+
+/* De glanzende schijn-animatie (nu breder en doorzichtiger) */
+.anime-card.glow-gold::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -100px;
+    width: 200px; /* Wijder zoals gevraagd */
+    height: 200%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.15) 50%, /* Meer doorzichtig */
+        rgba(255, 255, 255, 0) 100%
+    );
+    z-index: 5;
+    pointer-events: none;
+    animation: goldShimmer 4.5s infinite ease-in-out;
+}
+
+.anime-card.glow-gold:hover {
+    box-shadow: 0 0 35px rgba(255, 215, 0, 0.5), inset 0 0 30px rgba(255, 215, 0, 0.2) !important;
+}
+
+/* .glow-gold and .glow-red updated/restored per Master's request */
+
+
 /* Rode gloed op kaarten met rating < 2 */
 .anime-card.glow-red {
     box-shadow: var(--shadow), inset 0 0 60px rgba(231, 76, 60, 0.25) !important;
@@ -458,6 +559,9 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 .anime-card.glow-red:hover, .anime-card.glow-red:focus-within {
     box-shadow: var(--shadow), inset 0 0 80px rgba(231, 76, 60, 0.35), inset 0 0 0 1px var(--text-muted) !important;
 }
+
+/* .glow-gold and .glow-red restored per Master's request */
+
 
 .card-poster {
     flex-shrink: 0;
@@ -501,7 +605,7 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 .size-s { font-size: 13px; }
 #anime-container.grid-view.size-s .anime-card { padding: 6px; min-height: 100px; gap: 8px; flex-direction: row !important; }
 #anime-container.grid-view.size-s .card-poster { width: 60px !important; height: 90px !important; margin: 0 !important; }
-#anime-container.grid-view.size-s .card-info { flex: 1; display: flex; flex-direction: column; gap: 4px; justify-content: center; }
+#anime-container.grid-view.size-s .card-info { flex: 1; display: flex; flex-direction: column; gap: 4px; justify-content: flex-start; }
 #anime-container.grid-view.size-s .card-actions { flex-wrap: wrap; gap: 4px; }
 #anime-container.grid-view.size-s .status-current, 
 #anime-container.grid-view.size-s .action-btn { padding: 4px 8px; font-size: 11px; }
@@ -547,7 +651,6 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 .anime-card[data-status="1"],
 .anime-card.status-watched {
     background: var(--surface-2);
-    box-shadow: inset 0 0 40px rgba(0, 122, 204, 0.1); /* Subtiele blauwe gloed */
 }
 
 .list-view .anime-card .status-indicator {
@@ -667,45 +770,104 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 [data-theme="midnight"] .status-option img { filter: invert(1); }
 
 /* Uitklapmenu van de status-dropdown: absoluut gepositioneerd onder de knop */
-.status-menu {
-    display: none; position: absolute; top: calc(100% + 4px); right: 0;
-    background: var(--surface); border: var(--border-width, 1px) solid var(--border); border-radius: 6px;
-    overflow: hidden; z-index: 9999; min-width: 140px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-}
-.status-dropdown.open .status-menu { display: block; }
+/* ==========================================================================
+   GLOBAL DROPDOWN PORTAL (Status Menu)
+   ========================================================================== */
 
-/* Statusoptie in het dropdown-menu: klikbare rij met icoon + label */
-.status-option {
-    padding: 8px 12px; font-size: 12px; cursor: pointer;
-    display: flex; align-items: center; gap: 8px;
-    font-family: 'Outfit', sans-serif; color: var(--text);
+/* The actual floating menu portal (#global-status-menu) */
+.status-menu {
+    display: none; 
+    position: fixed; /* viewport-relative */
+    background: var(--surface); 
+    border: var(--border-width, 1px) solid var(--border); 
+    border-radius: 8px;
+    z-index: 200000 !important; /* Supreme stacking priority */
+    min-width: 170px;
+    box-shadow: 0 12px 50px rgba(0,0,0,0.5);
+    padding: 8px 0;
+    overflow: hidden;
+    flex-direction: column;
 }
-.status-option:hover { background: var(--surface-2); }
+
+/* Show when open state is managed by JS */
+.status-dropdown.open .status-menu { 
+    display: flex; 
+    animation: menuFadeIn 0.15s ease-out;
+}
+
+@keyframes menuFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Individual list options inside the dropdown */
+.status-option {
+    padding: 10px 16px;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Outfit', sans-serif;
+    color: var(--text);
+    transition: background 0.2s, color 0.2s;
+}
+
+.status-option:hover { 
+    background: var(--surface-2); 
+    color: var(--white);
+}
+
+.status-option i {
+    width: 16px;
+    text-align: center;
+    opacity: 0.8;
+}
 
 
 /* Character Rating Logic: Colored by value scale (r-9 to r-0) */
 .rating-badge {
-    padding: 4px 12px;
-    border-radius: 4px; font-weight: 700; color: var(--white);
-    font-size: 12px; border: var(--border-width, 1px) solid var(--border);
+    padding: 4px 10px;
+    border-radius: 4px; 
+    font-weight: 700; 
+    color: var(--white);
+    font-size: 13px; 
+    border: var(--border-width, 1px) solid var(--border);
     transition: all 0.2s ease;
     background: var(--surface-2);
     display: inline-flex;
     align-items: center;
     gap: 6px;
     white-space: nowrap;
+    cursor: default; /* Non-clickable as requested */
+    user-select: none;
 }
-.rating-badge.unrated { color: var(--text-muted); font-weight: 400; opacity: 0.6; }
+
+/* Grid view: bottom-right corner as a sticker */
+.grid-view .anime-card .rating-badge {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    font-size: 12px;
+    padding: 3px 8px;
+}
+
+.rating-badge i { font-size: 11px; opacity: 0.8; }
+
+.r-9 { background-color: rgba(255, 215, 0, 0.15) !important; color: #ffd700 !important; border-color: rgba(255, 215, 0, 0.4) !important; box-shadow: 0 0 10px rgba(255, 215, 0, 0.1); }
+.r-8 { background-color: rgba(39, 174, 96, 0.15) !important; color: #27ae60 !important; border-color: rgba(39, 174, 96, 0.4) !important; }
+.r-7 { background-color: rgba(46, 204, 113, 0.15) !important; color: #2ecc71 !important; border-color: rgba(46, 204, 113, 0.4) !important; }
+.r-6 { background-color: rgba(241, 196, 15, 0.15) !important; color: #f1c40f !important; border-color: rgba(241, 196, 15, 0.4) !important; }
+.r-5 { background-color: rgba(230, 126, 34, 0.15) !important; color: #e67e22 !important; border-color: rgba(230, 126, 34, 0.4) !important; }
+.r-4 { background-color: rgba(231, 76, 60, 0.15) !important; color: #e74c3c !important; border-color: rgba(231, 76, 60, 0.4) !important; }
+.r-0 { background-color: rgba(155, 89, 182, 0.15) !important; color: #9b59b6 !important; border-color: rgba(155, 89, 182, 0.4) !important; }
+.rating-badge.unrated { background-color: rgba(255, 255, 255, 0.05) !important; color: var(--text-muted) !important; border-color: rgba(255, 255, 255, 0.1) !important; font-weight: 400; opacity: 0.6; }
 
 /* Score Scales from Top Performer (Blue) to Low Rating (Purple) */
-.rating-badge.r-9 { background: rgba(52, 152, 219, 0.25) !important; color: #3498db !important; border-color: rgba(52, 152, 219, 0.5) !important; box-shadow: 0 0 10px rgba(52, 152, 219, 0.1); }
-.rating-badge.r-8 { background: rgba(39, 174, 96, 0.25)  !important; color: #27ae60 !important; border-color: rgba(39, 174, 96, 0.5)  !important; }
-.rating-badge.r-7 { background: rgba(46, 204, 113, 0.25)  !important; color: #2ecc71 !important; border-color: rgba(46, 204, 113, 0.5)  !important; }
-.rating-badge.r-6 { background: rgba(241, 196, 15, 0.25)  !important; color: #f1c40f !important; border-color: rgba(241, 196, 15, 0.5)  !important; }
-.rating-badge.r-5 { background: rgba(230, 126, 34, 0.25)  !important; color: #e67e22 !important; border-color: rgba(230, 126, 34, 0.5)  !important; }
-.rating-badge.r-4 { background: rgba(231, 76, 60, 0.25)  !important; color: #e74c3c !important; border-color: rgba(231, 76, 60, 0.5)  !important; }
-.rating-badge.r-0 { background: rgba(142, 68, 173, 0.25)  !important; color: #8e44ad !important; border-color: rgba(142, 68, 173, 0.5)  !important; }
+/* Modal explicit action container styling */
+/* .modal-global-actions styling moved to modal section for clarity */
 
 
 /* Card header */
@@ -943,23 +1105,128 @@ body { background: var(--bg); color: var(--text); min-height: 100vh; font-size: 
 }
 
 /* Modal overlay: fullscreen semi-transparante laag achter rating- en detail-modals */
-#modal-overlay, #detail-overlay {
+#detail-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: var(--modal-bg);
     display: flex; justify-content: center; align-items: center; z-index: 1000;
+}
+#modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--modal-bg);
+    display: flex; justify-content: center; align-items: center; z-index: 1100;
 }
 .modal {
     background: var(--surface); border: var(--border-width, 1px) solid var(--border);
     padding: 28px; border-radius: 8px; width: 360px; max-width: 90%;
 }
 .modal-detail {
-    width: 600px; max-height: 80vh; display: flex; flex-direction: column;
+    width: 900px; max-width: 95%; max-height: 90vh; display: flex; flex-direction: column;
+    padding: 0 !important; /* Managed by internal columns */
+    overflow: hidden;
 }
+
+/* New Split-View Layout for Detail Modal */
+.modal-body-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    height: 100%;
+    overflow: hidden;
+}
+
+.modal-sidebar {
+    background: var(--surface-2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.modal-sidebar-poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.modal-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+    overflow-y: auto;
+    background: var(--surface);
+}
+
 .modal-detail-header {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 16px; padding-bottom: 12px; border-bottom: var(--border-width, 1px) solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: var(--border-width, 1px) solid var(--border);
 }
-.modal-detail-header h3 { margin: 0; font-size: 16px; }
+
+@media (max-width: 768px) {
+    .modal-body-layout {
+        grid-template-columns: 1fr;
+        overflow-y: auto;
+    }
+    .modal-sidebar {
+        height: 250px;
+    }
+    .modal-main {
+        overflow-y: visible;
+    }
+}
+
+.modal-close-row {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+#detail-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0;
+    line-height: 1.1;
+    color: var(--white);
+    letter-spacing: -0.5px;
+}
+
+.modal-global-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+/* Normalizing the 3 modal action buttons to have identical height and style */
+.modal-global-actions .status-dropdown,
+.modal-global-actions .modal-play-btn,
+.modal-global-actions .rating-badge {
+    height: 44px !important;
+    min-height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 20px !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+    border: 1px solid var(--border) !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+}
+
+.modal-global-actions .status-dropdown .status-dropdown-trigger {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    height: 100% !important;
+    box-shadow: none !important;
+}
 .btn-close {
     background: none; border: none; color: var(--text-muted);
     font-size: 22px; cursor: pointer; padding: 0 4px;
@@ -1020,67 +1287,8 @@ footer {
     filter: none;
 }
 
-.status-menu {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    margin-top: 6px;
-    display: none;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    z-index: 100;
-    overflow: hidden;
-    min-width: 160px;
-}
 
-.status-dropdown.open .status-menu {
-    display: block;
-    animation: fadeInScale 0.15s ease-out;
-}
-
-@keyframes fadeInScale {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-.status-option {
-    padding: 10px 15px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 12px;
-    color: var(--text);
-    transition: background 0.2s;
-}
-
-.status-option:hover {
-    background: var(--surface-2);
-    color: #fff;
-}
-
-.status-option img {
-    opacity: 0.8;
-}
-
-.status-current span {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* Lijst view: bekeken-kaart status-indicator override: wit vinkje op blauwe achtergrond */
-.list-view .anime-card.status-watched .status-indicator,
-.list-view .anime-card[data-status="1"] .status-indicator {
-    background: rgba(0, 122, 204, 0.2) !important;
-    color: #ffffff !important;
-    border: 2px solid #ffffff !important;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-}
+/* (Duplicate declarations removed during consolidation) */
 
 /* ==========================================================================
    RESPONSIVE LAYOUT BREAKPOINTS
@@ -1139,17 +1347,12 @@ footer {
     #anime-container.grid-view .anime-card { min-height: 120px; }
     #anime-container.grid-view .anime-card .card-poster { width: 85px; height: 125px; }
 
-    /* Mobile List View: Hide dropdowns and ratings to save horizontal space */
-    #anime-container.list-view .card-actions > .status-dropdown,
-    #anime-container.list-view .rating-badge {
-        display: none !important;
-    }
-
-    /* 5-Column layout for mobile list: Status | Poster | Title | Play | Chevron */
+    /* Mobile List View: Poster | Title | Chevron */
     #anime-container.list-view .anime-card, 
-    #anime-container.size-m.list-view .anime-card {
-        grid-template-columns: 28px 25px minmax(0, 1fr) 35px 24px !important;
-        padding: 8px 10px;
+    #anime-container.size-m.list-view .anime-card,
+    #anime-container.size-s.list-view .anime-card {
+        grid-template-columns: 28px minmax(0, 1fr) 24px !important;
+        padding: 8px 12px;
     }
     
     /* Full-screen modals on very small devices */
