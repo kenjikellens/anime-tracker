@@ -1,11 +1,17 @@
-// Globals are now in domein/State.js// --- Init ---
+// app.js - Central Domain Controller
 
 /**
- * Laadt de anime-data (data.json of localStorage op GitHub),
- * voert datamigaties uit en start de render + lazy fetches.
+ * Laadt de anime-data, voert migrations uit en start de render.
  */
 async function init() {
     try {
+        if (!isGitHub) {
+            const configRes = await fetch('/config');
+            const config = await configRes.json();
+            state.anilistToken = config.anilist_token;
+            console.log('Config geladen:', state.anilistToken ? 'AniList Verbonden' : 'Geen AniList');
+        }
+
         const res = await fetch('data.json');
         let remoteData = await res.json();
         
@@ -15,86 +21,39 @@ async function init() {
                 state.animeList = JSON.parse(localData);
                 document.getElementById('download-btn').classList.remove('hidden');
                 document.getElementById('download-btn').classList.add('sync-needed');
-                console.log('Geladen vanuit localStorage (GitHub mode)');
             } else {
                 state.animeList = remoteData;
             }
         } else {
             state.animeList = remoteData;
         }
+
+        // Data migrations
         let needsSave = false;
         state.animeList.forEach(item => {
-            // Migreer oude '0' beoordelingen naar '-1' (onbeoordeeld)
-            if (item.rating === 0 || item.rating === undefined || item.rating === null) {
-                item.rating = -1;
-            }
-            // Status migratie: verwijder redundant item.status
+            if (item.rating === 0 || item.rating === undefined || item.rating === null) item.rating = -1;
             if (item.seasons && item.seasons.length > 0) {
-                // Item heeft seizoendata — status wordt berekend uit afleveringen
-                if (item.status !== undefined) {
-                    delete item.status;
-                    needsSave = true;
-                }
+                if (item.status !== undefined) { delete item.status; needsSave = true; }
             } else if (item.type !== 'movie') {
-                // Item zonder seizoendata — bewaar legacy status voor eerste ophaal
-                // Als er al een _legacyStatus is, overschrijf deze alleen als status zinvol is
-                if (item.status !== undefined && item.status !== -1) {
-                    item._legacyStatus = item.status;
-                }
+                if (item.status !== undefined && item.status !== -1) item._legacyStatus = item.status;
                 delete item.status;
                 needsSave = true;
             }
-
         });
         if (needsSave) save();
     } catch (e) {
         console.error('Kon data.json niet laden:', e);
         state.animeList = [];
     }
+    
+    Modals.initEventListeners();
     render();
-    // Start op de achtergrond het ophalen van missende posters
-    lazyFetchPosters();
-    // Start op de achtergrond seizoen-sync voor nieuwe seizoenen
-    lazySyncSeasons();
+    AnilistApi.lazyFetchAnilistData();
+    AnilistApi.lazySyncAnilistEpisodes();
 }
 
-// lazyFetchPosters, lazySyncSeasons, save, exportData, fetchTmdbId, fetchSeasonData are now in domein modules
-
-// --- Status helpers ---
-
-/** Berekent de gecombineerde status van een anime-item op basis van zijn afleveringen. */
-function getAnimeStatus(item) {
-    return window.StatusCalculator.getAnimeStatus(item);
-}
-
-/** Berekent de status van een seizoen op basis van de afleveringsstatussen. */
-function getSeasonStatus(season) {
-    return window.StatusCalculator.getSeasonStatus(season);
-}
-
-/** Stelt alle afleveringen van een seizoen in op de gegeven status. */
-function setSeasonStatus(item, season, status) {
-    window.AnimeActions.setSeasonStatusLocally(item, season, status);
-}
-
-/** Stelt alle afleveringen van een volledig anime-item in op de gegeven status. */
-function setAnimeAllStatus(item, status) {
-    window.AnimeActions.setAnimeStatusLocally(item, status);
-}
-
-/** Stelt de status in van één specifieke aflevering. */
-function setEpisodeStatus(item, season, episode, status) {
-    window.AnimeActions.setEpisodeStatusLocally(item, season, episode, status);
-}
-
-// EMBED_SOURCES and getVidsrcUrl are now in domein/EmbedSources.js
-
-// --- Render ---
-
-// getFilteredSorted is now in domein/ListTransformer.js
 /**
- * Herbouwt de volledige UI op basis van de huidige state, filters en view-modus.
- * Groepeert kaarten per status in kolommen en synchroniseert filterknop-staat.
+ * Herbouwt de volledige UI op basis van de huidige state.
  */
 function render() {
     const container = document.getElementById('anime-container');
@@ -102,7 +61,6 @@ function render() {
     container.innerHTML = '';
 
     const items = getFilteredSorted();
-
     const statusGroups = {
         '0': { label: 'Bezig', icon: 'fas fa-play', items: [] },
         '-1': { label: 'Te Bekijken', icon: 'fas fa-clock', items: [] },
@@ -124,614 +82,336 @@ function render() {
 
         const header = document.createElement('div');
         header.className = 'status-group-header';
-        header.innerHTML = `
-            <i class="${group.icon}"></i>
-            <span>${group.label}</span>
-            <span class="group-count">${group.items.length}</span>
-        `;
+        header.innerHTML = `<i class="${group.icon}"></i> <span>${group.label}</span> <span class="group-count">${group.items.length}</span>`;
         column.appendChild(header);
 
         group.items.forEach(fr => {
-            column.appendChild(buildCard(fr, fr._computedStatus));
+            column.appendChild(Components.buildCard(fr, fr._computedStatus));
         });
-
         container.appendChild(column);
     });
 
     document.getElementById('item-count').textContent = `${items.length} titels getoond`;
 
-    // Active filters sync
+    // Filter Buttons Sync
     document.querySelectorAll('.filter-btn').forEach(btn => {
         const f = btn.dataset.filter;
-        if (f === 'all') {
-            btn.classList.toggle('active', activeFilters.size === 3);
-        } else {
-            btn.classList.toggle('active', activeFilters.has(parseInt(f)));
-        }
+        btn.classList.toggle('active', f === 'all' ? activeFilters.size === 3 : activeFilters.has(parseInt(f)));
     });
 
-    // Sync search input with state (in case it got stuck)
     const sInput = document.getElementById('search-input');
     if (sInput.value !== currentSearch) sInput.value = currentSearch;
 }
 
+// --- Sync Helpers ---
+
 /**
- * Geeft de Font Awesome CSS-klasse terug passend bij de gegeven status.
- * @param {number|null} status
- * @returns {string} FontAwesome klasse
+ * Updates the status of a specific season within an anime item.
+ * @param {Object} item - The target anime object.
+ * @param {Object} season - The target season object.
+ * @param {number} status - The new status to set (-1, 0, 1).
  */
-function statusIcon(status) {
-    if (status === null) return 'fas fa-clock';
-    const icons = {
-        '-1': 'fas fa-clock',
-        '0': 'fas fa-play',
-        '1': 'fas fa-check'
-    };
-    return icons[String(status)] || icons['-1'];
-}
-/**
- * Geeft de Nederlandse statuslabel terug voor de gegeven numerieke status.
- * @param {number|null} status
- * @returns {string}
- */
-function statusLabel(status) {
-    if (status === null) return 'Gepland';
-    return status === -1 ? 'Te Bekijken' : status === 0 ? 'Bezig' : 'Bekeken';
+function setSeasonStatus(item, season, status) {
+    window.AnimeActions.setSeasonStatusLocally(item, season, status);
+    triggerAutoSync(item);
 }
 
-
 /**
- * Bepaalt de CSS-klasse voor de ratingbadge op basis van het cijfer.
- * Klassen r-0 t/m r-9 regelen kleur en stijl van de badge.
- * @param {number} rating
- * @returns {string} CSS-klasse
+ * Updates the overall status of an anime item (cascading to all episodes).
+ * @param {Object} item - The target anime object.
+ * @param {number} status - The new status to set (-1, 0, 1).
  */
-function getRatingClass(rating) {
-    if (rating === undefined || rating === null || rating < 0) return 'unrated';
-    if (rating >= 9) return 'r-9';
-    if (rating >= 8) return 'r-8';
-    if (rating >= 7) return 'r-7';
-    if (rating >= 6) return 'r-6';
-    if (rating >= 5) return 'r-5';
-    if (rating >= 4) return 'r-4';
-    return 'r-0';
+function setAnimeAllStatus(item, status) {
+    window.AnimeActions.setAnimeStatusLocally(item, status);
+    triggerAutoSync(item);
 }
 
-
+/**
+ * Updates the status of a single episode.
+ * @param {Object} item - The target anime object.
+ * @param {Object} season - The target season object.
+ * @param {Object} episode - The target episode object.
+ * @param {number} status - The new status to set (-1, 0, 1).
+ */
+function setEpisodeStatus(item, season, episode, status) {
+    window.AnimeActions.setEpisodeStatusLocally(item, season, episode, status);
+    triggerAutoSync(item);
+}
 
 /**
- * Bouwt een herbruikbaar status-dropdown-element.
- * Sluit andere open dropdowns wanneer dit exemplaar wordt geopend.
- * @param {number} currentStatus - Huidige geselecteerde status
- * @param {function(number): void} onChange - Callback bij statuswijziging
- * @returns {HTMLElement} Het dropdown-div-element
+ * Automatically pushes the current status, progress, and score of an item to AniList.
+ * Only works if an AniList token and ID are present.
+ * @async
+ * @param {Object} item - The anime item to sync.
+ * @returns {Promise<void>}
  */
-function buildStatusDropdown(currentStatus, onChange) {
-    const div = document.createElement('div');
-    div.className = 'status-dropdown';
-    div.innerHTML = `
-        <button class="status-current" title="${statusLabel(currentStatus)}">
-            <span style="display:flex; align-items:center; gap:8px;">
-                <i class="${statusIcon(currentStatus)}"></i> <span>${statusLabel(currentStatus)}</span>
-            </span>
-            <i class="fas fa-chevron-down" style="font-size: 10px; opacity: 0.6;"></i>
-        </button>
-        <div class="status-menu">
-            <div class="status-option" data-val="-1"><i class="fas fa-clock" style="opacity:0.7;"></i> Te Bekijken</div>
-            <div class="status-option" data-val="0"><i class="fas fa-play" style="opacity:0.7;"></i> Bezig</div>
-            <div class="status-option" data-val="1"><i class="fas fa-check" style="opacity:0.7;"></i> Bekeken</div>
-        </div>
-    `;
-    div.querySelector('.status-current').addEventListener('click', e => {
-        e.stopPropagation();
-        document.querySelectorAll('.status-dropdown.open').forEach(d => { if (d !== div) d.classList.remove('open'); });
-        div.classList.toggle('open');
-    });
-    div.querySelectorAll('.status-option').forEach(opt => {
-        opt.addEventListener('click', e => {
-            e.stopPropagation();
-            div.classList.remove('open');
-            onChange(parseInt(opt.dataset.val));
+async function triggerAutoSync(item) {
+    if (!state.anilistToken || !item.anilist_id) return;
+    
+    let progress = 0;
+    if (item.seasons) {
+        item.seasons.forEach(s => s.episodes.forEach(ep => { if (ep.status === 1) progress++; }));
+    } else if (item.type === 'movie' && item.status === 1) {
+        progress = 1;
+    }
+
+    const macroStatus = window.StatusCalculator.getAnimeStatus(item);
+    const alStatusMap = { '1': 'COMPLETED', '0': 'CURRENT', '-1': 'PLANNING' };
+    
+    try {
+        await AnilistApi.updateEntry(state.anilistToken, {
+            mediaId: item.anilist_id,
+            status: alStatusMap[macroStatus],
+            progress: progress,
+            score: (item.rating && item.rating > 0) ? item.rating : undefined
         });
-    });
-    return div;
+    } catch (e) {
+        console.warn(`[AniList] Sync failed for ${item.title}:`, e);
+    }
 }
 
 /**
- * Bouwt een anime-kaart voor een franchise-groep.
- * In grid view opent klikken de detail-modal.
- * In list view klapt klikken de inline seizoenenlijst open/dicht.
- * @param {Object} group - Franchise-groepsobject met items[], title, poster_path, etc.
- * @param {number} computedStatus - Gecombineerde status van de groep
- * @returns {HTMLElement} De volledige kaart als DOM-element
+ * Performs a comprehensive synchronization with the user's AniList account.
+ * Links local items with AniList IDs, pushes local statuses, and imports new items from AniList.
+ * @async
  */
-function buildCard(group, computedStatus) {
-    const card = document.createElement('div');
-    card.className = 'anime-card';
-    card.dataset.status = computedStatus;
-    if (computedStatus === 1) card.classList.add('status-watched');
+async function syncAnilist() {
+    if (!state.anilistToken) { AnilistApi.authorize(); return; }
 
-    const isGroup = group.items.length > 1 || (group.items[0].type === 'tv' && group.items[0].seasons?.length > 1);
-    const isExpanded = expandedItems.has(group.title);
-    const isRated = group.rating !== undefined && group.rating > -1;
-    const ratingDisplay = isRated ? group.rating.toFixed(1) : '—';
+    const btn = document.getElementById('sync-anilist-btn');
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+    btn.disabled = true;
 
-    if (isRated) {
-        if (group.rating >= 9) card.classList.add('glow-gold');
-        else if (group.rating < 2) card.classList.add('glow-red');
-    }
+    try {
+        console.log('Fetching AniList collections...');
+        const lists = await AnilistApi.getUserList(state.anilistToken);
+        
+        let linkedCount = 0, pushedCount = 0, addedFromAl = 0, totalOnAniList = 0;
+        const alEntries = [];
+        lists.forEach(l => {
+            totalOnAniList += l.entries.length;
+            alEntries.push(...l.entries);
+        });
 
-    if (currentView === 'list') {
-        const indicator = document.createElement('div');
-        const sClass = computedStatus === 1 ? 'status-done' :
-                      computedStatus === 0 ? 'status-watching' : 'status-none';
-        const sIcon = computedStatus === 1 ? '<i class="fas fa-check"></i>' :
-                     computedStatus === 0 ? '<i class="fas fa-play"></i>' : '<i class="fas fa-clock"></i>';
-
-        indicator.className = `status-indicator ${sClass}`;
-        indicator.innerHTML = sIcon;
-        card.prepend(indicator);
-    }
-
-    // Poster Section
-    const posterContainer = document.createElement('div');
-    posterContainer.className = 'card-poster';
-    if (group.poster_path) {
-        posterContainer.innerHTML = `<img src="https://image.tmdb.org/t/p/w500${group.poster_path}" alt="${group.title}" loading="lazy">`;
-    } else {
-        posterContainer.innerHTML = `<div class="poster-placeholder"><i class="fas fa-image"></i></div>`;
-    }
-    card.appendChild(posterContainer);
-
-    // Info Container (Right Side)
-    const info = document.createElement('div');
-    info.className = 'card-info';
-
-    // Header
-    const header = document.createElement('div');
-    header.className = 'card-header';
-    header.innerHTML = `
-        <div class="card-title">
-            <span>${group.title}</span>
-            ${isGroup ? `<i class="fas fa-chevron-${isExpanded ? 'up' : 'down'} expand-icon"></i>` : ''}
-        </div>
-    `;
-    info.appendChild(header);
-
-    // Actions row
-    const actions = document.createElement('div');
-    actions.className = 'card-actions';
-
-    // Status dropdown (top-level)
-    const statusDd = buildStatusDropdown(computedStatus, (newStatus) => {
-        group.items.forEach(item => {
-            if (newStatus === 1 && window.StatusCalculator.getAnimeStatus(item) !== 1) {
-                // We show rating modal for each unrated item or just first?
-                // User might want to rate the whole franchise.
+        // 1. LINK & COLLECT
+        const needsLinking = state.animeList.filter(item => {
+            if (item.anilist_id) return false;
+            const match = alEntries.find(e => 
+                (item.mal_id && e.media.idMal === item.mal_id) ||
+                (item.title.toLowerCase() === e.media.title.romaji.toLowerCase()) ||
+                (item.title.toLowerCase() === (e.media.title.english || '').toLowerCase())
+            );
+            if (match) {
+                item.anilist_id = match.media.id;
+                item.mal_id = match.media.idMal;
+                return false;
             }
-            setAnimeAllStatus(item, newStatus);
+            return true;
         });
-        save(); render();
-    });
-    actions.appendChild(statusDd);
 
-    // Play knop
-    const playBtn = document.createElement('button');
-    playBtn.className = 'action-btn btn-play';
-    playBtn.innerHTML = '<i class="fas fa-play"></i>';
-    playBtn.addEventListener('click', async (e) => {
-        e.stopPropagation();
-        // Zoek eerste onbekeken item in de groep
-        for (const item of group.items) {
-            if (window.StatusCalculator.getAnimeStatus(item) !== 1) {
-                let s = 1, eNum = 1;
-                if (item.seasons) {
-                    for (const season of item.seasons) {
-                        const unwatched = season.episodes.find(ep => ep.status !== 1);
-                        if (unwatched) { s = season.number; eNum = unwatched.number; break; }
-                    }
+        if (needsLinking.length > 0) {
+            console.log(`[Batch] Searching for ${needsLinking.length} unlinked items...`);
+            const searchBatchSize = 10;
+            for (let i = 0; i < needsLinking.length; i += searchBatchSize) {
+                const chunk = needsLinking.slice(i, i + searchBatchSize);
+                const res = await AnilistApi.bulkSearchMedia(state.anilistToken, chunk.map(it => it.title));
+                if (res.data) {
+                    chunk.forEach((item, idx) => {
+                        const media = res.data[`s${idx}`]?.media?.[0];
+                        if (media) {
+                            item.anilist_id = media.id;
+                            item.mal_id = media.idMal;
+                            linkedCount++;
+                        }
+                    });
                 }
-                const url = getVidsrcUrl(item, s, eNum);
-                if (url) { window.open(url, '_blank'); return; }
+                await new Promise(r => setTimeout(r, 600));
             }
         }
-        // Als alles bekeken is, speel gewoon het eerste
-        const first = group.items[0];
-        const url = getVidsrcUrl(first, 1, 1);
-        if (url) window.open(url, '_blank');
-    });
-    actions.appendChild(playBtn);
 
-    // Rating badge
-    const ratingBadge = document.createElement('span');
-    const rClass = getRatingClass(group.rating);
-    ratingBadge.className = `rating-badge ${rClass}`;
-    ratingBadge.style.cursor = 'pointer';
-    ratingBadge.title = 'Klik om te beoordelen';
-    ratingBadge.innerHTML = `<i class="fas fa-star" style="font-size:0.7em;"></i> ${ratingDisplay}`;
-    ratingBadge.addEventListener('click', (e) => {
-        e.stopPropagation();
-        showRatingModal(group.items[0], false); // Rate first item for now
-    });
-    actions.appendChild(ratingBadge);
-
-    info.appendChild(actions);
-    card.appendChild(info);
-
-    // Inline expanded content (alleen in list view)
-    if (currentView === 'list' && isExpanded) {
-        card.appendChild(buildDetailGroup(group));
-    }
-
-    // Klik op hele kaart opent detail of inline
-    card.style.cursor = 'pointer';
-    card.addEventListener('click', async (e) => {
-        // Alleen doorklikken als het geen interactief element is
-        if (e.target.closest('button, .status-dropdown, input, select, .action-btn, .rating-badge')) return;
-
-        if (currentView === 'grid') {
-            showDetailModal(group);
-        } else {
-            if (expandedItems.has(group.title)) expandedItems.delete(group.title);
-            else expandedItems.add(group.title);
-            render();
-        }
-    });
-
-    return card;
-}
-
-/**
- * Bouwt het uitgevouwen detailblok voor een franchise-groep.
- * Toont per item een header, en afhankelijk van het type:
- * - Movie: status-dropdown + play-knop
- * - Series: lijst van seizoenrijen via buildSeasonRow()
- * @param {Object} group - Franchise-groepsobject
- * @returns {HTMLElement}
- */
-function buildDetailGroup(group) {
-    const detail = document.createElement('div');
-    detail.className = 'card-detail-group card-detail';
-    
-    // Sorteer items in de groep op release_date
-    const sortedItems = [...group.items].sort((a, b) => {
-        const da = a.release_date || '0000-00-00';
-        const db = b.release_date || '0000-00-00';
-        return da.localeCompare(db);
-    });
-
-    sortedItems.forEach(item => {
-        const itemBlock = document.createElement('div');
-        itemBlock.className = 'item-block';
-        
-        const itHeader = document.createElement('div');
-        itHeader.className = 'item-header';
-        const lowerItem = item.title.toLowerCase();
-        const lowerGroup = group.title.toLowerCase();
-        const isRedundantTitle = lowerItem === lowerGroup || lowerItem.includes(lowerGroup) || lowerGroup.includes(lowerItem);
-        
-        // Als de titel redundant is, voegen we de header alleen toe als er MEERDERE items zijn (om verwarring te voorkomen)
-        // Of als het typespecifiek is (movie vs series)
-        if (!isRedundantTitle || group.items.length > 1) {
-            itHeader.innerHTML = `
-                <div class="item-title-row">
-                    <span class="item-type-badge">${item.type === 'movie' ? 'Movie' : 'Series'}</span>
-                    ${isRedundantTitle ? '' : `<span class="item-title-text">${item.title}</span>`}
-                    <span class="item-year-text">${item.release_date ? `(${item.release_date.substring(0, 4)})` : ''}</span>
-                </div>
-            `;
-            itemBlock.appendChild(itHeader);
-        }
-
-        if (item.type === 'movie') {
-            const movieRow = document.createElement('div');
-            movieRow.className = 'movie-row';
-            
-            const movieStatusDd = buildStatusDropdown(item.status || -1, (newStatus) => {
-                item.status = newStatus;
-                save(); render();
-            });
-            movieRow.appendChild(movieStatusDd);
-            
-            const moviePlay = document.createElement('button');
-            moviePlay.className = 'action-btn btn-play btn-tiny';
-            moviePlay.innerHTML = '<i class="fas fa-play"></i>';
-            moviePlay.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const url = getVidsrcUrl(item, 1, 1);
-                if (url) window.open(url, '_blank');
-            });
-            movieRow.appendChild(moviePlay);
-            
-            itemBlock.appendChild(movieRow);
-        } else {
-            // TV Seasons
-            if (!item.seasons || item.seasons.length === 0) {
-                const fetchBtn = document.createElement('button');
-                fetchBtn.className = 'action-btn btn-small';
-                fetchBtn.textContent = 'Haal seizoenen op';
-                fetchBtn.addEventListener('click', async (e) => {
-                    e.stopPropagation();
-                    await fetchSeasonData(item);
-                    render();
-                    if (currentView === 'grid') showDetailModal(group);
-                });
-                itemBlock.appendChild(fetchBtn);
-            } else {
-                item.seasons.forEach(season => {
-                    itemBlock.appendChild(buildSeasonRow(item, season));
-                });
+        // 2. PUSH STATUSES
+        for (const item of state.animeList) {
+            if (item.anilist_id) {
+                await triggerAutoSync(item);
+                pushedCount++;
             }
         }
-        detail.appendChild(itemBlock);
-    });
 
-    return detail;
-}
+        // 3. IMPORT
+        for (const entry of alEntries) {
+            const media = entry.media;
+            const exists = state.animeList.find(it => it.anilist_id === media.id || it.title.toLowerCase() === media.title.romaji.toLowerCase() || (media.title.english && it.title.toLowerCase() === media.title.english.toLowerCase()));
+            
+            if (!exists) {
+                const newItem = { 
+                    title: media.title.english || media.title.romaji, 
+                    anilist_id: media.id, 
+                    mal_id: media.idMal, 
+                    type: media.format === 'MOVIE' ? 'movie' : 'tv', 
+                    rating: entry.score > 0 ? entry.score : -1 
+                };
+                if (entry.status === 'COMPLETED') newItem._anilist_force_completed = true;
+                else if (entry.status === 'CURRENT' && entry.progress > 0) newItem._anilist_progress = entry.progress;
+                
+                state.animeList.unshift(newItem);
+                addedFromAl++;
+                
+                // Fetch AniList data in background
+                (async () => {
+                    const details = await AnilistApi.fetchMediaDetails(newItem.anilist_id);
+                    if (details) {
+                        newItem.poster_path = details.coverImage.large;
+                        if (newItem.type === 'tv') {
+                            newItem.seasons = [{ number: 1, name: 'Season 1', episodes: [] }];
+                            const epCount = details.episodes || 0;
+                            for (let i = 1; i <= epCount; i++) {
+                                newItem.seasons[0].episodes.push({ number: i, name: `Episode ${i}`, status: -1 });
+                            }
+                            
+                            if (newItem._anilist_force_completed) { window.AnimeActions.setAnimeStatusLocally(newItem, 1); delete newItem._anilist_force_completed; }
+                            else if (newItem._anilist_progress > 0) {
+                                let count = 0;
+                                for (const ep of newItem.seasons[0].episodes) { if (count < newItem._anilist_progress) { ep.status = 1; count++; } }
+                                delete newItem._anilist_progress;
+                            }
+                        } else if (newItem.type === 'movie' && newItem._anilist_force_completed) { newItem.status = 1; delete newItem._anilist_force_completed; }
+                        save(); render();
+                    }
+                })();
+            }
+        }
 
-/**
- * Bouwt een seizoenrij met status-dropdown, naam en uitvouwbare afleveringenlijst.
- * Klikken op de rij togglet de afleveringenlijst (via expandedSeasons Set).
- * Klikken op een aflevering selecteert deze voor batch-acties (Ctrl = multi-select).
- * @param {Object} item - Het anime-item (series)
- * @param {Object} season - Het seizoenobject met episodes[]
- * @returns {HTMLElement}
- */
-function buildSeasonRow(item, season) {
-    const seasonKey = `${item.title}-S${season.number}`;
-    const isOpen = expandedSeasons.has(seasonKey);
-
-    const sBlock = document.createElement('div');
-    sBlock.className = 'season-block';
-    if (season.number === 0) sBlock.classList.add('season-specials');
-
-    const sHeader = document.createElement('div');
-    sHeader.className = 'season-header';
-    
-    const sStatusDd = buildStatusDropdown(getSeasonStatus(season), (newStatus) => {
-        setSeasonStatus(item, season, newStatus);
-        save(); render();
-    });
-
-    const sTitle = document.createElement('span');
-    sTitle.className = 'season-title';
-    const sName = season.number === 0 ? 'Specials' : (season.name || `Season ${season.number}`);
-    sTitle.textContent = `${sName} (${season.episodes.length} afl.)`;
-
-    sHeader.appendChild(sStatusDd);
-    sHeader.appendChild(sTitle);
-    
-    // Chevron en Play
-    const sChevron = document.createElement('i');
-    sChevron.className = `fas fa-chevron-${isOpen ? 'up' : 'down'} expand-icon`;
-    sHeader.appendChild(sChevron);
-
-    sHeader.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (e.target.closest('.status-dropdown, .action-btn')) return;
-        if (expandedSeasons.has(seasonKey)) expandedSeasons.delete(seasonKey);
-        else expandedSeasons.add(seasonKey);
+        save();
         render();
-        if (currentlyShownItem) showDetailModal(currentlyShownItem);
-    });
+        alert(`Sync voltooid!\n\nAniList Status:\n- ${totalOnAniList} items gevonden op je account\n- ${addedFromAl} nieuwe titels geïmporteerd naar RASCAL\n\nRASCAL Updates:\n- ${pushedCount} lokalen items gesynchroniseerd\n- ${linkedCount} nieuwe koppelingen gemaakt\n\nBekijk de console (F12) voor details! Nya~! 🐾`);
+    } catch (error) {
+        console.error('Sync failed:', error);
+        alert(`Oei! Sync mislukt: ${error.message}\n\nKijk in de console voor details! Nya~! 🐾`);
+    } finally { btn.innerHTML = '<i class="fa-brands fa-anilist"></i>'; btn.disabled = false; }
+}
 
-    sBlock.appendChild(sHeader);
+/**
+ * Pushes all local items with AniList IDs to the user's AniList account in batches.
+ * @async
+ */
+async function pushAllToAnilist() {
+    if (!state.anilistToken) { AnilistApi.authorize(); return; }
+    const btn = document.getElementById('push-anilist-btn');
+    const original = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+    btn.disabled = true;
 
-    if (isOpen) {
-        const epList = document.createElement('div');
-        epList.className = 'episode-list';
-        season.episodes.forEach(ep => {
-            const epRow = document.createElement('div');
-            epRow.className = 'episode-row';
-            
-            const epStatusDd = buildStatusDropdown(ep.status, (newStatus) => {
-                setEpisodeStatus(item, season, ep, newStatus);
-                save(); render();
-            });
-            
-            const epTitle = document.createElement('span');
-            epTitle.className = 'ep-title';
-            epTitle.textContent = `E${ep.number} — ${ep.name}`;
-            
-            const epPlay = document.createElement('button');
-            epPlay.className = 'action-btn btn-play btn-tiny';
-            epPlay.innerHTML = '<i class="fas fa-play"></i>';
-            epPlay.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const url = getVidsrcUrl(item, season.number, ep.number);
-                if (url) window.open(url, '_blank');
-            });
+    try {
+        let linkedCount = 0;
+        const toSync = [];
 
-            epRow.addEventListener('click', (e) => {
-                // Voorkom dat de klik omhoog bubbled naar de kaart-handler
-                // (wat de kaart zou dichtvouwen of de modal zou sluiten)
-                e.stopPropagation();
-
-                // Negeer klikken op de status-dropdown of de play-knop zelf
-                if (e.target.closest('.status-dropdown, .btn-play')) return;
-
-                const key = `${item.title}|S${season.number}|E${ep.number}`;
-
-                // Alleen Ctrl+klik selecteert/deselecteert een aflevering voor batch-acties
-                if (e.ctrlKey) {
-                    if (selectedEpisodes.has(key)) {
-                        selectedEpisodes.delete(key);
-                        epRow.classList.remove('selected');
-                    } else {
-                        selectedEpisodes.set(key, { item, season, episode: ep });
-                        epRow.classList.add('selected');
-                    }
-                    // Toon of verberg de batch-actiebalk nabij de muisaanwijzer
-                    renderBatchBar(e.clientX, e.clientY);
+        // 1. Linking Phase (BATCHED)
+        const needsLinking = state.animeList.filter(it => !it.anilist_id);
+        if (needsLinking.length > 0) {
+            console.log(`[Batch Push-Link] Searching for ${needsLinking.length} items...`);
+            const chunkSearch = 10;
+            for (let i = 0; i < needsLinking.length; i += chunkSearch) {
+                const chunk = needsLinking.slice(i, i + chunkSearch);
+                const res = await AnilistApi.bulkSearchMedia(state.anilistToken, chunk.map(it => it.title));
+                if (res.data) {
+                    chunk.forEach((item, idx) => {
+                        const media = res.data[`s${idx}`]?.media?.[0];
+                        if (media) {
+                            item.anilist_id = media.id;
+                            item.mal_id = media.idMal;
+                            linkedCount++;
+                        }
+                    });
                 }
-            });
+                await new Promise(r => setTimeout(r, 600));
+            }
+        }
 
-            epRow.appendChild(epStatusDd);
-            epRow.appendChild(epTitle);
-            epRow.appendChild(epPlay);
-            epList.appendChild(epRow);
-        });
-        sBlock.appendChild(epList);
-    }
-    return sBlock;
-}
+        // 2. Collect for Batching
+        for (const item of state.animeList) {
+            if (item.anilist_id) {
+                const macroStatus = window.StatusCalculator.getAnimeStatus(item);
+                const alStatusMap = { '1': 'COMPLETED', '0': 'CURRENT', '-1': 'PLANNING' };
+                let progress = 0;
+                if (item.seasons) {
+                    item.seasons.forEach(s => s.episodes.forEach(ep => { if (ep.status === 1) progress++; }));
+                } else if (item.type === 'movie' && item.status === 1) {
+                    progress = 1;
+                }
 
-/**
- * Opent de detail-modal voor een franchise-groep.
- * Vult de titel, status-dropdown en seizoen/afleveringinhoud in.
- * Slaat de groep op in currentlyShownItem zodat de modal ook na re-renders hersteld kan worden.
- * @param {Object} group - Franchise-groepsobject
- */
-function showDetailModal(group) {
-    currentlyShownItem = group;
-    const titleEl = document.getElementById('detail-title');
-    titleEl.innerHTML = `<span>${group.title}</span>`;
-    
-    const topDd = buildStatusDropdown(group._computedStatus, (newStatus) => {
-        group.items.forEach(item => setAnimeAllStatus(item, newStatus));
+                toSync.push({
+                    mediaId: item.anilist_id,
+                    status: alStatusMap[macroStatus],
+                    progress: progress,
+                    score: (item.rating && item.rating > 0) ? item.rating : undefined
+                });
+            }
+        }
+
+        // 3. Batch Push Phase
+        const chunkSize = 20;
+        for (let i = 0; i < toSync.length; i += chunkSize) {
+            const chunk = toSync.slice(i, i + chunkSize);
+            console.log(`[Batch Push-Update] Sending chunk ${Math.floor(i/chunkSize) + 1} (${chunk.length} items)...`);
+            await AnilistApi.bulkUpdateEntries(state.anilistToken, chunk);
+            await new Promise(r => setTimeout(r, 1000));
+        }
+
         save(); render();
-        showDetailModal(group);
-    });
-    topDd.style.marginLeft = '15px';
-    titleEl.appendChild(topDd);
-
-    const content = document.getElementById('detail-content');
-    content.innerHTML = '';
-    content.appendChild(buildDetailGroup(group));
-
-    document.getElementById('detail-overlay').classList.remove('hidden');
+        alert(`Klaar! \n- ${toSync.length} items naar AniList gesinkt (alles gebatched!).\n- ${linkedCount} nieuwe items gekoppeld. \nNya~! ✨`);
+    } catch (e) {
+        console.error('Push failed:', e);
+        alert('Oei! Iets ging mis tijdens de batch push. Controleer je verbinding! Nya~! 🐾');
+    } finally {
+        btn.innerHTML = original;
+        btn.disabled = false;
+    }
 }
 
-document.getElementById('close-detail').addEventListener('click', () => {
-    currentlyShownItem = null;
-    document.getElementById('detail-overlay').classList.add('hidden');
-});
-
-document.getElementById('detail-overlay').addEventListener('click', (e) => {
-    if (e.target === e.currentTarget) {
-        currentlyShownItem = null;
-        document.getElementById('detail-overlay').classList.add('hidden');
+function addNew() {
+    const input = document.getElementById('new-anime-input');
+    const val = input.value.trim();
+    if (val) {
+        // We voegen het item direct toe, AniListApi.lazyFetchAnilistData doet de rest op de achtergrond.
+        state.animeList.unshift({ title: val, status: -1, rating: -1, type: 'tv' });
+        input.value = '';
+        save(); render();
     }
-});
+}
+
+// --- Theme ---
 
 /**
- * Toont of verbergt de zwevende batch-actiebalk.
- * Als er geen afleveringen geselecteerd zijn wordt de balk verwijderd.
- * Anders wordt de balk gepositioneerd nabij de muiscoördinaten.
- * @param {number} [x] - Horizontale muispositie (clientX)
- * @param {number} [y] - Verticale muispositie (clientY)
+ * Initializes the UI theme based on user preference or system settings.
  */
-function renderBatchBar(x, y) {
-    let bar = document.getElementById('batch-bar');
-    if (selectedEpisodes.size === 0) {
-        if (bar) bar.remove();
-        return;
-    }
-
-    if (!bar) {
-        bar = document.createElement('div');
-        bar.id = 'batch-bar';
-        bar.className = 'batch-bar';
-        document.body.appendChild(bar);
-    }
-
-    bar.style.left = `${Math.min(window.innerWidth - 220, x + 15)}px`;
-    bar.style.top = `${Math.min(window.innerHeight - 150, y + 15)}px`;
-
-    bar.innerHTML = `
-        <div class="batch-header">
-            <span><b>${selectedEpisodes.size}</b> geselecteerd</span>
-            <button class="batch-close" onclick="clearSelection()">&times;</button>
-        </div>
-        <div class="batch-options">
-            <button onclick="applyBatchStatus(1)"><i class="fas fa-check"></i> Bekeken</button>
-            <button onclick="applyBatchStatus(0)"><i class="fas fa-play"></i> Bezig</button>
-            <button onclick="applyBatchStatus(-1)"><i class="fas fa-clock"></i> Te Bekijken</button>
-        </div>
-    `;
-}
-
-window.clearSelection = function() {
-    selectedEpisodes.clear();
-    renderBatchBar();
-    
-    // Manually clear classes to avoid a full re-render flickering
-    document.querySelectorAll('.episode-row.selected').forEach(r => r.classList.remove('selected'));
-    
-    // Refresh main view for background items
-    render();
-};
-
-window.applyBatchStatus = function(status) {
-    if (selectedEpisodes.size === 0) return;
-    
-    console.log(`Applying status ${status} to ${selectedEpisodes.size} episodes`);
-    
-    selectedEpisodes.forEach(({ item, season, episode }) => {
-        // Direct mutation and ensuring it sticks
-        episode.status = parseInt(status);
+function initTheme() {
+    const manual = localStorage.getItem('rascal_theme');
+    let theme = manual || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    applyTheme(theme);
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!localStorage.getItem('rascal_theme')) applyTheme(e.matches ? 'dark' : 'light');
     });
-    
-    save();
-    
-    // Refresh modal if open
-    if (currentlyShownItem) {
-        showDetailModal(currentlyShownItem);
-    }
-    
-    clearSelection();
-};
-
-// --- Modal ---
-
-let currentItem = null;
-let ratingChangeStatus = false;
+}
 
 /**
- * Opent de beoordelingsmodal voor het gegeven anime-item.
- * @param {Object} item - Het item dat beoordeeld wordt
- * @param {boolean} [changeStatus=true] - Als true wordt de status ook op 'Bekeken' gezet bij opslaan
+ * Applies a specific theme to the application.
+ * @param {string} theme - The theme name ('light', 'dark', 'midnight').
  */
-function showRatingModal(item, changeStatus = true) {
-    currentItem = item;
-    ratingChangeStatus = changeStatus;
-    document.getElementById('modal-title').textContent = item.title;
-    document.getElementById('rating-number').value = (item.rating !== undefined && item.rating > -1) ? item.rating.toFixed(1) : '7.0';
-    document.getElementById('modal-overlay').classList.remove('hidden');
+function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    const icon = document.getElementById('theme-toggle').querySelector('i');
+    icon.className = theme === 'light' ? 'fas fa-moon' : theme === 'dark' ? 'fas fa-star' : 'fas fa-sun';
 }
 
-document.getElementById('cancel-rating').addEventListener('click', () => {
-    document.getElementById('modal-overlay').classList.add('hidden');
-});
-
-document.getElementById('save-rating').addEventListener('click', () => {
-    const raw = parseFloat(document.getElementById('rating-number').value);
-    const clamped = Math.min(10, Math.max(0, raw));
-    currentItem.rating = Math.round(clamped * 10) / 10;
-    if (ratingChangeStatus) setAnimeAllStatus(currentItem, 1);
-    save(); render();
-    document.getElementById('modal-overlay').classList.add('hidden');
-});
-
-document.getElementById('clear-rating').addEventListener('click', () => {
-    currentItem.rating = -1;
-    save(); render();
-    document.getElementById('modal-overlay').classList.add('hidden');
-});
-
-// --- Toolbar ---
+// --- Event Listeners ---
 
 document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         const f = btn.dataset.filter;
-        if (f === 'all') {
-            // Reset alles: filters terug naar alles aan én zoekopdracht wissen
-            activeFilters = new Set([-1, 0, 1, 2]);
-            currentSearch = ''; 
-        } else {
+        if (f === 'all') { activeFilters = new Set([-1, 0, 1, 2]); currentSearch = ''; }
+        else {
             const status = parseInt(f);
-            if (activeFilters.has(status)) activeFilters.delete(status);
-            else activeFilters.add(status);
+            if (activeFilters.has(status)) activeFilters.delete(status); else activeFilters.add(status);
         }
         localStorage.setItem('rascal_filters', JSON.stringify([...activeFilters]));
         render();
@@ -748,108 +428,30 @@ document.querySelectorAll('.size-btn').forEach(btn => {
     });
 });
 
-document.getElementById('sort-select').addEventListener('change', e => {
-    currentSort = e.target.value;
-    render();
-});
+document.getElementById('sort-select').addEventListener('change', e => { currentSort = e.target.value; render(); });
+document.getElementById('source-select').addEventListener('change', e => { currentSource = e.target.value; localStorage.setItem('rascal_source', currentSource); });
 
-// Stel de bron-selector in op de opgeslagen waarde bij laden
-const sourceSelect = document.getElementById('source-select');
-sourceSelect.value = currentSource;
-sourceSelect.addEventListener('change', e => {
-    currentSource = e.target.value;
-    localStorage.setItem('rascal_source', currentSource);
-});
-
-document.getElementById('grid-btn').addEventListener('click', () => {
-    currentView = 'grid';
-    localStorage.setItem('rascal_view', currentView);
-    document.getElementById('grid-btn').classList.add('active');
-    document.getElementById('list-btn').classList.remove('active');
-    render();
-});
-
-document.getElementById('list-btn').addEventListener('click', () => {
-    currentView = 'list';
-    localStorage.setItem('rascal_view', currentView);
-    document.getElementById('list-btn').classList.add('active');
-    document.getElementById('grid-btn').classList.remove('active');
-    render();
-});
-
-// --- Add ---
+document.getElementById('grid-btn').addEventListener('click', () => { currentView = 'grid'; localStorage.setItem('rascal_view', currentView); render(); });
+document.getElementById('list-btn').addEventListener('click', () => { currentView = 'list'; localStorage.setItem('rascal_view', currentView); render(); });
 
 document.getElementById('add-btn').addEventListener('click', addNew);
 document.getElementById('new-anime-input').addEventListener('keypress', e => { if (e.key === 'Enter') addNew(); });
-
-// --- Search ---
-
-document.getElementById('search-input').addEventListener('input', e => {
-    currentSearch = e.target.value.trim();
-    render();
-});
-
-/**
- * Voegt een nieuw anime-item toe aan het begin van de lijst
- * op basis van de waarde in het invoerveld #new-anime-input.
- */
-function addNew() {
-    const input = document.getElementById('new-anime-input');
-    const val = input.value.trim();
-    if (val) {
-        state.animeList.unshift({ title: val, status: -1, rating: -1 });
-        input.value = '';
-        save(); render();
-    }
-}
-
-// --- Theme ---
-
-/**
- * Initialiseert het thema bij het laden:
- * - Leest de opgeslagen voorkeur uit localStorage
- * - Valt terug op het systeemvoorkeur (prefers-color-scheme)
- * - Luistert naar wijzigingen in het systeemthema
- */
-function initTheme() {
-    const manual = localStorage.getItem('rascal_theme');
-    let theme;
-    if (manual) theme = manual;
-    else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) theme = 'dark';
-    else theme = 'light';
-    applyTheme(theme);
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        if (!localStorage.getItem('rascal_theme')) applyTheme(e.matches ? 'dark' : 'light');
-    });
-}
-
-/**
- * Past het gegeven thema toe op het <html>-element via data-theme
- * en updatet het icoontje van de thema-knop.
- * @param {'light'|'dark'|'midnight'} theme
- */
-function applyTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    const icon = document.getElementById('theme-toggle').querySelector('i');
-    if (theme === 'light') icon.className = 'fas fa-moon';
-    else if (theme === 'dark') icon.className = 'fas fa-star';
-    else icon.className = 'fas fa-sun';
-}
-
+document.getElementById('search-input').addEventListener('input', e => { currentSearch = e.target.value.trim(); render(); });
+document.getElementById('sync-anilist-btn').addEventListener('click', syncAnilist);
+document.getElementById('push-anilist-btn').addEventListener('click', pushAllToAnilist);
+document.getElementById('download-btn').addEventListener('click', exportData);
 document.getElementById('theme-toggle').addEventListener('click', () => {
     const current = document.documentElement.getAttribute('data-theme') || 'light';
     const next = current === 'light' ? 'dark' : current === 'dark' ? 'midnight' : 'light';
-    localStorage.setItem('rascal_theme', next);
-    applyTheme(next);
+    localStorage.setItem('rascal_theme', next); applyTheme(next);
 });
-
-document.getElementById('download-btn').addEventListener('click', () => {
-    exportData();
-});
-
-initTheme();
-init();
 
 document.addEventListener('click', () => {
-    document.querySelectorAll('.status-dropdown.open').forEach(d => d.classList.remove('open'));
+    const globalMenu = document.getElementById('global-status-menu');
+    if (globalMenu) globalMenu.style.display = 'none';
+    document.querySelectorAll('.anime-card.has-open-dropdown').forEach(c => c.classList.remove('has-open-dropdown'));
 });
+
+// Start
+initTheme();
+init();

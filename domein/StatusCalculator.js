@@ -57,8 +57,20 @@ window.StatusCalculator = (function () {
         return 0; // Bezig
     }
 
+    /**
+     * Berekent het totaal aantal bekeken afleveringen over alle seizoenen.
+     * @param {Object} item - Het anime data object.
+     * @returns {number} Totaal aantal episodes met status 1.
+     */
+    function getAnimeProgress(item) {
+        if (item.type === 'movie') return item.status === 1 ? 1 : 0;
+        if (!item.seasons) return 0;
+        return item.seasons.flatMap(s => s.episodes).filter(e => e.status === 1).length;
+    }
+
     return {
         getSeasonStatus,
-        getAnimeStatus
+        getAnimeStatus,
+        getAnimeProgress
     };
 })();

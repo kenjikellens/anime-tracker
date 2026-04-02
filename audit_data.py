@@ -1,12 +1,27 @@
+"""
+RASCAL Data Auditor
+This script performs a quality check on the database files (data.json, data.js) 
+and cross-references them with the 'te_bekijken.md' checklist to identify 
+duplicates, missing entries, or incomplete data structures.
+"""
+
 import json
 import os
 import re
 
+# Absolute paths to critical data files
 DATA_JSON = r'c:\Users\kenji\Documents\PROJECTS\RASCAL\data.json'
 DATA_JS = r'c:\Users\kenji\Documents\PROJECTS\RASCAL\data.js'
 TE_BEKIJKEN_MD = r'c:\Users\kenji\Documents\PROJECTS\RASCAL\docs\te_bekijken.md'
 
 def audit():
+    """
+    Executes a series of checks to ensure data consistency across multiple sources.
+    1. Checks for duplicate titles in data.json.
+    2. Identifies TV shows with no seasons or episodes.
+    3. Cross-references entries in data.js to ensure they exist in data.json.
+    4. Compares the Markdown checklist (te_bekijken.md) against the primary JSON database.
+    """
     print("--- Starting Data Audit ---")
     
     # 1. Load data.json

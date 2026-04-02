@@ -1,61 +1,59 @@
 // domein/AnimeActions.js
-// Dit bestand bevat pure domein logica voor het muteren van statussen (veilig!).
+/**
+ * AnimeActions module contains pure domain logic for mutating anime statuses.
+ * It provides safe methods to update episodes, seasons, and overall anime status.
+ */
 
 window.AnimeActions = (function() {
 
     /**
-     * Stelt de status van een individuele aflevering in.
-     * De top-level franchise/serie status wordt niet hier ingesteld, maar wordt 
-     * on-the-fly herberekend in de StatusCalculator.
+     * Sets the status of an individual episode.
+     * Note: Top-level franchise/series status is not set here but recomputed on-the-fly.
      * 
-     * @param {Object} item - Het betreffende anime serie object.
-     * @param {Object} season - Het doelseizoen object.
-     * @param {Object} episode - De doelspecifieke aflevering om te muteren.
-     * @param {number} newStatus - De nieuw te geven status (-1, 0, of 1).
+     * @param {Object} item - The target anime series object.
+     * @param {Object} season - The target season object.
+     * @param {Object} episode - The specific episode object to mutate.
+     * @param {number} newStatus - The new status to assign (-1, 0, or 1).
      */
     function setEpisodeStatusLocally(item, season, episode, newStatus) {
         episode.status = newStatus;
-        // Status wordt on-the-fly berekend door StatusCalculator — geen item.status meer schrijven
+        // Overall status is computed on-the-fly by StatusCalculator — do not write to item.status
     }
 
     /**
-     * Mutator om in één actie de voortgangsstatus van een geheel seizoensblok aan te passen.
+     * Mutator to update the progress status of an entire season block in one action.
      * 
-     * Specifiek gedrag op basis van input:
-     * - Status **1 (Bekeken)** of **-1 (Te Bekijken)**: Overrides de status van *alle* afleveringen 
-     *   binnenin dit seizoen naar deze nieuwe target status.
-     * - Status **0 (Bezig)**: Zoekt dynamisch naar de *eerste* onbekeken aflevering binnen 
-     *   dit seizoen en markeert uitsluitend dié specifieke aflevering als 'Bezig'.
+     * Behavior:
+     * - Status 1 (Watched) or -1 (To Watch): Overrides all episodes in this season to the target status.
+     * - Status 0 (Watching): Dynamically finds the first unwatched episode and marks it as 'Watching'.
      * 
-     * @param {Object} item - Het betreffende anime serie object.
-     * @param {Object} season - Het doelseizoen dat veranderd wordt.
-     * @param {number} newStatus - De gekozen status (-1, 0, 1).
+     * @param {Object} item - The target anime series object.
+     * @param {Object} season - The target season object to mutate.
+     * @param {number} newStatus - The chosen target status (-1, 0, 1).
      */
     function setSeasonStatusLocally(item, season, newStatus) {
         if (newStatus === 1 || newStatus === -1) {
-            // Actie A of C: Alle afleveringen in dit seizoen worden de nieuwe status.
+            // Action A or C: All episodes in this season get the new status.
             season.episodes.forEach(ep => ep.status = newStatus);
         } else if (newStatus === 0) {
-            // Actie B: We scannen het betreffende seizoen op de EERSTE aflevering die NIET 'Bekeken' (1) is.
-            // Die zetten we op 'Bezig' (0). De rest blijft af.
+            // Action B: Scan for the FIRST episode that is NOT 'Watched' (1) and set it to 'Watching' (0).
             const firstUnwatched = season.episodes.find(ep => ep.status !== 1);
             if (firstUnwatched) {
                 firstUnwatched.status = 0;
             }
         }
-        // Status wordt on-the-fly berekend — geen item.status meer schrijven
     }
 
     /**
-     * Hoofd-mutator om de status van een complete serie of film in één keer te veranderen.
-     * Werkt over de grenzen van seizoenen heen voor series.
+     * Main mutator to change the status of a complete series or movie.
+     * Cascades across all seasons for series.
      * 
-     * @param {Object} item - Franchise of serie/film object uit de database.
-     * @param {number} newStatus - De resulterende status (-1, 0, 1).
+     * @param {Object} item - The franchise or series/movie object from the database.
+     * @param {number} newStatus - The resulting target status (-1, 0, 1).
      */
     function setAnimeStatusLocally(item, newStatus) {
         if (!item.seasons || item.seasons.length === 0) {
-            // Film of item zonder seizoendata
+            // Movie or item without season data
             if (item.type === 'movie') {
                 item.status = newStatus;
             }
@@ -63,12 +61,12 @@ window.AnimeActions = (function() {
         }
 
         if (newStatus === 1 || newStatus === -1) {
-            // Actie A of C: Alle afleveringen van alle seizoenen de nieuwe status.
+            // Action A or C: All episodes of all seasons get the new status.
             item.seasons.forEach(s => {
                 s.episodes.forEach(ep => ep.status = newStatus);
             });
         } else if (newStatus === 0) {
-            // Actie B: Zelfde als bij seizoen, maar globaal over alle seizoenen heen de allereerste open episode opsporen.
+            // Action B: Scan across all seasons for the first open episode.
             let found = false;
             for (const s of item.seasons) {
                 const firstUnwatched = s.episodes.find(ep => ep.status !== 1);
@@ -79,11 +77,9 @@ window.AnimeActions = (function() {
                 }
             }
             if (!found) {
-                // Eventuele absolute grensgeval: alles was 1, maar gebruiker forceert 0? 
-                // Dan kan er geen element gevonden worden; we doen er niets mee.
+                // Edge case: everything was already 1 but user forced 0; do nothing.
             }
         }
-        // Status wordt on-the-fly berekend — geen item.status meer schrijven
     }
 
     return {

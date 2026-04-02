@@ -1,18 +1,20 @@
 // domein/State.js
 
 /**
- * TMDB API-sleutel voor het ophalen van poster- en seizoendata via The Movie Database.
- * @type {string}
- */
-var TMDB_API_KEY = 'a341dc9a3c2dffa62668b614a98c1188';
-
-/**
  * Boolean die aangeeft of de applicatie draait op GitHub Pages.
  * Dit bepaalt of we in 'read-only' modus zitten waarbij data via localStorage wordt bewaard,
  * in plaats van de Python backend (/save endpoint) te gebruiken.
  * @type {boolean}
  */
 var isGitHub = window.location.hostname.includes('github.io');
+
+/**
+ * AniList API credentials.
+ * @type {string}
+ */
+var ANILIST_CLIENT_ID = '38391';
+var ANILIST_CLIENT_SECRET = 'jYd6Wg0vRohTyVkYr3KIYOriM6J9gAa3enD246ux';
+var ANILIST_REDIRECT_URI = 'http://localhost:3000/callback';
 
 /**
  * Globale applicatiestatus.

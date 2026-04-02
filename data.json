@@ -5,7 +5,167 @@
     "type": "tv",
     "tmdb_id": 84669,
     "poster_path": "/mrahUSmFjae8UHtlOcZ58ytmAGu.jpg",
-    "release_date": "2019-01-11"
+    "release_date": "2019-01-11",
+    "seasons": [
+      {
+        "number": 1,
+        "name": "Season 1",
+        "episodes": [
+          {
+            "number": 1,
+            "name": "The Quintessential Quintuplets",
+            "air_date": "2019-01-11",
+            "status": -1
+          },
+          {
+            "number": 2,
+            "name": "Rooftop Confession",
+            "air_date": "2019-01-18",
+            "status": -1
+          },
+          {
+            "number": 3,
+            "name": "A Mountain of Problems",
+            "air_date": "2019-01-25",
+            "status": -1
+          },
+          {
+            "number": 4,
+            "name": "A Day Off",
+            "air_date": "2019-01-31",
+            "status": -1
+          },
+          {
+            "number": 5,
+            "name": "Five Fifths",
+            "air_date": "2019-02-07",
+            "status": -1
+          },
+          {
+            "number": 6,
+            "name": "What's Been Built Up",
+            "air_date": "2019-02-14",
+            "status": -1
+          },
+          {
+            "number": 7,
+            "name": "Liar McLieface",
+            "air_date": "2019-02-21",
+            "status": -1
+          },
+          {
+            "number": 8,
+            "name": "The Photo That Started It All",
+            "air_date": "2019-02-28",
+            "status": -1
+          },
+          {
+            "number": 9,
+            "name": "Legend of Fate Day 1",
+            "air_date": "2019-03-07",
+            "status": -1
+          },
+          {
+            "number": 10,
+            "name": "Legend of Fate Day 2",
+            "air_date": "2019-03-13",
+            "status": -1
+          },
+          {
+            "number": 11,
+            "name": "Legend of Fate Day 3",
+            "air_date": "2019-03-20",
+            "status": -1
+          },
+          {
+            "number": 12,
+            "name": "Legend of Fate Day 2000",
+            "air_date": "2019-03-27",
+            "status": -1
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "name": "Season 2",
+        "episodes": [
+          {
+            "number": 1,
+            "name": "Quite the Crappy Kyoto Quagmire",
+            "air_date": "2021-01-08",
+            "status": -1
+          },
+          {
+            "number": 2,
+            "name": "Seven Goodbyes (1)",
+            "air_date": "2021-01-15",
+            "status": -1
+          },
+          {
+            "number": 3,
+            "name": "Seven Goodbyes (2)",
+            "air_date": "2021-01-22",
+            "status": -1
+          },
+          {
+            "number": 4,
+            "name": "Seven Goodbyes (3)",
+            "air_date": "2021-01-29",
+            "status": -1
+          },
+          {
+            "number": 5,
+            "name": "Good Work Today",
+            "air_date": "2021-02-05",
+            "status": -1
+          },
+          {
+            "number": 6,
+            "name": "The Last Exam",
+            "air_date": "2021-02-12",
+            "status": -1
+          },
+          {
+            "number": 7,
+            "name": "Begin the Offensive",
+            "air_date": "2021-02-19",
+            "status": -1
+          },
+          {
+            "number": 8,
+            "name": "Scrambled Eggs",
+            "air_date": "2021-02-26",
+            "status": -1
+          },
+          {
+            "number": 9,
+            "name": "Welcome to Class 3-1",
+            "air_date": "2021-03-05",
+            "status": -1
+          },
+          {
+            "number": 10,
+            "name": "Five Cranes in Return",
+            "air_date": "2021-03-12",
+            "status": -1
+          },
+          {
+            "number": 11,
+            "name": "Sisters War (1)",
+            "air_date": "2021-03-19",
+            "status": -1
+          },
+          {
+            "number": 12,
+            "name": "Sisters War (2)",
+            "air_date": "2021-03-26",
+            "status": -1
+          }
+        ]
+      }
+    ],
+    "anilist_id": 103572,
+    "mal_id": 38101
   },
   {
     "title": "To Love Ru",
@@ -532,7 +692,9 @@
           }
         ]
       }
-    ]
+    ],
+    "anilist_id": 3455,
+    "mal_id": 3455
   },
   {
     "title": "The Eminence in Shadow",
@@ -933,7 +1095,9 @@
           }
         ]
       }
-    ]
+    ],
+    "anilist_id": 130298,
+    "mal_id": 48316
   },
   {
     "title": "A Sister's All You Need",
@@ -1076,7 +1240,9 @@
           }
         ]
       }
-    ]
+    ],
+    "anilist_id": 98596,
+    "mal_id": 35413
   },
   {
     "title": "The Ryuo's Work is Never Done!",
@@ -1243,7 +1409,9 @@
           }
         ]
       }
-    ]
+    ],
+    "anilist_id": 99507,
+    "mal_id": 35905
   },
   {
     "title": "Your Lie in April",
@@ -1404,7 +1572,9 @@
     ],
     "poster_path": "/rRjfH3ckTYz8z8aSkJshFL4VyK9.jpg",
     "franchise": "Your Lie in April",
-    "release_date": "2014-10-10"
+    "release_date": "2014-10-10",
+    "anilist_id": 20665,
+    "mal_id": 23273
   },
   {
     "title": "Orange",
@@ -1499,7 +1669,9 @@
     ],
     "poster_path": "/6GGkAhfjZy9rOvUD7K927vnltZA.jpg",
     "franchise": "Orange",
-    "release_date": "2016-07-04"
+    "release_date": "2016-07-04",
+    "anilist_id": 21647,
+    "mal_id": 32729
   },
   {
     "title": "A Silent Voice",
@@ -1510,7 +1682,9 @@
     "tmdb_id": 378064,
     "type": "movie",
     "poster_path": "/tuFaWiqX0TXoWu7DGNcmX3UW7sT.jpg",
-    "franchise": "A Silent Voice"
+    "franchise": "A Silent Voice",
+    "anilist_id": 20954,
+    "mal_id": 28851
   },
   {
     "title": "I want to eat your pancreas",
@@ -1521,7 +1695,9 @@
     "tmdb_id": 504253,
     "type": "movie",
     "poster_path": "/qpV8kvRfAntV7D4aOOsLIz7OdPc.jpg",
-    "franchise": "I want to eat your pancreas"
+    "franchise": "I want to eat your pancreas",
+    "anilist_id": 99750,
+    "mal_id": 36098
   },
   {
     "title": "Inexpressive Kashiwada and Expressive Oota",
@@ -1610,7 +1786,9 @@
       }
     ],
     "franchise": "Inexpressive Kashiwada and Expressive Oota",
-    "release_date": "2025-10-04"
+    "release_date": "2025-10-04",
+    "anilist_id": 187940,
+    "mal_id": 61209
   },
   {
     "title": "Umamusume: Pretty Derby",
@@ -1903,7 +2081,9 @@
       }
     ],
     "franchise": "Umamusume",
-    "release_date": "2018-04-02"
+    "release_date": "2018-04-02",
+    "anilist_id": 98514,
+    "mal_id": 35249
   },
   {
     "title": "My Matchmaking Partner Is My Student, An Agg...",
@@ -1999,7 +2179,9 @@
       }
     ],
     "franchise": "Pseudo Harem",
-    "release_date": "2024-07-05"
+    "release_date": "2024-07-05",
+    "anilist_id": 163623,
+    "mal_id": 54968
   },
   {
     "title": "Chitose Is in the Ramune Bottle",
@@ -2155,7 +2337,9 @@
     ],
     "franchise": "Chitose Is in the Ramune Bottle",
     "release_date": "2025-10-07",
-    "_skipNewBadge": true
+    "_skipNewBadge": true,
+    "anilist_id": 180082,
+    "mal_id": 59517
   },
   {
     "title": "Food for the Soul",
@@ -2244,7 +2428,9 @@
       }
     ],
     "franchise": "Food for the Soul",
-    "release_date": "2025-04-13"
+    "release_date": "2025-04-13",
+    "anilist_id": 185939,
+    "mal_id": 60658
   },
   {
     "title": "Makeine: Too Many Losing Heroines!",
@@ -2338,7 +2524,9 @@
       }
     ],
     "franchise": "Makeine",
-    "release_date": "2024-07-14"
+    "release_date": "2024-07-14",
+    "anilist_id": 171457,
+    "mal_id": 57524
   },
   {
     "title": "The Melancholy of Haruhi Suzumiya",
@@ -2523,7 +2711,9 @@
       }
     ],
     "franchise": "The Melancholy of Haruhi Suzumiya",
-    "release_date": "2006-04-03"
+    "release_date": "2006-04-03",
+    "anilist_id": 849,
+    "mal_id": 849
   },
   {
     "title": "Classroom of the Elite",
@@ -2883,7 +3073,9 @@
     ],
     "franchise": "Classroom of the Elite",
     "release_date": "2017-07-12",
-    "_skipNewBadge": true
+    "_skipNewBadge": true,
+    "anilist_id": 98659,
+    "mal_id": 35507
   },
   {
     "title": "Azumanga Daioh",
@@ -3056,7 +3248,9 @@
       }
     ],
     "franchise": "Azumanga Daioh",
-    "release_date": "2002-04-08"
+    "release_date": "2002-04-08",
+    "anilist_id": 66,
+    "mal_id": 66
   },
   {
     "title": "Teasing Master Takagi-san",
@@ -3313,7 +3507,9 @@
     ],
     "poster_path": "/hKwpd9K5AXsDhcBhJ7hyP7iBJhN.jpg",
     "franchise": "Teasing Master Takagi-san",
-    "release_date": "2018-01-08"
+    "release_date": "2018-01-08",
+    "anilist_id": 99468,
+    "mal_id": 35860
   },
   {
     "title": "Clannad",
@@ -3636,7 +3832,9 @@
       }
     ],
     "franchise": "Clannad",
-    "release_date": "2007-10-05"
+    "release_date": "2007-10-05",
+    "anilist_id": 2167,
+    "mal_id": 2167
   },
   {
     "title": "The Ryuo's Work is Never Done!",
@@ -3803,7 +4001,9 @@
       }
     ],
     "franchise": "The Ryuo's Work is Never Done!",
-    "release_date": "2018-01-08"
+    "release_date": "2018-01-08",
+    "anilist_id": 99507,
+    "mal_id": 35905
   },
   {
     "title": "Tune In to the Midnight Heart",
@@ -3893,7 +4093,9 @@
     ],
     "franchise": "Tune In to the Midnight Heart",
     "release_date": "2026-01-06",
-    "_skipNewBadge": true
+    "_skipNewBadge": true,
+    "anilist_id": 187942,
+    "mal_id": 61211
   },
   {
     "title": "AHO-GIRL",
@@ -3982,7 +4184,9 @@
       }
     ],
     "franchise": "AHO-GIRL",
-    "release_date": "2017-07-04"
+    "release_date": "2017-07-04",
+    "anilist_id": 98251,
+    "mal_id": 34881
   },
   {
     "title": "Ghost Stories",
@@ -3993,7 +4197,9 @@
     "tmdb_id": 687259,
     "type": "movie",
     "poster_path": "/m4ALMhsuqOOUkkABvgQWfrgoL8y.jpg",
-    "franchise": "Ghost Stories"
+    "franchise": "Ghost Stories",
+    "anilist_id": 1281,
+    "mal_id": 1281
   },
   {
     "title": "The Comic Artist and His Assistants",
@@ -4124,7 +4330,9 @@
       }
     ],
     "franchise": "The Comic Artist and His Assistants",
-    "release_date": "2014-04-08"
+    "release_date": "2014-04-08",
+    "anilist_id": 20537,
+    "mal_id": 21863
   },
   {
     "title": "Re:ZERO - Starting Life in Another World",
@@ -4489,7 +4697,9 @@
     "poster_path": "/aRwmcX36r1ZpR5Xq5mmFcpUDQ8J.jpg",
     "franchise": "Re:ZERO",
     "release_date": "2016-04-04",
-    "manual_seasons": true
+    "manual_seasons": true,
+    "anilist_id": 21355,
+    "mal_id": 31240
   },
   {
     "title": "Spy x Family",
@@ -4842,7 +5052,9 @@
       }
     ],
     "franchise": "Spy x Family",
-    "release_date": "2022-04-09"
+    "release_date": "2022-04-09",
+    "anilist_id": 140960,
+    "mal_id": 50265
   },
   {
     "title": "Rascal Does Not Dream",
@@ -5057,7 +5269,9 @@
     ],
     "poster_path": "/fbqDG7GjodvaNecgv1q8kfSNPl5.jpg",
     "franchise": "Rascal Does Not Dream",
-    "release_date": "2018-10-04"
+    "release_date": "2018-10-04",
+    "anilist_id": 199340,
+    "mal_id": 62582
   },
   {
     "title": "Horimiya",
@@ -5152,7 +5366,9 @@
       }
     ],
     "franchise": "Horimiya",
-    "release_date": "2021-01-10"
+    "release_date": "2021-01-10",
+    "anilist_id": 124080,
+    "mal_id": 42897
   },
   {
     "title": "Oregairu SNAFU",
@@ -5683,7 +5899,9 @@
     ],
     "poster_path": "/oRaOeQlwktbGSd2T31FYAcgHZlh.jpg",
     "franchise": "KonoSuba",
-    "release_date": "2016-01-14"
+    "release_date": "2016-01-14",
+    "anilist_id": 21202,
+    "mal_id": 30831
   },
   {
     "title": "100 Girlfriends Who Really, Really Love You",
@@ -5844,7 +6062,9 @@
     ],
     "poster_path": "/kBiPU7I7TEJdDXu8tHgVrgL5zAU.jpg",
     "franchise": "100 Girlfriends Who Really, Really Love You",
-    "release_date": "2023-10-08"
+    "release_date": "2023-10-08",
+    "anilist_id": 162694,
+    "mal_id": 54714
   },
   {
     "title": "High School DxD",
@@ -6287,7 +6507,9 @@
       }
     ],
     "franchise": "High School DxD",
-    "release_date": "2012-01-06"
+    "release_date": "2012-01-06",
+    "anilist_id": 11617,
+    "mal_id": 11617
   },
   {
     "title": "Kaguya-sama: Love is War",
@@ -6574,7 +6796,9 @@
       }
     ],
     "franchise": "Kaguya-sama",
-    "release_date": "2019-01-12"
+    "release_date": "2019-01-12",
+    "anilist_id": 101921,
+    "mal_id": 37999
   },
   {
     "title": "Fruits Basket",
@@ -6981,7 +7205,9 @@
       }
     ],
     "franchise": "Fruits Basket",
-    "release_date": "2019-04-06"
+    "release_date": "2019-04-06",
+    "anilist_id": 120,
+    "mal_id": 120
   },
   {
     "title": "Toradora!",
@@ -7190,7 +7416,9 @@
       }
     ],
     "franchise": "Toradora!",
-    "release_date": "2008-10-02"
+    "release_date": "2008-10-02",
+    "anilist_id": 4224,
+    "mal_id": 4224
   },
   {
     "title": "The Angel Next Door Spoils Me Rotten",
@@ -7291,7 +7519,9 @@
       }
     ],
     "franchise": "The Angel Next Door Spoils Me Rotten",
-    "release_date": "2023-01-07"
+    "release_date": "2023-01-07",
+    "anilist_id": 143338,
+    "mal_id": 50739
   },
   {
     "title": "Alya Sometimes Hides Her Feelings in Russian",
@@ -7392,7 +7622,9 @@
       }
     ],
     "franchise": "Alya Sometimes Hides Her Feelings in Russian",
-    "release_date": "2024-07-03"
+    "release_date": "2024-07-03",
+    "anilist_id": 162804,
+    "mal_id": 54744
   },
   {
     "title": "ReLIFE",
@@ -7529,7 +7761,9 @@
       }
     ],
     "franchise": "ReLIFE",
-    "release_date": "2016-07-02"
+    "release_date": "2016-07-02",
+    "anilist_id": 21049,
+    "mal_id": 30015
   },
   {
     "title": "The Fragrant Flower Blooms with Dignity",
@@ -7624,7 +7858,9 @@
       }
     ],
     "franchise": "The Fragrant Flower Blooms with Dignity",
-    "release_date": "2025-07-06"
+    "release_date": "2025-07-06",
+    "anilist_id": 181444,
+    "mal_id": 59845
   },
   {
     "title": "The Pet Girl of Sakurasou",
@@ -7785,7 +8021,9 @@
       }
     ],
     "franchise": "The Pet Girl of Sakurasou",
-    "release_date": "2012-10-09"
+    "release_date": "2012-10-09",
+    "anilist_id": 13759,
+    "mal_id": 13759
   },
   {
     "title": "My Dress-Up Darling",
@@ -7946,7 +8184,9 @@
       }
     ],
     "franchise": "My Dress-Up Darling",
-    "release_date": "2022-01-09"
+    "release_date": "2022-01-09",
+    "anilist_id": 132405,
+    "mal_id": 48736
   },
   {
     "title": "A Couple of Cuckoos",
@@ -7963,133 +8203,133 @@
             "number": 1,
             "name": "Cuckoos' Drama #1: Reincarnation in Another World",
             "air_date": "2022-04-28",
-            "status": -1
+            "status": 1
           },
           {
             "number": 2,
             "name": "Cuckoos' Drama #2: Another World's Skill",
             "air_date": "2022-05-06",
-            "status": -1
+            "status": 1
           },
           {
             "number": 3,
             "name": "Cuckoos' Drama #3: Other World Is the Best",
             "air_date": "2022-05-13",
-            "status": -1
+            "status": 1
           },
           {
             "number": 4,
             "name": "Cuckoos' Drama #4: Other World's People",
             "air_date": "2022-05-20",
-            "status": -1
+            "status": 1
           },
           {
             "number": 5,
             "name": "Cuckoos' Drama #5: Other World's Food",
             "air_date": "2022-05-27",
-            "status": -1
+            "status": 1
           },
           {
             "number": 6,
             "name": "Cuckoos' Drama #6: Other World's Comrade",
             "air_date": "2022-06-03",
-            "status": -1
+            "status": 1
           },
           {
             "number": 7,
             "name": "Cuckoos' Drama #7: King of the Other World",
             "air_date": "2022-06-10",
-            "status": -1
+            "status": 1
           },
           {
             "number": 8,
             "name": "Cuckoos' Drama #8: Guild of the Other World",
             "air_date": "2022-06-17",
-            "status": -1
+            "status": 1
           },
           {
             "number": 9,
             "name": "Cuckoos' Drama #9: Another World's Equipment!",
             "air_date": "2022-06-24",
-            "status": -1
+            "status": 1
           },
           {
             "number": 10,
             "name": "Cuckoos' Drama #10: Another World's Battle!",
             "air_date": "2022-07-01",
-            "status": -1
+            "status": 1
           },
           {
             "number": 11,
             "name": "Cuckoos' Drama #11: Another World's Bar!",
             "air_date": "2022-07-08",
-            "status": -1
+            "status": 1
           },
           {
             "number": 12,
             "name": "Cuckoos' Drama #12: Continue! Another World's Bar!",
             "air_date": "2022-07-22",
-            "status": -1
+            "status": 1
           },
           {
             "number": 13,
             "name": "Cuckoos' Drama #13: Another World's Inn!",
             "air_date": "2022-07-29",
-            "status": -1
+            "status": 1
           },
           {
             "number": 14,
             "name": "Cuckoos' Drama #14: Another World's Morning!",
             "air_date": "2022-08-05",
-            "status": -1
+            "status": 1
           },
           {
             "number": 15,
             "name": "Cuckoos' Drama #15: Another World's Date!",
             "air_date": "2022-08-12",
-            "status": -1
+            "status": 1
           },
           {
             "number": 16,
             "name": "Cuckoos' Drama #16: Another World's Succubus!",
             "air_date": "2022-08-19",
-            "status": -1
+            "status": 1
           },
           {
             "number": 17,
             "name": "Cuckoos' Drama #17: Another World's Hero!",
             "air_date": "2022-08-26",
-            "status": -1
+            "status": 1
           },
           {
             "number": 18,
             "name": "Cuckoos' Drama #18: Another World's Magic!",
             "air_date": "2022-09-02",
-            "status": -1
+            "status": 1
           },
           {
             "number": 19,
             "name": "Cuckoos' Drama #19: Another World's Dungeon!",
             "air_date": "2022-09-09",
-            "status": -1
+            "status": 1
           },
           {
             "number": 20,
             "name": "Cuckoos' Drama #20: The Villainess!",
             "air_date": "2022-09-16",
-            "status": -1
+            "status": 1
           },
           {
             "number": 21,
             "name": "Cuckoos' Drama #21: A Flag of Destruction!",
             "air_date": "2022-09-23",
-            "status": -1
+            "status": 1
           },
           {
             "number": 22,
             "name": "Cuckoos' Drama #22: Goodbye Another World!",
             "air_date": "2022-09-30",
-            "status": -1
+            "status": 1
           }
         ]
       },
@@ -8323,7 +8563,9 @@
       }
     ],
     "franchise": "A Couple of Cuckoos",
-    "release_date": "2022-04-24"
+    "release_date": "2022-04-24",
+    "anilist_id": 132052,
+    "mal_id": 48675
   },
   {
     "title": "Class President is a Maid!",
@@ -8340,13 +8582,13 @@
             "number": 1,
             "name": "LaLa Special",
             "air_date": "2010-07-23",
-            "status": -1
+            "status": 1
           },
           {
             "number": 2,
             "name": "It's an Extra",
             "air_date": "2011-05-11",
-            "status": -1
+            "status": 1
           }
         ]
       },
@@ -8514,7 +8756,9 @@
       }
     ],
     "franchise": "Class President is a Maid!",
-    "release_date": "2010-04-02"
+    "release_date": "2010-04-02",
+    "anilist_id": 7054,
+    "mal_id": 7054
   },
   {
     "title": "And you thought there is never a girl online?",
@@ -8603,7 +8847,9 @@
       }
     ],
     "franchise": "And you thought there is never a girl online?",
-    "release_date": "2016-04-07"
+    "release_date": "2016-04-07",
+    "anilist_id": 21290,
+    "mal_id": 31404
   },
   {
     "title": "Love, Chunibyo & Other Delusions!",
@@ -8620,205 +8866,205 @@
             "number": 1,
             "name": "Volleyball",
             "air_date": "2012-09-27",
-            "status": -1
+            "status": 1
           },
           {
             "number": 2,
             "name": "The Dawn of the Wicked Eye",
             "air_date": "2012-10-04",
-            "status": -1
+            "status": 1
           },
           {
             "number": 3,
             "name": "My Older Brother",
             "air_date": "2012-10-11",
-            "status": -1
+            "status": 1
           },
           {
             "number": 4,
             "name": "We'll Make Meat and Potato Stew!",
             "air_date": "2012-10-18",
-            "status": -1
+            "status": 1
           },
           {
             "number": 5,
             "name": "The Sleeping After School Beauty",
             "air_date": "2012-10-25",
-            "status": -1
+            "status": 1
           },
           {
             "number": 6,
             "name": "Dekomori vs. Nibutani",
             "air_date": "2012-11-01",
-            "status": -1
+            "status": 1
           },
           {
             "number": 7,
             "name": "Depth of Field: Love and Hate Theater Phase I",
             "air_date": "2012-12-19",
-            "status": -1
+            "status": 1
           },
           {
             "number": 8,
             "name": "Depth of Field: Love and Hate Theater Phase II",
             "air_date": "2013-01-16",
-            "status": -1
+            "status": 1
           },
           {
             "number": 9,
             "name": "Depth of Field: Love and Hate Theater Phase III",
             "air_date": "2013-02-20",
-            "status": -1
+            "status": 1
           },
           {
             "number": 10,
             "name": "Depth of Field: Love and Hate Theater Phase IV",
             "air_date": "2013-03-20",
-            "status": -1
+            "status": 1
           },
           {
             "number": 11,
             "name": "Depth of Field: Love and Hate Theater Phase V",
             "air_date": "2013-04-17",
-            "status": -1
+            "status": 1
           },
           {
             "number": 12,
             "name": "Depth of Field: Love and Hate Theater Last Phase",
             "air_date": "2013-05-15",
-            "status": -1
+            "status": 1
           },
           {
             "number": 13,
             "name": "Depth of Field: Love and Hate Theater Extra Phase",
             "air_date": "2013-06-19",
-            "status": -1
+            "status": 1
           },
           {
             "number": 14,
             "name": "Sparkling... Slapstick Noel",
             "air_date": "2013-06-19",
-            "status": -1
+            "status": 1
           },
           {
             "number": 15,
             "name": "Ren Lite 1: Kotatsu Head",
             "air_date": "2013-12-26",
-            "status": -1
+            "status": 1
           },
           {
             "number": 16,
             "name": "Lite 2: An Infection Called a Stye, a Hordeolum, or Perhaps Just Beauty",
             "air_date": "2014-01-16",
-            "status": -1
+            "status": 1
           },
           {
             "number": 17,
             "name": "Lite 3: Tyrant's Eye - Before the Storm",
             "air_date": "2014-01-30",
-            "status": -1
+            "status": 1
           },
           {
             "number": 18,
             "name": "Lite 4: Dekomori VS Nibutani 2",
             "air_date": "2014-02-13",
-            "status": -1
+            "status": 1
           },
           {
             "number": 19,
             "name": "Lite 5: My Brother 3 - Camp",
             "air_date": "2014-02-27",
-            "status": -1
+            "status": 1
           },
           {
             "number": 20,
             "name": "Lite 6: Summoning an Archangel",
             "air_date": "2014-03-13",
-            "status": -1
+            "status": 1
           },
           {
             "number": 21,
             "name": "My Brother 2 (Movie Special)",
             "air_date": "2014-02-19",
-            "status": -1
+            "status": 1
           },
           {
             "number": 22,
             "name": "Heated Table Series: Shiritori",
             "air_date": "2014-03-19",
-            "status": -1
+            "status": 1
           },
           {
             "number": 23,
             "name": "Heated Table Series: Bun Discussion",
             "air_date": "2014-04-16",
-            "status": -1
+            "status": 1
           },
           {
             "number": 24,
             "name": "Heated Table Series: Dekomori's Wife",
             "air_date": "2014-05-21",
-            "status": -1
+            "status": 1
           },
           {
             "number": 25,
             "name": "Heated Table Series: Nabe Lecture",
             "air_date": "2014-06-18",
-            "status": -1
+            "status": 1
           },
           {
             "number": 26,
             "name": "All Time All Places on the Beach",
             "air_date": "2014-07-16",
-            "status": -1
+            "status": 1
           },
           {
             "number": 27,
             "name": "A Wandering Chimera",
             "air_date": "2014-08-20",
-            "status": -1
+            "status": 1
           },
           {
             "number": 28,
             "name": "Supplementary Lesson in the Clubroom",
             "air_date": "2014-09-17",
-            "status": -1
+            "status": 1
           },
           {
             "number": 29,
             "name": "Apocalypse of the Wicked Lord Shingan Reborn",
             "air_date": "2014-09-17",
-            "status": -1
+            "status": 1
           },
           {
             "number": 30,
             "name": "Kotatsu Photo Session: ~A Parting… Dark Memoria~",
             "air_date": "2018-01-06",
-            "status": -1
+            "status": 1
           },
           {
             "number": 31,
             "name": "Kotatsu Photo Session: ~Mind Erosion… From An Alternate Dimension~",
             "air_date": "2018-01-06",
-            "status": -1
+            "status": 1
           },
           {
             "number": 32,
             "name": "Kotatsu Photo Session: ~A New… Photogenicer~",
             "air_date": "2018-01-06",
-            "status": -1
+            "status": 1
           },
           {
             "number": 35,
             "name": "Love, Chunibyo & Other Delusions!: Rikka Version Lite",
             "air_date": "2012-09-27",
-            "status": -1
+            "status": 1
           },
           {
             "number": 36,
             "name": "Episode 36",
             "air_date": "2013-12-26",
-            "status": -1
+            "status": 1
           }
         ]
       },
@@ -8980,7 +9226,9 @@
       }
     ],
     "franchise": "Love, Chunibyo & Other Delusions!",
-    "release_date": "2012-10-04"
+    "release_date": "2012-10-04",
+    "anilist_id": 14741,
+    "mal_id": 14741
   },
   {
     "title": "The Iceblade Sorcerer Shall Rule the World",
@@ -9069,7 +9317,9 @@
       }
     ],
     "franchise": "The Iceblade Sorcerer Shall Rule the World",
-    "release_date": "2023-01-06"
+    "release_date": "2023-01-06",
+    "anilist_id": 148116,
+    "mal_id": 51711
   },
   {
     "title": "Danganronpa: The Animation",
@@ -9086,19 +9336,19 @@
             "number": 1,
             "name": "Recap of Danganronpa 2",
             "air_date": "2016-07-07",
-            "status": -1
+            "status": 1
           },
           {
             "number": 2,
             "name": "The School of Hope and the Students of Despair",
             "air_date": "2016-09-29",
-            "status": -1
+            "status": 1
           },
           {
             "number": 3,
             "name": "Super Danganronpa 2.5: Nagito Komaeda and the Destroyer of World",
             "air_date": "2017-01-12",
-            "status": -1
+            "status": 1
           }
         ]
       },
@@ -9266,7 +9516,9 @@
       }
     ],
     "franchise": "Danganronpa",
-    "release_date": "2013-07-05"
+    "release_date": "2013-07-05",
+    "anilist_id": 16592,
+    "mal_id": 16592
   },
   {
     "title": "My Little Sister Can't Be This Cute",
@@ -9673,7 +9925,9 @@
       }
     ],
     "franchise": "My Little Sister Can't Be This Cute",
-    "release_date": "2010-10-03"
+    "release_date": "2010-10-03",
+    "anilist_id": 8769,
+    "mal_id": 8769
   },
   {
     "title": "The Dreaming Boy is a Realist",
@@ -9762,7 +10016,9 @@
       }
     ],
     "franchise": "The Dreaming Boy is a Realist",
-    "release_date": "2023-07-04"
+    "release_date": "2023-07-04",
+    "anilist_id": 157397,
+    "mal_id": 53632
   },
   {
     "title": "Prison School",
@@ -9779,7 +10035,7 @@
             "number": 1,
             "name": "Mad Wax",
             "air_date": "2016-03-04",
-            "status": -1
+            "status": 1
           }
         ]
       },
@@ -9863,7 +10119,9 @@
       }
     ],
     "franchise": "Prison School",
-    "release_date": "2015-07-11"
+    "release_date": "2015-07-11",
+    "anilist_id": 20807,
+    "mal_id": 30240
   },
   {
     "title": "Trinity Seven",
@@ -9880,7 +10138,7 @@
             "number": 1,
             "name": "Trinity Seven and Special Lesson",
             "air_date": "2015-03-25",
-            "status": -1
+            "status": 1
           }
         ]
       },
@@ -9964,7 +10222,9 @@
       }
     ],
     "franchise": "Trinity Seven",
-    "release_date": "2014-10-08"
+    "release_date": "2014-10-08",
+    "anilist_id": 20631,
+    "mal_id": 25157
   },
   {
     "title": "Akashic Records of Bastard Magic Instructor",
@@ -9981,67 +10241,67 @@
             "number": 1,
             "name": "Web Preview - Lecture II",
             "air_date": "2017-04-06",
-            "status": -1
+            "status": 1
           },
           {
             "number": 2,
             "name": "Web Preview - Lecture III",
             "air_date": "2017-04-13",
-            "status": -1
+            "status": 1
           },
           {
             "number": 3,
             "name": "Web Preview - Lecture IV",
             "air_date": "2017-04-20",
-            "status": -1
+            "status": 1
           },
           {
             "number": 4,
             "name": "Web Preview - Lecture V",
             "air_date": "2017-04-27",
-            "status": -1
+            "status": 1
           },
           {
             "number": 5,
             "name": "Web Preview - Lecture VI",
             "air_date": "2017-05-04",
-            "status": -1
+            "status": 1
           },
           {
             "number": 6,
             "name": "Web Preview - Lecture VII",
             "air_date": "2017-05-11",
-            "status": -1
+            "status": 1
           },
           {
             "number": 7,
             "name": "Web Preview - Lecture VIII",
             "air_date": "2017-05-18",
-            "status": -1
+            "status": 1
           },
           {
             "number": 8,
             "name": "Web Preview - Lecture IX",
             "air_date": "2017-05-25",
-            "status": -1
+            "status": 1
           },
           {
             "number": 9,
             "name": "Web Preview - Lecture X",
             "air_date": "2017-06-01",
-            "status": -1
+            "status": 1
           },
           {
             "number": 10,
             "name": "Web Preview - Lecture XI",
             "air_date": "2017-06-09",
-            "status": -1
+            "status": 1
           },
           {
             "number": 11,
             "name": "Web Preview - Lecture XII",
             "air_date": "2017-06-19",
-            "status": -1
+            "status": 1
           }
         ]
       },
@@ -10125,7 +10385,9 @@
       }
     ],
     "franchise": "Akashic Records of Bastard Magic Instructor",
-    "release_date": "2017-04-04"
+    "release_date": "2017-04-04",
+    "anilist_id": 21700,
+    "mal_id": 32951
   },
   {
     "title": "Masamune-kun's Revenge",
@@ -10142,7 +10404,7 @@
             "number": 1,
             "name": "Only For Our Mama / Tsunade Island, Whenever I Received It / Becoming Cinderella at 12 o'clock",
             "air_date": "2018-07-27",
-            "status": -1
+            "status": 1
           }
         ]
       },
@@ -10304,7 +10566,9 @@
       }
     ],
     "franchise": "Masamune-kun's Revenge",
-    "release_date": "2017-01-05"
+    "release_date": "2017-01-05",
+    "anilist_id": 21857,
+    "mal_id": 33487
   },
   {
     "title": "Shikimori's Not Just a Cutie",
@@ -10321,91 +10585,91 @@
             "number": 1,
             "name": "Episode 1 Audio Commentary Special",
             "air_date": "2022-05-22",
-            "status": -1
+            "status": 1
           },
           {
             "number": 2,
             "name": "Famous Scene Review",
             "air_date": "2022-06-12",
-            "status": -1
+            "status": 1
           },
           {
             "number": 3,
             "name": "Voice Drama 1",
             "air_date": "2022-06-29",
-            "status": -1
+            "status": 1
           },
           {
             "number": 4,
             "name": "Voice Drama 2",
             "air_date": "2022-06-29",
-            "status": -1
+            "status": 1
           },
           {
             "number": 5,
             "name": "Voice Drama 3",
             "air_date": "2022-06-29",
-            "status": -1
+            "status": 1
           },
           {
             "number": 6,
             "name": "Voice Drama 4",
             "air_date": "2022-06-29",
-            "status": -1
+            "status": 1
           },
           {
             "number": 7,
             "name": "Voice Drama 5",
             "air_date": "2022-06-29",
-            "status": -1
+            "status": 1
           },
           {
             "number": 8,
             "name": "Voice Drama 6",
             "air_date": "2022-06-29",
-            "status": -1
+            "status": 1
           },
           {
             "number": 9,
             "name": "Voice Drama 7",
             "air_date": "2022-06-29",
-            "status": -1
+            "status": 1
           },
           {
             "number": 10,
             "name": "Voice Drama 8",
             "air_date": "2022-07-29",
-            "status": -1
+            "status": 1
           },
           {
             "number": 11,
             "name": "Voice Drama 9",
             "air_date": "2022-07-29",
-            "status": -1
+            "status": 1
           },
           {
             "number": 12,
             "name": "Voice Drama 10",
             "air_date": "2022-07-29",
-            "status": -1
+            "status": 1
           },
           {
             "number": 13,
             "name": "Voice Drama 11",
             "air_date": "2022-07-29",
-            "status": -1
+            "status": 1
           },
           {
             "number": 14,
             "name": "Voice Drama 12",
             "air_date": "2022-07-29",
-            "status": -1
+            "status": 1
           },
           {
             "number": 15,
             "name": "Voice Drama 13",
             "air_date": "2022-07-29",
-            "status": -1
+            "status": 1
           }
         ]
       },
@@ -10489,7 +10753,9 @@
       }
     ],
     "franchise": "Shikimori's Not Just a Cutie",
-    "release_date": "2022-04-10"
+    "release_date": "2022-04-10",
+    "anilist_id": 127911,
+    "mal_id": 45613
   },
   {
     "title": "The Dangers in My Heart",
@@ -10506,7 +10772,7 @@
             "number": 1,
             "name": "Bonus Dangers",
             "air_date": "2023-12-10",
-            "status": -1
+            "status": 1
           }
         ]
       },
@@ -10668,7 +10934,9 @@
       }
     ],
     "franchise": "The Dangers in My Heart",
-    "release_date": "2023-04-02"
+    "release_date": "2023-04-02",
+    "anilist_id": 153152,
+    "mal_id": 52578
   },
   {
     "title": "More than a married couple, but not lovers.",
@@ -10757,7 +11025,9 @@
       }
     ],
     "franchise": "More than a married couple, but not lovers.",
-    "release_date": "2022-10-09"
+    "release_date": "2022-10-09",
+    "anilist_id": 141949,
+    "mal_id": 50425
   },
   {
     "title": "Golden Time",
@@ -10918,7 +11188,9 @@
       }
     ],
     "franchise": "Golden Time",
-    "release_date": "2013-10-03"
+    "release_date": "2013-10-03",
+    "anilist_id": 102755,
+    "mal_id": 36789
   },
   {
     "title": "Haganai: I don't have many friends",
@@ -10935,25 +11207,25 @@
             "number": 1,
             "name": "Black Hotpot Gives Girls a Bad Smell",
             "air_date": "2011-09-22",
-            "status": -1
+            "status": 1
           },
           {
             "number": 2,
             "name": "A Round-Robin Story's Ending Is Way Extreme",
             "air_date": "2012-09-26",
-            "status": -1
+            "status": 1
           },
           {
             "number": 3,
             "name": "Haganai Next Episode 12 Video Commentary",
             "air_date": "2013-08-27",
-            "status": -1
+            "status": 1
           },
           {
             "number": 4,
             "name": "Black Dragon: The Cries of the Damned",
             "air_date": "2013-08-27",
-            "status": -1
+            "status": 1
           }
         ]
       },
@@ -11132,13 +11404,13 @@
             "number": 1,
             "name": "Elf Yamada’s Love Song",
             "air_date": "2019-01-16",
-            "status": -1
+            "status": 1
           },
           {
             "number": 2,
             "name": "Sagiri Izumi’s First Kiss",
             "air_date": "2019-01-16",
-            "status": -1
+            "status": 1
           }
         ]
       },
@@ -11222,7 +11494,9 @@
       }
     ],
     "franchise": "Eromanga Sensei",
-    "release_date": "2017-04-09"
+    "release_date": "2017-04-09",
+    "anilist_id": 21685,
+    "mal_id": 32901
   },
   {
     "title": "SHIMONETA",
@@ -11239,7 +11513,7 @@
             "number": 1,
             "name": "Preair Special! Underground Curriculum!",
             "air_date": "2015-07-06",
-            "status": -1
+            "status": 1
           }
         ]
       },
@@ -11323,7 +11597,9 @@
       }
     ],
     "franchise": "SHIMONETA",
-    "release_date": "2015-07-04"
+    "release_date": "2015-07-04",
+    "anilist_id": 20910,
+    "mal_id": 29786
   },
   {
     "title": "The Genius Prince's Guide to Raising a Nation Out of Debt",
@@ -11340,55 +11616,55 @@
             "number": 1,
             "name": "Short Drama #1",
             "air_date": "2021-08-12",
-            "status": -1
+            "status": 1
           },
           {
             "number": 2,
             "name": "Short Drama #2",
             "air_date": "2021-09-21",
-            "status": -1
+            "status": 1
           },
           {
             "number": 3,
             "name": "Short Drama #3",
             "air_date": "2021-10-31",
-            "status": -1
+            "status": 1
           },
           {
             "number": 4,
             "name": "Short Drama #4",
             "air_date": "2021-11-23",
-            "status": -1
+            "status": 1
           },
           {
             "number": 5,
             "name": "Short Drama #5",
             "air_date": "2021-12-24",
-            "status": -1
+            "status": 1
           },
           {
             "number": 6,
             "name": "Short Drama #6",
             "air_date": "2022-03-30",
-            "status": -1
+            "status": 1
           },
           {
             "number": 7,
             "name": "Short Drama #7",
             "air_date": "2022-05-27",
-            "status": -1
+            "status": 1
           },
           {
             "number": 8,
             "name": "Short Drama #8",
             "air_date": "2022-06-29",
-            "status": -1
+            "status": 1
           },
           {
             "number": 9,
             "name": "Short Drama #9",
             "air_date": "2022-06-29",
-            "status": -1
+            "status": 1
           }
         ]
       },
@@ -11472,7 +11748,9 @@
       }
     ],
     "franchise": "The Genius Prince's Guide to Raising a Nation Out of Debt",
-    "release_date": "2022-01-11"
+    "release_date": "2022-01-11",
+    "anilist_id": 129190,
+    "mal_id": 47159
   },
   {
     "title": "Don't Toy with Me, Miss Nagatoro",
@@ -11489,73 +11767,73 @@
             "number": 1,
             "name": "Senpai, You Have to Man Up",
             "air_date": "2023-01-08",
-            "status": -1
+            "status": 1
           },
           {
             "number": 2,
             "name": "Hard Work Never Lies, Senpai",
             "air_date": "2023-01-15",
-            "status": -1
+            "status": 1
           },
           {
             "number": 3,
             "name": "Doesn't Something Smell Good, Senpai?",
             "air_date": "2023-01-22",
-            "status": -1
+            "status": 1
           },
           {
             "number": 4,
             "name": "Senpai, the Moon is Beautiful Tonight, Isn't She?",
             "air_date": "2023-01-29",
-            "status": -1
+            "status": 1
           },
           {
             "number": 5,
             "name": "Are You Awake, Senpai?",
             "air_date": "2023-02-05",
-            "status": -1
+            "status": 1
           },
           {
             "number": 6,
             "name": "It's Just the Two Of Us, Isn't It, Senpai?",
             "air_date": "2023-02-12",
-            "status": -1
+            "status": 1
           },
           {
             "number": 7,
             "name": "Senpai, More, Please!",
             "air_date": "2023-02-19",
-            "status": -1
+            "status": 1
           },
           {
             "number": 8,
             "name": "Senpai, Let's Prepare Some Food!",
             "air_date": "2023-02-26",
-            "status": -1
+            "status": 1
           },
           {
             "number": 9,
             "name": "You Lack Stamina, Senpai.",
             "air_date": "2023-03-05",
-            "status": -1
+            "status": 1
           },
           {
             "number": 10,
             "name": "Senpai! Please Pick Me Up!",
             "air_date": "2023-03-12",
-            "status": -1
+            "status": 1
           },
           {
             "number": 11,
             "name": "What Are You Doing In a Place Like This, Senpai?",
             "air_date": "2023-03-19",
-            "status": -1
+            "status": 1
           },
           {
             "number": 12,
             "name": "Senpai, This Is Your Reward!",
             "air_date": "2023-03-26",
-            "status": -1
+            "status": 1
           }
         ]
       },
@@ -11717,7 +11995,9 @@
       }
     ],
     "franchise": "Don't Toy with Me, Miss Nagatoro",
-    "release_date": "2021-04-11"
+    "release_date": "2021-04-11",
+    "anilist_id": 120697,
+    "mal_id": 42361
   },
   {
     "title": "Medaka Kuroiwa is Impervious to My Charms",
@@ -11811,7 +12091,9 @@
       }
     ],
     "franchise": "Medaka Kuroiwa is Impervious to My Charms",
-    "release_date": "2025-01-07"
+    "release_date": "2025-01-07",
+    "anilist_id": 177552,
+    "mal_id": 58853
   },
   {
     "title": "My Girlfriend is Shobitch",
@@ -11828,13 +12110,13 @@
             "number": 1,
             "name": "What If Akiho and Shinozaki Are Stuck in a Room Where They Can't Get Out Unless They Have S*x",
             "air_date": "2018-03-26",
-            "status": -1
+            "status": 1
           },
           {
             "number": 2,
             "name": "A King's Game That Won't End Until They Reach the Extremes",
             "air_date": "2018-03-26",
-            "status": -1
+            "status": 1
           }
         ]
       },
@@ -11906,7 +12188,9 @@
       }
     ],
     "franchise": "My Girlfriend is Shobitch",
-    "release_date": "2017-10-12"
+    "release_date": "2017-10-12",
+    "anilist_id": 98951,
+    "mal_id": 35712
   },
   {
     "title": "Bottom-Tier Character Tomozaki",
@@ -11923,13 +12207,13 @@
             "number": 1,
             "name": "Post-game equipment for girls is a little different than usual",
             "air_date": "2021-05-07",
-            "status": -1
+            "status": 1
           },
           {
             "number": 2,
             "name": "Most strange spell names have unknown origins",
             "air_date": "2021-06-02",
-            "status": -1
+            "status": 1
           }
         ]
       },
@@ -12097,7 +12381,9 @@
       }
     ],
     "franchise": "Bottom-Tier Character Tomozaki",
-    "release_date": "2021-01-08"
+    "release_date": "2021-01-08",
+    "anilist_id": 112443,
+    "mal_id": 40530
   },
   {
     "title": "Can a Boy and Girl Friendship Hold Up?",
@@ -12186,7 +12472,9 @@
       }
     ],
     "franchise": "Can a Boy and Girl Friendship Hold Up?",
-    "release_date": "2025-04-04"
+    "release_date": "2025-04-04",
+    "anilist_id": 153554,
+    "mal_id": 52709
   },
   {
     "title": "Hensuki: Are you willing to fall in love with a pervert, as long as she's a cutie?",
@@ -12203,73 +12491,73 @@
             "number": 1,
             "name": "Hensuki ▽ 01: Go!",
             "air_date": "2019-07-08",
-            "status": -1
+            "status": 1
           },
           {
             "number": 2,
             "name": "Hensuki ▽ 02: I Am",
             "air_date": "2019-07-15",
-            "status": -1
+            "status": 1
           },
           {
             "number": 3,
             "name": "Hensuki ▽ 03: Keiki Route",
             "air_date": "2019-07-22",
-            "status": -1
+            "status": 1
           },
           {
             "number": 4,
             "name": "Hensuki ▽ 04: Single Statue",
             "air_date": "2019-07-29",
-            "status": -1
+            "status": 1
           },
           {
             "number": 5,
             "name": "Hensuki ▽ 05: Theme of Sergeant Penguin",
             "air_date": "2019-08-05",
-            "status": -1
+            "status": 1
           },
           {
             "number": 6,
             "name": "Hensuki ▽ 06: The Catcher in the UFO",
             "air_date": "2019-08-12",
-            "status": -1
+            "status": 1
           },
           {
             "number": 7,
             "name": "Hensuki ▽ 07: Actually It's Pin-Ichi-kun",
             "air_date": "2019-08-19",
-            "status": -1
+            "status": 1
           },
           {
             "number": 8,
             "name": "Hensuki ▽ 08: Archive",
             "air_date": "2019-08-26",
-            "status": -1
+            "status": 1
           },
           {
             "number": 9,
             "name": "Hensuki ▽ 09: Projection Postulate",
             "air_date": "2019-09-02",
-            "status": -1
+            "status": 1
           },
           {
             "number": 10,
             "name": "Hensuki ▽ 10: I'll Be Waiting",
             "air_date": "2019-09-09",
-            "status": -1
+            "status": 1
           },
           {
             "number": 11,
             "name": "Hensuki ▽ 11: BIRTH",
             "air_date": "2019-09-16",
-            "status": -1
+            "status": 1
           },
           {
             "number": 12,
             "name": "Hensuki ▽ 12: GIKSTTAAPIBG",
             "air_date": "2019-09-23",
-            "status": -1
+            "status": 1
           }
         ]
       },
@@ -12353,7 +12641,9 @@
       }
     ],
     "franchise": "Hensuki",
-    "release_date": "2019-07-08"
+    "release_date": "2019-07-08",
+    "anilist_id": 107961,
+    "mal_id": 39326
   },
   {
     "title": "My Little Monster",
@@ -12370,19 +12660,19 @@
             "number": 1,
             "name": "Sitting Next to Gangster-kun",
             "air_date": "2013-08-12",
-            "status": -1
+            "status": 1
           },
           {
             "number": 2,
             "name": "\"Suki tte Ii na yo.\" \"Tonari no Kaibutsu-kun\" Goudou Shishakai Event Eizou",
             "air_date": "2012-12-26",
-            "status": -1
+            "status": 1
           },
           {
             "number": 3,
             "name": "Golbeza Asako no Secret Party",
             "air_date": "2013-05-22",
-            "status": -1
+            "status": 1
           }
         ]
       },
@@ -12472,7 +12762,9 @@
       }
     ],
     "franchise": "My Little Monster",
-    "release_date": "2012-10-02"
+    "release_date": "2012-10-02",
+    "anilist_id": 14227,
+    "mal_id": 14227
   },
   {
     "title": "Blue Box",
@@ -12651,7 +12943,9 @@
       }
     ],
     "franchise": "Blue Box",
-    "release_date": "2024-10-03"
+    "release_date": "2024-10-03",
+    "anilist_id": 170942,
+    "mal_id": 57181
   },
   {
     "title": "The Children of Shiunji Family",
@@ -12740,7 +13034,9 @@
       }
     ],
     "franchise": "The Children of Shiunji Family",
-    "release_date": "2025-04-08"
+    "release_date": "2025-04-08",
+    "anilist_id": 174802,
+    "mal_id": 58131
   },
   {
     "title": "Gamers!",
@@ -12829,7 +13125,9 @@
       }
     ],
     "franchise": "Gamers!",
-    "release_date": "2017-07-13"
+    "release_date": "2017-07-13",
+    "anilist_id": 97766,
+    "mal_id": 34280
   },
   {
     "title": "Redo of Healer",
@@ -12918,7 +13216,9 @@
       }
     ],
     "franchise": "Redo of Healer",
-    "release_date": "2021-01-13"
+    "release_date": "2021-01-13",
+    "anilist_id": 110344,
+    "mal_id": 37265
   },
   {
     "title": "Kiss x Sis OVA",
@@ -12943,829 +13243,829 @@
             "number": 1,
             "name": "Date Movie 1",
             "air_date": "2020-06-13",
-            "status": -1
+            "status": 1
           },
           {
             "number": 2,
             "name": "Date Movie 2",
             "air_date": "2020-06-16",
-            "status": -1
+            "status": 1
           },
           {
             "number": 3,
             "name": "Date Movie 3",
             "air_date": "2020-06-20",
-            "status": -1
+            "status": 1
           },
           {
             "number": 4,
             "name": "Date Movie 4",
             "air_date": "2020-06-23",
-            "status": -1
+            "status": 1
           },
           {
             "number": 5,
             "name": "Date Movie 5",
             "air_date": "2020-06-27",
-            "status": -1
+            "status": 1
           },
           {
             "number": 6,
             "name": "Date Movie 6",
             "air_date": "2020-06-30",
-            "status": -1
+            "status": 1
           },
           {
             "number": 7,
             "name": "Date Movie 7",
             "air_date": "2020-07-04",
-            "status": -1
+            "status": 1
           },
           {
             "number": 8,
             "name": "Date Movie 8",
             "air_date": "2020-07-07",
-            "status": -1
+            "status": 1
           },
           {
             "number": 9,
             "name": "Date Movie 9",
             "air_date": "2020-07-11",
-            "status": -1
+            "status": 1
           },
           {
             "number": 10,
             "name": "Date Movie 10",
             "air_date": "2020-07-14",
-            "status": -1
+            "status": 1
           },
           {
             "number": 11,
             "name": "Petit Rent-a-Girlfriend 1",
             "air_date": "2020-07-17",
-            "status": -1
+            "status": 1
           },
           {
             "number": 12,
             "name": "Date Movie 11",
             "air_date": "2020-07-18",
-            "status": -1
+            "status": 1
           },
           {
             "number": 13,
             "name": "Date Movie 12",
             "air_date": "2020-07-21",
-            "status": -1
+            "status": 1
           },
           {
             "number": 14,
             "name": "Petit Rent-a-Girlfriend 2",
             "air_date": "2020-07-23",
-            "status": -1
+            "status": 1
           },
           {
             "number": 15,
             "name": "Date Movie 13",
             "air_date": "2020-07-25",
-            "status": -1
+            "status": 1
           },
           {
             "number": 16,
             "name": "Date Movie 14",
             "air_date": "2020-07-28",
-            "status": -1
+            "status": 1
           },
           {
             "number": 17,
             "name": "Petit Rent-a-Girlfriend 3",
             "air_date": "2020-07-30",
-            "status": -1
+            "status": 1
           },
           {
             "number": 18,
             "name": "Date Movie 15",
             "air_date": "2020-08-01",
-            "status": -1
+            "status": 1
           },
           {
             "number": 19,
             "name": "Date Movie 16",
             "air_date": "2020-08-04",
-            "status": -1
+            "status": 1
           },
           {
             "number": 20,
             "name": "Petit Rent-a-Girlfriend 4",
             "air_date": "2020-08-06",
-            "status": -1
+            "status": 1
           },
           {
             "number": 21,
             "name": "Date Movie 17",
             "air_date": "2020-08-08",
-            "status": -1
+            "status": 1
           },
           {
             "number": 22,
             "name": "Date Movie 18",
             "air_date": "2020-08-11",
-            "status": -1
+            "status": 1
           },
           {
             "number": 23,
             "name": "Petit Rent-a-Girlfriend 5",
             "air_date": "2020-08-13",
-            "status": -1
+            "status": 1
           },
           {
             "number": 24,
             "name": "Date Movie 19",
             "air_date": "2020-08-15",
-            "status": -1
+            "status": 1
           },
           {
             "number": 25,
             "name": "Date Movie 20",
             "air_date": "2020-08-18",
-            "status": -1
+            "status": 1
           },
           {
             "number": 26,
             "name": "Petit Rent-a-Girlfriend 6",
             "air_date": "2020-08-20",
-            "status": -1
+            "status": 1
           },
           {
             "number": 27,
             "name": "Petit Rent-a-Girlfriend 13",
             "air_date": "2020-08-21",
-            "status": -1
+            "status": 1
           },
           {
             "number": 28,
             "name": "Date Movie 21",
             "air_date": "2020-08-22",
-            "status": -1
+            "status": 1
           },
           {
             "number": 29,
             "name": "Petit Rent-a-Girlfriend 14",
             "air_date": "2020-08-25",
-            "status": -1
+            "status": 1
           },
           {
             "number": 30,
             "name": "Date Movie 22",
             "air_date": "2020-08-25",
-            "status": -1
+            "status": 1
           },
           {
             "number": 31,
             "name": "Petit Rent-a-Girlfriend 7",
             "air_date": "2020-08-27",
-            "status": -1
+            "status": 1
           },
           {
             "number": 32,
             "name": "Date Movie 23",
             "air_date": "2020-08-29",
-            "status": -1
+            "status": 1
           },
           {
             "number": 33,
             "name": "Date Movie 24",
             "air_date": "2020-09-01",
-            "status": -1
+            "status": 1
           },
           {
             "number": 34,
             "name": "Petit Rent-a-Girlfriend 8",
             "air_date": "2020-09-03",
-            "status": -1
+            "status": 1
           },
           {
             "number": 35,
             "name": "Date Movie 25",
             "air_date": "2020-09-05",
-            "status": -1
+            "status": 1
           },
           {
             "number": 36,
             "name": "Petit Rent-a-Girlfriend 15",
             "air_date": "2020-09-09",
-            "status": -1
+            "status": 1
           },
           {
             "number": 37,
             "name": "Petit Rent-a-Girlfriend 9",
             "air_date": "2020-09-10",
-            "status": -1
+            "status": 1
           },
           {
             "number": 38,
             "name": "Date Movie 26",
             "air_date": "2020-09-12",
-            "status": -1
+            "status": 1
           },
           {
             "number": 39,
             "name": "Date Movie 27",
             "air_date": "2020-09-15",
-            "status": -1
+            "status": 1
           },
           {
             "number": 40,
             "name": "Date Movie 28",
             "air_date": "2020-09-19",
-            "status": -1
+            "status": 1
           },
           {
             "number": 41,
             "name": "Petit Rent-a-Girlfriend 10",
             "air_date": "2020-09-24",
-            "status": -1
+            "status": 1
           },
           {
             "number": 42,
             "name": "Date Movie 29",
             "air_date": "2020-09-26",
-            "status": -1
+            "status": 1
           },
           {
             "number": 43,
             "name": "Date Movie 30",
             "air_date": "2020-09-29",
-            "status": -1
+            "status": 1
           },
           {
             "number": 44,
             "name": "Petit Rent-a-Girlfriend 11",
             "air_date": "2020-10-01",
-            "status": -1
+            "status": 1
           },
           {
             "number": 45,
             "name": "Date Movie 31",
             "air_date": "2020-10-03",
-            "status": -1
+            "status": 1
           },
           {
             "number": 46,
             "name": "Date Movie 32",
             "air_date": "2020-10-06",
-            "status": -1
+            "status": 1
           },
           {
             "number": 47,
             "name": "Petit Rent-a-Girlfriend 12",
             "air_date": "2020-10-08",
-            "status": -1
+            "status": 1
           },
           {
             "number": 48,
             "name": "Date Movie 2 1",
             "air_date": "2022-05-25",
-            "status": -1
+            "status": 1
           },
           {
             "number": 49,
             "name": "Date Movie 2 2",
             "air_date": "2022-06-03",
-            "status": -1
+            "status": 1
           },
           {
             "number": 50,
             "name": "Petit Rent-a-Girlfriend 2 1",
             "air_date": "2022-07-05",
-            "status": -1
+            "status": 1
           },
           {
             "number": 51,
             "name": "Petit Rent-a-Girlfriend 2 2",
             "air_date": "2022-07-12",
-            "status": -1
+            "status": 1
           },
           {
             "number": 52,
             "name": "Petit Rent-a-Girlfriend 2 3",
             "air_date": "2022-07-19",
-            "status": -1
+            "status": 1
           },
           {
             "number": 53,
             "name": "Date Movie 2 3",
             "air_date": "2022-07-24",
-            "status": -1
+            "status": 1
           },
           {
             "number": 54,
             "name": "Petit Rent-a-Girlfriend 2 4",
             "air_date": "2022-07-26",
-            "status": -1
+            "status": 1
           },
           {
             "number": 55,
             "name": "Date Movie 2 4",
             "air_date": "2022-07-31",
-            "status": -1
+            "status": 1
           },
           {
             "number": 56,
             "name": "Petit Rent-a-Girlfriend 2 5",
             "air_date": "2022-08-02",
-            "status": -1
+            "status": 1
           },
           {
             "number": 57,
             "name": "Date Movie 2 5",
             "air_date": "2022-08-07",
-            "status": -1
+            "status": 1
           },
           {
             "number": 58,
             "name": "Petit Rent-a-Girlfriend 2 6",
             "air_date": "2022-08-09",
-            "status": -1
+            "status": 1
           },
           {
             "number": 59,
             "name": "Date Movie 2 6",
             "air_date": "2022-08-14",
-            "status": -1
+            "status": 1
           },
           {
             "number": 60,
             "name": "Petit Rent-a-Girlfriend 2 7",
             "air_date": "2022-08-16",
-            "status": -1
+            "status": 1
           },
           {
             "number": 61,
             "name": "Date Movie 2 7",
             "air_date": "2022-08-21",
-            "status": -1
+            "status": 1
           },
           {
             "number": 62,
             "name": "Petit Rent-a-Girlfriend 2 8",
             "air_date": "2022-08-23",
-            "status": -1
+            "status": 1
           },
           {
             "number": 63,
             "name": "Date Movie 2 8",
             "air_date": "2022-08-28",
-            "status": -1
+            "status": 1
           },
           {
             "number": 64,
             "name": "Petit Rent-a-Girlfriend 2 9",
             "air_date": "2022-08-30",
-            "status": -1
+            "status": 1
           },
           {
             "number": 65,
             "name": "Date Movie 2 9",
             "air_date": "2022-09-04",
-            "status": -1
+            "status": 1
           },
           {
             "number": 66,
             "name": "Petit Rent-a-Girlfriend 2 10",
             "air_date": "2022-09-06",
-            "status": -1
+            "status": 1
           },
           {
             "number": 67,
             "name": "Date Movie 2 10",
             "air_date": "2022-09-11",
-            "status": -1
+            "status": 1
           },
           {
             "number": 68,
             "name": "Petit Rent-a-Girlfriend 2 11",
             "air_date": "2022-09-13",
-            "status": -1
+            "status": 1
           },
           {
             "number": 69,
             "name": "Petit Rent-a-Girlfriend 2 12",
             "air_date": "2022-09-16",
-            "status": -1
+            "status": 1
           },
           {
             "number": 70,
             "name": "Date Movie 2 11",
             "air_date": "2022-09-18",
-            "status": -1
+            "status": 1
           },
           {
             "number": 71,
             "name": "Date Movie 2 12",
             "air_date": "2022-09-25",
-            "status": -1
+            "status": 1
           },
           {
             "number": 72,
             "name": "Kanokari Call 1",
             "air_date": "2022-10-26",
-            "status": -1
+            "status": 1
           },
           {
             "number": 73,
             "name": "Kanokari Call 2",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 74,
             "name": "Kanokari Call 3",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 75,
             "name": "Kanokari Call 4",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 76,
             "name": "Kanokari Call 5",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 77,
             "name": "Kanokari Call 6",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 78,
             "name": "Kanokari Call 7",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 79,
             "name": "Kanokari Call 8",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 80,
             "name": "Kanokari Call 9",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 81,
             "name": "Kanokari Call 10",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 82,
             "name": "Kanokari Call 11",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 83,
             "name": "Kanokari Call 12",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 84,
             "name": "Kanokari Call 13",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 85,
             "name": "Kanokari Call 14",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 86,
             "name": "Kanokari Call 15",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 87,
             "name": "Kanokari Call 16",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 88,
             "name": "Kanokari Call 17",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 89,
             "name": "Kanokari Call 18",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 90,
             "name": "Kanokari Call 19",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 91,
             "name": "Kanokari Call 20",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 92,
             "name": "Kanokari Call 21",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 93,
             "name": "Kanokari Call 22",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 94,
             "name": "Kanokari Call 23",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 95,
             "name": "Kanokari Call 24",
             "air_date": "2023-01-25",
-            "status": -1
+            "status": 1
           },
           {
             "number": 96,
             "name": "\"Rent-a-Girlfriend\" x \"Tenpuru\" Collaboration Mini Anime #1",
             "air_date": "2023-08-05",
-            "status": -1
+            "status": 1
           },
           {
             "number": 97,
             "name": "\"Rent-a-Girlfriend\" x \"Tenpuru\" Collaboration Mini Anime #2",
             "air_date": "2023-08-12",
-            "status": -1
+            "status": 1
           },
           {
             "number": 98,
             "name": "\"Rent-a-Girlfriend\" x \"Tenpuru\" Collaboration Mini Anime #3",
             "air_date": "2023-08-19",
-            "status": -1
+            "status": 1
           },
           {
             "number": 99,
             "name": "\"Rent-a-Girlfriend\" x \"Tenpuru\" Collaboration Mini Anime #4",
             "air_date": "2023-08-26",
-            "status": -1
+            "status": 1
           },
           {
             "number": 100,
             "name": "Petit Rent-a-Girlfriend 3 13",
             "air_date": "2023-09-09",
-            "status": -1
+            "status": 1
           },
           {
             "number": 101,
             "name": "Petit Rent-a-Girlfriend 3 1",
             "air_date": "2023-09-19",
-            "status": -1
+            "status": 1
           },
           {
             "number": 102,
             "name": "Petit Rent-a-Girlfriend 3 2",
             "air_date": "2023-09-20",
-            "status": -1
+            "status": 1
           },
           {
             "number": 103,
             "name": "Petit Rent-a-Girlfriend 3 3",
             "air_date": "2023-09-21",
-            "status": -1
+            "status": 1
           },
           {
             "number": 104,
             "name": "Petit Rent-a-Girlfriend 3 4",
             "air_date": "2023-09-22",
-            "status": -1
+            "status": 1
           },
           {
             "number": 105,
             "name": "Petit Rent-a-Girlfriend 3 14",
             "air_date": "2023-09-23",
-            "status": -1
+            "status": 1
           },
           {
             "number": 106,
             "name": "Petit Rent-a-Girlfriend 3 5",
             "air_date": "2023-09-24",
-            "status": -1
+            "status": 1
           },
           {
             "number": 107,
             "name": "Petit Rent-a-Girlfriend 3 6",
             "air_date": "2023-09-25",
-            "status": -1
+            "status": 1
           },
           {
             "number": 108,
             "name": "Petit Rent-a-Girlfriend 3 7",
             "air_date": "2023-09-26",
-            "status": -1
+            "status": 1
           },
           {
             "number": 109,
             "name": "Petit Rent-a-Girlfriend 3 8",
             "air_date": "2023-09-27",
-            "status": -1
+            "status": 1
           },
           {
             "number": 110,
             "name": "Petit Rent-a-Girlfriend 3 9",
             "air_date": "2023-09-28",
-            "status": -1
+            "status": 1
           },
           {
             "number": 111,
             "name": "Petit Rent-a-Girlfriend 3 10",
             "air_date": "2023-09-29",
-            "status": -1
+            "status": 1
           },
           {
             "number": 112,
             "name": "Petit Rent-a-Girlfriend 3 11",
             "air_date": "2023-09-29",
-            "status": -1
+            "status": 1
           },
           {
             "number": 113,
             "name": "Petit Rent-a-Girlfriend 3 12",
             "air_date": "2023-10-11",
-            "status": -1
+            "status": 1
           },
           {
             "number": 114,
             "name": "Kanokari Call 2 1",
             "air_date": "2023-11-29",
-            "status": -1
+            "status": 1
           },
           {
             "number": 115,
             "name": "Kanokari Call 2 2",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 116,
             "name": "Kanokari Call 2 3",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 117,
             "name": "Kanokari Call 2 4",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 118,
             "name": "Kanokari Call 2 5",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 119,
             "name": "Kanokari Call 2 6",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 120,
             "name": "Kanokari Call 2 7",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 121,
             "name": "Kanokari Call 2 8",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 122,
             "name": "Kanokari Call 2 9",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 123,
             "name": "Kanokari Call 2 10",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 124,
             "name": "Kanokari Call 2 11",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 125,
             "name": "Kanokari Call 2 12",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 126,
             "name": "Kanokari Call 2 13",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 127,
             "name": "Kanokari Call 2 14",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 128,
             "name": "Kanokari Call 2 15",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 129,
             "name": "Kanokari Call 2 16",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 130,
             "name": "Kanokari Call 2 17",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 131,
             "name": "Kanokari Call 2 18",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 132,
             "name": "Kanokari Call 2 19",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 133,
             "name": "Kanokari Call 2 20",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 134,
             "name": "Kanokari Call 2 21",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 135,
             "name": "Kanokari Call 2 22",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 136,
             "name": "Kanokari Call 2 23",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 137,
             "name": "Kanokari Call 2 24",
             "air_date": null,
-            "status": -1
+            "status": 1
           },
           {
             "number": 138,
             "name": "Kanokari Call 2 25",
             "air_date": "2023-12-20",
-            "status": -1
+            "status": 1
           }
         ]
       },
@@ -14077,7 +14377,9 @@
       }
     ],
     "franchise": "Rent-a-Girlfriend",
-    "release_date": "2020-07-11"
+    "release_date": "2020-07-11",
+    "anilist_id": 113813,
+    "mal_id": 40839
   },
   {
     "title": "Undefeated Bahamut Chronicles",
@@ -14166,7 +14468,9 @@
         ]
       }
     ],
-    "release_date": "2016-01-11"
+    "release_date": "2016-01-11",
+    "anilist_id": 21188,
+    "mal_id": 30749
   },
   {
     "title": "Plastic Memories",
@@ -14261,7 +14565,9 @@
         ]
       }
     ],
-    "release_date": "2015-04-05"
+    "release_date": "2015-04-05",
+    "anilist_id": 20872,
+    "mal_id": 27775
   },
   {
     "title": "Tonikaku Kawaii",
@@ -14548,7 +14854,9 @@
         ]
       }
     ],
-    "release_date": "2020-10-03"
+    "release_date": "2020-10-03",
+    "anilist_id": 116267,
+    "mal_id": 41389
   },
   {
     "title": "Chivalry of a Failed Knight",
@@ -14637,7 +14945,9 @@
         ]
       }
     ],
-    "release_date": "2015-10-03"
+    "release_date": "2015-10-03",
+    "anilist_id": 21092,
+    "mal_id": 30296
   },
   {
     "title": "Tonikawa: Over the Moon for You",
@@ -14924,7 +15234,9 @@
         ]
       }
     ],
-    "release_date": "2020-10-03"
+    "release_date": "2020-10-03",
+    "anilist_id": 116267,
+    "mal_id": 41389
   },
   {
     "title": "Studio Apartment, Good Lighting, Angel Included",
@@ -15013,7 +15325,9 @@
         ]
       }
     ],
-    "release_date": "2024-04-06"
+    "release_date": "2024-04-06",
+    "anilist_id": 169927,
+    "mal_id": 56838
   },
   {
     "title": "Rascal Does Not Dream of Santa Claus",
@@ -15108,6 +15422,8 @@
         ]
       }
     ],
-    "release_date": "2025-07-05"
+    "release_date": "2025-07-05",
+    "anilist_id": 171046,
+    "mal_id": 57433
   }
 ]
