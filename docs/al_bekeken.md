@@ -1,4 +1,3 @@
-# Al Bekeken Series/Films
 
 - Rascal Does Not Dream
 - Horimiya

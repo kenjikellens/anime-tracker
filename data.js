@@ -1,5 +1,6 @@
 const animeData = [
   // --- Te Bekijken (Status -1) ---
+  { title: "The Quintessential Quintuplets", status: -1, rating: -1, season: 1, episode: 1 },
   { title: "Your Lie in April", status: -1, rating: 0, season: 1, episode: 1 },
   { title: "Orange", status: -1, rating: 0, season: 1, episode: 1 },
   { title: "A Silent Voice", status: -1, rating: 0, season: 1, episode: 1 },
