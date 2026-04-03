@@ -36,6 +36,186 @@ window.Modals = (function() {
     }
 
     /**
+     * Bepaalt de afgeleide groepsstatus op basis van de onderliggende items.
+     *
+     * @param {Object} group
+     * @returns {number}
+     */
+    function getGroupOverallStatus(group) {
+        const statuses = Array.isArray(group?.items)
+            ? group.items.map((item) => window.StatusCalculator.getAnimeStatus(item))
+            : [];
+
+        return statuses.includes(0)
+            ? 0
+            : statuses.includes(-1)
+                ? -1
+                : 1;
+    }
+
+    /**
+     * Bepaalt de zichtbare groepsrating op basis van de itemratings.
+     *
+     * @param {Object} group
+     * @returns {number}
+     */
+    function getGroupRating(group) {
+        const ratings = Array.isArray(group?.items)
+            ? group.items
+                .map((item) => Number(item?.rating))
+                .filter((rating) => Number.isFinite(rating) && rating >= 0)
+            : [];
+
+        return ratings.length > 0 ? Math.max(...ratings) : -1;
+    }
+
+    /**
+     * Kiest het item dat de zichtbare groepsrating vertegenwoordigt.
+     *
+     * @param {Object} group
+     * @param {number} groupRating
+     * @returns {Object|null}
+     */
+    function getRatingTargetItem(group, groupRating) {
+        if (!Array.isArray(group?.items) || group.items.length === 0) {
+            return null;
+        }
+
+        return group.items.find((item) => Number(item?.rating) === groupRating) || group.items[0];
+    }
+
+    /**
+     * Rondt een ingevoerde rating veilig af naar 0.0 - 10.0.
+     *
+     * @param {string} rawValue
+     * @param {number} fallback
+     * @returns {number}
+     */
+    function normalizeInlineRating(rawValue, fallback) {
+        const normalized = String(rawValue || '').trim().replace(',', '.');
+        if (!normalized) {
+            return fallback;
+        }
+
+        const parsed = Number.parseFloat(normalized);
+        if (!Number.isFinite(parsed)) {
+            return fallback;
+        }
+
+        return Math.round(Math.min(10, Math.max(0, parsed)) * 10) / 10;
+    }
+
+    /**
+     * Bouwt de ratingbadge in de detailmodal op, inclusief inline edit.
+     *
+     * @param {Object} group
+     * @returns {HTMLButtonElement}
+     */
+    function buildInlineRatingBadge(group) {
+        const currentRating = getGroupRating(group);
+        const ratingTarget = getRatingTargetItem(group, currentRating);
+        const ratingBadge = document.createElement('button');
+        const isRated = currentRating > -1;
+        const ratingClass = UIHelpers.getRatingClass(currentRating);
+
+        ratingBadge.type = 'button';
+        ratingBadge.className = `rating-badge modal-rating-btn ${ratingClass}`;
+        ratingBadge.title = 'Pas rating aan';
+        ratingBadge.innerHTML = `<i class="fas fa-star" style="font-size:0.8em;"></i> ${isRated ? currentRating.toFixed(1) : '-'}`;
+
+        ratingBadge.addEventListener('click', (event) => {
+            event.stopPropagation();
+
+            if (!ratingTarget || ratingBadge.dataset.editing === 'true') {
+                return;
+            }
+
+            ratingBadge.dataset.editing = 'true';
+            ratingBadge.classList.add('is-editing');
+            ratingBadge.innerHTML = '<i class="fas fa-star" style="font-size:0.8em;"></i>';
+
+            const input = document.createElement('input');
+            input.type = 'number';
+            input.min = '0';
+            input.max = '10';
+            input.step = '0.1';
+            input.inputMode = 'decimal';
+            input.className = 'rating-inline-input';
+            input.placeholder = '-';
+            input.value = isRated ? currentRating.toFixed(1) : '';
+            ratingBadge.appendChild(input);
+
+            let finished = false;
+
+            const finalize = (shouldPersist) => {
+                if (finished) {
+                    return;
+                }
+                finished = true;
+
+                document.removeEventListener('pointerdown', handleOutsidePointer, true);
+                input.removeEventListener('blur', handleBlur);
+                input.removeEventListener('keydown', handleKeyDown);
+
+                if (!shouldPersist) {
+                    showDetailModal(group);
+                    return;
+                }
+
+                ratingTarget.rating = normalizeInlineRating(input.value, ratingTarget.rating);
+                Promise.resolve(save()).finally(() => {
+                    render();
+                    window.setTimeout(() => {
+                        const detailOverlay = getModalElement('detail-overlay');
+                        if (window.currentlyShownItem && detailOverlay && !detailOverlay.classList.contains('hidden')) {
+                            showDetailModal(group);
+                        }
+                    }, 0);
+                });
+            };
+
+            const handleOutsidePointer = (pointerEvent) => {
+                if (!ratingBadge.contains(pointerEvent.target)) {
+                    finalize(true);
+                }
+            };
+
+            const handleBlur = () => {
+                window.setTimeout(() => {
+                    if (!ratingBadge.contains(document.activeElement)) {
+                        finalize(true);
+                    }
+                }, 0);
+            };
+
+            const handleKeyDown = (keyboardEvent) => {
+                if (keyboardEvent.key === 'Enter') {
+                    keyboardEvent.preventDefault();
+                    finalize(true);
+                    return;
+                }
+
+                if (keyboardEvent.key === 'Escape') {
+                    keyboardEvent.preventDefault();
+                    finalize(false);
+                }
+            };
+
+            input.addEventListener('blur', handleBlur);
+            input.addEventListener('keydown', handleKeyDown);
+
+            window.setTimeout(() => {
+                document.addEventListener('pointerdown', handleOutsidePointer, true);
+            }, 0);
+
+            input.focus();
+            input.select();
+        });
+
+        return ratingBadge;
+    }
+
+    /**
      * Opent de beoordelingsmodal voor het gegeven anime-item.
      *
      * @param {Object} item
@@ -116,7 +296,7 @@ window.Modals = (function() {
             titleElement.innerHTML = `<span>${group.title}</span>`;
             header.appendChild(titleElement);
 
-            const overallStatus = group._computedStatus !== undefined ? group._computedStatus : -1;
+            const overallStatus = getGroupOverallStatus(group);
             let playItem = group.items[0];
             let playSeason = 1;
             let playEpisode = 1;
@@ -158,16 +338,7 @@ window.Modals = (function() {
                 actionContainer.appendChild(quickPlay);
             }
 
-            const ratingBadge = document.createElement('div');
-            const isRated = group.rating !== undefined && group.rating > -1;
-            const ratingClass = UIHelpers.getRatingClass(group.rating);
-            ratingBadge.className = `rating-badge ${ratingClass}`;
-            ratingBadge.style.cursor = 'pointer';
-            ratingBadge.innerHTML = `<i class="fas fa-star" style="font-size:0.8em;"></i> ${isRated ? group.rating.toFixed(1) : '-'}`;
-            ratingBadge.addEventListener('click', (event) => {
-                event.stopPropagation();
-                showRatingModal(group.items[0], false);
-            });
+            const ratingBadge = buildInlineRatingBadge(group);
             actionContainer.appendChild(ratingBadge);
             header.appendChild(actionContainer);
             main.appendChild(header);

@@ -864,6 +864,11 @@ function initEventListeners() {
     });
 
     document.addEventListener('click', () => {
+        if (window.Components?.closeGlobalStatusMenu) {
+            window.Components.closeGlobalStatusMenu();
+            return;
+        }
+
         const globalMenu = document.getElementById('global-status-menu');
         if (globalMenu) {
             globalMenu.style.display = 'none';

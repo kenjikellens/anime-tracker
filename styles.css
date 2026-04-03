@@ -770,47 +770,84 @@ body {
 .btn-play { background: var(--white); color: var(--bg); border-color: var(--white); }
 .btn-play:hover { opacity: 0.8; }
 
-/* Status-dropdown container: relatief gepositioneerd zodat het menu absoluut uitklapt */
-.status-dropdown { position: relative; }
-.status-current {
-    background: var(--surface-2); color: var(--text); border: var(--border-width, 1px) solid var(--border);
-    padding: 8px 12px; border-radius: 4px; font-size: 13px; font-weight: 500;
-    font-family: 'Outfit', sans-serif; cursor: pointer;
-    display: flex; align-items: center; gap: 6px;
-    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+/* ==========================================================================
+   STATUS DROPDOWN
+   Enige bron van waarheid voor alle statusknoppen en het globale portal-menu.
+   ========================================================================== */
+
+.status-dropdown {
+    position: relative;
+    display: inline-flex;
+    z-index: 50;
 }
-.status-current img { width: 14px; height: 14px; }
-.status-current:hover { border-color: var(--text-muted); }
-.status-option img { width: 14px; height: 14px; }
+
+.status-current {
+    background: var(--surface-2);
+    border: var(--border-width, 1px) solid var(--border);
+    color: var(--text);
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Outfit', sans-serif;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    min-width: 132px;
+    min-height: 42px;
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.status-current:hover {
+    background: var(--surface);
+    border-color: var(--text-muted);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.status-current img,
+.status-option img {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+}
 
 [data-theme="dark"] .status-current img,
 [data-theme="dark"] .status-option img,
 [data-theme="midnight"] .status-current img,
-[data-theme="midnight"] .status-option img { filter: invert(1); }
-
-/* Uitklapmenu van de status-dropdown: absoluut gepositioneerd onder de knop */
-/* ==========================================================================
-   GLOBAL DROPDOWN PORTAL (Status Menu)
-   ========================================================================== */
-
-/* The actual floating menu portal (#global-status-menu) */
-.status-menu {
-    display: none; 
-    position: fixed; /* viewport-relative */
-    background: var(--surface); 
-    border: var(--border-width, 1px) solid var(--border); 
-    border-radius: 8px;
-    z-index: 200000 !important; /* Supreme stacking priority */
-    min-width: 170px;
-    box-shadow: 0 12px 50px rgba(0,0,0,0.5);
-    padding: 8px 0;
-    overflow: hidden;
-    flex-direction: column;
+[data-theme="midnight"] .status-option img {
+    filter: invert(1);
 }
 
-/* Show when open state is managed by JS */
-.status-dropdown.open .status-menu { 
-    display: flex; 
+.status-menu {
+    display: none;
+    position: fixed;
+    background: rgba(40, 40, 40, 0.92);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    z-index: 200000 !important;
+    min-width: 190px;
+    box-shadow: 0 12px 50px rgba(0,0,0,0.5);
+    padding: 8px;
+    overflow: hidden;
+    flex-direction: column;
+    transform-origin: top left;
+}
+
+[data-theme="light"] .status-menu {
+    background: rgba(255, 255, 255, 0.92);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.status-dropdown.open .status-menu {
+    display: flex;
     animation: menuFadeIn 0.15s ease-out;
 }
 
@@ -819,28 +856,47 @@ body {
     to { opacity: 1; }
 }
 
-/* Individual list options inside the dropdown */
 .status-option {
-    padding: 12px 16px;
+    padding: 12px 14px;
     font-size: 14px;
+    font-weight: 500;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     font-family: 'Outfit', sans-serif;
     color: var(--text);
-    transition: background 0.2s, color 0.2s;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    margin-bottom: 2px;
 }
 
-.status-option:hover { 
-    background: var(--surface-2); 
-    color: var(--white);
+.status-option:last-child {
+    margin-bottom: 0;
+}
+
+.status-option:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text);
+}
+
+[data-theme="light"] .status-option:hover {
+    background: rgba(0, 0, 0, 0.05);
 }
 
 .status-option i {
     width: 16px;
     text-align: center;
     opacity: 0.8;
+}
+
+.status-menu::-webkit-scrollbar {
+    width: 4px;
+}
+
+.status-menu::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
 }
 
 
@@ -1139,31 +1195,47 @@ body {
     padding: 30px; border-radius: 14px; width: 380px; max-width: 90%;
 }
 .modal-detail {
-    width: 960px; max-width: 95%; max-height: 90vh; display: flex; flex-direction: column;
+    width: 50vw;
+    max-width: 50vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
     padding: 0 !important; /* Managed by internal columns */
     overflow: hidden;
+    border-radius: 28px;
 }
 
 /* New Split-View Layout for Detail Modal */
 .modal-body-layout {
     display: grid;
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: minmax(220px, 32%) minmax(0, 1fr);
     height: 100%;
     overflow: hidden;
 }
 
 .modal-sidebar {
-    background: var(--surface-2);
+    background: var(--surface);
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    border-radius: 0;
+    padding: 20px;
 }
 
 .modal-sidebar-poster {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
     display: block;
+    border-radius: 20px !important;
+    clip-path: inset(0 round 20px);
+    object-fit: contain;
+    background: transparent;
+    border: none;
+    overflow: visible;
 }
 
 .modal-main {
@@ -1191,6 +1263,7 @@ body {
     }
     .modal-sidebar {
         height: 250px;
+        padding: 18px 18px 0;
     }
     .modal-main {
         overflow-y: visible;
@@ -1221,7 +1294,12 @@ body {
 }
 
 /* Normalizing the 3 modal action buttons to have identical height and style */
-.modal-global-actions .status-dropdown,
+.modal-global-actions .status-dropdown {
+    display: inline-flex !important;
+    margin: 0 !important;
+}
+
+.modal-global-actions .status-current,
 .modal-global-actions .modal-play-btn,
 .modal-global-actions .rating-badge {
     height: 44px !important;
@@ -1239,18 +1317,92 @@ body {
     white-space: nowrap !important;
 }
 
-.modal-global-actions .status-dropdown .status-dropdown-trigger {
-    background: none !important;
-    border: none !important;
-    padding: 0 !important;
-    height: 100% !important;
-    box-shadow: none !important;
+.modal-global-actions .status-current:hover,
+.modal-global-actions .modal-play-btn:hover,
+.modal-global-actions .rating-badge:hover {
+    transform: none;
+    border-color: var(--text-muted) !important;
+    filter: brightness(0.92) saturate(1.05);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.24) !important;
+}
+
+.modal-global-actions .status-current:focus-visible,
+.modal-global-actions .modal-play-btn:focus-visible,
+.modal-global-actions .rating-badge:focus-visible,
+.modal-global-actions .rating-inline-input:focus-visible {
+    outline: none;
+    border-color: #FFCC00 !important;
+    box-shadow: 0 0 0 2px rgba(255, 204, 0, 0.14), 0 8px 18px rgba(0,0,0,0.28) !important;
+}
+
+.modal-global-actions .status-dropdown .status-current {
+    width: auto !important;
+    min-width: 0 !important;
+    background: var(--surface-2) !important;
+}
+
+.modal-global-actions .modal-play-btn {
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.modal-global-actions .rating-badge {
+    cursor: pointer !important;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.modal-global-actions .rating-badge.is-editing {
+    padding: 0 12px !important;
+    gap: 8px;
+}
+
+.modal-global-actions .rating-inline-input {
+    width: 58px;
+    border: none;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: center;
+    outline: none;
+}
+
+.modal-global-actions .rating-inline-input::-webkit-outer-spin-button,
+.modal-global-actions .rating-inline-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.modal-global-actions .rating-inline-input[type="number"] {
+    -moz-appearance: textfield;
 }
 .btn-close {
-    background: none; border: none; color: var(--text-muted);
-    font-size: 22px; cursor: pointer; padding: 0 4px;
+    background: transparent;
+    border: 1px solid #e14b4b;
+    color: #e14b4b;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+    border-radius: 8px;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
 }
-.btn-close:hover { color: var(--text); }
+
+.btn-close:hover,
+.btn-close:focus-visible {
+    background: #e14b4b;
+    color: #000000;
+    border-color: #e14b4b;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(225, 75, 75, 0.18);
+}
 #detail-content {
     overflow-y: auto; 
     flex: 1;
@@ -1349,11 +1501,12 @@ footer {
     }
 
     .modal-detail {
-        width: 900px;
+        width: min(50vw, 900px);
+        max-width: min(50vw, 900px);
     }
 
     .modal-body-layout {
-        grid-template-columns: 240px 1fr;
+        grid-template-columns: minmax(210px, 30%) minmax(0, 1fr);
     }
 
     .modal-main {
@@ -1505,13 +1658,23 @@ footer {
         gap: 8px;
     }
 
-    .modal-global-actions .status-dropdown,
+    .modal-global-actions .status-current,
     .modal-global-actions .modal-play-btn,
     .modal-global-actions .rating-badge {
         min-height: 40px !important;
         height: 40px !important;
         padding: 0 14px !important;
         font-size: 13px !important;
+    }
+
+    .status-current {
+        padding: 9px 14px;
+        min-width: 124px;
+        font-size: 13px;
+    }
+
+    .status-menu {
+        min-width: 180px;
     }
 
     .modal-content {

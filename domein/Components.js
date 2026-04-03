@@ -16,6 +16,37 @@ window.Components = (function() {
     }
 
     /**
+     * Sluit het globale dropdown-menu en ruimt de gekoppelde open-state op.
+     *
+     * @returns {void}
+     */
+    function closeGlobalStatusMenu() {
+        const menu = getGlobalStatusMenu();
+        if (!menu) {
+            return;
+        }
+
+        menu.style.display = 'none';
+        menu.innerHTML = '';
+
+        if (menu._ownerButton instanceof HTMLElement) {
+            menu._ownerButton.setAttribute('aria-expanded', 'false');
+        }
+
+        if (menu._ownerDropdown instanceof HTMLElement) {
+            menu._ownerDropdown.classList.remove('open');
+        }
+
+        if (menu._ownerCard instanceof HTMLElement) {
+            menu._ownerCard.classList.remove('has-open-dropdown');
+        }
+
+        menu._ownerButton = null;
+        menu._ownerDropdown = null;
+        menu._ownerCard = null;
+    }
+
+    /**
      * Positioneert het globale menu ten opzichte van een ankerknop.
      *
      * @param {HTMLElement} menu
@@ -70,7 +101,7 @@ window.Components = (function() {
         const div = document.createElement('div');
         div.className = 'status-dropdown';
         div.innerHTML = `
-            <button class="status-current" title="${UIHelpers.statusLabel(currentStatus)}">
+            <button class="status-current" title="${UIHelpers.statusLabel(currentStatus)}" aria-haspopup="true" aria-expanded="false" type="button">
                 <span style="display:flex; align-items:center; gap:8px;">
                     <i class="${UIHelpers.statusIcon(currentStatus)}"></i> <span>${UIHelpers.statusLabel(currentStatus)}</span>
                 </span>
@@ -80,11 +111,17 @@ window.Components = (function() {
 
         const button = div.querySelector('.status-current');
         button.addEventListener('click', (event) => {
-            event.stopImmediatePropagation();
+            event.stopPropagation();
             event.preventDefault();
 
             const globalMenu = getGlobalStatusMenu();
             if (!globalMenu) {
+                return;
+            }
+
+            const isSameButtonOpen = globalMenu.style.display === 'flex' && globalMenu._ownerButton === button;
+            closeGlobalStatusMenu();
+            if (isSameButtonOpen) {
                 return;
             }
 
@@ -94,14 +131,24 @@ window.Components = (function() {
                 <div class="status-option" data-val="1"><i class="fas fa-check" style="opacity:0.7;"></i> Bekeken</div>
             `;
 
+            const ownerCard = div.closest('.anime-card');
+            if (ownerCard) {
+                ownerCard.classList.add('has-open-dropdown');
+            }
+
+            div.classList.add('open');
+            button.setAttribute('aria-expanded', 'true');
+            globalMenu._ownerButton = button;
+            globalMenu._ownerDropdown = div;
+            globalMenu._ownerCard = ownerCard;
             globalMenu.style.display = 'flex';
             positionGlobalMenu(globalMenu, button, 130);
 
             globalMenu.querySelectorAll('.status-option').forEach((option) => {
                 option.onclick = (clickEvent) => {
                     clickEvent.stopPropagation();
+                    closeGlobalStatusMenu();
                     onChange(Number.parseInt(option.dataset.val, 10));
-                    globalMenu.style.display = 'none';
                 };
             });
         });
@@ -124,7 +171,7 @@ window.Components = (function() {
         button.disabled = !item?.tmdb_id;
 
         button.addEventListener('click', (event) => {
-            event.stopImmediatePropagation();
+            event.stopPropagation();
             event.preventDefault();
 
             if (!item?.tmdb_id) {
@@ -135,6 +182,8 @@ window.Components = (function() {
             if (!globalMenu) {
                 return;
             }
+
+            closeGlobalStatusMenu();
 
             globalMenu.innerHTML = Object.entries(EMBED_SOURCES).map(([key, source]) => `
                 <div class="status-option" data-key="${key}">
@@ -155,7 +204,7 @@ window.Components = (function() {
                     if (url) {
                         window.open(url, '_blank', 'noopener,noreferrer');
                     }
-                    globalMenu.style.display = 'none';
+                    closeGlobalStatusMenu();
                 };
             });
         });
@@ -407,6 +456,7 @@ window.Components = (function() {
     }
 
     return {
+        closeGlobalStatusMenu,
         buildStatusDropdown,
         buildPlayDropdown,
         buildCard,
