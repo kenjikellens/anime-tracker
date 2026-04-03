@@ -14,6 +14,26 @@ async function init() {
 
         const res = await fetch('data.json');
         let remoteData = await res.json();
+
+        // [MIGRATION] Flatten nested franchise structure if detected
+        if (Array.isArray(remoteData) && remoteData.length > 0 && remoteData[0].items && remoteData[0].name) {
+            console.log('[Migration] Detecting nested franchise structure, flattening...');
+            const flatData = [];
+            remoteData.forEach(fr => {
+                const frItems = Array.isArray(fr.items) ? fr.items : [];
+                frItems.forEach(it => {
+                    it.franchise = fr.name;
+                    // Copy over extra fields from franchise object (e.g. from user edits) if item lacks them
+                    ['poster_path', 'tmdb_id', 'anilist_id', 'mal_id', 'description', 'release_date', 'rating'].forEach(key => {
+                        if (fr[key] !== undefined && fr[key] !== null && (it[key] === undefined || it[key] === null || it[key] === -1)) {
+                            it[key] = fr[key];
+                        }
+                    });
+                    flatData.push(it);
+                });
+            });
+            remoteData = flatData;
+        }
         
         if (isGitHub) {
             const localData = localStorage.getItem('rascal_data');
@@ -28,44 +48,18 @@ async function init() {
             state.animeList = remoteData;
         }
 
-        // --- Data Migration (3-Layer Structure) ---
+        // Data migrations
         let needsSave = false;
-        if (state.animeList.length > 0 && !state.animeList[0].items) {
-            console.log('[Migration] Converting to 3-layer structure (Franchise -> Item -> Episodes)...');
-            const franchises = new Map();
-            state.animeList.forEach(item => {
-                const fName = item.franchise || item.title;
-                if (!franchises.has(fName)) {
-                    franchises.set(fName, {
-                        name: fName,
-                        rating: -1,
-                        items: []
-                    });
-                }
-                const fr = franchises.get(fName);
-                delete item.franchise;
-                fr.items.push(item);
-            });
-            state.animeList = Array.from(franchises.values());
-            needsSave = true;
-        }
-
-        // --- Quality & Legacy Migrations ---
-        state.animeList.forEach(fr => {
-            fr.items.forEach(item => {
-                if (item.rating === 0 || item.rating === undefined || item.rating === null) item.rating = -1;
-                if (item.seasons && item.seasons.length > 0) {
-                    if (item.status !== undefined) { delete item.status; needsSave = true; }
-                } else if (item.type !== 'movie') {
-                    if (item.status !== undefined && item.status !== -1) item._legacyStatus = item.status;
-                    delete item.status;
-                    needsSave = true;
-                }
-            });
-            // Update franchise rating (max of items)
-            fr.rating = Math.max(...fr.items.map(i => i.rating || -1));
+        state.animeList.forEach(item => {
+            if (item.rating === 0 || item.rating === undefined || item.rating === null) item.rating = -1;
+            if (item.seasons && item.seasons.length > 0) {
+                if (item.status !== undefined) { delete item.status; needsSave = true; }
+            } else if (item.type !== 'movie') {
+                if (item.status !== undefined && item.status !== -1) item._legacyStatus = item.status;
+                delete item.status;
+                needsSave = true;
+            }
         });
-
         if (needsSave) save();
     } catch (e) {
         console.error('Kon data.json niet laden:', e);
@@ -134,6 +128,8 @@ function render() {
     document.querySelectorAll('.size-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.size === currentSize);
     });
+    
+    document.getElementById('sort-select').value = currentSort;
 }
 
 // --- Sync Helpers ---
@@ -144,35 +140,29 @@ function render() {
  * @param {Object} season - The target season object.
  * @param {number} status - The new status to set (-1, 0, 1).
  */
-function setSeasonStatus(fr, item, season, status) {
+function setSeasonStatus(item, season, status) {
     window.AnimeActions.setSeasonStatusLocally(item, season, status);
-    // Update franchise rating in case it changed
-    fr.rating = Math.max(...fr.items.map(i => i.rating || -1));
     triggerAutoSync(item);
 }
 
 /**
  * Updates the overall status of an anime item (cascading to all episodes).
- * @param {Object} fr - The parent franchise object.
  * @param {Object} item - The target anime object.
  * @param {number} status - The new status to set (-1, 0, 1).
  */
-function setAnimeAllStatus(fr, item, status) {
+function setAnimeAllStatus(item, status) {
     window.AnimeActions.setAnimeStatusLocally(item, status);
-    // Update franchise rating in case it changed
-    fr.rating = Math.max(...fr.items.map(i => i.rating || -1));
     triggerAutoSync(item);
 }
 
 /**
  * Updates the status of a single episode.
- * @param {Object} fr - The parent franchise object.
  * @param {Object} item - The target anime object.
  * @param {Object} season - The target season object.
  * @param {Object} episode - The target episode object.
  * @param {number} status - The new status to set (-1, 0, 1).
  */
-function setEpisodeStatus(fr, item, season, episode, status) {
+function setEpisodeStatus(item, season, episode, status) {
     window.AnimeActions.setEpisodeStatusLocally(item, season, episode, status);
     triggerAutoSync(item);
 }
@@ -269,25 +259,17 @@ async function syncAnilist() {
         }
 
         // 2. PUSH STATUSES
-        for (const fr of state.animeList) {
-            for (const item of fr.items) {
-                if (item.anilist_id) {
-                    await triggerAutoSync(item);
-                    pushedCount++;
-                }
+        for (const item of state.animeList) {
+            if (item.anilist_id) {
+                await triggerAutoSync(item);
+                pushedCount++;
             }
         }
 
         // 3. IMPORT
         for (const entry of alEntries) {
             const media = entry.media;
-            let exists = false;
-            for (const fr of state.animeList) {
-                if (fr.items.find(it => it.anilist_id === media.id || it.title.toLowerCase() === media.title.romaji.toLowerCase() || (media.title.english && it.title.toLowerCase() === media.title.english.toLowerCase()))) {
-                    exists = true;
-                    break;
-                }
-            }
+            const exists = state.animeList.find(it => it.anilist_id === media.id || it.title.toLowerCase() === media.title.romaji.toLowerCase() || (media.title.english && it.title.toLowerCase() === media.title.english.toLowerCase()));
             
             if (!exists) {
                 const newItem = { 
@@ -300,13 +282,7 @@ async function syncAnilist() {
                 if (entry.status === 'COMPLETED') newItem._anilist_force_completed = true;
                 else if (entry.status === 'CURRENT' && entry.progress > 0) newItem._anilist_progress = entry.progress;
                 
-                // Create new franchise for this imported item
-                const newFr = {
-                    name: newItem.title,
-                    rating: newItem.rating,
-                    items: [newItem]
-                };
-                state.animeList.unshift(newFr);
+                state.animeList.unshift(newItem);
                 addedFromAl++;
                 
                 // Fetch AniList data in background
@@ -381,25 +357,23 @@ async function pushAllToAnilist() {
         }
 
         // 2. Collect for Batching
-        for (const fr of state.animeList) {
-            for (const item of fr.items) {
-                if (item.anilist_id) {
-                    const macroStatus = window.StatusCalculator.getAnimeStatus(item);
-                    const alStatusMap = { '1': 'COMPLETED', '0': 'CURRENT', '-1': 'PLANNING' };
-                    let progress = 0;
-                    if (item.seasons) {
-                        item.seasons.forEach(s => s.episodes.forEach(ep => { if (ep.status === 1) progress++; }));
-                    } else if (item.type === 'movie' && item.status === 1) {
-                        progress = 1;
-                    }
-
-                    toSync.push({
-                        mediaId: item.anilist_id,
-                        status: alStatusMap[macroStatus],
-                        progress: progress,
-                        score: (item.rating && item.rating > 0) ? item.rating : undefined
-                    });
+        for (const item of state.animeList) {
+            if (item.anilist_id) {
+                const macroStatus = window.StatusCalculator.getAnimeStatus(item);
+                const alStatusMap = { '1': 'COMPLETED', '0': 'CURRENT', '-1': 'PLANNING' };
+                let progress = 0;
+                if (item.seasons) {
+                    item.seasons.forEach(s => s.episodes.forEach(ep => { if (ep.status === 1) progress++; }));
+                } else if (item.type === 'movie' && item.status === 1) {
+                    progress = 1;
                 }
+
+                toSync.push({
+                    mediaId: item.anilist_id,
+                    status: alStatusMap[macroStatus],
+                    progress: progress,
+                    score: (item.rating && item.rating > 0) ? item.rating : undefined
+                });
             }
         }
 
@@ -427,15 +401,8 @@ function addNew() {
     const input = document.getElementById('new-anime-input');
     const val = input.value.trim();
     if (val) {
-        // Maak een nieuwe Franchise aan (Layer 1) met daarin het Item (Layer 2)
-        const newFr = {
-            name: val,
-            rating: -1,
-            items: [
-                { title: val, status: -1, rating: -1, type: 'tv' }
-            ]
-        };
-        state.animeList.unshift(newFr);
+        // We voegen het item direct toe, AniListApi.lazyFetchAnilistData doet de rest op de achtergrond.
+        state.animeList.unshift({ title: val, status: -1, rating: -1, type: 'tv' });
         input.value = '';
         save(); render();
     }
@@ -490,7 +457,11 @@ document.querySelectorAll('.size-btn').forEach(btn => {
     });
 });
 
-document.getElementById('sort-select').addEventListener('change', e => { currentSort = e.target.value; render(); });
+document.getElementById('sort-select').addEventListener('change', e => { 
+    currentSort = e.target.value; 
+    localStorage.setItem('rascal_sort', currentSort);
+    render(); 
+});
 
 
 document.getElementById('grid-btn').addEventListener('click', () => { currentView = 'grid'; localStorage.setItem('rascal_view', currentView); render(); });

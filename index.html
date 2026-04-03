@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anime Tracker | Premium List</title>
+    <title>Anime Tracker | Mijn Lijst</title>
     
     <!-- Design & Fonts -->
     <link rel="stylesheet" href="styles.css?v=1.9.2">
@@ -26,7 +26,7 @@
             <div class="header-center">
                 <div class="search-bar">
                     <i class="fas fa-search"></i>
-                    <input type="text" id="search-input" placeholder="Search in your list...">
+                    <input type="text" id="search-input" placeholder="Zoek in je lijst...">
                 </div>
             </div>
             <div class="header-right">
@@ -42,26 +42,26 @@
         <!-- Main Controls (Filters, Sorters, View Toggles) -->
         <div class="toolbar">
             <div class="add-anime">
-                <input type="text" id="new-anime-input" placeholder="Add series...">
+                <input type="text" id="new-anime-input" placeholder="Voeg serie toe...">
                 <button id="add-btn" title="Nieuwe serie toevoegen"><i class="fas fa-plus"></i></button>
             </div>
             
             <!-- Category Filters -->
             <div class="filter-group">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="-1">To Watch</button>
-                <button class="filter-btn" data-filter="0">Watching</button>
-                <button class="filter-btn" data-filter="1">Watched</button>
+                <button class="filter-btn active" data-filter="all">Alles</button>
+                <button class="filter-btn" data-filter="-1">Te Bekijken</button>
+                <button class="filter-btn" data-filter="0">Bezig</button>
+                <button class="filter-btn" data-filter="1">Bekeken</button>
             </div>
 
             <!-- Sorting Options -->
             <div class="sort-group">
                 <select id="sort-select">
-                    <option value="default">Sorting: Default</option>
-                    <option value="title-asc">Title A→Z</option>
-                    <option value="title-desc">Title Z→A</option>
-                    <option value="rating-desc">Rating ↓</option>
-                    <option value="rating-asc">Rating ↑</option>
+                    <option value="default">Sorteren: Standaard</option>
+                    <option value="title-asc">Titel A→Z</option>
+                    <option value="title-desc">Titel Z→A</option>
+                    <option value="rating-desc">Beoordeling ↓</option>
+                    <option value="rating-asc">Beoordeling ↑</option>
                     <option value="status">Status</option>
                 </select>
             </div>
@@ -91,7 +91,7 @@
         </main>
 
         <footer>
-            <p>&copy; 2024 Anime Tracker &bull; Powered by <span class="vidsrc-brand">VidSrc.to</span></p>
+            <p>&copy; 2024 Anime Tracker &bull; Mogelijk gemaakt door <span class="vidsrc-brand">VidSrc.to</span></p>
         </footer>
     </div>
 
@@ -100,16 +100,16 @@
     <!-- 1. Rating Modal: Used to score animes -->
     <div id="modal-overlay" class="hidden">
         <div class="modal">
-            <h3>Rate this anime?</h3>
+            <h3>Deze anime beoordelen?</h3>
             <p id="modal-title"></p>
             <div class="rating-input">
                 <input type="number" id="rating-number" min="0" max="10" step="0.1" value="7.0">
                 <span class="max-rating">/ 10</span>
             </div>
             <div class="modal-buttons">
-                <button id="clear-rating" class="btn-secondary" style="margin-right:auto; color:var(--text-muted); border-color:var(--border);">Clear</button>
-                <button id="cancel-rating" class="btn-secondary">Cancel</button>
-                <button id="save-rating" class="btn-primary">Save</button>
+                <button id="clear-rating" class="btn-secondary" style="margin-right:auto; color:var(--text-muted); border-color:var(--border);">Wissen</button>
+                <button id="cancel-rating" class="btn-secondary">Annuleren</button>
+                <button id="save-rating" class="btn-primary">Opslaan</button>
             </div>
         </div>
     </div>

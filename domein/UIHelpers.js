@@ -22,8 +22,8 @@ window.UIHelpers = (function() {
      * @returns {string}
      */
     function statusLabel(status) {
-        if (status === null) return 'Planned';
-        return status === -1 ? 'To Watch' : status === 0 ? 'Watching' : 'Watched';
+        if (status === null) return 'Gepland';
+        return status === -1 ? 'Te Bekijken' : status === 0 ? 'Bezig' : 'Bekeken';
     }
 
     /**

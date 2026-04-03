@@ -43,7 +43,7 @@ var currentSearch = '';
  * Mogelijke waarden: 'default', 'title-asc', 'title-desc', 'rating-desc', 'rating-asc', 'status'.
  * @type {string}
  */
-var currentSort = 'default';
+var currentSort = localStorage.getItem('rascal_sort') || 'default';
 
 /**
  * Huidige weergavemodus van de interface. Weergegeven als grote blokken ('grid') 

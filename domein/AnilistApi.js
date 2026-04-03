@@ -259,7 +259,7 @@ var AnilistApi = {
     },
 
     /**
-     * Fetches comprehensive details for a specific AniList media object, including relations.
+     * Fetches comprehensive details for a specific AniList media object.
      * @async
      * @param {number} id - The AniList media ID.
      * @returns {Promise<Object|null>} Detailed media object or null if failed.
@@ -292,25 +292,6 @@ var AnilistApi = {
                 title
                 thumbnail
             }
-            relations {
-              edges {
-                relationType(version: 2)
-                node {
-                  id
-                  idMal
-                  title {
-                    romaji
-                    english
-                  }
-                  type
-                  format
-                  episodes
-                  coverImage {
-                    large
-                  }
-                }
-              }
-            }
           }
         }
         `;
@@ -341,84 +322,13 @@ var AnilistApi = {
     },
 
     /**
-     * Walks through the relations of a franchise and adds missing (non-crossover) media.
-     * Uses a whitelist of relation types to prevent "Isekai Quartet" style pollution.
-     * @async
-     * @param {Object} franchise - The franchise object from state.animeList.
-     * @returns {Promise<number>} Number of items added.
-     */
-    syncFranchise: async function(franchise) {
-        if (!franchise || !franchise.items) return 0;
-        
-        console.log(`[AniList] Start franchise sync voor: ${franchise.name}`);
-        const visited = new Set();
-        // Add existing items to visited set
-        franchise.items.forEach(it => { if (it.anilist_id) visited.add(it.anilist_id); });
-        
-        const queue = [...visited];
-        let addedCount = 0;
-        const allowedRelations = ['SEQUEL', 'PREQUEL', 'SIDE_STORY', 'ALTERNATIVE', 'PARENT', 'CONTAINS'];
-
-        while (queue.length > 0) {
-            const currentId = queue.shift();
-            const details = await this.fetchMediaDetails(currentId);
-            if (!details || !details.relations) continue;
-
-            for (const edge of details.relations.edges) {
-                const node = edge.node;
-                const relType = edge.relationType;
-
-                if (node.type !== 'ANIME') continue;
-                if (!allowedRelations.includes(relType)) {
-                    // console.log(`[AniList] Overslaan relatie ${relType} voor ${node.title.romaji} (Crossover preventie)`);
-                    continue;
-                }
-                if (visited.has(node.id)) continue;
-
-                visited.add(node.id);
-                queue.push(node.id);
-
-                const newItem = {
-                    title: node.title.english || node.title.romaji,
-                    anilist_id: node.id,
-                    mal_id: node.idMal,
-                    type: node.format === 'MOVIE' ? 'movie' : 'tv',
-                    rating: -1,
-                    poster_path: node.coverImage?.large
-                };
-                
-                if (newItem.type === 'tv') {
-                    newItem.seasons = [{ number: 1, name: 'Season 1', episodes: [] }];
-                    const epCount = node.episodes || 0;
-                    for (let i = 1; i <= epCount; i++) {
-                        newItem.seasons[0].episodes.push({ number: i, name: `Episode ${i}`, status: -1 });
-                    }
-                } else if (newItem.type === 'movie') {
-                    newItem.status = -1;
-                }
-
-                franchise.items.push(newItem);
-                addedCount++;
-                console.log(`[AniList] Gevonden: ${newItem.title} (${relType})`);
-            }
-        }
-        
-        if (addedCount > 0) {
-            save();
-            render();
-        }
-        return addedCount;
-    },
-
-    /**
      * Performs multiple anime searches in a single batched GraphQL query.
      * Useful for initial linking of local lists.
      * @async
-     * @param {string} token
      * @param {Array<string>} titles - Array of titles to search for.
      * @returns {Promise<Object>} Object containing results indexed by alias (s0, s1...).
      */
-    bulkSearchMedia: async function(token, titles) {
+    bulkSearchMedia: async function(titles) {
         if (!titles || titles.length === 0) return { data: {} };
 
         let queryBody = "";
@@ -464,48 +374,47 @@ var AnilistApi = {
 
     /**
      * Background utility that iterates over the local animeList to fill missing metadata.
-     * Updates to handle the 3-layer Franchise structure.
+     * Looks up AniList IDs if missing and fetches covers/descriptions.
+     * Also performs a TMDB ID lookup strictly for video player compatibility.
      * @async
      * @returns {Promise<void>}
      */
     lazyFetchAnilistData: async function() {
-        for (const fr of state.animeList) {
-            for (const item of fr.items) {
-                if (!item.poster_path || !item.anilist_id) {
-                    if (!item.anilist_id) {
-                        const searchResults = await this.searchMedia(item.title);
-                        if (searchResults && searchResults.length > 0) {
-                            const best = searchResults[0];
-                            item.anilist_id = best.id;
-                            item.mal_id = best.idMal;
-                            if (!item.poster_path) item.poster_path = best.coverImage.large;
-                            save();
-                        }
+        for (const item of state.animeList) {
+            if (!item.poster_path || !item.anilist_id) {
+                if (!item.anilist_id) {
+                    const searchResults = await this.searchMedia(item.title);
+                    if (searchResults && searchResults.length > 0) {
+                        const best = searchResults[0];
+                        item.anilist_id = best.id;
+                        item.mal_id = best.idMal;
+                        if (!item.poster_path) item.poster_path = best.coverImage.large;
+                        save();
                     }
-                    
-                    if (item.anilist_id && (!item.poster_path || !item.description)) {
-                        const details = await this.fetchMediaDetails(item.anilist_id);
-                        if (details) {
-                            item.poster_path = details.coverImage.large;
-                            item.description = details.description;
-                            const date = details.startDate;
-                            if (date && date.year) {
-                                item.release_date = `${date.year}-${String(date.month || 1).padStart(2, '0')}-${String(date.day || 1).padStart(2, '0')}`;
-                            }
-                            
-                            // Look up TMDB ID for video player compatibility
-                            if (!item.tmdb_id) {
-                                fetch(`https://api.themoviedb.org/3/search/multi?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(item.title)}&language=en-US`)
-                                    .then(res => res.json())
-                                    .then(data => {
-                                        if (data.results && data.results.length > 0) {
-                                            item.tmdb_id = data.results[0].id;
-                                            save();
-                                        }
-                                    });
-                            }
-                            save();
+                }
+                
+                if (item.anilist_id && (!item.poster_path || !item.description)) {
+                    const details = await this.fetchMediaDetails(item.anilist_id);
+                    if (details) {
+                        item.poster_path = details.coverImage.large;
+                        item.description = details.description;
+                        const date = details.startDate;
+                        if (date && date.year) {
+                            item.release_date = `${date.year}-${String(date.month || 1).padStart(2, '0')}-${String(date.day || 1).padStart(2, '0')}`;
                         }
+                        
+                        // Look up TMDB ID for video player compatibility
+                        if (!item.tmdb_id) {
+                            fetch(`https://api.themoviedb.org/3/search/multi?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(item.title)}&language=en-US`)
+                                .then(res => res.json())
+                                .then(data => {
+                                    if (data.results && data.results.length > 0) {
+                                        item.tmdb_id = data.results[0].id;
+                                        save();
+                                    }
+                                });
+                        }
+                        save();
                     }
                 }
             }
@@ -513,42 +422,42 @@ var AnilistApi = {
     },
 
     /**
-     * Background utility that synchronizes episode counts.
-     * Updates to handle the 3-layer Franchise structure.
+     * Background utility that synchronizes episode counts and titles from AniList.
+     * Maps AniList's "one season per media" model to RASCAL's "items/seasons" model.
+     * Always uses the "Episode X" naming convention as per user requirements.
      * @async
      * @returns {Promise<void>}
      */
     lazySyncAnilistEpisodes: async function() {
-        for (const fr of state.animeList) {
-            for (const item of fr.items) {
-                if (item.type === 'movie' || !item.anilist_id) continue;
-                
-                const status = window.StatusCalculator.getAnimeStatus(item);
-                if (item.seasons && item.seasons.length > 0 && status === 1) continue; 
+        for (const item of state.animeList) {
+            if (item.type === 'movie' || !item.anilist_id) continue;
+            
+            const status = window.StatusCalculator.getAnimeStatus(item);
+            // Skip finished series to save API calls
+            if (item.seasons && item.seasons.length > 0 && status === 1) continue; 
 
-                const details = await this.fetchMediaDetails(item.anilist_id);
-                if (!details) continue;
+            const details = await this.fetchMediaDetails(item.anilist_id);
+            if (!details) continue;
 
-                if (!item.seasons) item.seasons = [];
-                let s1 = item.seasons.find(s => s.number === 1);
-                if (!s1) {
-                    s1 = { number: 1, name: 'Season 1', episodes: [] };
-                    item.seasons.push(s1);
+            if (!item.seasons) item.seasons = [];
+            let s1 = item.seasons.find(s => s.number === 1);
+            if (!s1) {
+                s1 = { number: 1, name: 'Season 1', episodes: [] };
+                item.seasons.push(s1);
+            }
+
+            const episodeCount = details.episodes || 0;
+            if (s1.episodes.length < episodeCount) {
+                console.log(`[AniList Sync] ${item.title}: Adding ${episodeCount - s1.episodes.length} episodes`);
+                for (let i = s1.episodes.length + 1; i <= episodeCount; i++) {
+                    s1.episodes.push({
+                        number: i,
+                        name: `Episode ${i}`, 
+                        status: -1
+                    });
                 }
-
-                const episodeCount = details.episodes || 0;
-                if (s1.episodes.length < episodeCount) {
-                    console.log(`[AniList Sync] ${item.title}: Adding ${episodeCount - s1.episodes.length} episodes`);
-                    for (let i = s1.episodes.length + 1; i <= episodeCount; i++) {
-                        s1.episodes.push({
-                            number: i,
-                            name: `Episode ${i}`, 
-                            status: -1
-                        });
-                    }
-                    save();
-                    if (typeof render === 'function') render();
-                }
+                save();
+                if (typeof render === 'function') render();
             }
         }
     }
