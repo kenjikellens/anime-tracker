@@ -19,7 +19,7 @@ window.Modals = (function() {
 
     /**
      * Opent de detail-modal voor een franchise-groep.
-     * @param {Object} group - Franchise-groepsobject
+     * @param {Object} group - Franchise-groepsobject (Layer 1)
      */
     function showDetailModal(group) {
         try {
@@ -36,8 +36,7 @@ window.Modals = (function() {
             sidebar.className = 'modal-sidebar';
             const poster = document.createElement('img');
             poster.className = 'modal-sidebar-poster';
-            // Use the same poster resolution logic as the cards
-            poster.src = group.poster_path ? `https://image.tmdb.org/t/p/w500${group.poster_path}` : 'assets/placeholder-v.png';
+            poster.src = group.poster_path ? (group.poster_path.startsWith('http') ? group.poster_path : `https://image.tmdb.org/t/p/w500${group.poster_path}`) : 'assets/placeholder-v.png';
             sidebar.appendChild(poster);
             layout.appendChild(sidebar);
 
@@ -49,9 +48,26 @@ window.Modals = (function() {
             const header = document.createElement('div');
             header.className = 'modal-detail-header';
 
-            // Row 1: Close
-            const closeRow = document.createElement('div');
-            closeRow.className = 'modal-close-row';
+            // Row 1: Close & Sync
+            const topRow = document.createElement('div');
+            topRow.className = 'modal-close-row';
+            topRow.style.display = 'flex';
+            topRow.style.justifyContent = 'space-between';
+            topRow.style.alignItems = 'center';
+
+            const syncBtn = document.createElement('button');
+            syncBtn.className = 'action-btn btn-small';
+            syncBtn.innerHTML = '<i class="fas fa-magic"></i> Franchise Synchroniseren';
+            syncBtn.title = 'Zoek sequels, OVAs en films (zonder crossovers!)';
+            syncBtn.onclick = async () => {
+                syncBtn.disabled = true;
+                syncBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Bezig...';
+                const added = await AnilistApi.syncFranchise(group);
+                syncBtn.innerHTML = `<i class="fas fa-check"></i> ${added} items toegevoegd!`;
+                setTimeout(() => { showDetailModal(group); }, 1500);
+            };
+            topRow.appendChild(syncBtn);
+
             const closeBtn = document.createElement('button');
             closeBtn.className = 'btn-close';
             closeBtn.innerHTML = '&times;';
@@ -59,30 +75,30 @@ window.Modals = (function() {
                 window.currentlyShownItem = null;
                 document.getElementById('detail-overlay').classList.add('hidden');
             });
-            closeRow.appendChild(closeBtn);
-            header.appendChild(closeRow);
+            topRow.appendChild(closeBtn);
+            header.appendChild(topRow);
 
             // Row 2: Title
             const titleEl = document.createElement('h1');
             titleEl.id = 'detail-title';
-            titleEl.innerHTML = `<span>${group.title}</span>`;
+            titleEl.innerHTML = `<span>${group.name}</span>`;
             header.appendChild(titleEl);
 
             // Row 3: Actions
             const overallStatus = group._computedStatus !== undefined ? group._computedStatus : -1;
+            
+            // Find next to play logic
             let playItem = group.items[0], sP = 1, eP = 1;
-            if (group.items && Array.isArray(group.items)) {
-                findNext: for (const it of group.items) {
-                    if (window.StatusCalculator.getAnimeStatus(it) !== 1) {
-                        playItem = it;
-                        if (it.seasons) {
-                            for (const season of it.seasons) {
-                                const unwatched = (season.episodes || []).find(ep => ep.status !== 1);
-                                if (unwatched) { sP = season.number; eP = unwatched.number; break findNext; }
-                            }
+            findNext: for (const it of group.items) {
+                if (window.StatusCalculator.getAnimeStatus(it) !== 1) {
+                    playItem = it;
+                    if (it.seasons) {
+                        for (const season of it.seasons) {
+                            const unwatched = (season.episodes || []).find(ep => ep.status !== 1);
+                            if (unwatched) { sP = season.number; eP = unwatched.number; break findNext; }
                         }
-                        break;
                     }
+                    break;
                 }
             }
 
@@ -91,7 +107,7 @@ window.Modals = (function() {
 
             // Status Dropdown
             const topDd = Components.buildStatusDropdown(overallStatus, (newStatus) => {
-                group.items.forEach(item => window.setAnimeAllStatus(item, newStatus));
+                group.items.forEach(item => window.setAnimeAllStatus(group, item, newStatus));
                 window.save(); window.render();
                 showDetailModal(group);
             });
@@ -114,7 +130,8 @@ window.Modals = (function() {
             ratingBadge.innerHTML = `<i class="fas fa-star" style="font-size:0.8em;"></i> ${isRated ? group.rating.toFixed(1) : '—'}`;
             ratingBadge.addEventListener('click', (e) => {
                 e.stopPropagation();
-                showRatingModal(group.items[0], false);
+                // Pass the first item as a reference for the rating modal
+                showRatingModal(group.items[0], group, false);
             });
             actionContainer.appendChild(ratingBadge);
             header.appendChild(actionContainer);
@@ -136,24 +153,50 @@ window.Modals = (function() {
         }
     }
 
+    /**
+     * Opent de beoordelingsmodal.
+     * @param {Object} item - Het item zelf.
+     * @param {Object} group - De parent franchise.
+     * @param {boolean} [changeStatus=true]
+     */
+    function showRatingModal(item, group, changeStatus = true) {
+        currentItem = item;
+        currentItem._parentFranchise = group; // Temporary ref
+        ratingChangeStatus = changeStatus;
+        document.getElementById('modal-title').textContent = item.title;
+        document.getElementById('rating-number').value = (item.rating !== undefined && item.rating > -1) ? item.rating.toFixed(1) : '7.0';
+        document.getElementById('modal-overlay').classList.remove('hidden');
+    }
+
     function initEventListeners() {
         document.getElementById('cancel-rating').addEventListener('click', () => {
             document.getElementById('modal-overlay').classList.add('hidden');
         });
 
         document.getElementById('save-rating').addEventListener('click', () => {
-            const raw = parseFloat(document.getElementById('rating-number').value);
+            const raw = parseFloat(document.getElementById('rating-number').value || '7.0');
             const clamped = Math.min(10, Math.max(0, raw));
             currentItem.rating = Math.round(clamped * 10) / 10;
-            if (ratingChangeStatus) setAnimeAllStatus(currentItem, 1);
+            
+            const group = currentItem._parentFranchise;
+            if (group) {
+                if (ratingChangeStatus) setAnimeAllStatus(group, currentItem, 1);
+                // Bubble up: update franchise rating
+                group.rating = Math.max(...group.items.map(i => i.rating || -1));
+            }
+            
             save(); render();
             document.getElementById('modal-overlay').classList.add('hidden');
+            if (group) showDetailModal(group);
         });
 
         document.getElementById('clear-rating').addEventListener('click', () => {
             currentItem.rating = -1;
+            const group = currentItem._parentFranchise;
+            if (group) group.rating = Math.max(...group.items.map(i => i.rating || -1));
             save(); render();
             document.getElementById('modal-overlay').classList.add('hidden');
+            if (group) showDetailModal(group);
         });
 
         document.getElementById('close-detail').addEventListener('click', () => {

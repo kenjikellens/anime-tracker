@@ -136,22 +136,16 @@ window.Components = (function() {
         card.className = 'anime-card';
         card.dataset.status = computedStatus;
 
-        // Removed: individual AniList sync button (already present in header)
-
         if (computedStatus === 1) card.classList.add('status-watched');
         
-        // Restore rating-based glows
         if (group.rating >= 9) card.classList.add('glow-gold');
         else if (group.rating >= 0 && group.rating < 2) card.classList.add('glow-red');
         
-        // RULE #12-derived: We no longer expand in-line, but open a modal instead.
-        const isGroup = group.items.length > 1 || (group.items[0].type === 'tv' && group.items[0].seasons?.length > 1);
-
         const posterContainer = document.createElement('div');
         posterContainer.className = 'card-poster';
         if (group.poster_path) {
             const posterUrl = group.poster_path.startsWith('http') ? group.poster_path : `https://image.tmdb.org/t/p/w500${group.poster_path}`;
-            posterContainer.innerHTML = `<img src="${posterUrl}" alt="${group.title}" loading="lazy">`;
+            posterContainer.innerHTML = `<img src="${posterUrl}" alt="${group.name}" loading="lazy">`;
         } else {
             posterContainer.innerHTML = `<div class="poster-placeholder"><i class="fas fa-image"></i></div>`;
         }
@@ -160,14 +154,10 @@ window.Components = (function() {
         const info = document.createElement('div');
         info.className = 'card-info';
         
-        const ratingHtml = group.rating >= 0 
-            ? `<div class="rating-badge ${UIHelpers.getRatingClass(group.rating)}"><i class="fas fa-star"></i> ${group.rating}</div>` 
-            : '';
-
         info.innerHTML = `
             <div class="card-header">
                 <div class="card-title">
-                    <span>${group.title}</span>
+                    <span>${group.name}</span>
                 </div>
             </div>
         `;
@@ -184,25 +174,22 @@ window.Components = (function() {
         chevron.className = 'fas fa-chevron-right expand-icon';
         card.appendChild(chevron);
 
-        // All status/play buttons removed from the card per Master's request.
-        // Interactions are consolidated into the Detail Modal.
-
         card.style.cursor = 'pointer';
         card.addEventListener('click', (e) => {
-            // Unconditionally open the detail modal for all views
             Modals.showDetailModal(group);
         });
         return card;
     }
 
     /**
-     * Builds the expanded detail block for a franchise in list view.
+     * Builds the expanded detail block for a franchise.
      * @param {Object} group - The franchise group object.
      * @returns {HTMLElement} The detail container.
      */
     function buildDetailGroup(group) {
         const detail = document.createElement('div');
         detail.className = 'card-detail-group card-detail';
+        // Sorteer items op releasedatum indien aanwezig
         const sortedItems = [...group.items].sort((a, b) => {
             const da = a.release_date || '0000-00-00';
             const db = b.release_date || '0000-00-00';
@@ -214,8 +201,9 @@ window.Components = (function() {
             itemBlock.className = 'item-block';
             const itHeader = document.createElement('div');
             itHeader.className = 'item-header';
-            const lowerItem = item.title.toLowerCase();
-            const lowerGroup = group.title.toLowerCase();
+            
+            const lowerItem = (item.title || '').toLowerCase();
+            const lowerGroup = (group.name || '').toLowerCase();
             const isRedundantTitle = lowerItem === lowerGroup || lowerItem.includes(lowerGroup) || lowerGroup.includes(lowerItem);
             
             if (!isRedundantTitle || group.items.length > 1) {
@@ -234,6 +222,8 @@ window.Components = (function() {
                 movieRow.className = 'movie-row';
                 movieRow.appendChild(buildStatusDropdown(item.status || -1, (newStatus) => {
                     item.status = newStatus;
+                    // Trigger sync en herberekening rating
+                    setAnimeAllStatus(group, item, newStatus);
                     save(); render();
                 }));
                 const moviePlay = buildPlayDropdown(item, 1, 1);
@@ -247,7 +237,6 @@ window.Components = (function() {
                     fetchBtn.textContent = 'Haal seizoenen op (AniList)';
                     fetchBtn.addEventListener('click', async (e) => {
                         e.stopPropagation();
-                        // Gebruik de nieuwe AniList sync logic
                         await AnilistApi.fetchMediaDetails(item.anilist_id).then(details => {
                             if (details) {
                                 item.seasons = [{ number: 1, name: 'Season 1', episodes: [] }];
@@ -262,7 +251,7 @@ window.Components = (function() {
                     itemBlock.appendChild(fetchBtn);
                 } else {
                     item.seasons.forEach(season => {
-                        itemBlock.appendChild(buildSeasonRow(item, season));
+                        itemBlock.appendChild(buildSeasonRow(group, item, season));
                     });
                 }
             }
@@ -273,11 +262,12 @@ window.Components = (function() {
 
     /**
      * Builds a single season row with accordion functionality for episodes.
+     * @param {Object} group - The parent franchise object.
      * @param {Object} item - The parent anime item.
      * @param {Object} season - The target season object.
      * @returns {HTMLElement} The season block.
      */
-    function buildSeasonRow(item, season) {
+    function buildSeasonRow(group, item, season) {
         const seasonKey = `${item.title}-S${season.number}`;
         const isOpen = expandedSeasons.has(seasonKey);
         const sBlock = document.createElement('div');
@@ -287,7 +277,7 @@ window.Components = (function() {
         const sHeader = document.createElement('div');
         sHeader.className = 'season-header';
         sHeader.appendChild(buildStatusDropdown(window.StatusCalculator.getSeasonStatus(season), (newStatus) => {
-            setSeasonStatus(item, season, newStatus);
+            setSeasonStatus(group, item, season, newStatus);
             save(); render();
         }));
 
@@ -320,7 +310,7 @@ window.Components = (function() {
                 if (selectedEpisodes.has(`${item.title}|S${season.number}|E${ep.number}`)) epRow.classList.add('selected');
                 
                 epRow.appendChild(buildStatusDropdown(ep.status, (newStatus) => {
-                    setEpisodeStatus(item, season, ep, newStatus);
+                    setEpisodeStatus(group, item, season, ep, newStatus);
                     save(); render();
                 }));
                 
