@@ -1,4 +1,11 @@
 // app.js - Central Domain Controller
+// Koppelingen:
+// - State.js: globale state (`state`, `currentView`, filters, etc.)
+// - ListTransformer.js: `getFilteredSorted()`
+// - Components.js / Modals.js: opbouw en interactie van UI
+// - AnimeActions.js / StatusCalculator.js: domeinlogica rond status/progress
+// - Storage.js: `save()` en `exportData()`
+// - AnilistApi.js: OAuth, sync en metadata-updates
 
 /**
  * Laadt de anime-data, voert migrations uit en start de render.
@@ -397,6 +404,15 @@ async function pushAllToAnilist() {
     }
 }
 
+/**
+ * Voegt een nieuw anime-item toe op basis van het invoerveld in de header.
+ * Koppeling:
+ * - Schrijft naar `state.animeList` (State.js),
+ * - laat verrijking over aan `AnilistApi.lazyFetchAnilistData()`,
+ * - persisted via `save()` en triggert `render()`.
+ *
+ * @returns {void}
+ */
 function addNew() {
     const input = document.getElementById('new-anime-input');
     const val = input.value.trim();
@@ -434,6 +450,13 @@ function applyTheme(theme) {
 
 // --- Event Listeners ---
 
+/**
+ * Registreert filterknoppen voor statusfiltering.
+ * Koppeling:
+ * - Leest/schrijft `activeFilters` (State.js),
+ * - bewaart voorkeur in `localStorage`,
+ * - herbouwt de UI via `render()`.
+ */
 document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         const f = btn.dataset.filter;
@@ -447,6 +470,10 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     });
 });
 
+/**
+ * Registreert maatknoppen voor kaartgrootte.
+ * Koppeling: `currentSize` (State.js) + `render()`.
+ */
 document.querySelectorAll('.size-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
@@ -457,6 +484,10 @@ document.querySelectorAll('.size-btn').forEach(btn => {
     });
 });
 
+/**
+ * Registreert sorteerselectie.
+ * Koppeling: `currentSort` (State.js) + `render()`.
+ */
 document.getElementById('sort-select').addEventListener('change', e => { 
     currentSort = e.target.value; 
     localStorage.setItem('rascal_sort', currentSort);
@@ -464,9 +495,20 @@ document.getElementById('sort-select').addEventListener('change', e => {
 });
 
 
+/**
+ * View-switch events (grid/list).
+ * Koppeling: `currentView` (State.js) + `render()`.
+ */
 document.getElementById('grid-btn').addEventListener('click', () => { currentView = 'grid'; localStorage.setItem('rascal_view', currentView); render(); });
 document.getElementById('list-btn').addEventListener('click', () => { currentView = 'list'; localStorage.setItem('rascal_view', currentView); render(); });
 
+/**
+ * Header-interacties en globale acties.
+ * Koppelingen:
+ * - `addNew`, `syncAnilist`, `pushAllToAnilist`,
+ * - `exportData` (Storage.js),
+ * - thema-wissel via `applyTheme`.
+ */
 document.getElementById('add-btn').addEventListener('click', addNew);
 document.getElementById('new-anime-input').addEventListener('keypress', e => { if (e.key === 'Enter') addNew(); });
 document.getElementById('search-input').addEventListener('input', e => { currentSearch = e.target.value.trim(); render(); });
@@ -479,6 +521,10 @@ document.getElementById('theme-toggle').addEventListener('click', () => {
     localStorage.setItem('rascal_theme', next); applyTheme(next);
 });
 
+/**
+ * Globale klikhandler voor het sluiten van openstaande contextmenu's/dropdowns.
+ * Koppeling: gebruikt `#global-status-menu` uit de UI-componentlaag.
+ */
 document.addEventListener('click', () => {
     const globalMenu = document.getElementById('global-status-menu');
     if (globalMenu) globalMenu.style.display = 'none';

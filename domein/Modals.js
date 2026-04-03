@@ -1,4 +1,9 @@
 // domein/Modals.js
+// Koppelingen:
+// - Components.js: bouwt detailblokken, dropdowns en play-acties
+// - UIHelpers.js: rating-presentatie
+// - AnimeActions.js/app.js wrappers: statuswijzigingen
+// - Storage.js (`save`) en app render-cyclus (`render`)
 window.Modals = (function() {
 
     let currentItem = null;
@@ -136,6 +141,14 @@ window.Modals = (function() {
         }
     }
 
+    /**
+     * Registreert alle persistente event listeners voor rating/detail modals.
+     * Koppeling:
+     * - Schrijft naar `currentItem` en `currentlyShownItem`,
+     * - triggert `save()` en `render()` na mutaties.
+     *
+     * @returns {void}
+     */
     function initEventListeners() {
         document.getElementById('cancel-rating').addEventListener('click', () => {
             document.getElementById('modal-overlay').classList.add('hidden');

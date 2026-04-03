@@ -1,89 +1,137 @@
 """
-RASCAL Data Auditor
-This script performs a quality check on the database files (data.json, data.js) 
-and cross-references them with the 'te_bekijken.md' checklist to identify 
-duplicates, missing entries, or incomplete data structures.
+RASCAL / Anime Tracker Data Auditor
+
+Controleert de lokale databronnen op:
+1) Duplicaten
+2) 3-lagen structuur (anime/franchise -> reeks -> aflevering)
+3) Dataconsistentie tussen data.json, data.js en docs/te_bekijken.md
 """
 
-import json
-import os
-import re
+from __future__ import annotations
 
-# Absolute paths to critical data files
-DATA_JSON = r'c:\Users\kenji\Documents\PROJECTS\RASCAL\data.json'
-DATA_JS = r'c:\Users\kenji\Documents\PROJECTS\RASCAL\data.js'
-TE_BEKIJKEN_MD = r'c:\Users\kenji\Documents\PROJECTS\RASCAL\docs\te_bekijken.md'
+import json
+import re
+from pathlib import Path
+from collections import Counter
+
+ROOT = Path(__file__).resolve().parent
+DATA_JSON = ROOT / "data.json"
+DATA_JS = ROOT / "data.js"
+TE_BEKIJKEN_MD = ROOT / "docs" / "te_bekijken.md"
+
+EPISODIC_TYPES = {"tv", "series", "ova", "ona"}
+FILM_TYPES = {"movie", "film"}
+KNOWN_TYPES = EPISODIC_TYPES | FILM_TYPES
+
+
+def load_json(path: Path):
+    with path.open("r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def extract_titles_from_data_js(path: Path):
+    if not path.exists():
+        return []
+    content = path.read_text(encoding="utf-8")
+    return re.findall(r'title:\s*["\'](.*?)["\']', content)
+
+
+def extract_titles_from_markdown(path: Path):
+    if not path.exists():
+        return []
+    lines = path.read_text(encoding="utf-8").splitlines()
+    return [re.sub(r"^-\s*", "", line.strip()) for line in lines if line.strip().startswith("- ")]
+
+
+def is_non_empty_episodes(item):
+    seasons = item.get("seasons")
+    if not seasons:
+        return False
+    return any((season.get("episodes") or []) for season in seasons)
+
 
 def audit():
-    """
-    Executes a series of checks to ensure data consistency across multiple sources.
-    1. Checks for duplicate titles in data.json.
-    2. Identifies TV shows with no seasons or episodes.
-    3. Cross-references entries in data.js to ensure they exist in data.json.
-    4. Compares the Markdown checklist (te_bekijken.md) against the primary JSON database.
-    """
-    print("--- Starting Data Audit ---")
-    
-    # 1. Load data.json
-    try:
-        with open(DATA_JSON, 'r', encoding='utf-8') as f:
-            data_json = json.load(f)
-    except Exception as e:
-        print(f"Error loading data.json: {e}")
+    print("--- Start Data Audit ---")
+
+    if not DATA_JSON.exists():
+        print(f"ERROR: {DATA_JSON} bestaat niet.")
         return
 
-    titles_json = [item['title'] for item in data_json]
-    unique_titles = set(titles_json)
-    
-    if len(titles_json) != len(unique_titles):
-        print(f"DUPLICATES FOUND: {len(titles_json) - len(unique_titles)} duplicate entries.")
-        # Find which ones
-        seen = set()
-        dups = []
-        for t in titles_json:
-            if t in seen:
-                dups.append(t)
-            seen.add(t)
-        print(f"Duplicate samples: {dups[:5]}")
+    data_json = load_json(DATA_JSON)
+    titles_json = [item.get("title", "") for item in data_json if isinstance(item, dict)]
+
+    # 1) Duplicate check
+    counts = Counter(titles_json)
+    duplicates = [title for title, count in counts.items() if title and count > 1]
+    if duplicates:
+        print(f"DUPLICATES: {len(duplicates)} unieke duplicate titels gevonden.")
+        print(f"Samples: {duplicates[:10]}")
     else:
-        print("No duplicate titles in data.json.")
+        print("OK: Geen duplicate titels in data.json.")
 
-    # 2. Check for empty seasons/episodes
-    empty_series = [item['title'] for item in data_json if not item.get('seasons')]
-    if empty_series:
-        print(f"EMPTY SERIES (No seasons): {len(empty_series)} items found.")
-        print(f"Samples: {empty_series[:5]}")
+    # 2) 3-lagen checks
+    type_missing = []
+    unknown_type = []
+    episodic_without_episodes = []
+    films_without_status = []
 
-    # 3. Load data.js
-    try:
-        with open(DATA_JS, 'r', encoding='utf-8') as f:
-            content = f.read()
-            # Crude regex to extract titles
-            titles_js = re.findall(r'title:\s*["\'](.*?)["\']', content)
-    except Exception as e:
-        print(f"Error reading data.js: {e}")
-        titles_js = []
+    for item in data_json:
+        if not isinstance(item, dict):
+            continue
 
-    missing_from_json = [t for t in titles_js if t not in unique_titles]
-    if missing_from_json:
-        print(f"MISSING FROM JSON (found in data.js): {len(missing_from_json)} items.")
-        print(f"Samples: {missing_from_json[:5]}")
+        title = item.get("title", "<zonder titel>")
+        item_type = (item.get("type") or "").strip().lower()
 
-    # 4. Load te_bekijken.md
-    try:
-        with open(TE_BEKIJKEN_MD, 'r', encoding='utf-8') as f:
-            lines = f.readlines()
-            titles_md = [re.sub(r'^-\s*', '', line.strip()) for line in lines if line.strip().startswith('- ')]
-    except Exception as e:
-        print(f"Error reading te_bekijken.md: {e}")
-        titles_md = []
+        if not item_type:
+            type_missing.append(title)
+            continue
 
-    missing_md_from_json = [t for t in titles_md if t not in unique_titles]
-    if missing_md_from_json:
-        print(f"MISSING FROM JSON (found in te_bekijken.md): {len(missing_md_from_json)} items.")
-        print(f"Samples: {missing_md_from_json[:5]}")
+        if item_type not in KNOWN_TYPES:
+            unknown_type.append((title, item_type))
 
-    print("--- Audit Complete ---")
+        if item_type in EPISODIC_TYPES and not is_non_empty_episodes(item):
+            episodic_without_episodes.append(title)
+
+        if item_type in FILM_TYPES and item.get("status") not in {-1, 0, 1, 2}:
+            films_without_status.append(title)
+
+    print("\n[3-LAGEN STRUCTUUR]")
+    print(f"Items gecontroleerd: {len(data_json)}")
+    print(f"Type ontbreekt: {len(type_missing)}")
+    if type_missing:
+        print(f"  Samples: {type_missing[:10]}")
+
+    print(f"Onbekend type: {len(unknown_type)}")
+    if unknown_type:
+        print(f"  Samples: {unknown_type[:10]}")
+
+    print(f"Episodisch type zonder afleveringen: {len(episodic_without_episodes)}")
+    if episodic_without_episodes:
+        print(f"  Samples: {episodic_without_episodes[:10]}")
+
+    print(f"Filmtype zonder geldige item-status: {len(films_without_status)}")
+    if films_without_status:
+        print(f"  Samples: {films_without_status[:10]}")
+
+    # 3) Cross-source checks
+    unique_titles = set(titles_json)
+    titles_js = extract_titles_from_data_js(DATA_JS)
+    titles_md = extract_titles_from_markdown(TE_BEKIJKEN_MD)
+
+    missing_from_json_js = [t for t in titles_js if t not in unique_titles]
+    missing_from_json_md = [t for t in titles_md if t not in unique_titles]
+
+    print("\n[CROSS-SOURCE]")
+    print(f"In data.js maar niet in data.json: {len(missing_from_json_js)}")
+    if missing_from_json_js:
+        print(f"  Samples: {missing_from_json_js[:10]}")
+
+    print(f"In te_bekijken.md maar niet in data.json: {len(missing_from_json_md)}")
+    if missing_from_json_md:
+        print(f"  Samples: {missing_from_json_md[:10]}")
+
+    print("--- Audit klaar ---")
+
 
 if __name__ == "__main__":
     audit()

@@ -1,3 +1,11 @@
+/**
+ * Legacy seedlijst voor initiële/handmatige imports.
+ *
+ * Let op:
+ * - Dit bestand wordt nog gebruikt als referentiebron voor audits/migraties.
+ * - De primaire runtime-dataset is `data.json`.
+ * - Er staan geen methodes in dit bestand; enkel statische data-export.
+ */
 const animeData = [
   // --- Te Bekijken (Status -1) ---
   { title: "The Quintessential Quintuplets", status: -1, rating: -1, season: 1, episode: 1 },
