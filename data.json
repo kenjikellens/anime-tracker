@@ -2418,7 +2418,8 @@
           }
         ]
       }
-    ]
+    ],
+    "type": "tv"
   },
   {
     "title": "Pseudo Harem",
@@ -13490,7 +13491,22 @@
     "season": 1,
     "episode": 1,
     "_legacyStatus": 1,
-    "franchise": "Kiss x Sis OVA"
+    "franchise": "Kiss x Sis OVA",
+    "type": "ova",
+    "seasons": [
+      {
+        "number": 1,
+        "name": "OVA",
+        "episodes": [
+          {
+            "number": 1,
+            "name": "OVA 1",
+            "status": 1
+          }
+        ]
+      }
+    ],
+    "status": 1
   },
   {
     "title": "Rent-a-Girlfriend",
