@@ -1,28 +1,36 @@
 // domein/ListTransformer.js
 
 /**
- * De ultieme data-verwerking functie die over de gehele UI regeert. Deze functie neemt
- * de ruwe array content uit `state.animeList` en past hiermee de complexe user-interface regels toe.
- * 
- * Volgorde van executie:
- * 1. Mapt (groepeert) alle ingangen op "franchise" titel (zodat vervolgen/spin-offs getoond kunnen worden onder 1 kaart).
- * 2. Berekent de gecombineerde status (Te Bekijken / Bezig / Bekeken) en de maximale gebruikersrating.
- * 3. Filtert de resultaten afhankelijk van welke status-filters `activeFilters` momenteel dragen.
- * 4. Filtert (met auto-opschoning van vreemde karakters) op de globale iteratieve text-zoekbewerking `currentSearch`.
- * 5. Sorteert de resulterende weergavelijst in de laatstgevraagde parameter `currentSort` (titel, datum, rating).
- * 
- * @function getFilteredSorted
- * @returns {Array<Object>} Getransformeerde lijst van applicatieklare franchise-groepsobjecten voor display/rendering.
+ * Normaliseert tekst voor robuust zoeken op titel.
+ *
+ * @param {string} value
+ * @returns {string}
+ */
+function normalizeSearchValue(value) {
+    return String(value || '')
+        .normalize('NFKD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]/g, '');
+}
+
+/**
+ * Zet de ruwe lijst om naar renderbare franchise-groepen.
+ *
+ * @returns {Array<Object>}
  */
 function getFilteredSorted() {
     const franchises = new Map();
-    
-    state.animeList.forEach(item => {
-        if (!item || !item.title) return;
-        const fName = item.franchise || item.title;
-        if (!franchises.has(fName)) {
-            franchises.set(fName, {
-                title: fName,
+
+    state.animeList.forEach((item) => {
+        if (!item || typeof item.title !== 'string' || item.title.trim() === '') {
+            return;
+        }
+
+        const franchiseName = item.franchise || item.title;
+        if (!franchises.has(franchiseName)) {
+            franchises.set(franchiseName, {
+                title: franchiseName,
                 items: [],
                 _computedStatus: -1,
                 rating: -1,
@@ -31,40 +39,54 @@ function getFilteredSorted() {
                 _isGroup: true
             });
         }
-        const group = franchises.get(fName);
-        group.items.push(item);
+
+        franchises.get(franchiseName).items.push(item);
     });
 
-    let list = Array.from(franchises.values()).map(group => {
-        const itemWithPoster = group.items.find(i => i.poster_path) || group.items[0];
-        group.poster_path = itemWithPoster?.poster_path;
-        group.tmdb_id = itemWithPoster?.tmdb_id; // Voor embed backup
+    let list = Array.from(franchises.values()).map((group) => {
+        const itemWithPoster = group.items.find((item) => item.poster_path) || group.items[0];
+        const statuses = group.items.map((item) => window.StatusCalculator.getAnimeStatus(item));
+        const ratings = group.items
+            .map((item) => Number(item.rating))
+            .filter((rating) => Number.isFinite(rating));
 
-        // Bereken gezamenlijke status: 0 (Bezig) > -1 (Te Bekijken) > 1 (Bekeken)
-        const statuses = group.items.map(item => window.StatusCalculator.getAnimeStatus(item));
-        if (statuses.includes(0)) group._computedStatus = 0;
-        else if (statuses.includes(-1)) group._computedStatus = -1;
-        else group._computedStatus = 1;
-
-        group.rating = Math.max(...group.items.map(i => i.rating || -1));
+        group.poster_path = itemWithPoster?.poster_path || null;
+        group.tmdb_id = itemWithPoster?.tmdb_id || null;
+        group._computedStatus = statuses.includes(0)
+            ? 0
+            : statuses.includes(-1)
+                ? -1
+                : 1;
+        group.rating = ratings.length > 0 ? Math.max(...ratings) : -1;
         return group;
     });
 
-    // Filter op actieve statussen
-    list = list.filter(a => activeFilters.has(a._computedStatus));
+    list = list.filter((group) => activeFilters.has(group._computedStatus));
 
     if (currentSearch) {
-        const normalize = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
-        const s = normalize(currentSearch);
-        list = list.filter(a => normalize(a.title).includes(s));
+        const query = normalizeSearchValue(currentSearch);
+        list = list.filter((group) => normalizeSearchValue(group.title).includes(query));
     }
 
     switch (currentSort) {
-        case 'title-asc':  list.sort((a, b) => a.title.localeCompare(b.title)); break;
-        case 'title-desc': list.sort((a, b) => b.title.localeCompare(a.title)); break;
-        case 'rating-desc': list.sort((a, b) => (b.rating > -1 ? b.rating : -2) - (a.rating > -1 ? a.rating : -2)); break;
-        case 'rating-asc':  list.sort((a, b) => (a.rating > -1 ? a.rating : -2) - (b.rating > -1 ? b.rating : -2)); break;
-        case 'status': list.sort((a, b) => a._computedStatus - b._computedStatus); break;
+        case 'title-asc':
+            list.sort((a, b) => a.title.localeCompare(b.title));
+            break;
+        case 'title-desc':
+            list.sort((a, b) => b.title.localeCompare(a.title));
+            break;
+        case 'rating-desc':
+            list.sort((a, b) => (b.rating > -1 ? b.rating : -2) - (a.rating > -1 ? a.rating : -2));
+            break;
+        case 'rating-asc':
+            list.sort((a, b) => (a.rating > -1 ? a.rating : -2) - (b.rating > -1 ? b.rating : -2));
+            break;
+        case 'status':
+            list.sort((a, b) => a._computedStatus - b._computedStatus);
+            break;
+        default:
+            break;
     }
+
     return list;
 }

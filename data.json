@@ -2418,7 +2418,8 @@
           }
         ]
       }
-    ]
+    ],
+    "type": "tv"
   },
   {
     "title": "Pseudo Harem",
@@ -6332,7 +6333,7 @@
   },
   {
     "title": "High School DxD",
-    "rating": 8.3,
+    "rating": 8,
     "tmdb_id": 45950,
     "type": "tv",
     "poster_path": "/5a9vaaLDAZTYjgfWIw7ZYhL1m1A.jpg",
@@ -6777,7 +6778,7 @@
   },
   {
     "title": "Kaguya-sama: Love is War",
-    "rating": 8,
+    "rating": 8.2,
     "tmdb_id": 83121,
     "type": "tv",
     "poster_path": "/5khbC6AuNgnvnoDbjIMKCOhEtIc.jpg",
@@ -13490,7 +13491,9 @@
     "season": 1,
     "episode": 1,
     "_legacyStatus": 1,
-    "franchise": "Kiss x Sis OVA"
+    "franchise": "Kiss x Sis OVA",
+    "type": "tv",
+    "seasons": []
   },
   {
     "title": "Rent-a-Girlfriend",

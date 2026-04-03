@@ -1,51 +1,52 @@
 # Anime Tracker
 
-Een lokale anime-tracker met franchise-groepering, aflevering-statussen en AniList-sync.
+Een lokale anime-tracker met franchise-groepering, afleveringstatussen en AniList-sync.
 
-## ✨ Features
+## Features
 - Franchise-overzicht met gecombineerde status per titelgroep.
-- Statusbeheer op 3 niveaus: anime-item, seizoen en aflevering.
-- AniList OAuth + sync (pull en push).
+- Statusbeheer op drie niveaus: anime-item, seizoen en aflevering.
+- AniList OAuth plus sync in beide richtingen.
 - Lokale fallback-opslag voor GitHub Pages modus.
 - Batch-acties voor meerdere geselecteerde afleveringen.
 
-## 🧱 Data Model (3 lagen)
+## Data Model
 De app gebruikt een 3-lagen model:
 
-1. **Anime/Franchise-laag**: logische groep (`franchise` of fallback `title`).
-2. **Reeks-laag**: itemtype (`tv`, `movie`, `ova`, `ona`).
-3. **Aflevering-laag**: `seasons[].episodes[]` voor episodische items.
+1. Anime- of franchise-laag: logische groep via `franchise` of fallback `title`.
+2. Reeks-laag: itemtype zoals `tv`, `movie`, `ova` of `ona`.
+3. Aflevering-laag: `seasons[].episodes[]` voor episodische items.
 
 Meer details en voorbeelden staan in:
 - [`docs/data_model.md`](docs/data_model.md)
 - [`docs/js_method_documentation.md`](docs/js_method_documentation.md)
 
-## 📁 Projectstructuur
-- `app.js`: centrale orchestratie (init, render, sync-flow).
-- `domein/*.js`: domeinmodules voor status, UI, storage, batch en AniList.
-- `data.json`: primaire dataopslag.
+## Projectstructuur
+- `app.js`: centrale orchestratie voor init, render en sync-flow.
+- `domein/*.js`: domeinmodules voor status, UI, opslag, batchacties en AniList.
+- `data.json`: primaire databron.
 - `docs/`: functionele en technische documentatie.
 
-## 🚀 Snel starten
+## Snel starten
 ```bash
-# lokaal serveren (voorbeeld met python)
-python3 -m http.server 8000
-# open vervolgens http://localhost:8000
+python START_UP.py
 ```
 
-## ✅ Datavalidatie
+Open daarna [http://localhost:3000](http://localhost:3000).
+
+## Datavalidatie
 Run de audit:
 
 ```bash
-python3 audit_data.py
+python audit_data.py
 ```
 
-Deze audit controleert o.a. duplicates, type-validiteit, episode-structuur en cross-source consistentie.
+Deze audit controleert onder meer duplicates, type-validiteit, episode-structuur en cross-source consistentie.
 
-## 🛠️ Ontwikkelrichtlijnen
+## Ontwikkelrichtlijnen
 - Houd statuslogica in `domein/StatusCalculator.js` en `domein/AnimeActions.js`.
-- Gebruik `save()` na mutaties die persistente data veranderen.
+- Gebruik `save()` na mutaties die persistente data wijzigen.
 - Gebruik bestaande component builders in `domein/Components.js` voor UI-uitbreidingen.
+- Voeg bij nieuwe logica JSDoc toe als de intentie niet direct uit de code blijkt.
 
-## 📄 Licentie
+## Licentie
 Dit project gebruikt de MIT-licentie. Zie [`LICENSE`](LICENSE).

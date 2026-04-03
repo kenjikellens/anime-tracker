@@ -2,10 +2,69 @@
 window.Components = (function() {
 
     /**
+     * Geeft het globale dropdown-menu terug.
+     *
+     * @returns {HTMLElement|null}
+     */
+    function getGlobalStatusMenu() {
+        const menu = document.getElementById('global-status-menu');
+        if (!menu) {
+            console.warn('[Components] global-status-menu ontbreekt.');
+            return null;
+        }
+        return menu;
+    }
+
+    /**
+     * Positioneert het globale menu ten opzichte van een ankerknop.
+     *
+     * @param {HTMLElement} menu
+     * @param {HTMLElement} anchor
+     * @param {number} estimatedHeight
+     * @returns {void}
+     */
+    function positionGlobalMenu(menu, anchor, estimatedHeight) {
+        const rect = anchor.getBoundingClientRect();
+        const menuWidth = 160;
+
+        let left = rect.left;
+        if (left + menuWidth > window.innerWidth) {
+            left = rect.right - menuWidth;
+        }
+        if (left < 0) {
+            left = 10;
+        }
+
+        let top = rect.bottom + 4;
+        if (top + estimatedHeight > window.innerHeight) {
+            top = rect.top - estimatedHeight - 4;
+        }
+
+        menu.style.left = `${left}px`;
+        menu.style.top = `${top}px`;
+    }
+
+    /**
+     * Zet een posterpad om naar een bruikbare afbeeldings-URL.
+     *
+     * @param {string} posterPath
+     * @returns {string|null}
+     */
+    function resolvePosterUrl(posterPath) {
+        if (!posterPath) {
+            return null;
+        }
+        return posterPath.startsWith('http')
+            ? posterPath
+            : `https://image.tmdb.org/t/p/w500${posterPath}`;
+    }
+
+    /**
      * Bouwt een herbruikbaar status-dropdown-element.
-     * @param {number} currentStatus - Huidige geselecteerde status
-     * @param {function(number): void} onChange - Callback bij statuswijziging
-     * @returns {HTMLElement} Het dropdown-div-element
+     *
+     * @param {number} currentStatus
+     * @param {function(number): void} onChange
+     * @returns {HTMLElement}
      */
     function buildStatusDropdown(currentStatus, onChange) {
         const div = document.createElement('div');
@@ -19,49 +78,29 @@ window.Components = (function() {
             </button>
         `;
 
-        const btn = div.querySelector('.status-current');
-        btn.addEventListener('click', e => {
-            e.stopImmediatePropagation();
-            e.preventDefault();
-            const globalMenu = document.getElementById('global-status-menu');
-            
-            // Build options dynamically
+        const button = div.querySelector('.status-current');
+        button.addEventListener('click', (event) => {
+            event.stopImmediatePropagation();
+            event.preventDefault();
+
+            const globalMenu = getGlobalStatusMenu();
+            if (!globalMenu) {
+                return;
+            }
+
             globalMenu.innerHTML = `
                 <div class="status-option" data-val="-1"><i class="fas fa-clock" style="opacity:0.7;"></i> Te Bekijken</div>
                 <div class="status-option" data-val="0"><i class="fas fa-play" style="opacity:0.7;"></i> Bezig</div>
                 <div class="status-option" data-val="1"><i class="fas fa-check" style="opacity:0.7;"></i> Bekeken</div>
             `;
 
-            // Display first, then calculate (to get dimensions if needed, though width is fixed)
             globalMenu.style.display = 'flex';
-            
-            // Position calculation
-            const rect = btn.getBoundingClientRect();
-            const menuWidth = 160;
-            
-            // Try to align left with button, but keep on screen
-            let left = rect.left;
-            if (left + menuWidth > window.innerWidth) {
-                left = rect.right - menuWidth;
-            }
-            if (left < 0) left = 10; // Safety margin
+            positionGlobalMenu(globalMenu, button, 130);
 
-            let top = rect.bottom + 4;
-
-            // Check if it's off screen bottom
-            const menuHeight = 130;
-            if (top + menuHeight > window.innerHeight) {
-                top = rect.top - menuHeight - 4; // Open upwards
-            }
-
-            globalMenu.style.left = `${left}px`;
-            globalMenu.style.top = `${top}px`;
-
-            // Add click listeners to options
-            globalMenu.querySelectorAll('.status-option').forEach(opt => {
-                opt.onclick = (event) => {
-                    event.stopPropagation();
-                    onChange(parseInt(opt.dataset.val));
+            globalMenu.querySelectorAll('.status-option').forEach((option) => {
+                option.onclick = (clickEvent) => {
+                    clickEvent.stopPropagation();
+                    onChange(Number.parseInt(option.dataset.val, 10));
                     globalMenu.style.display = 'none';
                 };
             });
@@ -70,65 +109,64 @@ window.Components = (function() {
     }
 
     /**
-     * Bouwt een play-dropdown-element die de verschillende videobronnen (vsembed, etc) opent.
-     * @param {Object} item - Anime-item
-     * @param {number} s - Seizoennummer
-     * @param {number} eNum - Afleveringsnummer
+     * Bouwt een dropdown voor playbackbronnen.
+     *
+     * @param {Object} item
+     * @param {number} seasonNumber
+     * @param {number} episodeNumber
      * @returns {HTMLElement}
      */
-    function buildPlayDropdown(item, s, eNum) {
-        const btn = document.createElement('button');
-        btn.className = 'action-btn btn-play';
-        btn.innerHTML = '<i class="fas fa-play"></i>';
-        btn.title = 'Kies een bron om te kijken';
+    function buildPlayDropdown(item, seasonNumber, episodeNumber) {
+        const button = document.createElement('button');
+        button.className = 'action-btn btn-play';
+        button.innerHTML = '<i class="fas fa-play"></i>';
+        button.title = item?.tmdb_id ? 'Kies een bron om te kijken' : 'Geen TMDB-bron beschikbaar';
+        button.disabled = !item?.tmdb_id;
 
-        btn.addEventListener('click', e => {
-            e.stopImmediatePropagation();
-            e.preventDefault();
-            const globalMenu = document.getElementById('global-status-menu');
-            
-            // Haal de sources op uit EmbedSources.js (EMBED_SOURCES is globaal)
-            globalMenu.innerHTML = Object.entries(EMBED_SOURCES).map(([key, src]) => `
+        button.addEventListener('click', (event) => {
+            event.stopImmediatePropagation();
+            event.preventDefault();
+
+            if (!item?.tmdb_id) {
+                return;
+            }
+
+            const globalMenu = getGlobalStatusMenu();
+            if (!globalMenu) {
+                return;
+            }
+
+            globalMenu.innerHTML = Object.entries(EMBED_SOURCES).map(([key, source]) => `
                 <div class="status-option" data-key="${key}">
-                    <i class="fas fa-external-link-alt" style="opacity:0.7;"></i> ${src.label}
+                    <i class="fas fa-external-link-alt" style="opacity:0.7;"></i> ${source.label}
                 </div>
             `).join('');
 
-            // Display en positie
             globalMenu.style.display = 'flex';
-            const rect = btn.getBoundingClientRect();
-            const menuWidth = 160;
-            
-            let left = rect.left;
-            if (left + menuWidth > window.innerWidth) left = rect.right - menuWidth;
-            if (left < 0) left = 10;
+            positionGlobalMenu(globalMenu, button, Object.keys(EMBED_SOURCES).length * 40);
 
-            let top = rect.bottom + 4;
-            const menuHeight = Object.keys(EMBED_SOURCES).length * 40;
-            if (top + menuHeight > window.innerHeight) top = rect.top - menuHeight - 4;
-
-            globalMenu.style.left = `${left}px`;
-            globalMenu.style.top = `${top}px`;
-
-            // Handlers voor de opties
-            globalMenu.querySelectorAll('.status-option').forEach(opt => {
-                opt.onclick = (event) => {
-                    event.stopPropagation();
-                    const key = opt.dataset.key;
-                    const src = EMBED_SOURCES[key];
-                    const url = item.type === 'movie' ? src.movie(item.tmdb_id) : src.tv(item.tmdb_id, s, eNum);
-                    if (url) window.open(url, '_blank');
+            globalMenu.querySelectorAll('.status-option').forEach((option) => {
+                option.onclick = (clickEvent) => {
+                    clickEvent.stopPropagation();
+                    const source = EMBED_SOURCES[option.dataset.key];
+                    const url = item.type === 'movie'
+                        ? source.movie(item.tmdb_id)
+                        : source.tv(item.tmdb_id, seasonNumber, episodeNumber);
+                    if (url) {
+                        window.open(url, '_blank', 'noopener,noreferrer');
+                    }
                     globalMenu.style.display = 'none';
                 };
             });
         });
-        return btn;
+        return button;
     }
 
     /**
      * Bouwt een anime-kaart voor een franchise-groep.
-     * @param {Object} group - Franchise-groepsobject
-     * @param {number} computedStatus - Gecombineerde status
+     *
+     * @param {Object} group
+     * @param {number} computedStatus
      * @returns {HTMLElement}
      */
     function buildCard(group, computedStatus) {
@@ -136,34 +174,31 @@ window.Components = (function() {
         card.className = 'anime-card';
         card.dataset.status = computedStatus;
 
-        // Removed: individual AniList sync button (already present in header)
+        if (!group || !Array.isArray(group.items) || group.items.length === 0) {
+            return card;
+        }
 
-        if (computedStatus === 1) card.classList.add('status-watched');
-        
-        // Restore rating-based glows
-        if (group.rating >= 9) card.classList.add('glow-gold');
-        else if (group.rating >= 0 && group.rating < 2) card.classList.add('glow-red');
-        
-        // RULE #12-derived: We no longer expand in-line, but open a modal instead.
-        const isGroup = group.items.length > 1 || (group.items[0].type === 'tv' && group.items[0].seasons?.length > 1);
+        if (computedStatus === 1) {
+            card.classList.add('status-watched');
+        }
+        if (group.rating >= 9) {
+            card.classList.add('glow-gold');
+        } else if (group.rating >= 0 && group.rating < 2) {
+            card.classList.add('glow-red');
+        }
 
         const posterContainer = document.createElement('div');
         posterContainer.className = 'card-poster';
-        if (group.poster_path) {
-            const posterUrl = group.poster_path.startsWith('http') ? group.poster_path : `https://image.tmdb.org/t/p/w500${group.poster_path}`;
+        const posterUrl = resolvePosterUrl(group.poster_path);
+        if (posterUrl) {
             posterContainer.innerHTML = `<img src="${posterUrl}" alt="${group.title}" loading="lazy">`;
         } else {
-            posterContainer.innerHTML = `<div class="poster-placeholder"><i class="fas fa-image"></i></div>`;
+            posterContainer.innerHTML = '<div class="poster-placeholder"><i class="fas fa-image"></i></div>';
         }
         card.appendChild(posterContainer);
 
         const info = document.createElement('div');
         info.className = 'card-info';
-        
-        const ratingHtml = group.rating >= 0 
-            ? `<div class="rating-badge ${UIHelpers.getRatingClass(group.rating)}"><i class="fas fa-star"></i> ${group.rating}</div>` 
-            : '';
-
         info.innerHTML = `
             <div class="card-header">
                 <div class="card-title">
@@ -184,21 +219,18 @@ window.Components = (function() {
         chevron.className = 'fas fa-chevron-right expand-icon';
         card.appendChild(chevron);
 
-        // All status/play buttons removed from the card per Master's request.
-        // Interactions are consolidated into the Detail Modal.
-
         card.style.cursor = 'pointer';
-        card.addEventListener('click', (e) => {
-            // Unconditionally open the detail modal for all views
+        card.addEventListener('click', () => {
             Modals.showDetailModal(group);
         });
         return card;
     }
 
     /**
-     * Builds the expanded detail block for a franchise in list view.
-     * @param {Object} group - The franchise group object.
-     * @returns {HTMLElement} The detail container.
+     * Bouwt het detailblok voor een franchise in de modal.
+     *
+     * @param {Object} group
+     * @returns {HTMLElement}
      */
     function buildDetailGroup(group) {
         const detail = document.createElement('div');
@@ -209,24 +241,24 @@ window.Components = (function() {
             return da.localeCompare(db);
         });
 
-        sortedItems.forEach(item => {
+        sortedItems.forEach((item) => {
             const itemBlock = document.createElement('div');
             itemBlock.className = 'item-block';
-            const itHeader = document.createElement('div');
-            itHeader.className = 'item-header';
+            const itemHeader = document.createElement('div');
+            itemHeader.className = 'item-header';
             const lowerItem = item.title.toLowerCase();
             const lowerGroup = group.title.toLowerCase();
             const isRedundantTitle = lowerItem === lowerGroup || lowerItem.includes(lowerGroup) || lowerGroup.includes(lowerItem);
-            
+
             if (!isRedundantTitle || group.items.length > 1) {
-                itHeader.innerHTML = `
+                itemHeader.innerHTML = `
                     <div class="item-title-row">
                         <span class="item-type-badge">${item.type === 'movie' ? 'Film' : 'Serie'}</span>
                         ${isRedundantTitle ? '' : `<span class="item-title-text">${item.title}</span>`}
                         <span class="item-year-text">${item.release_date ? `(${item.release_date.substring(0, 4)})` : ''}</span>
                     </div>
                 `;
-                itemBlock.appendChild(itHeader);
+                itemBlock.appendChild(itemHeader);
             }
 
             if (item.type === 'movie') {
@@ -234,37 +266,40 @@ window.Components = (function() {
                 movieRow.className = 'movie-row';
                 movieRow.appendChild(buildStatusDropdown(item.status || -1, (newStatus) => {
                     item.status = newStatus;
-                    save(); render();
+                    save();
+                    render();
                 }));
+
                 const moviePlay = buildPlayDropdown(item, 1, 1);
                 moviePlay.classList.add('btn-tiny');
                 movieRow.appendChild(moviePlay);
                 itemBlock.appendChild(movieRow);
+            } else if (!item.seasons || item.seasons.length === 0) {
+                const fetchButton = document.createElement('button');
+                fetchButton.className = 'action-btn btn-small';
+                fetchButton.textContent = 'Haal seizoenen op (AniList)';
+                fetchButton.addEventListener('click', async (event) => {
+                    event.stopPropagation();
+                    const details = await AnilistApi.fetchMediaDetails(item.anilist_id);
+                    if (!details) {
+                        return;
+                    }
+
+                    item.seasons = [{ number: 1, name: 'Season 1', episodes: [] }];
+                    for (let episodeNumber = 1; episodeNumber <= (details.episodes || 0); episodeNumber += 1) {
+                        item.seasons[0].episodes.push({ number: episodeNumber, name: `Episode ${episodeNumber}`, status: -1 });
+                    }
+                    save();
+                    render();
+                    if (currentView === 'grid') {
+                        Modals.showDetailModal(group);
+                    }
+                });
+                itemBlock.appendChild(fetchButton);
             } else {
-                if (!item.seasons || item.seasons.length === 0) {
-                    const fetchBtn = document.createElement('button');
-                    fetchBtn.className = 'action-btn btn-small';
-                    fetchBtn.textContent = 'Haal seizoenen op (AniList)';
-                    fetchBtn.addEventListener('click', async (e) => {
-                        e.stopPropagation();
-                        // Gebruik de nieuwe AniList sync logic
-                        await AnilistApi.fetchMediaDetails(item.anilist_id).then(details => {
-                            if (details) {
-                                item.seasons = [{ number: 1, name: 'Season 1', episodes: [] }];
-                                for (let i = 1; i <= (details.episodes || 0); i++) {
-                                    item.seasons[0].episodes.push({ number: i, name: `Episode ${i}`, status: -1 });
-                                }
-                                save(); render();
-                                if (currentView === 'grid') Modals.showDetailModal(group);
-                            }
-                        });
-                    });
-                    itemBlock.appendChild(fetchBtn);
-                } else {
-                    item.seasons.forEach(season => {
-                        itemBlock.appendChild(buildSeasonRow(item, season));
-                    });
-                }
+                item.seasons.forEach((season) => {
+                    itemBlock.appendChild(buildSeasonRow(item, season));
+                });
             }
             detail.appendChild(itemBlock);
         });
@@ -272,87 +307,103 @@ window.Components = (function() {
     }
 
     /**
-     * Builds a single season row with accordion functionality for episodes.
-     * @param {Object} item - The parent anime item.
-     * @param {Object} season - The target season object.
-     * @returns {HTMLElement} The season block.
+     * Bouwt een enkele seizoenrij met accordiongedrag voor episodes.
+     *
+     * @param {Object} item
+     * @param {Object} season
+     * @returns {HTMLElement}
      */
     function buildSeasonRow(item, season) {
         const seasonKey = `${item.title}-S${season.number}`;
         const isOpen = expandedSeasons.has(seasonKey);
-        const sBlock = document.createElement('div');
-        sBlock.className = 'season-block';
-        if (season.number === 0) sBlock.classList.add('season-specials');
+        const seasonBlock = document.createElement('div');
+        seasonBlock.className = 'season-block';
+        if (season.number === 0) {
+            seasonBlock.classList.add('season-specials');
+        }
 
-        const sHeader = document.createElement('div');
-        sHeader.className = 'season-header';
-        sHeader.appendChild(buildStatusDropdown(window.StatusCalculator.getSeasonStatus(season), (newStatus) => {
+        const seasonHeader = document.createElement('div');
+        seasonHeader.className = 'season-header';
+        seasonHeader.appendChild(buildStatusDropdown(window.StatusCalculator.getSeasonStatus(season), (newStatus) => {
             setSeasonStatus(item, season, newStatus);
-            save(); render();
+            save();
+            render();
         }));
 
-        const sTitle = document.createElement('span');
-        sTitle.className = 'season-title';
-        const sName = season.number === 0 ? 'Specials' : (season.name || `Seizoen ${season.number}`);
-        sTitle.textContent = `${sName} (${season.episodes.length} afl.)`;
-        sHeader.appendChild(sTitle);
-        
-        const sChevron = document.createElement('i');
-        sChevron.className = `fas fa-chevron-${isOpen ? 'up' : 'down'} expand-icon`;
-        sHeader.appendChild(sChevron);
+        const seasonTitle = document.createElement('span');
+        seasonTitle.className = 'season-title';
+        const seasonName = season.number === 0 ? 'Specials' : (season.name || `Season ${season.number}`);
+        seasonTitle.textContent = `${seasonName} (${season.episodes.length} afl.)`;
+        seasonHeader.appendChild(seasonTitle);
 
-        sHeader.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (e.target.closest('.status-dropdown, .action-btn')) return;
-            if (expandedSeasons.has(seasonKey)) expandedSeasons.delete(seasonKey);
-            else expandedSeasons.add(seasonKey);
+        const seasonChevron = document.createElement('i');
+        seasonChevron.className = `fas fa-chevron-${isOpen ? 'up' : 'down'} expand-icon`;
+        seasonHeader.appendChild(seasonChevron);
+
+        seasonHeader.addEventListener('click', (event) => {
+            event.stopPropagation();
+            if (event.target.closest('.status-dropdown, .action-btn')) {
+                return;
+            }
+            if (expandedSeasons.has(seasonKey)) {
+                expandedSeasons.delete(seasonKey);
+            } else {
+                expandedSeasons.add(seasonKey);
+            }
             render();
-            if (window.currentlyShownItem) Modals.showDetailModal(window.currentlyShownItem);
+            if (window.currentlyShownItem) {
+                Modals.showDetailModal(window.currentlyShownItem);
+            }
         });
-        sBlock.appendChild(sHeader);
+        seasonBlock.appendChild(seasonHeader);
 
         if (isOpen) {
-            const epList = document.createElement('div');
-            epList.className = 'episode-list';
-            season.episodes.forEach(ep => {
-                const epRow = document.createElement('div');
-                epRow.className = 'episode-row';
-                if (selectedEpisodes.has(`${item.title}|S${season.number}|E${ep.number}`)) epRow.classList.add('selected');
-                
-                epRow.appendChild(buildStatusDropdown(ep.status, (newStatus) => {
-                    setEpisodeStatus(item, season, ep, newStatus);
-                    save(); render();
-                }));
-                
-                const epTitle = document.createElement('span');
-                epTitle.className = 'ep-title';
-                epTitle.textContent = `Afl. ${ep.number} — ${ep.name}`;
-                epRow.appendChild(epTitle);
-                
-                const epPlay = buildPlayDropdown(item, season.number, ep.number);
-                epPlay.classList.add('btn-tiny');
-                epRow.appendChild(epPlay);
+            const episodeList = document.createElement('div');
+            episodeList.className = 'episode-list';
+            season.episodes.forEach((episode) => {
+                const episodeRow = document.createElement('div');
+                episodeRow.className = 'episode-row';
+                if (selectedEpisodes.has(`${item.title}|S${season.number}|E${episode.number}`)) {
+                    episodeRow.classList.add('selected');
+                }
 
-                epRow.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    if (e.target.closest('.status-dropdown, .btn-play')) return;
-                    const key = `${item.title}|S${season.number}|E${ep.number}`;
-                    if (e.ctrlKey) {
+                episodeRow.appendChild(buildStatusDropdown(episode.status, (newStatus) => {
+                    setEpisodeStatus(item, season, episode, newStatus);
+                    save();
+                    render();
+                }));
+
+                const episodeTitle = document.createElement('span');
+                episodeTitle.className = 'ep-title';
+                episodeTitle.textContent = `E${episode.number} - ${episode.name}`;
+                episodeRow.appendChild(episodeTitle);
+
+                const episodePlay = buildPlayDropdown(item, season.number, episode.number);
+                episodePlay.classList.add('btn-tiny');
+                episodeRow.appendChild(episodePlay);
+
+                episodeRow.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    if (event.target.closest('.status-dropdown, .btn-play')) {
+                        return;
+                    }
+                    const key = `${item.title}|S${season.number}|E${episode.number}`;
+                    if (event.ctrlKey) {
                         if (selectedEpisodes.has(key)) {
                             selectedEpisodes.delete(key);
-                            epRow.classList.remove('selected');
+                            episodeRow.classList.remove('selected');
                         } else {
-                            selectedEpisodes.set(key, { item, season, episode: ep });
-                            epRow.classList.add('selected');
+                            selectedEpisodes.set(key, { item, season, episode });
+                            episodeRow.classList.add('selected');
                         }
-                        BatchActions.renderBatchBar(e.clientX, e.clientY);
+                        BatchActions.renderBatchBar(event.clientX, event.clientY);
                     }
                 });
-                epList.appendChild(epRow);
+                episodeList.appendChild(episodeRow);
             });
-            sBlock.appendChild(epList);
+            seasonBlock.appendChild(episodeList);
         }
-        return sBlock;
+        return seasonBlock;
     }
 
     return {
