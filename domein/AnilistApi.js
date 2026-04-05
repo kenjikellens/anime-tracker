@@ -1,12 +1,23 @@
 // domein/AnilistApi.js
 
 /**
- * AniList API module voor voortgang, metadata en koppelingen.
+ * AniList API module — enige databron voor RASCAL.
+ * Alle anime-data wordt opgehaald en gemuteerd via de AniList GraphQL API.
  * Netwerkrequests lopen via kleine helpers zodat HTTP- en GraphQL-fouten
  * consequent worden afgevangen en gelogd.
  */
 const TMDB_API_KEY = 'a341dc9a3c2dffa62668b614a98c1188';
 const ANILIST_API_URL = 'https://graphql.anilist.co';
+
+/**
+ * Relation types die franchise-groepering toestaan.
+ * Items verbonden via deze types worden in dezelfde franchise geplaatst.
+ *
+ * @type {Set<string>}
+ */
+const ACCEPTED_RELATION_TYPES = new Set([
+    'SEQUEL', 'PREQUEL', 'SIDE_STORY', 'SPIN_OFF', 'ALTERNATIVE', 'PARENT'
+]);
 
 /**
  * Bouwt headers voor AniList requests.
@@ -108,7 +119,8 @@ var AnilistApi = {
     },
 
     /**
-     * Haalt de volledige AniList collection van de gebruiker op.
+     * Haalt de volledige AniList collectie van de gebruiker op,
+     * inclusief relaties voor franchise-groepering.
      *
      * @param {string} token
      * @returns {Promise<Array<Object>>}
@@ -121,7 +133,7 @@ var AnilistApi = {
                         name
                         entries {
                             status
-                            score(format: POINT_10)
+                            score(format: POINT_10_DECIMAL)
                             progress
                             repeat
                             media {
@@ -136,8 +148,23 @@ var AnilistApi = {
                                 format
                                 status
                                 averageScore
+                                description(asHtml: false)
+                                startDate {
+                                    year
+                                    month
+                                    day
+                                }
                                 coverImage {
                                     large
+                                    extraLarge
+                                }
+                                relations {
+                                    edges {
+                                        relationType
+                                        node {
+                                            id
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -167,7 +194,7 @@ var AnilistApi = {
     },
 
     /**
-     * Werkt een enkele AniList entry bij.
+     * Werkt een enkele AniList entry bij (status, progress, score).
      *
      * @param {string} token
      * @param {Object} data
@@ -180,6 +207,7 @@ var AnilistApi = {
                     id
                     status
                     progress
+                    score
                 }
             }
         `;
@@ -196,45 +224,6 @@ var AnilistApi = {
         );
 
         return responseData.SaveMediaListEntry;
-    },
-
-    /**
-     * Werkt meerdere AniList entries in één batch bij.
-     *
-     * @param {string} token
-     * @param {Array<Object>} items
-     * @returns {Promise<Object>}
-     */
-    bulkUpdateEntries: async function(token, items) {
-        if (!items || items.length === 0) {
-            return { data: {} };
-        }
-
-        let mutationBody = '';
-        const variables = {};
-
-        items.forEach((item, index) => {
-            mutationBody += `
-                m${index}: SaveMediaListEntry(mediaId: $id${index}, status: $st${index}, progress: $pr${index}, score: $sc${index}) {
-                    id
-                    status
-                    progress
-                }
-            `;
-            variables[`id${index}`] = toInteger(item.mediaId);
-            variables[`st${index}`] = item.status;
-            variables[`pr${index}`] = toInteger(item.progress) || 0;
-            variables[`sc${index}`] = Number.isFinite(Number(item.score)) ? Number(item.score) : null;
-        });
-
-        const mutation = `
-            mutation (${items.map((_, index) => `$id${index}: Int, $st${index}: MediaListStatus, $pr${index}: Int, $sc${index}: Float`).join(', ')}) {
-                ${mutationBody}
-            }
-        `;
-
-        const data = await requestAniList(mutation, variables, token);
-        return { data };
     },
 
     /**
@@ -302,7 +291,7 @@ var AnilistApi = {
                     format
                     episodes
                     status
-                    description
+                    description(asHtml: false)
                     startDate {
                         year
                         month
@@ -313,10 +302,6 @@ var AnilistApi = {
                         extraLarge
                     }
                     bannerImage
-                    streamingEpisodes {
-                        title
-                        thumbnail
-                    }
                 }
             }
         `;
@@ -331,153 +316,19 @@ var AnilistApi = {
     },
 
     /**
-     * Zoekt meerdere titels in één GraphQL request.
-     * Ondersteunt ook de oude call-shape `bulkSearchMedia(token, titles)`.
+     * Zoekt een TMDB-id op voor een titel (voor playback).
      *
-     * @param {Array<string>|string} titlesOrLegacyArg
-     * @param {Array<string>} [maybeTitles]
-     * @returns {Promise<Object>}
+     * @param {string} title
+     * @returns {Promise<number|null>}
      */
-    bulkSearchMedia: async function(titlesOrLegacyArg, maybeTitles) {
-        const titles = Array.isArray(titlesOrLegacyArg)
-            ? titlesOrLegacyArg
-            : Array.isArray(maybeTitles)
-                ? maybeTitles
-                : [];
-        const cleanedTitles = titles.map((title) => String(title || '').trim()).filter(Boolean);
-
-        if (cleanedTitles.length === 0) {
-            return { data: {} };
-        }
-
-        let queryBody = '';
-        const variables = {};
-
-        cleanedTitles.forEach((title, index) => {
-            queryBody += `
-                s${index}: Page(page: 1, perPage: 1) {
-                    media(search: $q${index}, type: ANIME) {
-                        id
-                        idMal
-                        title {
-                            romaji
-                            english
-                        }
-                    }
-                }
-            `;
-            variables[`q${index}`] = title;
-        });
-
-        const query = `
-            query (${cleanedTitles.map((_, index) => `$q${index}: String`).join(', ')}) {
-                ${queryBody}
-            }
-        `;
-
-        try {
-            const data = await requestAniList(query, variables);
-            return { data };
-        } catch (error) {
-            console.error('[AniList] bulkSearchMedia error:', error);
-            return { data: {} };
-        }
-    },
+    fetchTmdbId: fetchTmdbId,
 
     /**
-     * Vult ontbrekende AniList metadata op de achtergrond aan.
+     * Geeft de set van geaccepteerde relatie-types terug voor franchise-groepering.
      *
-     * @returns {Promise<void>}
+     * @returns {Set<string>}
      */
-    lazyFetchAnilistData: async function() {
-        for (const item of state.animeList) {
-            if (!item || !item.title) {
-                continue;
-            }
-
-            if (!item.poster_path || !item.anilist_id) {
-                if (!item.anilist_id) {
-                    const searchResults = await this.searchMedia(item.title);
-                    if (searchResults.length > 0) {
-                        const best = searchResults[0];
-                        item.anilist_id = best.id;
-                        item.mal_id = best.idMal;
-                        if (!item.poster_path) {
-                            item.poster_path = best.coverImage?.large || item.poster_path;
-                        }
-                        save();
-                    }
-                }
-
-                if (item.anilist_id && (!item.poster_path || !item.description)) {
-                    const details = await this.fetchMediaDetails(item.anilist_id);
-                    if (details) {
-                        item.poster_path = details.coverImage?.large || item.poster_path;
-                        item.description = details.description || item.description;
-                        const date = details.startDate;
-                        if (date && date.year) {
-                            item.release_date = `${date.year}-${String(date.month || 1).padStart(2, '0')}-${String(date.day || 1).padStart(2, '0')}`;
-                        }
-
-                        if (!item.tmdb_id) {
-                            const tmdbId = await fetchTmdbId(item.title);
-                            if (tmdbId) {
-                                item.tmdb_id = tmdbId;
-                            }
-                        }
-                        save();
-                    }
-                }
-            }
-        }
-    },
-
-    /**
-     * Synchroniseert episode-aantallen vanuit AniList voor episodische items.
-     *
-     * @returns {Promise<void>}
-     */
-    lazySyncAnilistEpisodes: async function() {
-        for (const item of state.animeList) {
-            if (!item || item.type === 'movie' || !item.anilist_id) {
-                continue;
-            }
-
-            const status = window.StatusCalculator.getAnimeStatus(item);
-            if (item.seasons && item.seasons.length > 0 && status === 1) {
-                continue;
-            }
-
-            const details = await this.fetchMediaDetails(item.anilist_id);
-            if (!details) {
-                continue;
-            }
-
-            if (!item.seasons) {
-                item.seasons = [];
-            }
-
-            let firstSeason = item.seasons.find((season) => season.number === 1);
-            if (!firstSeason) {
-                firstSeason = { number: 1, name: 'Season 1', episodes: [] };
-                item.seasons.push(firstSeason);
-            }
-
-            const episodeCount = Number.isFinite(Number(details.episodes)) ? Number(details.episodes) : 0;
-            if (firstSeason.episodes.length < episodeCount) {
-                console.log(`[AniList Sync] ${item.title}: Adding ${episodeCount - firstSeason.episodes.length} episodes`);
-                for (let episodeNumber = firstSeason.episodes.length + 1; episodeNumber <= episodeCount; episodeNumber += 1) {
-                    firstSeason.episodes.push({
-                        number: episodeNumber,
-                        name: `Episode ${episodeNumber}`,
-                        status: -1
-                    });
-                }
-                save();
-                if (typeof render === 'function') {
-                    render();
-                }
-            }
-        }
+    getAcceptedRelationTypes: function() {
+        return ACCEPTED_RELATION_TYPES;
     }
 };

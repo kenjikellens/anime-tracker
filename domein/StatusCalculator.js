@@ -1,75 +1,34 @@
 // domein/StatusCalculator.js
-// Dit bestand bevat pure domein logica voor het berekenen van statussen.
+// Vereenvoudigd: status en progress komen nu direct uit AniList,
+// niet meer berekend uit individuele afleveringen.
 
 window.StatusCalculator = (function () {
 
     /**
-     * Berekent in real-time de "gecombineerde" status van een specifieke seizoenarray (`season.episodes`).
-     * De gouden regel: 
-     * - Als je alle episodes gezien hebt: "Bekeken" (1).
-     * - Als ook maar één aflevering "Bekeken" (1) of "Bezig" (0) is: "Bezig" (0).
-     * - Voor al het overige: "Te Bekijken" (-1).
-     * 
-     * @param {Object} season - Seizoenselement bevat een `episodes` array.
-     * @returns {number|null} De herberekende status, of null indien er geen afleveringsdata is.
+     * Geeft de RASCAL-macrostatus van een item terug.
+     * Mapping: AniList PLANNING → -1, CURRENT/PAUSED → 0, COMPLETED/REPEATING → 1, DROPPED → -1
+     *
+     * @param {Object} item - Het anime data object met _rascalStatus.
+     * @returns {number} -1 (te bekijken), 0 (bezig), of 1 (bekeken).
      */
-    function getSeasonStatus(season) {
-        if (!season.episodes || season.episodes.length === 0) return null; // Leeg / nog niet uitgekomen
-
-        // GOUDEN REGEL check voor seizoen
-        if (season.episodes.every(e => e.status === 1)) return 1;
-        if (season.episodes.some(e => e.status === 0 || e.status === 1)) return 0;
-
+    function getAnimeStatus(item) {
+        if (!item) return -1;
+        if (typeof item._rascalStatus === 'number') return item._rascalStatus;
         return -1;
     }
 
     /**
-     * Berekent iteratief over alle aanwezige seizoenen van de show the all-round animestatus.
-     * Een show is pas écht "Bekeken" als IEDERE aflevering van IEDER seizoen status 1 is.
-     * Valt (indien seizoenen nog niet zijn gesynct) organisch terug op the raw properties .status of ._legacyStatus.
-     * 
-     * @param {Object} item - Het anime data object.
-     * @returns {number} De macro-status voor the franchise.
-     */
-    function getAnimeStatus(item) {
-        if (item.type === 'movie') {
-            const s = (item.status !== undefined && item.status !== -1) ? item.status : (item._legacyStatus !== undefined ? item._legacyStatus : -1);
-            return Number(s);
-        }
-
-        // Legacy fallback als er nog geen seizoendata is
-        if (!item.seasons || item.seasons.length === 0) {
-            return item._legacyStatus !== undefined ? Number(item._legacyStatus) : -1;
-        }
-
-
-        const allEps = item.seasons.flatMap(s => s.episodes);
-        if (allEps.length === 0) {
-            return item._legacyStatus !== undefined ? Number(item._legacyStatus) : -1;
-        }
-
-        // Als alle afleveringen bekeken zijn: Bekeken (1)
-        if (allEps.every(e => e.status === 1)) return 1;
-
-        // Te Bekijken (-1) als niemand begonnen is
-        if (allEps.every(e => e.status === -1)) return -1;
-
-        return 0; // Bezig
-    }
-
-    /**
-     * Berekent het totaal aantal bekeken afleveringen over alle seizoenen.
-     * @param {Object} item - Het anime data object.
-     * @returns {number} Totaal aantal episodes met status 1.
+     * Geeft het aantal bekeken afleveringen terug.
+     *
+     * @param {Object} item - Het anime data object met progress.
+     * @returns {number} Aantal bekeken episodes.
      */
     function getAnimeProgress(item) {
-        if (item.type === 'movie') return item.status === 1 ? 1 : 0;
-        if (!item.seasons) return 0;
-        return item.seasons.flatMap(s => s.episodes).filter(e => e.status === 1).length;
+        if (!item) return 0;
+        return item.progress || 0;
     }
 
     return {
-        getSeasonStatus,
         getAnimeStatus,
         getAnimeProgress
     };

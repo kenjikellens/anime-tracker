@@ -276,7 +276,63 @@ window.Components = (function() {
     }
 
     /**
+     * Bouwt een progress-control met [ - ] progress / total [ + ] knoppen.
+     *
+     * @param {Object} item - Het anime-item
+     * @param {Object} group - De franchise-groep (voor re-render)
+     * @returns {HTMLElement}
+     */
+    function buildProgressControl(item, group) {
+        const container = document.createElement('div');
+        container.className = 'progress-control';
+
+        const total = item.episodes || '?';
+        const current = item.progress || 0;
+
+        const minusBtn = document.createElement('button');
+        minusBtn.className = 'progress-btn';
+        minusBtn.innerHTML = '<i class="fas fa-minus"></i>';
+        minusBtn.disabled = current <= 0;
+        minusBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            window.AnimeActions.decrementProgress(item);
+            triggerAutoSync(item);
+            save();
+            render();
+            if (window.currentlyShownItem) {
+                Modals.showDetailModal(window.currentlyShownItem);
+            }
+        });
+
+        const progressText = document.createElement('span');
+        progressText.className = 'progress-text';
+        progressText.textContent = `${current} / ${total}`;
+
+        const plusBtn = document.createElement('button');
+        plusBtn.className = 'progress-btn';
+        plusBtn.innerHTML = '<i class="fas fa-plus"></i>';
+        plusBtn.disabled = (typeof total === 'number' && current >= total);
+        plusBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            window.AnimeActions.incrementProgress(item);
+            triggerAutoSync(item);
+            save();
+            render();
+            if (window.currentlyShownItem) {
+                Modals.showDetailModal(window.currentlyShownItem);
+            }
+        });
+
+        container.appendChild(minusBtn);
+        container.appendChild(progressText);
+        container.appendChild(plusBtn);
+
+        return container;
+    }
+
+    /**
      * Bouwt het detailblok voor een franchise in de modal.
+     * Toont een lijst van seizoenen/films MET progress-controls (geen episode-grid).
      *
      * @param {Object} group
      * @returns {HTMLElement}
@@ -284,6 +340,7 @@ window.Components = (function() {
     function buildDetailGroup(group) {
         const detail = document.createElement('div');
         detail.className = 'card-detail-group card-detail';
+
         const sortedItems = [...group.items].sort((a, b) => {
             const da = a.release_date || '0000-00-00';
             const db = b.release_date || '0000-00-00';
@@ -293,16 +350,20 @@ window.Components = (function() {
         sortedItems.forEach((item) => {
             const itemBlock = document.createElement('div');
             itemBlock.className = 'item-block';
+
+            // Item header met type-badge, titel en jaar
             const itemHeader = document.createElement('div');
             itemHeader.className = 'item-header';
+
             const lowerItem = item.title.toLowerCase();
             const lowerGroup = group.title.toLowerCase();
             const isRedundantTitle = lowerItem === lowerGroup || lowerItem.includes(lowerGroup) || lowerGroup.includes(lowerItem);
 
+            // Toon altijd de header als er meerdere items zijn, of als de titel verschilt
             if (!isRedundantTitle || group.items.length > 1) {
                 itemHeader.innerHTML = `
                     <div class="item-title-row">
-                        <span class="item-type-badge">${item.type === 'movie' ? 'Film' : 'Serie'}</span>
+                        <span class="item-type-badge">${item.type === 'movie' ? 'Film' : item._format || 'Serie'}</span>
                         ${isRedundantTitle ? '' : `<span class="item-title-text">${item.title}</span>`}
                         <span class="item-year-text">${item.release_date ? `(${item.release_date.substring(0, 4)})` : ''}</span>
                     </div>
@@ -310,149 +371,40 @@ window.Components = (function() {
                 itemBlock.appendChild(itemHeader);
             }
 
-            if (item.type === 'movie') {
-                const movieRow = document.createElement('div');
-                movieRow.className = 'movie-row';
-                movieRow.appendChild(buildStatusDropdown(item.status || -1, (newStatus) => {
-                    item.status = newStatus;
+            // Item actions row: Status + Progress + Play
+            const actionsRow = document.createElement('div');
+            actionsRow.className = 'item-actions-row';
+
+            // Status dropdown
+            actionsRow.appendChild(buildStatusDropdown(
+                window.StatusCalculator.getAnimeStatus(item),
+                (newStatus) => {
+                    window.AnimeActions.setStatusLocally(item, newStatus);
+                    triggerAutoSync(item);
                     save();
                     render();
-                }));
+                    if (window.currentlyShownItem) {
+                        Modals.showDetailModal(window.currentlyShownItem);
+                    }
+                }
+            ));
 
-                const moviePlay = buildPlayDropdown(item, 1, 1);
-                moviePlay.classList.add('btn-tiny');
-                movieRow.appendChild(moviePlay);
-                itemBlock.appendChild(movieRow);
-            } else if (!item.seasons || item.seasons.length === 0) {
-                const fetchButton = document.createElement('button');
-                fetchButton.className = 'action-btn btn-small';
-                fetchButton.textContent = 'Haal seizoenen op (AniList)';
-                fetchButton.addEventListener('click', async (event) => {
-                    event.stopPropagation();
-                    const details = await AnilistApi.fetchMediaDetails(item.anilist_id);
-                    if (!details) {
-                        return;
-                    }
-
-                    item.seasons = [{ number: 1, name: 'Season 1', episodes: [] }];
-                    for (let episodeNumber = 1; episodeNumber <= (details.episodes || 0); episodeNumber += 1) {
-                        item.seasons[0].episodes.push({ number: episodeNumber, name: `Episode ${episodeNumber}`, status: -1 });
-                    }
-                    save();
-                    render();
-                    if (currentView === 'grid') {
-                        Modals.showDetailModal(group);
-                    }
-                });
-                itemBlock.appendChild(fetchButton);
-            } else {
-                item.seasons.forEach((season) => {
-                    itemBlock.appendChild(buildSeasonRow(item, season));
-                });
+            // Progress control (niet voor movies zonder episodes)
+            if (item.type !== 'movie') {
+                actionsRow.appendChild(buildProgressControl(item, group));
             }
+
+            // Play button
+            const nextEp = (item.progress || 0) + 1;
+            const playBtn = buildPlayDropdown(item, 1, nextEp);
+            playBtn.classList.add('btn-tiny');
+            actionsRow.appendChild(playBtn);
+
+            itemBlock.appendChild(actionsRow);
             detail.appendChild(itemBlock);
         });
+
         return detail;
-    }
-
-    /**
-     * Bouwt een enkele seizoenrij met accordiongedrag voor episodes.
-     *
-     * @param {Object} item
-     * @param {Object} season
-     * @returns {HTMLElement}
-     */
-    function buildSeasonRow(item, season) {
-        const seasonKey = `${item.title}-S${season.number}`;
-        const isOpen = expandedSeasons.has(seasonKey);
-        const seasonBlock = document.createElement('div');
-        seasonBlock.className = 'season-block';
-        if (season.number === 0) {
-            seasonBlock.classList.add('season-specials');
-        }
-
-        const seasonHeader = document.createElement('div');
-        seasonHeader.className = 'season-header';
-        seasonHeader.appendChild(buildStatusDropdown(window.StatusCalculator.getSeasonStatus(season), (newStatus) => {
-            setSeasonStatus(item, season, newStatus);
-            save();
-            render();
-        }));
-
-        const seasonTitle = document.createElement('span');
-        seasonTitle.className = 'season-title';
-        const seasonName = season.number === 0 ? 'Specials' : (season.name || `Season ${season.number}`);
-        seasonTitle.textContent = `${seasonName} (${season.episodes.length} afl.)`;
-        seasonHeader.appendChild(seasonTitle);
-
-        const seasonChevron = document.createElement('i');
-        seasonChevron.className = `fas fa-chevron-${isOpen ? 'up' : 'down'} expand-icon`;
-        seasonHeader.appendChild(seasonChevron);
-
-        seasonHeader.addEventListener('click', (event) => {
-            event.stopPropagation();
-            if (event.target.closest('.status-dropdown, .action-btn')) {
-                return;
-            }
-            if (expandedSeasons.has(seasonKey)) {
-                expandedSeasons.delete(seasonKey);
-            } else {
-                expandedSeasons.add(seasonKey);
-            }
-            render();
-            if (window.currentlyShownItem) {
-                Modals.showDetailModal(window.currentlyShownItem);
-            }
-        });
-        seasonBlock.appendChild(seasonHeader);
-
-        if (isOpen) {
-            const episodeList = document.createElement('div');
-            episodeList.className = 'episode-list';
-            season.episodes.forEach((episode) => {
-                const episodeRow = document.createElement('div');
-                episodeRow.className = 'episode-row';
-                if (selectedEpisodes.has(`${item.title}|S${season.number}|E${episode.number}`)) {
-                    episodeRow.classList.add('selected');
-                }
-
-                episodeRow.appendChild(buildStatusDropdown(episode.status, (newStatus) => {
-                    setEpisodeStatus(item, season, episode, newStatus);
-                    save();
-                    render();
-                }));
-
-                const episodeTitle = document.createElement('span');
-                episodeTitle.className = 'ep-title';
-                episodeTitle.textContent = `E${episode.number} - ${episode.name}`;
-                episodeRow.appendChild(episodeTitle);
-
-                const episodePlay = buildPlayDropdown(item, season.number, episode.number);
-                episodePlay.classList.add('btn-tiny');
-                episodeRow.appendChild(episodePlay);
-
-                episodeRow.addEventListener('click', (event) => {
-                    event.stopPropagation();
-                    if (event.target.closest('.status-dropdown, .btn-play')) {
-                        return;
-                    }
-                    const key = `${item.title}|S${season.number}|E${episode.number}`;
-                    if (event.ctrlKey) {
-                        if (selectedEpisodes.has(key)) {
-                            selectedEpisodes.delete(key);
-                            episodeRow.classList.remove('selected');
-                        } else {
-                            selectedEpisodes.set(key, { item, season, episode });
-                            episodeRow.classList.add('selected');
-                        }
-                        BatchActions.renderBatchBar(event.clientX, event.clientY);
-                    }
-                });
-                episodeList.appendChild(episodeRow);
-            });
-            seasonBlock.appendChild(episodeList);
-        }
-        return seasonBlock;
     }
 
     return {
@@ -461,6 +413,6 @@ window.Components = (function() {
         buildPlayDropdown,
         buildCard,
         buildDetailGroup,
-        buildSeasonRow
+        buildProgressControl
     };
 })();

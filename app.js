@@ -1,6 +1,6 @@
 // app.js - Central Domain Controller
+// AniList is de enige databron. Geen lokale data.json meer.
 
-const VALID_STATUSES = new Set([-1, 0, 1]);
 const ANILIST_STATUS_MAP = {
     '-1': 'PLANNING',
     '0': 'CURRENT',
@@ -63,312 +63,193 @@ async function fetchJson(url, options = {}, context = 'Request') {
 }
 
 /**
- * Normaliseert een statuswaarde.
+ * Mapt een AniList MediaListStatus naar een RASCAL macrostatus.
  *
- * @param {*} status
- * @param {number} [fallback=-1]
+ * @param {string} anilistStatus
  * @returns {number}
  */
-function normalizeStatus(status, fallback = -1) {
-    const parsed = Number.parseInt(status, 10);
-    return VALID_STATUSES.has(parsed) ? parsed : fallback;
+function mapAniListStatusToRascal(anilistStatus) {
+    return window.AnimeActions.toRascalStatus(anilistStatus);
 }
 
 /**
- * Detecteert of een item afleveringsdata hoort te gebruiken.
+ * Mapt een AniList format naar een RASCAL type.
  *
- * @param {Object} item
- * @returns {boolean}
+ * @param {string} format - AniList format (TV, MOVIE, OVA, ONA, SPECIAL, etc.)
+ * @returns {string}
  */
-function isEpisodeBasedItem(item) {
-    return Boolean(item) && item.type !== 'movie';
+function mapAniListFormat(format) {
+    switch (format) {
+        case 'MOVIE': return 'movie';
+        case 'OVA': return 'tv';
+        case 'ONA': return 'tv';
+        case 'SPECIAL': return 'tv';
+        case 'TV_SHORT': return 'tv';
+        default: return 'tv';
+    }
 }
 
 /**
- * Normaliseert een aflevering zodat render- en statuslogica veilige defaults heeft.
+ * Mapt een AniList format naar een leesbaar label.
  *
- * @param {Object} episode
- * @param {number} index
- * @returns {Object}
+ * @param {string} format
+ * @returns {string}
  */
-function normalizeEpisode(episode, index) {
-    const episodeNumber = Number.isFinite(Number(episode?.number))
-        ? Number(episode.number)
-        : index + 1;
-
-    return {
-        ...episode,
-        number: episodeNumber,
-        name: typeof episode?.name === 'string' && episode.name.trim()
-            ? episode.name.trim()
-            : `Episode ${episodeNumber}`,
-        status: normalizeStatus(episode?.status, -1)
-    };
+function formatLabel(format) {
+    switch (format) {
+        case 'TV': return 'Serie';
+        case 'TV_SHORT': return 'Short';
+        case 'MOVIE': return 'Film';
+        case 'OVA': return 'OVA';
+        case 'ONA': return 'ONA';
+        case 'SPECIAL': return 'Special';
+        default: return format || 'Serie';
+    }
 }
 
 /**
- * Normaliseert een seizoen zodat latere code veilig op `episodes` kan rekenen.
+ * Convertert de AniList collectie naar RASCAL items.
+ * Elk AniList MediaList entry wordt één RASCAL item.
  *
- * @param {Object} season
- * @param {number} index
- * @returns {Object}
- */
-function normalizeSeason(season, index) {
-    const seasonNumber = Number.isFinite(Number(season?.number))
-        ? Number(season.number)
-        : index + 1;
-    const episodes = Array.isArray(season?.episodes) ? season.episodes : [];
-
-    return {
-        ...season,
-        number: seasonNumber,
-        name: typeof season?.name === 'string' && season.name.trim()
-            ? season.name.trim()
-            : seasonNumber === 0
-                ? 'Specials'
-                : `Season ${seasonNumber}`,
-        episodes: episodes.map(normalizeEpisode)
-    };
-}
-
-/**
- * Normaliseert een anime-item naar een consistent runtime-formaat.
- *
- * @param {Object} item
- * @returns {Object|null}
- */
-function normalizeAnimeItem(item) {
-    if (!item || typeof item !== 'object') {
-        return null;
-    }
-
-    const title = typeof item.title === 'string' ? item.title.trim() : '';
-    if (!title) {
-        return null;
-    }
-
-    const type = typeof item.type === 'string' ? item.type.toLowerCase() : 'tv';
-    const numericRating = Number(item.rating);
-
-    item.title = title;
-    item.type = type || 'tv';
-    item.rating = Number.isFinite(numericRating) && numericRating > 0 ? numericRating : -1;
-
-    if (item.status !== undefined) {
-        item.status = normalizeStatus(item.status, -1);
-    }
-    if (item._legacyStatus !== undefined) {
-        item._legacyStatus = normalizeStatus(item._legacyStatus, -1);
-    }
-
-    if (Array.isArray(item.seasons)) {
-        item.seasons = item.seasons.map(normalizeSeason);
-    } else if (isEpisodeBasedItem(item)) {
-        item.seasons = [];
-    }
-
-    return item;
-}
-
-/**
- * Past datamigraties toe op oudere items.
- *
- * @param {Object} item
- * @returns {boolean} `true` als de migratie een save vereist.
- */
-function migrateAnimeItem(item) {
-    let needsSave = false;
-
-    if (item.rating === 0 || item.rating === undefined || item.rating === null) {
-        item.rating = -1;
-        needsSave = true;
-    }
-
-    if (isEpisodeBasedItem(item) && Array.isArray(item.seasons) && item.seasons.length > 0) {
-        if (item.status !== undefined) {
-            delete item.status;
-            needsSave = true;
-        }
-    } else if (isEpisodeBasedItem(item)) {
-        if (item.status !== undefined && item.status !== -1 && item._legacyStatus === undefined) {
-            item._legacyStatus = item.status;
-            needsSave = true;
-        }
-        if (item.status !== undefined) {
-            delete item.status;
-            needsSave = true;
-        }
-    }
-
-    return needsSave;
-}
-
-/**
- * Converteert een franchise-gegroepeerde datastructuur naar losse items.
- *
- * @param {Array<Object>} remoteData
+ * @param {Array<Object>} lists - AniList MediaListCollection lists
  * @returns {Array<Object>}
  */
-function flattenFranchiseDataIfNeeded(remoteData) {
-    if (!Array.isArray(remoteData) || remoteData.length === 0) {
-        return [];
-    }
+function mapAniListEntriesToRascal(lists) {
+    const items = [];
+    const seenIds = new Set();
 
-    if (!(remoteData[0].items && remoteData[0].name)) {
-        return remoteData;
-    }
+    lists.forEach((list) => {
+        if (!Array.isArray(list.entries)) return;
 
-    console.log('[Migration] Geneste franchise-structuur gedetecteerd, flattening wordt toegepast.');
+        list.entries.forEach((entry) => {
+            const media = entry.media;
+            if (!media || seenIds.has(media.id)) return;
+            seenIds.add(media.id);
 
-    const flattened = [];
-    remoteData.forEach((franchise) => {
-        const items = Array.isArray(franchise.items) ? franchise.items : [];
-        items.forEach((item) => {
-            item.franchise = franchise.name;
-            ['poster_path', 'tmdb_id', 'anilist_id', 'mal_id', 'description', 'release_date', 'rating'].forEach((key) => {
-                if (
-                    franchise[key] !== undefined &&
-                    franchise[key] !== null &&
-                    (item[key] === undefined || item[key] === null || item[key] === -1)
-                ) {
-                    item[key] = franchise[key];
-                }
+            const title = media.title?.english || media.title?.romaji || media.title?.native || 'Onbekend';
+            const rascalStatus = mapAniListStatusToRascal(entry.status);
+            const score = entry.score > 0 ? entry.score : -1;
+            const startDate = media.startDate;
+            const releaseDate = startDate?.year
+                ? `${startDate.year}-${String(startDate.month || 1).padStart(2, '0')}-${String(startDate.day || 1).padStart(2, '0')}`
+                : null;
+
+            // Relaties opslaan voor franchise-groepering
+            const relations = [];
+            if (media.relations?.edges) {
+                media.relations.edges.forEach((edge) => {
+                    relations.push({
+                        type: edge.relationType,
+                        targetId: edge.node?.id
+                    });
+                });
+            }
+
+            items.push({
+                title: title,
+                anilist_id: media.id,
+                mal_id: media.idMal,
+                type: mapAniListFormat(media.format),
+                _format: formatLabel(media.format),
+                _anilistStatus: entry.status,
+                _rascalStatus: rascalStatus,
+                progress: entry.progress || 0,
+                episodes: media.episodes || null,
+                rating: score,
+                poster_path: media.coverImage?.extraLarge || media.coverImage?.large || null,
+                description: media.description || null,
+                release_date: releaseDate,
+                tmdb_id: null, // Wordt lazy opgehaald
+                _relations: relations
             });
-            flattened.push(item);
         });
     });
 
-    return flattened;
+    console.log(`[Mapping] ${items.length} AniList entries omgezet naar RASCAL items.`);
+    return items;
 }
 
 /**
- * Bepaalt welke lijst als bron gebruikt moet worden bij het opstarten.
+ * Haalt het AniList token op uit config (lokaal) of localStorage (GitHub Pages).
  *
- * @param {Array<Object>} remoteData
- * @returns {Array<Object>}
+ * @returns {Promise<string>}
  */
-function resolveInitialAnimeList(remoteData) {
-    if (!isGitHub) {
-        return remoteData;
+async function resolveToken() {
+    // GitHub Pages: token uit localStorage
+    if (isGitHub) {
+        return localStorage.getItem('rascal_anilist_token') || '';
     }
 
-    const localData = localStorage.getItem('rascal_data');
-    if (!localData) {
-        return remoteData;
-    }
-
+    // Lokaal: config.json via backend
     try {
-        const parsed = JSON.parse(localData);
-        if (Array.isArray(parsed)) {
-            if (typeof updateDownloadButtonState === 'function') {
-                updateDownloadButtonState(true);
-            }
-            return parsed;
+        const config = await fetchJson('/config', {}, 'Config laden');
+        const token = typeof config?.anilist_token === 'string' ? config.anilist_token : '';
+        if (token) {
+            localStorage.setItem('rascal_anilist_token', token);
         }
+        return token;
     } catch (error) {
-        console.warn('[app] Lokale browserdata is ongeldig, remote data wordt gebruikt.', error);
+        console.warn('[app] Config laden mislukt, fallback naar localStorage:', error);
+        return localStorage.getItem('rascal_anilist_token') || '';
     }
-
-    return remoteData;
 }
 
 /**
- * Normaliseert titels voor matching- en duplicate-checks.
- *
- * @param {string} value
- * @returns {string}
- */
-function normalizeTitle(value) {
-    return String(value || '').trim().toLowerCase();
-}
-
-/**
- * Controleert of een lokaal item overeenkomt met een AniList mediarecord.
- *
- * @param {Object} item
- * @param {Object} media
- * @returns {boolean}
- */
-function matchesAniListMedia(item, media) {
-    const itemTitle = normalizeTitle(item?.title);
-    const romajiTitle = normalizeTitle(media?.title?.romaji);
-    const englishTitle = normalizeTitle(media?.title?.english);
-
-    return Boolean(
-        (item?.mal_id && media?.idMal === item.mal_id) ||
-        (itemTitle && (itemTitle === romajiTitle || itemTitle === englishTitle))
-    );
-}
-
-/**
- * Telt het aantal bekeken afleveringen of filmvoortgang.
- *
- * @param {Object} item
- * @returns {number}
- */
-function getItemProgress(item) {
-    if (Array.isArray(item?.seasons)) {
-        return item.seasons.reduce((total, season) => {
-            const watchedCount = Array.isArray(season.episodes)
-                ? season.episodes.filter((episode) => episode.status === 1).length
-                : 0;
-            return total + watchedCount;
-        }, 0);
-    }
-
-    return item?.type === 'movie' && item.status === 1 ? 1 : 0;
-}
-
-/**
- * Zet de lokale status om naar AniList-status.
- *
- * @param {Object} item
- * @returns {string}
- */
-function getAniListStatus(item) {
-    const macroStatus = window.StatusCalculator.getAnimeStatus(item);
-    return ANILIST_STATUS_MAP[String(macroStatus)] || 'PLANNING';
-}
-
-/**
- * Laadt de anime-data, voert migraties uit en start de render.
+ * Laadt de anime-data vanuit AniList en start de render.
  *
  * @returns {Promise<void>}
  */
 async function init() {
     try {
-        if (!isGitHub) {
-            const config = await fetchJson('/config', {}, 'Config laden');
-            state.anilistToken = typeof config?.anilist_token === 'string' ? config.anilist_token : '';
-            console.log('Config geladen:', state.anilistToken ? 'AniList verbonden' : 'Geen AniList');
+        const token = await resolveToken();
+        if (!token) {
+            console.warn('[app] Geen AniList token gevonden. Login vereist.');
+            state.animeList = [];
+            Modals.initEventListeners();
+            render();
+            return;
         }
 
-        const remoteData = flattenFranchiseDataIfNeeded(await fetchJson('data.json', {}, 'data.json laden'));
-        const initialList = resolveInitialAnimeList(Array.isArray(remoteData) ? remoteData : []);
+        state.anilistToken = token;
+        console.log('[app] AniList token gevonden, data ophalen...');
 
-        state.animeList = initialList
-            .map(normalizeAnimeItem)
-            .filter(Boolean);
+        const lists = await AnilistApi.getUserList(token);
+        state.animeList = mapAniListEntriesToRascal(lists);
 
-        let needsSave = false;
-        state.animeList.forEach((item) => {
-            if (migrateAnimeItem(item)) {
-                needsSave = true;
-            }
-        });
-
-        if (needsSave) {
-            await save();
-        }
     } catch (error) {
-        console.error('Kon data.json niet laden:', error);
+        console.error('[app] AniList data laden mislukt:', error);
         state.animeList = [];
     }
 
     Modals.initEventListeners();
     render();
-    AnilistApi.lazyFetchAnilistData();
-    AnilistApi.lazySyncAnilistEpisodes();
+
+    // Lazy: TMDB-ids ophalen voor playback
+    lazyFetchTmdbIds();
+}
+
+/**
+ * Haalt TMDB-ids op voor items die er nog geen hebben (voor playback).
+ * Wordt op de achtergrond uitgevoerd na de eerste render.
+ *
+ * @returns {Promise<void>}
+ */
+async function lazyFetchTmdbIds() {
+    for (const item of state.animeList) {
+        if (item.tmdb_id || !item.title) continue;
+
+        try {
+            const tmdbId = await AnilistApi.fetchTmdbId(item.title);
+            if (tmdbId) {
+                item.tmdb_id = tmdbId;
+            }
+        } catch (error) {
+            // Silently continue
+        }
+
+        // Rate limiting
+        await sleep(200);
+    }
 }
 
 /**
@@ -460,45 +341,6 @@ function render() {
 }
 
 /**
- * Wijzigt de status van een seizoen en triggert AniList autosync.
- *
- * @param {Object} item
- * @param {Object} season
- * @param {number} status
- * @returns {void}
- */
-function setSeasonStatus(item, season, status) {
-    window.AnimeActions.setSeasonStatusLocally(item, season, status);
-    triggerAutoSync(item);
-}
-
-/**
- * Wijzigt de status van een volledig item en triggert AniList autosync.
- *
- * @param {Object} item
- * @param {number} status
- * @returns {void}
- */
-function setAnimeAllStatus(item, status) {
-    window.AnimeActions.setAnimeStatusLocally(item, status);
-    triggerAutoSync(item);
-}
-
-/**
- * Wijzigt de status van een enkele aflevering en triggert AniList autosync.
- *
- * @param {Object} item
- * @param {Object} season
- * @param {Object} episode
- * @param {number} status
- * @returns {void}
- */
-function setEpisodeStatus(item, season, episode, status) {
-    window.AnimeActions.setEpisodeStatusLocally(item, season, episode, status);
-    triggerAutoSync(item);
-}
-
-/**
  * Synchroniseert status, score en voortgang van een item met AniList.
  *
  * @param {Object} item
@@ -512,8 +354,8 @@ async function triggerAutoSync(item) {
     try {
         await AnilistApi.updateEntry(state.anilistToken, {
             mediaId: item.anilist_id,
-            status: getAniListStatus(item),
-            progress: getItemProgress(item),
+            status: item._anilistStatus || 'PLANNING',
+            progress: item.progress || 0,
             score: item.rating > 0 ? item.rating : undefined
         });
     } catch (error) {
@@ -522,7 +364,19 @@ async function triggerAutoSync(item) {
 }
 
 /**
- * Voert een volledige bidirectionele sync met AniList uit.
+ * Wijzigt de status van een volledig item en triggert AniList autosync.
+ *
+ * @param {Object} item
+ * @param {number} status
+ * @returns {void}
+ */
+function setAnimeAllStatus(item, status) {
+    window.AnimeActions.setStatusLocally(item, status);
+    triggerAutoSync(item);
+}
+
+/**
+ * Voert een volledige herlaad van AniList data uit (vervangt oude syncAnilist).
  *
  * @returns {Promise<void>}
  */
@@ -539,214 +393,17 @@ async function syncAnilist() {
     }
 
     try {
-        console.log('Fetching AniList collections...');
+        console.log('[Sync] Volledige AniList herlaad...');
         const lists = await AnilistApi.getUserList(state.anilistToken);
-
-        let linkedCount = 0;
-        let pushedCount = 0;
-        let addedFromAniList = 0;
-        let totalOnAniList = 0;
-        const aniListEntries = [];
-
-        lists.forEach((list) => {
-            totalOnAniList += list.entries.length;
-            aniListEntries.push(...list.entries);
-        });
-
-        const needsLinking = state.animeList.filter((item) => {
-            if (item.anilist_id) {
-                return false;
-            }
-
-            const match = aniListEntries.find((entry) => matchesAniListMedia(item, entry.media));
-            if (match) {
-                item.anilist_id = match.media.id;
-                item.mal_id = match.media.idMal;
-                linkedCount += 1;
-                return false;
-            }
-
-            return true;
-        });
-
-        if (needsLinking.length > 0) {
-            console.log(`[Batch] Searching for ${needsLinking.length} unlinked items...`);
-            for (let index = 0; index < needsLinking.length; index += 10) {
-                const chunk = needsLinking.slice(index, index + 10);
-                const result = await AnilistApi.bulkSearchMedia(chunk.map((item) => item.title));
-                if (result.data) {
-                    chunk.forEach((item, chunkIndex) => {
-                        const media = result.data[`s${chunkIndex}`]?.media?.[0];
-                        if (media) {
-                            item.anilist_id = media.id;
-                            item.mal_id = media.idMal;
-                            linkedCount += 1;
-                        }
-                    });
-                }
-                await sleep(600);
-            }
-        }
-
-        for (const item of state.animeList) {
-            if (item.anilist_id) {
-                await triggerAutoSync(item);
-                pushedCount += 1;
-            }
-        }
-
-        for (const entry of aniListEntries) {
-            const media = entry.media;
-            const exists = state.animeList.find((item) => item.anilist_id === media.id || matchesAniListMedia(item, media));
-            if (exists) {
-                continue;
-            }
-
-            const newItem = normalizeAnimeItem({
-                title: media.title.english || media.title.romaji,
-                anilist_id: media.id,
-                mal_id: media.idMal,
-                type: media.format === 'MOVIE' ? 'movie' : 'tv',
-                rating: entry.score > 0 ? entry.score : -1
-            });
-
-            if (!newItem) {
-                continue;
-            }
-
-            if (entry.status === 'COMPLETED') {
-                newItem._anilist_force_completed = true;
-            } else if (entry.status === 'CURRENT' && entry.progress > 0) {
-                newItem._anilist_progress = entry.progress;
-            }
-
-            state.animeList.unshift(newItem);
-            addedFromAniList += 1;
-
-            (async () => {
-                const details = await AnilistApi.fetchMediaDetails(newItem.anilist_id);
-                if (!details) {
-                    return;
-                }
-
-                newItem.poster_path = details.coverImage?.large || newItem.poster_path;
-                if (newItem.type === 'tv') {
-                    newItem.seasons = [{ number: 1, name: 'Season 1', episodes: [] }];
-                    const episodeCount = Number.isFinite(Number(details.episodes)) ? Number(details.episodes) : 0;
-                    for (let episodeNumber = 1; episodeNumber <= episodeCount; episodeNumber += 1) {
-                        newItem.seasons[0].episodes.push({ number: episodeNumber, name: `Episode ${episodeNumber}`, status: -1 });
-                    }
-
-                    if (newItem._anilist_force_completed) {
-                        window.AnimeActions.setAnimeStatusLocally(newItem, 1);
-                        delete newItem._anilist_force_completed;
-                    } else if (newItem._anilist_progress > 0) {
-                        let count = 0;
-                        for (const episode of newItem.seasons[0].episodes) {
-                            if (count < newItem._anilist_progress) {
-                                episode.status = 1;
-                                count += 1;
-                            }
-                        }
-                        delete newItem._anilist_progress;
-                    }
-                } else if (newItem.type === 'movie' && newItem._anilist_force_completed) {
-                    newItem.status = 1;
-                    delete newItem._anilist_force_completed;
-                }
-
-                save();
-                render();
-            })();
-        }
-
-        save();
+        state.animeList = mapAniListEntriesToRascal(lists);
         render();
-        alert(
-            `Sync voltooid!\n\nAniList Status:\n- ${totalOnAniList} items gevonden op je account\n- ${addedFromAniList} nieuwe titels geimporteerd naar RASCAL\n\nRASCAL Updates:\n- ${pushedCount} lokale items gesynchroniseerd\n- ${linkedCount} nieuwe koppelingen gemaakt`
-        );
+        alert(`Sync voltooid! ${state.animeList.length} items geladen vanuit AniList.`);
     } catch (error) {
         console.error('Sync failed:', error);
         alert(`Oei! Sync mislukt: ${error.message}`);
     } finally {
         if (button) {
             button.innerHTML = '<i class="fa-brands fa-anilist"></i>';
-            button.disabled = false;
-        }
-    }
-}
-
-/**
- * Pusht alle lokale items met AniList-id in batches.
- *
- * @returns {Promise<void>}
- */
-async function pushAllToAnilist() {
-    if (!state.anilistToken) {
-        AnilistApi.authorize();
-        return;
-    }
-
-    const button = getElementByIdOrWarn('push-anilist-btn');
-    const original = button ? button.innerHTML : '';
-    if (button) {
-        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-        button.disabled = true;
-    }
-
-    try {
-        let linkedCount = 0;
-        const toSync = [];
-        const needsLinking = state.animeList.filter((item) => !item.anilist_id);
-
-        if (needsLinking.length > 0) {
-            console.log(`[Batch Push-Link] Searching for ${needsLinking.length} items...`);
-            for (let index = 0; index < needsLinking.length; index += 10) {
-                const chunk = needsLinking.slice(index, index + 10);
-                const result = await AnilistApi.bulkSearchMedia(chunk.map((item) => item.title));
-                if (result.data) {
-                    chunk.forEach((item, chunkIndex) => {
-                        const media = result.data[`s${chunkIndex}`]?.media?.[0];
-                        if (media) {
-                            item.anilist_id = media.id;
-                            item.mal_id = media.idMal;
-                            linkedCount += 1;
-                        }
-                    });
-                }
-                await sleep(600);
-            }
-        }
-
-        state.animeList.forEach((item) => {
-            if (!item.anilist_id) {
-                return;
-            }
-
-            toSync.push({
-                mediaId: item.anilist_id,
-                status: getAniListStatus(item),
-                progress: getItemProgress(item),
-                score: item.rating > 0 ? item.rating : undefined
-            });
-        });
-
-        for (let index = 0; index < toSync.length; index += 20) {
-            const chunk = toSync.slice(index, index + 20);
-            console.log(`[Batch Push-Update] Sending chunk ${Math.floor(index / 20) + 1} (${chunk.length} items)...`);
-            await AnilistApi.bulkUpdateEntries(state.anilistToken, chunk);
-            await sleep(1000);
-        }
-
-        save();
-        render();
-        alert(`Klaar!\n- ${toSync.length} items naar AniList gesynct\n- ${linkedCount} nieuwe items gekoppeld.`);
-    } catch (error) {
-        console.error('Push failed:', error);
-        alert(`Oei! Batch push mislukt: ${error.message}`);
-    } finally {
-        if (button) {
-            button.innerHTML = original || '<i class="fas fa-cloud-upload-alt"></i>';
             button.disabled = false;
         }
     }
@@ -854,7 +511,6 @@ function initEventListeners() {
         render();
     });
     addListenerIfPresent('sync-anilist-btn', 'click', syncAnilist);
-    addListenerIfPresent('push-anilist-btn', 'click', pushAllToAnilist);
     addListenerIfPresent('download-btn', 'click', exportData);
     addListenerIfPresent('theme-toggle', 'click', () => {
         const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';

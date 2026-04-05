@@ -2423,7 +2423,7 @@
   },
   {
     "title": "Pseudo Harem",
-    "rating": -1,
+    "rating": 7,
     "tmdb_id": 224753,
     "type": "tv",
     "poster_path": "/3B6MvhEdbEU4Y4UHETYkUDRhu9x.jpg",
@@ -2436,55 +2436,55 @@
             "number": 1,
             "name": "The Beginning of a Story?",
             "air_date": "2024-07-05",
-            "status": -1
+            "status": 1
           },
           {
             "number": 2,
             "name": "Confession?",
             "air_date": "2024-07-12",
-            "status": -1
+            "status": 1
           },
           {
             "number": 3,
             "name": "Lessons in Love?",
             "air_date": "2024-07-19",
-            "status": -1
+            "status": 1
           },
           {
             "number": 4,
             "name": "WOW?",
             "air_date": "2024-07-26",
-            "status": -1
+            "status": 1
           },
           {
             "number": 5,
             "name": "Summer Vacation",
             "air_date": "2024-08-02",
-            "status": -1
+            "status": 1
           },
           {
             "number": 6,
             "name": "First Date?",
             "air_date": "2024-08-09",
-            "status": -1
+            "status": 1
           },
           {
             "number": 7,
             "name": "Graduation",
             "air_date": "2024-08-16",
-            "status": -1
+            "status": 1
           },
           {
             "number": 8,
             "name": "Adults",
             "air_date": "2024-08-23",
-            "status": -1
+            "status": 1
           },
           {
             "number": 9,
             "name": "A Person to Love",
             "air_date": "2024-08-30",
-            "status": -1
+            "status": 0
           },
           {
             "number": 10,

@@ -2,6 +2,7 @@
 
 /**
  * Zet de downloadknop in de juiste visuele toestand.
+ * Op GitHub Pages toont deze knop een exporteerfunctie.
  *
  * @param {boolean} isDirty
  * @returns {void}
@@ -17,36 +18,27 @@ function updateDownloadButtonState(isDirty) {
 }
 
 /**
- * Slaat de huidige applicatiestatus op in localStorage of via de backend.
+ * Slaat UI-voorkeuren op in localStorage.
+ * Data-mutaties gaan direct naar AniList via triggerAutoSync().
+ * Er is geen lokale data.json opslag meer.
  *
  * @async
  * @returns {Promise<void>}
  */
 async function save() {
+    // Alleen UI-state opslaan in localStorage
     try {
-        if (isGitHub) {
-            localStorage.setItem('rascal_data', JSON.stringify(state.animeList));
-            updateDownloadButtonState(true);
-            console.log('Opgeslagen in localStorage (GitHub mode)');
-            return;
-        }
-
-        const response = await fetch('/save', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(state.animeList, null, 2)
-        });
-
-        if (!response.ok) {
-            throw new Error(`Opslaan mislukt (${response.status} ${response.statusText})`);
-        }
+        localStorage.setItem('rascal_filters', JSON.stringify([...activeFilters]));
+        localStorage.setItem('rascal_sort', currentSort);
+        localStorage.setItem('rascal_view', currentView);
+        localStorage.setItem('rascal_size', currentSize);
     } catch (error) {
-        console.error('Opslaan mislukt:', error);
+        console.warn('[Storage] localStorage opslaan mislukt:', error);
     }
 }
 
 /**
- * Exporteert de lokale browserdata als `data.json`.
+ * Exporteert de runtime-lijst als JSON backup.
  *
  * @returns {void}
  */
@@ -62,11 +54,9 @@ function exportData() {
     const link = document.createElement('a');
 
     link.href = url;
-    link.download = 'data.json';
+    link.download = 'rascal_backup.json';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
-
-    updateDownloadButtonState(false);
 }

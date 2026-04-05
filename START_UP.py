@@ -1,7 +1,7 @@
 """
 RASCAL Backend Server (Python)
-Provides a lightweight HTTP server for local development, data persistence, 
-and AniList OAuth token exchange.
+Provides a lightweight HTTP server for local development and
+AniList OAuth token exchange. Data is stored on AniList, not locally.
 """
 
 import http.server
@@ -14,7 +14,6 @@ import urllib.parse
 # Server Configuration
 PORT = 3000
 DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_FILE = os.path.join(DIR, "data.json")
 CONFIG_FILE = os.path.join(DIR, "config.json")
 
 # AniList OAuth Credentials (matches State.js)
@@ -24,26 +23,24 @@ ANILIST_REDIRECT_URI = 'http://localhost:3000/callback'
 
 class Handler(http.server.SimpleHTTPRequestHandler):
     """
-    Custom HTTP Request Handler to provide API endpoints for RASCAL.
-    Extends SimpleHTTPRequestHandler to serve static files in current directory.
+    Custom HTTP Request Handler for RASCAL.
+    Serves static files and handles AniList OAuth callback.
     """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=DIR, **kwargs)
 
     def do_GET(self):
         """
-        Handles GET requests, including static file serving and special API routes.
+        Handles GET requests: static files, OAuth callback, and config serving.
         """
         parsed_path = urllib.parse.urlparse(self.path)
         
         # Route: AniList OAuth Callback
         if parsed_path.path == "/callback":
-            # Extract 'code' from query parameters provided by AniList
             query = urllib.parse.parse_qs(parsed_path.query)
             code = query.get('code', [None])[0]
             
             if code:
-                # Exchange authorized code for long-lived access token
                 try:
                     print(f"  [Log] Exchanging code for access token...")
                     payload = {
@@ -68,7 +65,6 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                     access_token = token_data.get('access_token')
                     
                     if access_token:
-                        # Store the token safely in config.json
                         config = {}
                         if os.path.exists(CONFIG_FILE):
                             with open(CONFIG_FILE, "r", encoding="utf-8") as f:
@@ -91,7 +87,6 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             
         # Route: Config Fetching
         elif parsed_path.path == "/config":
-            # Return current configuration (including tokens) to the frontend
             self.send_response(200)
             self.send_header('Content-Type', 'application/json')
             self.end_headers()
@@ -104,34 +99,13 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             # Standard Static File Serving
             super().do_GET()
 
-    def do_POST(self):
-        """
-        Handles POST requests for data persistence.
-        """
-        # Route: Persistent Storage Save
-        if self.path == "/save":
-            length = int(self.headers.get("Content-Length", 0))
-            body = self.rfile.read(length)
-            
-            # Write received JSON data to local data.json file
-            with open(DATA_FILE, "w", encoding="utf-8") as f:
-                f.write(body.decode("utf-8"))
-            
-            self.send_response(200)
-            self.send_header("Content-Type", "application/json")
-            self.end_headers()
-            self.wfile.write(b'{"ok":true}')
-            print(f"  [Save] Local data.json updated ({length} bytes)")
-        else:
-            self.send_response(404)
-            self.end_headers()
-
     def log_message(self, format, *args):
         """ Suppress default access logs to keep terminal output clean. """
         pass
 
 if __name__ == "__main__":
     print(f"\n  RASCAL Tracker running at: http://localhost:{PORT}")
+    print(f"  Data source: AniList API (no local data.json)")
     print(f"  Press Ctrl+C to stop the server.\n")
     
     # Auto-open browser for convenience
@@ -140,4 +114,4 @@ if __name__ == "__main__":
     try:
         http.server.HTTPServer(("", PORT), Handler).serve_forever()
     except KeyboardInterrupt:
-        print("\n  Server stopped by user. Goodbye! Nya~ 🐾")
+        print("\n  Server stopped by user. Goodbye!")

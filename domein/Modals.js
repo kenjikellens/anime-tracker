@@ -46,11 +46,9 @@ window.Modals = (function() {
             ? group.items.map((item) => window.StatusCalculator.getAnimeStatus(item))
             : [];
 
-        return statuses.includes(0)
-            ? 0
-            : statuses.includes(-1)
-                ? -1
-                : 1;
+        if (statuses.every((s) => s === 1)) return 1;
+        if (statuses.some((s) => s === 0 || s === 1)) return 0;
+        return -1;
     }
 
     /**
@@ -163,6 +161,8 @@ window.Modals = (function() {
                 }
 
                 ratingTarget.rating = normalizeInlineRating(input.value, ratingTarget.rating);
+                // Push rating naar AniList
+                triggerAutoSync(ratingTarget);
                 Promise.resolve(save()).finally(() => {
                     render();
                     window.setTimeout(() => {
@@ -243,6 +243,7 @@ window.Modals = (function() {
 
     /**
      * Opent de detail-modal voor een franchise-groep.
+     * Vereenvoudigd voor het AniList-model: geen seizoen/episode grid meer.
      *
      * @param {Object} group
      * @returns {void}
@@ -297,26 +298,16 @@ window.Modals = (function() {
             header.appendChild(titleElement);
 
             const overallStatus = getGroupOverallStatus(group);
+
+            // Vind het volgende item om te kijken (eerste niet-complete item)
             let playItem = group.items[0];
-            let playSeason = 1;
             let playEpisode = 1;
 
-            if (group.items && Array.isArray(group.items)) {
-                findNext: for (const item of group.items) {
-                    if (window.StatusCalculator.getAnimeStatus(item) !== 1) {
-                        playItem = item;
-                        if (item.seasons) {
-                            for (const season of item.seasons) {
-                                const unwatched = (season.episodes || []).find((episode) => episode.status !== 1);
-                                if (unwatched) {
-                                    playSeason = season.number;
-                                    playEpisode = unwatched.number;
-                                    break findNext;
-                                }
-                            }
-                        }
-                        break;
-                    }
+            for (const item of group.items) {
+                if (window.StatusCalculator.getAnimeStatus(item) !== 1) {
+                    playItem = item;
+                    playEpisode = (item.progress || 0) + 1;
+                    break;
                 }
             }
 
@@ -332,9 +323,9 @@ window.Modals = (function() {
             actionContainer.appendChild(topDropdown);
 
             if (playItem) {
-                const quickPlay = Components.buildPlayDropdown(playItem, playSeason, playEpisode);
+                const quickPlay = Components.buildPlayDropdown(playItem, 1, playEpisode);
                 quickPlay.className += ' modal-play-btn';
-                quickPlay.title = `Kijk verder: Seizoen ${playSeason} Afl. ${playEpisode}`;
+                quickPlay.title = `Kijk verder: Afl. ${playEpisode}`;
                 actionContainer.appendChild(quickPlay);
             }
 
@@ -393,8 +384,9 @@ window.Modals = (function() {
             const clamped = Math.min(10, Math.max(0, safeValue));
             currentItem.rating = Math.round(clamped * 10) / 10;
             if (ratingChangeStatus) {
-                setAnimeAllStatus(currentItem, 1);
+                window.AnimeActions.setStatusLocally(currentItem, 1);
             }
+            triggerAutoSync(currentItem);
             save();
             render();
             modalOverlay.classList.add('hidden');
@@ -406,6 +398,7 @@ window.Modals = (function() {
             }
 
             currentItem.rating = -1;
+            triggerAutoSync(currentItem);
             save();
             render();
             modalOverlay.classList.add('hidden');

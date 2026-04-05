@@ -30,8 +30,7 @@
             </div>
             <div class="header-right">
                 <button id="sync-anilist-btn" title="AniList Sync"><i class="fa-brands fa-anilist"></i></button>
-                <button id="push-anilist-btn" title="Push All to AniList"><i class="fas fa-cloud-upload-alt"></i></button>
-                <button id="download-btn" class="hidden" title="Download changed data.json"><i class="fas fa-download"></i></button>
+                <button id="download-btn" class="hidden" title="Download backup"><i class="fas fa-download"></i></button>
                 <button id="theme-toggle" title="Switch theme"><i class="fas fa-moon"></i></button>
             </div>
         </div>
@@ -108,7 +107,7 @@
         </div>
     </div>
 
-    <!-- 2. Detail Modal: Shows seasons/episodes in grid view popups -->
+    <!-- 2. Detail Modal: Shows franchise items with progress controls -->
     <div id="detail-overlay" class="hidden">
         <div class="modal modal-detail">
             <div class="modal-detail-header">
@@ -120,18 +119,18 @@
     </div>
 
     <!-- Logic & Domain Scripts -->
-    <script src="domein/UIHelpers.js?v=1.4"></script>
-    <script src="domein/BatchActions.js?v=1.4"></script>
-    <script src="domein/StatusCalculator.js?v=1.4"></script>
-    <script src="domein/AnimeActions.js?v=1.4"></script>
-    <script src="domein/State.js?v=1.4"></script>
-    <script src="domein/Storage.js?v=1.4"></script>
-    <script src="domein/AnilistApi.js?v=1.4"></script>
-    <script src="domein/EmbedSources.js?v=1.4"></script>
-    <script src="domein/ListTransformer.js?v=1.4"></script>
-    <script src="domein/Components.js?v=1.6"></script>
-    <script src="domein/Modals.js?v=1.6"></script>
-    <script src="app.js?v=1.6"></script>
+    <script src="domein/UIHelpers.js?v=2.0"></script>
+    <script src="domein/BatchActions.js?v=2.0"></script>
+    <script src="domein/StatusCalculator.js?v=2.0"></script>
+    <script src="domein/AnimeActions.js?v=2.0"></script>
+    <script src="domein/State.js?v=2.0"></script>
+    <script src="domein/Storage.js?v=2.0"></script>
+    <script src="domein/AnilistApi.js?v=2.0"></script>
+    <script src="domein/EmbedSources.js?v=2.0"></script>
+    <script src="domein/ListTransformer.js?v=2.0"></script>
+    <script src="domein/Components.js?v=2.0"></script>
+    <script src="domein/Modals.js?v=2.0"></script>
+    <script src="app.js?v=2.0"></script>
 
     <!-- Global Dropdown Portal: Used for context menus to prevent overflow issues -->
     <div id="global-status-menu" class="status-menu shadow-lg"></div>
