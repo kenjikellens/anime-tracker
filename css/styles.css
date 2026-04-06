@@ -1,0 +1,1946 @@
+/* ==========================================================================
+   DESIGN tokens & CUSTOM PROPERTIES
+   ========================================================================== */
+
+/* LIGHT MODE: Core palette for surfaces, text, and status indicators */
+:root {
+    --bg: #f5f5f5;               /* Page background */
+    --surface: #eaeaea;          /* Card and primary container surface */
+    --surface-2: #e0e0e0;        /* Deeper surface (e.g., detail blocks, hovered items) */
+    --border: #ddd;              /* Border color for dividers, inputs, and card outlines */
+    --text: #1a1a1a;             /* Primary high-contrast text color */
+    --text-muted: #888;          /* Low-contrast secondary/muted text */
+    --white: #ffffff;            /* Active elements (buttons, highlighted titles) */
+    --status-none: #bbb;         /* Gray: To Watch (-1) status indicator */
+    --status-watching: #888;     /* Med-gray: Currently Watching (0) status indicator */
+    --status-done: #007acc;      /* Blue: Watched (1) status indicator */
+    --modal-bg: rgba(0,0,0,0.3); /* Semi-transparent overlay for modals */
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Soft interface element shadow */
+    --header-bg: #e8e8e8;        /* Distinct background for top header bar */
+    --border-width: 1px;
+    --primary: #FFCC00;
+    --primary-rgb: 255, 204, 0;
+}
+
+/* DARK MODE: High-vibrancy dark theme for improved night reading */
+[data-theme="dark"] {
+    --bg: #1e1e1e;
+    --surface: #383838;
+    --surface-2: #444;
+    --border: #505050;
+    --text: #d4d4d4;
+    --text-muted: #999;
+    --white: #ffffff;
+    --status-none: #666;
+    --status-watching: #999;
+    --status-done: #4da6ff;       /* Vibrant blue for dark mode readability */
+    --modal-bg: rgba(0,0,0,0.5);
+    --shadow: 0 4px 20px rgba(255, 255, 255, 0.05);
+    --header-bg: #282828;
+    --primary: #FFCC00;
+    --primary-rgb: 255, 204, 0;
+}
+
+/* MIDNIGHT MODE: Ultra-high contrast pure black theme */
+[data-theme="midnight"] {
+    --bg: #000000;
+    --surface: #0a0a0a;
+    --surface-2: #141414;
+    --border: #f0f0f0;           /* High contrast borders for definition */
+    --text: #ffffff;
+    --text-muted: #a0a0a0;
+    --white: #ffffff;            /* Always pure white in midnight */
+    --status-none: #444;
+    --status-watching: #aaa;
+    --status-done: #77c3ff;      /* Bright blue for pure black accessibility */
+    --modal-bg: rgba(0,0,0,0.85);
+    --shadow: none;              /* Shadows hidden on pure black backgrounds */
+    --border-width: 2px;         /* Thicker borders for structural visibility */
+    --header-bg: #141414;
+    --primary: #FFCC00;
+    --primary-rgb: 255, 204, 0;
+}
+
+/* ==========================================================================
+   GLOBAL RESET & CORE STRUCTURE
+   ========================================================================== */
+
+/* Universal Reset: Standardized box model and typography across all elements */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+
+/* Main Body Configuration */
+body {
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Primary Application Container */
+#app {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 32px 24px 28px;
+}
+
+/* Top Header: Floating bar containing Logo, Search, and Global Actions */
+.header-main {
+    width: 100%;
+    background: var(--header-bg);
+    border-bottom: var(--border-width, 1px) solid var(--border);
+    box-shadow: var(--shadow);
+    padding: 18px 0;
+    position: relative;
+    z-index: 100;
+}
+
+.header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 24px;
+}
+
+.header-left { display: flex; align-items: center; }
+
+/* RASCAL logo: lettertype en spatiëring voor de merkidentiteit in de header */
+.logo-rascal {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    cursor: default;
+    user-select: none;
+}
+
+/* Logo kleuraccenten: 'RAS' = geel, 'CAL' = wit */
+.logo-rascal .ras { color: #FFCC00; text-shadow: 0 0 10px rgba(255, 204, 0, 0.3); }
+.logo-rascal .cal { color: #FFFFFF; }
+
+.header-center {
+    width: 100%;
+    max-width: 500px;
+}
+
+/* Search Bar: Floating input with clear focus indicators */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: var(--surface);
+    border: var(--border-width, 1px) solid var(--border);
+    border-radius: 12px;
+    padding: 0 18px;
+    min-height: 52px;
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Focused State: Highlights with primary accent color and glow */
+.search-bar:focus-within {
+    border-color: #FFCC00;
+    box-shadow: 0 0 0 2px rgba(255, 204, 0, 0.1);
+}
+
+.search-bar i {
+    color: var(--text-muted);
+    margin-right: 12px;
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    padding: 14px 0;
+    color: var(--text);
+    outline: none;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.header-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-right button {
+    background: var(--surface); border: var(--border-width, 1px) solid var(--border);
+    color: var(--text); width: 46px; height: 46px; border-radius: 10px;
+    cursor: pointer; font-size: 16px; display: flex;
+    align-items: center; justify-content: center;
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    appearance: none;
+    -webkit-appearance: none;
+    box-shadow: var(--shadow);
+}
+
+.header-right button:hover {
+    background: var(--surface-2);
+    transform: translateY(-1px);
+}
+
+.header-right button:focus-visible {
+    outline: none;
+    border-color: var(--text-muted);
+    box-shadow: 0 0 0 2px rgba(255, 204, 0, 0.12);
+}
+
+.header-right button i {
+    font-size: 17px;
+    line-height: 1;
+    pointer-events: none;
+}
+
+#sync-anilist-btn i {
+    font-size: 18px;
+}
+
+#push-anilist-btn i {
+    font-size: 15px;
+}
+
+/* Premium Header Select (Source Selector) */
+.header-select {
+    background: var(--surface); 
+    border: var(--border-width, 1px) solid var(--border);
+    color: var(--text-muted);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    margin-right: 12px;
+    font-family: 'Outfit', sans-serif;
+    transition: all 0.2s ease;
+}
+.header-select:hover {
+    background: var(--surface-2);
+    border-color: var(--text-muted);
+    color: var(--text);
+}
+
+/* Download Button (Sync Needed): Triggered when local data differs from server storage (e.g. GitHub Mode) */
+#download-btn.sync-needed {
+    background: #FFCC00;
+    color: #000;
+    border-color: #FFCC00;
+    animation: pulse-yellow 2s infinite;
+}
+
+@keyframes pulse-yellow {
+    0% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 204, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0); }
+}
+/* Toolbar: rij met filterknopen, sorteer-select, weergave- en grootteknopen */
+.toolbar {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 24px; flex-wrap: wrap;
+}
+.filter-group { display: flex; gap: 6px; }
+/* Filtering Interface: Status toggle buttons (-1, 0, 1) */
+.filter-btn {
+    background: var(--surface); border: var(--border-width, 1px) solid var(--border);
+    color: var(--text-muted); padding: 10px 16px; border-radius: 8px;
+    cursor: pointer; font-weight: 600; font-size: 14px;
+    font-family: 'Outfit', sans-serif;
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+/* Active State: High contrast background to indicate current filter */
+.filter-btn.active {
+    background: var(--white); 
+    color: var(--bg); 
+    border-color: var(--white); 
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.filter-btn:not(.active) {
+    opacity: 0.6;
+    background: var(--surface-2);
+}
+.filter-btn:not(.active):hover { 
+    border-color: var(--text-muted); 
+    color: var(--text); 
+    opacity: 1;
+    box-shadow: inset 0 0 0 1px var(--text-muted);
+}
+
+.sort-group select {
+    background: var(--surface); border: var(--border-width, 1px) solid var(--border);
+    color: var(--text); padding: 10px 14px; border-radius: 8px;
+    font-family: 'Outfit', sans-serif; font-size: 14px; outline: none; cursor: pointer;
+}
+
+.view-toggle { display: flex; gap: 6px; margin-left: auto; }
+.view-btn {
+    background: var(--surface); border: var(--border-width, 1px) solid var(--border);
+    color: var(--text-muted); width: 42px; height: 42px;
+    border-radius: 8px; cursor: pointer; font-size: 14px;
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.view-btn.active, .size-btn.active {
+    background-color: var(--white) !important;
+    color: var(--bg) !important;
+    border-color: var(--white) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+.view-btn:not(.active):hover { border-color: var(--text-muted); opacity: 1; }
+
+.item-count {
+    color: var(--text-muted);
+    font-size: 14px;
+    white-space: nowrap;
+    margin: 0 8px;
+    line-height: 1.3;
+}
+
+.size-toggle { display: flex; gap: 6px; }
+.size-btn {
+    background: var(--surface); border: var(--border-width, 1px) solid var(--border);
+    color: var(--text-muted); width: 42px; height: 42px;
+    border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 700;
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.size-btn:not(.active):hover { border-color: var(--text-muted); opacity: 1; }
+
+/* Hoofdcontainer voor alle anime-kaarten: geordend in statuskolommen */
+#anime-container {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    align-items: stretch;
+    width: 100%;
+}
+
+/* Statuskolom: verticale stapel van kaarten per statusgroep (Te Bekijken / Bezig / etc.) */
+.status-column {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Statusgroep-header strekt zich over alle grid-kolommen in grid view */
+.status-group-header {
+    grid-column: 1 / -1;
+    margin-top: 0 !important;
+}
+
+/* ---------------- GRID VIEW LAYOUT ---------------- */
+.grid-view .status-column {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 18px;
+    align-content: start;
+    width: 100%;
+}
+
+/* Grid View S/M/L: Vaste kolomverdeling (S=7, M=5, L=4) */
+#anime-container.grid-view.size-l .status-column {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+#anime-container.grid-view.size-m .status-column {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+}
+#anime-container.grid-view.size-s .status-column {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 12px;
+}
+/* Grid-kaart hoogte en uitlijning in grid view: horizontaal met poster links */
+#anime-container.grid-view .anime-card {
+    flex-direction: row;
+    min-height: 152px;
+    align-items: stretch;
+    overflow: hidden;
+}
+#anime-container.grid-view .anime-card .card-poster {
+    width: 104px;
+    height: 152px;
+    flex-shrink: 0;
+    margin-right: 4px;
+}
+#anime-container.grid-view .anime-card .card-info {
+    flex: 1;
+    min-width: 0;
+}
+
+/* List view: statuskolom als een verticale flex-lijst ipv grid */
+.list-view .status-column {
+    display: flex; 
+    flex-direction: column; 
+    gap: 6px; 
+    width: 100%;
+}
+
+/* List view kaart: 7-koloms grid (status-icon, poster, titel, status-dd, rating, play, chevron) */
+#anime-container.list-view .anime-card {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) 24px;
+    gap: 16px;
+    align-items: center;
+    padding: 6px 16px; 
+    border-radius: 8px;
+    min-height: 48px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    position: relative;
+}
+#anime-container.list-view .anime-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.list-view .expand-icon {
+    display: block;
+    font-size: 0.9em;
+    opacity: 0.4;
+    text-align: right;
+}
+
+.grid-view .expand-icon {
+    display: none;
+}
+
+/* .anilist-status-tag removed per Master's request */
+
+
+#anime-container.size-m.list-view .anime-card {
+    grid-template-columns: 44px minmax(0, 1fr) auto 24px;
+    padding: 6px 16px;
+    min-height: 48px;
+}
+#anime-container.size-s.list-view .anime-card {
+    grid-template-columns: 32px minmax(0, 1fr) auto 20px;
+    padding: 4px 12px;
+    min-height: 40px !important;
+    height: auto !important;
+}
+#anime-container.size-s.list-view .card-poster {
+    height: 24px !important;
+    width: 17px !important;
+    
+}
+#anime-container.size-s.list-view .card-title span {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 12px !important;
+    display: block !important;
+}
+
+/* Verberg de hoofd Status-dropdown in S stand om ruimte te maken (ALLEEN IN LIJST) */
+#anime-container.list-view.size-s .card-actions > .status-dropdown { display: none !important; }
+
+/* Show the poster in the list */
+#anime-container.list-view .card-poster { display: block; }
+
+/* Flatten hierarchy for grid */
+#anime-container.list-view .card-info,
+#anime-container.list-view .card-header,
+#anime-container.list-view .card-actions,
+#anime-container.list-view .card-title {
+    display: contents;
+}
+
+/* Assign Columns explicitly and clamp them to row 1 */
+#anime-container.list-view .anime-card {
+    height: auto;
+}
+#anime-container.list-view .card-poster { grid-area: 1 / 1; height: 32px; width: 22px; border-radius: 3px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+#anime-container.list-view .card-title span { 
+    grid-area: 1 / 2; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    font-size: 13px;
+    font-weight: 600;
+}
+#anime-container.list-view .rating-badge { 
+    grid-area: 1 / 3; 
+    align-self: center; 
+    margin-right: 12px;
+    font-size: 11px;
+    padding: 2px 8px;
+    box-shadow: none;
+}
+#anime-container.list-view .expand-icon { grid-area: 1 / 4; justify-self: end; margin: 0; font-size: 12px; transition: transform 0.3s ease; }
+
+/* S stand: Herpositioneren omdat status-dropdown weg is */
+#anime-container.size-s .list-view .rating-badge { grid-area: 1 / 4; }
+#anime-container.size-s .list-view .btn-play { grid-area: 1 / 5; }
+#anime-container.size-s .list-view .expand-icon { grid-area: 1 / 6; }
+
+/* Inline Detail Fix */
+#anime-container.list-view .card-detail {
+    grid-row: 2;
+    grid-column: 1 / -1;
+    width: 100%;
+    margin-top: 10px;
+    padding: 16px;
+    background: var(--surface-2);
+    border-radius: 8px;
+    border: none;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Basisstijl van een anime-kaart: oppervlaktekleur, rand, subtiele schaduw en overloop zichtbaar
+   (overflow: visible zodat status-dropdowns buiten de kaart kunnen uitkomen) */
+.anime-card {
+    background: var(--surface); 
+    border: var(--border-width, 1px) solid var(--border);
+    border-radius: 12px;    
+    padding: 12px; 
+    display: flex; 
+    flex-direction: row; 
+    gap: 14px;
+    position: relative;
+    box-shadow: var(--shadow);
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow: visible;
+    cursor: pointer;
+    user-select: none; /* Make card feel more like a button */
+}
+
+/* Force pointer cursor on all card descendants to fix inconsistent interaction UI */
+.anime-card * { 
+    cursor: pointer !important; 
+}
+
+.card-poster, .card-info {
+    position: relative;
+    z-index: 1;
+}
+/* Hover/focus-within: toont een subtiele binnenste contour op de kaart */
+.anime-card:hover, .anime-card:focus-within {
+    border-color: var(--text-muted); 
+    box-shadow: var(--shadow), inset 0 0 0 1px var(--text-muted);
+}
+
+/* Gouden gloed op kaarten met rating >= 9 */
+.anime-card.glow-gold {
+    box-shadow: var(--shadow), inset 0 0 60px rgba(255, 215, 0, 0.25) !important;
+}
+.anime-card.glow-gold:hover, .anime-card.glow-gold:focus-within {
+    box-shadow: var(--shadow), inset 0 0 80px rgba(255, 215, 0, 0.35), inset 0 0 0 1px var(--text-muted) !important;
+}
+/* Legendaire Gouden Card Upgrade (Rating >= 9.0) */
+@keyframes goldShimmer {
+    0% { left: -100px; transform: rotate(25deg); }
+    100% { left: 100%; transform: rotate(25deg) translateX(200px); }
+}
+
+.anime-card.glow-gold {
+    position: relative;
+    overflow: hidden;
+    /* Gouden bollen in plaats van een stilstaande streep */
+    background: #1a1a1a !important;
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(128, 102, 0, 0.6) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(128, 102, 0, 0.6) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 80%) !important;
+    border: 2px solid #ffd700 !important;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.3), inset 0 0 20px rgba(255, 215, 0, 0.1) !important;
+}
+
+/* De glanzende schijn-animatie (nu breder en doorzichtiger) */
+.anime-card.glow-gold::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -100px;
+    width: 200px; /* Wijder zoals gevraagd */
+    height: 200%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.15) 50%, /* Meer doorzichtig */
+        rgba(255, 255, 255, 0) 100%
+    );
+    z-index: 5;
+    pointer-events: none;
+    animation: goldShimmer 4.5s infinite ease-in-out;
+}
+
+.anime-card.glow-gold:hover {
+    box-shadow: 0 0 35px rgba(255, 215, 0, 0.5), inset 0 0 30px rgba(255, 215, 0, 0.2) !important;
+}
+
+/* .glow-gold and .glow-red updated/restored per Master's request */
+
+
+/* Rode gloed op kaarten met rating < 2 */
+.anime-card.glow-red {
+    box-shadow: var(--shadow), inset 0 0 60px rgba(231, 76, 60, 0.25) !important;
+}
+.anime-card.glow-red:hover, .anime-card.glow-red:focus-within {
+    box-shadow: var(--shadow), inset 0 0 80px rgba(231, 76, 60, 0.35), inset 0 0 0 1px var(--text-muted) !important;
+}
+
+/* .glow-gold and .glow-red restored per Master's request */
+
+
+.card-poster {
+    flex-shrink: 0;
+    aspect-ratio: 2/3;
+    background: var(--surface-2);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+.card-poster img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+}
+
+.card-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+}
+
+.card-header { margin-bottom: 10px; }
+.card-title {
+    font-size: 17px; font-weight: 700; color: var(--white);
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 8px;
+    line-height: 1.35;
+}
+.card-title span {
+    overflow: hidden; text-overflow: ellipsis; display: -webkit-box;
+    -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical;
+}
+
+.card-actions {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    margin-top: auto;
+}
+
+/* S/M/L Scaling */
+/* SMALL (6 per row, compact horizontal) */
+.size-s { font-size: 13px; }
+#anime-container.grid-view.size-s .anime-card { padding: 6px; min-height: 100px; gap: 8px; flex-direction: row !important; }
+#anime-container.grid-view.size-s .card-poster { width: 60px !important; height: 90px !important; margin: 0 !important; }
+#anime-container.grid-view.size-s .card-info { flex: 1; display: flex; flex-direction: column; gap: 4px; justify-content: flex-start; }
+#anime-container.grid-view.size-s .card-actions { flex-wrap: wrap; gap: 4px; }
+#anime-container.grid-view.size-s .status-current, 
+#anime-container.grid-view.size-s .action-btn { padding: 4px 8px; font-size: 11px; }
+#anime-container.grid-view.size-s .card-title { font-size: 13px; margin-bottom: 2px; }
+.size-s .status-indicator { width: 28px; height: 28px; font-size: 12px; }
+.size-s .status-group-header { font-size: 1.1rem; padding: 10px 16px; }
+
+/* MEDIUM (5 per row) */
+.size-m { font-size: 15px; }
+.size-m .card-poster { width: 100px; height: 150px; }
+.size-m .card-title { font-size: 17px; margin-bottom: 6px; }
+.size-m .status-indicator { width: 36px; height: 36px; font-size: 14px; }
+.size-m .action-btn, .size-m .status-current, .size-m .rating-badge { padding: 8px 12px; font-size: 13px; }
+.size-m .status-group-header { font-size: 1.3rem; padding: 16px; }
+
+/* LARGE (3 per row, Extra Premium) */
+.size-l { font-size: 18px; }
+.size-l .anime-card { padding: 20px; border-radius: 12px; gap: 20px; }
+.size-l .card-title { font-size: 22px; font-weight: 800; }
+.size-l .card-poster { width: 150px; height: 225px; }
+.size-l .status-indicator { width: 48px; height: 48px; font-size: 22px; }
+.size-l .action-btn, .size-l .status-current, .size-l .rating-badge { padding: 10px 20px; font-size: 16px; }
+.size-l .status-group-header { font-size: 1.6rem; padding: 24px; }
+
+/* Gekleurde linkerzijbalk per kaart: geeft de status visueel aan via een dunne balk */
+.anime-card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+    z-index: 2;
+}
+/* Zijbalk kleuren op basis van data-status attribuut op de kaart */
+.anime-card[data-status="-1"]::before { background: var(--status-none); }   /* Te Bekijken */
+.anime-card[data-status="0"]::before  { background: var(--status-watching); } /* Bezig */
+.anime-card[data-status="1"]::before  { display: none; }                     /* Bekeken: geen balk */
+
+/* SVG Watermark removed */
+
+#app [data-theme="dark"] .anime-card.status-watched .card-title,
+#app [data-theme="dark"] .anime-card[data-status="1"] .card-title,
+#app [data-theme="midnight"] .anime-card[data-status="1"] .card-title {
+    color: #ffffff !important;
+}
+
+/* Bekeken-kaarten: iets donkerder vlak met subtiele blauwe binnengloed */
+.anime-card[data-status="1"],
+.anime-card.status-watched {
+    background: var(--surface-2);
+}
+
+.list-view .anime-card .status-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    font-size: 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+}
+.list-view .anime-card .status-indicator.status-done {
+    background: rgba(0, 122, 204, 0.1);
+    color: var(--status-done);
+    border-color: rgba(0, 122, 204, 0.3);
+}
+.list-view .anime-card .status-indicator.status-watching {
+    background: rgba(136, 136, 136, 0.1);
+    color: var(--status-watching);
+}
+.list-view .anime-card .status-indicator.status-none {
+    background: rgba(187, 187, 187, 0.05);
+    color: var(--status-none);
+}
+
+
+/* Statusgroep-header: plakkerige sectieheader boven elke statusgroep in de lijst */
+.status-group-header {
+    grid-column: 1 / -1; /* Stretch across all grid columns */
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    margin: 24px 0 12px 0;
+    background: var(--bg);
+    border-bottom: 2px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+[data-theme="midnight"] .status-group-header {
+    background: #000;
+    border-bottom-color: #fff;
+}
+
+.status-group-header i {
+    width: 24px;
+    text-align: center;
+    color: #FFCC00;
+}
+
+/* Teller badge rechts in de sectieheader: toont het aantal kaarten in die groep */
+.group-count {
+    background: var(--surface-2);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-left: auto;
+    font-weight: 600;
+}
+
+/* Removed duplicate card-title css block */
+
+/* S/E */
+.card-controls {
+    display: flex; gap: 10px; margin-bottom: 10px;
+    background: var(--surface-2); padding: 6px 8px; border-radius: 4px;
+}
+.input-group { display: flex; align-items: center; gap: 5px; }
+.input-group label { font-size: 11px; font-weight: 700; color: var(--text-muted); }
+.input-group input {
+    width: 44px; background: var(--bg); border: var(--border-width, 1px) solid var(--border);
+    color: var(--text); padding: 3px 4px; border-radius: 3px;
+    text-align: center; font-weight: 600; font-size: 13px; outline: none;
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Actions */
+.card-actions { display: flex; align-items: center; gap: 6px; margin-top: auto; }
+
+.action-btn {
+    border: var(--border-width, 1px) solid var(--border); border-radius: 4px; cursor: pointer;
+    padding: 8px 14px; font-size: 13px; font-weight: 600;
+    display: flex; align-items: center; gap: 6px;
+    font-family: 'Outfit', sans-serif;
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.btn-play { background: var(--white); color: var(--bg); border-color: var(--white); }
+.btn-play:hover { opacity: 0.8; }
+
+/* ==========================================================================
+   STATUS DROPDOWN
+   Enige bron van waarheid voor alle statusknoppen en het globale portal-menu.
+   ========================================================================== */
+
+.status-dropdown {
+    position: relative;
+    display: inline-flex;
+    z-index: 50;
+}
+
+.status-current {
+    background: var(--surface-2);
+    border: var(--border-width, 1px) solid var(--border);
+    color: var(--text);
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Outfit', sans-serif;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    min-width: 132px;
+    min-height: 42px;
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.status-current:hover {
+    background: var(--surface);
+    border-color: var(--text-muted);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.status-current img,
+.status-option img {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+}
+
+[data-theme="dark"] .status-current img,
+[data-theme="dark"] .status-option img,
+[data-theme="midnight"] .status-current img,
+[data-theme="midnight"] .status-option img {
+    filter: invert(1);
+}
+
+.status-menu {
+    display: none;
+    position: fixed;
+    background: rgba(40, 40, 40, 0.92);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    z-index: 200000 !important;
+    min-width: 190px;
+    box-shadow: 0 12px 50px rgba(0,0,0,0.5);
+    padding: 8px;
+    overflow: hidden;
+    flex-direction: column;
+    transform-origin: top left;
+}
+
+[data-theme="light"] .status-menu {
+    background: rgba(255, 255, 255, 0.92);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.status-dropdown.open .status-menu {
+    display: flex;
+    animation: menuFadeIn 0.15s ease-out;
+}
+
+@keyframes menuFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.status-option {
+    padding: 12px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Outfit', sans-serif;
+    color: var(--text);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    margin-bottom: 2px;
+}
+
+.status-option:last-child {
+    margin-bottom: 0;
+}
+
+.status-option:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text);
+}
+
+[data-theme="light"] .status-option:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.status-option i {
+    width: 16px;
+    text-align: center;
+    opacity: 0.8;
+}
+
+.status-menu::-webkit-scrollbar {
+    width: 4px;
+}
+
+.status-menu::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+
+/* Character Rating Logic: Colored by value scale (r-9 to r-0) */
+.rating-badge {
+    padding: 5px 10px;
+    border-radius: 8px; 
+    font-weight: 700; 
+    color: var(--white);
+    font-size: 12px; 
+    border: var(--border-width, 1px) solid var(--border);
+    transition: all 0.2s ease;
+    background: var(--surface-2);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    cursor: default; /* Non-clickable as requested */
+    user-select: none;
+}
+
+/* Grid view: bottom-right corner as a sticker */
+.grid-view .anime-card .rating-badge {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    font-size: 14px;
+    padding: 3px 10px;
+}
+
+.rating-badge i { font-size: 11px; opacity: 0.8; }
+
+.r-9 { background-color: rgba(255, 215, 0, 0.15) !important; color: #ffd700 !important; border-color: rgba(255, 215, 0, 0.4) !important; box-shadow: 0 0 10px rgba(255, 215, 0, 0.1); }
+.r-8 { background-color: rgba(39, 174, 96, 0.15) !important; color: #27ae60 !important; border-color: rgba(39, 174, 96, 0.4) !important; }
+.r-7 { background-color: rgba(46, 204, 113, 0.15) !important; color: #2ecc71 !important; border-color: rgba(46, 204, 113, 0.4) !important; }
+.r-6 { background-color: rgba(241, 196, 15, 0.15) !important; color: #f1c40f !important; border-color: rgba(241, 196, 15, 0.4) !important; }
+.r-5 { background-color: rgba(230, 126, 34, 0.15) !important; color: #e67e22 !important; border-color: rgba(230, 126, 34, 0.4) !important; }
+.r-4 { background-color: rgba(231, 76, 60, 0.15) !important; color: #e74c3c !important; border-color: rgba(231, 76, 60, 0.4) !important; }
+.r-0 { background-color: rgba(155, 89, 182, 0.15) !important; color: #9b59b6 !important; border-color: rgba(155, 89, 182, 0.4) !important; }
+.rating-badge.unrated { background-color: rgba(255, 255, 255, 0.05) !important; color: var(--text-muted) !important; border-color: rgba(255, 255, 255, 0.1) !important; font-weight: 400; opacity: 0.6; }
+
+/* Score Scales from Top Performer (Blue) to Low Rating (Purple) */
+/* Modal explicit action container styling */
+/* .modal-global-actions styling moved to modal section for clarity */
+
+
+/* Card header */
+.card-header { cursor: default; }
+.card-title { display: flex; align-items: center; gap: 8px; }
+.expand-icon { font-size: 10px; color: var(--text-muted); margin-left: auto; }
+
+/* Uitgevouwen detailblok onder een kaart in list view of in de grid-modal */
+.card-detail {
+    margin-top: 12px; padding-top: 12px;
+    border-top: var(--border-width, 1px) solid var(--border);
+}
+
+.season-block { margin-bottom: 6px; }
+.season-header {
+    display: flex; align-items: center; gap: 8px;
+    padding: 3px 0;
+}
+.season-header .status-current {
+    padding: 4px 10px;
+    min-height: 28px;
+    font-size: 12px;
+    min-width: 110px;
+    border-radius: 6px;
+}
+.season-title { font-weight: 600; font-size: 13px; flex: 1; }
+.season-specials .season-title { color: #FFCC00; opacity: 0.9; }
+.season-specials { background: rgba(255, 204, 0, 0.03); border-radius: 4px; border: 1px dashed rgba(255, 204, 0, 0.1); padding: 4px 8px; margin-bottom: 12px; }
+
+/* Lijst van afleveringen: ingedenteerd met een verticale lijn als boomstructuur */
+.episode-list {
+    margin-left: 18px; border-left: var(--border-width, 1px) solid var(--border);
+    padding-left: 12px;
+}
+.episode-row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 3px 12px; font-size: 12px;
+    border-radius: 6px;
+    transition: background 0.2s, border-color 0.2s;
+    border: 1px solid transparent;
+}
+.episode-row .status-current {
+    padding: 3px 8px;
+    min-height: 24px;
+    font-size: 11px;
+    min-width: 100px;
+    border-radius: 6px;
+}
+.episode-row:hover { background: rgba(255, 255, 255, 0.05); }
+/* Geselecteerde afleveringsrij: blauwe markering voor batch-acties */
+.episode-row.selected {
+    background: rgba(0, 122, 204, 0.15) !important;
+    border-color: rgba(0, 122, 204, 0.5);
+    box-shadow: 0 0 10px rgba(0, 122, 204, 0.1);
+}
+.episode-row[data-status="1"] .ep-title { color: var(--text-muted); }
+.ep-title { flex: 1; color: var(--text); }
+
+/* Zwevende batch-actiebalk: verschijnt bij de muiscursor bij selectie van afleveringen */
+.batch-bar {
+    position: fixed;
+    z-index: 10000;
+    background: rgba(30, 30, 30, 0.85);
+    backdrop-filter: blur(12px) saturate(160%);
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+    min-width: 220px;
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+[data-theme="light"] .batch-bar {
+    background: rgba(255, 255, 255, 0.9);
+    color: #1a1a1a;
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.batch-header {
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid rgba(136, 136, 136, 0.2);
+    padding-bottom: 8px;
+    font-size: 13px;
+}
+.batch-close {
+    background: none; border: none; color: var(--text-muted);
+    font-size: 18px; cursor: pointer;
+}
+.batch-close:hover { color: white; }
+
+.batch-options {
+    display: flex; flex-direction: column; gap: 4px;
+}
+.batch-options button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+.batch-options button:hover {
+    background: var(--white);
+    color: var(--bg);
+}
+.batch-options button i { font-size: 10px; opacity: 0.8; }
+
+.btn-small { padding: 4px 8px; font-size: 11px; }
+.btn-tiny { padding: 3px 6px; font-size: 10px; }
+
+/* Franchise Grouping */
+
+
+.card-detail-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 6px 0;
+}
+
+.item-block {
+    background: var(--surface-2);
+    border-radius: 8px;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+}
+
+.item-header {
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+}
+
+.item-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.item-type-badge {
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: 800;
+    background: var(--text-muted);
+    color: var(--bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.item-title-text {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--white);
+}
+
+.item-year-text {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.movie-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.season-block {
+    margin-bottom: 8px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 6px;
+    padding: 0 4px;
+    border-left: 2px solid transparent; /* reserved space for alignment */
+}
+
+.season-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+.season-header:hover { background: rgba(255,255,255,0.05); }
+
+.season-title {
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+    color: var(--text);
+    flex: 1;
+}
+
+.episode-list {
+    position: relative;
+    margin-left: 28px;
+    padding-left: 4px;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+/* De verticale stam van de boom */
+.episode-list:before {
+    content: '';
+    position: absolute;
+    left: -14px;
+    top: -10px;
+    bottom: 16px;
+    width: 2px;
+    background: var(--border);
+    opacity: 0.5;
+}
+
+.episode-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    font-size: 13px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.episode-row:before {
+    content: '';
+    position: absolute;
+    left: -14px;
+    top: 50%;
+    width: 14px;
+    height: 1px;
+    background: var(--border);
+    opacity: 0.5;
+}
+
+.episode-row:hover {
+    background: var(--surface);
+}
+
+/* Modal overlay: fullscreen semi-transparante laag achter rating- en detail-modals */
+#detail-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--modal-bg);
+    display: flex; justify-content: center; align-items: center; z-index: 1000;
+}
+#modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--modal-bg);
+    display: flex; justify-content: center; align-items: center; z-index: 1100;
+}
+.modal {
+    background: var(--surface); border: var(--border-width, 1px) solid var(--border);
+    padding: 30px; border-radius: 14px; width: 380px; max-width: 90%;
+}
+.modal-detail {
+    width: 70vw;
+    max-width: 70vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0 !important; /* Managed by internal columns */
+    overflow: hidden;
+    border-radius: 28px;
+}
+
+/* New Split-View Layout for Detail Modal */
+.modal-body-layout {
+    display: grid;
+    grid-template-columns: minmax(220px, 32%) minmax(0, 1fr);
+    height: 100%;
+    overflow: hidden;
+}
+
+.modal-sidebar {
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    border-radius: 0;
+    padding: 20px;
+}
+
+.modal-sidebar-poster {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    border-radius: 20px !important;
+    clip-path: inset(0 round 20px);
+    object-fit: contain;
+    background: transparent;
+    border: none;
+    overflow: visible;
+}
+
+.modal-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    overflow-y: auto;
+    background: var(--surface);
+}
+
+.modal-detail-header {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: var(--border-width, 1px) solid var(--border);
+}
+
+@media (max-width: 768px) {
+    .modal-body-layout {
+        grid-template-columns: 1fr;
+        overflow-y: auto;
+    }
+    .modal-sidebar {
+        height: 250px;
+        padding: 18px 18px 0;
+    }
+    .modal-main {
+        overflow-y: visible;
+    }
+}
+
+.modal-close-row {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+#detail-title {
+    font-size: 2.35rem;
+    font-weight: 800;
+    margin: 0;
+    line-height: 1.1;
+    color: var(--white);
+    letter-spacing: -0.5px;
+}
+
+.modal-global-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+/* Normalizing the 3 modal action buttons to have identical height and style */
+.modal-global-actions .status-dropdown {
+    display: inline-flex !important;
+    margin: 0 !important;
+}
+
+.modal-global-actions .status-current,
+.modal-global-actions .modal-play-btn,
+.modal-global-actions .rating-badge {
+    height: 44px !important;
+    min-height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 20px !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+    border: 1px solid var(--border) !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+}
+
+.modal-global-actions .status-current:hover,
+.modal-global-actions .modal-play-btn:hover,
+.modal-global-actions .rating-badge:hover {
+    transform: none;
+    border-color: var(--text-muted) !important;
+    filter: brightness(0.92) saturate(1.05);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.24) !important;
+}
+
+.modal-global-actions .status-current:focus-visible,
+.modal-global-actions .modal-play-btn:focus-visible,
+.modal-global-actions .rating-badge:focus-visible,
+.modal-global-actions .rating-inline-input:focus-visible {
+    outline: none;
+    border-color: #FFCC00 !important;
+    box-shadow: 0 0 0 2px rgba(255, 204, 0, 0.14), 0 8px 18px rgba(0,0,0,0.28) !important;
+}
+
+.modal-global-actions .status-dropdown .status-current {
+    width: auto !important;
+    min-width: 0 !important;
+    background: var(--surface-2) !important;
+}
+
+.modal-global-actions .modal-play-btn {
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.modal-global-actions .rating-badge {
+    cursor: pointer !important;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.modal-global-actions .rating-badge.is-editing {
+    padding: 0 12px !important;
+    gap: 8px;
+}
+
+.modal-global-actions .rating-inline-input {
+    width: 58px;
+    border: none;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: center;
+    outline: none;
+}
+
+.modal-global-actions .rating-inline-input::-webkit-outer-spin-button,
+.modal-global-actions .rating-inline-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.modal-global-actions .rating-inline-input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+.btn-close {
+    background: transparent;
+    border: 1px solid #e14b4b;
+    color: #e14b4b;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+    border-radius: 8px;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.btn-close:hover,
+.btn-close:focus-visible {
+    background: #e14b4b;
+    color: #000000;
+    border-color: #e14b4b;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(225, 75, 75, 0.18);
+}
+#detail-content {
+    overflow-y: auto; 
+    flex: 1;
+    padding-bottom: 120px; /* Space for dropdowns to flourish without clipping */
+}
+.modal h3 { margin-bottom: 4px; font-size: 16px; }
+#modal-title { color: var(--text-muted); margin-bottom: 20px; font-size: 13px; }
+.rating-input {
+    display: flex; align-items: baseline; justify-content: center;
+    gap: 8px; margin-bottom: 20px;
+}
+.rating-input input {
+    width: 90px; background: var(--surface-2); border: var(--border-width, 1px) solid var(--border);
+    color: var(--text); padding: 10px; border-radius: 6px; font-size: 1.8rem;
+    font-weight: 700; text-align: center; outline: none; font-family: 'Outfit', sans-serif;
+}
+.max-rating { font-size: 1rem; color: var(--text-muted); }
+.modal-buttons { display: flex; gap: 8px; }
+.modal-buttons button {
+    flex: 1; padding: 11px; border-radius: 6px; cursor: pointer;
+    font-weight: 600; font-size: 14px; border: var(--border-width, 1px) solid var(--border);
+    font-family: 'Outfit', sans-serif;
+}
+.btn-primary  { background: var(--white); color: var(--bg); border-color: var(--white); }
+.btn-secondary { background: var(--surface-2); color: var(--text); }
+
+/* Hulpklasse: verbergt een element volledig (ook voor screen readers via display: none) */
+.hidden { display: none !important; }
+
+/* Footer: Centered credits and brand mentions with a soft divider */
+footer {
+    text-align: center;
+    padding: 2.75rem 0 2rem;
+    color: var(--text-muted);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+}
+
+.vidsrc-brand {
+    color: var(--text);
+}
+
+.status-current img, .status-option img {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+[data-theme="light"] .status-current img,
+[data-theme="light"] .status-option img {
+    filter: none;
+}
+
+
+/* (Duplicate declarations removed during consolidation) */
+
+/* ==========================================================================
+   PROGRESS CONTROL — New AniList-based progress UI
+   ========================================================================== */
+
+.item-actions-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 6px 0;
+}
+
+.progress-control {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    height: 36px;
+}
+
+.progress-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 100%;
+    border: none;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    font-size: 12px;
+    transition: background 0.15s ease;
+}
+
+.progress-btn:hover:not(:disabled) {
+    background: var(--surface);
+}
+
+.progress-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.progress-text {
+    padding: 0 10px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    white-space: nowrap;
+    font-family: 'Outfit', sans-serif;
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* ==========================================================================
+   RESPONSIVE LAYOUT BREAKPOINTS
+   ========================================================================== */
+
+/* --- TABLET / SMALL DESKTOP (Max 1200px) --- */
+@media (max-width: 1200px) {
+    .header-content {
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 1.5fr) auto;
+        gap: 18px;
+    }
+
+    #app {
+        padding: 28px 20px 24px;
+    }
+
+    .toolbar {
+        gap: 10px;
+    }
+    .filter-btn {
+        padding: 9px 14px;
+    }
+
+    .item-count {
+        margin-left: 4px;
+    }
+
+    #anime-container.grid-view.size-l .status-column { grid-template-columns: repeat(3, 1fr) !important; }
+    #anime-container.grid-view.size-m .status-column { grid-template-columns: repeat(4, 1fr) !important; }
+    #anime-container.grid-view.size-s .status-column { grid-template-columns: repeat(5, 1fr) !important; }
+
+    #anime-container.grid-view .anime-card {
+        min-height: 144px;
+    }
+
+    #anime-container.grid-view .anime-card .card-poster {
+        width: 96px;
+        height: 144px;
+    }
+
+    .modal-detail {
+        width: min(80vw, 1000px);
+        max-width: min(80vw, 1000px);
+    }
+
+    .modal-body-layout {
+        grid-template-columns: minmax(210px, 30%) minmax(0, 1fr);
+    }
+
+    .modal-main {
+        padding: 24px;
+    }
+}
+
+/* --- MOBILE (Max 768px) --- */
+@media (max-width: 768px) {
+    #app {
+        padding: 18px 12px 20px;
+    }
+
+    .header-content {
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-rows: auto auto;
+        gap: 12px;
+    }
+
+    .logo-rascal {
+        font-size: 1.7rem;
+        letter-spacing: 1.8px;
+    }
+
+    .header-center {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        max-width: 100%;
+    }
+
+    .header-right {
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .header-right button {
+        width: 42px;
+        height: 42px;
+    }
+
+    .header-right button i {
+        font-size: 15px;
+    }
+
+    .search-bar {
+        min-height: 48px;
+        padding: 0 14px;
+    }
+    
+    .toolbar {
+        justify-content: flex-start;
+        gap: 8px;
+        align-items: stretch;
+    }
+    .filter-group {
+        flex-wrap: wrap;
+        gap: 8px;
+        flex: 1 1 100%;
+    }
+
+    .filter-btn {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    .sort-group {
+        flex: 1 1 100%;
+    }
+
+    .sort-group select {
+        width: 100%;
+    }
+
+    /* Verberg S/M/L knoppen op kleine schermen — alleen grid/lijst toggle blijft */
+    .size-toggle {
+        display: none !important;
+    }
+
+    .item-count {
+        width: 100%;
+        margin: 2px 0 0;
+    }
+
+    /* Grid view: altijd 2 kolommen ongeacht size instelling (S/M/L is verborgen) */
+    #anime-container.grid-view.size-l .status-column,
+    #anime-container.grid-view.size-m .status-column,
+    #anime-container.grid-view.size-s .status-column {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px;
+    }
+    
+    #anime-container.grid-view .anime-card {
+        min-height: 124px;
+        padding: 10px;
+        gap: 10px;
+    }
+
+    #anime-container.grid-view .anime-card .card-poster {
+        width: 82px;
+        height: 124px;
+    }
+
+    #anime-container.list-view .anime-card, 
+    #anime-container.size-m.list-view .anime-card,
+    #anime-container.size-s.list-view .anime-card {
+        grid-template-columns: 28px minmax(0, 1fr) auto 20px !important;
+        padding: 8px 12px;
+    }
+
+    /* Compacte rating badge in lijst op kleine schermen */
+    #anime-container.list-view .rating-badge {
+        font-size: 10px !important;
+        padding: 1px 6px !important;
+        margin-right: 0 !important;
+        border-radius: 4px;
+    }
+
+    #anime-container.list-view .rating-badge i {
+        display: none;
+    }
+
+    #anime-container.list-view .card-title span {
+        font-size: 12px;
+    }
+
+    .status-group-header {
+        padding: 12px 14px;
+        margin: 18px 0 10px 0;
+        font-size: 1rem;
+    }
+
+    .modal {
+        width: min(100%, 360px);
+        padding: 22px;
+    }
+
+    /* --- MOBILE DETAIL MODAL REDESIGN --- */
+    .modal-detail {
+        width: 100vw;
+        max-width: 100vw;
+        height: 100%;
+        max-height: 100%;
+        border-radius: 0;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        margin: 0; /* Remove default centering margins if any */
+    }
+
+    .modal-body-layout {
+        display: flex;
+        flex-direction: column;
+        grid-template-columns: none;
+        overflow-y: auto;
+        height: 100%;
+    }
+
+    .modal-sidebar {
+        height: auto;
+        padding: 12px;
+        background: var(--surface-2); /* Slight contrast for the banner area */
+    }
+    
+    .modal-sidebar-poster {
+        max-height: 160px;
+        border-radius: 12px !important;
+        clip-path: inset(0 round 12px);
+    }
+
+    .modal-main {
+        padding: 16px;
+        flex: 1;
+        overflow-y: visible; /* Scroll happens on .modal-body-layout */
+    }
+
+    .modal-detail-header {
+        margin-bottom: 16px;
+        padding-bottom: 16px;
+        gap: 8px;
+        position: relative; /* For absolute positioning of close button if needed */
+    }
+    
+    .modal-close-row {
+        position: absolute;
+        top: -60px; /* Position relative to the header, overlaying the poster or just above content */
+        right: 0;
+        justify-content: flex-end;
+        z-index: 10;
+        pointer-events: none; /* Let clicks pass through empty space */
+    }
+
+    .modal-close-row .btn-close {
+        pointer-events: auto; /* Re-enable clicks on the button itself */
+        background: rgba(var(--surface-rgb), 0.8); /* Semi-transparent background */
+        backdrop-filter: blur(4px);
+    }
+
+    #detail-title {
+        font-size: 1.5rem;
+        margin-top: 8px;
+    }
+
+    .modal-global-actions {
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+
+    .modal-global-actions .status-current,
+    .modal-global-actions .modal-play-btn,
+    .modal-global-actions .rating-badge {
+        min-height: 36px !important;
+        height: 36px !important;
+        padding: 0 12px !important;
+        font-size: 12px !important;
+    }
+
+    .status-current {
+        padding: 9px 14px;
+        min-width: 124px;
+        font-size: 13px;
+    }
+
+    .status-menu {
+        min-width: 180px;
+    }
+
+    .modal-content {
+        width: 95% !important;
+        padding: 20px;
+    }
+    .detail-modal-custom {
+        width: 100%;
+        max-height: 90vh;
+        border-radius: 12px 12px 0 0;
+        bottom: 0;
+        top: auto;
+        transform: translateY(100%); /* Setup voor slide-up als je dat zou willen */
+    }
+    .detail-overlay:not(.hidden) .detail-modal-custom {
+        transform: translateY(0);
+    }
+    
+    .batch-bar {
+        left: 10px !important;
+        bottom: 10px !important;
+        top: auto !important;
+        width: calc(100vw - 20px);
+    }
+}
+
+@media (orientation: portrait) {
+    .toolbar {
+        row-gap: 10px;
+    }
+
+    .filter-group {
+        flex-wrap: wrap;
+    }
+
+    .item-count {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .modal-detail {
+        width: min(92vw, 880px);
+    }
+
+    .modal-body-layout {
+        grid-template-columns: minmax(220px, 28%) 1fr;
+    }
+}
+
+/* Rating Modal & Global Modals */
+#modal-overlay, #detail-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    transition: opacity 0.3s;
+}
+
+.modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    width: min(90vw, 420px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    text-align: center;
+}
+
+.modal h3 { margin-bottom: 8px; font-size: 1.5rem; }
+.modal p { color: var(--text-muted); margin-bottom: 24px; }
+
+.rating-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.rating-input input[type="number"] {
+    background: var(--surface-2);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 12px;
+    width: 100px;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.rating-input input[type="number"]:focus {
+    border-color: var(--primary);
+}
+
+.max-rating { font-size: 1.5rem; font-weight: 600; color: var(--text-muted); }
+
+.modal-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.modal-buttons button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: #000;
+    border: none;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn-secondary:hover { background: var(--surface-2); }
+
+.hidden { display: none !important; }
+
+/* Status indicator hidden in grid by default */
+.grid-view .anime-card .status-indicator { display: none !important; }

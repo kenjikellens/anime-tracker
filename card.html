@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Detail</title>
+    <link rel="stylesheet" href="css/styles.css?v=1.9.12">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .grid-view .anime-card .status-indicator { display: none !important; }
+        .back-btn { margin-bottom: 20px; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: var(--text-muted); cursor: pointer; text-decoration: none; }
+        .back-btn:hover { color: var(--white); }
+        .detail-item-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--surface); border: 1px solid var(--border); margin-bottom: 8px; border-radius: 8px; }
+        .detail-item-row.watched { opacity: 0.6; }
+        .detail-item-title { font-weight: 600; flex: 1; }
+        .checkbox-custom { width: 24px; height: 24px; cursor: pointer; margin-left: 16px; }
+        .anime-detail-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px; }
+        .anime-detail-status { font-weight: bold; padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+    <header class="header-main">
+        <div class="header-content">
+            <div class="header-left">
+                <a href="index.html" style="text-decoration: none;"><h1 class="logo-rascal"><span class="ras">RAS</span><span class="cal">CAL</span></h1></a>
+            </div>
+            <div class="header-center"></div>
+            <div class="header-right">
+                <button id="theme-toggle" title="Switch theme"><i class="fas fa-moon"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <div id="app">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Terug naar overzicht</a>
+        
+        <div id="detail-container">
+            <p>Laden...</p>
+        </div>
+    </div>
+
+    <!-- Rating modal for scoring animes -->
+    <div id="modal-overlay" class="hidden">
+        <div class="modal">
+            <h3>Deze anime beoordelen?</h3>
+            <p id="modal-title"></p>
+            <div class="rating-input">
+                <input type="number" id="rating-number" min="0" max="10" step="0.1" value="7.0">
+                <span class="max-rating">/ 10</span>
+            </div>
+            <div class="modal-buttons">
+                <button id="clear-rating" class="btn-secondary" onclick="document.getElementById('rating-number').value = '';" style="margin-right:auto; color:var(--text-muted); border-color:var(--border);">Wissen</button>
+                <button id="cancel-rating" class="btn-secondary" onclick="document.getElementById('modal-overlay').classList.add('hidden');">Annuleren</button>
+                <button id="save-rating" class="btn-primary" onclick="if(window.saveGlobalRating) window.saveGlobalRating();">Opslaan</button>
+            </div>
+        </div>
+    </div>
+    <!-- Domain Scripts -->
+    <script type="module" src="js/card.js"></script>
+</body>
+</html>

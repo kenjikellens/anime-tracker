@@ -6,7 +6,7 @@
     <title>Anime Tracker | Mijn Lijst</title>
     
     <!-- Design & Fonts -->
-    <link rel="stylesheet" href="styles.css?v=1.9.12">
+    <link rel="stylesheet" href="css/styles.css?v=1.9.12">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -100,9 +100,9 @@
                 <span class="max-rating">/ 10</span>
             </div>
             <div class="modal-buttons">
-                <button id="clear-rating" class="btn-secondary" style="margin-right:auto; color:var(--text-muted); border-color:var(--border);">Wissen</button>
-                <button id="cancel-rating" class="btn-secondary">Annuleren</button>
-                <button id="save-rating" class="btn-primary">Opslaan</button>
+                <button id="clear-rating" class="btn-secondary" onclick="document.getElementById('rating-number').value = '';" style="margin-right:auto; color:var(--text-muted); border-color:var(--border);">Wissen</button>
+                <button id="cancel-rating" class="btn-secondary" onclick="document.getElementById('modal-overlay').classList.add('hidden');">Annuleren</button>
+                <button id="save-rating" class="btn-primary" onclick="if(window.saveGlobalRating) window.saveGlobalRating();">Opslaan</button>
             </div>
         </div>
     </div>
@@ -119,18 +119,7 @@
     </div>
 
     <!-- Logic & Domain Scripts -->
-    <script src="domein/UIHelpers.js?v=2.0"></script>
-    <script src="domein/BatchActions.js?v=2.0"></script>
-    <script src="domein/StatusCalculator.js?v=2.0"></script>
-    <script src="domein/AnimeActions.js?v=2.0"></script>
-    <script src="domein/State.js?v=2.0"></script>
-    <script src="domein/Storage.js?v=2.0"></script>
-    <script src="domein/AnilistApi.js?v=2.0"></script>
-    <script src="domein/EmbedSources.js?v=2.0"></script>
-    <script src="domein/ListTransformer.js?v=2.0"></script>
-    <script src="domein/Components.js?v=2.0"></script>
-    <script src="domein/Modals.js?v=2.0"></script>
-    <script src="app.js?v=2.0"></script>
+    <script type="module" src="js/app.js"></script>
 
     <!-- Global Dropdown Portal: Used for context menus to prevent overflow issues -->
     <div id="global-status-menu" class="status-menu shadow-lg"></div>
