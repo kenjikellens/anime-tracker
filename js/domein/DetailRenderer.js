@@ -84,18 +84,20 @@ export class DetailRenderer {
             anime.items.forEach(item => {
                 const isOpen = openItemIds.includes(item.id);
                 const rowWrapper = document.createElement('div');
-                rowWrapper.className = 'item-accordion-wrapper';
+                rowWrapper.className = `item-accordion-wrapper ${isOpen ? 'is-open' : ''}`;
                 rowWrapper.setAttribute('data-item-id', item.id);
-                rowWrapper.style.cssText = 'border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; overflow: hidden; background: var(--surface-2); transition: all 0.2s;';
+                // We verwijderen de inline border/margin/background om conflicten met CSS te voorkomen
+                rowWrapper.style.cssText = 'margin-bottom: 12px; overflow: hidden; transition: all 0.3s;';
                 
-                const typeHtml = item.type ? `<span class="item-type-badge">${item.type}</span>` : '';
+                const typeClass = `type-${(item.type || 'serie').toLowerCase()}`;
+                const typeHtml = item.type ? `<span class="item-type-badge ${typeClass}">${item.type}</span>` : '';
                 
                 const rowHeader = document.createElement('div');
                 rowHeader.className = `detail-item-row ${item.status === 1 ? 'watched' : ''}`;
-                rowHeader.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; cursor: pointer; border-bottom: none;';
+                rowHeader.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 8px 16px; cursor: pointer; position: relative; gap: 12px;';
                 
                 let itemStatusSelect = `
-                    <select class="item-status-select" style="padding: 6px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text);">
+                    <select class="item-status-select" id="status-${item.id}">
                         <option value="-1" ${item.status === -1 ? 'selected' : ''}>Te Bekijken</option>
                         <option value="0" ${item.status === 0 ? 'selected' : ''}>Bezig</option>
                         <option value="1" ${item.status === 1 ? 'selected' : ''}>Bekeken</option>
@@ -103,19 +105,14 @@ export class DetailRenderer {
                 `;
 
                 rowHeader.innerHTML = `
-                    <div class="item-title-row" style="display:flex; align-items:center; gap:12px; flex:1;">
-                        <i class="fas fa-chevron-down accordion-icon" style="transition: transform 0.3s; color: var(--text-muted); width: 14px; transform: ${isOpen ? 'rotate(-180deg)' : 'rotate(0deg)'};"></i>
-                        <div style="display: flex; align-items: center; gap: 8px;">
-                            ${typeHtml}
-                            <div class="detail-item-title" style="font-weight:700; font-size: 1.05rem;">${item.title}</div>
-                        </div>
+                    <i class="fas fa-chevron-down accordion-icon" style="transition: transform 0.3s; color: var(--text-muted); width: 14px; transform: ${isOpen ? 'rotate(-180deg)' : 'rotate(0deg)'};"></i>
+                    <div class="title-badge-group" style="display: flex; flex-direction: column; justify-content: center; gap: 2px; flex: 1;">
+                        <div class="badge-area" style="line-height: 1;">${typeHtml}</div>
+                        <div class="detail-item-title" style="font-weight:700; font-size: 1rem; color: var(--white);">${item.title}</div>
                     </div>
-                    <div style="display:flex; align-items:center; gap: 8px;">
-                        ${itemStatusSelect}
-                    </div>
+                    ${itemStatusSelect}
                 `;
                 
-                // Allow select to work without triggering accordion
                 const itemSelect = rowHeader.querySelector('.item-status-select');
                 itemSelect.addEventListener('click', e => e.stopPropagation());
                 itemSelect.addEventListener('change', (e) => {
@@ -124,9 +121,8 @@ export class DetailRenderer {
                 
                 const episodesContainer = document.createElement('div');
                 episodesContainer.className = 'episodes-container';
-                episodesContainer.style.cssText = `display: ${isOpen ? 'grid' : 'none'}; padding: 16px; border-top: 1px solid var(--border); background: var(--surface); grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px;`;
                 
-                const epCount = item.episodesCount || 12; // Fallback
+                const epCount = item.episodesCount || 12;
                 for (let i = 1; i <= epCount; i++) {
                     const isChecked = item.watchedEpisodes.includes(i) || item.status === 1;
                     const epDiv = document.createElement('div');
@@ -147,11 +143,13 @@ export class DetailRenderer {
                 
                 rowHeader.addEventListener('click', () => {
                     const icon = rowHeader.querySelector('.accordion-icon');
-                    if (episodesContainer.style.display === 'none') {
-                        episodesContainer.style.display = 'grid';
+                    const isOpening = !rowWrapper.classList.contains('is-open');
+                    
+                    rowWrapper.classList.toggle('is-open');
+                    
+                    if (isOpening) {
                         icon.style.transform = 'rotate(-180deg)';
                     } else {
-                        episodesContainer.style.display = 'none';
                         icon.style.transform = 'rotate(0deg)';
                     }
                 });

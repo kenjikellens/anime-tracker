@@ -12,7 +12,7 @@
                 "id": "rascal-does-not-dream-ep-0",
                 "title": "Rascal Does Not Dream of Bunny Girl Senpai",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 13
             },
@@ -20,7 +20,7 @@
                 "id": "rascal-does-not-dream-ep-1",
                 "title": "Rascal Does Not Dream of a Dreaming Girl",
                 "status": 1,
-                "type": "Movie",
+                "type": "MOVIE",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             },
@@ -28,7 +28,7 @@
                 "id": "rascal-does-not-dream-ep-2",
                 "title": "Rascal Does Not Dream of a Sister Venturing Out",
                 "status": 1,
-                "type": "Movie",
+                "type": "MOVIE",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             },
@@ -36,7 +36,7 @@
                 "id": "rascal-does-not-dream-ep-3",
                 "title": "Rascal Does Not Dream of a Knapsack Kid",
                 "status": 1,
-                "type": "Movie",
+                "type": "MOVIE",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             },
@@ -44,7 +44,7 @@
                 "id": "rascal-does-not-dream-ep-4",
                 "title": "Rascal Does Not Dream of Santa Claus",
                 "status": 1,
-                "type": "Season 2",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 13
             },
@@ -52,7 +52,7 @@
                 "id": "rascal-does-not-dream-ep-5",
                 "title": "Rascal Does Not Dream of a Dear Friend",
                 "status": 1,
-                "type": "Movie",
+                "type": "MOVIE",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
@@ -71,7 +71,7 @@
                 "id": "horimiya-ep-0",
                 "title": "Horimiya",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 13
             },
@@ -79,17 +79,9 @@
                 "id": "horimiya-ep-1",
                 "title": "Horimiya: The Missing Pieces",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 13
-            },
-            {
-                "id": "horimiya-ep-2",
-                "title": "Hori and Miyamura (OVAs)",
-                "status": 1,
-                "type": "6 OVAs",
-                "watchedEpisodes": [],
-                "episodesCount": 6
             }
         ]
     },
@@ -106,7 +98,7 @@
                 "id": "my-teen-romantic-comedy-snafu-oregairu-ep-0",
                 "title": "My Teen Romantic Comedy SNAFU",
                 "status": 1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 13
             },
@@ -114,7 +106,7 @@
                 "id": "my-teen-romantic-comedy-snafu-oregairu-ep-1",
                 "title": "My Teen Romantic Comedy SNAFU OVA",
                 "status": 1,
-                "type": "S1 OVA",
+                "type": "OVA",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             },
@@ -122,7 +114,7 @@
                 "id": "my-teen-romantic-comedy-snafu-oregairu-ep-2",
                 "title": "My Teen Romantic Comedy SNAFU TOO!",
                 "status": 1,
-                "type": "Season 2",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 13
             },
@@ -130,7 +122,7 @@
                 "id": "my-teen-romantic-comedy-snafu-oregairu-ep-3",
                 "title": "My Teen Romantic Comedy SNAFU TOO! OVA",
                 "status": 1,
-                "type": "S2 OVA",
+                "type": "OVA",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             },
@@ -138,7 +130,7 @@
                 "id": "my-teen-romantic-comedy-snafu-oregairu-ep-4",
                 "title": "My Teen Romantic Comedy SNAFU Climax!",
                 "status": 1,
-                "type": "Season 3",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -146,7 +138,7 @@
                 "id": "my-teen-romantic-comedy-snafu-oregairu-ep-5",
                 "title": "My Teen Romantic Comedy SNAFU Climax! OVA",
                 "status": 1,
-                "type": "S3 OVA",
+                "type": "OVA",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
@@ -159,13 +151,13 @@
         "rating": 9,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21574-CTRsdAGe4mDp.png",
-        "bannerImage": "",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21574-1kRxer4g7lGD.jpg",
         "items": [
             {
                 "id": "konosuba-god-s-blessing-on-this-wonderful-world-ep-0",
                 "title": "KonoSuba: God's Blessing on This Wonderful World!",
                 "status": 1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 10
             },
@@ -173,7 +165,7 @@
                 "id": "konosuba-god-s-blessing-on-this-wonderful-world-ep-1",
                 "title": "KonoSuba OVA 1: God's Blessing on This Wonderful Choker!",
                 "status": 1,
-                "type": "OVA 1",
+                "type": "OVA",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             },
@@ -181,7 +173,7 @@
                 "id": "konosuba-god-s-blessing-on-this-wonderful-world-ep-2",
                 "title": "KonoSuba: God's Blessing on This Wonderful World! 2",
                 "status": 1,
-                "type": "Season 2",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 10
             },
@@ -189,7 +181,7 @@
                 "id": "konosuba-god-s-blessing-on-this-wonderful-world-ep-3",
                 "title": "KonoSuba OVA 2: God's Blessing on This Wonderful Art!",
                 "status": 1,
-                "type": "OVA 2",
+                "type": "OVA",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             },
@@ -197,7 +189,7 @@
                 "id": "konosuba-god-s-blessing-on-this-wonderful-world-ep-4",
                 "title": "KonoSuba: Legend of Crimson",
                 "status": 1,
-                "type": "Movie",
+                "type": "MOVIE",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             },
@@ -205,7 +197,7 @@
                 "id": "konosuba-god-s-blessing-on-this-wonderful-world-ep-5",
                 "title": "KonoSuba: An Explosion on This Wonderful World!",
                 "status": 1,
-                "type": "Spin-off Series",
+                "type": "SPIN-OFF",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -213,7 +205,7 @@
                 "id": "konosuba-god-s-blessing-on-this-wonderful-world-ep-6",
                 "title": "KonoSuba: God's Blessing on This Wonderful World! 3",
                 "status": 1,
-                "type": "Season 3",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 0
             }
@@ -232,7 +224,7 @@
                 "id": "the-100-girlfriends-who-really-really-really-really-really-love-you-ep-0",
                 "title": "The 100 Girlfriends Who Really, Really, Really, Really, REALLY Love You",
                 "status": 1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -240,7 +232,7 @@
                 "id": "the-100-girlfriends-who-really-really-really-really-really-love-you-ep-1",
                 "title": "The 100 Girlfriends Who Really, Really, Really, Really, REALLY Love You Season 2",
                 "status": 1,
-                "type": "Season 2",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -248,9 +240,9 @@
                 "id": "the-100-girlfriends-who-really-really-really-really-really-love-you-ep-2",
                 "title": "The 100 Girlfriends Who Really, Really, Really, Really, REALLY Love You Season 3",
                 "status": 1,
-                "type": "Announced",
+                "type": "SERIE",
                 "watchedEpisodes": [],
-                "episodesCount": 0
+                "episodesCount": 1
             }
         ]
     },
@@ -267,7 +259,7 @@
                 "id": "high-school-dxd-ep-0",
                 "title": "High School DxD",
                 "status": 1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -275,7 +267,7 @@
                 "id": "high-school-dxd-ep-1",
                 "title": "High School DxD Specials",
                 "status": 1,
-                "type": "6 Specials",
+                "type": "SPECIAL",
                 "watchedEpisodes": [],
                 "episodesCount": 6
             },
@@ -283,7 +275,7 @@
                 "id": "high-school-dxd-ep-2",
                 "title": "High School DxD OVA",
                 "status": 1,
-                "type": "OVA 1",
+                "type": "OVA",
                 "watchedEpisodes": [],
                 "episodesCount": 2
             },
@@ -291,7 +283,7 @@
                 "id": "high-school-dxd-ep-3",
                 "title": "High School DxD New",
                 "status": 1,
-                "type": "Season 2",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -299,7 +291,7 @@
                 "id": "high-school-dxd-ep-4",
                 "title": "High School DxD New OVA: Oppai, Tsutsumimasu!",
                 "status": 1,
-                "type": "OVA 2",
+                "type": "OVA",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             },
@@ -307,7 +299,7 @@
                 "id": "high-school-dxd-ep-5",
                 "title": "High School DxD BorN",
                 "status": 1,
-                "type": "Season 3",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -315,7 +307,7 @@
                 "id": "high-school-dxd-ep-6",
                 "title": "High School DxD BorN Specials",
                 "status": 1,
-                "type": "6 Specials",
+                "type": "SPECIAL",
                 "watchedEpisodes": [],
                 "episodesCount": 6
             },
@@ -323,7 +315,7 @@
                 "id": "high-school-dxd-ep-7",
                 "title": "High School DxD BorN: Yomigaeranai Fushichou",
                 "status": 1,
-                "type": "OVA 3",
+                "type": "OVA",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             },
@@ -331,7 +323,7 @@
                 "id": "high-school-dxd-ep-8",
                 "title": "High School DxD Hero",
                 "status": 1,
-                "type": "Season 4",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -339,7 +331,7 @@
                 "id": "high-school-dxd-ep-9",
                 "title": "High School DxD Hero: Taiikukan-ura no Holy",
                 "status": 1,
-                "type": "Special Episode 0",
+                "type": "SPECIAL",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
@@ -358,7 +350,7 @@
                 "id": "kaguya-sama-love-is-war-ep-0",
                 "title": "Kaguya-sama: Love is War",
                 "status": 1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -366,7 +358,7 @@
                 "id": "kaguya-sama-love-is-war-ep-1",
                 "title": "Kaguya-sama: Love is War ?",
                 "status": 1,
-                "type": "Season 2",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -382,7 +374,7 @@
                 "id": "kaguya-sama-love-is-war-ep-3",
                 "title": "Kaguya-sama: Love is War -Ultra Romantic-",
                 "status": 1,
-                "type": "Season 3",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 13
             },
@@ -390,7 +382,7 @@
                 "id": "kaguya-sama-love-is-war-ep-4",
                 "title": "Kaguya-sama: Love is War -The First Kiss That Never Ends-",
                 "status": 1,
-                "type": "Movie / 4 eps",
+                "type": "MOVIE",
                 "watchedEpisodes": [],
                 "episodesCount": 4
             },
@@ -398,7 +390,7 @@
                 "id": "kaguya-sama-love-is-war-ep-5",
                 "title": "Kaguya-sama: Love is War - The Stairway to Adulthood",
                 "status": 1,
-                "type": "TV Special",
+                "type": "SPECIAL",
                 "watchedEpisodes": [],
                 "episodesCount": 2
             }
@@ -417,7 +409,7 @@
                 "id": "fruits-basket-2019-ep-0",
                 "title": "Fruits Basket 1st Season",
                 "status": 1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 25
             },
@@ -425,7 +417,7 @@
                 "id": "fruits-basket-2019-ep-1",
                 "title": "Fruits Basket 2nd Season",
                 "status": 1,
-                "type": "Season 2",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 25
             },
@@ -433,7 +425,7 @@
                 "id": "fruits-basket-2019-ep-2",
                 "title": "Fruits Basket: The Final",
                 "status": 1,
-                "type": "Season 3",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 13
             },
@@ -441,7 +433,7 @@
                 "id": "fruits-basket-2019-ep-3",
                 "title": "Fruits Basket -prelude-",
                 "status": 1,
-                "type": "Movie",
+                "type": "MOVIE",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
@@ -460,7 +452,7 @@
                 "id": "toradora-ep-0",
                 "title": "Toradora!",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 25
             },
@@ -468,7 +460,7 @@
                 "id": "toradora-ep-1",
                 "title": "Toradora! SOS!",
                 "status": 1,
-                "type": "4 Specials",
+                "type": "SPECIAL",
                 "watchedEpisodes": [],
                 "episodesCount": 4
             },
@@ -495,7 +487,7 @@
                 "id": "the-angel-next-door-spoils-me-rotten-ep-0",
                 "title": "The Angel Next Door Spoils Me Rotten",
                 "status": 1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -503,7 +495,7 @@
                 "id": "the-angel-next-door-spoils-me-rotten-ep-1",
                 "title": "The Angel Next Door Spoils Me Rotten Season 2",
                 "status": 1,
-                "type": "Season 2",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
@@ -522,7 +514,7 @@
                 "id": "alya-sometimes-hides-her-feelings-in-russian-ep-0",
                 "title": "Alya Sometimes Hides Her Feelings in Russian",
                 "status": 1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -530,9 +522,9 @@
                 "id": "alya-sometimes-hides-her-feelings-in-russian-ep-1",
                 "title": "Alya Sometimes Hides Her Feelings in Russian Season 2",
                 "status": 1,
-                "type": "Announced",
+                "type": "SERIE",
                 "watchedEpisodes": [],
-                "episodesCount": 0
+                "episodesCount": 1
             }
         ]
     },
@@ -549,7 +541,7 @@
                 "id": "relife-ep-0",
                 "title": "ReLIFE",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 13
             },
@@ -557,7 +549,7 @@
                 "id": "relife-ep-1",
                 "title": "ReLIFE: Kanketsu-hen",
                 "status": 1,
-                "type": "Final Arc OVA",
+                "type": "OVA",
                 "watchedEpisodes": [],
                 "episodesCount": 4
             }
@@ -576,7 +568,7 @@
                 "id": "the-fragrant-flower-blooms-with-dignity-ep-0",
                 "title": "The Fragrant Flower Blooms with Dignity",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 13
             }
@@ -595,7 +587,7 @@
                 "id": "the-pet-girl-of-sakurasou-ep-0",
                 "title": "The Pet Girl of Sakurasou",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 24
             }
@@ -614,7 +606,7 @@
                 "id": "my-dress-up-darling-ep-0",
                 "title": "My Dress-Up Darling",
                 "status": 1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -622,7 +614,7 @@
                 "id": "my-dress-up-darling-ep-1",
                 "title": "My Dress-Up Darling Season 2",
                 "status": 1,
-                "type": "Season 2",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
@@ -641,7 +633,7 @@
                 "id": "a-couple-of-cuckoos-ep-0",
                 "title": "A Couple of Cuckoos",
                 "status": 1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 24
             },
@@ -649,7 +641,7 @@
                 "id": "a-couple-of-cuckoos-ep-1",
                 "title": "A Couple of Cuckoos Season 2",
                 "status": 1,
-                "type": "Season 2",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -657,7 +649,7 @@
                 "id": "a-couple-of-cuckoos-ep-2",
                 "title": "A Couple of Cuckoos Specials",
                 "status": 1,
-                "type": "Shorts",
+                "type": "SPECIAL",
                 "watchedEpisodes": [],
                 "episodesCount": 24
             }
@@ -676,7 +668,7 @@
                 "id": "class-president-is-a-maid-ep-0",
                 "title": "Class President is a Maid!",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 26
             },
@@ -684,7 +676,7 @@
                 "id": "class-president-is-a-maid-ep-1",
                 "title": "Class President is a Maid!: The Master's Toy",
                 "status": 1,
-                "type": "Special",
+                "type": "SPECIAL",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             },
@@ -711,7 +703,7 @@
                 "id": "and-you-thought-there-is-never-a-girl-online-ep-0",
                 "title": "And you thought there is never a girl online?",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
@@ -730,7 +722,7 @@
                 "id": "love-chunibyo-other-delusions-ep-0",
                 "title": "Love, Chunibyo & Other Delusions!",
                 "status": 1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -738,7 +730,7 @@
                 "id": "love-chunibyo-other-delusions-ep-1",
                 "title": "Love, Chunibyo & Other Delusions! Lite",
                 "status": 1,
-                "type": "6 ONAs",
+                "type": "ONA",
                 "watchedEpisodes": [],
                 "episodesCount": 6
             },
@@ -746,7 +738,7 @@
                 "id": "love-chunibyo-other-delusions-ep-2",
                 "title": "Depth of Field - Love and Chunibyo Theater",
                 "status": 1,
-                "type": "7 Specials",
+                "type": "SPECIAL",
                 "watchedEpisodes": [],
                 "episodesCount": 7
             },
@@ -754,7 +746,7 @@
                 "id": "love-chunibyo-other-delusions-ep-3",
                 "title": "Love, Chunibyo & Other Delusions!: Slapstick Noel",
                 "status": 1,
-                "type": "OVA 1",
+                "type": "OVA",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             },
@@ -762,7 +754,7 @@
                 "id": "love-chunibyo-other-delusions-ep-4",
                 "title": "Love, Chunibyo & Other Delusions! Movie: Rikka Revision",
                 "status": 1,
-                "type": "Recap Movie",
+                "type": "MOVIE",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             },
@@ -770,7 +762,7 @@
                 "id": "love-chunibyo-other-delusions-ep-5",
                 "title": "Love, Chunibyo & Other Delusions! Heart Throb",
                 "status": 1,
-                "type": "Season 2",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -778,7 +770,7 @@
                 "id": "love-chunibyo-other-delusions-ep-6",
                 "title": "Love, Chunibyo & Other Delusions! Heart Throb Lite",
                 "status": 1,
-                "type": "6 ONAs",
+                "type": "ONA",
                 "watchedEpisodes": [],
                 "episodesCount": 6
             },
@@ -786,7 +778,7 @@
                 "id": "love-chunibyo-other-delusions-ep-7",
                 "title": "Love, Chunibyo & Other Delusions! Heart Throb: The Rikka Wars",
                 "status": 1,
-                "type": "OVA 2",
+                "type": "OVA",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             },
@@ -794,7 +786,7 @@
                 "id": "love-chunibyo-other-delusions-ep-8",
                 "title": "Love, Chunibyo & Other Delusions! Movie: Take On Me",
                 "status": 1,
-                "type": "Finale Movie",
+                "type": "MOVIE",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
@@ -813,7 +805,7 @@
                 "id": "the-iceblade-sorcerer-shall-rule-the-world-ep-0",
                 "title": "The Iceblade Sorcerer Shall Rule the World",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
@@ -832,7 +824,7 @@
                 "id": "danganronpa-ep-0",
                 "title": "Danganronpa: The Animation",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 13
             },
@@ -840,7 +832,7 @@
                 "id": "danganronpa-ep-1",
                 "title": "Danganronpa 3: Future Arc",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -848,7 +840,7 @@
                 "id": "danganronpa-ep-2",
                 "title": "Danganronpa 3: Despair Arc",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 11
             },
@@ -856,7 +848,7 @@
                 "id": "danganronpa-ep-3",
                 "title": "Danganronpa 3: Hope Arc",
                 "status": 1,
-                "type": "Special",
+                "type": "SPECIAL",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             },
@@ -883,7 +875,7 @@
                 "id": "my-little-sister-can-t-be-this-cute-oreimo-ep-0",
                 "title": "My Little Sister Can't Be This Cute",
                 "status": 1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -891,7 +883,7 @@
                 "id": "my-little-sister-can-t-be-this-cute-oreimo-ep-1",
                 "title": "OreImo S1: True Route",
                 "status": 1,
-                "type": "3 ONAs: Episodes 13-15",
+                "type": "ONA",
                 "watchedEpisodes": [],
                 "episodesCount": 3
             },
@@ -899,7 +891,7 @@
                 "id": "my-little-sister-can-t-be-this-cute-oreimo-ep-2",
                 "title": "My Little Sister Can't Be This Cute.",
                 "status": 1,
-                "type": "Season 2",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 13
             },
@@ -907,7 +899,7 @@
                 "id": "my-little-sister-can-t-be-this-cute-oreimo-ep-3",
                 "title": "OreImo S2: True Route",
                 "status": 1,
-                "type": "3 ONAs: Episodes 14-16",
+                "type": "ONA",
                 "watchedEpisodes": [],
                 "episodesCount": 3
             }
@@ -926,7 +918,7 @@
                 "id": "the-dreaming-boy-is-a-realist-ep-0",
                 "title": "The Dreaming Boy is a Realist",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
@@ -945,7 +937,7 @@
                 "id": "pseudo-harem-ep-0",
                 "title": "Pseudo Harem",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
@@ -964,7 +956,7 @@
                 "id": "trinity-seven-ep-0",
                 "title": "Trinity Seven",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -980,7 +972,7 @@
                 "id": "trinity-seven-ep-2",
                 "title": "Trinity Seven Movie 1: The Eternal Library and the Alchemist Girl",
                 "status": 1,
-                "type": "Movie",
+                "type": "MOVIE",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             },
@@ -988,7 +980,7 @@
                 "id": "trinity-seven-ep-3",
                 "title": "Trinity Seven Movie 2: Heavens Library & Crimson Lord",
                 "status": 1,
-                "type": "Movie",
+                "type": "MOVIE",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
@@ -1007,7 +999,7 @@
                 "id": "akashic-records-of-bastard-magic-instructor-ep-0",
                 "title": "Akashic Records of Bastard Magic Instructor",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
@@ -1026,7 +1018,7 @@
                 "id": "masamune-kun-s-revenge-ep-0",
                 "title": "Masamune-kun's Revenge",
                 "status": 1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -1042,7 +1034,7 @@
                 "id": "masamune-kun-s-revenge-ep-2",
                 "title": "Masamune-kun's Revenge R",
                 "status": 1,
-                "type": "Season 2",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
@@ -1061,7 +1053,7 @@
                 "id": "shikimori-s-not-just-a-cutie-ep-0",
                 "title": "Shikimori's Not Just a Cutie",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
@@ -1080,7 +1072,7 @@
                 "id": "the-dangers-in-my-heart-ep-0",
                 "title": "The Dangers in My Heart Season 1",
                 "status": 1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -1088,7 +1080,7 @@
                 "id": "the-dangers-in-my-heart-ep-1",
                 "title": "The Dangers in My Heart Season 2",
                 "status": 1,
-                "type": "Season 2",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 13
             },
@@ -1096,7 +1088,7 @@
                 "id": "the-dangers-in-my-heart-ep-2",
                 "title": "Twi-Yaba",
                 "status": 1,
-                "type": "ONA Specials",
+                "type": "ONA",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
@@ -1115,7 +1107,7 @@
                 "id": "more-than-a-married-couple-but-not-lovers-ep-0",
                 "title": "More than a married couple, but not lovers.",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
@@ -1134,7 +1126,7 @@
                 "id": "golden-time-ep-0",
                 "title": "Golden Time",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 24
             }
@@ -1153,7 +1145,7 @@
                 "id": "haganai-i-don-t-have-many-friends-ep-0",
                 "title": "Haganai Season 1",
                 "status": 1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -1161,7 +1153,7 @@
                 "id": "haganai-i-don-t-have-many-friends-ep-1",
                 "title": "Haganai OVA 1: Add-on",
                 "status": 1,
-                "type": "OVA 1",
+                "type": "OVA",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             },
@@ -1169,7 +1161,7 @@
                 "id": "haganai-i-don-t-have-many-friends-ep-2",
                 "title": "Haganai NEXT",
                 "status": 1,
-                "type": "Season 2",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -1177,7 +1169,7 @@
                 "id": "haganai-i-don-t-have-many-friends-ep-3",
                 "title": "Haganai OVA 2: Connect",
                 "status": 1,
-                "type": "OVA 2",
+                "type": "OVA",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
@@ -1196,7 +1188,7 @@
                 "id": "eromanga-sensei-ep-0",
                 "title": "Eromanga Sensei",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -1204,7 +1196,7 @@
                 "id": "eromanga-sensei-ep-1",
                 "title": "Eromanga Sensei OVA",
                 "status": 1,
-                "type": "2 OVAs",
+                "type": "OVA",
                 "watchedEpisodes": [],
                 "episodesCount": 2
             }
@@ -1223,7 +1215,7 @@
                 "id": "shimoneta-a-boring-world-where-the-concept-of-dirty-jokes-doesn-t-exist-ep-0",
                 "title": "SHIMONETA",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
@@ -1242,7 +1234,7 @@
                 "id": "prison-school-ep-0",
                 "title": "Prison School",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -1269,7 +1261,7 @@
                 "id": "the-genius-prince-s-guide-to-raising-a-nation-out-of-debt-ep-0",
                 "title": "The Genius Prince's Guide to Raising a Nation Out of Debt",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
@@ -1288,7 +1280,7 @@
                 "id": "don-t-toy-with-me-miss-nagatoro-ep-0",
                 "title": "Don't Toy with Me, Miss Nagatoro",
                 "status": 1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -1296,7 +1288,7 @@
                 "id": "don-t-toy-with-me-miss-nagatoro-ep-1",
                 "title": "Don't Toy with Me, Miss Nagatoro 2nd Attack",
                 "status": 1,
-                "type": "Season 2",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
@@ -1315,7 +1307,7 @@
                 "id": "medaka-kuroiwa-is-impervious-to-my-charms-ep-0",
                 "title": "Medaka Kuroiwa is Impervious to My Charms",
                 "status": 1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -1323,9 +1315,9 @@
                 "id": "medaka-kuroiwa-is-impervious-to-my-charms-ep-1",
                 "title": "Medaka Kuroiwa is Impervious to My Charms Season 2",
                 "status": 1,
-                "type": "Announced",
+                "type": "SERIE",
                 "watchedEpisodes": [],
-                "episodesCount": 0
+                "episodesCount": 1
             }
         ]
     },
@@ -1342,7 +1334,7 @@
                 "id": "my-girlfriend-is-shobitch-ep-0",
                 "title": "My Girlfriend is Shobitch",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 10
             },
@@ -1350,7 +1342,7 @@
                 "id": "my-girlfriend-is-shobitch-ep-1",
                 "title": "My Girlfriend is Shobitch OVA",
                 "status": 1,
-                "type": "2 OVAs",
+                "type": "OVA",
                 "watchedEpisodes": [],
                 "episodesCount": 2
             }
@@ -1369,7 +1361,7 @@
                 "id": "bottom-tier-character-tomozaki-ep-0",
                 "title": "Bottom-Tier Character Tomozaki Season 1",
                 "status": 1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -1377,7 +1369,7 @@
                 "id": "bottom-tier-character-tomozaki-ep-1",
                 "title": "Bottom-Tier Character Tomozaki OVAs",
                 "status": 1,
-                "type": "2 OVAs",
+                "type": "OVA",
                 "watchedEpisodes": [],
                 "episodesCount": 2
             },
@@ -1385,7 +1377,7 @@
                 "id": "bottom-tier-character-tomozaki-ep-2",
                 "title": "Bottom-Tier Character Tomozaki 2nd Stage",
                 "status": 1,
-                "type": "Season 2",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 13
             }
@@ -1404,7 +1396,7 @@
                 "id": "can-a-boy-and-girl-friendship-hold-up-no-it-can-t-ep-0",
                 "title": "Can a Boy and Girl Friendship Hold Up?",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
@@ -1423,7 +1415,7 @@
                 "id": "hensuki-are-you-willing-to-fall-in-love-with-a-pervert-as-long-as-she-s-a-cutie-ep-0",
                 "title": "Hensuki",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
@@ -1442,7 +1434,7 @@
                 "id": "my-little-monster-ep-0",
                 "title": "My Little Monster",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 13
             },
@@ -1469,7 +1461,7 @@
                 "id": "blue-box-ep-0",
                 "title": "Blue Box Season 1",
                 "status": 1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 25
             },
@@ -1477,9 +1469,9 @@
                 "id": "blue-box-ep-1",
                 "title": "Blue Box Season 2",
                 "status": 1,
-                "type": "Announced - October 2026",
+                "type": "SERIE",
                 "watchedEpisodes": [],
-                "episodesCount": 0
+                "episodesCount": 1
             }
         ]
     },
@@ -1496,7 +1488,7 @@
                 "id": "the-children-of-shiunji-family-ep-0",
                 "title": "The Children of Shiunji Family",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
@@ -1515,7 +1507,7 @@
                 "id": "gamers-ep-0",
                 "title": "Gamers!",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
@@ -1534,7 +1526,7 @@
                 "id": "redo-of-healer-ep-0",
                 "title": "Redo of Healer",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
@@ -1553,7 +1545,7 @@
                 "id": "kiss-x-sis-ep-0",
                 "title": "Kiss x Sis TV",
                 "status": 1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -1580,7 +1572,7 @@
                 "id": "rent-a-girlfriend-ep-0",
                 "title": "Rent-a-Girlfriend Season 1",
                 "status": 1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -1588,7 +1580,7 @@
                 "id": "rent-a-girlfriend-ep-1",
                 "title": "Rent-a-Girlfriend Season 2",
                 "status": 1,
-                "type": "Season 2",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -1596,7 +1588,7 @@
                 "id": "rent-a-girlfriend-ep-2",
                 "title": "Rent-a-Girlfriend Season 3",
                 "status": 1,
-                "type": "Season 3",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -1604,7 +1596,7 @@
                 "id": "rent-a-girlfriend-ep-3",
                 "title": "Rent-a-Girlfriend Season 4",
                 "status": 1,
-                "type": "Season 4",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -1612,7 +1604,7 @@
                 "id": "rent-a-girlfriend-ep-4",
                 "title": "Rent-a-Girlfriend Season 5",
                 "status": 1,
-                "type": "Season 5",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
@@ -1631,7 +1623,7 @@
                 "id": "your-lie-in-april-shigatsu-wa-kimi-no-uso-ep-0",
                 "title": "Your Lie in April",
                 "status": -1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 22
             },
@@ -1658,7 +1650,7 @@
                 "id": "orange-ep-0",
                 "title": "Orange",
                 "status": -1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 13
             },
@@ -1666,7 +1658,7 @@
                 "id": "orange-ep-1",
                 "title": "Orange: Future",
                 "status": -1,
-                "type": "Movie",
+                "type": "MOVIE",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
@@ -1685,7 +1677,7 @@
                 "id": "a-silent-voice-koe-no-katachi-ep-0",
                 "title": "A Silent Voice",
                 "status": -1,
-                "type": "Movie",
+                "type": "MOVIE",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
@@ -1704,7 +1696,7 @@
                 "id": "i-want-to-eat-your-pancreas-kimi-no-suizou-wo-tabetai-ep-0",
                 "title": "I want to eat your pancreas",
                 "status": -1,
-                "type": "Movie",
+                "type": "MOVIE",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
@@ -1723,7 +1715,7 @@
                 "id": "inexpressive-kashiwada-and-expressive-oota-ep-0",
                 "title": "Inexpressive Kashiwada and Expressive Oota",
                 "status": -1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
@@ -1742,7 +1734,7 @@
                 "id": "umamusume-pretty-derby-ep-0",
                 "title": "Umamusume: Pretty Derby Season 1",
                 "status": -1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 13
             },
@@ -1758,7 +1750,7 @@
                 "id": "umamusume-pretty-derby-ep-2",
                 "title": "Umamusume: Pretty Derby Season 2",
                 "status": -1,
-                "type": "Season 2",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 13
             },
@@ -1766,7 +1758,7 @@
                 "id": "umamusume-pretty-derby-ep-3",
                 "title": "Umamusume: Pretty Derby Season 3",
                 "status": -1,
-                "type": "Season 3",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 13
             },
@@ -1782,7 +1774,7 @@
                 "id": "umamusume-pretty-derby-ep-5",
                 "title": "Umamusume: Pretty Derby - Beginning of a New Era",
                 "status": -1,
-                "type": "Movie",
+                "type": "MOVIE",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
@@ -1801,7 +1793,7 @@
                 "id": "my-matchmaking-partner-is-my-student-an-aggressive-trouble-maker-ep-0",
                 "title": "My Matchmaking Partner Is My Student, An Aggressive Trouble-Maker",
                 "status": -1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
@@ -1820,7 +1812,7 @@
                 "id": "chitose-is-in-the-ramune-bottle-ep-0",
                 "title": "Chitose Is in the Ramune Bottle Cour 1",
                 "status": 1,
-                "type": "Cour 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 13
             },
@@ -1828,9 +1820,9 @@
                 "id": "chitose-is-in-the-ramune-bottle-ep-1",
                 "title": "Chitose Is in the Ramune Bottle Cour 2",
                 "status": -1,
-                "type": "Announced - 2026",
+                "type": "SERIE",
                 "watchedEpisodes": [],
-                "episodesCount": 0
+                "episodesCount": 1
             }
         ]
     },
@@ -1847,7 +1839,7 @@
                 "id": "food-for-the-soul-ep-0",
                 "title": "Food for the Soul",
                 "status": -1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
@@ -1866,7 +1858,7 @@
                 "id": "makeine-too-many-losing-heroines-ep-0",
                 "title": "Makeine: Too Many Losing Heroines! Season 1",
                 "status": -1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -1874,9 +1866,9 @@
                 "id": "makeine-too-many-losing-heroines-ep-1",
                 "title": "Makeine: Too Many Losing Heroines! Season 2",
                 "status": -1,
-                "type": "Announced",
+                "type": "SERIE",
                 "watchedEpisodes": [],
-                "episodesCount": 0
+                "episodesCount": 1
             }
         ]
     },
@@ -1893,7 +1885,7 @@
                 "id": "the-melancholy-of-haruhi-suzumiya-ep-0",
                 "title": "The Melancholy of Haruhi Suzumiya",
                 "status": -1,
-                "type": "Season 1 & 2",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 28
             },
@@ -1901,7 +1893,7 @@
                 "id": "the-melancholy-of-haruhi-suzumiya-ep-1",
                 "title": "The Disappearance of Haruhi Suzumiya",
                 "status": -1,
-                "type": "Movie",
+                "type": "MOVIE",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             },
@@ -1909,7 +1901,7 @@
                 "id": "the-melancholy-of-haruhi-suzumiya-ep-2",
                 "title": "The Melancholy of Haruhi-chan Suzumiya",
                 "status": -1,
-                "type": "ONA Shorts",
+                "type": "ONA",
                 "watchedEpisodes": [],
                 "episodesCount": 25
             },
@@ -1917,7 +1909,7 @@
                 "id": "the-melancholy-of-haruhi-suzumiya-ep-3",
                 "title": "Nyoro-n Churuya-san",
                 "status": -1,
-                "type": "ONA Shorts",
+                "type": "ONA",
                 "watchedEpisodes": [],
                 "episodesCount": 13
             },
@@ -1925,7 +1917,7 @@
                 "id": "the-melancholy-of-haruhi-suzumiya-ep-4",
                 "title": "The Disappearance of Nagato Yuki-chan",
                 "status": -1,
-                "type": "Spin-off Series",
+                "type": "SPIN-OFF",
                 "watchedEpisodes": [],
                 "episodesCount": 17
             }
@@ -1944,7 +1936,7 @@
                 "id": "classroom-of-the-elite-ep-0",
                 "title": "Classroom of the Elite Season 1",
                 "status": -1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -1952,7 +1944,7 @@
                 "id": "classroom-of-the-elite-ep-1",
                 "title": "Classroom of the Elite Season 2",
                 "status": -1,
-                "type": "Season 2",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 13
             },
@@ -1960,7 +1952,7 @@
                 "id": "classroom-of-the-elite-ep-2",
                 "title": "Classroom of the Elite Season 3",
                 "status": -1,
-                "type": "Season 3",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 13
             },
@@ -1968,7 +1960,7 @@
                 "id": "classroom-of-the-elite-ep-3",
                 "title": "Classroom of the Elite Season 4",
                 "status": -1,
-                "type": "Season 4",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 16
             }
@@ -1987,7 +1979,7 @@
                 "id": "azumanga-daioh-ep-0",
                 "title": "Azumanga Daioh",
                 "status": -1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 26
             },
@@ -1995,7 +1987,7 @@
                 "id": "azumanga-daioh-ep-1",
                 "title": "Azumanga Daioh: The Very Short Movie",
                 "status": -1,
-                "type": "Special",
+                "type": "SPECIAL",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
@@ -2014,7 +2006,7 @@
                 "id": "teasing-master-takagi-san-ep-0",
                 "title": "Teasing Master Takagi-san Season 1",
                 "status": -1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -2030,7 +2022,7 @@
                 "id": "teasing-master-takagi-san-ep-2",
                 "title": "Teasing Master Takagi-san Season 2",
                 "status": -1,
-                "type": "Season 2",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -2038,7 +2030,7 @@
                 "id": "teasing-master-takagi-san-ep-3",
                 "title": "Teasing Master Takagi-san Season 3",
                 "status": -1,
-                "type": "Season 3",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -2046,7 +2038,7 @@
                 "id": "teasing-master-takagi-san-ep-4",
                 "title": "Teasing Master Takagi-san",
                 "status": -1,
-                "type": "Movie",
+                "type": "MOVIE",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
@@ -2065,7 +2057,7 @@
                 "id": "clannad-ep-0",
                 "title": "Clannad",
                 "status": -1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 23
             },
@@ -2081,7 +2073,7 @@
                 "id": "clannad-ep-2",
                 "title": "Clannad After Story",
                 "status": -1,
-                "type": "Season 2",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 24
             },
@@ -2097,7 +2089,7 @@
                 "id": "clannad-ep-4",
                 "title": "Clannad",
                 "status": -1,
-                "type": "Movie",
+                "type": "MOVIE",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
@@ -2116,7 +2108,7 @@
                 "id": "the-ryuo-s-work-is-never-done-ep-0",
                 "title": "The Ryuo's Work is Never Done!",
                 "status": -1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
@@ -2135,7 +2127,7 @@
                 "id": "tune-in-to-the-midnight-heart-ep-0",
                 "title": "Tune In to the Midnight Heart Season 1",
                 "status": -1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -2143,9 +2135,9 @@
                 "id": "tune-in-to-the-midnight-heart-ep-1",
                 "title": "Tune In to the Midnight Heart Season 2",
                 "status": -1,
-                "type": "Announced",
+                "type": "SERIE",
                 "watchedEpisodes": [],
-                "episodesCount": 0
+                "episodesCount": 1
             }
         ]
     },
@@ -2162,7 +2154,7 @@
                 "id": "aho-girl-ep-0",
                 "title": "AHO-GIRL",
                 "status": -1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
@@ -2181,7 +2173,7 @@
                 "id": "ghost-stories-ep-0",
                 "title": "Ghost Stories",
                 "status": -1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 20
             }
@@ -2200,7 +2192,7 @@
                 "id": "the-comic-artist-and-his-assistants-ep-0",
                 "title": "The Comic Artist and His Assistants",
                 "status": -1,
-                "type": "TV Series",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -2227,7 +2219,7 @@
                 "id": "re-zero-starting-life-in-another-world-ep-0",
                 "title": "Re:ZERO Season 1",
                 "status": 1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [
                     1,
                     2,
@@ -2279,7 +2271,7 @@
                 "id": "re-zero-starting-life-in-another-world-ep-3",
                 "title": "Re:ZERO Season 2",
                 "status": 0,
-                "type": "Season 2",
+                "type": "SERIE",
                 "watchedEpisodes": [
                     1,
                     2,
@@ -2291,7 +2283,7 @@
                 "id": "re-zero-starting-life-in-another-world-ep-4",
                 "title": "Re:ZERO Season 3",
                 "status": -1,
-                "type": "Season 3",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 16
             },
@@ -2299,7 +2291,7 @@
                 "id": "re-zero-starting-life-in-another-world-ep-5",
                 "title": "Re:ZERO Season 4",
                 "status": -1,
-                "type": "Season 4",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 0
             }
@@ -2318,7 +2310,7 @@
                 "id": "spy-x-family-ep-0",
                 "title": "Spy x Family Season 1",
                 "status": -1,
-                "type": "Season 1",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 25
             },
@@ -2326,7 +2318,7 @@
                 "id": "spy-x-family-ep-1",
                 "title": "Spy x Family Season 2",
                 "status": -1,
-                "type": "Season 2",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
             },
@@ -2334,7 +2326,7 @@
                 "id": "spy-x-family-ep-2",
                 "title": "Spy x Family: Code: White",
                 "status": -1,
-                "type": "Movie",
+                "type": "MOVIE",
                 "watchedEpisodes": [],
                 "episodesCount": 1
             },
@@ -2342,7 +2334,7 @@
                 "id": "spy-x-family-ep-3",
                 "title": "Spy x Family Season 3",
                 "status": -1,
-                "type": "Season 3",
+                "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 13
             },
@@ -2350,9 +2342,9 @@
                 "id": "spy-x-family-ep-4",
                 "title": "Spy x Family Season 4",
                 "status": -1,
-                "type": "Announced",
+                "type": "SERIE",
                 "watchedEpisodes": [],
-                "episodesCount": 0
+                "episodesCount": 1
             }
         ]
     }

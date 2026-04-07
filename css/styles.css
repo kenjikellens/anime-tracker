@@ -1294,13 +1294,41 @@ body {
 }
 
 .item-type-badge {
+    display: inline-block;
     font-size: 10px;
     text-transform: uppercase;
-    font-weight: 800;
-    background: var(--text-muted);
-    color: var(--bg);
-    padding: 2px 6px;
-    border-radius: 4px;
+    font-weight: 900;
+    padding: 3px 10px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    line-height: 1;
+}
+
+.item-type-badge.type-serie,
+.item-type-badge.type-movie {
+    background: rgba(255, 204, 0, 0.15);
+    color: #FFCC00;
+    border: 1px solid rgba(255, 204, 0, 0.3);
+}
+
+.item-type-badge.type-spin-off {
+    background: rgba(255, 105, 180, 0.15);
+    color: #FF69B4;
+    border: 1px solid rgba(255, 105, 180, 0.3);
+}
+
+.item-type-badge.type-special {
+    background: rgba(59, 130, 246, 0.15);
+    color: #3b82f6;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.item-type-badge.type-ova,
+.item-type-badge.type-ona {
+    background: rgba(0, 128, 128, 0.15);
+    color: #008080;
+    border: 1px solid rgba(0, 128, 128, 0.3);
 }
 
 .item-title-text {
@@ -2141,4 +2169,99 @@ footer {
 .hidden { display: none !important; }
 
 /* Status indicator hidden in grid by default */
+/* Status indicator hidden in grid by default */
 .grid-view .anime-card .status-indicator { display: none !important; }
+
+/* ==========================================================================
+   DETAIL PAGE REDESIGN & BUG FIXES
+   ========================================================================== */
+
+.item-status-select {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    background: rgba(40, 40, 40, 0.4) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    color: var(--white) !important;
+    padding: 8px 34px 8px 14px !important;
+    border-radius: 10px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23FFD700' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C2.185 5.355 2.408 5 2.811 5h9.378c.403 0 .626.355.361.658l-4.796 5.482a.5.5 0 0 1-.740 0z'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: calc(100% - 12px) center !important;
+    background-size: 11px !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.item-status-select:hover {
+    background: rgba(60, 60, 60, 0.6) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* Accordion Bug Fix: Episodes container must vanish completely when closed */
+.episodes-container {
+    display: none !important;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.item-accordion-wrapper.is-open .episodes-container {
+    display: grid !important;
+    padding: 20px 24px !important;
+    border-top: 1px solid var(--border) !important;
+    animation: simpleFadeIn 0.2s ease;
+}
+
+@keyframes simpleFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.item-accordion-wrapper {
+    background: var(--surface-2) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 8px !important;
+    margin-bottom: 6px;
+    transition: all 0.2s ease !important;
+    overflow: hidden !important;
+    min-height: 0 !important;
+}
+
+.detail-item-row {
+    margin: 0 !important;
+    min-height: 0 !important;
+}
+
+.item-accordion-wrapper:not(.is-open) .episodes-container {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+.item-type-badge {
+    text-align: left;
+    margin-left: 0;
+}
+
+.item-accordion-wrapper.is-open {
+    border-color: rgba(255, 204, 0, 0.4) !important;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4) !important;
+}
+
+.item-main-row {
+    transition: all 0.2s ease;
+}
+
+.item-accordion-wrapper:not(.is-open) .detail-item-row:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
