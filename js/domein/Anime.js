@@ -3,6 +3,7 @@ import { AnimeItem } from './AnimeItem.js';
 export class Anime {
     constructor(data) {
         this.id = data.id;
+        this.anilistId = data.anilistId || null;
         this.title = data.title;
         this.status = data.status; // -1: Te Bekijken, 0: Bezig, 1: Bekeken
         this.rating = data.rating || 0;

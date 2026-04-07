@@ -5,42 +5,50 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx101291-wfEdgPqtfU0l.jpg",
+        "format": "TV",
         "items": [
             {
                 "id": "rascal-does-not-dream-ep-0",
                 "title": "Rascal Does Not Dream of Bunny Girl Senpai",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             },
             {
                 "id": "rascal-does-not-dream-ep-1",
                 "title": "Rascal Does Not Dream of a Dreaming Girl",
-                "watched": true,
-                "type": "Movie"
+                "status": 1,
+                "type": "Movie",
+                "watchedEpisodes": []
             },
             {
                 "id": "rascal-does-not-dream-ep-2",
                 "title": "Rascal Does Not Dream of a Sister Venturing Out",
-                "watched": true,
-                "type": "Movie"
+                "status": 1,
+                "type": "Movie",
+                "watchedEpisodes": []
             },
             {
                 "id": "rascal-does-not-dream-ep-3",
                 "title": "Rascal Does Not Dream of a Knapsack Kid",
-                "watched": true,
-                "type": "Movie"
+                "status": 1,
+                "type": "Movie",
+                "watchedEpisodes": []
             },
             {
                 "id": "rascal-does-not-dream-ep-4",
                 "title": "Rascal Does Not Dream of Santa Claus",
-                "watched": true,
-                "type": "TV Series - Season 2"
+                "status": 1,
+                "type": "TV Series - Season 2",
+                "watchedEpisodes": []
             },
             {
                 "id": "rascal-does-not-dream-ep-5",
                 "title": "Rascal Does Not Dream of a Dear Friend",
-                "watched": true,
-                "type": "Movie"
+                "status": 1,
+                "type": "Movie",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -50,24 +58,29 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx124080-3i22mRVPBS0T.jpg",
+        "format": "TV",
         "items": [
             {
                 "id": "horimiya-ep-0",
                 "title": "Horimiya",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             },
             {
                 "id": "horimiya-ep-1",
                 "title": "Horimiya: The Missing Pieces",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             },
             {
                 "id": "horimiya-ep-2",
                 "title": "Hori and Miyamura",
-                "watched": true,
-                "type": "Original Web Manga OVAs"
+                "status": 1,
+                "type": "Original Web Manga OVAs",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -77,42 +90,50 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx14813-3mNvcKNEQcDs.jpg",
+        "format": "TV",
         "items": [
             {
                 "id": "my-teen-romantic-comedy-snafu-oregairu-ep-0",
                 "title": "My Teen Romantic Comedy SNAFU",
-                "watched": true,
-                "type": "Season 1"
+                "status": 1,
+                "type": "Season 1",
+                "watchedEpisodes": []
             },
             {
                 "id": "my-teen-romantic-comedy-snafu-oregairu-ep-1",
                 "title": "My Teen Romantic Comedy SNAFU OVA",
-                "watched": true,
-                "type": "S1 OVA"
+                "status": 1,
+                "type": "S1 OVA",
+                "watchedEpisodes": []
             },
             {
                 "id": "my-teen-romantic-comedy-snafu-oregairu-ep-2",
                 "title": "My Teen Romantic Comedy SNAFU TOO!",
-                "watched": true,
-                "type": "Season 2"
+                "status": 1,
+                "type": "Season 2",
+                "watchedEpisodes": []
             },
             {
                 "id": "my-teen-romantic-comedy-snafu-oregairu-ep-3",
                 "title": "My Teen Romantic Comedy SNAFU TOO! OVA",
-                "watched": true,
-                "type": "S2 OVA"
+                "status": 1,
+                "type": "S2 OVA",
+                "watchedEpisodes": []
             },
             {
                 "id": "my-teen-romantic-comedy-snafu-oregairu-ep-4",
                 "title": "My Teen Romantic Comedy SNAFU Climax!",
-                "watched": true,
-                "type": "Season 3"
+                "status": 1,
+                "type": "Season 3",
+                "watchedEpisodes": []
             },
             {
                 "id": "my-teen-romantic-comedy-snafu-oregairu-ep-5",
                 "title": "My Teen Romantic Comedy SNAFU Climax! OVA",
-                "watched": true,
-                "type": "S3 OVA"
+                "status": 1,
+                "type": "S3 OVA",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -122,48 +143,57 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21574-CTRsdAGe4mDp.png",
+        "format": "OVA",
         "items": [
             {
                 "id": "konosuba-god-s-blessing-on-this-wonderful-world-ep-0",
                 "title": "KonoSuba: God's Blessing on This Wonderful World!",
-                "watched": true,
-                "type": "Season 1"
+                "status": 1,
+                "type": "Season 1",
+                "watchedEpisodes": []
             },
             {
                 "id": "konosuba-god-s-blessing-on-this-wonderful-world-ep-1",
                 "title": "KonoSuba OVA 1: God's Blessing on This Wonderful Choker!",
-                "watched": true,
-                "type": ""
+                "status": 1,
+                "type": "",
+                "watchedEpisodes": []
             },
             {
                 "id": "konosuba-god-s-blessing-on-this-wonderful-world-ep-2",
                 "title": "KonoSuba: God's Blessing on This Wonderful World! 2",
-                "watched": true,
-                "type": "Season 2"
+                "status": 1,
+                "type": "Season 2",
+                "watchedEpisodes": []
             },
             {
                 "id": "konosuba-god-s-blessing-on-this-wonderful-world-ep-3",
                 "title": "KonoSuba OVA 2: God's Blessing on This Wonderful Art!",
-                "watched": true,
-                "type": ""
+                "status": 1,
+                "type": "",
+                "watchedEpisodes": []
             },
             {
                 "id": "konosuba-god-s-blessing-on-this-wonderful-world-ep-4",
                 "title": "KonoSuba: Legend of Crimson",
-                "watched": true,
-                "type": "Movie"
+                "status": 1,
+                "type": "Movie",
+                "watchedEpisodes": []
             },
             {
                 "id": "konosuba-god-s-blessing-on-this-wonderful-world-ep-5",
                 "title": "KonoSuba: An Explosion on This Wonderful World!",
-                "watched": true,
-                "type": "Spin-off Series"
+                "status": 1,
+                "type": "Spin-off Series",
+                "watchedEpisodes": []
             },
             {
                 "id": "konosuba-god-s-blessing-on-this-wonderful-world-ep-6",
                 "title": "KonoSuba: God's Blessing on This Wonderful World! 3",
-                "watched": true,
-                "type": "Season 3"
+                "status": 1,
+                "type": "Season 3",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -173,24 +203,29 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "the-100-girlfriends-who-really-really-really-really-really-love-you-ep-0",
                 "title": "The 100 Girlfriends Season 1",
-                "watched": true,
-                "type": "12 eps"
+                "status": 1,
+                "type": "12 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "the-100-girlfriends-who-really-really-really-really-really-love-you-ep-1",
                 "title": "The 100 Girlfriends Season 2",
-                "watched": true,
-                "type": "12 eps"
+                "status": 1,
+                "type": "12 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "the-100-girlfriends-who-really-really-really-really-really-love-you-ep-2",
                 "title": "The 100 Girlfriends Season 3",
-                "watched": true,
-                "type": "Announced - July 2026"
+                "status": 1,
+                "type": "Announced - July 2026",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -200,66 +235,78 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx11617-nmxMU9Zh3H5R.jpg",
+        "format": "TV",
         "items": [
             {
                 "id": "high-school-dxd-ep-0",
                 "title": "High School DxD",
-                "watched": true,
-                "type": "Season 1"
+                "status": 1,
+                "type": "Season 1",
+                "watchedEpisodes": []
             },
             {
                 "id": "high-school-dxd-ep-1",
                 "title": "High School DxD Specials",
-                "watched": true,
-                "type": "6 Short eps"
+                "status": 1,
+                "type": "6 Short eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "high-school-dxd-ep-2",
                 "title": "High School DxD OVA",
-                "watched": true,
-                "type": "2 eps: Episode 13 & 14"
+                "status": 1,
+                "type": "2 eps: Episode 13 & 14",
+                "watchedEpisodes": []
             },
             {
                 "id": "high-school-dxd-ep-3",
                 "title": "High School DxD New",
-                "watched": true,
-                "type": "Season 2"
+                "status": 1,
+                "type": "Season 2",
+                "watchedEpisodes": []
             },
             {
                 "id": "high-school-dxd-ep-4",
                 "title": "High School DxD New: Oppai, Tsutsumimasu!",
-                "watched": true,
-                "type": "OVA"
+                "status": 1,
+                "type": "OVA",
+                "watchedEpisodes": []
             },
             {
                 "id": "high-school-dxd-ep-5",
                 "title": "High School DxD BorN",
-                "watched": true,
-                "type": "Season 3"
+                "status": 1,
+                "type": "Season 3",
+                "watchedEpisodes": []
             },
             {
                 "id": "high-school-dxd-ep-6",
                 "title": "High School DxD BorN Specials",
-                "watched": true,
-                "type": "6 Short eps"
+                "status": 1,
+                "type": "6 Short eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "high-school-dxd-ep-7",
                 "title": "High School DxD BorN: Yomigaeranai Fushichou",
-                "watched": true,
-                "type": "OVA"
+                "status": 1,
+                "type": "OVA",
+                "watchedEpisodes": []
             },
             {
                 "id": "high-school-dxd-ep-8",
                 "title": "High School DxD Hero",
-                "watched": true,
-                "type": "Season 4"
+                "status": 1,
+                "type": "Season 4",
+                "watchedEpisodes": []
             },
             {
                 "id": "high-school-dxd-ep-9",
                 "title": "High School DxD Hero: Taiikukan-ura no Holy",
-                "watched": true,
-                "type": "Special Episode 0"
+                "status": 1,
+                "type": "Special Episode 0",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -269,42 +316,50 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx101921-ufrjLzhSz7L1.jpg",
+        "format": "TV",
         "items": [
             {
                 "id": "kaguya-sama-love-is-war-ep-0",
                 "title": "Kaguya-sama: Love is War",
-                "watched": true,
-                "type": "Season 1"
+                "status": 1,
+                "type": "Season 1",
+                "watchedEpisodes": []
             },
             {
                 "id": "kaguya-sama-love-is-war-ep-1",
                 "title": "Kaguya-sama: Love is War ?",
-                "watched": true,
-                "type": "Season 2"
+                "status": 1,
+                "type": "Season 2",
+                "watchedEpisodes": []
             },
             {
                 "id": "kaguya-sama-love-is-war-ep-2",
                 "title": "Kaguya-sama: Love is War OVA",
-                "watched": true,
-                "type": "3 segments"
+                "status": 1,
+                "type": "3 segments",
+                "watchedEpisodes": []
             },
             {
                 "id": "kaguya-sama-love-is-war-ep-3",
                 "title": "Kaguya-sama: Love is War -Ultra Romantic-",
-                "watched": true,
-                "type": "Season 3"
+                "status": 1,
+                "type": "Season 3",
+                "watchedEpisodes": []
             },
             {
                 "id": "kaguya-sama-love-is-war-ep-4",
                 "title": "Kaguya-sama: Love is War -The First Kiss That Never Ends-",
-                "watched": true,
-                "type": "Movie / 4 eps"
+                "status": 1,
+                "type": "Movie / 4 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "kaguya-sama-love-is-war-ep-5",
                 "title": "Kaguya-sama: Love is War - The Stairway to Adulthood",
-                "watched": true,
-                "type": "TV Special"
+                "status": 1,
+                "type": "TV Special",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -314,30 +369,36 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx105334-AZwEdMu4KFtV.jpg",
+        "format": "TV",
         "items": [
             {
                 "id": "fruits-basket-2019-ep-0",
                 "title": "Fruits Basket 1st Season",
-                "watched": true,
-                "type": "25 eps"
+                "status": 1,
+                "type": "25 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "fruits-basket-2019-ep-1",
                 "title": "Fruits Basket 2nd Season",
-                "watched": true,
-                "type": "25 eps"
+                "status": 1,
+                "type": "25 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "fruits-basket-2019-ep-2",
                 "title": "Fruits Basket The Final",
-                "watched": true,
-                "type": "13 eps"
+                "status": 1,
+                "type": "13 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "fruits-basket-2019-ep-3",
                 "title": "Fruits Basket -prelude-",
-                "watched": true,
-                "type": "Movie"
+                "status": 1,
+                "type": "Movie",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -347,24 +408,29 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx4224-PXVMBLNwy2aF.jpg",
+        "format": "TV",
         "items": [
             {
                 "id": "toradora-ep-0",
                 "title": "Toradora!",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             },
             {
                 "id": "toradora-ep-1",
                 "title": "Toradora! SOS!",
-                "watched": true,
-                "type": "4 Specials"
+                "status": 1,
+                "type": "4 Specials",
+                "watchedEpisodes": []
             },
             {
                 "id": "toradora-ep-2",
                 "title": "Toradora!: The Secret of Bento",
-                "watched": true,
-                "type": "OVA"
+                "status": 1,
+                "type": "OVA",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -374,18 +440,22 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx143338-zhyDVYgEzsm5.png",
+        "format": "TV",
         "items": [
             {
                 "id": "the-angel-next-door-spoils-me-rotten-ep-0",
                 "title": "The Angel Next Door Spoils Me Rotten",
-                "watched": true,
-                "type": "Season 1"
+                "status": 1,
+                "type": "Season 1",
+                "watchedEpisodes": []
             },
             {
                 "id": "the-angel-next-door-spoils-me-rotten-ep-1",
                 "title": "The Angel Next Door Spoils Me Rotten Season 2",
-                "watched": true,
-                "type": "Airing - Started April 2026"
+                "status": 1,
+                "type": "Airing - Started April 2026",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -395,18 +465,22 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx162804-TBeptcAfvqTd.jpg",
+        "format": "TV",
         "items": [
             {
                 "id": "alya-sometimes-hides-her-feelings-in-russian-ep-0",
                 "title": "Alya Sometimes Hides Her Feelings in Russian",
-                "watched": true,
-                "type": "Season 1"
+                "status": 1,
+                "type": "Season 1",
+                "watchedEpisodes": []
             },
             {
                 "id": "alya-sometimes-hides-her-feelings-in-russian-ep-1",
                 "title": "Alya Sometimes Hides Her Feelings in Russian Season 2",
-                "watched": true,
-                "type": "Airing - Started April 2026"
+                "status": 1,
+                "type": "Airing - Started April 2026",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -416,18 +490,22 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21049-4AHSLeiDE9eg.png",
+        "format": "ONA",
         "items": [
             {
                 "id": "relife-ep-0",
                 "title": "ReLIFE",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             },
             {
                 "id": "relife-ep-1",
                 "title": "ReLIFE: Kanketsu-hen",
-                "watched": true,
-                "type": "Final Arc OVA"
+                "status": 1,
+                "type": "Final Arc OVA",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -437,12 +515,15 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx181444-Ut9DDUZdfHwg.jpg",
+        "format": "TV",
         "items": [
             {
                 "id": "the-fragrant-flower-blooms-with-dignity-ep-0",
                 "title": "The Fragrant Flower Blooms with Dignity",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -452,12 +533,15 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx13759-xNf0gJK4Axt2.jpg",
+        "format": "TV",
         "items": [
             {
                 "id": "the-pet-girl-of-sakurasou-ep-0",
                 "title": "The Pet Girl of Sakurasou",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -467,18 +551,22 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx132405-qP7FQYGmNI3d.jpg",
+        "format": "TV",
         "items": [
             {
                 "id": "my-dress-up-darling-ep-0",
                 "title": "My Dress-Up Darling",
-                "watched": true,
-                "type": "Season 1"
+                "status": 1,
+                "type": "Season 1",
+                "watchedEpisodes": []
             },
             {
                 "id": "my-dress-up-darling-ep-1",
                 "title": "My Dress-Up Darling Season 2",
-                "watched": true,
-                "type": "12 eps"
+                "status": 1,
+                "type": "12 eps",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -488,24 +576,29 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx132052-3gDTi19HyW6E.png",
+        "format": "TV",
         "items": [
             {
                 "id": "a-couple-of-cuckoos-ep-0",
                 "title": "A Couple of Cuckoos",
-                "watched": true,
-                "type": "Season 1"
+                "status": 1,
+                "type": "Season 1",
+                "watchedEpisodes": []
             },
             {
                 "id": "a-couple-of-cuckoos-ep-1",
                 "title": "A Couple of Cuckoos Season 2",
-                "watched": true,
-                "type": "12 eps"
+                "status": 1,
+                "type": "12 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "a-couple-of-cuckoos-ep-2",
                 "title": "A Couple of Cuckoos Specials",
-                "watched": true,
-                "type": "Shorts"
+                "status": 1,
+                "type": "Shorts",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -515,24 +608,29 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx7054-GW4D7VAZG19W.png",
+        "format": "TV",
         "items": [
             {
                 "id": "class-president-is-a-maid-ep-0",
                 "title": "Class President is a Maid!",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             },
             {
                 "id": "class-president-is-a-maid-ep-1",
                 "title": "Class President is a Maid!: The Master's Toy",
-                "watched": true,
-                "type": "Special"
+                "status": 1,
+                "type": "Special",
+                "watchedEpisodes": []
             },
             {
                 "id": "class-president-is-a-maid-ep-2",
                 "title": "Class President is a Maid!: It's a Bonus!",
-                "watched": true,
-                "type": "OVA"
+                "status": 1,
+                "type": "OVA",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -542,12 +640,15 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21290-R6qYWnylwpbL.png",
+        "format": "TV",
         "items": [
             {
                 "id": "and-you-thought-there-is-never-a-girl-online-ep-0",
                 "title": "And you thought there is never a girl online?",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -557,60 +658,71 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx14741-CGXEIeUe2roA.jpg",
+        "format": "TV",
         "items": [
             {
                 "id": "love-chunibyo-other-delusions-ep-0",
                 "title": "Love, Chunibyo & Other Delusions!",
-                "watched": true,
-                "type": "Season 1"
+                "status": 1,
+                "type": "Season 1",
+                "watchedEpisodes": []
             },
             {
                 "id": "love-chunibyo-other-delusions-ep-1",
                 "title": "Love, Chunibyo & Other Delusions! Lite",
-                "watched": true,
-                "type": "6 ONAs"
+                "status": 1,
+                "type": "6 ONAs",
+                "watchedEpisodes": []
             },
             {
                 "id": "love-chunibyo-other-delusions-ep-2",
                 "title": "Depth of Field - Love and Chunibyo Theater",
-                "watched": true,
-                "type": "7 Specials"
+                "status": 1,
+                "type": "7 Specials",
+                "watchedEpisodes": []
             },
             {
                 "id": "love-chunibyo-other-delusions-ep-3",
                 "title": "Love, Chunibyo & Other Delusions!: Slapstick Noel",
-                "watched": true,
-                "type": "OVA 1"
+                "status": 1,
+                "type": "OVA 1",
+                "watchedEpisodes": []
             },
             {
                 "id": "love-chunibyo-other-delusions-ep-4",
                 "title": "Love, Chunibyo & Other Delusions! Movie: Rikka Revision",
-                "watched": true,
-                "type": ""
+                "status": 1,
+                "type": "",
+                "watchedEpisodes": []
             },
             {
                 "id": "love-chunibyo-other-delusions-ep-5",
                 "title": "Love, Chunibyo & Other Delusions! Heart Throb",
-                "watched": true,
-                "type": "Season 2"
+                "status": 1,
+                "type": "Season 2",
+                "watchedEpisodes": []
             },
             {
                 "id": "love-chunibyo-other-delusions-ep-6",
                 "title": "Love, Chunibyo & Other Delusions! Heart Throb Lite",
-                "watched": true,
-                "type": "6 ONAs"
+                "status": 1,
+                "type": "6 ONAs",
+                "watchedEpisodes": []
             },
             {
                 "id": "love-chunibyo-other-delusions-ep-7",
                 "title": "Love, Chunibyo & Other Delusions! Heart Throb: The Rikka Wars",
-                "watched": true,
-                "type": "OVA 2"
+                "status": 1,
+                "type": "OVA 2",
+                "watchedEpisodes": []
             },
             {
                 "id": "love-chunibyo-other-delusions-ep-8",
                 "title": "Love, Chunibyo & Other Delusions! Movie: Take On Me",
-                "watched": true,
-                "type": ""
+                "status": 1,
+                "type": "",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -620,12 +732,15 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx148116-t6E73U8SJhYD.jpg",
+        "format": "TV",
         "items": [
             {
                 "id": "the-iceblade-sorcerer-shall-rule-the-world-ep-0",
                 "title": "The Iceblade Sorcerer Shall Rule the World",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -635,36 +750,43 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx16592-mFn1gfMXlKtw.jpg",
+        "format": "TV",
         "items": [
             {
                 "id": "danganronpa-ep-0",
                 "title": "Danganronpa: The Animation",
-                "watched": true,
-                "type": "13 eps"
+                "status": 1,
+                "type": "13 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "danganronpa-ep-1",
                 "title": "Danganronpa 3: Future Arc",
-                "watched": true,
-                "type": "12 eps"
+                "status": 1,
+                "type": "12 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "danganronpa-ep-2",
                 "title": "Danganronpa 3: Despair Arc",
-                "watched": true,
-                "type": "11 eps"
+                "status": 1,
+                "type": "11 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "danganronpa-ep-3",
                 "title": "Danganronpa 3: Hope Arc",
-                "watched": true,
-                "type": "1 ep"
+                "status": 1,
+                "type": "1 ep",
+                "watchedEpisodes": []
             },
             {
                 "id": "danganronpa-ep-4",
                 "title": "Super Danganronpa 2.5: OVA",
-                "watched": true,
-                "type": "1 ep"
+                "status": 1,
+                "type": "1 ep",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -674,30 +796,36 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx8769-Lat76qlOwdBN.jpg",
+        "format": "TV",
         "items": [
             {
                 "id": "my-little-sister-can-t-be-this-cute-oreimo-ep-0",
                 "title": "My Little Sister Can't Be This Cute",
-                "watched": true,
-                "type": "Season 1"
+                "status": 1,
+                "type": "Season 1",
+                "watchedEpisodes": []
             },
             {
                 "id": "my-little-sister-can-t-be-this-cute-oreimo-ep-1",
                 "title": "OreImo S1: True Route",
-                "watched": true,
-                "type": "3 ONAs: Episodes 13-15"
+                "status": 1,
+                "type": "3 ONAs: Episodes 13-15",
+                "watchedEpisodes": []
             },
             {
                 "id": "my-little-sister-can-t-be-this-cute-oreimo-ep-2",
                 "title": "My Little Sister Can't Be This Cute.",
-                "watched": true,
-                "type": "Season 2"
+                "status": 1,
+                "type": "Season 2",
+                "watchedEpisodes": []
             },
             {
                 "id": "my-little-sister-can-t-be-this-cute-oreimo-ep-3",
                 "title": "OreImo S2: True Route",
-                "watched": true,
-                "type": "3 ONAs: Episodes 14-16"
+                "status": 1,
+                "type": "3 ONAs: Episodes 14-16",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -707,12 +835,15 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx157397-L1ZUMTuxf8OK.jpg",
+        "format": "TV",
         "items": [
             {
                 "id": "the-dreaming-boy-is-a-realist-ep-0",
                 "title": "The Dreaming Boy is a Realist",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -722,12 +853,15 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx163623-pzR6vIHoJh0b.jpg",
+        "format": "TV",
         "items": [
             {
                 "id": "pseudo-harem-ep-0",
                 "title": "Pseudo Harem",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -737,30 +871,36 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20631-LdCiy3goitcT.png",
+        "format": "TV",
         "items": [
             {
                 "id": "trinity-seven-ep-0",
                 "title": "Trinity Seven",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             },
             {
                 "id": "trinity-seven-ep-1",
                 "title": "Trinity Seven OVA: 7-nin no Mashotsukai",
-                "watched": true,
-                "type": ""
+                "status": 1,
+                "type": "",
+                "watchedEpisodes": []
             },
             {
                 "id": "trinity-seven-ep-2",
                 "title": "Trinity Seven Movie 1: The Eternal Library and the Alchemist Girl",
-                "watched": true,
-                "type": ""
+                "status": 1,
+                "type": "",
+                "watchedEpisodes": []
             },
             {
                 "id": "trinity-seven-ep-3",
                 "title": "Trinity Seven Movie 2: Heavens Library & Crimson Lord",
-                "watched": true,
-                "type": ""
+                "status": 1,
+                "type": "",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -770,12 +910,15 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21700-HhTEXPZKxupP.jpg",
+        "format": "TV",
         "items": [
             {
                 "id": "akashic-records-of-bastard-magic-instructor-ep-0",
                 "title": "Akashic Records of Bastard Magic Instructor",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -785,24 +928,29 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21857-haPDVD7DKDpg.jpg",
+        "format": "TV",
         "items": [
             {
                 "id": "masamune-kun-s-revenge-ep-0",
                 "title": "Masamune-kun's Revenge",
-                "watched": true,
-                "type": "Season 1"
+                "status": 1,
+                "type": "Season 1",
+                "watchedEpisodes": []
             },
             {
                 "id": "masamune-kun-s-revenge-ep-1",
                 "title": "Masamune-kun's Revenge OVA",
-                "watched": true,
-                "type": ""
+                "status": 1,
+                "type": "",
+                "watchedEpisodes": []
             },
             {
                 "id": "masamune-kun-s-revenge-ep-2",
                 "title": "Masamune-kun's Revenge R",
-                "watched": true,
-                "type": "Season 2"
+                "status": 1,
+                "type": "Season 2",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -812,12 +960,15 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx127911-qfJDzUt0qCna.jpg",
+        "format": "TV",
         "items": [
             {
                 "id": "shikimori-s-not-just-a-cutie-ep-0",
                 "title": "Shikimori's Not Just a Cutie",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -827,24 +978,29 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b209247-WvEUGMipZDl9.jpg",
+        "format": "TV",
         "items": [
             {
                 "id": "the-dangers-in-my-heart-ep-0",
                 "title": "The Dangers in My Heart Season 1",
-                "watched": true,
-                "type": "12 eps"
+                "status": 1,
+                "type": "12 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "the-dangers-in-my-heart-ep-1",
                 "title": "The Dangers in My Heart Season 2",
-                "watched": true,
-                "type": "13 eps"
+                "status": 1,
+                "type": "13 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "the-dangers-in-my-heart-ep-2",
                 "title": "Twi-Yaba",
-                "watched": true,
-                "type": "ONA Specials"
+                "status": 1,
+                "type": "ONA Specials",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -854,12 +1010,15 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx141949-tViCIRHPZAyG.jpg",
+        "format": "TV",
         "items": [
             {
                 "id": "more-than-a-married-couple-but-not-lovers-ep-0",
                 "title": "More than a married couple, but not lovers.",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -869,12 +1028,15 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "golden-time-ep-0",
                 "title": "Golden Time",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -884,30 +1046,36 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "haganai-i-don-t-have-many-friends-ep-0",
                 "title": "Haganai Season 1",
-                "watched": true,
-                "type": "12 eps"
+                "status": 1,
+                "type": "12 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "haganai-i-don-t-have-many-friends-ep-1",
                 "title": "Haganai OVA 1: Add-on",
-                "watched": true,
-                "type": ""
+                "status": 1,
+                "type": "",
+                "watchedEpisodes": []
             },
             {
                 "id": "haganai-i-don-t-have-many-friends-ep-2",
                 "title": "Haganai NEXT",
-                "watched": true,
-                "type": "Season 2"
+                "status": 1,
+                "type": "Season 2",
+                "watchedEpisodes": []
             },
             {
                 "id": "haganai-i-don-t-have-many-friends-ep-3",
                 "title": "Haganai OVA 2: Connect",
-                "watched": true,
-                "type": ""
+                "status": 1,
+                "type": "",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -917,18 +1085,22 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "eromanga-sensei-ep-0",
                 "title": "Eromanga Sensei",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             },
             {
                 "id": "eromanga-sensei-ep-1",
                 "title": "Eromanga Sensei OVA",
-                "watched": true,
-                "type": "2 eps"
+                "status": 1,
+                "type": "2 eps",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -938,12 +1110,15 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "shimoneta-a-boring-world-where-the-concept-of-dirty-jokes-doesn-t-exist-ep-0",
                 "title": "SHIMONETA",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -953,18 +1128,22 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "prison-school-ep-0",
                 "title": "Prison School",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             },
             {
                 "id": "prison-school-ep-1",
                 "title": "Prison School OVA: Madness Arc",
-                "watched": true,
-                "type": ""
+                "status": 1,
+                "type": "",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -974,12 +1153,15 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "the-genius-prince-s-guide-to-raising-a-nation-out-of-debt-ep-0",
                 "title": "The Genius Prince's Guide to Raising a Nation Out of Debt",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -989,18 +1171,22 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "don-t-toy-with-me-miss-nagatoro-ep-0",
                 "title": "Don't Toy with Me, Miss Nagatoro",
-                "watched": true,
-                "type": "Season 1"
+                "status": 1,
+                "type": "Season 1",
+                "watchedEpisodes": []
             },
             {
                 "id": "don-t-toy-with-me-miss-nagatoro-ep-1",
                 "title": "Don't Toy with Me, Miss Nagatoro 2nd Attack",
-                "watched": true,
-                "type": "Season 2"
+                "status": 1,
+                "type": "Season 2",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1010,12 +1196,15 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "medaka-kuroiwa-is-impervious-to-my-charms-ep-0",
                 "title": "Medaka Kuroiwa is Impervious to My Charms",
-                "watched": true,
-                "type": "Season 1"
+                "status": 1,
+                "type": "Season 1",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1025,18 +1214,22 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "my-girlfriend-is-shobitch-ep-0",
                 "title": "My Girlfriend is Shobitch",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             },
             {
                 "id": "my-girlfriend-is-shobitch-ep-1",
                 "title": "My Girlfriend is Shobitch OVA",
-                "watched": true,
-                "type": "2 eps"
+                "status": 1,
+                "type": "2 eps",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1046,24 +1239,29 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "bottom-tier-character-tomozaki-ep-0",
                 "title": "Bottom-Tier Character Tomozaki Season 1",
-                "watched": true,
-                "type": "12 eps"
+                "status": 1,
+                "type": "12 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "bottom-tier-character-tomozaki-ep-1",
                 "title": "Bottom-Tier Character Tomozaki OVAs",
-                "watched": true,
-                "type": "2 eps"
+                "status": 1,
+                "type": "2 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "bottom-tier-character-tomozaki-ep-2",
                 "title": "Bottom-Tier Character Tomozaki 2nd Stage",
-                "watched": true,
-                "type": "Season 2"
+                "status": 1,
+                "type": "Season 2",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1073,12 +1271,15 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "can-a-boy-and-girl-friendship-hold-up-no-it-can-t-ep-0",
                 "title": "Can a Boy and Girl Friendship Hold Up?",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1088,12 +1289,15 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "hensuki-are-you-willing-to-fall-in-love-with-a-pervert-as-long-as-she-s-a-cutie-ep-0",
                 "title": "Hensuki",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1103,18 +1307,22 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "my-little-monster-ep-0",
                 "title": "My Little Monster",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             },
             {
                 "id": "my-little-monster-ep-1",
                 "title": "My Little Monster OVA: Neighbor's Monsters",
-                "watched": true,
-                "type": ""
+                "status": 1,
+                "type": "",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1124,18 +1332,22 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "blue-box-ep-0",
                 "title": "Blue Box Season 1",
-                "watched": true,
-                "type": "25 eps"
+                "status": 1,
+                "type": "25 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "blue-box-ep-1",
                 "title": "Blue Box Season 2",
-                "watched": true,
-                "type": "Announced - October 2026"
+                "status": 1,
+                "type": "Announced - October 2026",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1145,12 +1357,15 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "the-children-of-shiunji-family-ep-0",
                 "title": "The Children of Shiunji Family",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1160,12 +1375,15 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "gamers-ep-0",
                 "title": "Gamers!",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1175,12 +1393,15 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "redo-of-healer-ep-0",
                 "title": "Redo of Healer",
-                "watched": true,
-                "type": "TV Series"
+                "status": 1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1190,18 +1411,22 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "kiss-x-sis-ep-0",
                 "title": "Kiss x Sis TV",
-                "watched": true,
-                "type": "12 eps"
+                "status": 1,
+                "type": "12 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "kiss-x-sis-ep-1",
                 "title": "Kiss x Sis OVA",
-                "watched": true,
-                "type": "12 eps"
+                "status": 1,
+                "type": "12 eps",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1211,36 +1436,43 @@
         "status": 1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "rent-a-girlfriend-ep-0",
                 "title": "Rent-a-Girlfriend Season 1",
-                "watched": true,
-                "type": "12 eps"
+                "status": 1,
+                "type": "12 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "rent-a-girlfriend-ep-1",
                 "title": "Rent-a-Girlfriend Season 2",
-                "watched": true,
-                "type": "12 eps"
+                "status": 1,
+                "type": "12 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "rent-a-girlfriend-ep-2",
                 "title": "Rent-a-Girlfriend Season 3",
-                "watched": true,
-                "type": "12 eps"
+                "status": 1,
+                "type": "12 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "rent-a-girlfriend-ep-3",
                 "title": "Rent-a-Girlfriend Season 4",
-                "watched": true,
-                "type": "12 eps"
+                "status": 1,
+                "type": "12 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "rent-a-girlfriend-ep-4",
                 "title": "Rent-a-Girlfriend Season 5",
-                "watched": true,
-                "type": "Airing - Started April 2026"
+                "status": 1,
+                "type": "Airing - Started April 2026",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1250,18 +1482,22 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "your-lie-in-april-shigatsu-wa-kimi-no-uso-ep-0",
                 "title": "Your Lie in April",
-                "watched": false,
-                "type": "TV Series"
+                "status": -1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             },
             {
                 "id": "your-lie-in-april-shigatsu-wa-kimi-no-uso-ep-1",
                 "title": "Your Lie in April: Moments",
-                "watched": false,
-                "type": "OVA"
+                "status": -1,
+                "type": "OVA",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1271,18 +1507,22 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "orange-ep-0",
                 "title": "Orange",
-                "watched": false,
-                "type": "TV Series"
+                "status": -1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             },
             {
                 "id": "orange-ep-1",
                 "title": "Orange: Future",
-                "watched": false,
-                "type": "Movie"
+                "status": -1,
+                "type": "Movie",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1292,12 +1532,15 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "a-silent-voice-koe-no-katachi-ep-0",
                 "title": "A Silent Voice",
-                "watched": false,
-                "type": "Movie"
+                "status": -1,
+                "type": "Movie",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1307,12 +1550,15 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "i-want-to-eat-your-pancreas-kimi-no-suizou-wo-tabetai-ep-0",
                 "title": "I want to eat your pancreas",
-                "watched": false,
-                "type": "Movie"
+                "status": -1,
+                "type": "Movie",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1322,12 +1568,15 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "inexpressive-kashiwada-and-expressive-oota-ep-0",
                 "title": "Inexpressive Kashiwada and Expressive Oota",
-                "watched": false,
-                "type": "TV Series"
+                "status": -1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1337,42 +1586,50 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "umamusume-pretty-derby-ep-0",
                 "title": "Umamusume: Pretty Derby Season 1",
-                "watched": false,
-                "type": "12 eps"
+                "status": -1,
+                "type": "12 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "umamusume-pretty-derby-ep-1",
                 "title": "Umamusume: Pretty Derby Season 1 Special: BNW no Chikai",
-                "watched": false,
-                "type": "3 eps"
+                "status": -1,
+                "type": "3 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "umamusume-pretty-derby-ep-2",
                 "title": "Umamusume: Pretty Derby Season 2",
-                "watched": false,
-                "type": "13 eps"
+                "status": -1,
+                "type": "13 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "umamusume-pretty-derby-ep-3",
                 "title": "Umamusume: Pretty Derby Season 3",
-                "watched": false,
-                "type": "13 eps"
+                "status": -1,
+                "type": "13 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "umamusume-pretty-derby-ep-4",
                 "title": "Umamusume: Pretty Derby - Road to the Top",
-                "watched": false,
-                "type": "ONA"
+                "status": -1,
+                "type": "ONA",
+                "watchedEpisodes": []
             },
             {
                 "id": "umamusume-pretty-derby-ep-5",
                 "title": "Umamusume: Pretty Derby - Beginning of a New Era",
-                "watched": false,
-                "type": "Movie"
+                "status": -1,
+                "type": "Movie",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1382,12 +1639,15 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "my-matchmaking-partner-is-my-student-an-aggressive-trouble-maker-ep-0",
                 "title": "My Matchmaking Partner Is My Student, An Aggressive Trouble-Maker",
-                "watched": false,
-                "type": "TV Series"
+                "status": -1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1397,18 +1657,22 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "chitose-is-in-the-ramune-bottle-ep-0",
                 "title": "Chitose Is in the Ramune Bottle Cour 1",
-                "watched": false,
-                "type": "12 eps"
+                "status": -1,
+                "type": "12 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "chitose-is-in-the-ramune-bottle-ep-1",
                 "title": "Chitose Is in the Ramune Bottle Cour 2",
-                "watched": false,
-                "type": "Announced - 2026"
+                "status": -1,
+                "type": "Announced - 2026",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1418,12 +1682,15 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "food-for-the-soul-ep-0",
                 "title": "Food for the Soul",
-                "watched": false,
-                "type": "TV Series"
+                "status": -1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1433,18 +1700,22 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "makeine-too-many-losing-heroines-ep-0",
                 "title": "Makeine: Too Many Losing Heroines! Season 1",
-                "watched": false,
-                "type": "12 eps"
+                "status": -1,
+                "type": "12 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "makeine-too-many-losing-heroines-ep-1",
                 "title": "Makeine: Too Many Losing Heroines! Season 2",
-                "watched": false,
-                "type": "Announced"
+                "status": -1,
+                "type": "Announced",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1454,36 +1725,43 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "the-melancholy-of-haruhi-suzumiya-ep-0",
                 "title": "The Melancholy of Haruhi Suzumiya",
-                "watched": false,
-                "type": "Season 1 & 2"
+                "status": -1,
+                "type": "Season 1 & 2",
+                "watchedEpisodes": []
             },
             {
                 "id": "the-melancholy-of-haruhi-suzumiya-ep-1",
                 "title": "The Disappearance of Haruhi Suzumiya",
-                "watched": false,
-                "type": "Movie"
+                "status": -1,
+                "type": "Movie",
+                "watchedEpisodes": []
             },
             {
                 "id": "the-melancholy-of-haruhi-suzumiya-ep-2",
                 "title": "The Melancholy of Haruhi-chan Suzumiya",
-                "watched": false,
-                "type": "ONA Shorts"
+                "status": -1,
+                "type": "ONA Shorts",
+                "watchedEpisodes": []
             },
             {
                 "id": "the-melancholy-of-haruhi-suzumiya-ep-3",
                 "title": "Nyoro-n Churuya-san",
-                "watched": false,
-                "type": "ONA Shorts"
+                "status": -1,
+                "type": "ONA Shorts",
+                "watchedEpisodes": []
             },
             {
                 "id": "the-melancholy-of-haruhi-suzumiya-ep-4",
                 "title": "The Disappearance of Nagato Yuki-chan",
-                "watched": false,
-                "type": "Spin-off Series"
+                "status": -1,
+                "type": "Spin-off Series",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1493,30 +1771,36 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "classroom-of-the-elite-ep-0",
                 "title": "Classroom of the Elite Season 1",
-                "watched": false,
-                "type": "12 eps"
+                "status": -1,
+                "type": "12 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "classroom-of-the-elite-ep-1",
                 "title": "Classroom of the Elite Season 2",
-                "watched": false,
-                "type": "13 eps"
+                "status": -1,
+                "type": "13 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "classroom-of-the-elite-ep-2",
                 "title": "Classroom of the Elite Season 3",
-                "watched": false,
-                "type": "13 eps"
+                "status": -1,
+                "type": "13 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "classroom-of-the-elite-ep-3",
                 "title": "Classroom of the Elite Season 4",
-                "watched": false,
-                "type": "Airing - Started April 1, 2026"
+                "status": -1,
+                "type": "Airing - Started April 1, 2026",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1526,18 +1810,22 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "azumanga-daioh-ep-0",
                 "title": "Azumanga Daioh",
-                "watched": false,
-                "type": "TV Series"
+                "status": -1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             },
             {
                 "id": "azumanga-daioh-ep-1",
                 "title": "Azumanga Daioh: The Very Short Movie",
-                "watched": false,
-                "type": "Special"
+                "status": -1,
+                "type": "Special",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1547,36 +1835,43 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "teasing-master-takagi-san-ep-0",
                 "title": "Teasing Master Takagi-san Season 1",
-                "watched": false,
-                "type": "12 eps"
+                "status": -1,
+                "type": "12 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "teasing-master-takagi-san-ep-1",
                 "title": "Teasing Master Takagi-san OVA: Water Slide",
-                "watched": false,
-                "type": ""
+                "status": -1,
+                "type": "",
+                "watchedEpisodes": []
             },
             {
                 "id": "teasing-master-takagi-san-ep-2",
                 "title": "Teasing Master Takagi-san Season 2",
-                "watched": false,
-                "type": "12 eps"
+                "status": -1,
+                "type": "12 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "teasing-master-takagi-san-ep-3",
                 "title": "Teasing Master Takagi-san Season 3",
-                "watched": false,
-                "type": "12 eps"
+                "status": -1,
+                "type": "12 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "teasing-master-takagi-san-ep-4",
                 "title": "Teasing Master Takagi-san",
-                "watched": false,
-                "type": "Movie"
+                "status": -1,
+                "type": "Movie",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1586,36 +1881,43 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "clannad-ep-0",
                 "title": "Clannad",
-                "watched": false,
-                "type": "Season 1"
+                "status": -1,
+                "type": "Season 1",
+                "watchedEpisodes": []
             },
             {
                 "id": "clannad-ep-1",
                 "title": "Clannad: Another World, Tomoyo Chapter",
-                "watched": false,
-                "type": "OVA"
+                "status": -1,
+                "type": "OVA",
+                "watchedEpisodes": []
             },
             {
                 "id": "clannad-ep-2",
                 "title": "Clannad After Story",
-                "watched": false,
-                "type": "Season 2"
+                "status": -1,
+                "type": "Season 2",
+                "watchedEpisodes": []
             },
             {
                 "id": "clannad-ep-3",
                 "title": "Clannad After Story: Another World, Kyou Chapter",
-                "watched": false,
-                "type": "OVA"
+                "status": -1,
+                "type": "OVA",
+                "watchedEpisodes": []
             },
             {
                 "id": "clannad-ep-4",
                 "title": "Clannad",
-                "watched": false,
-                "type": "Movie"
+                "status": -1,
+                "type": "Movie",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1625,12 +1927,15 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "the-ryuo-s-work-is-never-done-ep-0",
                 "title": "The Ryuo's Work is Never Done!",
-                "watched": false,
-                "type": "TV Series"
+                "status": -1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1640,18 +1945,22 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "tune-in-to-the-midnight-heart-ep-0",
                 "title": "Tune In to the Midnight Heart Season 1",
-                "watched": false,
-                "type": "12 eps"
+                "status": -1,
+                "type": "12 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "tune-in-to-the-midnight-heart-ep-1",
                 "title": "Tune In to the Midnight Heart Season 2",
-                "watched": false,
-                "type": "Announced"
+                "status": -1,
+                "type": "Announced",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1661,12 +1970,15 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "aho-girl-ep-0",
                 "title": "AHO-GIRL",
-                "watched": false,
-                "type": "TV Series"
+                "status": -1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1676,12 +1988,15 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "ghost-stories-ep-0",
                 "title": "Ghost Stories",
-                "watched": false,
-                "type": "TV Series"
+                "status": -1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1691,18 +2006,22 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "the-comic-artist-and-his-assistants-ep-0",
                 "title": "The Comic Artist and His Assistants",
-                "watched": false,
-                "type": "TV Series"
+                "status": -1,
+                "type": "TV Series",
+                "watchedEpisodes": []
             },
             {
                 "id": "the-comic-artist-and-his-assistants-ep-1",
                 "title": "The Comic Artist and His Assistants Specials",
-                "watched": false,
-                "type": "6 eps"
+                "status": -1,
+                "type": "6 eps",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1712,42 +2031,50 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "re-zero-starting-life-in-another-world-ep-0",
                 "title": "Re:ZERO Season 1",
-                "watched": false,
-                "type": "25 eps"
+                "status": -1,
+                "type": "25 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "re-zero-starting-life-in-another-world-ep-1",
                 "title": "Re:ZERO OVA 1: Memory Snow",
-                "watched": false,
-                "type": ""
+                "status": -1,
+                "type": "",
+                "watchedEpisodes": []
             },
             {
                 "id": "re-zero-starting-life-in-another-world-ep-2",
                 "title": "Re:ZERO OVA 2: Frozen Bond",
-                "watched": false,
-                "type": ""
+                "status": -1,
+                "type": "",
+                "watchedEpisodes": []
             },
             {
                 "id": "re-zero-starting-life-in-another-world-ep-3",
                 "title": "Re:ZERO Season 2",
-                "watched": false,
-                "type": "25 eps"
+                "status": -1,
+                "type": "25 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "re-zero-starting-life-in-another-world-ep-4",
                 "title": "Re:ZERO Season 3",
-                "watched": false,
-                "type": "18 eps - Completed 2025"
+                "status": -1,
+                "type": "18 eps - Completed 2025",
+                "watchedEpisodes": []
             },
             {
                 "id": "re-zero-starting-life-in-another-world-ep-5",
                 "title": "Re:ZERO Season 4",
-                "watched": false,
-                "type": "Announced - Starting April 8, 2026"
+                "status": -1,
+                "type": "Announced - Starting April 8, 2026",
+                "watchedEpisodes": []
             }
         ]
     },
@@ -1757,36 +2084,43 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
+        "coverImage": "",
+        "format": "",
         "items": [
             {
                 "id": "spy-x-family-ep-0",
                 "title": "Spy x Family Season 1",
-                "watched": false,
-                "type": "25 eps"
+                "status": -1,
+                "type": "25 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "spy-x-family-ep-1",
                 "title": "Spy x Family Season 2",
-                "watched": false,
-                "type": "12 eps"
+                "status": -1,
+                "type": "12 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "spy-x-family-ep-2",
                 "title": "Spy x Family: Code: White",
-                "watched": false,
-                "type": "Movie"
+                "status": -1,
+                "type": "Movie",
+                "watchedEpisodes": []
             },
             {
                 "id": "spy-x-family-ep-3",
                 "title": "Spy x Family Season 3",
-                "watched": false,
-                "type": "12 eps"
+                "status": -1,
+                "type": "12 eps",
+                "watchedEpisodes": []
             },
             {
                 "id": "spy-x-family-ep-4",
                 "title": "Spy x Family Season 4",
-                "watched": false,
-                "type": "Announced"
+                "status": -1,
+                "type": "Announced",
+                "watchedEpisodes": []
             }
         ]
     }

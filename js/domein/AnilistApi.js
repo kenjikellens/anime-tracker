@@ -33,4 +33,39 @@ export class AnilistApi {
             return null;
         }
     }
+
+    static async fetchMediaById(id) {
+        const query = `
+        query ($id: Int) {
+          Media (id: $id, type: ANIME) {
+            id
+            title { romaji english }
+            coverImage { large color }
+            format
+            episodes
+          }
+        }`;
+
+        const variables = { id: parseInt(id) };
+
+        try {
+            const res = await fetch('https://graphql.anilist.co', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({ query, variables })
+            });
+
+            const data = await res.json();
+            if (data.data && data.data.Media) {
+                return data.data.Media;
+            }
+            return null;
+        } catch (err) {
+            console.error("Anilist API fetch by ID failed for", id, err);
+            return null;
+        }
+    }
 }

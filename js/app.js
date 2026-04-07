@@ -31,8 +31,14 @@ async function hydrateAnilistData() {
         const batch = missing.slice(i, i + BATCH_SIZE);
         
         const promises = batch.map(async (anime) => {
-            const searchTerm = anime.items.length > 0 ? anime.items[0].title : anime.title;
-            const apiData = await AnilistApi.fetchMediaByTitle(searchTerm);
+            let apiData = null;
+            if (anime.anilistId) {
+                apiData = await AnilistApi.fetchMediaById(anime.anilistId);
+            } else {
+                const searchTerm = anime.items.length > 0 ? anime.items[0].title : anime.title;
+                apiData = await AnilistApi.fetchMediaByTitle(searchTerm);
+            }
+
             if (apiData) {
                 anime.coverImage = apiData.coverImage.large;
                 anime.format = apiData.format;
@@ -44,7 +50,7 @@ async function hydrateAnilistData() {
         });
         
         await Promise.all(promises);
-        DataStore.save(repository); // save to cache after batch is loaded
+        await DataStore.save(repository); // save to cache after batch is loaded
         
         if (i + BATCH_SIZE < missing.length) {
             await new Promise(r => setTimeout(r, 1000)); // brief pause to protect API limit
@@ -72,14 +78,14 @@ window.saveGlobalRating = function() {
     const ratingInput = document.getElementById('rating-number');
     
     if (currentRatingAnime) {
-        import('./domein/RatingManager.js').then(module => {
+        import('./domein/RatingManager.js').then(async (module) => {
             let val = parseFloat(ratingInput.value);
             if (isNaN(val)) val = 0;
             if (val < 0) val = 0;
             if (val > 10) val = 10;
             
             module.RatingManager.updateRating(currentRatingAnime, val);
-            DataStore.save(repository);
+            await DataStore.save(repository);
             renderData();
             if (overlay) overlay.classList.add('hidden');
             currentRatingAnime = null;
