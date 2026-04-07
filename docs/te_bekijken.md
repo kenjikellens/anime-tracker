@@ -94,7 +94,7 @@ Hieronder staat de lijst van anime die je nog wilt gaan bekijken, inclusief alle
 - [ ] Re:ZERO OVA 1: Memory Snow
 - [ ] Re:ZERO OVA 2: Frozen Bond
 - [ ] Re:ZERO Season 2 (25 eps)
-- [ ] Re:ZERO Season 3 (18 eps - Completed 2025)
+- [ ] Re:ZERO Season 3 (18 eps
 - [ ] Re:ZERO Season 4 (Announced - Starting April 8, 2026)
 
 ## Spy x Family
@@ -103,3 +103,16 @@ Hieronder staat de lijst van anime die je nog wilt gaan bekijken, inclusief alle
 - [ ] Spy x Family: Code: White (Movie)
 - [ ] Spy x Family Season 3 (12 eps)
 - [ ] Spy x Family Season 4 (Announced)
+
+## Berserk
+- [ ] Berserk (TV Series 1997 - 25 eps)
+- [ ] Berserk: The Golden Age Arc I - The Egg of the King (Movie)
+- [ ] Berserk: The Golden Age Arc II - The Battle for Doldrey (Movie)
+- [ ] Berserk: The Golden Age Arc III - The Advent (Movie)
+- [ ] Berserk (TV Series 2016 - 12 eps)
+- [ ] Berserk (TV Series 2017 - 12 eps)
+- [ ] Berserk: The Golden Age Arc - Memorial Edition (Special Edition - 13 eps)
+
+## I Made Friends with the Second Prettiest Girl in My Class
+- [ ] I Made Friends with the Second Prettiest Girl in My Class (TV Series - 12 eps)
+

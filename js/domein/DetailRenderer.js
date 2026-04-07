@@ -1,7 +1,7 @@
 import { RatingManager } from './RatingManager.js';
 
 export class DetailRenderer {
-    static renderDetail(container, anime, onItemStatusChange, onGlobalStatusChange, onRatingChange, onEpisodeToggle, onRatingClick = null) {
+    static renderDetail(container, anime, onItemStatusChange, onGlobalStatusChange, onRatingChange, onEpisodeToggle, onRatingClick = null, openItemIds = []) {
         container.innerHTML = '';
         
         let globalStatusSelect = `
@@ -12,25 +12,44 @@ export class DetailRenderer {
             </select>
         `;
         
+        const title = anime?.title || '';
+        const initials = title
+            .trim()
+            .split(/\s+/)
+            .filter(Boolean)
+            .slice(0, 2)
+            .map(w => w[0]?.toUpperCase() ?? '')
+            .join('')
+            .slice(0, 2) || '??';
+        const hash = title.split('').reduce((acc, char) => char.charCodeAt(0) + acc, 0);
+        const hue = hash % 360;
+
+        const posterHtml = anime.coverImage
+            ? `<img class="detail-poster" src="${anime.coverImage}" alt="${title} cover" loading="lazy" />`
+            : `<div class="detail-poster-fallback" style="background: linear-gradient(135deg, hsl(${hue}, 60%, 45%), hsl(${(hue + 40) % 360}, 70%, 35%));">${initials}</div>`;
+
+        const layout = document.createElement('div');
+        layout.className = 'anime-detail-layout';
+
+        const sidebar = document.createElement('div');
+        sidebar.className = 'anime-detail-sidebar';
+        sidebar.innerHTML = posterHtml;
+
+        const main = document.createElement('div');
+        main.className = 'anime-detail-main';
+
         const header = document.createElement('div');
         header.className = 'anime-detail-header';
         
-        let formatBadge = anime.format ? `<div class="item-type-badge" style="display:inline-block; margin-bottom: 8px; background:var(--primary); color:#000;">${anime.format}</div>` : '';
-        
         header.innerHTML = `
-            <div style="display:flex; flex-direction:column; align-items: flex-start;">
-                ${formatBadge}
-                <div style="display:flex; justify-content:space-between; align-items:flex-start; width: 100%;">
-                    <div style="flex: 1;">
-                        <h2 style="font-size: 2rem; margin-bottom: 8px; margin-top: 4px;">${anime.title}</h2>
-                        <div class="modal-global-actions" style="display:flex !important; flex-wrap: nowrap !important; gap: 8px; align-items:center; margin-top: 8px; width: fit-content;">
-                            <div class="rating-badge ${RatingManager.getBadgeClass(anime.rating)}" style="display: flex !important; align-items: center; gap: 6px; height: 26px; padding: 0 8px; flex-shrink: 0; white-space: nowrap; cursor: pointer;">
-                                <i class="fas fa-star" style="font-size: 11px;"></i> 
-                                <span style="font-weight: 800; font-size: 12px;">${anime.rating > 0 ? anime.rating.toFixed(1) : 'NR'}</span>
-                            </div>
-                            <div style="flex-shrink: 0;">${globalStatusSelect}</div>
-                        </div>
+            <div class="anime-detail-content-col">
+                <h2 class="anime-detail-title">${title}</h2>
+                <div class="modal-global-actions anime-detail-actions">
+                    <div class="rating-badge ${RatingManager.getBadgeClass(anime.rating)}" style="display: flex !important; align-items: center; gap: 6px; height: 26px; padding: 0 8px; flex-shrink: 0; white-space: nowrap; cursor: pointer;">
+                        <i class="fas fa-star" style="font-size: 11px;"></i> 
+                        <span style="font-weight: 800; font-size: 12px;">${anime.rating > 0 ? anime.rating.toFixed(1) : 'NR'}</span>
                     </div>
+                    <div style="flex-shrink: 0;">${globalStatusSelect}</div>
                 </div>
             </div>
         `;
@@ -48,7 +67,7 @@ export class DetailRenderer {
             onGlobalStatusChange(anime, e.target.value);
         });
 
-        container.appendChild(header);
+        main.appendChild(header);
         
         const listDiv = document.createElement('div');
         listDiv.style.marginTop = "20px";
@@ -57,8 +76,10 @@ export class DetailRenderer {
             listDiv.innerHTML = '<p class="text-muted">Geen episoden/seizoenen gevonden in deze groep.</p>';
         } else {
             anime.items.forEach(item => {
+                const isOpen = openItemIds.includes(item.id);
                 const rowWrapper = document.createElement('div');
                 rowWrapper.className = 'item-accordion-wrapper';
+                rowWrapper.setAttribute('data-item-id', item.id);
                 rowWrapper.style.cssText = 'border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; overflow: hidden; background: var(--surface-2); transition: all 0.2s;';
                 
                 const typeHtml = item.type ? `<span class="item-type-badge">${item.type}</span>` : '';
@@ -77,7 +98,7 @@ export class DetailRenderer {
 
                 rowHeader.innerHTML = `
                     <div class="item-title-row" style="display:flex; align-items:center; gap:12px; flex:1;">
-                        <i class="fas fa-chevron-down accordion-icon" style="transition: transform 0.3s; color: var(--text-muted); width: 14px;"></i>
+                        <i class="fas fa-chevron-down accordion-icon" style="transition: transform 0.3s; color: var(--text-muted); width: 14px; transform: ${isOpen ? 'rotate(-180deg)' : 'rotate(0deg)'};"></i>
                         <div style="display: flex; align-items: center; gap: 8px;">
                             ${typeHtml}
                             <div class="detail-item-title" style="font-weight:700; font-size: 1.05rem;">${item.title}</div>
@@ -97,7 +118,7 @@ export class DetailRenderer {
                 
                 const episodesContainer = document.createElement('div');
                 episodesContainer.className = 'episodes-container';
-                episodesContainer.style.cssText = 'display: none; padding: 16px; border-top: 1px solid var(--border); background: var(--surface); grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px;';
+                episodesContainer.style.cssText = `display: ${isOpen ? 'grid' : 'none'}; padding: 16px; border-top: 1px solid var(--border); background: var(--surface); grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px;`;
                 
                 const epCount = item.episodesCount || 12; // Fallback
                 for (let i = 1; i <= epCount; i++) {
@@ -134,7 +155,11 @@ export class DetailRenderer {
                 listDiv.appendChild(rowWrapper);
             });
         }
-        
-        container.appendChild(listDiv);
+
+        main.appendChild(listDiv);
+
+        layout.appendChild(sidebar);
+        layout.appendChild(main);
+        container.appendChild(layout);
     }
 }

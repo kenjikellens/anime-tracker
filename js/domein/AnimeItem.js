@@ -1,9 +1,9 @@
 export class AnimeItem {
-    constructor(id, title, watched, status, type, watchedEpisodes) {
+    constructor(id, title, watched, status, type, watchedEpisodes, episodesCount) {
         this.id = id;
         this.title = title;
         this.type = type || "";
-        this.episodesCount = 0; // Set later asynchronously
+        this.episodesCount = episodesCount || 0; // Initialize from data if provided
         this.watchedEpisodes = Array.isArray(watchedEpisodes) ? watchedEpisodes : [];
         
         // Data migration logic on the fly
@@ -26,6 +26,20 @@ export class AnimeItem {
         } else {
             this.watchedEpisodes.splice(idx, 1);
             return false;
+        }
+    }
+    setAllWatched() {
+        this.watchedEpisodes = [];
+        for (let i = 1; i <= this.episodesCount; i++) {
+            this.watchedEpisodes.push(i);
+        }
+    }
+    clearAllEpisodes() {
+        this.watchedEpisodes = [];
+    }
+    setFirstWatched() {
+        if (!this.watchedEpisodes.includes(1)) {
+            this.watchedEpisodes.push(1);
         }
     }
 }

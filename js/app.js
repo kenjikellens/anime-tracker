@@ -5,6 +5,9 @@ import { AnilistApi } from './domein/AnilistApi.js';
 
 let repository = new AnimeRepository();
 let currentFilter = 'all';
+let currentSort = localStorage.getItem('sortOrder') || 'default';
+let currentViewMode = localStorage.getItem('viewMode') || 'grid';
+let currentGridSize = localStorage.getItem('gridSize') || 'size-m';
 
 async function init() {
     const data = await DataStore.loadInitialData();
@@ -15,6 +18,7 @@ async function init() {
     
     // Setup UI
     setupFilters();
+    setupSorting();
     setupViewToggles();
     setupDownloadBtn();
     setupThemeToggle();
@@ -41,8 +45,7 @@ async function hydrateAnilistData() {
 
             if (apiData) {
                 anime.coverImage = apiData.coverImage.large;
-                anime.format = apiData.format;
-                if (anime.items.length > 0) {
+                if (anime.items.length > 0 && (anime.items[0].episodesCount === 0 || !anime.items[0].episodesCount)) {
                      anime.items[0].episodesCount = apiData.episodes || 0;
                 }
                 CardRenderer.updateCardImage(anime);
@@ -113,11 +116,26 @@ function setupRatingModal() {
 
 function renderData() {
     const container = document.getElementById('anime-container');
-    const animes = repository.filterByStatus(currentFilter);
+    let animes = repository.filterByStatus(currentFilter);
+    
+    // Apply sorting
+    animes = AnimeRepository.sort(animes, currentSort);
     
     document.getElementById('item-count').textContent = `${animes.length} items`;
     
     CardRenderer.renderAll(container, animes, openRatingModal);
+}
+
+function setupSorting() {
+    const sortSelect = document.getElementById('sort-select');
+    if (!sortSelect) return;
+    
+    sortSelect.value = currentSort;
+    sortSelect.addEventListener('change', (e) => {
+        currentSort = e.target.value;
+        localStorage.setItem('sortOrder', currentSort);
+        renderData();
+    });
 }
 
 function setupFilters() {
@@ -138,52 +156,69 @@ function setupViewToggles() {
     const listBtn = document.getElementById('list-btn');
     const container = document.getElementById('anime-container');
     const sizeToggleContainer = document.getElementById('size-toggle-container');
-    
     const sizeBtns = document.querySelectorAll('.size-btn');
-    let currentGridSize = 'size-m'; // default
-    container.classList.add(currentGridSize);
     
-    gridBtn.addEventListener('click', () => {
+    // Initialize from state
+    if (currentViewMode === 'list') {
+        listBtn.classList.add('active');
+        gridBtn.classList.remove('active');
+        container.classList.remove('grid-view');
+        container.classList.add('list-view');
+        sizeToggleContainer.style.display = 'none';
+    } else {
         gridBtn.classList.add('active');
         listBtn.classList.remove('active');
-        
         container.classList.remove('list-view');
         container.classList.add('grid-view');
-        
-        // Restore grid size class if it was removed
         container.classList.add(currentGridSize);
         sizeToggleContainer.style.display = 'flex';
+    }
+
+    // Set active size button
+    sizeBtns.forEach(btn => {
+        btn.classList.remove('active');
+        if (`size-${btn.getAttribute('data-size')}` === currentGridSize) {
+            btn.classList.add('active');
+        }
+    });
+    
+    gridBtn.addEventListener('click', () => {
+        currentViewMode = 'grid';
+        localStorage.setItem('viewMode', 'grid');
         
-        // We do not modify the inline display of status-indicators here because
-        // we keep the HTML strict and let CSS handle the list vs grid styles.
+        gridBtn.classList.add('active');
+        listBtn.classList.remove('active');
+        container.classList.remove('list-view');
+        container.classList.add('grid-view');
+        container.classList.add(currentGridSize);
+        sizeToggleContainer.style.display = 'flex';
     });
     
     listBtn.addEventListener('click', () => {
+        currentViewMode = 'list';
+        localStorage.setItem('viewMode', 'list');
+        
         listBtn.classList.add('active');
         gridBtn.classList.remove('active');
-        
         container.classList.remove('grid-view');
         container.classList.add('list-view');
-        
-        // Remove current grid size class so list view styling doesn't break
-        // Actually the user stated: "maar de lijst mag er niet op veranderen"
-        // Meaning list view CSS shouldn't be affected by whether S/M/L is active.
-        // The CSS handles: #anime-container.list-view
+        sizeToggleContainer.style.display = 'none';
     });
     
     sizeBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            if (container.classList.contains('list-view')) return; // Ignore if list view
+            if (container.classList.contains('list-view')) return;
             
             sizeBtns.forEach(b => b.classList.remove('active'));
             const target = e.target;
             target.classList.add('active');
             
             const newSize = `size-${target.getAttribute('data-size')}`;
-            
             ['size-s', 'size-m', 'size-l'].forEach(c => container.classList.remove(c));
             container.classList.add(newSize);
+            
             currentGridSize = newSize;
+            localStorage.setItem('gridSize', currentGridSize);
         });
     });
 }

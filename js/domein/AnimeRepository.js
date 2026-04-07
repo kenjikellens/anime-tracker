@@ -22,6 +22,24 @@ export class AnimeRepository {
         const s = parseInt(statusStr, 10);
         return this.animes.filter(a => a.status === s);
     }
+
+    static sort(animes, criteria) {
+        const list = [...animes];
+        switch (criteria) {
+            case 'title-asc':
+                return list.sort((a, b) => a.title.localeCompare(b.title));
+            case 'title-desc':
+                return list.sort((a, b) => b.title.localeCompare(a.title));
+            case 'rating-desc':
+                return list.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+            case 'rating-asc':
+                return list.sort((a, b) => (a.rating || 0) - (b.rating || 0));
+            case 'status':
+                return list.sort((a, b) => a.status - b.status);
+            default:
+                return list;
+        }
+    }
     
     exportToData() {
         return this.animes.map(a => ({
@@ -31,8 +49,7 @@ export class AnimeRepository {
             rating: a.rating,
             releaseDate: a.releaseDate,
             coverImage: a.coverImage,
-            format: a.format,
-            items: a.items.map(i => ({ id: i.id, title: i.title, status: i.status, type: i.type, watchedEpisodes: i.watchedEpisodes }))
+            items: a.items.map(i => ({ id: i.id, title: i.title, status: i.status, type: i.type, watchedEpisodes: i.watchedEpisodes, episodesCount: i.episodesCount }))
         }));
     }
 }

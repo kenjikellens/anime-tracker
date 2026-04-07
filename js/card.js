@@ -20,13 +20,12 @@ async function init() {
             renderDetail();
             
             // Hydrate AniList single
-            if (!currentAnime.format || currentAnime.items.some(i => !i.episodesCount)) {
+            if (currentAnime.items.some(i => !i.episodesCount || i.episodesCount === 0)) {
                 const searchTerm = currentAnime.items.length > 0 ? currentAnime.items[0].title : currentAnime.title;
                 const apiData = await AnilistApi.fetchMediaByTitle(searchTerm);
                 if (apiData) {
                     currentAnime.coverImage = apiData.coverImage.large;
-                    currentAnime.format = apiData.format;
-                    if (currentAnime.items.length > 0) {
+                    if (currentAnime.items.length > 0 && (!currentAnime.items[0].episodesCount || currentAnime.items[0].episodesCount === 0)) {
                          currentAnime.items[0].episodesCount = apiData.episodes || 12; // Fallback to 12
                     }
                     DataStore.save(repository);
@@ -43,7 +42,16 @@ async function init() {
 
 function renderDetail() {
     const container = document.getElementById('detail-container');
-    DetailRenderer.renderDetail(container, currentAnime, handleItemStatus, handleGlobalStatus, null, handleEpisodeToggle, openRatingModal);
+    
+    // Save which accordions are currently open before wiping the container
+    const openItemIds = Array.from(container.querySelectorAll('.item-accordion-wrapper'))
+        .filter(wrapper => {
+            const content = wrapper.querySelector('.episodes-container');
+            return content && content.style.display === 'grid';
+        })
+        .map(wrapper => wrapper.getAttribute('data-item-id'));
+
+    DetailRenderer.renderDetail(container, currentAnime, handleItemStatus, handleGlobalStatus, null, handleEpisodeToggle, openRatingModal, openItemIds);
 }
 
 function openRatingModal() {
@@ -88,19 +96,19 @@ function setupRatingModalBackground() {
 }
 
 function handleEpisodeToggle(item, episodeNum) {
-    if (item.toggleEpisode) {
-        item.toggleEpisode(episodeNum);
+    if (currentAnime) {
+        StatusUpdater.toggleEpisode(item, episodeNum, currentAnime);
         DataStore.save(repository);
+        renderDetail();
     }
 }
 
 function handleItemStatus(item, newStatus) {
-    StatusUpdater.updateItemStatus(item, newStatus);
-    if (newStatus === "1") {
-        // If marked fully watched, autocheck all episodes on render (handled in model/render implicitly later, or here)
+    if (currentAnime) {
+        StatusUpdater.updateItemStatus(item, newStatus, currentAnime);
+        DataStore.save(repository);
+        renderDetail();
     }
-    DataStore.save(repository);
-    renderDetail();
 }
 
 function handleGlobalStatus(anime, newStatus) {
