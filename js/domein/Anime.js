@@ -9,6 +9,7 @@ export class Anime {
         this.rating = data.rating || 0;
         this.releaseDate = data.releaseDate || "";
         this.coverImage = data.coverImage || "";
+        this.bannerImage = data.bannerImage || "";
         this.items = data.items ? data.items.map(item => new AnimeItem(item.id, item.title, item.watched, item.status, item.type, item.watchedEpisodes, item.episodesCount)) : [];
     }
     setGlobalStatus(newStatus) {

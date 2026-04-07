@@ -5,13 +5,12 @@ export class DetailRenderer {
         container.innerHTML = '';
         
         let globalStatusSelect = `
-            <select class="status-current" id="global-status-select" style="height: 26px; padding: 0 8px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); font-weight: 600; font-size: 12px; cursor: pointer; outline: none;">
+            <select class="status-current detail-action-btn" id="global-status-select">
                 <option value="-1" ${anime.status === -1 ? 'selected' : ''}>Te Bekijken</option>
                 <option value="0" ${anime.status === 0 ? 'selected' : ''}>Bezig</option>
                 <option value="1" ${anime.status === 1 ? 'selected' : ''}>Bekeken</option>
             </select>
         `;
-        
         const title = anime?.title || '';
         const initials = title
             .trim()
@@ -29,32 +28,33 @@ export class DetailRenderer {
             : `<div class="detail-poster-fallback" style="background: linear-gradient(135deg, hsl(${hue}, 60%, 45%), hsl(${(hue + 40) % 360}, 70%, 35%));">${initials}</div>`;
 
         const layout = document.createElement('div');
-        layout.className = 'anime-detail-layout';
+        layout.className = 'anime-detail-layout-v2';
 
-        const sidebar = document.createElement('div');
-        sidebar.className = 'anime-detail-sidebar';
-        sidebar.innerHTML = posterHtml;
+        const topContainer = document.createElement('div');
+        topContainer.className = 'anime-detail-top-container';
 
-        const main = document.createElement('div');
-        main.className = 'anime-detail-main';
+        const posterDiv = document.createElement('div');
+        posterDiv.className = 'anime-detail-poster-wrap';
+        posterDiv.innerHTML = posterHtml;
 
-        const header = document.createElement('div');
-        header.className = 'anime-detail-header';
-        
-        header.innerHTML = `
-            <div class="anime-detail-content-col">
-                <h2 class="anime-detail-title">${title}</h2>
-                <div class="modal-global-actions anime-detail-actions">
-                    <div class="rating-badge ${RatingManager.getBadgeClass(anime.rating)}" style="display: flex !important; align-items: center; gap: 6px; height: 26px; padding: 0 8px; flex-shrink: 0; white-space: nowrap; cursor: pointer;">
-                        <i class="fas fa-star" style="font-size: 11px;"></i> 
-                        <span style="font-weight: 800; font-size: 12px;">${anime.rating > 0 ? anime.rating.toFixed(1) : 'NR'}</span>
-                    </div>
-                    <div style="flex-shrink: 0;">${globalStatusSelect}</div>
-                </div>
+        const mainInfo = document.createElement('div');
+        mainInfo.className = 'anime-detail-main-info';
+
+        const headerTitle = document.createElement('h2');
+        headerTitle.className = 'anime-detail-title-v2';
+        headerTitle.textContent = title;
+
+        const actionsDiv = document.createElement('div');
+        actionsDiv.className = 'anime-detail-actions-v2';
+        actionsDiv.innerHTML = `
+            <div class="rating-badge detail-action-btn ${RatingManager.getBadgeClass(anime.rating)}">
+                <i class="fas fa-star" style="font-size: 13px; margin-right: 6px;"></i> 
+                <span>${anime.rating > 0 ? anime.rating.toFixed(1) : 'NR'}</span>
             </div>
+            <div style="flex-shrink: 0;">${globalStatusSelect}</div>
         `;
         
-        const ratingBadge = header.querySelector('.rating-badge');
+        const ratingBadge = actionsDiv.querySelector('.rating-badge');
         if (onRatingClick) {
             ratingBadge.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -62,12 +62,18 @@ export class DetailRenderer {
             });
         }
         
-        const gSelect = header.querySelector('#global-status-select');
+        const gSelect = actionsDiv.querySelector('#global-status-select');
         gSelect.addEventListener('change', (e) => {
             onGlobalStatusChange(anime, e.target.value);
         });
 
-        main.appendChild(header);
+        mainInfo.appendChild(headerTitle);
+        mainInfo.appendChild(actionsDiv);
+
+        topContainer.appendChild(posterDiv);
+        topContainer.appendChild(mainInfo);
+
+        layout.appendChild(topContainer);
         
         const listDiv = document.createElement('div');
         listDiv.style.marginTop = "20px";
@@ -138,7 +144,7 @@ export class DetailRenderer {
                     
                     episodesContainer.appendChild(epDiv);
                 }
-
+                
                 rowHeader.addEventListener('click', () => {
                     const icon = rowHeader.querySelector('.accordion-icon');
                     if (episodesContainer.style.display === 'none') {
@@ -156,10 +162,7 @@ export class DetailRenderer {
             });
         }
 
-        main.appendChild(listDiv);
-
-        layout.appendChild(sidebar);
-        layout.appendChild(main);
+        layout.appendChild(listDiv);
         container.appendChild(layout);
     }
 }
