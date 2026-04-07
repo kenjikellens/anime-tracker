@@ -24,7 +24,7 @@ export class DetailRenderer {
                     <div style="flex: 1;">
                         <h2 style="font-size: 2rem; margin-bottom: 8px; margin-top: 4px;">${anime.title}</h2>
                         <div class="modal-global-actions" style="display:flex !important; flex-wrap: nowrap !important; gap: 8px; align-items:center; margin-top: 8px; width: fit-content;">
-                            <div class="rating-badge ${RatingManager.getRatingClass(anime.rating)}" style="display: flex !important; align-items: center; gap: 6px; height: 26px; padding: 0 8px; flex-shrink: 0; white-space: nowrap; cursor: pointer;">
+                            <div class="rating-badge ${RatingManager.getBadgeClass(anime.rating)}" style="display: flex !important; align-items: center; gap: 6px; height: 26px; padding: 0 8px; flex-shrink: 0; white-space: nowrap; cursor: pointer;">
                                 <i class="fas fa-star" style="font-size: 11px;"></i> 
                                 <span style="font-weight: 800; font-size: 12px;">${anime.rating > 0 ? anime.rating.toFixed(1) : 'NR'}</span>
                             </div>

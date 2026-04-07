@@ -27,7 +27,7 @@ export class CardRenderer {
 
     static createCard(anime, onRatingClick) {
         const div = document.createElement('div');
-        div.className = `anime-card ${RatingManager.getRatingClass(anime.rating)}`;
+        div.className = `anime-card ${RatingManager.getCardClass(anime.rating)}`;
         div.setAttribute('data-status', anime.status);
         div.setAttribute('data-id', anime.id);
         
@@ -58,7 +58,7 @@ export class CardRenderer {
                 </div>
                 <div style="font-size: 0.85rem; color: var(--text-muted); opacity: 0.8;">${anime.items.length} items</div>
                 <div class="card-actions">
-                    <div class="rating-badge ${RatingManager.getRatingClass(anime.rating)}" style="cursor: pointer;">
+                    <div class="rating-badge ${RatingManager.getBadgeClass(anime.rating)}" style="cursor: pointer;">
                         <i class="fas fa-star"></i> ${anime.rating > 0 ? anime.rating.toFixed(1) : 'NR'}
                     </div>
                 </div>

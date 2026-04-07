@@ -1,13 +1,20 @@
 export class RatingManager {
-    static getRatingClass(rating) {
+    static getCardClass(rating) {
+        if (!rating || rating === 0) return '';
+        if (rating > 9) return 'glow-gold';
+        if (rating < 2) return 'glow-red';
+        return '';
+    }
+
+    static getBadgeClass(rating) {
         if (rating === 0 || !rating) return 'unrated';
-        if (rating >= 9) return 'r-9 glow-gold';
-        if (rating >= 8) return 'r-8';
-        if (rating >= 7) return 'r-7';
-        if (rating >= 6) return 'r-6';
-        if (rating >= 5) return 'r-5';
-        if (rating >= 2) return 'r-4 glow-red';
-        return 'r-0 glow-red';
+        if (rating >= 9.5) return 'r-cinema';  // Gold
+        if (rating >= 9.0) return 'r-awesome'; // Dark Green
+        if (rating >= 8.0) return 'r-great';   // Green
+        if (rating >= 7.0) return 'r-good';    // Yellow
+        if (rating >= 6.0) return 'r-regular'; // Orange
+        if (rating >= 4.1) return 'r-bad';     // Red
+        return 'r-garbage';                    // Purple
     }
 
     static updateRating(anime, newRating) {
