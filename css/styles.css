@@ -68,202 +68,174 @@
 /* Universal Reset: Standardized box model and typography across all elements */
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
 
-/* ==========================================================================
-   DETAIL PAGE (card.html) — poster sidebar + main column
-   ========================================================================== */
+/* --- MASTER FIX: Detail Page Isolation --- */
 
-.anime-detail-layout {
-    display: grid;
-    grid-template-columns: 220px minmax(0, 1fr);
-    gap: 22px;
+
+.anime-detail-layout-v3 {
+    display: grid !important;
+    /* Final distribution: 7.5% | 25% | 7.5% | 52.5% | 7.5% */
+    grid-template-columns: 7.5% 25% 7.5% 52.5% 7.5% !important;
+    gap: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 10px 0 40px 0 !important; /* Reduced top margin from 40px to 10px */
+    padding: 0 !important;
+    position: relative;
+    z-index: 10;
     align-items: start;
 }
 
-.anime-detail-sidebar {
-    width: 220px;
-}
-
-.anime-detail-main {
-    min-width: 0;
-}
-
-.anime-detail-header {
-    margin-bottom: 0;
-}
-
-.detail-poster {
-    width: 100%;
-    aspect-ratio: 2 / 3;
-    height: auto;
-    display: block;
-    object-fit: cover;
-    border-radius: 16px;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
-    background: var(--surface-2);
-}
-
-.detail-poster-fallback {
-    width: 100%;
-    aspect-ratio: 2 / 3;
-    border-radius: 16px;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 900;
-    font-size: 44px;
-    letter-spacing: 1px;
-    color: #fff;
-    user-select: none;
-}
-
-.anime-detail-content-col {
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.anime-detail-title {
-    font-size: 2rem;
-    margin: 4px 0 8px 0;
-    line-height: 1.1;
-    color: var(--white);
-}
-
-.anime-detail-actions {
+.anime-detail-sidebar-v3 {
+    grid-column: 2 !important; /* Map to the 15% slot */
+    background: rgba(40, 40, 40, 0.92) !important; 
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 24px !important;
+    padding: 24px !important;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.05) !important;
     display: flex !important;
-    flex-wrap: nowrap !important;
-    gap: 8px;
-    align-items: center;
-    margin-top: 8px;
-    width: fit-content;
+    flex-direction: column !important;
+    gap: 20px !important;
+    position: sticky !important;
+    top: 20px !important;
+    transition: all 0.3s ease;
 }
 
-    .anime-detail-title {
-        font-size: 1.6rem;
-    }
+[data-theme="light"] .anime-detail-sidebar-v3 {
+    background: rgba(255, 255, 255, 0.92) !important;
+    border-color: rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05) !important;
 }
 
-/* ==========================================================================
-   ANIME DETAIL PAGE (Cleaned & Unified)
-   ========================================================================== */
+.sidebar-poster-wrap {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    margin-bottom: 8px;
+}
 
-.anime-detail-layout-v2 {
+.sidebar-poster-wrap .detail-poster,
+.sidebar-poster-wrap .detail-poster-fallback {
+    width: 100% !important;
+    max-width: 64% !important; /* Reduced to ~16% of total width (16/25 = 64%) */
+    max-height: 75vh !important; /* dynamic height limit to keep container visible */
+    aspect-ratio: 2 / 3 !important;
+    border-radius: 14px !important;
+    object-fit: cover !important;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4) !important;
+    display: flex !important; align-items: center; justify-content: center;
+}
+
+.sidebar-info { display: flex; flex-direction: column; gap: 10px; }
+
+.sidebar-title {
+    font-size: 1.5rem !important; /* Micro title */
+    font-weight: 850 !important;
+    line-height: 1.1 !important;
+    color: #ffffff !important; 
+    margin: 0 !important;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.sidebar-actions { 
+    display: grid !important; 
+    grid-template-columns: 1fr 1fr !important; /* Perfect 50/50 split */
+    gap: 12px !important; 
+    align-items: stretch !important; /* Stretch buttons to same height */
+    width: 100% !important;
+}
+
+.sidebar-actions > * {
+    width: 100% !important;
+}
+
+.sidebar-actions .detail-action-btn,
+.sidebar-actions .rating-badge,
+.sidebar-actions .status-current {
+    width: 100% !important;
+    justify-content: center !important;
+}
+
+.anime-detail-main-v3 {
+    grid-column: 4 !important; /* Map to the 60% slot */
+    min-width: 0 !important;
+    padding-top: 0; 
+}
+
+/* Accordion behavior fixing */
+.item-accordion-wrapper {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 12px !important;
+    margin-bottom: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.item-accordion-wrapper.is-open {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border-color: var(--primary) !important;
+}
+
+.detail-item-row {
+    padding: 8px 16px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important; /* Spacing between chevron and title */
+}
+
+.item-info-col {
+    flex: 1 !important; /* Pushes the title to fill the left-side space */
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 4px;
 }
 
-.anime-detail-top-container {
-    display: flex;
-    align-items: flex-end;
-    gap: 32px;
-    padding: 0;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    width: 70%;
-    margin: 0 auto 10px auto;
-    height: 25vh;
+.episodes-container {
+    display: none !important; 
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 8px;
+    padding: 12px !important; /* Minimal padding */
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
-.anime-detail-poster-wrap {
-    height: 100%; 
-    aspect-ratio: 2 / 3;
-    flex-shrink: 0;
+.item-accordion-wrapper.is-open .episodes-container {
+    display: grid !important;
 }
 
-.anime-detail-poster-wrap .detail-poster,
-.anime-detail-poster-wrap .detail-poster-fallback {
-    width: 100%;
-    height: 100%;
-    border-radius: 12px;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
-    display: block;
-    object-fit: contain;
-    background: var(--surface-2);
-}
-
-.anime-detail-main-info {
-    flex: 1;
-    padding-bottom: 12px;
-}
-
-.anime-detail-title-v2 {
-    font-size: 3.2rem;
-    font-weight: 800;
-    color: var(--text);
-    margin: 0 0 16px 0;
-    line-height: 1.1;
-}
-
-[data-theme="dark"] .anime-detail-title-v2 {
-    color: #ffffff;
-}
-
-.anime-detail-actions-v2 {
+.episode-checkbox-wrap {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 6px;
+    padding: 6px 10px; /* Minimal padding */
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
+    font-size: 0.8rem;
 }
 
-/* Unified Action Buttons Style (Rating & Status next to title) */
-.detail-action-btn {
+
+/* --- BACK BUTTON --- */
+.back-btn {
     display: inline-flex !important;
     align-items: center !important;
-    justify-content: center !important;
-    height: 38px !important;           /* Fixed height */
-    min-height: 38px !important;       /* Hard floor */
-    max-height: 38px !important;       /* Hard ceiling */
-    padding: 0 16px !important;
-    border-radius: 10px !important;
-    font-size: 14px !important;
-    font-weight: 700 !important;
-    line-height: 1 !important;         /* Force single line centering */
-    border: 1px solid var(--border) !important;
-    box-sizing: border-box !important;
-    cursor: pointer !important;
-    transition: opacity 0.2s ease, background 0.2s ease;
-    white-space: nowrap;
-    background: var(--surface-2);
-    color: var(--text);
-    overflow: hidden !important;
+    gap: 10px !important;
+    color: var(--text-muted) !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    margin-bottom: 20px !important; /* Reduced from 30px */
+    transition: color 0.2s ease;
+    padding: 8px 0;
 }
 
-.detail-action-btn * {
-    cursor: pointer !important;
+.back-btn:hover {
+    color: var(--white) !important;
 }
 
-.detail-action-btn i {
-    font-size: 13px !important;        /* Star icon size */
-    margin-right: 6px !important;
-    line-height: normal !important;
-}
-
-.detail-action-btn span {
-    font-size: 14px !important;
-    line-height: normal !important;
-}
-
-.detail-action-btn:hover {
-    filter: brightness(1.1);
-    opacity: 0.95;
-    background: var(--surface);
-}
-
-/* Specific reset for the select to match the div exactly */
-select.detail-action-btn {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    padding-right: 14px !important;
-    background-image: none;
-    text-align: center;
-    text-align-last: center;            /* Center text inside select */
+.back-btn i {
+    font-size: 0.8rem;
 }
 
 /* Main Body Configuration */
@@ -278,9 +250,9 @@ body {
 
 /* Primary Application Container */
 #app {
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
-    padding: 32px 24px 28px;
+    padding: 32px 32px 28px; /* Restored healthy side padding */
 }
 
 /* Top Header: Floating bar containing Logo, Search, and Global Actions */
@@ -2172,96 +2144,48 @@ footer {
 /* Status indicator hidden in grid by default */
 .grid-view .anime-card .status-indicator { display: none !important; }
 
-/* ==========================================================================
-   DETAIL PAGE REDESIGN & BUG FIXES
-   ========================================================================== */
-
-.item-status-select {
+/* --- END OF FILE: DROP-DOWNS & ACTIONS --- */
+.item-status-select, #global-status-select {
     appearance: none !important;
     -webkit-appearance: none !important;
-    background: rgba(40, 40, 40, 0.4) !important;
+    background-color: rgba(60, 60, 60, 0.4) !important;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    color: var(--white) !important;
-    padding: 8px 34px 8px 14px !important;
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #fff !important;
+    padding: 0 32px 0 12px !important; /* Adjusted padding */
+    height: 36px !important;           /* Fixed height */
     border-radius: 10px !important;
-    font-size: 13px !important;
+    font-size: 0.85rem !important;
     font-weight: 600 !important;
     cursor: pointer;
-    transition: all 0.25s ease;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23FFD700' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C2.185 5.355 2.408 5 2.811 5h9.378c.403 0 .626.355.361.658l-4.796 5.482a.5.5 0 0 1-.740 0z'/%3E%3C/svg%3E") !important;
     background-repeat: no-repeat !important;
-    background-position: calc(100% - 12px) center !important;
-    background-size: 11px !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    background-position: calc(100% - 10px) center !important;
+    background-size: 10px !important;
+    transition: all 0.2s;
+    line-height: 36px !important;
+    margin-left: auto !important; /* FORCED TO RIGHT */
 }
 
-.item-status-select:hover {
-    background: rgba(60, 60, 60, 0.6) !important;
-    border-color: rgba(255, 255, 255, 0.2) !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+.rating-badge {
+    background: rgba(255, 204, 0, 0.15) !important;
+    border: 1px solid var(--primary) !important;
+    color: var(--primary) !important;
+    padding: 0 12px !important;
+    height: 36px !important;           /* Fixed height matches dropdown */
+    border-radius: 10px !important;
+    font-weight: 800 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.85rem !important;
 }
 
-/* Accordion Bug Fix: Episodes container must vanish completely when closed */
-.episodes-container {
-    display: none !important;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-    gap: 12px;
-    padding: 0 !important;
-    margin: 0 !important;
-    overflow: hidden !important;
-    background: rgba(0, 0, 0, 0.1);
-}
-
-.item-accordion-wrapper.is-open .episodes-container {
-    display: grid !important;
-    padding: 20px 24px !important;
-    border-top: 1px solid var(--border) !important;
-    animation: simpleFadeIn 0.2s ease;
-}
-
-@keyframes simpleFadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.item-accordion-wrapper {
-    background: var(--surface-2) !important;
-    border: 1px solid var(--border) !important;
-    border-radius: 8px !important;
-    margin-bottom: 6px;
-    transition: all 0.2s ease !important;
-    overflow: hidden !important;
-    min-height: 0 !important;
-}
-
-.detail-item-row {
-    margin: 0 !important;
-    min-height: 0 !important;
-}
-
-.item-accordion-wrapper:not(.is-open) .episodes-container {
-    display: none !important;
-    height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-}
-
-.item-type-badge {
-    text-align: left;
-    margin-left: 0;
-}
-
-.item-accordion-wrapper.is-open {
-    border-color: rgba(255, 204, 0, 0.4) !important;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.4) !important;
-}
-
-.item-main-row {
-    transition: all 0.2s ease;
-}
-
-.item-accordion-wrapper:not(.is-open) .detail-item-row:hover {
-    background: rgba(255, 255, 255, 0.03);
+.rating-badge:hover {
+    background: var(--primary) !important;
+    color: #000 !important;
 }
