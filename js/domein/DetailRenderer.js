@@ -6,6 +6,7 @@ export class DetailRenderer {
         
         let globalStatusSelect = `
             <select class="status-current detail-action-btn" id="global-status-select" style="width: 100%;">
+                <option value="2" ${anime.status === 2 ? 'selected' : ''}>Nieuw</option>
                 <option value="-1" ${anime.status === -1 ? 'selected' : ''}>Te Bekijken</option>
                 <option value="0" ${anime.status === 0 ? 'selected' : ''}>Bezig</option>
                 <option value="1" ${anime.status === 1 ? 'selected' : ''}>Bekeken</option>
@@ -91,10 +92,21 @@ export class DetailRenderer {
                 
                 let itemStatusSelect = `
                     <select class="item-status-select" id="status-${item.id}">
+                        <option value="2" ${item.status === 2 ? 'selected' : ''}>Nieuw</option>
                         <option value="-1" ${item.status === -1 ? 'selected' : ''}>Te Bekijken</option>
                         <option value="0" ${item.status === 0 ? 'selected' : ''}>Bezig</option>
                         <option value="1" ${item.status === 1 ? 'selected' : ''}>Bekeken</option>
                     </select>
+                `;
+
+                let searchTitle = item.title.replace(/\s+Season\s+\d+/i, '').replace(/\s+Cour\s+\d+/i, '').trim();
+                let keyword = encodeURIComponent(searchTitle).replace(/%20/g, '+');
+                let anikaiUrl = `https://anikai.to/browser?keyword=${keyword}`;
+
+                let playBtn = `
+                    <a href="${anikaiUrl}" target="_blank" class="item-play-btn" onclick="event.stopPropagation()" title="Zoek op Anikai">
+                        <i class="fas fa-play"></i>
+                    </a>
                 `;
 
                 rowHeader.innerHTML = `
@@ -103,7 +115,10 @@ export class DetailRenderer {
                         <div class="badge-area">${typeHtml}</div>
                         <div class="detail-item-title">${item.title}</div>
                     </div>
-                    ${itemStatusSelect}
+                    <div class="item-actions-group">
+                        ${itemStatusSelect}
+                        ${playBtn}
+                    </div>
                 `;
                 
                 const itemSelect = rowHeader.querySelector('.item-status-select');

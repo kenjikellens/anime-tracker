@@ -115,4 +115,24 @@ Hieronder staat de lijst van anime die je nog wilt gaan bekijken, inclusief alle
 
 ## I Made Friends with the Second Prettiest Girl in My Class
 - [ ] I Made Friends with the Second Prettiest Girl in My Class (TV Series - 12 eps)
+## Our Last Crusade or the Rise of a New World
+- [ ] Season 1 (12 eps)
+- [ ] Season 2 (12 eps)
 
+## Love is Like a Cocktail
+- [ ] Love is Like a Cocktail (Shorts - 13 eps)
+
+## Mom, I'm Sorry
+- [ ] Mom, I'm Sorry (ONA - 18 eps)
+
+## 9-nine- Ruler's Crown
+- [ ] 9-nine- Ruler's Crown (13 eps)
+
+## The Quintessential Quintuplets
+- [ ] The Quintessential Quintuplets Season 1 (12 eps)
+- [ ] The Quintessential Quintuplets Season 2 (12 eps)
+- [ ] The Quintessential Quintuplets Movie (1 ep)
+- [ ] The Quintessential Quintuplets Specials (2 eps)
+
+## My Love Story with Yamada-kun at Lv999
+- [ ] My Love Story with Yamada-kun at Lv999 (13 eps)

@@ -4,19 +4,20 @@
 
 /* LIGHT MODE: Core palette for surfaces, text, and status indicators */
 :root {
-    --bg: #f5f5f5;               /* Page background */
-    --surface: #eaeaea;          /* Card and primary container surface */
-    --surface-2: #e0e0e0;        /* Deeper surface (e.g., detail blocks, hovered items) */
-    --border: #ddd;              /* Border color for dividers, inputs, and card outlines */
+    --bg: #f0f0f0;               /* Page background — lichtgrijs */
+    --surface: #ffffff;          /* Card surface — wit voor duidelijk contrast */
+    --surface-2: #f5f5f5;        /* Deeper surface (e.g., detail blocks, hovered items) */
+    --border: #c0c0c0;           /* Border color — zichtbaar grijs */
     --text: #1a1a1a;             /* Primary high-contrast text color */
-    --text-muted: #888;          /* Low-contrast secondary/muted text */
+    --text-muted: #666;          /* Low-contrast secondary/muted text */
     --white: #ffffff;            /* Active elements (buttons, highlighted titles) */
-    --status-none: #bbb;         /* Gray: To Watch (-1) status indicator */
-    --status-watching: #888;     /* Med-gray: Currently Watching (0) status indicator */
+    --status-none: #999;         /* Gray: To Watch (-1) status indicator */
+    --status-watching: #666;     /* Med-gray: Currently Watching (0) status indicator */
     --status-done: #007acc;      /* Blue: Watched (1) status indicator */
+    --status-new: #e040fb;       /* Magenta: Nieuw (2) status indicator */
     --modal-bg: rgba(0,0,0,0.3); /* Semi-transparent overlay for modals */
     --shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Soft interface element shadow */
-    --header-bg: #e8e8e8;        /* Distinct background for top header bar */
+    --header-bg: #e0e0e0;        /* Distinct background for top header bar */
     --border-width: 1px;
     --primary: #FFCC00;
     --primary-rgb: 255, 204, 0;
@@ -34,6 +35,7 @@
     --status-none: #666;
     --status-watching: #999;
     --status-done: #4da6ff;       /* Vibrant blue for dark mode readability */
+    --status-new: #ea80fc;        /* Bright magenta for dark mode */
     --modal-bg: rgba(0,0,0,0.5);
     --shadow: 0 4px 20px rgba(255, 255, 255, 0.05);
     --header-bg: #282828;
@@ -41,25 +43,7 @@
     --primary-rgb: 255, 204, 0;
 }
 
-/* MIDNIGHT MODE: Ultra-high contrast pure black theme */
-[data-theme="midnight"] {
-    --bg: #000000;
-    --surface: #0a0a0a;
-    --surface-2: #141414;
-    --border: #f0f0f0;           /* High contrast borders for definition */
-    --text: #ffffff;
-    --text-muted: #a0a0a0;
-    --white: #ffffff;            /* Always pure white in midnight */
-    --status-none: #444;
-    --status-watching: #aaa;
-    --status-done: #77c3ff;      /* Bright blue for pure black accessibility */
-    --modal-bg: rgba(0,0,0,0.85);
-    --shadow: none;              /* Shadows hidden on pure black backgrounds */
-    --border-width: 2px;         /* Thicker borders for structural visibility */
-    --header-bg: #141414;
-    --primary: #FFCC00;
-    --primary-rgb: 255, 204, 0;
-}
+/* MIDNIGHT MODE: Removed */
 
 /* ==========================================================================
    GLOBAL RESET & CORE STRUCTURE
@@ -102,10 +86,10 @@
     transition: all 0.3s ease;
 }
 
-[data-theme="light"] .anime-detail-sidebar-v3 {
-    background: rgba(255, 255, 255, 0.92) !important;
-    border-color: rgba(0, 0, 0, 0.1) !important;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.05) !important;
+html:not([data-theme="dark"]) .anime-detail-sidebar-v3 {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
 }
 
 .sidebar-poster-wrap {
@@ -2185,4 +2169,190 @@ footer {
 .rating-badge:hover {
     background: var(--primary) !important;
     color: #000 !important;
+}
+
+/* Item Actions Group (Status + Play) */
+.item-actions-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.item-play-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: transparent;
+    border: 2px solid #ffb300;
+    color: #ffb300;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.item-play-btn:hover {
+    background: #ffb300;
+    color: #000;
+    box-shadow: 0 4px 12px rgba(255, 179, 0, 0.4);
+}
+
+.item-play-btn i {
+    font-size: 14px;
+    margin-left: 2px;
+}
+
+/* =========================================================================
+   LIGHT MODE OVERRIDES
+   ========================================================================= */
+
+/* Sidebar-titel en kaarttitels: donker op wit */
+html:not([data-theme="dark"]) .sidebar-title,
+html:not([data-theme="dark"]) .card-title {
+    color: #1a1a1a !important;
+    text-shadow: none !important;
+}
+
+/* Gouden kaarten: lichte variant */
+html:not([data-theme="dark"]) .anime-card.glow-gold {
+    background: #fffdf0 !important;
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 80%) !important;
+    border: 2px solid #e6b800 !important;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.2), inset 0 0 15px rgba(255, 215, 0, 0.05) !important;
+}
+
+html:not([data-theme="dark"]) .anime-card.glow-gold:hover {
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.35), inset 0 0 20px rgba(255, 215, 0, 0.1) !important;
+}
+
+html:not([data-theme="dark"]) .anime-card.glow-gold::after {
+    background: linear-gradient(
+        to right,
+        rgba(255, 215, 0, 0) 0%,
+        rgba(255, 215, 0, 0.12) 50%,
+        rgba(255, 215, 0, 0) 100%
+    );
+}
+
+/* Detail item titels */
+html:not([data-theme="dark"]) .detail-item-title {
+    color: #1a1a1a !important;
+}
+
+/* Accordion chevron icon */
+html:not([data-theme="dark"]) .accordion-icon {
+    color: #555 !important;
+}
+
+/* Dropdowns: witte achtergrond, donkere tekst, zeer duidelijke border */
+html:not([data-theme="dark"]) .item-status-select,
+html:not([data-theme="dark"]) #global-status-select {
+    background-color: #ffffff !important;
+    color: #1a1a1a !important;
+    border: 1px solid #555 !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23333333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C2.185 5.355 2.408 5 2.811 5h9.378c.403 0 .626.355.361.658l-4.796 5.482a.5.5 0 0 1-.740 0z'/%3E%3C/svg%3E") !important;
+}
+
+/* Dikke gele border bij focus/geklikt */
+html:not([data-theme="dark"]) .item-status-select:focus,
+html:not([data-theme="dark"]) #global-status-select:focus,
+html:not([data-theme="dark"]) .item-status-select:active,
+html:not([data-theme="dark"]) #global-status-select:active {
+    border: 1px solid var(--primary) !important;
+    box-shadow: 0 0 8px rgba(255, 204, 0, 0.5) !important;
+    outline: none !important;
+}
+
+html:not([data-theme="dark"]) .item-status-select option,
+html:not([data-theme="dark"]) #global-status-select option {
+    background-color: #ffffff;
+    color: #1a1a1a;
+}
+
+/* Rating badges: Solide kleuren voor maximale pop in lichte modus */
+html:not([data-theme="dark"]) .r-cinema { background-color: #ffd700 !important; color: #000 !important; border-color: #b8860b !important; }
+html:not([data-theme="dark"]) .r-awesome { background-color: #27ae60 !important; color: #000 !important; border-color: #1e8449 !important; }
+html:not([data-theme="dark"]) .r-great { background-color: #2ecc71 !important; color: #000 !important; border-color: #27ae60 !important; }
+html:not([data-theme="dark"]) .r-good { background-color: #a2d149 !important; color: #000 !important; border-color: #7fb33a !important; }
+html:not([data-theme="dark"]) .r-regular { background-color: #f1c40f !important; color: #000 !important; border-color: #d4ac0d !important; }
+html:not([data-theme="dark"]) .r-bad { background-color: #e67e22 !important; color: #fff !important; border-color: #a04000 !important; }
+html:not([data-theme="dark"]) .r-garbage { background-color: #e74c3c !important; color: #fff !important; border-color: #922b21 !important; }
+
+html:not([data-theme="dark"]) .rating-badge.unrated {
+    background-color: #bbb !important;
+    color: #333 !important;
+    border: 1px solid #999 !important;
+}
+
+/* Kaarten & Accordions: duidelijk donkerder grijs in lichte modus */
+html:not([data-theme="dark"]) .anime-card,
+html:not([data-theme="dark"]) .item-accordion-wrapper {
+    background: #d5d5d5 !important;
+    border: 1px solid #555 !important;
+}
+
+/* Item accordeons specifieke afronding */
+html:not([data-theme="dark"]) .item-accordion-wrapper {
+    border-radius: 12px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Dikke gele rand als de accordion open is */
+html:not([data-theme="dark"]) .item-accordion-wrapper.is-open {
+    border: 2px solid var(--primary) !important;
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.3) !important;
+}
+
+/* De container waar de dropdown in zit (de item rij) */
+html:not([data-theme="dark"]) .detail-item-row {
+    background: #eee !important;
+    border-bottom: 1px solid #aaa !important;
+}
+
+html:not([data-theme="dark"]) .detail-item-row.watched {
+    background: #e0e0e0 !important;
+    border-bottom: 1px solid #aaa !important;
+}
+
+/* Detail action knoppen */
+html:not([data-theme="dark"]) .detail-action-btn {
+    background: #ffffff !important;
+    color: #1a1a1a !important;
+    border: 1px solid #555 !important;
+}
+
+html:not([data-theme="dark"]) .detail-action-btn:hover {
+    background: #f0f0f0 !important;
+}
+
+/* Status indicator imgs (niet inverteren in light mode) */
+html:not([data-theme="dark"]) .status-current img,
+html:not([data-theme="dark"]) .status-option img {
+    filter: none;
+}
+
+/* Status menu light */
+html:not([data-theme="dark"]) .status-menu {
+    background: #ffffff;
+    border: 1px solid #555;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+html:not([data-theme="dark"]) .status-option:hover {
+    background: #f0f0f0;
+}
+
+/* Batch bar light */
+html:not([data-theme="dark"]) .batch-bar {
+    background: #ffffff;
+    color: #1a1a1a;
+    border: 1px solid #555;
 }

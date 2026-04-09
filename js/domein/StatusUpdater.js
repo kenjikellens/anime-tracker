@@ -14,6 +14,10 @@ export class StatusUpdater {
                 item.setStatus(-1);
                 item.clearAllEpisodes();
             });
+        } else if (s === 2) {
+            anime.items.forEach(item => {
+                item.setStatus(2);
+            });
         }
     }
     
@@ -65,12 +69,22 @@ export class StatusUpdater {
         const hasBusy = statuses.includes(0);
         const hasWatched = statuses.includes(1);
         const hasToWatch = statuses.includes(-1);
+        const hasNew = statuses.includes(2);
         
+        // 1. Bezig: Er is een seizoen gestart (0) of we moeten seizoenen inhalen (mix van 1 en -1)
         if (hasBusy || (hasWatched && hasToWatch)) {
             anime.setGlobalStatus(0); // Bezig
-        } else if (hasWatched && !hasToWatch) {
+        } 
+        // 2. Nieuw: Geen catchup, en er is een Nieuw seizoen (status 2)
+        else if (hasNew) {
+            anime.setGlobalStatus(2); // Nieuw
+        } 
+        // 3. Bekeken: Alles bekeken
+        else if (hasWatched) {
             anime.setGlobalStatus(1); // Bekeken
-        } else {
+        } 
+        // 4. In andere gevallen (of alles -1)
+        else {
             anime.setGlobalStatus(-1); // Te Bekijken
         }
     }

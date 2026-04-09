@@ -2,7 +2,7 @@
     {
         "id": "rascal-does-not-dream",
         "title": "Rascal Does Not Dream",
-        "status": 1,
+        "status": 2,
         "rating": 9.7,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx101291-wfEdgPqtfU0l.jpg",
@@ -51,7 +51,7 @@
             {
                 "id": "rascal-does-not-dream-ep-5",
                 "title": "Rascal Does Not Dream of a Dear Friend",
-                "status": 1,
+                "status": 2,
                 "type": "MOVIE",
                 "watchedEpisodes": [],
                 "episodesCount": 1
@@ -214,11 +214,11 @@
     {
         "id": "the-100-girlfriends-who-really-really-really-really-really-love-you",
         "title": "The 100 Girlfriends Who Really, Really, Really, Really, Really Love You",
-        "status": 1,
+        "status": 2,
         "rating": 8.8,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx162694-QFBei5pbjSh8.png",
-        "bannerImage": "",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/162694-PzaToQuFdpsr.jpg",
         "items": [
             {
                 "id": "the-100-girlfriends-who-really-really-really-really-really-love-you-ep-0",
@@ -239,7 +239,7 @@
             {
                 "id": "the-100-girlfriends-who-really-really-really-really-really-love-you-ep-2",
                 "title": "The 100 Girlfriends Who Really, Really, Really, Really, REALLY Love You Season 3",
-                "status": 1,
+                "status": 2,
                 "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 1
@@ -403,7 +403,7 @@
         "rating": 8.3,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx105334-AZwEdMu4KFtV.jpg",
-        "bannerImage": "",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/105334-dPfrCyZ8GkOI.jpg",
         "items": [
             {
                 "id": "fruits-basket-2019-ep-0",
@@ -477,7 +477,7 @@
     {
         "id": "the-angel-next-door-spoils-me-rotten",
         "title": "The Angel Next Door Spoils Me Rotten",
-        "status": 1,
+        "status": 2,
         "rating": 8,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx143338-zhyDVYgEzsm5.png",
@@ -494,7 +494,7 @@
             {
                 "id": "the-angel-next-door-spoils-me-rotten-ep-1",
                 "title": "The Angel Next Door Spoils Me Rotten Season 2",
-                "status": 1,
+                "status": 2,
                 "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
@@ -627,7 +627,7 @@
         "rating": 7.8,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx132052-3gDTi19HyW6E.png",
-        "bannerImage": "",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/132052-WtD4MDkC5h4l.jpg",
         "items": [
             {
                 "id": "a-couple-of-cuckoos-ep-0",
@@ -866,7 +866,7 @@
         "id": "my-little-sister-can-t-be-this-cute-oreimo",
         "title": "My Little Sister Can't Be This Cute (OreImo)",
         "status": 1,
-        "rating": 7.5,
+        "rating": 7.7,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx8769-Lat76qlOwdBN.jpg",
         "bannerImage": "",
@@ -1119,8 +1119,8 @@
         "status": 1,
         "rating": 6.5,
         "releaseDate": "",
-        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/102755-9YtWYbF83Uk8.jpg",
-        "bannerImage": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx17895-M8yjOyMxHf5X.jpg",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/17895.jpg",
         "items": [
             {
                 "id": "golden-time-ep-0",
@@ -1138,8 +1138,8 @@
         "status": 1,
         "rating": 6.9,
         "releaseDate": "",
-        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx10719-iU8S5D4r6S3V.jpg",
-        "bannerImage": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx10719-aNf9gOOw62Fs.png",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/10719-d6DYjUtuSmdg.jpg",
         "items": [
             {
                 "id": "haganai-i-don-t-have-many-friends-ep-0",
@@ -1451,7 +1451,7 @@
     {
         "id": "blue-box",
         "title": "Blue Box",
-        "status": 1,
+        "status": 2,
         "rating": 5,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx189123-0secXELIhkIW.jpg",
@@ -1468,7 +1468,7 @@
             {
                 "id": "blue-box-ep-1",
                 "title": "Blue Box Season 2",
-                "status": 1,
+                "status": 2,
                 "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 1
@@ -1562,7 +1562,7 @@
     {
         "id": "rent-a-girlfriend",
         "title": "Rent-a-Girlfriend",
-        "status": 1,
+        "status": 2,
         "rating": 0.1,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx199029-8eMkhHlD62Ik.png",
@@ -1603,7 +1603,7 @@
             {
                 "id": "rent-a-girlfriend-ep-4",
                 "title": "Rent-a-Girlfriend Season 5",
-                "status": 1,
+                "status": 2,
                 "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 12
@@ -1644,7 +1644,7 @@
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21647-zMUXNhcVyRyv.png",
-        "bannerImage": "",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21647-jpWsvCBJO1q5.jpg",
         "items": [
             {
                 "id": "orange-ep-0",
@@ -1709,7 +1709,7 @@
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx187940-3ugUhO9h0luh.jpg",
-        "bannerImage": "",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/187940-BufBLkl64XYB.jpg",
         "items": [
             {
                 "id": "inexpressive-kashiwada-and-expressive-oota-ep-0",
@@ -1787,7 +1787,7 @@
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx99894-yj4obqfIZ6KI.jpg",
-        "bannerImage": "",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/99894-MWIuMGnDIg1x.jpg",
         "items": [
             {
                 "id": "my-matchmaking-partner-is-my-student-an-aggressive-trouble-maker-ep-0",
@@ -1802,8 +1802,8 @@
     {
         "id": "chitose-is-in-the-ramune-bottle",
         "title": "Chitose Is in the Ramune Bottle",
-        "status": -1,
-        "rating": 0,
+        "status": 2,
+        "rating": 7,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx198727-pazIoPmgWAsa.jpg",
         "bannerImage": "",
@@ -1819,7 +1819,7 @@
             {
                 "id": "chitose-is-in-the-ramune-bottle-ep-1",
                 "title": "Chitose Is in the Ramune Bottle Cour 2",
-                "status": -1,
+                "status": 2,
                 "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 1
@@ -1833,7 +1833,7 @@
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx185939-hqt1He153el8.jpg",
-        "bannerImage": "",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/185939-Y5l2gV2g1y3p.jpg",
         "items": [
             {
                 "id": "food-for-the-soul-ep-0",
@@ -1852,7 +1852,7 @@
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx189796-cVlT7CY7n8pd.jpg",
-        "bannerImage": "",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/189796-J7kjz2TwEHb6.jpg",
         "items": [
             {
                 "id": "makeine-too-many-losing-heroines-ep-0",
@@ -1926,7 +1926,7 @@
     {
         "id": "classroom-of-the-elite",
         "title": "Classroom of the Elite",
-        "status": -1,
+        "status": 2,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx145545-DGl3LVvFlnHi.png",
@@ -1959,7 +1959,7 @@
             {
                 "id": "classroom-of-the-elite-ep-3",
                 "title": "Classroom of the Elite Season 4",
-                "status": -1,
+                "status": 2,
                 "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 16
@@ -2051,7 +2051,7 @@
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx2167-pSDBcyc0vjej.jpg",
-        "bannerImage": "",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/2167.jpg",
         "items": [
             {
                 "id": "clannad-ep-0",
@@ -2117,16 +2117,16 @@
     {
         "id": "tune-in-to-the-midnight-heart",
         "title": "Tune In to the Midnight Heart",
-        "status": 0,
-        "rating": 0,
+        "status": 2,
+        "rating": 8,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx209762-2S7ni7yc9Kvi.jpg",
-        "bannerImage": null,
+        "bannerImage": "",
         "items": [
             {
                 "id": "tune-in-to-the-midnight-heart-ep-0",
                 "title": "Tune In to the Midnight Heart Season 1",
-                "status": 0,
+                "status": 1,
                 "type": "SERIE",
                 "watchedEpisodes": [
                     1,
@@ -2136,14 +2136,18 @@
                     5,
                     6,
                     7,
-                    8
+                    8,
+                    9,
+                    10,
+                    11,
+                    12
                 ],
                 "episodesCount": 12
             },
             {
                 "id": "tune-in-to-the-midnight-heart-ep-1",
                 "title": "Tune In to the Midnight Heart Season 2",
-                "status": -1,
+                "status": 2,
                 "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 1
@@ -2157,7 +2161,7 @@
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b98251-6miVBNYEXzaF.jpg",
-        "bannerImage": "",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/98251-3Iht9IZjbmTL.jpg",
         "items": [
             {
                 "id": "aho-girl-ep-0",
@@ -2195,7 +2199,7 @@
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20537-yvOZSoYCEndC.png",
-        "bannerImage": "",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/20537-JXQCBe6loEzB.jpg",
         "items": [
             {
                 "id": "the-comic-artist-and-his-assistants-ep-0",
@@ -2222,7 +2226,7 @@
         "rating": 8.7,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx163134-yieRFbvUOH9a.jpg",
-        "bannerImage": "",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/163134-CqaXjXVivwJ5.jpg",
         "items": [
             {
                 "id": "re-zero-starting-life-in-another-world-ep-0",
@@ -2299,7 +2303,7 @@
             {
                 "id": "re-zero-starting-life-in-another-world-ep-5",
                 "title": "Re:ZERO Season 4",
-                "status": -1,
+                "status": 2,
                 "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 0
@@ -2354,6 +2358,171 @@
                 "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 1
+            }
+        ]
+    },
+    {
+        "id": "our-last-crusade",
+        "title": "Our Last Crusade or the Rise of a New World",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx112667-GYFeAlZ38mXK.jpg",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/112667-lPoSCxnVfcMm.jpg",
+        "items": [
+            {
+                "id": "our-last-crusade-ep-0",
+                "title": "Season 1",
+                "status": -1,
+                "type": "SERIE",
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "our-last-crusade-ep-1",
+                "title": "Season 2",
+                "status": -1,
+                "type": "SERIE",
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            }
+        ]
+    },
+    {
+        "id": "love-is-like-a-cocktail",
+        "title": "Love is Like a Cocktail",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx98657-P9OayeslJ79r.jpg",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/98657-mBo2dpPSlcEe.jpg",
+        "items": [
+            {
+                "id": "love-is-like-a-cocktail-ep-0",
+                "title": "TV Series",
+                "status": -1,
+                "type": "SERIE",
+                "watchedEpisodes": [],
+                "episodesCount": 13
+            }
+        ]
+    },
+    {
+        "id": "mom-im-sorry",
+        "title": "Mom, I'm Sorry",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "2024-05-23",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b177512-RN4AsUAyhl71.jpg",
+        "bannerImage": "",
+        "items": [
+            {
+                "id": "mom-im-sorry-ep-0",
+                "title": "Season 1",
+                "status": -1,
+                "type": "ONA",
+                "watchedEpisodes": [],
+                "episodesCount": 18
+            }
+        ]
+    },
+    {
+        "id": "second-cutest-girl",
+        "title": "I became friends with the second cutest girl of my class",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx169580-nXxpmqu6UVux.jpg",
+        "bannerImage": "",
+        "items": [
+            {
+                "id": "second-cutest-girl-ep-0",
+                "title": "Season 1",
+                "status": -1,
+                "type": "SERIE",
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            }
+        ]
+    },
+    {
+        "id": "9-nine-rulers-crown",
+        "title": "9-nine- Ruler's Crown",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx177761-KdJxyWwdBdiS.jpg",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/177761-gpidqaqetVAD.jpg",
+        "items": [
+            {
+                "id": "9-nine-rulers-crown-ep-0",
+                "title": "Season 1",
+                "status": -1,
+                "type": "SERIE",
+                "watchedEpisodes": [],
+                "episodesCount": 13
+            }
+        ]
+    },
+    {
+        "id": "quintessential-quintuplets",
+        "title": "The Quintessential Quintuplets",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx103572-cchriAdH95cQ.png",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/103572-qRtBguYOOR2j.jpg",
+        "items": [
+            {
+                "id": "quintessential-quintuplets-ep-0",
+                "title": "Season 1",
+                "status": -1,
+                "type": "SERIE",
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "quintessential-quintuplets-ep-1",
+                "title": "Season 2",
+                "status": -1,
+                "type": "SERIE",
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "quintessential-quintuplets-ep-2",
+                "title": "Movie",
+                "status": -1,
+                "type": "MOVIE",
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "quintessential-quintuplets-ep-3",
+                "title": "Specials",
+                "status": -1,
+                "type": "SPECIAL",
+                "watchedEpisodes": [],
+                "episodesCount": 2
+            }
+        ]
+    },
+    {
+        "id": "yamada-kun-lv999",
+        "title": "My Love Story with Yamada-kun at Lv999",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx154965-vZbBRjtmLp7S.jpg",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/154965-9AwJG3nVokqG.jpg",
+        "items": [
+            {
+                "id": "yamada-kun-lv999-ep-0",
+                "title": "Season 1",
+                "status": -1,
+                "type": "SERIE",
+                "watchedEpisodes": [],
+                "episodesCount": 13
             }
         ]
     }

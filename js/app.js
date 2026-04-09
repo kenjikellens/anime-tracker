@@ -5,7 +5,7 @@ import { AnilistApi } from './domein/AnilistApi.js';
 import { SearchManager } from './domein/SearchManager.js';
 
 let repository = new AnimeRepository();
-let currentFilter = 'all';
+let currentFilter = localStorage.getItem('activeFilter') || 'all';
 let currentSearchQuery = '';
 let currentSort = localStorage.getItem('sortOrder') || 'default';
 let currentViewMode = localStorage.getItem('viewMode') || 'grid';
@@ -147,11 +147,20 @@ function setupSorting() {
 function setupFilters() {
     const filterBtns = document.querySelectorAll('.filter-btn');
     filterBtns.forEach(btn => {
+        // Restore active state based on saved filter
+        if (btn.getAttribute('data-filter') === currentFilter) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+
         btn.addEventListener('click', (e) => {
             filterBtns.forEach(b => b.classList.remove('active'));
-            e.target.classList.add('active');
+            const target = e.currentTarget; // use currentTarget to ensure we get the button
+            target.classList.add('active');
             
-            currentFilter = e.target.getAttribute('data-filter');
+            currentFilter = target.getAttribute('data-filter');
+            localStorage.setItem('activeFilter', currentFilter);
             renderData();
         });
     });

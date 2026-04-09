@@ -36,6 +36,7 @@ export class CardRenderer {
         // removed duplicate assignments for status class since we have proper ones now
         if (anime.status === 1) { statusIcon = "fa-check"; statusClass = "status-done"; div.classList.add("status-watched"); }
         if (anime.status === 0) { statusIcon = "fa-play"; statusClass = "status-watching"; }
+        if (anime.status === 2) { statusIcon = "fa-clock"; statusClass = "status-new"; }
         
         const hash = anime.title.split('').reduce((acc, char) => char.charCodeAt(0) + acc, 0);
         const hue = hash % 360;
