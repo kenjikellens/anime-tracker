@@ -45,11 +45,7 @@ function renderDetail() {
     const container = document.getElementById('detail-container');
     
     // Save which accordions are currently open before wiping the container
-    const openItemIds = Array.from(container.querySelectorAll('.item-accordion-wrapper'))
-        .filter(wrapper => {
-            const content = wrapper.querySelector('.episodes-container');
-            return content && content.style.display === 'grid';
-        })
+    const openItemIds = Array.from(container.querySelectorAll('.item-accordion-wrapper.is-open'))
         .map(wrapper => wrapper.getAttribute('data-item-id'));
 
     DetailRenderer.renderDetail(container, currentAnime, handleItemStatus, handleGlobalStatus, null, handleEpisodeToggle, openRatingModal, openItemIds);

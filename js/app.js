@@ -2,9 +2,11 @@ import { AnimeRepository } from './domein/AnimeRepository.js';
 import { DataStore } from './domein/DataStore.js';
 import { CardRenderer } from './domein/CardRenderer.js';
 import { AnilistApi } from './domein/AnilistApi.js';
+import { SearchManager } from './domein/SearchManager.js';
 
 let repository = new AnimeRepository();
 let currentFilter = 'all';
+let currentSearchQuery = '';
 let currentSort = localStorage.getItem('sortOrder') || 'default';
 let currentViewMode = localStorage.getItem('viewMode') || 'grid';
 let currentGridSize = localStorage.getItem('gridSize') || 'size-m';
@@ -22,6 +24,7 @@ async function init() {
     setupViewToggles();
     setupDownloadBtn();
     setupThemeToggle();
+    setupSearch();
     
     // Background Anilist Hydration
     hydrateAnilistData();
@@ -118,6 +121,9 @@ function renderData() {
     const container = document.getElementById('anime-container');
     let animes = repository.filterByStatus(currentFilter);
     
+    // Apply Search
+    animes = AnimeRepository.filterByQuery(animes, currentSearchQuery);
+    
     // Apply sorting
     animes = AnimeRepository.sort(animes, currentSort);
     
@@ -148,6 +154,13 @@ function setupFilters() {
             currentFilter = e.target.getAttribute('data-filter');
             renderData();
         });
+    });
+}
+
+function setupSearch() {
+    SearchManager.setup('search-input', (query) => {
+        currentSearchQuery = query;
+        renderData();
     });
 }
 

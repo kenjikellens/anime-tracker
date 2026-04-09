@@ -2169,9 +2169,6 @@ footer {
 }
 
 .rating-badge {
-    background: rgba(255, 204, 0, 0.15) !important;
-    border: 1px solid var(--primary) !important;
-    color: var(--primary) !important;
     padding: 0 12px !important;
     height: 36px !important;           /* Fixed height matches dropdown */
     border-radius: 10px !important;

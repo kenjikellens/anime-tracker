@@ -23,6 +23,12 @@ export class AnimeRepository {
         return this.animes.filter(a => a.status === s);
     }
 
+    static filterByQuery(animes, query) {
+        if (!query || query.trim() === '') return animes;
+        const q = query.toLowerCase().trim();
+        return animes.filter(a => a.title.toLowerCase().includes(q));
+    }
+
     static sort(animes, criteria) {
         const list = [...animes];
         switch (criteria) {

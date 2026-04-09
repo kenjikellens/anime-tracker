@@ -2117,18 +2117,27 @@
     {
         "id": "tune-in-to-the-midnight-heart",
         "title": "Tune In to the Midnight Heart",
-        "status": -1,
+        "status": 0,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx209762-2S7ni7yc9Kvi.jpg",
-        "bannerImage": "",
+        "bannerImage": null,
         "items": [
             {
                 "id": "tune-in-to-the-midnight-heart-ep-0",
                 "title": "Tune In to the Midnight Heart Season 1",
-                "status": -1,
+                "status": 0,
                 "type": "SERIE",
-                "watchedEpisodes": [],
+                "watchedEpisodes": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8
+                ],
                 "episodesCount": 12
             },
             {
