@@ -1,7 +1,3 @@
-# Items om te bekijken
-
-Hieronder staat de lijst van anime die je nog wilt gaan bekijken, inclusief alle seizoenen, films, OVA's en specials.
-
 ## Your Lie in April (Shigatsu wa Kimi no Uso)
 - [ ] Your Lie in April (TV Series - 22 eps)
 - [ ] Your Lie in April: Moments (OVA)
@@ -136,3 +132,6 @@ Hieronder staat de lijst van anime die je nog wilt gaan bekijken, inclusief alle
 
 ## My Love Story with Yamada-kun at Lv999
 - [ ] My Love Story with Yamada-kun at Lv999 (13 eps)
+
+## Blade Dance of the Elementalers
+- [ ] Blade Dance of the Elementalers (12 eps)

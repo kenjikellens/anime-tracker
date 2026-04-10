@@ -400,7 +400,7 @@
         "id": "fruits-basket-2019",
         "title": "Fruits Basket (2019)",
         "status": 1,
-        "rating": 8.3,
+        "rating": 8.4,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx105334-AZwEdMu4KFtV.jpg",
         "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/105334-dPfrCyZ8GkOI.jpg",
@@ -1119,8 +1119,8 @@
         "status": 1,
         "rating": 6.5,
         "releaseDate": "",
-        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx17895-M8yjOyMxHf5X.jpg",
-        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/17895.jpg",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx17895-M8yjOyMxHf5X.jpg",
+        "bannerImage": "",
         "items": [
             {
                 "id": "golden-time-ep-0",
@@ -1562,7 +1562,7 @@
     {
         "id": "rent-a-girlfriend",
         "title": "Rent-a-Girlfriend",
-        "status": 2,
+        "status": 1,
         "rating": 0.1,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx199029-8eMkhHlD62Ik.png",
@@ -1603,9 +1603,22 @@
             {
                 "id": "rent-a-girlfriend-ep-4",
                 "title": "Rent-a-Girlfriend Season 5",
-                "status": 2,
+                "status": 1,
                 "type": "SERIE",
-                "watchedEpisodes": [],
+                "watchedEpisodes": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12
+                ],
                 "episodesCount": 12
             }
         ]
@@ -2047,7 +2060,7 @@
     {
         "id": "clannad",
         "title": "Clannad",
-        "status": -1,
+        "status": 0,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx2167-pSDBcyc0vjej.jpg",
@@ -2056,9 +2069,13 @@
             {
                 "id": "clannad-ep-0",
                 "title": "Clannad",
-                "status": -1,
+                "status": 0,
                 "type": "SERIE",
-                "watchedEpisodes": [],
+                "watchedEpisodes": [
+                    1,
+                    2,
+                    3
+                ],
                 "episodesCount": 23
             },
             {
@@ -2118,7 +2135,7 @@
         "id": "tune-in-to-the-midnight-heart",
         "title": "Tune In to the Midnight Heart",
         "status": 2,
-        "rating": 8,
+        "rating": 8.2,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx209762-2S7ni7yc9Kvi.jpg",
         "bannerImage": "",
@@ -2223,7 +2240,7 @@
         "id": "re-zero-starting-life-in-another-world",
         "title": "Re:ZERO - Starting Life in Another World",
         "status": 0,
-        "rating": 8.7,
+        "rating": 7.5,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx163134-yieRFbvUOH9a.jpg",
         "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/163134-CqaXjXVivwJ5.jpg",
@@ -2523,6 +2540,25 @@
                 "type": "SERIE",
                 "watchedEpisodes": [],
                 "episodesCount": 13
+            }
+        ]
+    },
+    {
+        "id": "blade-dance-of-the-elementalers",
+        "title": "Blade Dance of the Elementalers",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20663-8vTzInvb2Nxr.jpg",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/20663.jpg",
+        "items": [
+            {
+                "id": "blade-dance-of-the-elementalers-ep-0",
+                "title": "Blade Dance of the Elementalers",
+                "status": -1,
+                "type": "SERIE",
+                "watchedEpisodes": [],
+                "episodesCount": 12
             }
         ]
     }
