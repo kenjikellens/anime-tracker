@@ -1,11 +1,17 @@
+/**
+ * Storage helper for loading, saving, and exporting anime data.
+ * Linked to: `data/data.json`, `localStorage`, and Flask `/api/save`.
+ */
 export class DataStore {
+    /**
+     * Loads file data first, then falls back to localStorage.
+     */
     static async loadInitialData() {
-        // ALWAYS prioritize the JSON file to ensure users see their file-level changes
         try {
-            const res = await fetch('data/data.json?v=' + Date.now()); 
+            const res = await fetch('data/data.json?v=' + Date.now());
             const fileData = await res.json();
             return fileData;
-        } catch(e) {
+        } catch (e) {
             console.warn("Could not load data.json, checking localStorage", e);
             const localData = localStorage.getItem('rascal_anime_data');
             if (localData) {
@@ -19,13 +25,14 @@ export class DataStore {
         }
     }
 
+    /**
+     * Persists the repository to localStorage and to the running server.
+     */
     static async save(repository) {
         const data = repository.exportToData();
-        
-        // 1. Session persistence
+
         localStorage.setItem('rascal_anime_data', JSON.stringify(data));
-        
-        // 2. Persistent file storage if server is running
+
         try {
             await fetch('/api/save', {
                 method: 'POST',
@@ -33,10 +40,13 @@ export class DataStore {
                 body: JSON.stringify(data)
             });
         } catch (err) {
-            // Server not running, ignore
+            // Server not running, ignore.
         }
     }
-    
+
+    /**
+     * Downloads the current state as a JSON file.
+     */
     static triggerBackup(repository) {
         const data = repository.exportToData();
         const str = JSON.stringify(data, null, 4);

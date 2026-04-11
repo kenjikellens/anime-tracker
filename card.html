@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,27 +11,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Detail page header: back link context plus theme toggle -->
     <header class="header-main">
         <div class="header-content">
             <div class="header-left">
+                <!-- Brand mark links back to the overview -->
                 <a href="index.html" style="text-decoration: none;"><h1 class="logo-rascal"><span class="ras">RAS</span><span class="cal">CAL</span></h1></a>
             </div>
             <div class="header-center"></div>
             <div class="header-right">
+                <!-- Theme toggle is shared with the overview page -->
                 <button id="theme-toggle" title="Switch theme"><i class="fas fa-moon"></i></button>
             </div>
         </div>
     </header>
 
     <div id="app">
+        <!-- Back navigation returned by the detail page -->
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Terug naar overzicht</a>
         
+        <!-- Detail content is filled by `js/card.js` -->
         <div id="detail-container">
             <p>Laden...</p>
         </div>
     </div>
 
-    <!-- Rating modal for scoring animes -->
+    <!-- Rating modal reused from the overview page -->
     <div id="modal-overlay" class="hidden">
         <div class="modal">
             <h3>Deze anime beoordelen?</h3>
@@ -47,7 +52,7 @@
             </div>
         </div>
     </div>
-    <!-- Domain Scripts -->
+    <!-- Domain scripts -->
     <script type="module" src="js/card.js?v=3.1.0"></script>
 </body>
 </html>

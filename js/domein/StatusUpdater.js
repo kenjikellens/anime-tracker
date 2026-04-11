@@ -1,9 +1,15 @@
+/**
+ * Keeps item status, episode progress, and global anime status in sync.
+ * Linked to: the detail page dropdowns and episode checkboxes.
+ */
 export class StatusUpdater {
+    /**
+     * Applies one global status and cascades the change to every item.
+     */
     static updateGlobalStatus(anime, newStatus) {
         const s = parseInt(newStatus, 10);
         anime.setGlobalStatus(s);
-        
-        // Cascade down
+
         if (s === 1) {
             anime.items.forEach(item => {
                 item.setStatus(1);
@@ -20,35 +26,38 @@ export class StatusUpdater {
             });
         }
     }
-    
+
+    /**
+     * Applies one item status and adjusts its episode state.
+     */
     static updateItemStatus(item, newStatus, anime) {
         const s = parseInt(newStatus, 10);
         item.setStatus(s);
-        
-        // Episode logic
+
         if (s === 1) {
             item.setAllWatched();
         } else if (s === -1) {
             item.clearAllEpisodes();
         } else if (s === 0) {
-            // "Bezig": if nothing watched, watch the first one
             if (item.watchedEpisodes.length === 0) {
                 item.setFirstWatched();
             }
         }
-        
+
         if (anime) {
             this.syncAnimeStatus(anime);
         }
     }
-    
+
+    /**
+     * Toggles one episode and derives the item status from progress.
+     */
     static toggleEpisode(item, episodeNum, anime) {
         item.toggleEpisode(episodeNum);
-        
-        // Calculate item status from episodes
+
         const watchedCount = item.watchedEpisodes.length;
-        const total = item.episodesCount || 12; // Fallback consistent with renderer
-        
+        const total = item.episodesCount || 12;
+
         if (watchedCount === 0) {
             item.setStatus(-1);
         } else if (watchedCount >= total) {
@@ -56,36 +65,31 @@ export class StatusUpdater {
         } else {
             item.setStatus(0);
         }
-        
+
         if (anime) {
             this.syncAnimeStatus(anime);
         }
     }
-    
+
+    /**
+     * Derives the anime-level status from the collection of item statuses.
+     */
     static syncAnimeStatus(anime) {
         if (!anime.items || anime.items.length === 0) return;
-        
+
         const statuses = anime.items.map(i => i.status);
         const hasBusy = statuses.includes(0);
         const hasWatched = statuses.includes(1);
-        const hasToWatch = statuses.includes(-1);
         const hasNew = statuses.includes(2);
-        
-        // 1. Bezig: Er is een seizoen gestart (0) of we moeten seizoenen inhalen (mix van 1 en -1)
-        if (hasBusy || (hasWatched && hasToWatch)) {
-            anime.setGlobalStatus(0); // Bezig
-        } 
-        // 2. Nieuw: Geen catchup, en er is een Nieuw seizoen (status 2)
-        else if (hasNew) {
-            anime.setGlobalStatus(2); // Nieuw
-        } 
-        // 3. Bekeken: Alles bekeken
-        else if (hasWatched) {
-            anime.setGlobalStatus(1); // Bekeken
-        } 
-        // 4. In andere gevallen (of alles -1)
-        else {
-            anime.setGlobalStatus(-1); // Te Bekijken
+
+        if (hasBusy || (hasWatched && statuses.includes(-1))) {
+            anime.setGlobalStatus(0);
+        } else if (hasNew) {
+            anime.setGlobalStatus(2);
+        } else if (hasWatched) {
+            anime.setGlobalStatus(1);
+        } else {
+            anime.setGlobalStatus(-1);
         }
     }
 }

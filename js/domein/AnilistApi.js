@@ -1,4 +1,10 @@
+/**
+ * Small AniList GraphQL client for cover art and episode metadata.
+ */
 export class AnilistApi {
+    /**
+     * Searches AniList by title text.
+     */
     static async fetchMediaByTitle(title) {
         const query = `
         query ($search: String) {
@@ -35,6 +41,9 @@ export class AnilistApi {
         }
     }
 
+    /**
+     * Fetches AniList media data by numeric id.
+     */
     static async fetchMediaById(id) {
         const query = `
         query ($id: Int) {

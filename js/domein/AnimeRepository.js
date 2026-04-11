@@ -1,34 +1,56 @@
 import { Anime } from './Anime.js';
 
+/**
+ * In-memory collection of anime models.
+ * Linked to: `DataStore` for persistence and both renderers for output.
+ */
 export class AnimeRepository {
     constructor() {
         this.animes = [];
     }
-    
+
+    /**
+     * Turns raw JSON rows into `Anime` instances.
+     */
     loadFromData(dataArray) {
         this.animes = dataArray.map(data => new Anime(data));
     }
-    
+
+    /**
+     * Returns the full collection.
+     */
     getAll() {
         return this.animes;
     }
-    
+
+    /**
+     * Returns one anime by id.
+     */
     getById(id) {
         return this.animes.find(a => a.id === id);
     }
 
+    /**
+     * Filters the collection by top-level status.
+     */
     filterByStatus(statusStr) {
         if (statusStr === 'all') return this.animes;
         const s = parseInt(statusStr, 10);
         return this.animes.filter(a => a.status === s);
     }
 
+    /**
+     * Filters the collection by a case-insensitive title query.
+     */
     static filterByQuery(animes, query) {
         if (!query || query.trim() === '') return animes;
         const q = query.toLowerCase().trim();
         return animes.filter(a => a.title.toLowerCase().includes(q));
     }
 
+    /**
+     * Sorts anime records for the toolbar sort selector.
+     */
     static sort(animes, criteria) {
         const list = [...animes];
         switch (criteria) {
@@ -46,7 +68,10 @@ export class AnimeRepository {
                 return list;
         }
     }
-    
+
+    /**
+     * Serializes the repository back to plain JSON.
+     */
     exportToData() {
         return this.animes.map(a => ({
             id: a.id,

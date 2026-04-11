@@ -1,6 +1,13 @@
 import { RatingManager } from './RatingManager.js';
 
+/**
+ * Renders the detailed anime page and its expandable item rows.
+ * Linked to: `#detail-container` in `card.html`.
+ */
 export class DetailRenderer {
+    /**
+     * Builds the full sidebar plus main accordion list.
+     */
     static renderDetail(container, anime, onItemStatusChange, onGlobalStatusChange, onRatingChange, onEpisodeToggle, onRatingClick = null, openItemIds = []) {
         container.innerHTML = '';
         

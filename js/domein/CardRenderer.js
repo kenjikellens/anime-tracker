@@ -1,6 +1,13 @@
 import { RatingManager } from './RatingManager.js';
 
+/**
+ * Renders overview cards for the anime list page.
+ * Linked to: `#anime-container` in `index.html`.
+ */
 export class CardRenderer {
+    /**
+     * Replaces the contents of the container with cards.
+     */
     static renderAll(container, animes, onRatingClick) {
         container.innerHTML = '';
         if (animes.length === 0) {
@@ -17,6 +24,10 @@ export class CardRenderer {
         
         container.appendChild(wrapper);
     }
+
+    /**
+     * Updates only the poster area for one already rendered card.
+     */
     static updateCardImage(anime) {
         const div = document.querySelector(`.anime-card[data-id="${anime.id}"]`);
         if (div && anime.coverImage) {
@@ -25,18 +36,18 @@ export class CardRenderer {
         }
     }
 
+    /**
+     * Builds a single anime card and wires its click handlers.
+     */
     static createCard(anime, onRatingClick) {
         const div = document.createElement('div');
         div.className = `anime-card ${RatingManager.getCardClass(anime.rating)}`;
         div.setAttribute('data-status', anime.status);
         div.setAttribute('data-id', anime.id);
-        
-        let statusIcon = "fa-clock";
-        let statusClass = "status-none";
-        // removed duplicate assignments for status class since we have proper ones now
-        if (anime.status === 1) { statusIcon = "fa-check"; statusClass = "status-done"; div.classList.add("status-watched"); }
-        if (anime.status === 0) { statusIcon = "fa-play"; statusClass = "status-watching"; }
-        if (anime.status === 2) { statusIcon = "fa-clock"; statusClass = "status-new"; }
+
+        if (anime.status === 1) {
+            div.classList.add("status-watched");
+        }
         
         const hash = anime.title.split('').reduce((acc, char) => char.charCodeAt(0) + acc, 0);
         const hue = hash % 360;
@@ -47,7 +58,6 @@ export class CardRenderer {
         }
         
         div.innerHTML = `
-            <div class="status-indicator ${statusClass}"><i class="fas ${statusIcon}"></i></div>
             <div class="card-poster">
                 ${posterContent}
             </div>

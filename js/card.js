@@ -3,23 +3,29 @@ import { DataStore } from './domein/DataStore.js';
 import { DetailRenderer } from './domein/DetailRenderer.js';
 import { StatusUpdater } from './domein/StatusUpdater.js';
 import { AnilistApi } from './domein/AnilistApi.js';
+import { ThemeManager } from './domein/ThemeManager.js';
 
+// Detail page state. The current anime comes from `card.html?id=<id>`.
 let repository = new AnimeRepository();
 let currentAnime = null;
 
+/**
+ * Bootstraps the detail page and resolves the selected anime.
+ */
 async function init() {
+    ThemeManager.initTheme();
     const data = await DataStore.loadInitialData();
     repository.loadFromData(data);
-    
+
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
-    
+
     if (id) {
         currentAnime = repository.getById(id);
         if (currentAnime) {
             renderDetail();
-            
-            // Hydrate AniList single
+
+            // Hydrate missing poster/banner data for this one record only.
             if (!currentAnime.bannerImage || currentAnime.items.some(i => !i.episodesCount || i.episodesCount === 0)) {
                 const searchTerm = currentAnime.items.length > 0 ? currentAnime.items[0].title : currentAnime.title;
                 const apiData = await AnilistApi.fetchMediaByTitle(searchTerm);
@@ -27,10 +33,10 @@ async function init() {
                     currentAnime.coverImage = apiData.coverImage.large;
                     currentAnime.bannerImage = apiData.bannerImage;
                     if (currentAnime.items.length > 0 && (!currentAnime.items[0].episodesCount || currentAnime.items[0].episodesCount === 0)) {
-                         currentAnime.items[0].episodesCount = apiData.episodes || 12; // Fallback to 12
+                        currentAnime.items[0].episodesCount = apiData.episodes || 12;
                     }
                     DataStore.save(repository);
-                    renderDetail(); // Re-render with new data
+                    renderDetail();
                 }
             }
         } else {
@@ -41,16 +47,20 @@ async function init() {
     }
 }
 
+/**
+ * Renders the detail view while preserving open accordion rows.
+ */
 function renderDetail() {
     const container = document.getElementById('detail-container');
-    
-    // Save which accordions are currently open before wiping the container
     const openItemIds = Array.from(container.querySelectorAll('.item-accordion-wrapper.is-open'))
         .map(wrapper => wrapper.getAttribute('data-item-id'));
 
     DetailRenderer.renderDetail(container, currentAnime, handleItemStatus, handleGlobalStatus, null, handleEpisodeToggle, openRatingModal, openItemIds);
 }
 
+/**
+ * Opens the shared rating modal for the current anime.
+ */
 function openRatingModal() {
     const overlay = document.getElementById('modal-overlay');
     const modalTitle = document.getElementById('modal-title');
@@ -63,17 +73,20 @@ function openRatingModal() {
     }
 }
 
+/**
+ * Shared modal save handler used by `card.html`.
+ */
 window.saveGlobalRating = function() {
     const overlay = document.getElementById('modal-overlay');
     const ratingInput = document.getElementById('rating-number');
-    
+
     if (currentAnime) {
         import('./domein/RatingManager.js').then(module => {
             let val = parseFloat(ratingInput.value);
             if (isNaN(val)) val = 0;
             if (val < 0) val = 0;
             if (val > 10) val = 10;
-            
+
             module.RatingManager.updateRating(currentAnime, val);
             DataStore.save(repository);
             renderDetail();
@@ -82,6 +95,9 @@ window.saveGlobalRating = function() {
     }
 };
 
+/**
+ * Closes the rating modal when the backdrop is clicked.
+ */
 function setupRatingModalBackground() {
     const overlay = document.getElementById('modal-overlay');
     if (!overlay) return;
@@ -92,6 +108,9 @@ function setupRatingModalBackground() {
     });
 }
 
+/**
+ * Updates a single episode checkbox and persists the change.
+ */
 function handleEpisodeToggle(item, episodeNum) {
     if (currentAnime) {
         StatusUpdater.toggleEpisode(item, episodeNum, currentAnime);
@@ -100,6 +119,9 @@ function handleEpisodeToggle(item, episodeNum) {
     }
 }
 
+/**
+ * Updates one season/item status inside the detail accordion.
+ */
 function handleItemStatus(item, newStatus) {
     if (currentAnime) {
         StatusUpdater.updateItemStatus(item, newStatus, currentAnime);
@@ -108,33 +130,17 @@ function handleItemStatus(item, newStatus) {
     }
 }
 
+/**
+ * Updates the top-level anime status from the sidebar dropdown.
+ */
 function handleGlobalStatus(anime, newStatus) {
     StatusUpdater.updateGlobalStatus(anime, newStatus);
     DataStore.save(repository);
     renderDetail();
 }
 
-function setupThemeToggle() {
-    const btn = document.getElementById('theme-toggle');
-    if (!btn) return;
-    
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    if (savedTheme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
-    
-    btn.addEventListener('click', () => {
-        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-        if (isDark) {
-            document.documentElement.removeAttribute('data-theme');
-            localStorage.setItem('theme', 'light');
-        } else {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-        }
-    });
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     init();
-    setupThemeToggle();
+    ThemeManager.bindToggle('theme-toggle');
     setupRatingModalBackground();
 });
