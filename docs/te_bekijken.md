@@ -135,3 +135,13 @@
 
 ## Blade Dance of the Elementalers
 - [ ] Blade Dance of the Elementalers (12 eps)
+
+## To Love Ru
+- [ ] To Love Ru (26 eps)
+- [ ] To Love Ru OVA (6 eps)
+- [ ] Motto To Love Ru (12 eps)
+- [ ] To Love Ru Darkness (12 eps)
+- [ ] To Love Ru Darkness OVA (6 eps)
+- [ ] To Love Ru Darkness 2nd (14 eps)
+- [ ] To Love Ru Darkness 2nd OVA (3 eps)
+- [ ] To Love Ru: Multiplication - Mae kara Ushiro kara (1 ep)
