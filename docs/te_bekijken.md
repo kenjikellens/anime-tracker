@@ -111,6 +111,10 @@
 
 ## I Made Friends with the Second Prettiest Girl in My Class
 - [ ] I Made Friends with the Second Prettiest Girl in My Class (TV Series - 12 eps)
+
+## The Warrior Princess and the Barbaric King
+- [ ] The Warrior Princess and the Barbaric King (TV Series - 12 eps)
+
 ## Our Last Crusade or the Rise of a New World
 - [ ] Season 1 (12 eps)
 - [ ] Season 2 (12 eps)
@@ -157,3 +161,8 @@
 - [ ] Date A Bullet: Nightmare or Queen (MOVIE)
 - [ ] Date A Live IV (SERIE - 12 eps)
 - [ ] Date A Live V (SERIE - 12 eps)
+
+## Gridman Universe
+- [ ] SSSS.GRIDMAN (SERIE - 12 eps)
+- [ ] SSSS.DYNAZENON (SERIE - 12 eps)
+- [ ] Gridman Universe (MOVIE - 1 ep)
