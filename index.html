@@ -73,10 +73,11 @@
             </div>
 
             <!-- Grid sizing is only visible while the grid layout is active -->
-            <div class="size-toggle" id="size-toggle-container">
-                <button class="size-btn" data-size="s">S</button>
-                <button class="size-btn active" data-size="m">M</button>
-                <button class="size-btn" data-size="l">L</button>
+            <div class="size-toggle" id="size-toggle-container" style="display: flex; align-items: center; gap: 6px;">
+                <span style="font-size: 14px; font-weight: 600; color: var(--text-muted); margin-right: 4px;">Grid:</span>
+                <button class="size-btn" id="grid-cols-minus" title="Minder kolommen">&minus;</button>
+                <span id="grid-cols-val" style="font-size: 16px; font-weight: 700; min-width: 24px; text-align: center; font-family: 'Outfit', sans-serif; color: var(--text);">5</span>
+                <button class="size-btn" id="grid-cols-plus" title="Meer kolommen">+</button>
             </div>
 
             <span class="item-count" id="item-count">0 items</span>

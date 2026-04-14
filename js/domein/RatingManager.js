@@ -33,4 +33,11 @@ export class RatingManager {
     static updateRating(anime, newRating) {
         anime.setRating(parseFloat(newRating));
     }
+
+    /**
+     * Writes the new rating into the item model.
+     */
+    static updateItemRating(item, newRating) {
+        item.setRating(parseFloat(newRating));
+    }
 }

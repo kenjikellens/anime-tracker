@@ -8,7 +8,7 @@ export class DetailRenderer {
     /**
      * Builds the full sidebar plus main accordion list.
      */
-    static renderDetail(container, anime, onItemStatusChange, onGlobalStatusChange, onRatingChange, onEpisodeToggle, onRatingClick = null, openItemIds = []) {
+    static renderDetail(container, anime, onItemStatusChange, onGlobalStatusChange, onRatingChange, onEpisodeToggle, onRatingClick = null, openItemIds = [], onItemRatingClick = null) {
         container.innerHTML = '';
         
         let globalStatusSelect = `
@@ -46,12 +46,19 @@ export class DetailRenderer {
         sidebarTitle.className = 'sidebar-title';
         sidebarTitle.textContent = title;
 
+        const avgRating = anime.getAverageItemRating();
+        const avgBadgeClass = RatingManager.getBadgeClass(avgRating);
+
         const actionsDiv = document.createElement('div');
         actionsDiv.className = 'sidebar-actions';
         actionsDiv.innerHTML = `
             <div class="rating-badge detail-action-btn ${RatingManager.getBadgeClass(anime.rating)}">
                 <i class="fas fa-star"></i> 
                 <span>${anime.rating > 0 ? anime.rating.toFixed(1) : 'NR'}</span>
+            </div>
+            <div class="avg-rating-badge detail-action-btn ${avgBadgeClass}" title="Gemiddelde item-rating">
+                <i class="fas fa-chart-bar"></i> 
+                <span>${avgRating > 0 ? avgRating.toFixed(1) : '—'}</span>
             </div>
             ${globalStatusSelect}
         `;
@@ -116,6 +123,14 @@ export class DetailRenderer {
                     </a>
                 `;
 
+                const itemRatingClass = RatingManager.getBadgeClass(item.rating);
+                let itemRatingBtn = `
+                    <div class="rating-badge item-rating-badge ${itemRatingClass}" title="Beoordeel dit item" data-item-id="${item.id}">
+                        <i class="fas fa-star"></i> 
+                        <span>${item.rating > 0 ? item.rating.toFixed(1) : 'NR'}</span>
+                    </div>
+                `;
+
                 rowHeader.innerHTML = `
                     <i class="fas fa-chevron-down accordion-icon" style="transform: ${isOpen ? 'rotate(-180deg)' : 'rotate(0deg)'};"></i>
                     <div class="title-badge-group">
@@ -123,10 +138,19 @@ export class DetailRenderer {
                         <div class="detail-item-title">${item.title}</div>
                     </div>
                     <div class="item-actions-group">
+                        ${itemRatingBtn}
                         ${itemStatusSelect}
                         ${playBtn}
                     </div>
                 `;
+                
+                const ratingBadge = rowHeader.querySelector('.item-rating-badge');
+                if (ratingBadge && onItemRatingClick) {
+                    ratingBadge.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        onItemRatingClick(item);
+                    });
+                }
                 
                 const itemSelect = rowHeader.querySelector('.item-status-select');
                 itemSelect.addEventListener('click', e => e.stopPropagation());

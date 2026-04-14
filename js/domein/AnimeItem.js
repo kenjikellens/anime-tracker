@@ -2,12 +2,13 @@
  * Domain model for one item inside an anime group.
  */
 export class AnimeItem {
-    constructor(id, title, watched, status, type, watchedEpisodes, episodesCount) {
+    constructor(id, title, watched, status, type, watchedEpisodes, episodesCount, rating) {
         this.id = id;
         this.title = title;
         this.type = type || "";
         this.episodesCount = episodesCount || 0;
         this.watchedEpisodes = Array.isArray(watchedEpisodes) ? watchedEpisodes : [];
+        this.rating = rating || 0;
 
         if (status !== undefined) {
             this.status = parseInt(status, 10);
@@ -16,6 +17,13 @@ export class AnimeItem {
         } else {
             this.status = -1;
         }
+    }
+
+    /**
+     * Updates the item string.
+     */
+    setRating(newRating) {
+        this.rating = parseFloat(newRating) || 0;
     }
 
     /**

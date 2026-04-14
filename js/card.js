@@ -8,6 +8,8 @@ import { ThemeManager } from './domein/ThemeManager.js';
 // Detail page state. The current anime comes from `card.html?id=<id>`.
 let repository = new AnimeRepository();
 let currentAnime = null;
+let currentRatingTarget = null;
+let currentRatingType = null;
 
 /**
  * Bootstraps the detail page and resolves the selected anime.
@@ -55,7 +57,7 @@ function renderDetail() {
     const openItemIds = Array.from(container.querySelectorAll('.item-accordion-wrapper.is-open'))
         .map(wrapper => wrapper.getAttribute('data-item-id'));
 
-    DetailRenderer.renderDetail(container, currentAnime, handleItemStatus, handleGlobalStatus, null, handleEpisodeToggle, openRatingModal, openItemIds);
+    DetailRenderer.renderDetail(container, currentAnime, handleItemStatus, handleGlobalStatus, null, handleEpisodeToggle, openRatingModal, openItemIds, openItemRatingModal);
 }
 
 /**
@@ -67,8 +69,27 @@ function openRatingModal() {
     const ratingInput = document.getElementById('rating-number');
 
     if (overlay && modalTitle && ratingInput && currentAnime) {
+        currentRatingTarget = currentAnime;
+        currentRatingType = 'anime';
         modalTitle.textContent = currentAnime.title;
         ratingInput.value = currentAnime.rating > 0 ? currentAnime.rating : "";
+        overlay.classList.remove('hidden');
+    }
+}
+
+/**
+ * Opens the shared rating modal for a specific item.
+ */
+function openItemRatingModal(item) {
+    const overlay = document.getElementById('modal-overlay');
+    const modalTitle = document.getElementById('modal-title');
+    const ratingInput = document.getElementById('rating-number');
+
+    if (overlay && modalTitle && ratingInput && item) {
+        currentRatingTarget = item;
+        currentRatingType = 'item';
+        modalTitle.textContent = item.title;
+        ratingInput.value = item.rating > 0 ? item.rating : "";
         overlay.classList.remove('hidden');
     }
 }
@@ -80,17 +101,27 @@ window.saveGlobalRating = function() {
     const overlay = document.getElementById('modal-overlay');
     const ratingInput = document.getElementById('rating-number');
 
-    if (currentAnime) {
+    if (currentRatingTarget) {
         import('./domein/RatingManager.js').then(module => {
             let val = parseFloat(ratingInput.value);
             if (isNaN(val)) val = 0;
             if (val < 0) val = 0;
             if (val > 10) val = 10;
 
-            module.RatingManager.updateRating(currentAnime, val);
+            if (currentRatingType === 'anime') {
+                module.RatingManager.updateRating(currentRatingTarget, val);
+            } else if (currentRatingType === 'item') {
+                module.RatingManager.updateItemRating(currentRatingTarget, val);
+            }
+            
             DataStore.save(repository);
             renderDetail();
-            if (overlay) overlay.classList.add('hidden');
+            
+            if (overlay) {
+                overlay.classList.add('hidden');
+            }
+            currentRatingTarget = null;
+            currentRatingType = null;
         }).catch(err => console.error(err));
     }
 };

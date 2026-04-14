@@ -57,6 +57,9 @@ export class CardRenderer {
             posterContent = `<img src="${anime.coverImage}" style="width:100%; height:100%; object-fit:cover; border-radius: 6px;" loading="lazy" />`;
         }
         
+        const avgRating = anime.getAverageItemRating();
+        const avgBadgeClass = RatingManager.getBadgeClass(avgRating);
+
         div.innerHTML = `
             <div class="card-poster">
                 ${posterContent}
@@ -67,10 +70,13 @@ export class CardRenderer {
                         <span style="font-size:1.1rem; line-height: 1.2;">${anime.title}</span>
                     </div>
                 </div>
-                <div style="font-size: 0.85rem; color: var(--text-muted); opacity: 0.8;">${anime.items.length} items</div>
+                <div class="card-subtitle" style="font-size: 0.85rem; color: var(--text-muted); opacity: 0.8;">${anime.items.length} items</div>
                 <div class="card-actions">
                     <div class="rating-badge ${RatingManager.getBadgeClass(anime.rating)}" style="cursor: pointer;">
                         <i class="fas fa-star"></i> ${anime.rating > 0 ? anime.rating.toFixed(1) : 'NR'}
+                    </div>
+                    <div class="avg-rating-badge ${avgBadgeClass}" title="Gemiddelde item-rating">
+                        <i class="fas fa-chart-bar"></i> ${avgRating > 0 ? avgRating.toFixed(1) : '—'}
                     </div>
                 </div>
             </div>

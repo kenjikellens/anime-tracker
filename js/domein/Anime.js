@@ -13,7 +13,7 @@ export class Anime {
         this.releaseDate = data.releaseDate || "";
         this.coverImage = data.coverImage || "";
         this.bannerImage = data.bannerImage || "";
-        this.items = data.items ? data.items.map(item => new AnimeItem(item.id, item.title, item.watched, item.status, item.type, item.watchedEpisodes, item.episodesCount)) : [];
+        this.items = data.items ? data.items.map(item => new AnimeItem(item.id, item.title, item.watched, item.status, item.type, item.watchedEpisodes, item.episodesCount, item.rating)) : [];
     }
 
     /**
@@ -28,5 +28,16 @@ export class Anime {
      */
     setRating(newRating) {
         this.rating = newRating;
+    }
+
+    /**
+     * Calculates the average rating of all rated items within this anime.
+     */
+    getAverageItemRating() {
+        const ratedItems = this.items.filter(i => i.rating > 0);
+        if (ratedItems.length === 0) return 0;
+        
+        const sum = ratedItems.reduce((acc, i) => acc + i.rating, 0);
+        return parseFloat((sum / ratedItems.length).toFixed(1));
     }
 }

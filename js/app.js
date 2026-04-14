@@ -11,7 +11,7 @@ let currentFilter = localStorage.getItem('activeFilter') || 'all';
 let currentSearchQuery = '';
 let currentSort = localStorage.getItem('sortOrder') || 'default';
 let currentViewMode = localStorage.getItem('viewMode') || 'grid';
-let currentGridSize = localStorage.getItem('gridSize') || 'size-m';
+let currentGridCols = localStorage.getItem('gridCols') || '5';
 
 /**
  * Bootstraps the overview page.
@@ -208,7 +208,13 @@ function setupViewToggles() {
     const listBtn = document.getElementById('list-btn');
     const container = document.getElementById('anime-container');
     const sizeToggleContainer = document.getElementById('size-toggle-container');
-    const sizeBtns = document.querySelectorAll('.size-btn');
+    const minusBtn = document.getElementById('grid-cols-minus');
+    const plusBtn = document.getElementById('grid-cols-plus');
+    const colsVal = document.getElementById('grid-cols-val');
+
+    // Initialize state
+    colsVal.textContent = currentGridCols;
+    container.style.setProperty('--grid-cols', currentGridCols);
 
     if (currentViewMode === 'list') {
         listBtn.classList.add('active');
@@ -221,16 +227,8 @@ function setupViewToggles() {
         listBtn.classList.remove('active');
         container.classList.remove('list-view');
         container.classList.add('grid-view');
-        container.classList.add(currentGridSize);
         sizeToggleContainer.style.display = 'flex';
     }
-
-    sizeBtns.forEach(btn => {
-        btn.classList.remove('active');
-        if (`size-${btn.getAttribute('data-size')}` === currentGridSize) {
-            btn.classList.add('active');
-        }
-    });
 
     gridBtn.addEventListener('click', () => {
         currentViewMode = 'grid';
@@ -240,7 +238,7 @@ function setupViewToggles() {
         listBtn.classList.remove('active');
         container.classList.remove('list-view');
         container.classList.add('grid-view');
-        container.classList.add(currentGridSize);
+        container.style.setProperty('--grid-cols', currentGridCols);
         sizeToggleContainer.style.display = 'flex';
     });
 
@@ -255,21 +253,21 @@ function setupViewToggles() {
         sizeToggleContainer.style.display = 'none';
     });
 
-    sizeBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            if (container.classList.contains('list-view')) return;
+    function updateGridCols(newVal) {
+        if (newVal < 2) newVal = 2;
+        if (newVal > 8) newVal = 8;
+        colsVal.textContent = newVal;
+        container.style.setProperty('--grid-cols', newVal);
+        currentGridCols = newVal.toString();
+        localStorage.setItem('gridCols', currentGridCols);
+    }
 
-            sizeBtns.forEach(b => b.classList.remove('active'));
-            const target = e.target;
-            target.classList.add('active');
-
-            const newSize = `size-${target.getAttribute('data-size')}`;
-            ['size-s', 'size-m', 'size-l'].forEach(c => container.classList.remove(c));
-            container.classList.add(newSize);
-
-            currentGridSize = newSize;
-            localStorage.setItem('gridSize', currentGridSize);
-        });
+    minusBtn.addEventListener('click', () => {
+        updateGridCols(parseInt(currentGridCols) - 1);
+    });
+    
+    plusBtn.addEventListener('click', () => {
+        updateGridCols(parseInt(currentGridCols) + 1);
     });
 }
 
