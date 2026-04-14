@@ -2733,7 +2733,7 @@
     {
         "id": "quintessential-quintuplets",
         "title": "The Quintessential Quintuplets",
-        "status": -1,
+        "status": 0,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx103572-cchriAdH95cQ.png",
@@ -2742,10 +2742,17 @@
             {
                 "id": "quintessential-quintuplets-ep-0",
                 "title": "The Quintessential Quintuplets Season 1",
-                "status": -1,
+                "status": 0,
                 "type": "SERIE",
                 "rating": 0,
-                "watchedEpisodes": [],
+                "watchedEpisodes": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ],
                 "episodesCount": 12
             },
             {

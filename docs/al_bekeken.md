@@ -233,3 +233,12 @@ Hieronder staat de volledige lijst van anime series die je hebt bekeken, inclusi
 - [ ] Rent-a-Girlfriend Season 3 (12 eps)
 - [ ] Rent-a-Girlfriend Season 4 (12 eps)
 - [ ] Rent-a-Girlfriend Season 5 (Airing - Started April 2026)
+
+
+## Clannad
+- [ ] Clannad (Season 1 - 23 eps)
+- [ ] Clannad: Another World, Tomoyo Chapter (OVA)
+- [ ] Clannad After Story (Season 2 - 24 eps)
+- [ ] Clannad After Story: Another World, Kyou Chapter (OVA)
+- [ ] Clannad (Movie)
+
