@@ -78,7 +78,7 @@
                 "title": "Horimiya",
                 "status": 1,
                 "type": "SERIE",
-                "rating": 0,
+                "rating": 9.5,
                 "watchedEpisodes": [],
                 "episodesCount": 13
             },
@@ -87,7 +87,7 @@
                 "title": "Horimiya: The Missing Pieces",
                 "status": 1,
                 "type": "SERIE",
-                "rating": 0,
+                "rating": 9.3,
                 "watchedEpisodes": [],
                 "episodesCount": 13
             }
@@ -2632,7 +2632,7 @@
         "items": [
             {
                 "id": "our-last-crusade-ep-0",
-                "title": "Season 1",
+                "title": "Our Last Crusade or the Rise of a New World Season 1",
                 "status": -1,
                 "type": "SERIE",
                 "rating": 0,
@@ -2641,7 +2641,7 @@
             },
             {
                 "id": "our-last-crusade-ep-1",
-                "title": "Season 2",
+                "title": "Our Last Crusade or the Rise of a New World Season 2",
                 "status": -1,
                 "type": "SERIE",
                 "rating": 0,
@@ -2661,7 +2661,7 @@
         "items": [
             {
                 "id": "love-is-like-a-cocktail-ep-0",
-                "title": "TV Series",
+                "title": "Love is Like a Cocktail",
                 "status": -1,
                 "type": "SERIE",
                 "rating": 0,
@@ -2681,7 +2681,7 @@
         "items": [
             {
                 "id": "mom-im-sorry-ep-0",
-                "title": "Season 1",
+                "title": "Mom, I'm Sorry Season 1",
                 "status": -1,
                 "type": "ONA",
                 "rating": 0,
@@ -2701,7 +2701,7 @@
         "items": [
             {
                 "id": "second-cutest-girl-ep-0",
-                "title": "Season 1",
+                "title": "I became friends with the second cutest girl of my class Season 1",
                 "status": -1,
                 "type": "SERIE",
                 "rating": 0,
@@ -2721,7 +2721,7 @@
         "items": [
             {
                 "id": "9-nine-rulers-crown-ep-0",
-                "title": "Season 1",
+                "title": "9-nine- Ruler's Crown Season 1",
                 "status": -1,
                 "type": "SERIE",
                 "rating": 0,
@@ -2741,7 +2741,7 @@
         "items": [
             {
                 "id": "quintessential-quintuplets-ep-0",
-                "title": "Season 1",
+                "title": "The Quintessential Quintuplets Season 1",
                 "status": -1,
                 "type": "SERIE",
                 "rating": 0,
@@ -2750,7 +2750,7 @@
             },
             {
                 "id": "quintessential-quintuplets-ep-1",
-                "title": "Season 2",
+                "title": "The Quintessential Quintuplets Season 2",
                 "status": -1,
                 "type": "SERIE",
                 "rating": 0,
@@ -2759,7 +2759,7 @@
             },
             {
                 "id": "quintessential-quintuplets-ep-2",
-                "title": "Movie",
+                "title": "The Quintessential Quintuplets Movie",
                 "status": -1,
                 "type": "MOVIE",
                 "rating": 0,
@@ -2768,7 +2768,7 @@
             },
             {
                 "id": "quintessential-quintuplets-ep-3",
-                "title": "Specials",
+                "title": "The Quintessential Quintuplets Specials",
                 "status": -1,
                 "type": "SPECIAL",
                 "rating": 0,
@@ -2788,7 +2788,7 @@
         "items": [
             {
                 "id": "yamada-kun-lv999-ep-0",
-                "title": "Season 1",
+                "title": "My Love Story with Yamada-kun at Lv999 Season 1",
                 "status": -1,
                 "type": "SERIE",
                 "rating": 0,

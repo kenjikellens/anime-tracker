@@ -113,7 +113,9 @@ export class DetailRenderer {
                     </select>
                 `;
 
-                let searchTitle = item.title.replace(/\s+Season\s+\d+/i, '').replace(/\s+Cour\s+\d+/i, '').trim();
+                let searchTitle = item.title.replace(/(^|\s+)Season\s+\d+/i, '').replace(/(^|\s+)Cour\s+\d+/i, '').trim();
+                // Fallback to the parent anime title when item title is generic (e.g. "Season 1")
+                if (!searchTitle) searchTitle = anime.title;
                 let keyword = encodeURIComponent(searchTitle).replace(/%20/g, '+');
                 let anikaiUrl = `https://anikai.to/browser?keyword=${keyword}`;
 
