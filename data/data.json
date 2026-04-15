@@ -3085,5 +3085,26 @@
                 "episodesCount": 12
             }
         ]
+    },
+    {
+        "id": "domestic-girlfriend",
+        "title": "Domestic Girlfriend",
+        "status": 1,
+        "rating": 6.2,
+        "anilistId": 103139,
+        "releaseDate": "2019-01-12",
+        "coverImage": "",
+        "bannerImage": "",
+        "items": [
+            {
+                "id": "domestic-girlfriend-ep-0",
+                "title": "Domestic Girlfriend",
+                "status": 1,
+                "type": "SERIE",
+                "rating": 6.2,
+                "watchedEpisodes": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+                "episodesCount": 12
+            }
+        ]
     }
 ]

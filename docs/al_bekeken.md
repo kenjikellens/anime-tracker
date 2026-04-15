@@ -241,4 +241,5 @@ Hieronder staat de volledige lijst van anime series die je hebt bekeken, inclusi
 - [ ] Clannad After Story (Season 2 - 24 eps)
 - [ ] Clannad After Story: Another World, Kyou Chapter (OVA)
 - [ ] Clannad (Movie)
-
+## Domestic Girlfriend
+- [ ] Domestic Girlfriend (TV Series - 12 eps)
