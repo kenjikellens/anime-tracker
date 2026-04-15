@@ -3106,5 +3106,44 @@
                 "episodesCount": 12
             }
         ]
+    },
+    {
+        "id": "acchi-kocchi",
+        "title": "Acchi Kocchi",
+        "status": 2,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx12291-NKo7qYW674Wo.jpg",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/12291-ZCo0XM1RShUw.png",
+        "anilistId": 12291,
+        "items": [
+            {
+                "id": "acchi-kocchi-ep-0",
+                "title": "Acchi Kocchi",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "acchi-kocchi-ep-1",
+                "title": "Acchi Kocchi: Place=Place",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "acchi-kocchi-ep-2",
+                "title": "Acchi Kocchi Youchien",
+                "status": -1,
+                "type": "SPECIAL",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            }
+        ]
     }
 ]

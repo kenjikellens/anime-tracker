@@ -159,3 +159,8 @@
 - [ ] SSSS.GRIDMAN (SERIE - 12 eps)
 - [ ] SSSS.DYNAZENON (SERIE - 12 eps)
 - [ ] Gridman Universe (MOVIE - 1 ep)
+
+## Acchi Kocchi
+- [ ] Acchi Kocchi (SERIE - 12 eps)
+- [ ] Acchi Kocchi: Place=Place (OVA - 1 ep)
+- [ ] Acchi Kocchi Youchien (SPECIAL - 12 eps)
