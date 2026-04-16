@@ -3091,9 +3091,8 @@
         "title": "Domestic Girlfriend",
         "status": 1,
         "rating": 6.2,
-        "anilistId": 103139,
         "releaseDate": "2019-01-12",
-        "coverImage": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx103139-2TfvRyGTE1qp.jpg",
         "bannerImage": "",
         "items": [
             {
@@ -3102,7 +3101,20 @@
                 "status": 1,
                 "type": "SERIE",
                 "rating": 6.2,
-                "watchedEpisodes": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+                "watchedEpisodes": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12
+                ],
                 "episodesCount": 12
             }
         ]
@@ -3110,12 +3122,11 @@
     {
         "id": "acchi-kocchi",
         "title": "Acchi Kocchi",
-        "status": 2,
+        "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx12291-NKo7qYW674Wo.jpg",
         "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/12291-ZCo0XM1RShUw.png",
-        "anilistId": 12291,
         "items": [
             {
                 "id": "acchi-kocchi-ep-0",
