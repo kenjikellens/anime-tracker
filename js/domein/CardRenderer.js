@@ -6,6 +6,30 @@ import { RatingManager } from './RatingManager.js';
  */
 export class CardRenderer {
     /**
+     * Returns the poster media plus the conditional "Nieuw" badge.
+     */
+    static getPosterMarkup(anime) {
+        const hash = anime.title.split('').reduce((acc, char) => char.charCodeAt(0) + acc, 0);
+        const hue = hash % 360;
+
+        let posterContent = `<div style="width:100%; height:100%; background: linear-gradient(135deg, hsl(${hue}, 60%, 50%), hsl(${(hue + 40) % 360}, 70%, 40%)); display:flex; align-items:center; justify-content:center; color:#fff; font-size: 24px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; box-shadow: inset 0 0 20px rgba(0,0,0,0.1); border-radius: 6px;">${anime.title.substring(0,2)}</div>`;
+        if (anime.coverImage) {
+            posterContent = `<img src="${anime.coverImage}" style="width:100%; height:100%; object-fit:cover; border-radius: 6px;" loading="lazy" />`;
+        }
+
+        const nieuwLabel = anime.status === 2
+            ? `
+                <div class="label-nieuw" aria-label="Nieuw beschikbare content">
+                    <span class="label-nieuw-icon"><i class="fas fa-bell"></i></span>
+                    <span class="label-nieuw-text">NIEUW</span>
+                </div>
+            `
+            : '';
+
+        return `${posterContent}${nieuwLabel}`;
+    }
+
+    /**
      * Replaces the contents of the container with cards.
      */
     static renderAll(container, animes, onRatingClick) {
@@ -30,9 +54,9 @@ export class CardRenderer {
      */
     static updateCardImage(anime) {
         const div = document.querySelector(`.anime-card[data-id="${anime.id}"]`);
-        if (div && anime.coverImage) {
+        if (div) {
             const posterDiv = div.querySelector('.card-poster');
-            posterDiv.innerHTML = `<img src="${anime.coverImage}" style="width:100%; height:100%; object-fit:cover; border-radius: 6px;" />`;
+            posterDiv.innerHTML = this.getPosterMarkup(anime);
         }
     }
 
@@ -48,21 +72,13 @@ export class CardRenderer {
         if (anime.status === 1) {
             div.classList.add("status-watched");
         }
-        
-        const hash = anime.title.split('').reduce((acc, char) => char.charCodeAt(0) + acc, 0);
-        const hue = hash % 360;
-        
-        let posterContent = `<div style="width:100%; height:100%; background: linear-gradient(135deg, hsl(${hue}, 60%, 50%), hsl(${(hue + 40) % 360}, 70%, 40%)); display:flex; align-items:center; justify-content:center; color:#fff; font-size: 24px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; box-shadow: inset 0 0 20px rgba(0,0,0,0.1); border-radius: 6px;">${anime.title.substring(0,2)}</div>`;
-        if (anime.coverImage) {
-            posterContent = `<img src="${anime.coverImage}" style="width:100%; height:100%; object-fit:cover; border-radius: 6px;" loading="lazy" />`;
-        }
-        
+
         const avgRating = anime.getAverageItemRating();
         const avgBadgeClass = RatingManager.getBadgeClass(avgRating);
 
         div.innerHTML = `
             <div class="card-poster">
-                ${posterContent}
+                ${this.getPosterMarkup(anime)}
             </div>
             <div class="card-info" style="gap: 8px;">
                 <div class="card-header">

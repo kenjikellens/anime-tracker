@@ -7,7 +7,8 @@ export class StatusUpdater {
      * Applies one global status and cascades the change to every item.
      */
     static updateGlobalStatus(anime, newStatus) {
-        const s = parseInt(newStatus, 10);
+        const parsedStatus = parseInt(newStatus, 10);
+        const s = parsedStatus === 2 ? -1 : parsedStatus;
         anime.setGlobalStatus(s);
 
         if (s === 1) {
@@ -19,10 +20,6 @@ export class StatusUpdater {
             anime.items.forEach(item => {
                 item.setStatus(-1);
                 item.clearAllEpisodes();
-            });
-        } else if (s === 2) {
-            anime.items.forEach(item => {
-                item.setStatus(2);
             });
         }
     }
@@ -77,19 +74,57 @@ export class StatusUpdater {
     static syncAnimeStatus(anime) {
         if (!anime.items || anime.items.length === 0) return;
 
-        const statuses = anime.items.map(i => i.status);
+        anime.setGlobalStatus(this.deriveAnimeStatus(anime));
+    }
+
+    /**
+     * Normalizes legacy "Nieuw" item data and recalculates the anime status.
+     */
+    static normalizeAnimeStatuses(anime) {
+        if (!anime.items || anime.items.length === 0) {
+            if (anime.status === 2) {
+                anime.setGlobalStatus(-1);
+                return true;
+            }
+            return false;
+        }
+
+        let changed = false;
+        anime.items.forEach(item => {
+            if (item.status === 2) {
+                item.setStatus(-1);
+                changed = true;
+            }
+        });
+
+        const nextStatus = this.deriveAnimeStatus(anime);
+        if (anime.status !== nextStatus) {
+            anime.setGlobalStatus(nextStatus);
+            changed = true;
+        }
+
+        return changed;
+    }
+
+    /**
+     * Derives the anime-level status from the collection of item statuses.
+     */
+    static deriveAnimeStatus(anime) {
+        const statuses = anime.items.map(i => i.status === 2 ? -1 : i.status);
         const hasBusy = statuses.includes(0);
         const hasWatched = statuses.includes(1);
-        const hasNew = statuses.includes(2);
+        const hasUnstarted = statuses.includes(-1);
+        const allWatched = statuses.every(status => status === 1);
 
-        if (hasBusy || (hasWatched && statuses.includes(-1))) {
-            anime.setGlobalStatus(0);
-        } else if (hasNew) {
-            anime.setGlobalStatus(2);
-        } else if (hasWatched) {
-            anime.setGlobalStatus(1);
-        } else {
-            anime.setGlobalStatus(-1);
+        if (hasBusy) {
+            return 0;
         }
+        if (hasWatched && hasUnstarted) {
+            return 2;
+        }
+        if (allWatched) {
+            return 1;
+        }
+        return -1;
     }
 }

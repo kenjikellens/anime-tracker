@@ -4,14 +4,19 @@ import { CardRenderer } from './domein/CardRenderer.js';
 import { AnilistApi } from './domein/AnilistApi.js';
 import { SearchManager } from './domein/SearchManager.js';
 import { ThemeManager } from './domein/ThemeManager.js';
+import { StatusUpdater } from './domein/StatusUpdater.js';
 
 // Overview page state. Persisted in localStorage so the UI survives refreshes.
 let repository = new AnimeRepository();
-let currentFilter = localStorage.getItem('activeFilter') || 'all';
+let currentFilter = normalizeStoredFilter(localStorage.getItem('activeFilter') || 'all');
 let currentSearchQuery = '';
 let currentSort = localStorage.getItem('sortOrder') || 'default';
 let currentViewMode = localStorage.getItem('viewMode') || 'grid';
 let currentGridCols = localStorage.getItem('gridCols') || '5';
+
+function normalizeStoredFilter(filter) {
+    return filter === '2' ? '-1' : filter;
+}
 
 /**
  * Bootstraps the overview page.
@@ -21,6 +26,17 @@ async function init() {
     ThemeManager.initTheme();
     const data = await DataStore.loadInitialData();
     repository.loadFromData(data);
+    let normalized = false;
+    repository.getAll().forEach(anime => {
+        normalized = StatusUpdater.normalizeAnimeStatuses(anime) || normalized;
+    });
+
+    if (currentFilter !== (localStorage.getItem('activeFilter') || 'all')) {
+        localStorage.setItem('activeFilter', currentFilter);
+    }
+    if (normalized) {
+        await DataStore.save(repository);
+    }
 
     renderData();
     setupFilters();

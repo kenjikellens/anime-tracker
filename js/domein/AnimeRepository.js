@@ -35,6 +35,9 @@ export class AnimeRepository {
      */
     filterByStatus(statusStr) {
         if (statusStr === 'all') return this.animes;
+        if (statusStr === '-1') {
+            return this.animes.filter(a => a.status === -1 || a.status === 2);
+        }
         const s = parseInt(statusStr, 10);
         return this.animes.filter(a => a.status === s);
     }

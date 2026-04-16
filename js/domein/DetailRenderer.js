@@ -13,7 +13,7 @@ export class DetailRenderer {
         
         let globalStatusSelect = `
             <select class="status-current detail-action-btn" id="global-status-select" style="width: 100%;">
-                <option value="2" ${anime.status === 2 ? 'selected' : ''}>Nieuw</option>
+                <option value="" ${anime.status === 2 ? 'selected' : ''} disabled>Nieuw (automatisch)</option>
                 <option value="-1" ${anime.status === -1 ? 'selected' : ''}>Te Bekijken</option>
                 <option value="0" ${anime.status === 0 ? 'selected' : ''}>Bezig</option>
                 <option value="1" ${anime.status === 1 ? 'selected' : ''}>Bekeken</option>
@@ -106,7 +106,6 @@ export class DetailRenderer {
                 
                 let itemStatusSelect = `
                     <select class="item-status-select" id="status-${item.id}">
-                        <option value="2" ${item.status === 2 ? 'selected' : ''}>Nieuw</option>
                         <option value="-1" ${item.status === -1 ? 'selected' : ''}>Te Bekijken</option>
                         <option value="0" ${item.status === 0 ? 'selected' : ''}>Bezig</option>
                         <option value="1" ${item.status === 1 ? 'selected' : ''}>Bekeken</option>

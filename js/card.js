@@ -18,6 +18,14 @@ async function init() {
     ThemeManager.initTheme();
     const data = await DataStore.loadInitialData();
     repository.loadFromData(data);
+    let normalized = false;
+    repository.getAll().forEach(anime => {
+        normalized = StatusUpdater.normalizeAnimeStatuses(anime) || normalized;
+    });
+
+    if (normalized) {
+        await DataStore.save(repository);
+    }
 
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');

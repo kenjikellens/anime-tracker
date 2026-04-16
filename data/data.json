@@ -56,7 +56,7 @@
             {
                 "id": "rascal-does-not-dream-ep-5",
                 "title": "Rascal Does Not Dream of a Dear Friend",
-                "status": 2,
+                "status": -1,
                 "type": "MOVIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -262,7 +262,7 @@
             {
                 "id": "the-100-girlfriends-who-really-really-really-really-really-love-you-ep-2",
                 "title": "The 100 Girlfriends Who Really, Really, Really, Really, REALLY Love You Season 3",
-                "status": 2,
+                "status": -1,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -542,7 +542,7 @@
             {
                 "id": "the-angel-next-door-spoils-me-rotten-ep-1",
                 "title": "The Angel Next Door Spoils Me Rotten Season 2",
-                "status": 2,
+                "status": -1,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -1591,7 +1591,7 @@
             {
                 "id": "blue-box-ep-1",
                 "title": "Blue Box Season 2",
-                "status": 2,
+                "status": -1,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -1967,7 +1967,7 @@
         "rating": 7,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx198727-pazIoPmgWAsa.jpg",
-        "bannerImage": "",
+        "bannerImage": null,
         "items": [
             {
                 "id": "chitose-is-in-the-ramune-bottle-ep-0",
@@ -1981,7 +1981,7 @@
             {
                 "id": "chitose-is-in-the-ramune-bottle-ep-1",
                 "title": "Chitose Is in the Ramune Bottle Cour 2",
-                "status": 2,
+                "status": -1,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -2097,7 +2097,7 @@
     {
         "id": "classroom-of-the-elite",
         "title": "Classroom of the Elite",
-        "status": 2,
+        "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx145545-DGl3LVvFlnHi.png",
@@ -2133,7 +2133,7 @@
             {
                 "id": "classroom-of-the-elite-ep-3",
                 "title": "Classroom of the Elite Season 4",
-                "status": 2,
+                "status": -1,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -2391,7 +2391,7 @@
             {
                 "id": "tune-in-to-the-midnight-heart-ep-1",
                 "title": "Tune In to the Midnight Heart Season 2",
-                "status": 2,
+                "status": -1,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -2557,7 +2557,7 @@
             {
                 "id": "re-zero-starting-life-in-another-world-ep-5",
                 "title": "Re:ZERO Season 4",
-                "status": 2,
+                "status": -1,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -2910,7 +2910,7 @@
     {
         "id": "date-a-live",
         "title": "Date A Live",
-        "status": 2,
+        "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx15583-Sxd2J4RJdRhj.jpg",
@@ -2919,7 +2919,7 @@
             {
                 "id": "date-a-live-ep-0",
                 "title": "Date A Live",
-                "status": 2,
+                "status": -1,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -2928,7 +2928,7 @@
             {
                 "id": "date-a-live-ep-1",
                 "title": "Date A Live: Date to Date",
-                "status": 2,
+                "status": -1,
                 "type": "OVA",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -2937,7 +2937,7 @@
             {
                 "id": "date-a-live-ep-2",
                 "title": "Date A Live II",
-                "status": 2,
+                "status": -1,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -2946,7 +2946,7 @@
             {
                 "id": "date-a-live-ep-3",
                 "title": "Date A Live II: Kurumi Star Festival",
-                "status": 2,
+                "status": -1,
                 "type": "OVA",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -2955,7 +2955,7 @@
             {
                 "id": "date-a-live-ep-4",
                 "title": "Date A Live Movie: Mayuri Judgment",
-                "status": 2,
+                "status": -1,
                 "type": "MOVIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -2964,7 +2964,7 @@
             {
                 "id": "date-a-live-ep-5",
                 "title": "Date A Live III",
-                "status": 2,
+                "status": -1,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -2973,7 +2973,7 @@
             {
                 "id": "date-a-live-ep-6",
                 "title": "Date A Bullet: Dead or Bullet",
-                "status": 2,
+                "status": -1,
                 "type": "MOVIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -2982,7 +2982,7 @@
             {
                 "id": "date-a-live-ep-7",
                 "title": "Date A Bullet: Nightmare or Queen",
-                "status": 2,
+                "status": -1,
                 "type": "MOVIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -2991,7 +2991,7 @@
             {
                 "id": "date-a-live-ep-8",
                 "title": "Date A Live IV",
-                "status": 2,
+                "status": -1,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -3000,7 +3000,7 @@
             {
                 "id": "date-a-live-ep-9",
                 "title": "Date A Live V",
-                "status": 2,
+                "status": -1,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -3011,7 +3011,7 @@
     {
         "id": "gridman-universe",
         "title": "Gridman Universe",
-        "status": 2,
+        "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx99424-9bV9lbUhynar.jpg",
@@ -3020,7 +3020,7 @@
             {
                 "id": "gridman-universe-ep-0",
                 "title": "SSSS.GRIDMAN",
-                "status": 2,
+                "status": -1,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -3029,7 +3029,7 @@
             {
                 "id": "gridman-universe-ep-1",
                 "title": "SSSS.DYNAZENON",
-                "status": 2,
+                "status": -1,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -3038,7 +3038,7 @@
             {
                 "id": "gridman-universe-ep-2",
                 "title": "Gridman Universe",
-                "status": 2,
+                "status": -1,
                 "type": "MOVIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -3049,7 +3049,7 @@
     {
         "id": "i-made-friends-with-the-second-prettiest-girl-in-my-class",
         "title": "I Made Friends with the Second Prettiest Girl in My Class",
-        "status": 2,
+        "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx169580-nXxpmqu6UVux.jpg",
@@ -3058,7 +3058,7 @@
             {
                 "id": "i-made-friends-with-the-second-prettiest-girl-in-my-class-ep-0",
                 "title": "I Made Friends with the Second Prettiest Girl in My Class",
-                "status": 2,
+                "status": -1,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -3069,7 +3069,7 @@
     {
         "id": "the-warrior-princess-and-the-barbaric-king",
         "title": "The Warrior Princess and the Barbaric King",
-        "status": 2,
+        "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx182483-La7chs6htDWr.jpg",
@@ -3078,7 +3078,7 @@
             {
                 "id": "the-warrior-princess-and-the-barbaric-king-ep-0",
                 "title": "The Warrior Princess and the Barbaric King",
-                "status": 2,
+                "status": -1,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
