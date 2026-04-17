@@ -164,3 +164,39 @@
 - [ ] Acchi Kocchi (SERIE - 12 eps)
 - [ ] Acchi Kocchi: Place=Place (OVA - 1 ep)
 - [ ] Acchi Kocchi Youchien (SPECIAL - 12 eps)
+ 
+## Oshi no Ko
+- [ ] Oshi no Ko Season 1 (TV Series - 11 eps)
+- [ ] Oshi no Ko Season 2 (TV Series - 13 eps)
+- [ ] Oshi no Ko Final Season (Announced)
+ 
+## Baka to Test to Shoukanjuu
+- [ ] Baka to Test to Shoukanjuu (TV Series - 13 eps)
+- [ ] Baka to Test to Shoukanjuu Specials (6 eps)
+- [ ] Baka to Test to Shoukanjuu: Matsuri (OVA - 2 eps)
+- [ ] Baka to Test to Shoukanjuu Ni! (TV Series - 13 eps)
+- [ ] Baka to Test to Shoukanjuu Ni! Specials (6 eps)
+- [ ] Baka to Test to Shoukanjuu: Christmas Special (1 ep)
+ 
+## Nisekoi
+- [ ] Nisekoi (TV Series - 20 eps)
+- [ ] Nisekoi OVA (3 eps)
+- [ ] Nisekoi: (TV Series - 12 eps)
+- [ ] Nisekoi: OVA (2 eps)
+- [ ] Nisekoimonogatari (ONA - 1 ep)
+ 
+## Mayo Chiki!
+- [ ] Mayo Chiki! (TV Series - 13 eps)
+
+## Oreshura
+- [ ] Oreshura (TV Series - 13 eps)
+
+## Ladies versus Butlers!
+- [ ] Ladies versus Butlers! (TV Series - 12 eps)
+- [ ] Ladies versus Butlers! Specials (6 eps)
+
+## Yosuga no Sora
+- [ ] Yosuga no Sora (TV Series - 12 eps)
+
+
+

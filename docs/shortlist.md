@@ -1,0 +1,95 @@
+# Anime Shortlist
+
+- 9-nine- Ruler's Crown
+- A Couple of Cuckoos
+- A Silent Voice (Koe no Katachi)
+- AHO-GIRL
+- Acchi Kocchi
+- Akashic Records of Bastard Magic Instructor
+- Alya Sometimes Hides Her Feelings in Russian
+- And you thought there is never a girl online?
+- Azumanga Daioh
+- Baka to Test to Shoukanjuu
+- Berserk
+- Blade Dance of the Elementalers
+- Blue Box
+- Bottom-Tier Character Tomozaki
+- Can a Boy and Girl Friendship Hold Up? (No, It Can't!!)
+- Chitose Is in the Ramune Bottle
+- Clannad
+- Class President is a Maid!
+- Classroom of the Elite
+- Danganronpa
+- Date A Live
+- Domestic Girlfriend
+- Don't Toy with Me, Miss Nagatoro
+- Eromanga Sensei
+- Food for the Soul
+- Fruits Basket (2019)
+- Gamers!
+- Ghost Stories
+- Golden Time
+- Gridman Universe
+- Haganai: I don't have many friends
+- Hensuki: Are you willing to fall in love with a pervert, as long as she's a cutie?
+- High School DxD
+- Horimiya
+- I Made Friends with the Second Prettiest Girl in My Class
+- I want to eat your pancreas (Kimi no Suizou wo Tabetai)
+- Inexpressive Kashiwada and Expressive Oota
+- Kaguya-sama: Love is War
+- Kiss x Sis
+- KonoSuba: God's Blessing on This Wonderful World!
+- Ladies versus Butlers!
+- Love is Like a Cocktail
+- Love, Chunibyo & Other Delusions!
+- Makeine: Too Many Losing Heroines!
+- Masamune-kun's Revenge
+- Mayo Chiki!
+- Medaka Kuroiwa is Impervious to My Charms
+- Mom, I'm Sorry
+- More than a married couple, but not lovers.
+- My Dress-Up Darling
+- My Girlfriend is Shobitch
+- My Little Monster
+- My Little Sister Can't Be This Cute (OreImo)
+- My Love Story with Yamada-kun at Lv999
+- My Matchmaking Partner Is My Student, An Aggressive Trouble-Maker
+- My Teen Romantic Comedy SNAFU (Oregairu)
+- Nisekoi
+- Orange
+- Oreshura
+- Oshi no Ko
+- Our Last Crusade or the Rise of a New World
+- Prison School
+- Pseudo Harem
+- Rascal Does Not Dream
+- Re:ZERO - Starting Life in Another World
+- ReLIFE
+- Redo of Healer
+- Rent-a-Girlfriend
+- SHIMONETA: A Boring World Where the Concept of Dirty Jokes Doesn't Exist
+- Shikimori's Not Just a Cutie
+- Spy x Family
+- Teasing Master Takagi-san
+- The 100 Girlfriends Who Really, Really, Really, Really, Really Love You
+- The Angel Next Door Spoils Me Rotten
+- The Children of Shiunji Family
+- The Comic Artist and His Assistants
+- The Dangers in My Heart
+- The Dreaming Boy is a Realist
+- The Fragrant Flower Blooms with Dignity
+- The Genius Prince's Guide to Raising a Nation Out of Debt
+- The Iceblade Sorcerer Shall Rule the World
+- The Melancholy of Haruhi Suzumiya
+- The Pet Girl of Sakurasou
+- The Quintessential Quintuplets
+- The Ryuo's Work is Never Done!
+- The Warrior Princess and the Barbaric King
+- To Love Ru
+- Toradora!
+- Trinity Seven
+- Tune In to the Midnight Heart
+- Umamusume: Pretty Derby
+- Your Lie in April (Shigatsu wa Kimi no Uso)
+- Yosuga no Sora
