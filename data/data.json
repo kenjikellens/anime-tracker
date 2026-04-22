@@ -3187,8 +3187,8 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
-        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx150672-WqmmwZ4nMzAy.png",
-        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/150672-ISwoA0eS722H.jpg",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx166531-dAL5MsqDHUkj.jpg",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/166531-vUu7iDwUkC67.jpg",
         "items": [
             {
                 "id": "oshi-no-ko-ep-0",
@@ -3412,8 +3412,8 @@
     {
         "id": "yosuga-no-sora",
         "title": "Yosuga no Sora",
-        "status": 0,
-        "rating": 0,
+        "status": 1,
+        "rating": 4.6,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx8861-DZKseZpdtBwp.jpg",
         "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/8861-MjfDGBNAo6Yc.jpg",
@@ -3421,11 +3421,22 @@
             {
                 "id": "yosuga-no-sora-ep-0",
                 "title": "Yosuga no Sora",
-                "status": 0,
+                "status": 1,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [
-                    1
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12
                 ],
                 "episodesCount": 12
             }
