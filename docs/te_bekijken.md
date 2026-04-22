@@ -200,3 +200,19 @@
 
 
 
+
+## Abnormal Physiology Seminar
+- [ ] Abnormal Physiology Seminar OVA (OVA - 2 eps)
+- [ ] Abnormal Physiology Seminar (TV Series - 13 eps)
+
+## My Wife is the Student Council President
+- [ ] My Wife is the Student Council President (TV Series - 12 eps)
+- [ ] My Wife is the Student Council President OVA (OVA - 1 ep)
+- [ ] My Wife is the Student Council President+! (TV Series - 12 eps)
+- [ ] My Wife is the Student Council President: Wife Theater (Special - 12 eps)
+
+## A Sister's All You Need
+- [ ] A Sister's All You Need (TV Series - 12 eps)
+- [ ] A Sister's All You Need Specials (Special - 2 eps)
+- [ ] ◯◯ sae Ireba Ii. (ONA - 6 eps)
+
