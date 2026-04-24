@@ -25,6 +25,7 @@
 - Don't Toy with Me, Miss Nagatoro
 - Eromanga Sensei
 - Food for the Soul
+- Food Wars!
 - Fruits Basket (2019)
 - Gamers!
 - Ghost Stories

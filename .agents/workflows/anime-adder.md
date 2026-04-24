@@ -10,15 +10,15 @@ To maintain database integrity and ensure seamless UI rendering, follow these st
 
 ### Parent Object
 *   **ID**: Lowercase-slug format (e.g., `"horimiya"` or `"rascal-does-not-dream"`).
-*   **Title**: The official global title of the franchise.
+*   **Title**: The official global title of the franchise (ENGLISH VERSION).
 *   **Status**: Reflects the overall progress of the franchise (see [Status Codes](#status-codes)).
-*   **Rating**: Global rating (0.0 to 10.0). Usually 0 if no items are watched.
-*   **AniList ID**: (`anilistId`) The numeric ID from AniList to enable automated metadata hydration (covers, banners, and episode counts).
+*   **Rating**: put this on 0.0 as standard.
 *   **Images**: Use AniList CDN links for `coverImage` and `bannerImage`.
 
 ### Items Array
 Each entry (Season, Movie, OVA) must be an object in the `items` array:
-*   **Item ID**: Format: `{parent-id}-ep-{index}` (e.g., `"horimiya-ep-0"`).
+*   **Item ID**: Lowercase-slug format of the item's title (e.g., if title is `"Horimiya: The Missing Pieces"`, ID is `"horimiya-the-missing-pieces"`). Remove special characters and replace spaces with dashes.
+*   **Title**: the correct english title of this item.
 *   **Type**: Must be one of: `SERIE`, `MOVIE`, `OVA`, `SPECIAL`, `ONA`, `SPIN-OFF`.
 *   **Episodes**: 
     *   `episodesCount`: Total number of episodes.

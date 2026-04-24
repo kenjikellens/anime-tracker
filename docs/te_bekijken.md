@@ -216,3 +216,14 @@
 - [ ] A Sister's All You Need Specials (Special - 2 eps)
 - [ ] ◯◯ sae Ireba Ii. (ONA - 6 eps)
 
+## Food Wars!
+- [ ] Food Wars! (TV Series - 24 eps)
+- [ ] Food Wars! The Second Plate (TV Series - 13 eps)
+- [ ] Food Wars! The Third Plate (TV Series - 12 eps)
+- [ ] Food Wars! The Third Plate: Totsuki Train Arc (TV Series - 12 eps)
+- [ ] Food Wars! The Fourth Plate (TV Series - 12 eps)
+- [ ] Food Wars! The Fifth Plate (TV Series - 13 eps)
+- [ ] Food Wars! OVA (OVA - 2 eps)
+- [ ] Food Wars! The Second Plate OVA (OVA - 2 eps)
+- [ ] Food Wars! The Third Plate: Erina at Polar Star Dormitory (OVA - 1 ep)
+
