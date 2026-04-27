@@ -3606,5 +3606,61 @@
                 "episodesCount": 1
             }
         ]
+    },
+    {
+        "id": "nisekoi",
+        "title": "Nisekoi",
+        "status": -1,
+        "rating": 0.0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx18897-G2Fx2ZACsXBU.jpg",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/18897-h3TRFmkGYLkd.jpg",
+        "items": [
+            {
+                "id": "nisekoi-s1",
+                "title": "Nisekoi",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 20
+            },
+            {
+                "id": "nisekoi-ova",
+                "title": "Nisekoi OVA",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 3
+            },
+            {
+                "id": "nisekoi-s2",
+                "title": "Nisekoi:",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "nisekoi-s2-ova",
+                "title": "Nisekoi: OVA",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 2
+            },
+            {
+                "id": "nisekoimonogatari",
+                "title": "Nisekoimonogatari",
+                "status": -1,
+                "type": "ONA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            }
+        ]
     }
-]
+]

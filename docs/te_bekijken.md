@@ -179,10 +179,10 @@
 - [ ] Baka to Test to Shoukanjuu: Christmas Special (1 ep)
  
 ## Nisekoi
-- [ ] Nisekoi (TV Series - 20 eps)
-- [ ] Nisekoi OVA (3 eps)
-- [ ] Nisekoi: (TV Series - 12 eps)
-- [ ] Nisekoi: OVA (2 eps)
+- [ ] Nisekoi (SERIE - 20 eps)
+- [ ] Nisekoi OVA (OVA - 3 eps)
+- [ ] Nisekoi: (SERIE - 12 eps)
+- [ ] Nisekoi: OVA (OVA - 2 eps)
 - [ ] Nisekoimonogatari (ONA - 1 ep)
  
 ## Mayo Chiki!
