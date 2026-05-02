@@ -227,3 +227,9 @@
 - [ ] Food Wars! The Second Plate OVA (OVA - 2 eps)
 - [ ] Food Wars! The Third Plate: Erina at Polar Star Dormitory (OVA - 1 ep)
 
+## GJ Club
+- [ ] GJ Club (TV Series - 12 eps)
+- [ ] GJ-bu@ (Special - 1 ep)
+
+## Campione!
+- [ ] Campione! (TV Series - 13 eps)

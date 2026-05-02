@@ -4,6 +4,8 @@ description: # Anime Data Beheer
 
 # Anime Data Management
 
+Watch out always search up the anime on the internet for all the series, OVAs, specials, movies, etc... and place them all in, do not assume you know all the series, OVAs, etc...
+
 To maintain database integrity and ensure seamless UI rendering, follow these standards when adding, updating, or migrating anime entries.
 
 ## 1. Database: `data/data.json`
