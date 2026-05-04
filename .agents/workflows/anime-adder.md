@@ -15,7 +15,7 @@ To maintain database integrity and ensure seamless UI rendering, follow these st
 *   **Title**: The official global title of the franchise (ENGLISH VERSION).
 *   **Status**: Reflects the overall progress of the franchise (see [Status Codes](#status-codes)).
 *   **Rating**: put this on 0.0 as standard.
-*   **Images**: Use AniList CDN links for `coverImage` and `bannerImage`.
+*   **Images**: Use AniList CDN links for `coverImage` and `bannerImage`. (search up if needed)
 
 ### Items Array
 Each entry (Season, Movie, OVA) must be an object in the `items` array:

@@ -33,7 +33,9 @@ export class DetailRenderer {
 
         // --- SIDEBAR ---
         const sidebar = document.createElement('aside');
-        sidebar.className = 'anime-detail-sidebar-v3';
+        /** Applies glow-gold effect to the sidebar for legendary-rated anime (>= 9). */
+        const sidebarGlow = RatingManager.getCardClass(anime.rating);
+        sidebar.className = `anime-detail-sidebar-v3 ${sidebarGlow}`.trim();
 
         const posterWrap = document.createElement('div');
         posterWrap.className = 'sidebar-poster-wrap';

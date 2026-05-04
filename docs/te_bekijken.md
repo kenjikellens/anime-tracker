@@ -178,7 +178,7 @@
 - [ ] Baka to Test to Shoukanjuu Ni! Specials (6 eps)
 - [ ] Baka to Test to Shoukanjuu: Christmas Special (1 ep)
  
-## Nisekoi
+## Nisekoi: False Love
 - [ ] Nisekoi (SERIE - 20 eps)
 - [ ] Nisekoi OVA (OVA - 3 eps)
 - [ ] Nisekoi: (SERIE - 12 eps)
@@ -233,3 +233,22 @@
 
 ## Campione!
 - [ ] Campione! (TV Series - 13 eps)
+
+## Monogatari Series
+- [ ] Bakemonogatari (TV Series - 15 eps)
+- [ ] Nisemonogatari (TV Series - 11 eps)
+- [ ] Nekomonogatari Black (TV Series - 4 eps)
+- [ ] Monogatari Series Second Season (TV Series - 26 eps)
+- [ ] Hanamonogatari (TV Series - 5 eps)
+- [ ] Tsukimonogatari (TV Series - 4 eps)
+- [ ] Owarimonogatari (TV Series - 12 eps)
+- [ ] Koyomimonogatari (ONA - 12 eps)
+- [ ] Kizumonogatari Part 1: Tekketsu (Movie)
+- [ ] Kizumonogatari Part 2: Nekketsu (Movie)
+- [ ] Kizumonogatari Part 3: Reiketsu (Movie)
+- [ ] Owarimonogatari Second Season (TV Series - 7 eps)
+- [ ] Zoku Owarimonogatari (OVA - 6 eps)
+- [ ] MONOGATARI Series: OFF & MONSTER Season (ONA - 14 eps)
+- [ ] Koyomi History (Special - 1 ep)
+- [ ] MONOGATARI Series: OFF & MONSTER Season - Zankoku Douwa: Utsukushi-hime (Special - 1 ep)
+- [ ] Monogatari Series: Off & Monster Season Shin Episode (Special - 0 eps)

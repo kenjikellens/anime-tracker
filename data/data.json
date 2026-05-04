@@ -126,7 +126,21 @@
                 "status": 1,
                 "type": "SERIE",
                 "rating": 0,
-                "watchedEpisodes": [],
+                "watchedEpisodes": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13
+                ],
                 "episodesCount": 13
             },
             {
@@ -490,7 +504,7 @@
         "rating": 8.3,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx4224-PXVMBLNwy2aF.jpg",
-        "bannerImage": "",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/4224-iPUOHdMde27j.jpg",
         "items": [
             {
                 "id": "toradora-series",
@@ -1695,7 +1709,7 @@
         "rating": 0.1,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx199029-8eMkhHlD62Ik.png",
-        "bannerImage": "",
+        "bannerImage": null,
         "items": [
             {
                 "id": "rent-a-girlfriend-s1",
@@ -2242,7 +2256,29 @@
                 "type": "SERIE",
                 "rating": 6.8,
                 "watchedEpisodes": [
-                    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20,
+                    21,
+                    22,
+                    23
                 ],
                 "episodesCount": 23
             },
@@ -2264,7 +2300,30 @@
                 "type": "SERIE",
                 "rating": 4.5,
                 "watchedEpisodes": [
-                    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20,
+                    21,
+                    22,
+                    23,
+                    24
                 ],
                 "episodesCount": 24
             },
@@ -3424,8 +3483,7 @@
                 "watchedEpisodes": [],
                 "episodesCount": 13
             }
-        ],
-        "anilistId": 10187
+        ]
     },
     {
         "id": "my-wife-is-the-student-council-president",
@@ -3472,8 +3530,7 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ],
-        "anilistId": 20984
+        ]
     },
     {
         "id": "a-sister-s-all-you-need",
@@ -3481,7 +3538,6 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
-        "anilistId": 98596,
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx98596-E2aZouOyuQ8G.jpg",
         "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/98596-w7gpbUP7QESX.jpg",
         "items": [
@@ -3520,7 +3576,6 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
-        "anilistId": 20923,
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20923-pNT38pjW3RFH.jpg",
         "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/20923-9tFdZ5hIrRiF.png",
         "items": [
@@ -3611,7 +3666,7 @@
         "id": "nisekoi",
         "title": "Nisekoi",
         "status": -1,
-        "rating": 0.0,
+        "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx18897-G2Fx2ZACsXBU.jpg",
         "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/18897-h3TRFmkGYLkd.jpg",
@@ -3671,7 +3726,6 @@
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx14811-lTAtgO4OHE3I.png",
         "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/14811-MeLHgtFpJkfy.jpg",
-        "anilistId": 14811,
         "items": [
             {
                 "id": "gj-club-ep-0",
@@ -3697,21 +3751,240 @@
         "id": "campione",
         "title": "Campione!",
         "status": -1,
-        "rating": 0.0,
+        "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx12293-DKc0XJ0cacSZ.jpg",
         "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/12293.jpg",
-        "anilistId": 12293,
         "items": [
             {
                 "id": "campione",
                 "title": "Campione!",
                 "status": -1,
                 "type": "SERIE",
-                "rating": 0.0,
+                "rating": 0,
                 "watchedEpisodes": [],
                 "episodesCount": 13
             }
         ]
+    },
+    {
+        "id": "monogatari",
+        "title": "Monogatari Series",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx5081-9GocceQ5Z865.jpg",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/n5081-0Zcn5GOFYHMc.jpg",
+        "items": [
+            {
+                "id": "bakemonogatari",
+                "title": "Bakemonogatari",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 15
+            },
+            {
+                "id": "nisemonogatari",
+                "title": "Nisemonogatari",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 11
+            },
+            {
+                "id": "nekomonogatari-black",
+                "title": "Nekomonogatari Black",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 4
+            },
+            {
+                "id": "monogatari-series-second-season",
+                "title": "Monogatari Series Second Season",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 26
+            },
+            {
+                "id": "hanamonogatari",
+                "title": "Hanamonogatari",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 5
+            },
+            {
+                "id": "tsukimonogatari",
+                "title": "Tsukimonogatari",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 4
+            },
+            {
+                "id": "owarimonogatari",
+                "title": "Owarimonogatari",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "koyomimonogatari",
+                "title": "Koyomimonogatari",
+                "status": -1,
+                "type": "ONA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "kizumonogatari-part-1-tekketsu",
+                "title": "Kizumonogatari Part 1: Tekketsu",
+                "status": -1,
+                "type": "MOVIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "kizumonogatari-part-2-nekketsu",
+                "title": "Kizumonogatari Part 2: Nekketsu",
+                "status": -1,
+                "type": "MOVIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "kizumonogatari-part-3-reiketsu",
+                "title": "Kizumonogatari Part 3: Reiketsu",
+                "status": -1,
+                "type": "MOVIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "owarimonogatari-second-season",
+                "title": "Owarimonogatari Second Season",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 7
+            },
+            {
+                "id": "zoku-owarimonogatari",
+                "title": "Zoku Owarimonogatari",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 6
+            },
+            {
+                "id": "monogatari-series-off-monster-season",
+                "title": "MONOGATARI Series: OFF & MONSTER Season",
+                "status": -1,
+                "type": "ONA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 14
+            },
+            {
+                "id": "koyomi-history",
+                "title": "Koyomi History",
+                "status": -1,
+                "type": "SPECIAL",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "monogatari-series-off-monster-season-zankoku-douwa-utsukushi-hime",
+                "title": "MONOGATARI Series: OFF & MONSTER Season - Zankoku Douwa: Utsukushi-hime",
+                "status": -1,
+                "type": "SPECIAL",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "monogatari-series-off-monster-season-shin-episode",
+                "title": "Monogatari Series: Off & Monster Season Shin Episode",
+                "status": -1,
+                "type": "SPECIAL",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 0
+            }
+        ]
+    },
+    {
+        "id": "nisekoi",
+        "title": "Nisekoi: False Love",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx18897-G2Fx2ZACsXBU.jpg",
+        "bannerImage": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/18897-h3TRFmkGYLkd.jpg",
+        "items": [
+            {
+                "id": "nisekoi-series",
+                "title": "Nisekoi",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 20
+            },
+            {
+                "id": "nisekoi-ova",
+                "title": "Nisekoi OVA",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 3
+            },
+            {
+                "id": "nisekoi-2",
+                "title": "Nisekoi:",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "nisekoi-2-ova",
+                "title": "Nisekoi: OVA",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 2
+            },
+            {
+                "id": "nisekoimonogatari",
+                "title": "Nisekoimonogatari",
+                "status": -1,
+                "type": "ONA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            }
+        ]
     }
-]
+]
