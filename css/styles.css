@@ -214,15 +214,6 @@ footer {
     pointer-events: none;
 }
 
-/* Specific icon sizing for the AniList synchronization button. */
-#sync-anilist-btn i {
-    font-size: 18px;
-}
-
-/* Specific icon sizing for the AniList push/upload button. */
-#push-anilist-btn i {
-    font-size: 15px;
-}
 
 /* A dropdown selector used in the header to switch between different data sources. */
 .header-select {
