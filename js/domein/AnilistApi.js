@@ -12,7 +12,6 @@ export class AnilistApi {
             id
             title { romaji english }
             coverImage { large color }
-            bannerImage
             format
             episodes
           }
@@ -51,7 +50,6 @@ export class AnilistApi {
             id
             title { romaji english }
             coverImage { large color }
-            bannerImage
             format
             episodes
           }

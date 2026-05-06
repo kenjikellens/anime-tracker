@@ -83,7 +83,7 @@ export class AnimeRepository {
             rating: a.rating,
             releaseDate: a.releaseDate,
             coverImage: a.coverImage,
-            bannerImage: a.bannerImage,
+
             items: a.items.map(i => ({ id: i.id, title: i.title, status: i.status, type: i.type, rating: i.rating, watchedEpisodes: i.watchedEpisodes, episodesCount: i.episodesCount }))
         }));
     }

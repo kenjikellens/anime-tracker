@@ -35,13 +35,13 @@ async function init() {
         if (currentAnime) {
             renderDetail();
 
-            // Hydrate missing poster/banner data for this one record only.
-            if (!currentAnime.bannerImage || currentAnime.items.some(i => !i.episodesCount || i.episodesCount === 0)) {
+            // Hydrate missing poster/episode data for this one record only.
+            if (currentAnime.items.some(i => !i.episodesCount || i.episodesCount === 0)) {
                 const searchTerm = currentAnime.items.length > 0 ? currentAnime.items[0].title : currentAnime.title;
                 const apiData = await AnilistApi.fetchMediaByTitle(searchTerm);
                 if (apiData) {
                     currentAnime.coverImage = apiData.coverImage.large;
-                    currentAnime.bannerImage = apiData.bannerImage;
+
                     if (currentAnime.items.length > 0 && (!currentAnime.items[0].episodesCount || currentAnime.items[0].episodesCount === 0)) {
                         currentAnime.items[0].episodesCount = apiData.episodes || 12;
                     }
