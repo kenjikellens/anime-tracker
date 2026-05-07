@@ -1,4 +1,4 @@
-# Anime Shortlist
+# Anime Shortlist (alphabetic order)
 
 - 9-nine- Ruler's Crown
 - A Couple of Cuckoos
@@ -21,6 +21,7 @@
 - Classroom of the Elite
 - Danganronpa
 - Date A Live
+- Dealing with Mikadono Sisters is a Breeze
 - Domestic Girlfriend
 - Don't Toy with Me, Miss Nagatoro
 - Eromanga Sensei
@@ -33,11 +34,13 @@
 - Gridman Universe
 - Haganai: I don't have many friends
 - Hensuki: Are you willing to fall in love with a pervert, as long as she's a cutie?
+- Higehiro: After Being Rejected, I Shaved and Took in a High School Runaway
 - High School DxD
 - Horimiya
 - I Made Friends with the Second Prettiest Girl in My Class
 - I want to eat your pancreas (Kimi no Suizou wo Tabetai)
 - Inexpressive Kashiwada and Expressive Oota
+- Itazura na Kiss
 - Kaguya-sama: Love is War
 - Kiss x Sis
 - KonoSuba: God's Blessing on This Wonderful World!
@@ -48,16 +51,18 @@
 - Masamune-kun's Revenge
 - Mayo Chiki!
 - Medaka Kuroiwa is Impervious to My Charms
+- Mistress Kanan is Devilishly Easy
 - Mom, I'm Sorry
 - More than a married couple, but not lovers.
 - My Dress-Up Darling
+- My Friend's Little Sister Has It In For Me
 - My Girlfriend is Shobitch
 - My Little Monster
 - My Little Sister Can't Be This Cute (OreImo)
 - My Love Story with Yamada-kun at Lv999
 - My Matchmaking Partner Is My Student, An Aggressive Trouble-Maker
 - My Teen Romantic Comedy SNAFU (Oregairu)
-- Nisekoi
+- Nisekoi: False Love
 - Orange
 - Oreshura
 - Oshi no Ko
@@ -69,6 +74,8 @@
 - ReLIFE
 - Redo of Healer
 - Rent-a-Girlfriend
+- Saekano: How to Raise a Boring Girlfriend
+- Seitokai Yakuindomo
 - SHIMONETA: A Boring World Where the Concept of Dirty Jokes Doesn't Exist
 - Shikimori's Not Just a Cutie
 - Spy x Family
@@ -88,9 +95,12 @@
 - The Ryuo's Work is Never Done!
 - The Warrior Princess and the Barbaric King
 - To Love Ru
+- Tomo-chan is a Girl!
 - Toradora!
 - Trinity Seven
 - Tune In to the Midnight Heart
 - Umamusume: Pretty Derby
+- World's End Harem
+- Yamada-kun and the Seven Witches
 - Your Lie in April (Shigatsu wa Kimi no Uso)
 - Yosuga no Sora

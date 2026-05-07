@@ -3884,5 +3884,340 @@
                 "episodesCount": 1
             }
         ]
+    },
+    {
+        "id": "higehiro",
+        "title": "Higehiro: After Being Rejected, I Shaved and Took in a High School Runaway",
+        "status": -1,
+        "rating": 0.0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx114232-2rm50ZD1cQgP.jpg",
+        "items": [
+            {
+                "id": "higehiro-series",
+                "title": "Higehiro: After Being Rejected, I Shaved and Took in a High School Runaway",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 13
+            }
+        ]
+    },
+    {
+        "id": "itazura-na-kiss",
+        "title": "Itazura na Kiss",
+        "status": -1,
+        "rating": 0.0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx3731-aCN5LnCn08qm.png",
+        "items": [
+            {
+                "id": "itazura-na-kiss-series",
+                "title": "Itazura na Kiss",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 25
+            }
+        ]
+    },
+    {
+        "id": "tomo-chan-is-a-girl",
+        "title": "Tomo-chan is a Girl!",
+        "status": -1,
+        "rating": 0.0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx151806-IAMi2ctI5xJI.jpg",
+        "items": [
+            {
+                "id": "tomo-chan-is-a-girl-series",
+                "title": "Tomo-chan is a Girl!",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 13
+            }
+        ]
+    },
+    {
+        "id": "my-friends-little-sister-has-it-in-for-me",
+        "title": "My Friend's Little Sister Has It In For Me",
+        "status": -1,
+        "rating": 0.0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx129195-9BT4wE1QTLj2.jpg",
+        "items": [
+            {
+                "id": "my-friends-little-sister-has-it-in-for-me-series",
+                "title": "My Friend's Little Sister Has It In For Me",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            }
+        ]
+    },
+    {
+        "id": "mistress-kanan-is-devilishly-easy",
+        "title": "Mistress Kanan is Devilishly Easy",
+        "status": 2,
+        "rating": 0.0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx190704-Ts1VvkrNdnCZ.jpg",
+        "items": [
+            {
+                "id": "mistress-kanan-is-devilishly-easy-series",
+                "title": "Mistress Kanan is Devilishly Easy",
+                "status": 2,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            }
+        ]
+    },
+    {
+        "id": "worlds-end-harem",
+        "title": "World's End Harem",
+        "status": -1,
+        "rating": 0.0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx118465-EGB0OajA5rei.jpg",
+        "items": [
+            {
+                "id": "worlds-end-harem-series",
+                "title": "World's End Harem",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 11
+            }
+        ]
+    },
+    {
+        "id": "saekano",
+        "title": "Saekano: How to Raise a Boring Girlfriend",
+        "status": -1,
+        "rating": 0.0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx20657-pMZBj6K6mLhi.jpg",
+        "items": [
+            {
+                "id": "saekano-s1",
+                "title": "Saekano: How to Raise a Boring Girlfriend",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 13
+            },
+            {
+                "id": "saekano-s2",
+                "title": "Saekano: How to Raise a Boring Girlfriend \u266d",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "saekano-movie-finale",
+                "title": "Saekano the Movie: Finale",
+                "status": -1,
+                "type": "MOVIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            }
+        ]
+    },
+    {
+        "id": "seitokai-yakuindomo",
+        "title": "Seitokai Yakuindomo",
+        "status": -1,
+        "rating": 0.0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx8675-5H2QSLvXA7bH.jpg",
+        "items": [
+            {
+                "id": "seitokai-yakuindomo-s1",
+                "title": "Seitokai Yakuindomo",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 13
+            },
+            {
+                "id": "seitokai-yakuindomo-ova-1",
+                "title": "Seitokai Yakuindomo OVA",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 8
+            },
+            {
+                "id": "seitokai-yakuindomo-s2",
+                "title": "Seitokai Yakuindomo*",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 13
+            },
+            {
+                "id": "seitokai-yakuindomo-ova-2",
+                "title": "Seitokai Yakuindomo* OVA",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 10
+            },
+            {
+                "id": "seitokai-yakuindomo-movie-1",
+                "title": "Seitokai Yakuindomo Movie",
+                "status": -1,
+                "type": "MOVIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "seitokai-yakuindomo-movie-2",
+                "title": "Seitokai Yakuindomo Movie 2",
+                "status": -1,
+                "type": "MOVIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            }
+        ]
+    },
+    {
+        "id": "dealing-with-mikadono-sisters-is-a-breeze",
+        "title": "Dealing with Mikadono Sisters is a Breeze",
+        "status": 2,
+        "rating": 0.0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx178886-KjzSXyEB61zX.jpg",
+        "items": [
+            {
+                "id": "dealing-with-mikadono-sisters-is-a-breeze-series",
+                "title": "Dealing with Mikadono Sisters is a Breeze",
+                "status": 2,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            }
+        ]
+    },
+    {
+        "id": "nisekoi-false-love",
+        "title": "Nisekoi: False Love",
+        "status": -1,
+        "rating": 0.0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx18897-G2Fx2ZACsXBU.jpg",
+        "items": [
+            {
+                "id": "nisekoi-s1",
+                "title": "Nisekoi",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 20
+            },
+            {
+                "id": "nisekoi-ova-1",
+                "title": "Nisekoi OVA",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 3
+            },
+            {
+                "id": "nisekoi-s2",
+                "title": "Nisekoi:",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "nisekoi-ova-2",
+                "title": "Nisekoi: OVA",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 2
+            },
+            {
+                "id": "nisekoi-monogatari",
+                "title": "Nisekoimonogatari",
+                "status": -1,
+                "type": "ONA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            }
+        ]
+    },
+    {
+        "id": "yamada-kun-and-the-seven-witches",
+        "title": "Yamada-kun and the Seven Witches",
+        "status": -1,
+        "rating": 0.0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20966-HboUtUzEKWl6.jpg",
+        "items": [
+            {
+                "id": "yamada-kun-series",
+                "title": "Yamada and the Seven Witches",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "yamada-kun-ova",
+                "title": "Yamada and the Seven Witches (OVA)",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 2
+            },
+            {
+                "id": "yamada-kun-ona",
+                "title": "Yamada-kun to 7-nin no Majo (ONA)",
+                "status": -1,
+                "type": "ONA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "yamada-kun-special",
+                "title": "Yankee-kun na Yamada-kun to Megane-chan to Majo",
+                "status": -1,
+                "type": "SPECIAL",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            }
+        ]
     }
 ]

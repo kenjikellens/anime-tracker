@@ -252,3 +252,44 @@
 - [ ] Koyomi History (Special - 1 ep)
 - [ ] MONOGATARI Series: OFF & MONSTER Season - Zankoku Douwa: Utsukushi-hime (Special - 1 ep)
 - [ ] Monogatari Series: Off & Monster Season Shin Episode (Special - 0 eps)
+
+## Higehiro: After Being Rejected, I Shaved and Took in a High School Runaway
+- [ ] Higehiro: After Being Rejected, I Shaved and Took in a High School Runaway (TV Series - 13 eps)
+
+## Itazura na Kiss
+- [ ] ItaKiss (TV Series - 25 eps)
+
+## Tomo-chan is a Girl!
+- [ ] Tomo-chan Is a Girl! (TV Series - 13 eps)
+
+## My Friend's Little Sister Has It In For Me
+- [ ] My Friend's Little Sister Has It In for Me! (TV Series - 12 eps)
+
+## Mistress Kanan is Devilishly Easy
+- [ ] Mistress Kanan is Devilishly Easy (TV Series - 12 eps)
+
+## World's End Harem
+- [ ] World's End Harem (TV Series - 11 eps)
+
+## Saekano: How to Raise a Boring Girlfriend
+- [ ] Saekano: How to Raise a Boring Girlfriend (TV Series - 13 eps)
+- [ ] Saekano: How to Raise a Boring Girlfriend ♭ (TV Series - 12 eps)
+- [ ] Saekano the Movie: Finale (Movie)
+
+## Seitokai Yakuindomo
+- [ ] Seitokai Yakuindomo (TV Series - 13 eps)
+- [ ] Seitokai Yakuindomo OVA (OVA - 8 eps)
+- [ ] Seitokai Yakuindomo* (TV Series - 13 eps)
+- [ ] Seitokai Yakuindomo* OVA (OVA - 10 eps)
+- [ ] Seitokai Yakuindomo Movie (Movie)
+- [ ] Seitokai Yakuindomo Movie 2 (Movie)
+
+## Dealing with Mikadono Sisters is a Breeze
+- [ ] Dealing with Mikadono Sisters Is a Breeze (TV Series - 12 eps)
+
+## Yamada-kun and the Seven Witches
+- [ ] Yamada and the Seven Witches (TV Series - 12 eps)
+- [ ] Yamada and the Seven Witches (OVA - 2 eps)
+- [ ] Yamada-kun to 7-nin no Majo (ONA - 1 ep)
+- [ ] Yankee-kun na Yamada-kun to Megane-chan to Majo (Special - 1 ep)
+
