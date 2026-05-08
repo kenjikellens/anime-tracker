@@ -293,3 +293,12 @@
 - [ ] Yamada-kun to 7-nin no Majo (ONA - 1 ep)
 - [ ] Yankee-kun na Yamada-kun to Megane-chan to Majo (Special - 1 ep)
 
+
+## ORESUKI: Are you the only one who loves me?
+- [ ] ORESUKI: Are you the only one who loves me? (TV Series - 12 eps)
+- [ ] ORESUKI: Are you the only one who loves me? OVA (1 ep)
+- [ ] ORESUKI: Are you the only one who loves me? Special (1 ep)
+
+## The Café Terrace and Its Goddesses
+- [ ] The Café Terrace and Its Goddesses Season 1 (12 eps)
+- [ ] The Café Terrace and Its Goddesses Season 2 (12 eps)

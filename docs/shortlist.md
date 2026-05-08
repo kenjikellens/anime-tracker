@@ -65,6 +65,7 @@
 - Nisekoi: False Love
 - Orange
 - Oreshura
+- ORESUKI: Are you the only one who loves me?
 - Oshi no Ko
 - Our Last Crusade or the Rise of a New World
 - Prison School
@@ -82,6 +83,7 @@
 - Teasing Master Takagi-san
 - The 100 Girlfriends Who Really, Really, Really, Really, Really Love You
 - The Angel Next Door Spoils Me Rotten
+- The Café Terrace and Its Goddesses
 - The Children of Shiunji Family
 - The Comic Artist and His Assistants
 - The Dangers in My Heart

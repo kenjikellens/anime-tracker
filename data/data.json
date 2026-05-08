@@ -4219,5 +4219,70 @@
                 "episodesCount": 1
             }
         ]
+    },
+    {
+        "id": "the-cafe-terrace-and-its-goddesses",
+        "title": "The Café Terrace and Its Goddesses",
+        "status": -1,
+        "rating": 0.0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx154459-3kQzY7wYjZ8I.jpg",
+        "items": [
+            {
+                "id": "the-cafe-terrace-and-its-goddesses-s1",
+                "title": "The Café Terrace and Its Goddesses Season 1",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "the-cafe-terrace-and-its-goddesses-s2",
+                "title": "The Café Terrace and Its Goddesses Season 2",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            }
+        ]
+    },
+    {
+        "id": "oresuki-are-you-the-only-one-who-loves-me",
+        "title": "ORESUKI: Are you the only one who loves me?",
+        "status": -1,
+        "rating": 0.0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx104464-9V9H5a4e5033.jpg",
+        "items": [
+            {
+                "id": "oresuki-series",
+                "title": "ORESUKI: Are you the only one who loves me?",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "oresuki-ova-our-playball",
+                "title": "ORESUKI: Are you the only one who loves me? OVA",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "oresuki-special-recap",
+                "title": "ORESUKI: Are you the only one who loves me? Special",
+                "status": -1,
+                "type": "SPECIAL",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            }
+        ]
     }
 ]
