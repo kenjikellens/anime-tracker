@@ -93,7 +93,7 @@
     },
     {
         "id": "my-teen-romantic-comedy-snafu-oregairu",
-        "title": "My Teen Romantic Comedy SNAFU (Oregairu)",
+        "title": "My Teen Romantic Comedy SNAFU",
         "status": 1,
         "rating": 9.3,
         "releaseDate": "",
@@ -936,7 +936,7 @@
     },
     {
         "id": "my-little-sister-can-t-be-this-cute-oreimo",
-        "title": "My Little Sister Can't Be This Cute (OreImo)",
+        "title": "My Little Sister Can't Be This Cute",
         "status": 1,
         "rating": 7.7,
         "releaseDate": "",
@@ -953,7 +953,7 @@
             },
             {
                 "id": "oreimo-s1-true-route",
-                "title": "OreImo S1: True Route",
+                "title": "My Little Sister Can't Be This Cute S1: True Route",
                 "status": 1,
                 "type": "ONA",
                 "rating": 0,
@@ -971,7 +971,7 @@
             },
             {
                 "id": "oreimo-s2-true-route",
-                "title": "OreImo S2: True Route",
+                "title": "My Little Sister Can't Be This Cute S2: True Route",
                 "status": 1,
                 "type": "ONA",
                 "rating": 0,
@@ -1724,7 +1724,7 @@
     },
     {
         "id": "your-lie-in-april-shigatsu-wa-kimi-no-uso",
-        "title": "Your Lie in April (Shigatsu wa Kimi no Uso)",
+        "title": "Your Lie in April",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
@@ -1780,7 +1780,7 @@
     },
     {
         "id": "a-silent-voice-koe-no-katachi",
-        "title": "A Silent Voice (Koe no Katachi)",
+        "title": "A Silent Voice",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
@@ -1799,7 +1799,7 @@
     },
     {
         "id": "i-want-to-eat-your-pancreas-kimi-no-suizou-wo-tabetai",
-        "title": "I want to eat your pancreas (Kimi no Suizou wo Tabetai)",
+        "title": "I want to eat your pancreas",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
@@ -2459,7 +2459,7 @@
             {
                 "id": "re-zero-ova-1-memory-snow",
                 "title": "Re:ZERO OVA 1: Memory Snow",
-                "status": 0,
+                "status": 1,
                 "type": "OVA",
                 "rating": 0,
                 "watchedEpisodes": [
@@ -2470,10 +2470,12 @@
             {
                 "id": "re-zero-ova-2-frozen-bond",
                 "title": "Re:ZERO OVA 2: Frozen Bond",
-                "status": -1,
+                "status": 1,
                 "type": "OVA",
                 "rating": 0,
-                "watchedEpisodes": [],
+                "watchedEpisodes": [
+                    1
+                ],
                 "episodesCount": 1
             },
             {
@@ -2485,7 +2487,11 @@
                 "watchedEpisodes": [
                     1,
                     2,
-                    3
+                    3,
+                    4,
+                    5,
+                    6,
+                    7
                 ],
                 "episodesCount": 25
             },
@@ -3112,7 +3118,7 @@
     {
         "id": "oshi-no-ko",
         "title": "Oshi no Ko",
-        "status": -1,
+        "status": 0,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx166531-dAL5MsqDHUkj.jpg",
@@ -3120,19 +3126,36 @@
             {
                 "id": "oshi-no-ko-season-1",
                 "title": "Oshi no Ko Season 1",
-                "status": -1,
+                "status": 1,
                 "type": "SERIE",
                 "rating": 0,
-                "watchedEpisodes": [],
+                "watchedEpisodes": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11
+                ],
                 "episodesCount": 11
             },
             {
                 "id": "oshi-no-ko-season-2",
                 "title": "Oshi no Ko Season 2",
-                "status": -1,
+                "status": 0,
                 "type": "SERIE",
                 "rating": 0,
-                "watchedEpisodes": [],
+                "watchedEpisodes": [
+                    1,
+                    3,
+                    2,
+                    4
+                ],
                 "episodesCount": 13
             },
             {
@@ -3271,7 +3294,7 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
-        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx10110-3W8Wd8R8o8.jpg",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx10110-BXC37EbeTL3h.png",
         "items": [
             {
                 "id": "mayo-chiki-series",
@@ -3889,7 +3912,7 @@
         "id": "higehiro",
         "title": "Higehiro: After Being Rejected, I Shaved and Took in a High School Runaway",
         "status": -1,
-        "rating": 0.0,
+        "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx114232-2rm50ZD1cQgP.jpg",
         "items": [
@@ -3908,7 +3931,7 @@
         "id": "itazura-na-kiss",
         "title": "Itazura na Kiss",
         "status": -1,
-        "rating": 0.0,
+        "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx3731-aCN5LnCn08qm.png",
         "items": [
@@ -3927,7 +3950,7 @@
         "id": "tomo-chan-is-a-girl",
         "title": "Tomo-chan is a Girl!",
         "status": -1,
-        "rating": 0.0,
+        "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx151806-IAMi2ctI5xJI.jpg",
         "items": [
@@ -3946,7 +3969,7 @@
         "id": "my-friends-little-sister-has-it-in-for-me",
         "title": "My Friend's Little Sister Has It In For Me",
         "status": -1,
-        "rating": 0.0,
+        "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx129195-9BT4wE1QTLj2.jpg",
         "items": [
@@ -3964,15 +3987,15 @@
     {
         "id": "mistress-kanan-is-devilishly-easy",
         "title": "Mistress Kanan is Devilishly Easy",
-        "status": 2,
-        "rating": 0.0,
+        "status": -1,
+        "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx190704-Ts1VvkrNdnCZ.jpg",
         "items": [
             {
                 "id": "mistress-kanan-is-devilishly-easy-series",
                 "title": "Mistress Kanan is Devilishly Easy",
-                "status": 2,
+                "status": -1,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -3984,7 +4007,7 @@
         "id": "worlds-end-harem",
         "title": "World's End Harem",
         "status": -1,
-        "rating": 0.0,
+        "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx118465-EGB0OajA5rei.jpg",
         "items": [
@@ -4003,7 +4026,7 @@
         "id": "saekano",
         "title": "Saekano: How to Raise a Boring Girlfriend",
         "status": -1,
-        "rating": 0.0,
+        "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx20657-pMZBj6K6mLhi.jpg",
         "items": [
@@ -4018,7 +4041,7 @@
             },
             {
                 "id": "saekano-s2",
-                "title": "Saekano: How to Raise a Boring Girlfriend \u266d",
+                "title": "Saekano: How to Raise a Boring Girlfriend ♭",
                 "status": -1,
                 "type": "SERIE",
                 "rating": 0,
@@ -4040,7 +4063,7 @@
         "id": "seitokai-yakuindomo",
         "title": "Seitokai Yakuindomo",
         "status": -1,
-        "rating": 0.0,
+        "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx8675-5H2QSLvXA7bH.jpg",
         "items": [
@@ -4103,15 +4126,15 @@
     {
         "id": "dealing-with-mikadono-sisters-is-a-breeze",
         "title": "Dealing with Mikadono Sisters is a Breeze",
-        "status": 2,
-        "rating": 0.0,
+        "status": -1,
+        "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx178886-KjzSXyEB61zX.jpg",
         "items": [
             {
                 "id": "dealing-with-mikadono-sisters-is-a-breeze-series",
                 "title": "Dealing with Mikadono Sisters is a Breeze",
-                "status": 2,
+                "status": -1,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -4123,7 +4146,7 @@
         "id": "nisekoi-false-love",
         "title": "Nisekoi: False Love",
         "status": -1,
-        "rating": 0.0,
+        "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx18897-G2Fx2ZACsXBU.jpg",
         "items": [
@@ -4178,7 +4201,7 @@
         "id": "yamada-kun-and-the-seven-witches",
         "title": "Yamada-kun and the Seven Witches",
         "status": -1,
-        "rating": 0.0,
+        "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20966-HboUtUzEKWl6.jpg",
         "items": [
@@ -4224,9 +4247,9 @@
         "id": "the-cafe-terrace-and-its-goddesses",
         "title": "The Café Terrace and Its Goddesses",
         "status": -1,
-        "rating": 0.0,
+        "rating": 0,
         "releaseDate": "",
-        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx154459-3kQzY7wYjZ8I.jpg",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154412-bEMQkJWOStDR.jpg",
         "items": [
             {
                 "id": "the-cafe-terrace-and-its-goddesses-s1",
@@ -4252,9 +4275,9 @@
         "id": "oresuki-are-you-the-only-one-who-loves-me",
         "title": "ORESUKI: Are you the only one who loves me?",
         "status": -1,
-        "rating": 0.0,
+        "rating": 0,
         "releaseDate": "",
-        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx104464-9V9H5a4e5033.jpg",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx104464-UdOCt3uyA2K9.png",
         "items": [
             {
                 "id": "oresuki-series",
