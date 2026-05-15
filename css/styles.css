@@ -21,6 +21,7 @@
     --border-width: 1px;
     --primary: #FFCC00;
     --primary-rgb: 255, 204, 0;
+    --hover-border: #1a1a1a;
 }
 
 /* Adjusts variables for a high-vibrancy Dark theme to improve readability in low light. */
@@ -41,6 +42,7 @@
     --header-bg: #282828;
     --primary: #FFCC00;
     --primary-rgb: 255, 204, 0;
+    --hover-border: #ffffff;
 }
 
 /* ==========================================================================
@@ -48,7 +50,21 @@
    ========================================================================== */
 
 /* Universal Reset: Standardized box model and typography across all elements. */
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+/* Universal Reset: Standardized box model and typography across all elements. 
+   Set default cursor to 'default' as per user request to avoid link-style pointers on non-links. */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Outfit', sans-serif; 
+    cursor: default !important;
+}
+
+/* Explicitly allow the link cursor only for actual anchor tags. */
+a, a * { 
+    cursor: pointer !important; 
+}
+
 
 /* Configures the primary background, text color, and base font settings for the document. */
 body {
@@ -115,6 +131,8 @@ footer {
     gap: 24px;
 }
 
+
+
 /* Container for the brand logo on the left side of the header. */
 .header-left { display: flex; align-items: center; }
 
@@ -123,7 +141,6 @@ footer {
     font-size: 2rem;
     font-weight: 800;
     letter-spacing: 2.5px;
-    cursor: default;
     user-select: none;
 }
 
@@ -144,11 +161,11 @@ footer {
     display: flex;
     align-items: center;
     background: var(--surface);
-    border: var(--border-width, 1px) solid var(--border);
+    border: 2px solid var(--border);
     border-radius: 12px;
     padding: 0 18px;
     min-height: 52px;
-    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 /* Visual feedback for the search bar when the user clicks inside to type. */
@@ -185,11 +202,11 @@ footer {
 
 /* Unified styling for buttons in the header right section for a cohesive look. */
 .header-right button {
-    background: var(--surface); border: var(--border-width, 1px) solid var(--border);
+    background: var(--surface); border: 2px solid var(--border);
     color: var(--text); width: 46px; height: 46px; border-radius: 10px;
-    cursor: pointer; font-size: 16px; display: flex;
+    font-size: 16px; display: flex;
     align-items: center; justify-content: center;
-    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
     appearance: none;
     -webkit-appearance: none;
     box-shadow: var(--shadow);
@@ -218,21 +235,19 @@ footer {
 /* A dropdown selector used in the header to switch between different data sources. */
 .header-select {
     background: var(--surface); 
-    border: var(--border-width, 1px) solid var(--border);
+    border: 2px solid var(--border);
     color: var(--text-muted);
     padding: 8px 12px;
     border-radius: 8px;
     font-size: 13px;
-    cursor: pointer;
     margin-right: 12px;
     font-family: 'Outfit', sans-serif;
-    transition: all 0.2s ease;
+    transition: all 0.13s ease;
 }
 
 /* Hover effects for the source selector dropdown to improve interactivity. */
 .header-select:hover {
     background: var(--surface-2);
-    border-color: var(--text-muted);
     color: var(--text);
 }
 
@@ -241,7 +256,7 @@ footer {
     background: #FFCC00;
     color: #000;
     border-color: #FFCC00;
-    animation: pulse-yellow 2s infinite;
+    animation: pulse-yellow 1s infinite;
 }
 
 /* Animation sequence for the sync-needed pulse effect. */
@@ -266,11 +281,11 @@ footer {
 
 /* Interactive buttons for filtering the list by anime status (e.g., Watching, Done). */
 .filter-btn {
-    background: var(--surface); border: var(--border-width, 1px) solid var(--border);
+    background: var(--surface); border: 2px solid var(--border);
     color: var(--text-muted); padding: 10px 16px; border-radius: 8px;
-    cursor: pointer; font-weight: 600; font-size: 14px;
+    font-weight: 600; font-size: 14px;
     font-family: 'Outfit', sans-serif;
-    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 /* Highlighted state for the currently active filter button. */
@@ -298,9 +313,14 @@ footer {
 
 /* Container and dropdown for changing the display order of the anime list. */
 .sort-group select {
-    background: var(--surface); border: var(--border-width, 1px) solid var(--border);
+    background: var(--surface); border: 2px solid var(--border);
     color: var(--text); padding: 10px 14px; border-radius: 8px;
-    font-family: 'Outfit', sans-serif; font-size: 14px; outline: none; cursor: pointer;
+    font-family: 'Outfit', sans-serif; font-size: 14px; outline: none;
+}
+
+/* Hover feedback for the sort selector dropdown. */
+.sort-group select:hover {
+    border-color: var(--text-muted);
 }
 
 /* Right-aligned portion of the toolbar containing view toggles and item statistics. */
@@ -316,10 +336,10 @@ footer {
 
 /* Individual buttons for selecting specific layout views. */
 .view-btn {
-    background: var(--surface); border: var(--border-width, 1px) solid var(--border);
+    background: var(--surface); border: 2px solid var(--border);
     color: var(--text-muted); width: 42px; height: 42px;
-    border-radius: 8px; cursor: pointer; font-size: 14px;
-    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border-radius: 8px; font-size: 14px;
+    transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 /* Highlighted state for the active view or size toggle button. */
@@ -347,11 +367,12 @@ footer {
 
 /* Buttons used to increment or decrement the number of grid columns. */
 .size-btn {
-    background: var(--surface); border: var(--border-width, 1px) solid var(--border);
+    background: var(--surface); border: 2px solid var(--border);
     color: var(--text-muted); width: 42px; height: 42px;
-    border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 700;
-    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border-radius: 8px; font-size: 14px; font-weight: 700;
+    transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
+
 
 /* Hover feedback for grid size buttons. */
 .size-btn:not(.active):hover { border-color: var(--text-muted); opacity: 1; }
@@ -427,23 +448,26 @@ footer {
 /* The base component for an anime entry, providing a surface, border, and transition effects. */
 .anime-card {
     background: var(--surface); 
-    border: var(--border-width, 1px) solid var(--border);
+    border: 2px solid var(--border);
     border-radius: 12px;    
     padding: 12px; 
     display: flex; 
     flex-direction: row; 
     gap: 14px;
     position: relative;
-    box-shadow: var(--shadow);
-    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
     overflow: visible;
-    cursor: pointer;
     user-select: none; /* Make card feel more like a button */
 }
 
-/* Ensures that the cursor remains a pointer for all interactive sub-elements within a card. */
+/* Background shift on hover for grid cards to provide depth feedback. */
+.anime-card:hover {
+    filter: brightness(1.15);
+}
+
+/* Ensures that the cursor remains default for all interactive sub-elements within a card. */
 .anime-card * { 
-    cursor: pointer !important; 
+    cursor: default !important; 
 }
 
 /* Stacking context for poster and info to ensure they appear above any pseudo-element effects. */
@@ -514,7 +538,7 @@ footer {
     min-height: 48px;
     width: 100%;
     box-sizing: border-box;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    transition: transform 0.13s ease, box-shadow 0.13s ease, border-color 0.13s ease;
     position: relative;
 }
 
@@ -680,7 +704,7 @@ footer {
 /* Icon that indicates whether a list item is expanded to show more details. */
 .expand-icon {
     font-size: 10px; color: var(--text-muted); margin-left: auto;
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease;
 }
 
 /* Specific styling for the expand icon in list view. */
@@ -766,14 +790,13 @@ footer {
     font-weight: 700; 
     color: var(--white);
     font-size: 12px; 
-    border: var(--border-width, 1px) solid var(--border);
-    transition: all 0.2s ease;
+    border: 2px solid var(--border);
+    transition: all 0.13s ease;
     background: var(--surface-2);
     display: inline-flex;
     align-items: center;
     gap: 6px;
     white-space: nowrap;
-    cursor: pointer;
     user-select: none;
 }
 
@@ -879,100 +902,63 @@ footer {
 
 /* ---------------- SPECIAL "GLOW" STATES ---------------- */
 
-/* Legendary Golden Glow applied to cards with exceptionally high ratings (>= 9.0). */
+/* Legendary Gold effect for cards with exceptionally high ratings (>= 9.0).
+   Static premium gold look with rich radial gradients. All animations removed. */
 .anime-card.glow-gold {
     position: relative;
     overflow: hidden;
     background: #1a1a1a !important;
     background-image: 
-        radial-gradient(circle at 20% 30%, rgba(128, 102, 0, 0.6) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(128, 102, 0, 0.6) 0%, transparent 40%),
-        radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 80%) !important;
+        radial-gradient(circle at 20% 30%, rgba(255, 200, 0, 0.15) 0%, transparent 55%),
+        radial-gradient(circle at 80% 70%, rgba(255, 170, 0, 0.12) 0%, transparent 55%) !important;
     border: 2px solid #ffd700 !important;
-    box-shadow: 0 0 25px rgba(255, 215, 0, 0.3), inset 0 0 20px rgba(255, 215, 0, 0.1) !important;
+    box-shadow: none !important;
 }
 
-/* Animated shimmer effect for legendary golden cards. */
-.anime-card.glow-gold::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -100px;
-    width: 200px;
-    height: 200%;
-    background: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.15) 50%,
-        rgba(255, 255, 255, 0) 100%
-    );
-    z-index: 5;
-    pointer-events: none;
-    animation: goldShimmer 4.5s infinite ease-in-out;
-}
-
-/* Intensified glow on hover for golden cards. */
+/* Hover state for golden cards: thicker border via box-shadow to prevent layout shift. */
 .anime-card.glow-gold:hover {
-    box-shadow: 0 0 35px rgba(255, 215, 0, 0.5), inset 0 0 30px rgba(255, 215, 0, 0.2) !important;
+    box-shadow: inset 0 0 0 3px var(--hover-border) !important;
 }
 
-/* Golden glow styling for the detail sidebar when the anime has a legendary rating. */
+/* Golden styling for the detail sidebar with a legendary rating. Static version. */
 .anime-detail-sidebar-v3.glow-gold {
     background: #1a1a1a !important;
     background-image:
-        radial-gradient(circle at 20% 30%, rgba(128, 102, 0, 0.6) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(128, 102, 0, 0.6) 0%, transparent 40%),
-        radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 80%) !important;
+        radial-gradient(circle at 20% 30%, rgba(255, 200, 0, 0.15) 0%, transparent 55%),
+        radial-gradient(circle at 80% 70%, rgba(255, 170, 0, 0.12) 0%, transparent 55%) !important;
     border: 2px solid #ffd700 !important;
-    box-shadow: 0 0 25px rgba(255, 215, 0, 0.3), inset 0 0 20px rgba(255, 215, 0, 0.1) !important;
+    box-shadow: none !important;
     position: relative;
     overflow: hidden;
 }
 
-/* Animated shimmer effect for the legendary gold detail sidebar. */
-.anime-detail-sidebar-v3.glow-gold::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -100px;
-    width: 200px;
-    height: 200%;
-    background: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.12) 50%,
-        rgba(255, 255, 255, 0) 100%
-    );
-    z-index: 5;
-    pointer-events: none;
-    border-radius: 24px;
-    animation: goldShimmer 4.5s infinite ease-in-out;
-}
-
-/* Light mode variant of the golden detail sidebar. */
+/* Light mode variant of the golden detail sidebar. Static version. */
 [data-theme="light"] .anime-detail-sidebar-v3.glow-gold {
     background: #fffdf0 !important;
     background-image:
-        radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.15) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.15) 0%, transparent 40%) !important;
+        radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 200, 0, 0.12) 0%, transparent 50%) !important;
     border: 2px solid #e6b800 !important;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.2), inset 0 0 15px rgba(255, 215, 0, 0.05) !important;
+    box-shadow: none !important;
 }
 
-/* Defines the lateral movement and rotation of the golden shimmer animation. */
-@keyframes goldShimmer {
-    0% { left: -100px; transform: rotate(25deg); }
-    100% { left: 100%; transform: rotate(25deg) translateX(200px); }
+/* Border color shift: smoothly transitions between different gold tones. (Kept for other uses if any, but removed from cards) */
+@keyframes goldBorderShift {
+    0%   { border-color: #ffd700; }
+    33%  { border-color: #ffb300; }
+    66%  { border-color: #ffe066; }
+    100% { border-color: #ffd700; }
 }
 
-/* Warning Red Glow applied to cards with very low ratings (< 2.0). */
+/* Warning Red Glow applied to cards with very low ratings (< 2.0). No external shadow. */
 .anime-card.glow-red {
-    box-shadow: var(--shadow), inset 0 0 60px rgba(239, 68, 68, 0.25) !important;
+    box-shadow: none !important;
+    background-image: radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.15) 0%, transparent 70%) !important;
 }
 
-/* Intensified red glow on hover to emphasize the poor rating. */
+/* Hover state for red-glow cards: no shadow, handled by global border rule. */
 .anime-card.glow-red:hover, .anime-card.glow-red:focus-within {
-    box-shadow: var(--shadow), inset 0 0 80px rgba(239, 68, 68, 0.35), inset 0 0 0 1px var(--text-muted) !important;
+    box-shadow: none !important;
 }
 
 /* ==========================================================================
@@ -995,7 +981,6 @@ footer {
     color: var(--text);
     padding: 10px 16px;
     border-radius: 10px;
-    cursor: pointer;
     font-size: 14px;
     font-weight: 600;
     font-family: 'Outfit', sans-serif;
@@ -1006,7 +991,7 @@ footer {
     width: 100%;
     min-width: 132px;
     min-height: 32px;
-    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     appearance: none;
     -webkit-appearance: none;
@@ -1090,7 +1075,7 @@ footer {
 /* Activates the display and entry animation of the status menu when open. */
 .status-dropdown.open .status-menu {
     display: flex;
-    animation: menuFadeIn 0.15s ease-out;
+    animation: menuFadeIn 0.1s ease-out;
 }
 
 /* Subtle fade-in animation for the status menu. */
@@ -1104,15 +1089,15 @@ footer {
     padding: 12px 14px;
     font-size: 14px;
     font-weight: 500;
-    cursor: pointer;
     display: flex;
     align-items: center;
     gap: 12px;
     font-family: 'Outfit', sans-serif;
     color: var(--text);
     border-radius: 8px;
-    transition: all 0.2s ease;
+    transition: all 0.13s ease;
     margin-bottom: 2px;
+    border: 2px solid transparent;
 }
 
 /* Removes extra margin from the last menu option. */
@@ -1169,8 +1154,8 @@ footer {
 
 /* Close button for the batch bar to clear selection and hide the interface. */
 .batch-close {
-    background: none; border: none; color: var(--text-muted);
-    font-size: 18px; cursor: pointer;
+    background: none; border: 1px solid transparent; color: var(--text-muted);
+    font-size: 18px;
 }
 
 /* Hover feedback for the batch close button. */
@@ -1191,11 +1176,10 @@ footer {
     font-size: 12px;
     font-weight: 600;
     text-align: left;
-    cursor: pointer;
     display: flex;
     align-items: center;
     gap: 8px;
-    transition: all 0.2s;
+    transition: all 0.13s;
 }
 
 /* Hover effects for batch operation buttons. */
@@ -1322,9 +1306,9 @@ footer {
     align-items: center;
     gap: 12px;
     padding: 12px 10px;
-    cursor: pointer;
     border-radius: 4px;
-    transition: background 0.2s ease;
+    transition: background 0.13s ease;
+    border: 1px solid transparent;
 }
 
 /* Hover effect for the season header to indicate interactivity. */
@@ -1375,7 +1359,8 @@ footer {
     padding: 8px 12px;
     font-size: 13px;
     border-radius: 8px;
-    transition: all 0.2s ease;
+    transition: all 0.13s ease;
+    border: 2px solid transparent;
 }
 
 /* Horizontal line element connecting the episode row to the vertical tree stem. */
@@ -1425,7 +1410,7 @@ footer {
     align-items: center;
     gap: 0;
     background: var(--surface-2);
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     border-radius: 8px;
     overflow: hidden;
     height: 36px;
@@ -1441,9 +1426,8 @@ footer {
     border: none;
     background: transparent;
     color: var(--text);
-    cursor: pointer;
     font-size: 12px;
-    transition: background 0.15s ease;
+    transition: background 0.1s ease;
 }
 
 /* Hover feedback for progress control buttons. */
@@ -1540,8 +1524,8 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.13s;
+    border: 2px solid transparent;
 }
 
 /* Hover feedback for the modal close button. */
@@ -1568,8 +1552,13 @@ footer {
     padding: 10px 24px;
     border-radius: 10px;
     font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.13s;
+    border: 2px solid transparent;
+}
+
+/* Hover feedback for modal footer buttons. */
+.modal-footer button:hover {
+    background: var(--surface-2);
 }
 
 /* ---------------- RATING MODAL SPECIFICS ---------------- */
@@ -1591,8 +1580,7 @@ footer {
     border-radius: 12px;
     text-align: center;
     font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.13s;
 }
 
 /* Hover and active states for rating options. */
@@ -1630,7 +1618,7 @@ footer {
     gap: 20px !important;
     position: sticky !important;
     top: 20px !important;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
 }
 
 /* Light mode override: sidebar uses the surface color instead of the hardcoded dark glass. */
@@ -1708,7 +1696,7 @@ footer {
     border-radius: 12px !important;
     margin-bottom: 8px;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
 }
 
 .item-accordion-wrapper.is-open {
@@ -1718,10 +1706,15 @@ footer {
 
 .detail-item-row {
     padding: 8px 16px !important;
-    cursor: pointer !important;
     display: flex !important;
     align-items: center !important;
     gap: 12px !important; /* Spacing between chevron and title */
+    border: 2px solid transparent !important;
+}
+
+/* Hover feedback for detail item rows. */
+.detail-item-row:hover {
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .item-info-col {
@@ -1764,13 +1757,13 @@ footer {
     font-weight: 600 !important;
     font-size: 0.95rem !important;
     margin-bottom: 20px !important; /* Reduced from 30px */
-    transition: color 0.2s ease;
+    transition: color 0.13s ease;
     padding: 8px 0;
 }
 
-/* Hover uses the brand accent color for warmth and visibility in both themes. */
+/* Hover uses the theme-aware border color (white in dark mode) for warmth and visibility. */
 .back-btn:hover {
-    color: var(--primary) !important;
+    color: var(--hover-border) !important;
 }
 
 .back-btn i {
@@ -2277,7 +2270,7 @@ footer {
     align-items: center;
     justify-content: center;
     z-index: 2000;
-    transition: opacity 0.3s;
+    transition: opacity 0.2s;
 }
 
 .modal {
@@ -2312,7 +2305,7 @@ footer {
     color: var(--primary);
     text-align: center;
     outline: none;
-    transition: border-color 0.2s;
+    transition: border-color 0.13s;
 }
 
 .rating-input input[type="number"]:focus {
@@ -2331,20 +2324,24 @@ footer {
     padding: 10px 20px;
     border-radius: 8px;
     font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.13s;
 }
 
-.btn-primary {
-    background: var(--primary);
-    color: #000;
-    border: none;
+/* Hover feedback for modal buttons. */
+.modal-buttons button:hover {
+    opacity: 0.9;
 }
 
-.btn-secondary {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border);
+.btn-primary { 
+    background: var(--primary); 
+    color: #000; 
+    border: 2px solid var(--primary); 
+}
+
+.btn-secondary { 
+    background: transparent; 
+    color: var(--text); 
+    border: 2px solid var(--border); 
 }
 
 .btn-primary:hover { opacity: 0.9; }
@@ -2374,7 +2371,7 @@ footer {
     border: 2px solid #ffb300;
     color: #ffb300;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all 0.13s ease;
     flex-shrink: 0;
 }
 
@@ -2433,8 +2430,8 @@ footer {
 
 /* Enhanced visibility for opened accordion wrappers in light mode. */
 [data-theme="light"] .item-accordion-wrapper.is-open {
-    border: 2px solid var(--primary) !important;
-    box-shadow: 0 0 10px rgba(255, 204, 0, 0.3) !important;
+    border: 2px solid #ffffff !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3) !important;
 }
 
 /* Rating badge color overrides for maximum contrast in light mode. */
@@ -2498,25 +2495,92 @@ footer {
 [data-theme="light"] .anime-card.glow-gold {
     background: #fffdf0 !important;
     background-image:
-        radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.15) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.15) 0%, transparent 40%),
-        radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 80%) !important;
+        radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 200, 0, 0.12) 0%, transparent 50%) !important;
     border: 2px solid #e6b800 !important;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.2), inset 0 0 15px rgba(255, 215, 0, 0.05) !important;
+    box-shadow: none !important;
 }
 
-/* Hover feedback for golden cards in light mode. */
+/* Light mode hover for golden cards. */
 [data-theme="light"] .anime-card.glow-gold:hover {
-    box-shadow: 0 0 30px rgba(255, 215, 0, 0.35), inset 0 0 20px rgba(255, 215, 0, 0.1) !important;
+    box-shadow: none !important;
 }
 
-/* Shimmer effect variant for golden cards in light mode. */
+/* Light mode shimmer: warmer golden tint instead of white. */
 [data-theme="light"] .anime-card.glow-gold::after {
     background: linear-gradient(
-        to right,
-        rgba(255, 215, 0, 0) 0%,
-        rgba(255, 215, 0, 0.12) 50%,
-        rgba(255, 215, 0, 0) 100%
+        90deg,
+        transparent 0%,
+        rgba(255, 215, 0, 0.06) 30%,
+        rgba(255, 200, 50, 0.18) 50%,
+        rgba(255, 215, 0, 0.06) 70%,
+        transparent 100%
     );
+}
+
+/* ==========================================================================
+   GLOBAL CLICKABLE HOVER EFFECTS (ENFORCED)
+   ========================================================================== */
+
+/* This section ensures a clear, non-shifting white border on hover for ALL clickable items.
+   We use 'box-shadow' instead of 'border' to prevent layout shifts (UI jitter).
+   The color is set to white (#ffffff) as per the user's specific request.
+   This rule covers buttons, selects, cards, badges, and all interactive rows. */
+
+button:hover,
+select:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+.anime-card:hover,
+.anime-card.glow-gold:hover,
+.rating-badge:hover,
+.status-current:hover,
+.item-status-select:hover,
+#global-status-select:hover,
+.status-option:hover,
+.batch-close:hover,
+.batch-options button:hover,
+.season-header:hover,
+.episode-row:hover,
+.progress-btn:hover,
+.modal-close:hover,
+.modal-footer button:hover,
+.rating-option:hover,
+.detail-item-row:hover,
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-close:hover,
+.modal-play-btn:hover,
+.episode-checkbox-wrap:hover,
+.view-btn:hover,
+.size-btn:hover,
+.filter-btn:hover,
+.header-select:hover,
+.search-bar:hover,
+.item-accordion-wrapper:hover,
+.sidebar-sticky .rating-badge:hover,
+.modal-sidebar .rating-badge:hover,
+.anime-detail-sidebar-v3.glow-gold:hover,
+.anime-detail-sidebar-v3 .status-current:hover,
+.modal-detail-header .btn-close:hover,
+.expand-icon:hover {
+    border-color: var(--hover-border) !important;
+    box-shadow: inset 0 0 0 1px var(--hover-border) !important;
+    transition: border-color 0.13s ease !important;
+}
+
+/* Explicitly disable the inner hover effect for the search input to ensure only the outer bar shows the border. */
+.search-bar:hover input,
+.search-bar input:hover {
+    box-shadow: none !important;
+}
+
+/* Ensure links and link-like buttons do not have the box-shadow border on hover as per user request. */
+.back-btn:hover,
+.item-play-btn:hover,
+a:hover,
+a *:hover {
+    box-shadow: none !important;
 }
 
