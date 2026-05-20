@@ -27,6 +27,7 @@
 - Eromanga Sensei
 - Food for the Soul
 - Food Wars!
+- From Me to You
 - Fruits Basket (2019)
 - Gamers!
 - Ghost Stories

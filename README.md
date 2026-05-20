@@ -239,7 +239,7 @@ Elk item heeft:
 - een typebadge;
 - een titel;
 - een statusdropdown;
-- een playknop die naar een zoekresultaat op Anikai gaat;
+- een playknop die naar een zoekresultaat op de streaming-site (Miruro) gaat;
 - een episode-accordionset.
 
 ### Accordions

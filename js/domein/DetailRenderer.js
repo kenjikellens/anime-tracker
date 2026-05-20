@@ -1,5 +1,11 @@
 import { RatingManager } from './RatingManager.js';
 
+// WATCH_PROVIDER_DOMAIN: The base domain of the streaming provider for playing anime.
+const WATCH_PROVIDER_DOMAIN = "miruro.to";
+
+// WATCH_PROVIDER_SEARCH_PATH: The search path query format used by the streaming provider.
+const WATCH_PROVIDER_SEARCH_PATH = "/search?query=";
+
 /**
  * Renders the detailed anime page and its expandable item rows.
  * Linked to: `#detail-container` in `card.html`.
@@ -118,10 +124,10 @@ export class DetailRenderer {
                 // Fallback to the parent anime title when item title is generic (e.g. "Season 1")
                 if (!searchTitle) searchTitle = anime.title;
                 let keyword = encodeURIComponent(searchTitle).replace(/%20/g, '+');
-                let anikaiUrl = `https://anikai.to/browser?keyword=${keyword}`;
+                let watchUrl = `https://${WATCH_PROVIDER_DOMAIN}${WATCH_PROVIDER_SEARCH_PATH}${keyword}`;
 
                 let playBtn = `
-                    <a href="${anikaiUrl}" target="_blank" class="item-play-btn" onclick="event.stopPropagation()" title="Zoek op Anikai">
+                    <a href="${watchUrl}" target="_blank" class="item-play-btn" onclick="event.stopPropagation()" title="Zoek op ${WATCH_PROVIDER_DOMAIN}">
                         <i class="fas fa-play"></i>
                     </a>
                 `;

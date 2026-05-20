@@ -381,11 +381,12 @@ footer {
    ANIME LIST SYSTEM
    ========================================================================== */
 
-/* The primary container for the anime list, managing the vertical flow of status groups. */
+/* #anime-container: The primary container for the anime list, managing the vertical flow of status groups. 
+   Uses a flex column layout with a gap between status sections. Gap has been reduced to make layout thinner. */
 #anime-container {
     display: flex;
     flex-direction: column;
-    gap: 36px;
+    gap: 20px;
     align-items: stretch;
     width: 100%;
 }
@@ -476,24 +477,28 @@ footer {
     z-index: 1;
 }
 
-/* Hover and focus states that enhance the card border and shadow for visual feedback. */
+/* .anime-card:hover, .anime-card:focus-within: Enriches the hover and focus states of an anime card.
+   Applies a golden border color, inset border highlights, a soft glowing shadow, and a minor scale transformation to make the interactivity obvious and premium. */
 .anime-card:hover, .anime-card:focus-within {
-    border-color: var(--text-muted); 
-    box-shadow: var(--shadow), inset 0 0 0 1px var(--text-muted);
+    border-color: var(--primary); 
+    box-shadow: 0 8px 24px rgba(255, 204, 0, 0.15), inset 0 0 0 1px var(--primary);
+    transform: scale(1.015);
 }
 
 /* ---------------- GRID VIEW LAYOUT ---------------- */
 
-/* Configures the status columns to display as a multi-column responsive grid. */
+/* #anime-container.grid-view .status-column: Configures the status columns to display as a multi-column responsive grid.
+   Uses grid layout with a gap between cards. Gap has been reduced to make it thinner. */
 #anime-container.grid-view .status-column {
     display: grid;
     grid-template-columns: repeat(var(--grid-cols, 5), 1fr);
-    gap: 16px;
+    gap: 10px;
     align-content: start;
     width: 100%;
 }
 
-/* Specific layout adjustments for the anime card when displayed in a grid format. */
+/* #anime-container.grid-view .anime-card: Specific layout adjustments for the anime card when displayed in a grid format.
+   Uses a row layout with reduced padding and gap to make it compact. */
 #anime-container.grid-view .anime-card {
     container-type: inline-size;
     container-name: card;
@@ -501,6 +506,18 @@ footer {
     min-height: 152px;
     align-items: stretch;
     overflow: hidden;
+    padding: 8px;
+    gap: 10px;
+}
+
+/* #anime-container.grid-view .anime-card .card-info: Reduces the vertical gap between title, subtitle, and action buttons in grid cards. */
+#anime-container.grid-view .anime-card .card-info {
+    gap: 4px !important;
+}
+
+/* #anime-container.grid-view .anime-card .card-header: Reduces the bottom margin of the card header in grid cards. */
+#anime-container.grid-view .anime-card .card-header {
+    margin-bottom: 4px;
 }
 
 /* Fixed dimensions for the poster image within a grid-view card. */
@@ -542,9 +559,11 @@ footer {
     position: relative;
 }
 
-/* Subtle shadow on list items when hovered for a premium feel. */
+/* #anime-container.list-view .anime-card:hover: Subtle shadow on list items when hovered for a premium feel. 
+   Uses a soft primary brand color glow and a minor scale transformation. */
 #anime-container.list-view .anime-card:hover {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 12px rgba(255, 204, 0, 0.12);
+    transform: scale(1.008);
 }
 
 /* Specific column distribution for the medium-sized list items. */
@@ -674,10 +693,11 @@ footer {
     line-height: 1.35;
 }
 
-/* Multi-line truncation for the anime title to prevent it from breaking the layout. */
+/* .card-title span: Multi-line truncation for the anime title to prevent it from breaking the layout.
+   Limits the title text block to a maximum of 3 lines before displaying an ellipsis. */
 .card-title span {
     overflow: hidden; text-overflow: ellipsis; display: -webkit-box;
-    -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical;
 }
 
 /* Positioning and typography for the title specifically in the list layout. */
@@ -902,52 +922,41 @@ footer {
 
 /* ---------------- SPECIAL "GLOW" STATES ---------------- */
 
-/* Legendary Gold effect for cards with exceptionally high ratings (>= 9.0).
-   Static premium gold look with rich radial gradients. All animations removed. */
+/* .anime-card.glow-gold: Special styling for cards with exceptionally high ratings (>= 9.0).
+   Gives them a gold border that smoothly animates between different gold tones. */
 .anime-card.glow-gold {
-    position: relative;
-    overflow: hidden;
-    background: #1a1a1a !important;
-    background-image: 
-        radial-gradient(circle at 20% 30%, rgba(255, 200, 0, 0.15) 0%, transparent 55%),
-        radial-gradient(circle at 80% 70%, rgba(255, 170, 0, 0.12) 0%, transparent 55%) !important;
-    border: 2px solid #ffd700 !important;
-    box-shadow: none !important;
+    border: 2px solid #ffd700;
+    animation: goldBorderShift 3s infinite ease-in-out;
 }
 
-/* Hover state for golden cards: thicker border via box-shadow to prevent layout shift. */
-.anime-card.glow-gold:hover {
-    box-shadow: inset 0 0 0 3px var(--hover-border) !important;
-}
-
-/* Golden styling for the detail sidebar with a legendary rating. Static version. */
+/* .anime-detail-sidebar-v3.glow-gold: Golden styling for the detail sidebar with a legendary rating.
+   Gives the sidebar a gold border that animates between gold tones. */
 .anime-detail-sidebar-v3.glow-gold {
-    background: #1a1a1a !important;
-    background-image:
-        radial-gradient(circle at 20% 30%, rgba(255, 200, 0, 0.15) 0%, transparent 55%),
-        radial-gradient(circle at 80% 70%, rgba(255, 170, 0, 0.12) 0%, transparent 55%) !important;
-    border: 2px solid #ffd700 !important;
-    box-shadow: none !important;
-    position: relative;
-    overflow: hidden;
+    border: 2px solid #ffd700;
+    animation: goldBorderShift 3s infinite ease-in-out;
 }
 
-/* Light mode variant of the golden detail sidebar. Static version. */
+/* [data-theme="light"] .anime-detail-sidebar-v3.glow-gold: Light mode variant of the gold-rated sidebar,
+   using a slightly darker gold base. Also uses the gold border animation. */
 [data-theme="light"] .anime-detail-sidebar-v3.glow-gold {
-    background: #fffdf0 !important;
-    background-image:
-        radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(255, 200, 0, 0.12) 0%, transparent 50%) !important;
-    border: 2px solid #e6b800 !important;
-    box-shadow: none !important;
+    border: 2px solid #e6b800;
+    animation: goldBorderShiftLight 3s infinite ease-in-out;
 }
 
-/* Border color shift: smoothly transitions between different gold tones. (Kept for other uses if any, but removed from cards) */
+/* @keyframes goldBorderShift: Smoothly transitions the border color between gold, a lighter gold, and a darker gold. */
 @keyframes goldBorderShift {
     0%   { border-color: #ffd700; }
-    33%  { border-color: #ffb300; }
-    66%  { border-color: #ffe066; }
+    33%  { border-color: #ffe066; } /* Lighter gold */
+    66%  { border-color: #b38f00; } /* Darker gold */
     100% { border-color: #ffd700; }
+}
+
+/* @keyframes goldBorderShiftLight: Smoothly transitions the border color between base gold, a lighter gold, and a darker gold for light mode. */
+@keyframes goldBorderShiftLight {
+    0%   { border-color: #e6b800; }
+    33%  { border-color: #ffd700; } /* Lighter gold */
+    66%  { border-color: #997a00; } /* Darker gold */
+    100% { border-color: #e6b800; }
 }
 
 /* Warning Red Glow applied to cards with very low ratings (< 2.0). No external shadow. */

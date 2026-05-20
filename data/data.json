@@ -2125,7 +2125,7 @@
     {
         "id": "teasing-master-takagi-san",
         "title": "Teasing Master Takagi-san",
-        "status": -1,
+        "status": 0,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx107068-KJq0eFP0GTjL.jpg",
@@ -2133,28 +2133,45 @@
             {
                 "id": "teasing-master-takagi-san-s1",
                 "title": "Teasing Master Takagi-san Season 1",
-                "status": -1,
+                "status": 1,
                 "type": "SERIE",
-                "rating": 0,
-                "watchedEpisodes": [],
+                "rating": 6.2,
+                "watchedEpisodes": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12
+                ],
                 "episodesCount": 12
             },
             {
                 "id": "teasing-master-takagi-san-ova-water-slide",
                 "title": "Teasing Master Takagi-san OVA: Water Slide",
-                "status": -1,
+                "status": 1,
                 "type": "OVA",
                 "rating": 0,
-                "watchedEpisodes": [],
+                "watchedEpisodes": [
+                    1
+                ],
                 "episodesCount": 1
             },
             {
                 "id": "teasing-master-takagi-san-s2",
                 "title": "Teasing Master Takagi-san Season 2",
-                "status": -1,
+                "status": 0,
                 "type": "SERIE",
                 "rating": 0,
-                "watchedEpisodes": [],
+                "watchedEpisodes": [
+                    1
+                ],
                 "episodesCount": 12
             },
             {
@@ -2633,25 +2650,6 @@
                 "rating": 0,
                 "watchedEpisodes": [],
                 "episodesCount": 18
-            }
-        ]
-    },
-    {
-        "id": "i-became-friends-with-the-second-cutest-girl-of-my-class",
-        "title": "I became friends with the second cutest girl of my class",
-        "status": -1,
-        "rating": 0,
-        "releaseDate": "",
-        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx169580-nXxpmqu6UVux.jpg",
-        "items": [
-            {
-                "id": "i-became-friends-with-the-second-cutest-girl-of-my-class-season-1",
-                "title": "I became friends with the second cutest girl of my class Season 1",
-                "status": -1,
-                "type": "SERIE",
-                "rating": 0,
-                "watchedEpisodes": [],
-                "episodesCount": 12
             }
         ]
     },
@@ -4305,6 +4303,52 @@
                 "rating": 0,
                 "watchedEpisodes": [],
                 "episodesCount": 1
+            }
+        ]
+    },
+    {
+        "id": "from-me-to-you",
+        "title": "From Me to You",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx6045-JujXjoWtslUM.jpg",
+        "items": [
+            {
+                "id": "from-me-to-you-season-1",
+                "title": "From Me to You Season 1",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 25
+            },
+            {
+                "id": "from-me-to-you-season-2",
+                "title": "From Me to You Season 2",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "from-me-to-you-2nd-season-specials",
+                "title": "From Me to You 2nd Season Specials",
+                "status": -1,
+                "type": "SPECIAL",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 3
+            },
+            {
+                "id": "from-me-to-you-season-3",
+                "title": "From Me to You Season 3",
+                "status": -1,
+                "type": "ONA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 5
             }
         ]
     }

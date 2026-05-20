@@ -302,3 +302,9 @@
 ## The Café Terrace and Its Goddesses
 - [ ] The Café Terrace and Its Goddesses Season 1 (12 eps)
 - [ ] The Café Terrace and Its Goddesses Season 2 (12 eps)
+
+## From Me to You
+- [ ] From Me to You Season 1 (SERIE - 25 eps)
+- [ ] From Me to You Season 2 (SERIE - 12 eps)
+- [ ] From Me to You 2nd Season Specials (SPECIAL - 3 eps)
+- [ ] From Me to You Season 3 (ONA - 5 eps)
