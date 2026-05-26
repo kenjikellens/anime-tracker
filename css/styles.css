@@ -19,8 +19,8 @@
     --shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Soft interface element shadow */
     --header-bg: #e0e0e0;        /* Distinct background for top header bar */
     --border-width: 1px;
-    --primary: #FFCC00;
-    --primary-rgb: 255, 204, 0;
+    --primary: #9d4edd;
+    --primary-rgb: 157, 78, 221;
     --hover-border: #1a1a1a;
 }
 
@@ -40,8 +40,8 @@
     --modal-bg: rgba(0,0,0,0.5);
     --shadow: 0 4px 20px rgba(255, 255, 255, 0.05);
     --header-bg: #282828;
-    --primary: #FFCC00;
-    --primary-rgb: 255, 204, 0;
+    --primary: #9d4edd;
+    --primary-rgb: 157, 78, 221;
     --hover-border: #ffffff;
 }
 
@@ -50,19 +50,16 @@
    ========================================================================== */
 
 /* Universal Reset: Standardized box model and typography across all elements. */
-/* Universal Reset: Standardized box model and typography across all elements. 
-   Set default cursor to 'default' as per user request to avoid link-style pointers on non-links. */
 * { 
     margin: 0; 
     padding: 0; 
     box-sizing: border-box; 
     font-family: 'Outfit', sans-serif; 
-    cursor: default !important;
 }
 
-/* Explicitly allow the link cursor only for actual anchor tags. */
-a, a * { 
-    cursor: pointer !important; 
+/* Styles interactive elements (links, buttons, selectors, cards) with pointer cursor. */
+a, button, select, [role="button"], .rating-badge, .anime-card, .item-play-btn, .view-btn, .size-btn, input[type="checkbox"], label { 
+    cursor: pointer; 
 }
 
 
@@ -90,19 +87,85 @@ body {
     padding: 32px 12px 28px; /* Reduced side padding to maximize grid space */
 }
 
-/* Site footer containing copyright information, credits, and brand mentions. */
+/* Container styling for the main site footer. */
 footer {
-    text-align: center;
-    padding: 2.75rem 0 2rem;
+    padding: 3rem 0 2rem;
     color: var(--text-muted);
-    font-size: 13px;
+    font-size: 14px;
     border-top: 1px solid var(--border);
-    margin-top: 40px;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
-/* Specific text styling for third-party brands mentioned in the footer. */
-.vidsrc-brand {
-    color: var(--text);
+/* Row wrapper for footer columns layout. */
+.footer-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    gap: 40px;
+}
+
+/* Individual footer column container. */
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Footer headers for branding or info categories. */
+.footer-col h3, .footer-col h4 {
+    color: var(--white);
+    font-weight: 700;
+}
+
+/* Logo styling inside the footer for branding consistency. */
+.footer-col h3 .ras { color: var(--primary); }
+
+/* Logo suffix portion styled in white for contrast. */
+.footer-col h3 .cal { color: #ffffff; }
+
+/* Subtext/description paragraphs within footer columns. */
+.footer-col p {
+    line-height: 1.6;
+    font-size: 13px;
+    max-width: 400px;
+}
+
+/* Unordered lists for links in footer columns. */
+.footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Interactive anchor links within footer columns. */
+.footer-col a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.15s ease;
+}
+
+/* Hover feedback for footer navigation links. */
+.footer-col a:hover {
+    color: var(--primary);
+}
+
+/* Brand mention colors for integrated data sources in the credits. */
+.provider-brand {
+    color: var(--white);
+    font-weight: 600;
+}
+
+/* Bottom copyright bar in the footer. */
+.footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    text-align: center;
+    font-size: 12px;
+    opacity: 0.8;
 }
 
 /* ==========================================================================
@@ -144,19 +207,19 @@ footer {
     user-select: none;
 }
 
-/* Styles the 'RAS' portion of the logo with a distinct yellow accent and glow. */
-.logo-rascal .ras { color: #FFCC00; text-shadow: 0 0 10px rgba(255, 204, 0, 0.3); }
+/* Styles the 'RAS' portion of the logo with a distinct purple accent and glow. */
+.logo-rascal .ras { color: #9d4edd; text-shadow: 0 0 10px rgba(157, 78, 221, 0.3); }
 
 /* Styles the 'CAL' portion of the logo in white for contrast. */
 .logo-rascal .cal { color: #FFFFFF; }
 
-/* The central container in the header, primarily used for the search bar. */
+/* Central header container styling for the search input bar. */
 .header-center {
-    width: 100%;
-    max-width: 500px;
+    width: 650px;
+    max-width: 100%;
 }
 
-/* A prominent input field with a search icon and clear focus indicators. */
+/* Prominent search input bar styling with subtle focus indicator ring. */
 .search-bar {
     display: flex;
     align-items: center;
@@ -165,13 +228,14 @@ footer {
     border-radius: 12px;
     padding: 0 18px;
     min-height: 52px;
+    width: 100%;
     transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 /* Visual feedback for the search bar when the user clicks inside to type. */
 .search-bar:focus-within {
-    border-color: #FFCC00;
-    box-shadow: 0 0 0 2px rgba(255, 204, 0, 0.1);
+    border-color: #9d4edd;
+    box-shadow: 0 0 0 2px rgba(157, 78, 221, 0.1);
 }
 
 /* Decorative search icon positioned inside the search input bar. */
@@ -221,7 +285,7 @@ footer {
 .header-right button:focus-visible {
     outline: none;
     border-color: var(--text-muted);
-    box-shadow: 0 0 0 2px rgba(255, 204, 0, 0.12);
+    box-shadow: 0 0 0 2px rgba(157, 78, 221, 0.12);
 }
 
 /* Icons within the header buttons, ensuring they are properly centered and sized. */
@@ -253,17 +317,17 @@ footer {
 
 /* Indicates that local data is out of sync by applying a glowing animation to the download button. */
 #download-btn.sync-needed {
-    background: #FFCC00;
-    color: #000;
-    border-color: #FFCC00;
-    animation: pulse-yellow 1s infinite;
+    background: #9d4edd;
+    color: #fff;
+    border-color: #9d4edd;
+    animation: pulse-purple 1s infinite;
 }
 
 /* Animation sequence for the sync-needed pulse effect. */
-@keyframes pulse-yellow {
-    0% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(255, 204, 0, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0); }
+@keyframes pulse-purple {
+    0% { box-shadow: 0 0 0 0 rgba(157, 78, 221, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(157, 78, 221, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(157, 78, 221, 0); }
 }
 
 /* ==========================================================================
@@ -428,7 +492,7 @@ footer {
 .status-group-header i {
     width: 24px;
     text-align: center;
-    color: #FFCC00;
+    color: #9d4edd;
 }
 
 /* A pill badge showing the number of items within a specific status group. */
@@ -446,7 +510,7 @@ footer {
    ANIME CARD COMPONENTS
    ========================================================================== */
 
-/* The base component for an anime entry, providing a surface, border, and transition effects. */
+/* The base component for an anime entry, providing a surface, border, and transition effects. Elevated above stack layers. */
 .anime-card {
     background: var(--surface); 
     border: 2px solid var(--border);
@@ -456,19 +520,20 @@ footer {
     flex-direction: row; 
     gap: 14px;
     position: relative;
+    z-index: 5;
     transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
     overflow: visible;
     user-select: none; /* Make card feel more like a button */
 }
 
-/* Background shift on hover for grid cards to provide depth feedback. */
-.anime-card:hover {
+/* Brightness enhancement for the main card when its wrapper is hovered. */
+.anime-card-wrapper:hover .anime-card {
     filter: brightness(1.15);
 }
 
-/* Ensures that the cursor remains default for all interactive sub-elements within a card. */
-.anime-card * { 
-    cursor: default !important; 
+/* Styles interactive sub-elements inside the card as pointers. */
+.anime-card *, .anime-card .rating-badge, .anime-card .avg-rating-badge {
+    cursor: pointer;
 }
 
 /* Stacking context for poster and info to ensure they appear above any pseudo-element effects. */
@@ -477,33 +542,38 @@ footer {
     z-index: 1;
 }
 
-/* .anime-card:hover, .anime-card:focus-within: Enriches the hover and focus states of an anime card.
-   Applies a golden border color, inset border highlights, a soft glowing shadow, and a minor scale transformation to make the interactivity obvious and premium. */
-.anime-card:hover, .anime-card:focus-within {
+/* Styled hover and focus states for the main card to add a glowing purple border. */
+.anime-card-wrapper:hover .anime-card, .anime-card-wrapper:focus-within .anime-card {
     border-color: var(--primary); 
-    box-shadow: 0 8px 24px rgba(255, 204, 0, 0.15), inset 0 0 0 1px var(--primary);
+    box-shadow: 0 8px 30px rgba(157, 78, 221, 0.3), inset 0 0 0 2px var(--primary);
     transform: scale(1.015);
 }
 
 /* ---------------- GRID VIEW LAYOUT ---------------- */
 
 /* #anime-container.grid-view .status-column: Configures the status columns to display as a multi-column responsive grid.
-   Uses grid layout with a gap between cards. Gap has been reduced to make it thinner. */
+   Uses grid layout with a gap between cards. Row gap is larger to accommodate fanned-out background stack cards. */
 #anime-container.grid-view .status-column {
     display: grid;
     grid-template-columns: repeat(var(--grid-cols, 5), 1fr);
-    gap: 10px;
+    column-gap: 16px;
+    row-gap: 52px;
     align-content: start;
     width: 100%;
 }
 
-/* #anime-container.grid-view .anime-card: Specific layout adjustments for the anime card when displayed in a grid format.
-   Uses a row layout with reduced padding and gap to make it compact. */
-#anime-container.grid-view .anime-card {
+/* Grid-specific container properties for the wrapper. */
+#anime-container.grid-view .anime-card-wrapper {
     container-type: inline-size;
     container-name: card;
+}
+
+/* #anime-container.grid-view .anime-card: Specific layout adjustments for the anime card when displayed in a grid format.
+   Uses a row layout with reduced padding and gap to make it compact. Stretches to fill wrapper. */
+#anime-container.grid-view .anime-card {
     flex-direction: row;
     min-height: 152px;
+    height: 100%;
     align-items: stretch;
     overflow: hidden;
     padding: 8px;
@@ -559,10 +629,10 @@ footer {
     position: relative;
 }
 
-/* #anime-container.list-view .anime-card:hover: Subtle shadow on list items when hovered for a premium feel. 
-   Uses a soft primary brand color glow and a minor scale transformation. */
+/* Subtle shadow and purple border highlight on list items when hovered. */
 #anime-container.list-view .anime-card:hover {
-    box-shadow: 0 4px 12px rgba(255, 204, 0, 0.12);
+    box-shadow: 0 4px 16px rgba(157, 78, 221, 0.25);
+    border-color: var(--primary);
     transform: scale(1.008);
 }
 
@@ -591,19 +661,84 @@ footer {
 
 /* ---------------- CARD SUB-ELEMENTS ---------------- */
 
-/* The poster image container with a fixed aspect ratio and placeholder background. */
+/* Poster container with aspect-ratio, enforcing corner rounding and cropping. */
 .card-poster {
     flex-shrink: 0;
     aspect-ratio: 2/3;
     background: var(--surface-2);
     border-radius: 8px;
-    overflow: hidden;
     position: relative;
+    overflow: hidden;
 }
 
 /* Ensures the actual poster image covers the entire container while maintaining its aspect ratio. */
 .card-poster img {
     width: 100%; height: 100%; object-fit: cover; display: block;
+}
+
+/* Wrapper element to containerize stacked deck layers and the main card. */
+.anime-card-wrapper {
+    position: relative;
+    overflow: visible;
+}
+
+/* Elevated stack index on hover to ensure fanned-out layers render above subsequent grid items. */
+.anime-card-wrapper:hover {
+    z-index: 10;
+}
+
+/* Background card layers that sit behind the main card to represent items count. */
+.card-stack-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--surface-2);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* The first background card layer with minimal vertical offset and highest opacity. */
+.card-stack-layer.layer-1 { top: 4px; opacity: 0.9; z-index: 4; }
+
+/* The second background card layer with medium vertical offset and opacity. */
+.card-stack-layer.layer-2 { top: 8px; opacity: 0.75; z-index: 3; }
+
+/* The third background card layer with medium-high vertical offset and opacity. */
+.card-stack-layer.layer-3 { top: 12px; opacity: 0.6; z-index: 2; }
+
+/* The fourth background card layer with high vertical offset and opacity. */
+.card-stack-layer.layer-4 { top: 16px; opacity: 0.45; z-index: 1; }
+
+/* The fifth background card layer with very high vertical offset and lower opacity. */
+.card-stack-layer.layer-5 { top: 20px; opacity: 0.3; z-index: 0; }
+
+/* The sixth background card layer with maximum vertical offset and lowest opacity. */
+.card-stack-layer.layer-6 { top: 24px; opacity: 0.15; z-index: -1; }
+
+/* Expanded vertical offset for the first background layer on wrapper hover. */
+.anime-card-wrapper:hover .card-stack-layer.layer-1 { top: 8px; }
+
+/* Expanded vertical offset for the second background layer on wrapper hover. */
+.anime-card-wrapper:hover .card-stack-layer.layer-2 { top: 16px; }
+
+/* Expanded vertical offset for the third background layer on wrapper hover. */
+.anime-card-wrapper:hover .card-stack-layer.layer-3 { top: 24px; }
+
+/* Expanded vertical offset for the fourth background layer on wrapper hover. */
+.anime-card-wrapper:hover .card-stack-layer.layer-4 { top: 32px; }
+
+/* Expanded vertical offset for the fifth background layer on wrapper hover. */
+.anime-card-wrapper:hover .card-stack-layer.layer-5 { top: 40px; }
+
+/* Expanded vertical offset for the sixth background layer on wrapper hover. */
+.anime-card-wrapper:hover .card-stack-layer.layer-6 { top: 48px; }
+
+/* Hides all background stacked card layers when the container is in list view. */
+.list-view .card-stack-layer {
+    display: none;
 }
 
 /* Compact poster sizing specifically for the small list view layout. */
@@ -757,7 +892,8 @@ footer {
 .anime-card[data-status="-1"]::before { background: var(--status-none); }   /* Te Bekijken */
 .anime-card[data-status="0"]::before  { background: var(--status-watching); } /* Bezig */
 .anime-card[data-status="1"]::before  { display: none; }                     /* Bekeken: no bar */
-.anime-card[data-status="2"]::before  { background: var(--status-new); }      /* New alert */
+/* Styles the left status bar with a magenta alert color when the anime contains new content. */
+.anime-card[data-is-new="true"]::before { background: var(--status-new); display: block; }
 
 /* Visual feedback for cards that have been completed, using a muted surface color. */
 .anime-card[data-status="1"],
@@ -1006,11 +1142,11 @@ footer {
     -webkit-appearance: none;
 }
 
-/* Dark mode override: solid, distinct status buttons with a visible white chevron. */
+/* Dark mode override status selects with a visible white chevron. */
 [data-theme="dark"] .item-status-select,
 [data-theme="dark"] #global-status-select {
     background: #2a2a2a !important;
-    border-color: rgba(255, 204, 0, 0.3) !important;
+    border-color: rgba(157, 78, 221, 0.3) !important;
     color: #ffffff !important;
     /* White chevron arrow for dark backgrounds */
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23ffffff' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C2.185 5.355 2.408 5 2.811 5h9.378c.403 0 .626.355.361.658l-4.796 5.482a.5.5 0 0 1-.740 0z'/%3E%3C/svg%3E") !important;
@@ -1255,12 +1391,12 @@ footer {
     line-height: 1;
 }
 
-/* Specific color variant for TV Series and Movies. */
+/* Specific color variant for TV Series and Movies using purple accent. */
 .item-type-badge.type-serie,
 .item-type-badge.type-movie {
-    background: rgba(255, 204, 0, 0.15);
-    color: #FFCC00;
-    border: 1px solid rgba(255, 204, 0, 0.3);
+    background: rgba(157, 78, 221, 0.15);
+    color: #9d4edd;
+    border: 1px solid rgba(157, 78, 221, 0.3);
 }
 
 /* Specific color variant for Spin-off series. */
@@ -1332,11 +1468,11 @@ footer {
     flex: 1;
 }
 
-/* Accent styling for special season titles (e.g., OVAs, Specials). */
-.season-specials .season-title { color: #FFCC00; opacity: 0.9; }
+/* Accent styling for special season titles (e.g., OVAs, Specials) using purple. */
+.season-specials .season-title { color: #9d4edd; opacity: 0.9; }
 
-/* Distinctive background and border for special season containers. */
-.season-specials { background: rgba(255, 204, 0, 0.03); border-radius: 4px; border: 1px dashed rgba(255, 204, 0, 0.1); padding: 4px 8px; margin-bottom: 12px; }
+/* Distinctive background and border for special season containers using purple. */
+.season-specials { background: rgba(157, 78, 221, 0.03); border-radius: 4px; border: 1px dashed rgba(157, 78, 221, 0.1); padding: 4px 8px; margin-bottom: 12px; }
 
 /* The container for the list of episodes, using a tree-like indentation. */
 .episode-list {
@@ -1713,17 +1849,20 @@ footer {
     border-color: var(--primary) !important;
 }
 
+/* Interactive row layout for individual items (seasons/movies) on detail page. */
 .detail-item-row {
     padding: 8px 16px !important;
     display: flex !important;
     align-items: center !important;
     gap: 12px !important; /* Spacing between chevron and title */
     border: 2px solid transparent !important;
+    border-left: 3px solid transparent !important;
 }
 
-/* Hover feedback for detail item rows. */
+/* Hover feedback for detail item rows, rendering a subtle paars border indicator. */
 .detail-item-row:hover {
     background: rgba(255, 255, 255, 0.05);
+    border-left-color: var(--primary) !important;
 }
 
 .item-info-col {
@@ -1987,8 +2126,8 @@ footer {
     .filter-btn { padding: 8px 12px; font-size: 13px; }
     .toolbar-right { margin-left: 0; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 12px; }
 
-    /* Forces all grid views to a 2-column or 3-column layout on mobile. */
-    #anime-container.grid-view .status-column { grid-template-columns: repeat(2, 1fr) !important; gap: 12px; }
+    /* Forces all grid views to a 2-column or 3-column layout on mobile. Column-gap is tight while row-gap is larger for card stacking. */
+    #anime-container.grid-view .status-column { grid-template-columns: repeat(2, 1fr) !important; column-gap: 12px; row-gap: 52px; }
     #anime-container.grid-view.size-s .status-column { grid-template-columns: repeat(3, 1fr) !important; }
 }
 
@@ -2077,12 +2216,13 @@ footer {
         margin: 2px 0 0;
     }
 
-    /* Grid view: altijd 2 kolommen ongeacht size instelling (S/M/L is verborgen) */
+    /* Grid view: always 2 columns regardless of size settings on mobile, separating gaps. */
     #anime-container.grid-view.size-l .status-column,
     #anime-container.grid-view.size-m .status-column,
     #anime-container.grid-view.size-s .status-column {
         grid-template-columns: repeat(2, 1fr) !important;
-        gap: 10px;
+        column-gap: 10px;
+        row-gap: 52px;
     }
     
     #anime-container.grid-view .anime-card {

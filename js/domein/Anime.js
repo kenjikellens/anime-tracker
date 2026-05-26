@@ -4,11 +4,16 @@ import { AnimeItem } from './AnimeItem.js';
  * Domain model for one anime franchise or title group.
  */
 export class Anime {
+    /**
+     * Constructs a new Anime model, initializing its properties and parsing sub-items.
+     * Legacy status of 2 is normalized to -1 and sets the isNieuw property to true.
+     */
     constructor(data) {
         this.id = data.id;
         this.anilistId = data.anilistId || null;
         this.title = data.title;
-        this.status = data.status;
+        this.status = data.status === 2 ? -1 : data.status;
+        this.isNieuw = data.isNieuw !== undefined ? data.isNieuw : (data.status === 2 || false);
         this.rating = data.rating || 0;
         this.releaseDate = data.releaseDate || "";
         this.coverImage = data.coverImage || "";

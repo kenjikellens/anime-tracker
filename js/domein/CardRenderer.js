@@ -6,7 +6,8 @@ import { RatingManager } from './RatingManager.js';
  */
 export class CardRenderer {
     /**
-     * Returns the poster media plus the conditional "Nieuw" badge.
+     * Generates HTML markup for the card poster, including hue gradient fallbacks and the "Nieuw" badge.
+     * Checks the isNieuw property of the anime to show the badge.
      */
     static getPosterMarkup(anime) {
         const hash = anime.title.split('').reduce((acc, char) => char.charCodeAt(0) + acc, 0);
@@ -17,7 +18,7 @@ export class CardRenderer {
             posterContent = `<img src="${anime.coverImage}" style="width:100%; height:100%; object-fit:cover; border-radius: 6px;" loading="lazy" />`;
         }
 
-        const nieuwLabel = anime.status === 2
+        const nieuwLabel = anime.isNieuw
             ? `
                 <div class="label-nieuw" aria-label="Nieuw beschikbare content">
                     <span class="label-nieuw-icon"><i class="fas fa-bell"></i></span>
@@ -50,65 +51,85 @@ export class CardRenderer {
     }
 
     /**
-     * Updates only the poster area for one already rendered card.
+     * Re-renders and updates the poster image area for a specific anime card.
+     * This locates the rendered card by ID and replaces its poster contents.
+     * @param {Object} anime - The anime model whose card image should be updated.
      */
     static updateCardImage(anime) {
         const div = document.querySelector(`.anime-card[data-id="${anime.id}"]`);
         if (div) {
             const posterDiv = div.querySelector('.card-poster');
-            posterDiv.innerHTML = this.getPosterMarkup(anime);
+            if (posterDiv) {
+                posterDiv.innerHTML = this.getPosterMarkup(anime);
+            }
         }
     }
 
     /**
-     * Builds a single anime card and wires its click handlers.
+     * Creates a fully structured card wrapper with backing deck layers and the main card.
+     * Attaches click event handlers to the card and its rating badge.
+     * @param {Object} anime - The anime model data to render.
+     * @param {Function} onRatingClick - Callback trigger when the rating badge is clicked.
+     * @returns {HTMLElement} The populated anime card wrapper element.
      */
     static createCard(anime, onRatingClick) {
-        const div = document.createElement('div');
-        div.className = `anime-card ${RatingManager.getCardClass(anime.rating)}`;
-        div.setAttribute('data-status', anime.status);
-        div.setAttribute('data-id', anime.id);
+        const wrapper = document.createElement('div');
+        wrapper.className = 'anime-card-wrapper';
+        wrapper.setAttribute('data-id', anime.id);
 
-        if (anime.status === 1) {
-            div.classList.add("status-watched");
+        const itemCount = anime.items.length;
+        let stackMarkup = '';
+        if (itemCount > 1) {
+            const layersCount = Math.min(itemCount, 6);
+            for (let i = 1; i <= layersCount; i++) {
+                stackMarkup += `<div class="card-stack-layer layer-${i}"></div>`;
+            }
         }
 
         const avgRating = anime.getAverageItemRating();
         const avgBadgeClass = RatingManager.getBadgeClass(avgRating);
 
-        div.innerHTML = `
-            <div class="card-poster">
-                ${this.getPosterMarkup(anime)}
-            </div>
-            <div class="card-info" style="gap: 8px;">
-                <div class="card-header">
-                    <div class="card-title">
-                        <span style="font-size:1.1rem; line-height: 1.2;">${anime.title}</span>
+        wrapper.innerHTML = `
+            ${stackMarkup}
+            <div class="anime-card ${RatingManager.getCardClass(anime.rating)}" data-status="${anime.status}" data-is-new="${anime.isNieuw ? 'true' : 'false'}" data-id="${anime.id}">
+                <div class="card-poster">
+                    ${this.getPosterMarkup(anime)}
+                </div>
+                <div class="card-info" style="gap: 8px;">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <span style="font-size:1.1rem; line-height: 1.2;">${anime.title}</span>
+                        </div>
+                    </div>
+                    <div class="card-subtitle" style="font-size: 0.85rem; color: var(--text-muted); opacity: 0.8;">${anime.items.length} items</div>
+                    <div class="card-actions">
+                        <div class="rating-badge ${RatingManager.getBadgeClass(anime.rating)}" style="cursor: pointer;">
+                            <i class="fas fa-star"></i> ${anime.rating > 0 ? anime.rating.toFixed(1) : 'NR'}
+                        </div>
+                        <div class="avg-rating-badge ${avgBadgeClass}" title="Gemiddelde item-rating">
+                            <i class="fas fa-chart-bar"></i> ${avgRating > 0 ? avgRating.toFixed(1) : '—'}
+                        </div>
                     </div>
                 </div>
-                <div class="card-subtitle" style="font-size: 0.85rem; color: var(--text-muted); opacity: 0.8;">${anime.items.length} items</div>
-                <div class="card-actions">
-                    <div class="rating-badge ${RatingManager.getBadgeClass(anime.rating)}" style="cursor: pointer;">
-                        <i class="fas fa-star"></i> ${anime.rating > 0 ? anime.rating.toFixed(1) : 'NR'}
-                    </div>
-                    <div class="avg-rating-badge ${avgBadgeClass}" title="Gemiddelde item-rating">
-                        <i class="fas fa-chart-bar"></i> ${avgRating > 0 ? avgRating.toFixed(1) : '—'}
-                    </div>
-                </div>
+                <i class="fas fa-chevron-right expand-icon"></i>
             </div>
-            <i class="fas fa-chevron-right expand-icon"></i>
         `;
-        
-        const ratingBtn = div.querySelector('.rating-badge');
+
+        const mainCard = wrapper.querySelector('.anime-card');
+        if (anime.status === 1) {
+            mainCard.classList.add("status-watched");
+        }
+
+        const ratingBtn = wrapper.querySelector('.rating-badge');
         ratingBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             if (onRatingClick) onRatingClick(anime);
         });
-        
-        div.addEventListener('click', () => {
+
+        mainCard.addEventListener('click', () => {
             window.location.href = `card.html?id=${anime.id}`;
         });
-        
-        return div;
+
+        return wrapper;
     }
 }

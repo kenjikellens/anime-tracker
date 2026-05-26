@@ -159,14 +159,14 @@ De filterknoppen gebruiken de volgende waarden:
 
 - `all`
   - toont alles.
-- `2`
-  - toont `Nieuw`.
-- `-1`
-  - toont `Te Bekijken`.
-- `0`
-  - toont `Bezig`.
-- `1`
-  - toont `Bekeken`.
+- `2` (Nieuw)
+  - toont animes met nieuwe seizoenen of films (`isNieuw: true`).
+- `-1` (Te Bekijken)
+  - toont animes met status `Te Bekijken` die geen nieuwe seizoenen/films hebben.
+- `0` (Bezig)
+  - toont animes met status `Bezig` die geen nieuwe seizoenen/films hebben.
+- `1` (Bekeken)
+  - toont animes met status `Bekeken` die geen nieuwe seizoenen/films hebben.
 
 #### Sortering
 

@@ -12,14 +12,14 @@ const WATCH_PROVIDER_SEARCH_PATH = "/search?query=";
  */
 export class DetailRenderer {
     /**
-     * Builds the full sidebar plus main accordion list.
+     * Builds the full detailed sidebar, item accordions, and status dropdowns for an anime group.
+     * Restricts the global dropdown to non-Nieuw statuses, and includes Nieuw in item dropdowns.
      */
     static renderDetail(container, anime, onItemStatusChange, onGlobalStatusChange, onRatingChange, onEpisodeToggle, onRatingClick = null, openItemIds = [], onItemRatingClick = null) {
         container.innerHTML = '';
         
         let globalStatusSelect = `
             <select class="status-current detail-action-btn" id="global-status-select" style="width: 100%;">
-                <option value="" ${anime.status === 2 ? 'selected' : ''} disabled>Nieuw</option>
                 <option value="-1" ${anime.status === -1 ? 'selected' : ''}>Te Bekijken</option>
                 <option value="0" ${anime.status === 0 ? 'selected' : ''}>Bezig</option>
                 <option value="1" ${anime.status === 1 ? 'selected' : ''}>Bekeken</option>
@@ -114,6 +114,7 @@ export class DetailRenderer {
                 
                 let itemStatusSelect = `
                     <select class="item-status-select" id="status-${item.id}">
+                        <option value="2" ${item.status === 2 ? 'selected' : ''}>Nieuw</option>
                         <option value="-1" ${item.status === -1 ? 'selected' : ''}>Te Bekijken</option>
                         <option value="0" ${item.status === 0 ? 'selected' : ''}>Bezig</option>
                         <option value="1" ${item.status === 1 ? 'selected' : ''}>Bekeken</option>

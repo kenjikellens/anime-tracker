@@ -31,15 +31,16 @@ export class AnimeRepository {
     }
 
     /**
-     * Filters the collection by top-level status.
+     * Filters the anime collection by their top-level status or new status flags.
+     * Takes into account the isNieuw property to avoid category overlap.
      */
     filterByStatus(statusStr) {
         if (statusStr === 'all') return this.animes;
-        if (statusStr === '-1') {
-            return this.animes.filter(a => a.status === -1 || a.status === 2);
+        if (statusStr === '2') {
+            return this.animes.filter(a => a.isNieuw);
         }
         const s = parseInt(statusStr, 10);
-        return this.animes.filter(a => a.status === s);
+        return this.animes.filter(a => a.status === s && !a.isNieuw);
     }
 
     /**
@@ -73,13 +74,15 @@ export class AnimeRepository {
     }
 
     /**
-     * Serializes the repository back to plain JSON.
+     * Serializes the repository collection into a plain JSON format for file persistence.
+     * Includes isNieuw property to preserve the new flag in the storage file.
      */
     exportToData() {
         return this.animes.map(a => ({
             id: a.id,
             title: a.title,
             status: a.status,
+            isNieuw: a.isNieuw,
             rating: a.rating,
             releaseDate: a.releaseDate,
             coverImage: a.coverImage,

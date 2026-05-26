@@ -14,8 +14,13 @@ let currentSort = localStorage.getItem('sortOrder') || 'default';
 let currentViewMode = localStorage.getItem('viewMode') || 'grid';
 let currentGridCols = localStorage.getItem('gridCols') || '5';
 
+/**
+ * Normalizes legacy or missing filter values to prevent UI inconsistencies.
+ * If the filter is unrecognized, it falls back to 'all'.
+ */
 function normalizeStoredFilter(filter) {
-    return filter === '2' ? '-1' : filter;
+    const validFilters = ['all', '2', '-1', '0', '1'];
+    return validFilters.includes(filter) ? filter : 'all';
 }
 
 /**
