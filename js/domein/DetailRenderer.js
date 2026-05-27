@@ -1,7 +1,7 @@
 import { RatingManager } from './RatingManager.js';
 
 // WATCH_PROVIDER_DOMAIN: The base domain of the streaming provider for playing anime.
-const WATCH_PROVIDER_DOMAIN = "miruro.to";
+const WATCH_PROVIDER_DOMAIN = "miruro.ru";
 
 // WATCH_PROVIDER_SEARCH_PATH: The search path query format used by the streaming provider.
 const WATCH_PROVIDER_SEARCH_PATH = "/search?query=";
