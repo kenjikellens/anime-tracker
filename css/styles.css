@@ -1029,6 +1029,15 @@ footer {
 /* Maximum score category: Gold / Cinema quality. */
 .r-cinema { background-color: rgba(255, 215, 0, 0.35) !important; color: #ffd700 !important; border-color: rgba(255, 215, 0, 0.7) !important; font-weight: 800 !important; }
 
+/* Styles the masterpiece rating badge (>= 9.0) with a premium gold gradient and high contrast dark text. */
+.rating-badge.r-cinema {
+    background: linear-gradient(135deg, #ffe066 0%, #ffd700 50%, #b38f00 100%) !important;
+    color: #1a1a1a !important;
+    border-color: #ffd700 !important;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.4) !important;
+}
+
+
 /* Excellent score category: Dark Green. */
 .r-awesome { background-color: rgba(39, 174, 96, 0.35) !important; color: #27ae60 !important; border-color: rgba(39, 174, 96, 0.7) !important; font-weight: 800 !important; }
 

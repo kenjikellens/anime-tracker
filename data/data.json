@@ -2189,7 +2189,7 @@
         "title": "Teasing Master Takagi-san",
         "status": 0,
         "isNieuw": false,
-        "rating": 0,
+        "rating": 5.6,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx107068-KJq0eFP0GTjL.jpg",
         "items": [
@@ -2275,7 +2275,7 @@
                 "title": "Teasing Master Takagi-san",
                 "status": 0,
                 "type": "MOVIE",
-                "rating": 0,
+                "rating": 5.9,
                 "watchedEpisodes": [
                     1
                 ],
@@ -2459,20 +2459,31 @@
     {
         "id": "aho-girl",
         "title": "AHO-GIRL",
-        "status": 0,
+        "status": 1,
         "isNieuw": false,
-        "rating": 0,
+        "rating": 8.4,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b98251-6miVBNYEXzaF.jpg",
         "items": [
             {
                 "id": "aho-girl-series",
                 "title": "AHO-GIRL",
-                "status": 0,
+                "status": 1,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [
-                    1
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12
                 ],
                 "episodesCount": 12
             }
@@ -3240,7 +3251,7 @@
                 "title": "Oshi no Ko Season 1",
                 "status": 1,
                 "type": "SERIE",
-                "rating": 0,
+                "rating": 9.3,
                 "watchedEpisodes": [
                     1,
                     2,
