@@ -5,18 +5,21 @@ import { AnilistApi } from './domein/AnilistApi.js';
 import { SearchManager } from './domein/SearchManager.js';
 import { ThemeManager } from './domein/ThemeManager.js';
 import { StatusUpdater } from './domein/StatusUpdater.js';
+import { CookieManager } from './domein/CookieManager.js';
 
-// Overview page state. Persisted in localStorage so the UI survives refreshes.
+// Overview page state. Persisted in cookies so the UI survives refreshes.
 let repository = new AnimeRepository();
-let currentFilter = normalizeStoredFilter(localStorage.getItem('activeFilter') || 'all');
+let currentFilter = normalizeStoredFilter(CookieManager.get('activeFilter') || 'all');
 let currentSearchQuery = '';
-let currentSort = localStorage.getItem('sortOrder') || 'default';
-let currentViewMode = localStorage.getItem('viewMode') || 'grid';
-let currentGridCols = localStorage.getItem('gridCols') || '5';
+let currentSort = CookieManager.get('sortOrder') || 'default';
+let currentViewMode = CookieManager.get('viewMode') || 'grid';
+let currentGridCols = CookieManager.get('gridCols') || '5';
 
 /**
  * Normalizes legacy or missing filter values to prevent UI inconsistencies.
  * If the filter is unrecognized, it falls back to 'all'.
+ * @param {string} filter - The filter value to normalize.
+ * @returns {string} The normalized filter value.
  */
 function normalizeStoredFilter(filter) {
     const validFilters = ['all', '2', '-1', '0', '1'];
@@ -36,8 +39,8 @@ async function init() {
         normalized = StatusUpdater.normalizeAnimeStatuses(anime) || normalized;
     });
 
-    if (currentFilter !== (localStorage.getItem('activeFilter') || 'all')) {
-        localStorage.setItem('activeFilter', currentFilter);
+    if (currentFilter !== (CookieManager.get('activeFilter') || 'all')) {
+        CookieManager.set('activeFilter', currentFilter);
     }
     if (normalized) {
         await DataStore.save(repository);
@@ -99,6 +102,7 @@ let currentRatingAnime = null;
 /**
  * Opens the rating modal for the selected anime.
  * Linked to: `#modal-overlay`, `#modal-title`, and `#rating-number`.
+ * @param {Anime} anime - The anime object to rate.
  */
 function openRatingModal(anime) {
     currentRatingAnime = anime;
@@ -182,7 +186,7 @@ function setupSorting() {
     sortSelect.value = currentSort;
     sortSelect.addEventListener('change', (e) => {
         currentSort = e.target.value;
-        localStorage.setItem('sortOrder', currentSort);
+        CookieManager.set('sortOrder', currentSort);
         renderData();
     });
 }
@@ -205,7 +209,7 @@ function setupFilters() {
             target.classList.add('active');
 
             currentFilter = target.getAttribute('data-filter');
-            localStorage.setItem('activeFilter', currentFilter);
+            CookieManager.set('activeFilter', currentFilter);
             renderData();
         });
     });
@@ -246,14 +250,14 @@ function setupViewToggles() {
     } else {
         gridBtn.classList.add('active');
         listBtn.classList.remove('active');
-        container.classList.remove('list-view');
+        container.classList.remove('grid-view');
         container.classList.add('grid-view');
         sizeToggleContainer.style.display = 'flex';
     }
 
     gridBtn.addEventListener('click', () => {
         currentViewMode = 'grid';
-        localStorage.setItem('viewMode', 'grid');
+        CookieManager.set('viewMode', 'grid');
 
         gridBtn.classList.add('active');
         listBtn.classList.remove('active');
@@ -265,7 +269,7 @@ function setupViewToggles() {
 
     listBtn.addEventListener('click', () => {
         currentViewMode = 'list';
-        localStorage.setItem('viewMode', 'list');
+        CookieManager.set('viewMode', 'list');
 
         listBtn.classList.add('active');
         gridBtn.classList.remove('active');
@@ -274,13 +278,17 @@ function setupViewToggles() {
         sizeToggleContainer.style.display = 'none';
     });
 
+    /**
+     * Updates the CSS custom property for grid columns and persists the value.
+     * @param {number} newVal - The new grid column count.
+     */
     function updateGridCols(newVal) {
         if (newVal < 2) newVal = 2;
         if (newVal > 8) newVal = 8;
         colsVal.textContent = newVal;
         container.style.setProperty('--grid-cols', newVal);
         currentGridCols = newVal.toString();
-        localStorage.setItem('gridCols', currentGridCols);
+        CookieManager.set('gridCols', currentGridCols);
     }
 
     minusBtn.addEventListener('click', () => {

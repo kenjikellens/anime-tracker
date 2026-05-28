@@ -2,7 +2,8 @@
    DESIGN TOKENS & CUSTOM PROPERTIES
    ========================================================================== */
 
-/* Defines the core color palette and variables for the Light theme. */
+/* Defines the core color palette and variables for the Light theme. 
+   Configures body background, surfaces, borders, text colors, and shadows. */
 :root {
     --bg: #f0f0f0;               /* Page background — lichtgrijs */
     --surface: #ffffff;          /* Card surface — wit voor duidelijk contrast */
@@ -10,7 +11,7 @@
     --border: #c0c0c0;           /* Border color — zichtbaar grijs */
     --text: #1a1a1a;             /* Primary high-contrast text color */
     --text-muted: #666;          /* Low-contrast secondary/muted text */
-    --white: #ffffff;            /* Active elements (buttons, highlighted titles) */
+    --white: #1a1a1a;            /* Active elements (buttons, highlighted titles) — dark text in light mode for readability */
     --status-none: #999;         /* Gray: To Watch (-1) status indicator */
     --status-watching: #666;     /* Med-gray: Currently Watching (0) status indicator */
     --status-done: #007acc;      /* Blue: Watched (1) status indicator */
@@ -22,6 +23,9 @@
     --primary: #9d4edd;
     --primary-rgb: 157, 78, 221;
     --hover-border: #1a1a1a;
+    --active-bg: #f3e8ff;        /* Light purple background for active toggles (light mode) */
+    --active-color: #7b2cbf;     /* Darker purple text/icon for active toggles (light mode) */
+    --active-border: #d8b4fe;    /* Purple border for active toggles (light mode) */
 }
 
 /* Adjusts variables for a high-vibrancy Dark theme to improve readability in low light. */
@@ -43,6 +47,9 @@
     --primary: #9d4edd;
     --primary-rgb: 157, 78, 221;
     --hover-border: #ffffff;
+    --active-bg: #ffffff;        /* White background for active toggles (dark mode) */
+    --active-color: #1e1e1e;     /* Dark text for active toggles (dark mode) */
+    --active-border: #ffffff;    /* White border for active toggles (dark mode) */
 }
 
 /* ==========================================================================
@@ -80,11 +87,12 @@ body {
    LAYOUT & CONTAINERS
    ========================================================================== */
 
-/* Primary application wrapper that restricts the maximum width and centers the content. */
+/* Primary application wrapper that restricts the maximum width and centers the content. 
+   Increased side padding on desktop to create a more premium, spaced-out layout on both sides. */
 #app {
     max-width: 1850px;
     margin: 0 auto;
-    padding: 32px 12px 28px; /* Reduced side padding to maximize grid space */
+    padding: 32px 48px 28px; /* Increased side padding for breathing room on the outer edges */
 }
 
 /* Container styling for the main site footer. */
@@ -122,8 +130,8 @@ footer {
 /* Logo styling inside the footer for branding consistency. */
 .footer-col h3 .ras { color: var(--primary); }
 
-/* Logo suffix portion styled in white for contrast. */
-.footer-col h3 .cal { color: #ffffff; }
+/* Logo suffix portion styled with theme-aware text color for readability in both light and dark modes. */
+.footer-col h3 .cal { color: var(--text); }
 
 /* Subtext/description paragraphs within footer columns. */
 .footer-col p {
@@ -183,11 +191,12 @@ footer {
     z-index: 100;
 }
 
-/* Centered container within the header that uses a grid for logo, search, and actions. */
+/* Centered container within the header that uses a grid for logo, search, and actions. 
+   Side padding is kept consistent with the main app container for perfect alignment. */
 .header-content {
     max-width: 1850px;
     margin: 0 auto;
-    padding: 0 12px; /* Consistent with main app padding */
+    padding: 0 48px; /* Aligned with #app side padding on desktop */
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
@@ -210,8 +219,8 @@ footer {
 /* Styles the 'RAS' portion of the logo with a distinct purple accent and glow. */
 .logo-rascal .ras { color: #9d4edd; text-shadow: 0 0 10px rgba(157, 78, 221, 0.3); }
 
-/* Styles the 'CAL' portion of the logo in white for contrast. */
-.logo-rascal .cal { color: #FFFFFF; }
+/* Styles the 'CAL' portion of the logo with theme-aware text color for readability in both light and dark modes. */
+.logo-rascal .cal { color: var(--text); }
 
 /* Central header container styling for the search input bar. */
 .header-center {
@@ -352,11 +361,12 @@ footer {
     transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* Highlighted state for the currently active filter button. */
+/* Highlighted state for the currently active filter button. 
+   Uses theme-specific active variables for background, text color, and border. */
 .filter-btn.active {
-    background: var(--white); 
-    color: var(--bg); 
-    border-color: var(--white); 
+    background: var(--active-bg); 
+    color: var(--active-color); 
+    border-color: var(--active-border); 
     font-weight: 600;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
@@ -406,11 +416,12 @@ footer {
     transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* Highlighted state for the active view or size toggle button. */
+/* Highlighted state for the active view or size toggle button.
+   Applies theme-aware styling and soft shadow for elevation. */
 .view-btn.active, .size-btn.active {
-    background-color: var(--white) !important;
-    color: var(--bg) !important;
-    border-color: var(--white) !important;
+    background-color: var(--active-bg) !important;
+    color: var(--active-color) !important;
+    border-color: var(--active-border) !important;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -736,10 +747,40 @@ footer {
 /* Expanded vertical offset for the sixth background layer on wrapper hover. */
 .anime-card-wrapper:hover .card-stack-layer.layer-6 { top: 48px; }
 
-/* Hides all background stacked card layers when the container is in list view. */
-.list-view .card-stack-layer {
-    display: none;
+/* Adjusts the width and margins of the card wrapper in list view. 
+   Reduces wrapper width slightly to prevent horizontal overflow when backing layers fan out to the right. */
+.list-view .anime-card-wrapper {
+    margin-right: 24px;
+    width: calc(100% - 24px);
 }
+
+/* Base style for the background stacked card layers in list view.
+   Enables display, aligns them to the top, and applies matching border radius. */
+.list-view .card-stack-layer {
+    display: block;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-radius: 8px;
+}
+
+/* Horizontal spacing offsets for each background card layer in list view.
+   Steps each layer progressively to the right (left property) to create the side-stacked appearance. */
+.list-view .card-stack-layer.layer-1 { left: 4px; top: 0; }
+.list-view .card-stack-layer.layer-2 { left: 8px; top: 0; }
+.list-view .card-stack-layer.layer-3 { left: 12px; top: 0; }
+.list-view .card-stack-layer.layer-4 { left: 16px; top: 0; }
+.list-view .card-stack-layer.layer-5 { left: 20px; top: 0; }
+.list-view .card-stack-layer.layer-6 { left: 24px; top: 0; }
+
+/* Fanned-out hover offsets for each background card layer in list view.
+   Increases the horizontal spacing (left property) on hover to create a fanning animation effect. */
+.list-view .anime-card-wrapper:hover .card-stack-layer.layer-1 { left: 6px; top: 0; }
+.list-view .anime-card-wrapper:hover .card-stack-layer.layer-2 { left: 12px; top: 0; }
+.list-view .anime-card-wrapper:hover .card-stack-layer.layer-3 { left: 18px; top: 0; }
+.list-view .anime-card-wrapper:hover .card-stack-layer.layer-4 { left: 24px; top: 0; }
+.list-view .anime-card-wrapper:hover .card-stack-layer.layer-5 { left: 30px; top: 0; }
+.list-view .anime-card-wrapper:hover .card-stack-layer.layer-6 { left: 36px; top: 0; }
 
 /* Compact poster sizing specifically for the small list view layout. */
 #anime-container.size-s.list-view .card-poster {
@@ -2106,7 +2147,7 @@ footer {
 
 /* TABLET & SMALL DESKTOP (Max 1200px): Adjusts grid densities and header spacing. */
 @media (max-width: 1200px) {
-    .header-content { grid-template-columns: minmax(0, 1fr) minmax(320px, 1.5fr) auto; gap: 18px; }
+    .header-content { grid-template-columns: minmax(0, 1fr) minmax(320px, 1.5fr) auto; gap: 18px; padding: 0 20px; }
     #app { padding: 28px 20px 24px; }
     .toolbar { gap: 10px; }
     .filter-btn { padding: 9px 14px; }
@@ -2124,7 +2165,7 @@ footer {
 @media (max-width: 768px) {
     #app { padding: 18px 12px 20px; }
     .header-main { padding: 10px 14px; }
-    .header-content { grid-template-columns: auto 1fr auto; gap: 12px; }
+    .header-content { grid-template-columns: auto 1fr auto; gap: 12px; padding: 0 12px; }
     .logo { font-size: 18px; }
     .search-container { max-width: none; }
     .search-input { height: 38px; font-size: 13px; }

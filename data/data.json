@@ -2187,7 +2187,7 @@
     {
         "id": "teasing-master-takagi-san",
         "title": "Teasing Master Takagi-san",
-        "status": 0,
+        "status": 1,
         "isNieuw": false,
         "rating": 5.6,
         "releaseDate": "",
@@ -2273,7 +2273,7 @@
             {
                 "id": "teasing-master-takagi-san-movie",
                 "title": "Teasing Master Takagi-san",
-                "status": 0,
+                "status": 1,
                 "type": "MOVIE",
                 "rating": 5.9,
                 "watchedEpisodes": [
