@@ -55,25 +55,79 @@ export class DetailRenderer {
         sidebarTitle.textContent = title;
 
         const avgRating = anime.getAverageItemRating();
-        const avgBadgeClass = RatingManager.getBadgeClass(avgRating);
 
         const actionsDiv = document.createElement('div');
-        actionsDiv.className = 'sidebar-actions';
+        actionsDiv.className = 'sidebar-actions-v3';
+
+        // Helper to generate 10-segmented bars HTML with exact rating category colors.
+        const createSegmentsHtml = (score, isSmall = false) => {
+            let html = `<div class="segmented-rating-bar${isSmall ? ' small' : ''}">`;
+            const colors = [
+                '#e74c3c', '#e74c3c', '#e74c3c', '#e74c3c', // 1, 2, 3, 4 -> Red / Garbage (< 4.0)
+                '#e67e22',                                 // 5 -> Orange / Bad (4.0+)
+                '#f1c40f',                                 // 6 -> Yellow / Regular (5.0+)
+                '#a2d149',                                 // 7 -> Lime Green / Good (6.0+)
+                '#2ecc71',                                 // 8 -> Bright Green / Great (7.0+)
+                '#27ae60',                                 // 9 -> Dark Green / Awesome (8.0+)
+                '#ffd700'                                  // 10 -> Gold / Cinema (9.0+)
+            ];
+            for (let i = 1; i <= 10; i++) {
+                const fillWidth = Math.min(100, Math.max(0, (score - (i - 1)) * 100));
+                const color = colors[i - 1];
+                html += `
+                    <div class="segment">
+                        <div class="segment-fill" style="width: 0%; background-color: ${color}; transition: width 0.10s linear !important; transition-delay: ${(i - 1) * 0.10}s !important;" data-width="${fillWidth}%"></div>
+                    </div>
+                `;
+            }
+            html += `</div>`;
+            return html;
+        };
+
+        // Helper to determine the text color of the rating display.
+        const getScoreColor = (score) => {
+            if (!score || score === 0) return 'var(--text-muted)';
+            if (score >= 9.0) return '#ffd700';
+            if (score >= 8.0) return '#27ae60';
+            if (score >= 7.0) return '#2ecc71';
+            if (score >= 6.0) return '#a2d149';
+            if (score >= 5.0) return '#f1c40f';
+            if (score >= 4.0) return '#e67e22';
+            return '#e74c3c';
+        };
+
+        const userScoreColor = getScoreColor(anime.rating);
+        const avgScoreColor = getScoreColor(avgRating);
+
         actionsDiv.innerHTML = `
-            <div class="rating-badge detail-action-btn ${RatingManager.getBadgeClass(anime.rating)}">
-                <i class="fas fa-star"></i> 
-                <span>${anime.rating > 0 ? anime.rating.toFixed(1) : 'NR'}</span>
+            <div class="status-alinea">
+                ${globalStatusSelect}
             </div>
-            <div class="avg-rating-badge detail-action-btn ${avgBadgeClass}" title="Gemiddelde item-rating">
-                <i class="fas fa-chart-bar"></i> 
-                <span>${avgRating > 0 ? avgRating.toFixed(1) : '—'}</span>
+            <div class="sidebar-ratings-container">
+                <div class="sidebar-rating-block rating-actionable" title="Klik om te beoordelen">
+                    <div class="sidebar-rating-label">
+                        <span>Jouw Beoordeling</span>
+                        <span class="sidebar-rating-val" style="color: ${userScoreColor};">
+                            ${anime.rating > 0 ? anime.rating.toFixed(1) + '/10' : 'NR'}
+                        </span>
+                    </div>
+                    ${createSegmentsHtml(anime.rating)}
+                </div>
+                <div class="sidebar-rating-block small" title="Gemiddelde rating">
+                    <div class="sidebar-rating-label">
+                        <span>Gemiddelde</span>
+                        <span class="sidebar-rating-val" style="color: ${avgScoreColor};">
+                            ${avgRating > 0 ? avgRating.toFixed(1) + '/10' : '—'}
+                        </span>
+                    </div>
+                    ${createSegmentsHtml(avgRating, true)}
+                </div>
             </div>
-            ${globalStatusSelect}
         `;
         
-        const ratingBadge = actionsDiv.querySelector('.rating-badge');
-        if (onRatingClick) {
-            ratingBadge.addEventListener('click', (e) => {
+        const ratingBlock = actionsDiv.querySelector('.rating-actionable');
+        if (ratingBlock && onRatingClick) {
+            ratingBlock.addEventListener('click', (e) => {
                 e.stopPropagation();
                 onRatingClick(anime);
             });
@@ -211,5 +265,17 @@ export class DetailRenderer {
         layout.appendChild(sidebar);
         layout.appendChild(mainContent);
         container.appendChild(layout);
+
+        // Staggered loading animation for ratings
+        requestAnimationFrame(() => {
+            setTimeout(() => {
+                container.querySelectorAll('.segment-fill').forEach(fill => {
+                    const targetWidth = fill.getAttribute('data-width');
+                    if (targetWidth) {
+                        fill.style.width = targetWidth;
+                    }
+                });
+            }, 50);
+        });
     }
 }

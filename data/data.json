@@ -69,7 +69,7 @@
         "title": "Horimiya",
         "status": 1,
         "isNieuw": false,
-        "rating": 9.5,
+        "rating": 9.6,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx124080-3i22mRVPBS0T.jpg",
         "items": [
@@ -78,7 +78,7 @@
                 "title": "Horimiya",
                 "status": 1,
                 "type": "SERIE",
-                "rating": 9.5,
+                "rating": 9.7,
                 "watchedEpisodes": [],
                 "episodesCount": 13
             },
@@ -87,7 +87,7 @@
                 "title": "Horimiya: The Missing Pieces",
                 "status": 1,
                 "type": "SERIE",
-                "rating": 9.3,
+                "rating": 9.5,
                 "watchedEpisodes": [],
                 "episodesCount": 13
             }

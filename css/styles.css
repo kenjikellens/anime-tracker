@@ -1108,18 +1108,13 @@ footer {
 
 /* ---------------- SPECIAL "GLOW" STATES ---------------- */
 
-/* .anime-card.glow-gold: Special styling for cards with exceptionally high ratings (>= 9.0).
-   Gives them a gold border that smoothly animates between different gold tones. */
-.anime-card.glow-gold {
-    border: 2px solid #ffd700;
-    animation: goldBorderShift 3s infinite ease-in-out;
-}
 
-/* .anime-detail-sidebar-v3.glow-gold: Golden styling for the detail sidebar with a legendary rating.
-   Gives the sidebar a gold border that animates between gold tones. */
+
+/* Styles the high-rated detail sidebar in dark mode with a glowing gold border and subtle gold background. */
 .anime-detail-sidebar-v3.glow-gold {
     border: 2px solid #ffd700;
     animation: goldBorderShift 3s infinite ease-in-out;
+    background: rgba(60, 50, 26, 0.92) !important;
 }
 
 /* [data-theme="light"] .anime-detail-sidebar-v3.glow-gold: Light mode variant of the gold-rated sidebar,
@@ -1859,23 +1854,141 @@ footer {
     text-shadow: none !important;
 }
 
-.sidebar-actions { 
-    display: grid !important; 
-    grid-template-columns: 1fr 1fr !important; /* Perfect 50/50 split */
-    gap: 12px !important; 
-    align-items: stretch !important; /* Stretch buttons to same height */
+/* Container for the sidebar action items in the details sidebar. */
+.sidebar-actions-v3 {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    width: 100% !important;
+    align-items: stretch !important;
+}
+
+/* Container for forcing the select dropdown onto its own full-width line. */
+.status-alinea {
     width: 100% !important;
 }
 
-.sidebar-actions > * {
+/* Styles the global status select dropdown in the detail sidebar. */
+.status-alinea .status-current {
+    width: 100% !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: var(--text) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 12px !important;
+    padding: 10px 14px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    transition: all 0.2s ease !important;
+    outline: none !important;
+}
+
+/* Light theme background and border override for status dropdown. */
+[data-theme="light"] .status-alinea .status-current {
+    background: var(--surface-2) !important;
+    border-color: var(--border) !important;
+    color: var(--text) !important;
+}
+
+/* Container for the sidebar segmented rating bars. */
+.sidebar-ratings-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
     width: 100% !important;
 }
 
-.sidebar-actions .detail-action-btn,
-.sidebar-actions .rating-badge,
-.sidebar-actions .status-current {
+/* A block representing a single rating indicator in the sidebar. */
+.sidebar-rating-block {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
     width: 100% !important;
-    justify-content: center !important;
+    padding: 10px 12px !important;
+    border: 1px solid transparent !important;
+    border-radius: 14px !important;
+}
+
+/* Special styling for actionable rating block (personal score) that opens rating modal. */
+.sidebar-rating-block.rating-actionable {
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+/* Hover effect for actionable rating block. */
+.sidebar-rating-block.rating-actionable:hover {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Light mode override for actionable rating block. */
+[data-theme="light"] .sidebar-rating-block.rating-actionable {
+    background: transparent !important;
+    border-color: transparent !important;
+}
+
+/* Light mode hover effect for actionable rating block. */
+[data-theme="light"] .sidebar-rating-block.rating-actionable:hover {
+    background: rgba(0, 0, 0, 0.02) !important;
+    border-color: rgba(0, 0, 0, 0.04) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* The flex container displaying the label and rating value. */
+.sidebar-rating-label {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    font-size: 12px !important;
+    font-weight: 750 !important;
+    color: var(--text-muted) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.8px !important;
+}
+
+/* Ensure the text label inside the clickable rating block stands out. */
+.sidebar-rating-block.rating-actionable .sidebar-rating-label span:first-child {
+    color: var(--text) !important;
+}
+
+/* The 10-segmented bar container. */
+.segmented-rating-bar {
+    display: flex !important;
+    gap: 4px !important;
+    width: 100% !important;
+    height: 6px !important;
+}
+
+/* Smaller version of segmented bar for average rating. */
+.segmented-rating-bar.small {
+    height: 4px !important;
+    gap: 2px !important;
+}
+
+/* Micro sizing for average rating block. */
+.sidebar-rating-block.small .sidebar-rating-label {
+    font-size: 10px !important;
+}
+
+/* Individual segment of the rating bar. */
+.segmented-rating-bar .segment {
+    flex: 1 !important;
+    height: 100% !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-radius: 2px !important;
+    overflow: hidden !important;
+    position: relative !important;
+}
+
+/* Light mode segment background override. */
+[data-theme="light"] .segmented-rating-bar .segment {
+    background: rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Colored fill element inside a segment. */
+.segmented-rating-bar .segment-fill {
+    height: 100% !important;
+    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .anime-detail-main-v3 {
@@ -2603,6 +2716,11 @@ footer {
     border: 1px solid #555 !important;
 }
 
+/* Darkens the card background on hover in light mode to provide clear feedback. */
+[data-theme="light"] .anime-card-wrapper:hover .anime-card {
+    filter: brightness(0.9) !important;
+}
+
 /* Lighter, cleaner accordion rows on the detail page in light mode. */
 [data-theme="light"] .anime-detail-main-v3 .item-accordion-wrapper {
     background: #ffffff !important;
@@ -2690,32 +2808,7 @@ footer {
     box-shadow: 0 10px 40px rgba(0,0,0,0.2);
 }
 
-/* Visual feedback for legendarily rated items in light mode. */
-[data-theme="light"] .anime-card.glow-gold {
-    background: #fffdf0 !important;
-    background-image:
-        radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(255, 200, 0, 0.12) 0%, transparent 50%) !important;
-    border: 2px solid #e6b800 !important;
-    box-shadow: none !important;
-}
 
-/* Light mode hover for golden cards. */
-[data-theme="light"] .anime-card.glow-gold:hover {
-    box-shadow: none !important;
-}
-
-/* Light mode shimmer: warmer golden tint instead of white. */
-[data-theme="light"] .anime-card.glow-gold::after {
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(255, 215, 0, 0.06) 30%,
-        rgba(255, 200, 50, 0.18) 50%,
-        rgba(255, 215, 0, 0.06) 70%,
-        transparent 100%
-    );
-}
 
 /* ==========================================================================
    GLOBAL CLICKABLE HOVER EFFECTS (ENFORCED)
@@ -2726,13 +2819,13 @@ footer {
    The color is set to white (#ffffff) as per the user's specific request.
    This rule covers buttons, selects, cards, badges, and all interactive rows. */
 
+/* Applies a standard border and shadow on hover to all interactive elements. */
 button:hover,
 select:hover,
 input[type="button"]:hover,
 input[type="submit"]:hover,
 input[type="reset"]:hover,
 .anime-card:hover,
-.anime-card.glow-gold:hover,
 .rating-badge:hover,
 .status-current:hover,
 .item-status-select:hover,
@@ -2782,4 +2875,6 @@ a:hover,
 a *:hover {
     box-shadow: none !important;
 }
+
+
 

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rating Demos</title>
+    <style>
+        :root {
+            --bg: #1e1e1e;
+            --surface: #2a2a2a;
+            --text: #fff;
+            --text-muted: #999;
+            --border: #444;
+            --font-family: 'Outfit', sans-serif;
+            
+            /* Rating Colors derived from CSS classes (r-bad, r-regular, r-good, r-great, r-awesome, r-cinema) */
+            --c1: #c62828; /* Bad */
+            --c2: #d32f2f; /* Bad high */
+            --c3: #e65100; /* Regular */
+            --c4: #ef6c00; /* Regular high */
+            --c5: #f57f17; /* Good */
+            --c6: #fbc02d; /* Good high */
+            --c7: #43a047; /* Great */
+            --c8: #2e7d32; /* Great high */
+            --c9: #00838f; /* Awesome */
+            --c10: #ffd700; /* Cinema (Gold) */
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-family);
+            padding: 2rem;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        /* Sidebar Card Simulation */
+        .anime-detail-sidebar-v3 {
+            background: rgba(40, 40, 40, 0.92);
+            border-radius: 12px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .poster {
+            width: 100%;
+            height: 380px;
+            background: #555;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        /* Buttons Simulation */
+        .card-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .btn {
+            flex: 1;
+            padding: 8px;
+            background: #444;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .btn.primary {
+            background: #9d4edd;
+        }
+
+        /* EXACT Status Dropdown Styling */
+        .status-alinea {
+            margin-bottom: 5px;
+        }
+        .status-current {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-family: var(--font-family);
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+        .status-current:hover {
+            border-color: #9d4edd;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* --- DESIGN 1: Continuous Top Line --- */
+        .rating-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .rating-block {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .rating-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .score-text {
+            font-weight: bold;
+            color: #fff;
+        }
+        .d1-bar-bg {
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+        }
+        .d1-bar-fill {
+            height: 100%;
+            background: #4caf50; /* Color changes based on score */
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition: width 0.3s ease;
+        }
+        /* Smaller version for Average */
+        .rating-block.small .d1-bar-bg {
+            height: 2px;
+        }
+        .rating-block.small .rating-label {
+            font-size: 0.7rem;
+        }
+
+        /* --- DESIGN 2: Horizontal Line with Glowing Top --- */
+        .d2-bar-wrapper {
+            position: relative;
+            padding-top: 4px; /* Space for the line on top */
+        }
+        .d2-bar-bg {
+            height: 2px;
+            background: rgba(255,255,255,0.1);
+            width: 100%;
+        }
+        .d2-bar-fill {
+            height: 4px;
+            background: #2196f3;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 2px;
+            box-shadow: 0 0 8px rgba(33, 150, 243, 0.6);
+        }
+        .rating-block.small .d2-bar-fill {
+            height: 2px;
+            top: 2px;
+        }
+
+        /* --- DESIGN 3: 10-Segmented Bars (Single Color) --- */
+        .d3-segments {
+            display: flex;
+            gap: 4px;
+            width: 100%;
+        }
+        .d3-segment {
+            flex: 1;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 1px;
+        }
+        .d3-segment.filled {
+            background: #ff9800;
+        }
+        .rating-block.small .d3-segment {
+            height: 3px;
+            gap: 2px;
+        }
+
+        /* --- DESIGN 4: Elegant Thin Line on Top --- */
+        .d4-container {
+            border-top: 2px solid rgba(255,255,255,0.1);
+            padding-top: 6px;
+            position: relative;
+        }
+        .d4-fill-line {
+            position: absolute;
+            top: -2px;
+            left: 0;
+            height: 2px;
+            background: #e91e63;
+        }
+        .rating-block.small .d4-container {
+            border-top-width: 1px;
+            padding-top: 4px;
+        }
+        .rating-block.small .d4-fill-line {
+            top: -1px;
+            height: 1px;
+        }
+
+        /* --- DESIGN 5: 10-Segmented Bars (Multi-Color Gradient based on real Rating Colors) --- */
+        .d5-segments {
+            display: flex;
+            gap: 4px;
+            width: 100%;
+        }
+        .d5-segment {
+            flex: 1;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 1px;
+        }
+        .rating-block.small .d5-segment {
+            height: 3px;
+            gap: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- DESIGN 1: Continuous Top Line -->
+    <div class="anime-detail-sidebar-v3">
+        <h3>Design 1: Solid Fill Bar</h3>
+        <div class="poster"></div>
+        <div class="card-buttons">
+            <button class="btn primary">Watch</button>
+            <button class="btn">Edit</button>
+        </div>
+        
+        <!-- Correct Dropdown implementation -->
+        <div class="status-alinea">
+            <select class="status-current detail-action-btn" id="global-status-select" style="width: 100%;">
+                <option value="-1">Te Bekijken</option>
+                <option value="0" selected>Bezig</option>
+                <option value="1">Bekeken</option>
+            </select>
+        </div>
+
+        <div class="rating-container">
+            <div class="rating-block">
+                <div class="rating-label"><span>Your Score</span> <span class="score-text" style="color: #4caf50;">8.5/10</span></div>
+                <div class="d1-bar-bg"><div class="d1-bar-fill" style="width: 85%; background: #4caf50;"></div></div>
+            </div>
+            <div class="rating-block small">
+                <div class="rating-label"><span>Avg Score</span> <span class="score-text" style="color: #8bc34a;">7.2/10</span></div>
+                <div class="d1-bar-bg"><div class="d1-bar-fill" style="width: 72%; background: #8bc34a;"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DESIGN 2: Horizontal Line with Glowing Top -->
+    <div class="anime-detail-sidebar-v3">
+        <h3>Design 2: Line on Top (Glowing)</h3>
+        <div class="poster"></div>
+        <div class="card-buttons">
+            <button class="btn primary">Watch</button>
+            <button class="btn">Edit</button>
+        </div>
+        
+        <div class="status-alinea">
+            <select class="status-current detail-action-btn" id="global-status-select" style="width: 100%;">
+                <option value="-1">Te Bekijken</option>
+                <option value="0">Bezig</option>
+                <option value="1" selected>Bekeken</option>
+            </select>
+        </div>
+
+        <div class="rating-container">
+            <div class="rating-block">
+                <div class="rating-label"><span>Your Score</span> <span class="score-text" style="color: #2196f3;">9.0/10</span></div>
+                <div class="d2-bar-wrapper">
+                    <div class="d2-bar-bg"></div>
+                    <div class="d2-bar-fill" style="width: 90%; background: #2196f3;"></div>
+                </div>
+            </div>
+            <div class="rating-block small">
+                <div class="rating-label"><span>Avg Score</span> <span class="score-text" style="color: #03a9f4;">8.1/10</span></div>
+                <div class="d2-bar-wrapper">
+                    <div class="d2-bar-bg"></div>
+                    <div class="d2-bar-fill" style="width: 81%; background: #03a9f4;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DESIGN 3: 10-Segmented Bars (Single Color) -->
+    <div class="anime-detail-sidebar-v3">
+        <h3>Design 3: 10 Segments (Single Color)</h3>
+        <div class="poster"></div>
+        <div class="card-buttons">
+            <button class="btn primary">Watch</button>
+            <button class="btn">Edit</button>
+        </div>
+        
+        <div class="status-alinea">
+            <select class="status-current detail-action-btn" id="global-status-select" style="width: 100%;">
+                <option value="-1" selected>Te Bekijken</option>
+                <option value="0">Bezig</option>
+                <option value="1">Bekeken</option>
+            </select>
+        </div>
+
+        <div class="rating-container">
+            <div class="rating-block">
+                <div class="rating-label"><span>Your Score</span> <span class="score-text" style="color: #ff9800;">7.0/10</span></div>
+                <div class="d3-segments">
+                    <div class="d3-segment filled" style="background: #ff9800;"></div>
+                    <div class="d3-segment filled" style="background: #ff9800;"></div>
+                    <div class="d3-segment filled" style="background: #ff9800;"></div>
+                    <div class="d3-segment filled" style="background: #ff9800;"></div>
+                    <div class="d3-segment filled" style="background: #ff9800;"></div>
+                    <div class="d3-segment filled" style="background: #ff9800;"></div>
+                    <div class="d3-segment filled" style="background: #ff9800;"></div>
+                    <div class="d3-segment"></div>
+                    <div class="d3-segment"></div>
+                    <div class="d3-segment"></div>
+                </div>
+            </div>
+            <div class="rating-block small">
+                <div class="rating-label"><span>Avg Score</span> <span class="score-text" style="color: #ffb74d;">6.5/10</span></div>
+                <div class="d3-segments">
+                    <div class="d3-segment filled" style="background: #ffb74d;"></div>
+                    <div class="d3-segment filled" style="background: #ffb74d;"></div>
+                    <div class="d3-segment filled" style="background: #ffb74d;"></div>
+                    <div class="d3-segment filled" style="background: #ffb74d;"></div>
+                    <div class="d3-segment filled" style="background: #ffb74d;"></div>
+                    <div class="d3-segment filled" style="background: #ffb74d;"></div>
+                    <div class="d3-segment filled" style="background: #ffb74d; width: 50%;"></div>
+                    <div class="d3-segment"></div>
+                    <div class="d3-segment"></div>
+                    <div class="d3-segment"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DESIGN 4: Elegant Border Top -->
+    <div class="anime-detail-sidebar-v3">
+        <h3>Design 4: Thin Border Top</h3>
+        <div class="poster"></div>
+        <div class="card-buttons">
+            <button class="btn primary">Watch</button>
+            <button class="btn">Edit</button>
+        </div>
+        
+        <div class="status-alinea">
+            <select class="status-current detail-action-btn" id="global-status-select" style="width: 100%;">
+                <option value="-1">Te Bekijken</option>
+                <option value="0">Bezig</option>
+                <option value="1">Bekeken</option>
+            </select>
+        </div>
+
+        <div class="rating-container">
+            <div class="rating-block">
+                <div class="rating-label"><span>Your Score</span> <span class="score-text" style="color: #e91e63;">4.0/10</span></div>
+                <div class="d4-container">
+                    <div class="d4-fill-line" style="width: 40%; background: #e91e63;"></div>
+                </div>
+            </div>
+            <div class="rating-block small">
+                <div class="rating-label"><span>Avg Score</span> <span class="score-text" style="color: #f06292;">5.2/10</span></div>
+                <div class="d4-container">
+                    <div class="d4-fill-line" style="width: 52%; background: #f06292;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DESIGN 5: 10-Segmented Bars (Multi-Color Gradient) -->
+    <div class="anime-detail-sidebar-v3">
+        <h3>Design 5: Multi-Color Segments (Rating Colors)</h3>
+        <div class="poster"></div>
+        <div class="card-buttons">
+            <button class="btn primary">Watch</button>
+            <button class="btn">Edit</button>
+        </div>
+        
+        <div class="status-alinea">
+            <select class="status-current detail-action-btn" id="global-status-select" style="width: 100%;">
+                <option value="-1">Te Bekijken</option>
+                <option value="0" selected>Bezig</option>
+                <option value="1">Bekeken</option>
+            </select>
+        </div>
+
+        <div class="rating-container">
+            <div class="rating-block">
+                <div class="rating-label"><span>Your Score</span> <span class="score-text" style="color: var(--c8);">8.0/10</span></div>
+                <div class="d5-segments">
+                    <div class="d5-segment" style="background: var(--c1);"></div>
+                    <div class="d5-segment" style="background: var(--c2);"></div>
+                    <div class="d5-segment" style="background: var(--c3);"></div>
+                    <div class="d5-segment" style="background: var(--c4);"></div>
+                    <div class="d5-segment" style="background: var(--c5);"></div>
+                    <div class="d5-segment" style="background: var(--c6);"></div>
+                    <div class="d5-segment" style="background: var(--c7);"></div>
+                    <div class="d5-segment" style="background: var(--c8);"></div>
+                    <div class="d5-segment"></div>
+                    <div class="d5-segment"></div>
+                </div>
+            </div>
+            <div class="rating-block small">
+                <div class="rating-label"><span>Avg Score</span> <span class="score-text" style="color: var(--c7);">6.5/10</span></div>
+                <div class="d5-segments">
+                    <div class="d5-segment" style="background: var(--c1);"></div>
+                    <div class="d5-segment" style="background: var(--c2);"></div>
+                    <div class="d5-segment" style="background: var(--c3);"></div>
+                    <div class="d5-segment" style="background: var(--c4);"></div>
+                    <div class="d5-segment" style="background: var(--c5);"></div>
+                    <div class="d5-segment" style="background: var(--c6);"></div>
+                    <div class="d5-segment" style="background: var(--c7); width: 50%;"></div>
+                    <div class="d5-segment"></div>
+                    <div class="d5-segment"></div>
+                    <div class="d5-segment"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
