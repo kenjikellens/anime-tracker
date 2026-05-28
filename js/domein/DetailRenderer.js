@@ -69,14 +69,16 @@ export class DetailRenderer {
                 '#a2d149',                                 // 7 -> Lime Green / Good (6.0+)
                 '#2ecc71',                                 // 8 -> Bright Green / Great (7.0+)
                 '#27ae60',                                 // 9 -> Dark Green / Awesome (8.0+)
-                '#ffd700'                                  // 10 -> Gold / Cinema (9.0+)
+                'linear-gradient(90deg, #ffe066 0%, #ffd700 50%, #b38f00 100%)' // 10 -> Premium Gold Gradient (9.0+)
             ];
             for (let i = 1; i <= 10; i++) {
                 const fillWidth = Math.min(100, Math.max(0, (score - (i - 1)) * 100));
                 const color = colors[i - 1];
+                const isGold = (i === 10);
+                const extraStyle = isGold ? 'box-shadow: 0 0 8px rgba(255, 215, 0, 0.7);' : '';
                 html += `
                     <div class="segment">
-                        <div class="segment-fill" style="width: 0%; background-color: ${color}; transition: width 0.10s linear !important; transition-delay: ${(i - 1) * 0.10}s !important;" data-width="${fillWidth}%"></div>
+                        <div class="segment-fill" style="width: 0%; background: ${color}; ${extraStyle} transition: width 0.10s linear !important; transition-delay: ${(i - 1) * 0.10}s !important;" data-width="${fillWidth}%"></div>
                     </div>
                 `;
             }
