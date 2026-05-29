@@ -3251,7 +3251,7 @@
                 "title": "Oshi no Ko Season 1",
                 "status": 1,
                 "type": "SERIE",
-                "rating": 9.3,
+                "rating": 9.1,
                 "watchedEpisodes": [
                     1,
                     2,
@@ -3272,7 +3272,7 @@
                 "title": "Oshi no Ko Season 2",
                 "status": 0,
                 "type": "SERIE",
-                "rating": 0,
+                "rating": 9.6,
                 "watchedEpisodes": [
                     1,
                     3,
@@ -3280,6 +3280,15 @@
                     4
                 ],
                 "episodesCount": 13
+            },
+            {
+                "id": "oshi-no-ko-season-3",
+                "title": "Oshi no Ko Season 3",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 11
             },
             {
                 "id": "oshi-no-ko-final-season",

@@ -168,6 +168,7 @@
 ## Oshi no Ko
 - [ ] Oshi no Ko Season 1 (TV Series - 11 eps)
 - [ ] Oshi no Ko Season 2 (TV Series - 13 eps)
+- [ ] Oshi no Ko Season 3 (TV Series - 11 eps)
 - [ ] Oshi no Ko Final Season (Announced)
  
 ## Baka to Test to Shoukanjuu
