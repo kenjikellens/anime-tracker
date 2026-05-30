@@ -4,7 +4,8 @@
  */
 export class StatusUpdater {
     /**
-     * Applies one global status and cascades the change to every item.
+     * Applies one global status and cascades the change to every item (skipping items with status 2).
+     * Affects the global status of the anime and the status of all non-upcoming items.
      */
     static updateGlobalStatus(anime, newStatus) {
         const parsedStatus = parseInt(newStatus, 10);
@@ -13,13 +14,17 @@ export class StatusUpdater {
 
         if (s === 1) {
             anime.items.forEach(item => {
-                item.setStatus(1);
-                item.setAllWatched();
+                if (item.status !== 2) {
+                    item.setStatus(1);
+                    item.setAllWatched();
+                }
             });
         } else if (s === -1) {
             anime.items.forEach(item => {
-                item.setStatus(-1);
-                item.clearAllEpisodes();
+                if (item.status !== 2) {
+                    item.setStatus(-1);
+                    item.clearAllEpisodes();
+                }
             });
         }
     }
@@ -113,10 +118,14 @@ export class StatusUpdater {
 
     /**
      * Derives the anime-level status from the collection of item statuses.
-     * Treats item status 2 (Nieuw) as -1 (Te Bekijken) for calculation and returns -1, 0, or 1.
+     * Ignores items with status 2 (Nieuw) so that the global status represents only released content.
      */
     static deriveAnimeStatus(anime) {
-        const statuses = anime.items.map(i => i.status === 2 ? -1 : i.status);
+        const nonNewItems = anime.items ? anime.items.filter(i => i.status !== 2) : [];
+        if (nonNewItems.length === 0) {
+            return -1;
+        }
+        const statuses = nonNewItems.map(i => i.status);
         const hasBusy = statuses.includes(0);
         const hasWatched = statuses.includes(1);
         const hasUnstarted = statuses.includes(-1);

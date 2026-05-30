@@ -2,7 +2,7 @@
     {
         "id": "rascal-does-not-dream",
         "title": "Rascal Does Not Dream",
-        "status": 0,
+        "status": 1,
         "isNieuw": true,
         "rating": 9.7,
         "releaseDate": "",
@@ -249,7 +249,7 @@
     {
         "id": "the-100-girlfriends-who-really-really-really-really-really-love-you",
         "title": "The 100 Girlfriends Who Really, Really, Really, Really, Really Love You",
-        "status": 0,
+        "status": 1,
         "isNieuw": true,
         "rating": 8.8,
         "releaseDate": "",
@@ -538,7 +538,7 @@
     {
         "id": "the-angel-next-door-spoils-me-rotten",
         "title": "The Angel Next Door Spoils Me Rotten",
-        "status": 0,
+        "status": 1,
         "isNieuw": true,
         "rating": 8,
         "releaseDate": "",
@@ -1587,7 +1587,7 @@
     {
         "id": "blue-box",
         "title": "Blue Box",
-        "status": 0,
+        "status": 1,
         "isNieuw": true,
         "rating": 5,
         "releaseDate": "",
@@ -1977,7 +1977,7 @@
     {
         "id": "chitose-is-in-the-ramune-bottle",
         "title": "Chitose Is in the Ramune Bottle",
-        "status": 0,
+        "status": 1,
         "isNieuw": true,
         "rating": 7,
         "releaseDate": "",
@@ -2417,7 +2417,7 @@
     {
         "id": "tune-in-to-the-midnight-heart",
         "title": "Tune In to the Midnight Heart",
-        "status": 0,
+        "status": 1,
         "isNieuw": true,
         "rating": 8.2,
         "releaseDate": "",
@@ -3242,7 +3242,7 @@
         "title": "Oshi no Ko",
         "status": 0,
         "isNieuw": false,
-        "rating": 0,
+        "rating": 9.3,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx166531-dAL5MsqDHUkj.jpg",
         "items": [
@@ -3293,11 +3293,21 @@
             {
                 "id": "oshi-no-ko-season-3",
                 "title": "Oshi no Ko Season 3",
-                "status": 0,
+                "status": 1,
                 "type": "SERIE",
-                "rating": 0,
+                "rating": 8.8,
                 "watchedEpisodes": [
-                    1
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11
                 ],
                 "episodesCount": 11
             },

@@ -32,7 +32,7 @@ export class AnimeRepository {
 
     /**
      * Filters the anime collection by their top-level status or new status flags.
-     * Takes into account the isNieuw property to avoid category overlap.
+     * Allows franchises with isNieuw to overlap with their derived status categories.
      */
     filterByStatus(statusStr) {
         if (statusStr === 'all') return this.animes;
@@ -40,7 +40,7 @@ export class AnimeRepository {
             return this.animes.filter(a => a.isNieuw);
         }
         const s = parseInt(statusStr, 10);
-        return this.animes.filter(a => a.status === s && !a.isNieuw);
+        return this.animes.filter(a => a.status === s);
     }
 
     /**
