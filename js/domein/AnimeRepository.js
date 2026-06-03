@@ -31,13 +31,15 @@ export class AnimeRepository {
     }
 
     /**
-     * Filters the anime collection by their top-level status or new status flags.
-     * Allows franchises with isNieuw to overlap with their derived status categories.
+     * Filters the anime collection by top-level watch status or item-only release status.
      */
     filterByStatus(statusStr) {
         if (statusStr === 'all') return this.animes;
-        if (statusStr === '2') {
-            return this.animes.filter(a => a.isNieuw);
+        if (statusStr === 'airing') {
+            return this.animes.filter(a => a.items.some(item => item.status === 3));
+        }
+        if (statusStr === 'upcoming') {
+            return this.animes.filter(a => a.items.some(item => item.status === 2));
         }
         const s = parseInt(statusStr, 10);
         return this.animes.filter(a => a.status === s);
@@ -75,14 +77,12 @@ export class AnimeRepository {
 
     /**
      * Serializes the repository collection into a plain JSON format for file persistence.
-     * Includes isNieuw property to preserve the new flag in the storage file.
      */
     exportToData() {
         return this.animes.map(a => ({
             id: a.id,
             title: a.title,
-            status: a.status,
-            isNieuw: a.isNieuw,
+            status: [-1, 0, 1].includes(a.status) ? a.status : -1,
             rating: a.rating,
             releaseDate: a.releaseDate,
             coverImage: a.coverImage,

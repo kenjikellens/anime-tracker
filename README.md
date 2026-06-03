@@ -24,7 +24,7 @@ De app werkt met twee lagen:
 1. Een **overzichtsniveau** voor de franchise als geheel.
 2. Een **itemniveau** voor individuele seizoenen, films, OVA's, specials of andere releases binnen die franchise.
 
-Dat betekent dat een anime bijvoorbeeld `Bekeken` kan zijn terwijl een later seizoen `Bezig` of `Nieuw` is. De detailpagina vertaalt die combinatie terug naar het juiste globale statussymbool.
+Dat betekent dat een anime bijvoorbeeld `Bekeken` kan zijn terwijl een later seizoen `Airing` of `Upcoming` is. De detailpagina vertaalt die combinatie terug naar het juiste globale statussymbool.
 
 ## Starten van de app
 
@@ -159,8 +159,10 @@ De filterknoppen gebruiken de volgende waarden:
 
 - `all`
   - toont alles.
-- `2` (Nieuw)
-  - toont animes met nieuwe seizoenen of films (`isNieuw: true`).
+- `airing`
+  - toont animes met minstens een subitem met status `3`.
+- `upcoming`
+  - toont animes met minstens een subitem met status `2`.
 - `-1` (Te Bekijken)
   - toont animes met status `Te Bekijken` die geen nieuwe seizoenen/films hebben.
 - `0` (Bezig)
@@ -252,7 +254,7 @@ De detailpagina gebruikt hetzelfde ratingmodal als de overzichtspagina. Dat zorg
 
 ## Statusmodel
 
-De app gebruikt vier globale statussen:
+De app gebruikt drie globale statussen op anime-niveau:
 
 - `-1`
   - `Te Bekijken`
@@ -260,12 +262,17 @@ De app gebruikt vier globale statussen:
   - `Bezig`
 - `1`
   - `Bekeken`
-- `2`
-  - `Nieuw`
 
 ### Betekenis op itemniveau
 
-Op itemniveau betekenen die waarden ongeveer hetzelfde, maar daar kunnen ze ook puur de staat van een seizoen of film beschrijven.
+Op itemniveau bestaan naast de kijkstatussen ook release-statussen:
+
+- `2`
+  - `Upcoming`
+- `3`
+  - `Airing`
+
+Release-statussen zijn alleen geldig op subitems. Een animegroep zelf mag nooit status `2` of `3` krijgen.
 
 ### Sync-regels
 
@@ -273,8 +280,9 @@ Op itemniveau betekenen die waarden ongeveer hetzelfde, maar daar kunnen ze ook 
 
 - als alles bekeken is, gaat de anime naar `Bekeken`;
 - als er een mix is van bekeken en te bekijken, of als een item expliciet bezig is, wordt de anime `Bezig`;
-- als er een nieuw seizoen is zonder mixed catch-up-situatie, wordt de anime `Nieuw`;
 - anders valt de anime terug naar `Te Bekijken`.
+
+Items met `Upcoming` of `Airing` worden genegeerd bij het afleiden van de globale kijkstatus.
 
 ### Episode-logica
 
@@ -366,6 +374,23 @@ Als een anime:
 
 - een `anilistId` heeft, wordt die direct gebruikt;
 - geen `anilistId` heeft, wordt gezocht op titel.
+
+## Maandelijkse release-check
+
+`scripts/check_anime_releases.py` controleert alle animegroepen via AniList.
+
+- Standaard draait het script als dry-run.
+- Met `--write` past het subitems in `data/data.json` aan.
+- Nieuwe vertrouwde matches worden met Engelse titel als `Upcoming` of `Airing` toegevoegd.
+- Bestaande release-subitems mogen alleen tussen `Upcoming` en `Airing` wisselen.
+- Het script schrijft nooit status `2` of `3` naar een top-level animegroep.
+
+Voorbeeld:
+
+```bash
+python scripts/check_anime_releases.py --dry-run
+python scripts/check_anime_releases.py --write
+```
 
 ## Belangrijke modelvelden
 

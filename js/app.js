@@ -22,7 +22,7 @@ let currentGridCols = CookieManager.get('gridCols') || '5';
  * @returns {string} The normalized filter value.
  */
 function normalizeStoredFilter(filter) {
-    const validFilters = ['all', '2', '-1', '0', '1'];
+    const validFilters = ['all', 'airing', 'upcoming', '-1', '0', '1'];
     return validFilters.includes(filter) ? filter : 'all';
 }
 

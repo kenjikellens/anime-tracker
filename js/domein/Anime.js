@@ -6,14 +6,13 @@ import { AnimeItem } from './AnimeItem.js';
 export class Anime {
     /**
      * Constructs a new Anime model, initializing its properties and parsing sub-items.
-     * Legacy status of 2 is normalized to -1 and sets the isNieuw property to true.
+     * Top-level anime status is always a watch status: -1, 0, or 1.
      */
     constructor(data) {
         this.id = data.id;
         this.anilistId = data.anilistId || null;
         this.title = data.title;
-        this.status = data.status === 2 ? -1 : data.status;
-        this.isNieuw = data.isNieuw !== undefined ? data.isNieuw : (data.status === 2 || false);
+        this.status = [-1, 0, 1].includes(data.status) ? data.status : -1;
         this.rating = data.rating || 0;
         this.releaseDate = data.releaseDate || "";
         this.coverImage = data.coverImage || "";

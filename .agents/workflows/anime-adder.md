@@ -28,20 +28,24 @@ Each entry (Season, Movie, OVA) must be an object in the `items` array:
 *   **Item Rating**: Individual score for that specifically.
 
 ### Status Codes
-These codes are mandatory for both parent and item levels:
+Parent anime objects may only use watch-progress codes. Item objects may use both watch-progress and release-state codes.
+
 | Code | Label | Logic |
 | :--- | :--- | :--- |
 | **`1`** | **Watched** | Fully completed. |
 | **`0`** | **Watching** | Active progress in `watchedEpisodes`. |
 | **`-1`** | **To Watch** | Planned for the future. |
-| **`2`** | **New** | Recently added or upcoming seasons. |
+| **`2`** | **Upcoming** | Item-only status for announced but not yet released seasons, movies, OVAs, or specials. |
+| **`3`** | **Airing** | Item-only status for releases currently airing. |
+
+Never set a parent anime object's `status` to `2` or `3`. Parent status must stay one of `-1`, `0`, or `1`; `Upcoming` and `Airing` are derived from the `items` array.
 
 ---
 
 ## 2. Documentation: `docs/`
 
 ### `docs/te_bekijken.md` (To Watch)
-For any anime with a status of `-1` or `2`:
+For any anime with a parent status of `-1`, or any item with status `2` or `3`:
 *   Use a `## [Anime Title]` header.
 *   List items using checkboxes: `- [ ] Season Name (Type - X eps)`.
 

@@ -3,25 +3,27 @@
  * Linked to: the detail page dropdowns and episode checkboxes.
  */
 export class StatusUpdater {
+    static RELEASE_STATUSES = [2, 3];
+
     /**
-     * Applies one global status and cascades the change to every item (skipping items with status 2).
+     * Applies one global status and cascades the change to every non-release item.
      * Affects the global status of the anime and the status of all non-upcoming items.
      */
     static updateGlobalStatus(anime, newStatus) {
         const parsedStatus = parseInt(newStatus, 10);
-        const s = parsedStatus === 2 ? -1 : parsedStatus;
+        const s = [-1, 0, 1].includes(parsedStatus) ? parsedStatus : -1;
         anime.setGlobalStatus(s);
 
         if (s === 1) {
             anime.items.forEach(item => {
-                if (item.status !== 2) {
+                if (!this.RELEASE_STATUSES.includes(item.status)) {
                     item.setStatus(1);
                     item.setAllWatched();
                 }
             });
         } else if (s === -1) {
             anime.items.forEach(item => {
-                if (item.status !== 2) {
+                if (!this.RELEASE_STATUSES.includes(item.status)) {
                     item.setStatus(-1);
                     item.clearAllEpisodes();
                 }
@@ -31,7 +33,7 @@ export class StatusUpdater {
 
     /**
      * Applies one item status and adjusts its episode state.
-     * Clears episodes for status -1 and 2 (Nieuw), and triggers parent anime status sync.
+     * Clears episodes for unstarted and release statuses, and triggers parent anime status sync.
      */
     static updateItemStatus(item, newStatus, anime) {
         const s = parseInt(newStatus, 10);
@@ -39,7 +41,7 @@ export class StatusUpdater {
 
         if (s === 1) {
             item.setAllWatched();
-        } else if (s === -1 || s === 2) {
+        } else if (s === -1 || this.RELEASE_STATUSES.includes(s)) {
             item.clearAllEpisodes();
         } else if (s === 0) {
             if (item.watchedEpisodes.length === 0) {
@@ -75,31 +77,22 @@ export class StatusUpdater {
     }
 
     /**
-     * Derives the anime-level status and isNieuw property from the collection of item statuses.
-     * Affects parent anime status and its isNieuw boolean flag.
+     * Derives the anime-level watch status from the collection of item statuses.
      */
     static syncAnimeStatus(anime) {
-        anime.isNieuw = anime.items ? anime.items.some(item => item.status === 2) : false;
         if (!anime.items || anime.items.length === 0) return;
 
         anime.setGlobalStatus(this.deriveAnimeStatus(anime));
     }
 
     /**
-     * Normalizes legacy global "Nieuw" statuses to a calculated status and updates the isNieuw boolean.
-     * Affects the global anime status and the data store.
+     * Normalizes top-level anime statuses to calculated watch statuses.
      */
     static normalizeAnimeStatuses(anime) {
         let changed = false;
 
-        if (anime.status === 2) {
+        if (![ -1, 0, 1 ].includes(anime.status)) {
             anime.setGlobalStatus(-1);
-            changed = true;
-        }
-
-        const isNewNow = anime.items ? anime.items.some(item => item.status === 2) : false;
-        if (anime.isNieuw !== isNewNow) {
-            anime.isNieuw = isNewNow;
             changed = true;
         }
 
@@ -118,14 +111,14 @@ export class StatusUpdater {
 
     /**
      * Derives the anime-level status from the collection of item statuses.
-     * Ignores items with status 2 (Nieuw) so that the global status represents only released content.
+     * Ignores release-only items so the global status represents released watch progress.
      */
     static deriveAnimeStatus(anime) {
-        const nonNewItems = anime.items ? anime.items.filter(i => i.status !== 2) : [];
-        if (nonNewItems.length === 0) {
+        const watchItems = anime.items ? anime.items.filter(i => !this.RELEASE_STATUSES.includes(i.status)) : [];
+        if (watchItems.length === 0) {
             return -1;
         }
-        const statuses = nonNewItems.map(i => i.status);
+        const statuses = watchItems.map(i => i.status);
         const hasBusy = statuses.includes(0);
         const hasWatched = statuses.includes(1);
         const hasUnstarted = statuses.includes(-1);

@@ -15,7 +15,8 @@
     --status-none: #999;         /* Gray: To Watch (-1) status indicator */
     --status-watching: #666;     /* Med-gray: Currently Watching (0) status indicator */
     --status-done: #007acc;      /* Blue: Watched (1) status indicator */
-    --status-new: #e040fb;       /* Magenta: Nieuw (2) status indicator */
+    --status-upcoming: #e040fb;  /* Magenta: Upcoming (2) status indicator */
+    --status-airing: #5bbcff;    /* Light blue: Airing (3) status indicator */
     --modal-bg: rgba(0,0,0,0.3); /* Semi-transparent overlay for modals */
     --shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Soft interface element shadow */
     --header-bg: #e0e0e0;        /* Distinct background for top header bar */
@@ -40,7 +41,8 @@
     --status-none: #666;
     --status-watching: #999;
     --status-done: #4da6ff;       /* Vibrant blue for dark mode readability */
-    --status-new: #ea80fc;        /* Bright magenta for dark mode */
+    --status-upcoming: #ea80fc;   /* Bright magenta for dark mode */
+    --status-airing: #8fd3ff;     /* Light blue for dark mode */
     --modal-bg: rgba(0,0,0,0.5);
     --shadow: 0 4px 20px rgba(255, 255, 255, 0.05);
     --header-bg: #282828;
@@ -795,8 +797,8 @@ footer {
     overflow: visible;
 }
 
-/* A distinctive "New" badge that appears in the corner of recently added items. */
-.label-nieuw {
+/* Distinctive release badges that appear in the corner of upcoming or airing items. */
+.label-release {
     position: absolute;
     top: 8px;
     left: 8px;
@@ -805,43 +807,58 @@ footer {
     align-items: center;
     justify-content: center;
     gap: 6px;
-    background: var(--status-new);
     color: var(--white);
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
     pointer-events: none;
 }
 
-/* Individual icons and text inside the "New" badge for granular control. */
-.label-nieuw-icon,
-.label-nieuw-text {
+.label-airing {
+    background: var(--status-airing);
+}
+
+.label-upcoming {
+    background: var(--status-upcoming);
+}
+
+.label-release + .label-release {
+    top: 42px;
+}
+
+/* Individual icons and text inside the release badge for granular control. */
+.label-release-icon,
+.label-release-text {
     display: inline-flex;
     align-items: center;
     justify-content: center;
 }
 
-/* Circular variant of the "New" badge for the grid layout. */
-.grid-view .label-nieuw {
+/* Circular variant of the release badge for the grid layout. */
+.grid-view .label-release {
     width: 28px;
     height: 28px;
     border-radius: 999px;
 }
 
-/* Hides the text in the grid "New" badge to keep it compact. */
-.grid-view .label-nieuw-text { display: none; }
+/* Hides the text in the grid release badge to keep it compact. */
+.grid-view .label-release-text { display: none; }
 
-/* Horizontal pill variant of the "New" badge for the list layout. */
-.list-view .label-nieuw {
+/* Horizontal pill variant of the release badge for the list layout. */
+.list-view .label-release {
     top: -7px;
     left: -7px;
     padding: 3px 8px;
     border-radius: 999px;
 }
 
-/* Hides the icon in the list "New" badge to save horizontal space. */
-.list-view .label-nieuw-icon { display: none; }
+.list-view .label-release + .label-release {
+    top: 14px;
+}
 
-/* Small, bold font styling for the text inside the list view's "New" badge. */
-.list-view .label-nieuw-text {
+/* Hides the icon in the list release badge to save horizontal space. */
+.list-view .label-release-icon { display: none; }
+
+/* Small, bold font styling for the text inside the list view's release badge. */
+.list-view .label-release-text {
     font-size: 9px;
     font-weight: 800;
     letter-spacing: 0.12em;
@@ -933,8 +950,8 @@ footer {
 .anime-card[data-status="-1"]::before { background: var(--status-none); }   /* Te Bekijken */
 .anime-card[data-status="0"]::before  { background: var(--status-watching); } /* Bezig */
 .anime-card[data-status="1"]::before  { display: none; }                     /* Bekeken: no bar */
-/* Styles the left status bar with a magenta alert color when the anime contains new content. */
-.anime-card[data-is-new="true"]::before { background: var(--status-new); display: block; }
+.anime-card[data-has-upcoming="true"]::before { background: var(--status-upcoming); display: block; }
+.anime-card[data-has-airing="true"]::before { background: var(--status-airing); display: block; }
 
 /* Visual feedback for cards that have been completed, using a muted surface color. */
 .anime-card[data-status="1"],

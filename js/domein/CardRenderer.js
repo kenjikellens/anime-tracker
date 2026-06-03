@@ -6,8 +6,7 @@ import { RatingManager } from './RatingManager.js';
  */
 export class CardRenderer {
     /**
-     * Generates HTML markup for the card poster, including hue gradient fallbacks and the "Nieuw" badge.
-     * Checks the isNieuw property of the anime to show the badge.
+     * Generates HTML markup for the card poster, including hue gradient fallbacks and release badges.
      */
     static getPosterMarkup(anime) {
         const hash = anime.title.split('').reduce((acc, char) => char.charCodeAt(0) + acc, 0);
@@ -18,16 +17,25 @@ export class CardRenderer {
             posterContent = `<img src="${anime.coverImage}" style="width:100%; height:100%; object-fit:cover; border-radius: 6px;" loading="lazy" />`;
         }
 
-        const nieuwLabel = anime.isNieuw
-            ? `
-                <div class="label-nieuw" aria-label="Nieuw beschikbare content">
-                    <span class="label-nieuw-icon"><i class="fas fa-bell"></i></span>
-                    <span class="label-nieuw-text">NIEUW</span>
+        const releaseLabels = [];
+        if (anime.items.some(item => item.status === 3)) {
+            releaseLabels.push(`
+                <div class="label-release label-airing" aria-label="Airing content">
+                    <span class="label-release-icon"><i class="fas fa-play"></i></span>
+                    <span class="label-release-text">AIRING</span>
                 </div>
-            `
-            : '';
+            `);
+        }
+        if (anime.items.some(item => item.status === 2)) {
+            releaseLabels.push(`
+                <div class="label-release label-upcoming" aria-label="Upcoming content">
+                    <span class="label-release-icon"><i class="fas fa-bell"></i></span>
+                    <span class="label-release-text">UPCOMING</span>
+                </div>
+            `);
+        }
 
-        return `${posterContent}${nieuwLabel}`;
+        return `${posterContent}${releaseLabels.join('')}`;
     }
 
     /**
@@ -91,7 +99,7 @@ export class CardRenderer {
 
         wrapper.innerHTML = `
             ${stackMarkup}
-            <div class="anime-card ${RatingManager.getCardClass(anime.rating)}" data-status="${anime.status}" data-is-new="${anime.isNieuw ? 'true' : 'false'}" data-id="${anime.id}">
+            <div class="anime-card ${RatingManager.getCardClass(anime.rating)}" data-status="${anime.status}" data-has-airing="${anime.items.some(item => item.status === 3) ? 'true' : 'false'}" data-has-upcoming="${anime.items.some(item => item.status === 2) ? 'true' : 'false'}" data-id="${anime.id}">
                 <div class="card-poster">
                     ${this.getPosterMarkup(anime)}
                 </div>

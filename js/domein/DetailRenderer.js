@@ -13,7 +13,7 @@ const WATCH_PROVIDER_SEARCH_PATH = "/search?query=";
 export class DetailRenderer {
     /**
      * Builds the full detailed sidebar, item accordions, and status dropdowns for an anime group.
-     * Restricts the global dropdown to non-Nieuw statuses, and includes Nieuw in item dropdowns.
+     * Restricts the global dropdown to watch statuses, and includes item-only release statuses.
      */
     static renderDetail(container, anime, onItemStatusChange, onGlobalStatusChange, onRatingChange, onEpisodeToggle, onRatingClick = null, openItemIds = [], onItemRatingClick = null) {
         container.innerHTML = '';
@@ -170,7 +170,8 @@ export class DetailRenderer {
                 
                 let itemStatusSelect = `
                     <select class="item-status-select" id="status-${item.id}">
-                        <option value="2" ${item.status === 2 ? 'selected' : ''}>Nieuw</option>
+                        <option value="3" ${item.status === 3 ? 'selected' : ''}>Airing</option>
+                        <option value="2" ${item.status === 2 ? 'selected' : ''}>Upcoming</option>
                         <option value="-1" ${item.status === -1 ? 'selected' : ''}>Te Bekijken</option>
                         <option value="0" ${item.status === 0 ? 'selected' : ''}>Bezig</option>
                         <option value="1" ${item.status === 1 ? 'selected' : ''}>Bekeken</option>
