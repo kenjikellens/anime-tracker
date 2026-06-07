@@ -4,7 +4,6 @@ import { CardRenderer } from './domein/CardRenderer.js';
 import { AnilistApi } from './domein/AnilistApi.js';
 import { SearchManager } from './domein/SearchManager.js';
 import { ThemeManager } from './domein/ThemeManager.js';
-import { StatusUpdater } from './domein/StatusUpdater.js';
 import { CookieManager } from './domein/CookieManager.js';
 
 // Overview page state. Persisted in cookies so the UI survives refreshes.
@@ -33,11 +32,7 @@ function normalizeStoredFilter(filter) {
 async function init() {
     ThemeManager.initTheme();
     const data = await DataStore.loadInitialData();
-    repository.loadFromData(data);
-    let normalized = false;
-    repository.getAll().forEach(anime => {
-        normalized = StatusUpdater.normalizeAnimeStatuses(anime) || normalized;
-    });
+    const normalized = repository.loadAndNormalize(data);
 
     if (currentFilter !== (CookieManager.get('activeFilter') || 'all')) {
         CookieManager.set('activeFilter', currentFilter);
@@ -59,12 +54,13 @@ async function init() {
 }
 
 /**
- * Fetches missing cover art and episode counts from AniList.
+ * Fetches missing cover art and episode counts from AniList using rate-limit throttling and batch saving.
  * Linked to: AniList GraphQL and `CardRenderer.updateCardImage`.
  */
 async function hydrateAnilistData() {
     const missing = repository.getAll().filter(a => !a.coverImage);
-    const BATCH_SIZE = 15;
+    const BATCH_SIZE = 5;
+    let modified = false;
 
     for (let i = 0; i < missing.length; i += BATCH_SIZE) {
         const batch = missing.slice(i, i + BATCH_SIZE);
@@ -84,15 +80,19 @@ async function hydrateAnilistData() {
                     anime.items[0].episodesCount = apiData.episodes || 0;
                 }
                 CardRenderer.updateCardImage(anime);
+                modified = true;
             }
         });
 
         await Promise.all(promises);
-        await DataStore.save(repository);
 
         if (i + BATCH_SIZE < missing.length) {
-            await new Promise(r => setTimeout(r, 1000));
+            await new Promise(r => setTimeout(r, 1500));
         }
+    }
+
+    if (modified) {
+        await DataStore.save(repository);
     }
 }
 
@@ -118,36 +118,8 @@ function openRatingModal(anime) {
 }
 
 /**
- * Saves the rating from the modal and refreshes the overview.
- * Linked to: the save button in `index.html`.
- */
-window.saveGlobalRating = function() {
-    const overlay = document.getElementById('modal-overlay');
-    const ratingInput = document.getElementById('rating-number');
-
-    if (currentRatingAnime) {
-        import('./domein/RatingManager.js').then(async (module) => {
-            let val = parseFloat(ratingInput.value);
-            if (isNaN(val)) val = 0;
-            if (val < 0) val = 0;
-            if (val > 10) val = 10;
-
-            module.RatingManager.updateRating(currentRatingAnime, val);
-            await DataStore.save(repository);
-            renderData();
-            if (overlay) overlay.classList.add('hidden');
-            currentRatingAnime = null;
-        }).catch(err => {
-            console.error(err);
-            if (overlay) overlay.classList.add('hidden');
-        });
-    } else {
-        if (overlay) overlay.classList.add('hidden');
-    }
-};
-
-/**
- * Closes the rating modal when the overlay itself is clicked.
+ * Sets up rating modal events dynamically, removing dependency on global window objects.
+ * This binds click events to the save, clear, and cancel buttons.
  */
 function setupRatingModal() {
     const overlay = document.getElementById('modal-overlay');
@@ -159,6 +131,49 @@ function setupRatingModal() {
             currentRatingAnime = null;
         }
     });
+
+    const cancelBtn = document.getElementById('cancel-rating');
+    if (cancelBtn) {
+        cancelBtn.addEventListener('click', () => {
+            overlay.classList.add('hidden');
+            currentRatingAnime = null;
+        });
+    }
+
+    const clearBtn = document.getElementById('clear-rating');
+    if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+            const ratingInput = document.getElementById('rating-number');
+            if (ratingInput) ratingInput.value = '';
+        });
+    }
+
+    const saveBtn = document.getElementById('save-rating');
+    if (saveBtn) {
+        saveBtn.addEventListener('click', () => {
+            if (currentRatingAnime) {
+                import('./domein/RatingManager.js').then(async (module) => {
+                    const ratingInput = document.getElementById('rating-number');
+                    let val = ratingInput ? parseFloat(ratingInput.value) : 0;
+                    if (isNaN(val)) val = 0;
+                    if (val < 0) val = 0;
+                    if (val > 10) val = 10;
+
+                    module.RatingManager.updateRating(currentRatingAnime, val);
+                    await DataStore.save(repository);
+                    renderData();
+                    overlay.classList.add('hidden');
+                    currentRatingAnime = null;
+                }).catch(err => {
+                    console.error(err);
+                    overlay.classList.add('hidden');
+                    currentRatingAnime = null;
+                });
+            } else {
+                overlay.classList.add('hidden');
+            }
+        });
+    }
 }
 
 /**

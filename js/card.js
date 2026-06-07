@@ -17,11 +17,7 @@ let currentRatingType = null;
 async function init() {
     ThemeManager.initTheme();
     const data = await DataStore.loadInitialData();
-    repository.loadFromData(data);
-    let normalized = false;
-    repository.getAll().forEach(anime => {
-        normalized = StatusUpdater.normalizeAnimeStatuses(anime) || normalized;
-    });
+    const normalized = repository.loadAndNormalize(data);
 
     if (normalized) {
         await DataStore.save(repository);
@@ -103,48 +99,71 @@ function openItemRatingModal(item) {
 }
 
 /**
- * Shared modal save handler used by `card.html`.
+ * Sets up rating modal events dynamically, removing dependency on global window objects.
+ * This binds click events to the save, clear, and cancel buttons.
  */
-window.saveGlobalRating = function() {
-    const overlay = document.getElementById('modal-overlay');
-    const ratingInput = document.getElementById('rating-number');
-
-    if (currentRatingTarget) {
-        import('./domein/RatingManager.js').then(module => {
-            let val = parseFloat(ratingInput.value);
-            if (isNaN(val)) val = 0;
-            if (val < 0) val = 0;
-            if (val > 10) val = 10;
-
-            if (currentRatingType === 'anime') {
-                module.RatingManager.updateRating(currentRatingTarget, val);
-            } else if (currentRatingType === 'item') {
-                module.RatingManager.updateItemRating(currentRatingTarget, val);
-            }
-            
-            DataStore.save(repository);
-            renderDetail();
-            
-            if (overlay) {
-                overlay.classList.add('hidden');
-            }
-            currentRatingTarget = null;
-            currentRatingType = null;
-        }).catch(err => console.error(err));
-    }
-};
-
-/**
- * Closes the rating modal when the backdrop is clicked.
- */
-function setupRatingModalBackground() {
+function setupRatingModal() {
     const overlay = document.getElementById('modal-overlay');
     if (!overlay) return;
+
     overlay.addEventListener('click', (e) => {
         if (e.target === overlay) {
             overlay.classList.add('hidden');
+            currentRatingTarget = null;
+            currentRatingType = null;
         }
     });
+
+    const cancelBtn = document.getElementById('cancel-rating');
+    if (cancelBtn) {
+        cancelBtn.addEventListener('click', () => {
+            overlay.classList.add('hidden');
+            currentRatingTarget = null;
+            currentRatingType = null;
+        });
+    }
+
+    const clearBtn = document.getElementById('clear-rating');
+    if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+            const ratingInput = document.getElementById('rating-number');
+            if (ratingInput) ratingInput.value = '';
+        });
+    }
+
+    const saveBtn = document.getElementById('save-rating');
+    if (saveBtn) {
+        saveBtn.addEventListener('click', () => {
+            const ratingInput = document.getElementById('rating-number');
+            if (currentRatingTarget && ratingInput) {
+                import('./domein/RatingManager.js').then(module => {
+                    let val = parseFloat(ratingInput.value);
+                    if (isNaN(val)) val = 0;
+                    if (val < 0) val = 0;
+                    if (val > 10) val = 10;
+
+                    if (currentRatingType === 'anime') {
+                        module.RatingManager.updateRating(currentRatingTarget, val);
+                    } else if (currentRatingType === 'item') {
+                        module.RatingManager.updateItemRating(currentRatingTarget, val);
+                    }
+                    
+                    DataStore.save(repository);
+                    renderDetail();
+                    overlay.classList.add('hidden');
+                    currentRatingTarget = null;
+                    currentRatingType = null;
+                }).catch(err => {
+                    console.error(err);
+                    overlay.classList.add('hidden');
+                    currentRatingTarget = null;
+                    currentRatingType = null;
+                });
+            } else {
+                overlay.classList.add('hidden');
+            }
+        });
+    }
 }
 
 /**
@@ -181,5 +200,5 @@ function handleGlobalStatus(anime, newStatus) {
 document.addEventListener('DOMContentLoaded', () => {
     init();
     ThemeManager.bindToggle('theme-toggle');
-    setupRatingModalBackground();
+    setupRatingModal();
 });

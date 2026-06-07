@@ -1,4 +1,5 @@
 import { Anime } from './Anime.js';
+import { StatusUpdater } from './StatusUpdater.js';
 
 /**
  * In-memory collection of anime models.
@@ -7,6 +8,21 @@ import { Anime } from './Anime.js';
 export class AnimeRepository {
     constructor() {
         this.animes = [];
+    }
+
+    /**
+     * Loads raw dataset array into Anime models and normalizes statuses.
+     * This mutates the internal collection and returns true if any values changed.
+     * @param {Array} dataArray - The raw anime dataset.
+     * @returns {boolean} True if any status was modified during normalization.
+     */
+    loadAndNormalize(dataArray) {
+        this.loadFromData(dataArray);
+        let normalized = false;
+        this.animes.forEach(anime => {
+            normalized = StatusUpdater.normalizeAnimeStatuses(anime) || normalized;
+        });
+        return normalized;
     }
 
     /**
