@@ -2473,7 +2473,7 @@
         "id": "re-zero-starting-life-in-another-world",
         "title": "Re:ZERO - Starting Life in Another World",
         "status": 0,
-        "rating": 7,
+        "rating": 6.8,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx163134-yieRFbvUOH9a.jpg",
         "items": [
@@ -2548,7 +2548,8 @@
                     5,
                     6,
                     7,
-                    8
+                    8,
+                    9
                 ],
                 "episodesCount": 25
             },
@@ -2575,27 +2576,66 @@
     {
         "id": "spy-x-family",
         "title": "Spy x Family",
-        "status": -1,
-        "rating": 0,
+        "status": 0,
+        "rating": 9.1,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b158927-lfO85WVguYgc.png",
         "items": [
             {
                 "id": "spy-x-family-season-1",
                 "title": "Spy x Family Season 1",
-                "status": -1,
+                "status": 1,
                 "type": "SERIE",
-                "rating": 0,
-                "watchedEpisodes": [],
+                "rating": 9.4,
+                "watchedEpisodes": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20,
+                    21,
+                    22,
+                    23,
+                    24,
+                    25
+                ],
                 "episodesCount": 25
             },
             {
                 "id": "spy-x-family-season-2",
                 "title": "Spy x Family Season 2",
-                "status": -1,
+                "status": 1,
                 "type": "SERIE",
-                "rating": 0,
-                "watchedEpisodes": [],
+                "rating": 8.7,
+                "watchedEpisodes": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12
+                ],
                 "episodesCount": 12
             },
             {
@@ -2610,10 +2650,24 @@
             {
                 "id": "spy-x-family-season-3",
                 "title": "Spy x Family Season 3",
-                "status": -1,
+                "status": 1,
                 "type": "SERIE",
-                "rating": 0,
-                "watchedEpisodes": [],
+                "rating": 9.2,
+                "watchedEpisodes": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13
+                ],
                 "episodesCount": 13
             },
             {
@@ -3049,22 +3103,30 @@
     {
         "id": "i-made-friends-with-the-second-prettiest-girl-in-my-class",
         "title": "I Made Friends with the Second Prettiest Girl in My Class",
-        "status": 0,
-        "rating": 7.7,
+        "status": 1,
+        "rating": 7.4,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx169580-nXxpmqu6UVux.jpg",
         "items": [
             {
                 "id": "i-made-friends-with-the-second-prettiest-girl-in-my-class-series",
                 "title": "I Made Friends with the Second Prettiest Girl in My Class",
-                "status": 0,
+                "status": 1,
                 "type": "SERIE",
-                "rating": 7.7,
+                "rating": 7.4,
                 "watchedEpisodes": [
                     1,
                     2,
                     3,
-                    4
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12
                 ],
                 "episodesCount": 12
             }
