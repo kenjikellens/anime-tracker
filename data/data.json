@@ -546,7 +546,7 @@
             {
                 "id": "the-angel-next-door-s2",
                 "title": "The Angel Next Door Spoils Me Rotten Season 2",
-                "status": 2,
+                "status": 3,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -2576,7 +2576,7 @@
     {
         "id": "spy-x-family",
         "title": "Spy x Family",
-        "status": 0,
+        "status": 1,
         "rating": 9.1,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b158927-lfO85WVguYgc.png",
@@ -2641,10 +2641,12 @@
             {
                 "id": "spy-x-family-code-white",
                 "title": "Spy x Family: Code: White",
-                "status": -1,
+                "status": 1,
                 "type": "MOVIE",
-                "rating": 0,
-                "watchedEpisodes": [],
+                "rating": 8.9,
+                "watchedEpisodes": [
+                    1
+                ],
                 "episodesCount": 1
             },
             {
@@ -2673,7 +2675,7 @@
             {
                 "id": "spy-x-family-season-4",
                 "title": "Spy x Family Season 4",
-                "status": -1,
+                "status": 2,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
