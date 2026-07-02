@@ -64,11 +64,17 @@
     padding: 0; 
     box-sizing: border-box; 
     font-family: 'Outfit', sans-serif; 
+    cursor: default;
 }
 
 /* Styles interactive elements (links, buttons, selectors, cards) with pointer cursor. */
 a, button, select, [role="button"], .rating-badge, .anime-card, .item-play-btn, .view-btn, .size-btn, input[type="checkbox"], label { 
     cursor: pointer; 
+}
+
+/* Ensure inputs and textareas still show the text cursor */
+input, textarea {
+    cursor: text;
 }
 
 

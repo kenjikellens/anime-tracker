@@ -309,3 +309,20 @@
 - [ ] From Me to You Season 2 (SERIE - 12 eps)
 - [ ] From Me to You 2nd Season Specials (SPECIAL - 3 eps)
 - [ ] From Me to You Season 3 (ONA - 5 eps)
+
+## Studio Apartment, Good Lighting, Angel Included
+- [ ] Studio Apartment, Good Lighting, Angel Included (SERIE - 12 eps)
+
+## Undefeated Bahamut Chronicle
+- [ ] Undefeated Bahamut Chronicle (SERIE - 12 eps)
+
+## How a Realist Hero Rebuilt the Kingdom
+- [ ] How a Realist Hero Rebuilt the Kingdom Season 1 (SERIE - 13 eps)
+- [ ] How a Realist Hero Rebuilt the Kingdom Part 2 (SERIE - 13 eps)
+
+## Nukitashi THE ANIMATION
+- [ ] Nukitashi THE ANIMATION (SERIE - 11 eps)
+- [ ] Nukitashi THE ANIMATION OVAs (OVA - 4 eps)
+
+## World's End Harem
+- [ ] World's End Harem (SERIE - 11 eps)

@@ -38,6 +38,7 @@
 - Higehiro: After Being Rejected, I Shaved and Took in a High School Runaway
 - High School DxD
 - Horimiya
+- How a Realist Hero Rebuilt the Kingdom
 - I Made Friends with the Second Prettiest Girl in My Class
 - I want to eat your pancreas (Kimi no Suizou wo Tabetai)
 - Inexpressive Kashiwada and Expressive Oota
@@ -64,6 +65,7 @@
 - My Matchmaking Partner Is My Student, An Aggressive Trouble-Maker
 - My Teen Romantic Comedy SNAFU (Oregairu)
 - Nisekoi: False Love
+- Nukitashi THE ANIMATION
 - Orange
 - Oreshura
 - ORESUKI: Are you the only one who loves me?
@@ -81,6 +83,7 @@
 - SHIMONETA: A Boring World Where the Concept of Dirty Jokes Doesn't Exist
 - Shikimori's Not Just a Cutie
 - Spy x Family
+- Studio Apartment, Good Lighting, Angel Included
 - Teasing Master Takagi-san
 - The 100 Girlfriends Who Really, Really, Really, Really, Really Love You
 - The Angel Next Door Spoils Me Rotten
@@ -103,6 +106,7 @@
 - Trinity Seven
 - Tune In to the Midnight Heart
 - Umamusume: Pretty Derby
+- Undefeated Bahamut Chronicle
 - World's End Harem
 - Yamada-kun and the Seven Witches
 - Your Lie in April (Shigatsu wa Kimi no Uso)
