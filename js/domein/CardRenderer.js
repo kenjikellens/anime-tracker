@@ -1,5 +1,13 @@
 import { RatingManager } from './RatingManager.js';
 
+const SVG_ICONS = {
+    star: `<svg viewBox="0 0 24 24" fill="currentColor" style="width: 1em; height: 1em; display: inline-block; vertical-align: middle; margin-right: 4px;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`,
+    starHalf: `<svg viewBox="0 0 24 24" fill="currentColor" style="width: 1em; height: 1em; display: inline-block; vertical-align: middle; margin-right: 4px; opacity: 0.7;"><path d="M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27V2z"/><path d="M22 9.24l-7.19-.62L12 2v15.27l6.18 3.73-1.64-7.03L22 9.24zM12 15.4V6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" opacity="0.4"/></svg>`,
+    play: `<svg viewBox="0 0 24 24" fill="currentColor" style="width: 1em; height: 1em; display: inline-block; vertical-align: middle;"><path d="M8 5v14l11-7z"/></svg>`,
+    bell: `<svg viewBox="0 0 24 24" fill="currentColor" style="width: 1em; height: 1em; display: inline-block; vertical-align: middle;"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>`,
+    chevronRight: `<svg viewBox="0 0 24 24" fill="currentColor" class="expand-icon" style="width: 1.2em; height: 1.2em; vertical-align: middle;"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>`
+};
+
 /**
  * Renders overview cards for the anime list page.
  * Linked to: `#anime-container` in `index.html`.
@@ -21,7 +29,7 @@ export class CardRenderer {
         if (anime.items.some(item => item.status === 3)) {
             releaseLabels.push(`
                 <div class="label-release label-airing" aria-label="Airing content">
-                    <span class="label-release-icon"><i class="fas fa-play"></i></span>
+                    <span class="label-release-icon">${SVG_ICONS.play}</span>
                     <span class="label-release-text">AIRING</span>
                 </div>
             `);
@@ -29,7 +37,7 @@ export class CardRenderer {
         if (anime.items.some(item => item.status === 2)) {
             releaseLabels.push(`
                 <div class="label-release label-upcoming" aria-label="Upcoming content">
-                    <span class="label-release-icon"><i class="fas fa-bell"></i></span>
+                    <span class="label-release-icon">${SVG_ICONS.bell}</span>
                     <span class="label-release-text">UPCOMING</span>
                 </div>
             `);
@@ -95,7 +103,6 @@ export class CardRenderer {
         }
 
         const avgRating = anime.getAverageItemRating();
-        const avgBadgeClass = RatingManager.getBadgeClass(avgRating);
 
         wrapper.innerHTML = `
             ${stackMarkup}
@@ -110,16 +117,16 @@ export class CardRenderer {
                         </div>
                     </div>
                     <div class="card-subtitle" style="font-size: 0.85rem; color: var(--text-muted); opacity: 0.8;">${anime.items.length} items</div>
-                    <div class="card-actions">
-                        <div class="rating-badge ${RatingManager.getBadgeClass(anime.rating)}" style="cursor: pointer;">
-                            <i class="fas fa-star"></i> ${anime.rating > 0 ? anime.rating.toFixed(1) : 'NR'}
+                    <div class="card-actions" style="display: flex; gap: 12px; position: absolute; bottom: 8px; right: 8px; z-index: 10; align-items: center;">
+                        <div class="avg-rating-text" style="pointer-events: none; color: var(--text-muted);" title="Gemiddelde item-rating">
+                            ${SVG_ICONS.starHalf} ${avgRating > 0 ? avgRating.toFixed(1) : '—'}
                         </div>
-                        <div class="avg-rating-badge ${avgBadgeClass}" title="Gemiddelde item-rating">
-                            <i class="fas fa-chart-bar"></i> ${avgRating > 0 ? avgRating.toFixed(1) : '—'}
+                        <div class="rating-badge ${RatingManager.getBadgeClass(anime.rating)}" style="cursor: pointer; position: relative !important; bottom: auto !important; right: auto !important; z-index: auto !important;">
+                            ${SVG_ICONS.star} ${anime.rating > 0 ? anime.rating.toFixed(1) : 'NR'}
                         </div>
                     </div>
                 </div>
-                <i class="fas fa-chevron-right expand-icon"></i>
+                ${SVG_ICONS.chevronRight}
             </div>
         `;
 

@@ -673,7 +673,6 @@ footer {
 /* Redundant structural containers are removed from the flow in list view to simplify the grid. */
 #anime-container.list-view .card-info,
 #anime-container.list-view .card-header,
-#anime-container.list-view .card-actions,
 #anime-container.list-view .card-title {
     display: contents;
 }
@@ -1031,9 +1030,21 @@ footer {
     padding: 3px 10px;
 }
 
+.avg-rating-text {
+    font-weight: 700;
+    color: var(--text-muted);
+    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    user-select: none;
+}
+
 /* Ensures the rating badge has a consistent height and look when used in list or detail views. */
 .item-rating-badge,
-#anime-container.list-view .rating-badge {
+#anime-container.list-view .rating-badge,
+#anime-container.list-view .avg-rating-text {
     height: 36px !important;
     padding: 0 12px !important;
     font-size: 0.85rem !important;
@@ -1042,7 +1053,7 @@ footer {
 
 /* Positioning for the rating badge specifically in the list view layout. */
 #anime-container.list-view .rating-badge { 
-    grid-area: 1 / 3; 
+    grid-area: 1 / 4; 
     align-self: center; 
     min-width: 56px;
     justify-content: center;
@@ -1076,13 +1087,11 @@ footer {
     display: none !important;
 }
 
-/* Positioning for the average rating badge in the list view layout. */
-#anime-container.list-view .avg-rating-badge {
-    grid-area: 1 / 4;
+/* Positioning for the average rating text in the list view layout. */
+#anime-container.list-view .avg-rating-text {
+    grid-area: 1 / 3;
     align-self: center;
-    font-size: 11px;
-    min-width: 56px;
-    justify-content: center;
+    justify-self: center;
 }
 
 /* Average rating icon styling. */

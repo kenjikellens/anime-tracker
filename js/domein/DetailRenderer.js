@@ -6,6 +6,12 @@ const WATCH_PROVIDER_DOMAIN = "miruro.ru";
 // WATCH_PROVIDER_SEARCH_PATH: The search path query format used by the streaming provider.
 const WATCH_PROVIDER_SEARCH_PATH = "/search?query=";
 
+const SVG_ICONS = {
+    star: `<svg viewBox="0 0 24 24" fill="currentColor" style="width: 1em; height: 1em; display: inline-block; vertical-align: middle; margin-right: 4px;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`,
+    play: `<svg viewBox="0 0 24 24" fill="currentColor" style="width: 1em; height: 1em; display: inline-block; vertical-align: middle;"><path d="M8 5v14l11-7z"/></svg>`,
+    chevronDown: (transformStyle) => `<svg viewBox="0 0 24 24" fill="currentColor" class="accordion-icon" style="width: 1.2em; height: 1.2em; display: inline-block; vertical-align: middle; transition: transform 0.2s; ${transformStyle}"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>`
+};
+
 /**
  * Renders the detailed anime page and its expandable item rows.
  * Linked to: `#detail-container` in `card.html`.
@@ -186,20 +192,20 @@ export class DetailRenderer {
 
                 let playBtn = `
                     <a href="${watchUrl}" target="_blank" class="item-play-btn" onclick="event.stopPropagation()" title="Zoek op ${WATCH_PROVIDER_DOMAIN}">
-                        <i class="fas fa-play"></i>
+                        ${SVG_ICONS.play}
                     </a>
                 `;
 
                 const itemRatingClass = RatingManager.getBadgeClass(item.rating);
                 let itemRatingBtn = `
                     <div class="rating-badge item-rating-badge ${itemRatingClass}" title="Beoordeel dit item" data-item-id="${item.id}">
-                        <i class="fas fa-star"></i> 
+                        ${SVG_ICONS.star} 
                         <span>${item.rating > 0 ? item.rating.toFixed(1) : 'NR'}</span>
                     </div>
                 `;
 
                 rowHeader.innerHTML = `
-                    <i class="fas fa-chevron-down accordion-icon" style="transform: ${isOpen ? 'rotate(-180deg)' : 'rotate(0deg)'};"></i>
+                    ${SVG_ICONS.chevronDown(`transform: ${isOpen ? 'rotate(-180deg)' : 'rotate(0deg)'};`)}
                     <div class="title-badge-group">
                         <div class="badge-area">${typeHtml}</div>
                         <div class="detail-item-title">${item.title}</div>

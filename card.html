@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- Detail page header: back link context plus theme toggle -->
@@ -21,14 +20,14 @@
             <div class="header-center"></div>
             <div class="header-right">
                 <!-- Theme toggle is shared with the overview page -->
-                <button id="theme-toggle" title="Switch theme"><i class="fas fa-moon"></i></button>
+                <button id="theme-toggle" title="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 1.2em; height: 1.2em; display: inline-block; vertical-align: middle;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
             </div>
         </div>
     </header>
 
     <div id="app">
         <!-- Back navigation returned by the detail page -->
-        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Terug naar overzicht</a>
+        <a href="index.html" class="back-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 1em; height: 1em; display: inline-block; vertical-align: middle; margin-right: 6px;"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Terug naar overzicht</a>
         
         <!-- Detail content is filled by `js/card.js` -->
         <div id="detail-container">

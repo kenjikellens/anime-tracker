@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- AniList card actions removed -->
 
@@ -26,15 +25,15 @@
             <div class="header-center">
                 <!-- Search is bound in `js/app.js` via `SearchManager.setup` -->
                 <div class="search-bar">
-                    <i class="fas fa-search"></i>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 1em; height: 1em; display: inline-block; vertical-align: middle; margin-right: 8px; opacity: 0.7;" class="search-icon"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                     <input type="text" id="search-input" placeholder="Zoek in je lijst...">
                 </div>
             </div>
             <div class="header-right">
                 <!-- Opens a JSON backup download via `DataStore.triggerBackup` -->
-                <button id="download-btn" class="hidden" title="Download backup"><i class="fas fa-download"></i></button>
+                <button id="download-btn" class="hidden" title="Download backup"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 1.2em; height: 1.2em; display: inline-block; vertical-align: middle;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
                 <!-- Toggles the global light/dark theme -->
-                <button id="theme-toggle" title="Switch theme"><i class="fas fa-moon"></i></button>
+                <button id="theme-toggle" title="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 1.2em; height: 1.2em; display: inline-block; vertical-align: middle;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
             </div>
         </div>
     </header>
@@ -76,8 +75,8 @@
 
                 <!-- Grid/list toggle changes the container class in `js/app.js` -->
                 <div class="view-toggle">
-                    <button class="view-btn active" id="grid-btn" title="Grid view"><i class="fas fa-th"></i></button>
-                    <button class="view-btn" id="list-btn" title="List view"><i class="fas fa-list"></i></button>
+                    <button class="view-btn active" id="grid-btn" title="Grid view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 1.2em; height: 1.2em; display: inline-block; vertical-align: middle;"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></button>
+                    <button class="view-btn" id="list-btn" title="List view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 1.2em; height: 1.2em; display: inline-block; vertical-align: middle;"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></button>
                 </div>
 
                 <span class="item-count" id="item-count">0 items</span>

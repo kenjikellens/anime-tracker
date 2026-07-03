@@ -3,7 +3,7 @@
         "id": "nukitashi-the-animation",
         "title": "Nukitashi THE ANIMATION",
         "status": -1,
-        "rating": 0.0,
+        "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx174188-fZg8iePD9Dca.jpg",
         "items": [
@@ -12,20 +12,18 @@
                 "title": "Nukitashi THE ANIMATION",
                 "status": -1,
                 "type": "SERIE",
-                "rating": 0.0,
+                "rating": 0,
                 "watchedEpisodes": [],
-                "episodesCount": 11,
-                "anilistId": 174188
+                "episodesCount": 11
             },
             {
                 "id": "nukitashi-the-animation-ovas",
                 "title": "Nukitashi THE ANIMATION OVAs",
                 "status": -1,
                 "type": "OVA",
-                "rating": 0.0,
+                "rating": 0,
                 "watchedEpisodes": [],
-                "episodesCount": 4,
-                "anilistId": 194712
+                "episodesCount": 4
             }
         ]
     },
@@ -33,7 +31,7 @@
         "id": "worlds-end-harem",
         "title": "World's End Harem",
         "status": -1,
-        "rating": 0.0,
+        "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx118465-EGB0OajA5rei.jpg",
         "items": [
@@ -42,10 +40,9 @@
                 "title": "World's End Harem",
                 "status": -1,
                 "type": "SERIE",
-                "rating": 0.0,
+                "rating": 0,
                 "watchedEpisodes": [],
-                "episodesCount": 11,
-                "anilistId": 118465
+                "episodesCount": 11
             }
         ]
     },
@@ -53,7 +50,7 @@
         "id": "how-a-realist-hero-rebuilt-the-kingdom",
         "title": "How a Realist Hero Rebuilt the Kingdom",
         "status": -1,
-        "rating": 0.0,
+        "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx117612-MCbAaq2ypJlp.jpg",
         "items": [
@@ -62,20 +59,18 @@
                 "title": "How a Realist Hero Rebuilt the Kingdom Season 1",
                 "status": -1,
                 "type": "SERIE",
-                "rating": 0.0,
+                "rating": 0,
                 "watchedEpisodes": [],
-                "episodesCount": 13,
-                "anilistId": 117612
+                "episodesCount": 13
             },
             {
                 "id": "how-a-realist-hero-rebuilt-the-kingdom-part-2",
                 "title": "How a Realist Hero Rebuilt the Kingdom Part 2",
                 "status": -1,
                 "type": "SERIE",
-                "rating": 0.0,
+                "rating": 0,
                 "watchedEpisodes": [],
-                "episodesCount": 13,
-                "anilistId": 139648
+                "episodesCount": 13
             }
         ]
     },
@@ -83,7 +78,7 @@
         "id": "undefeated-bahamut-chronicle",
         "title": "Undefeated Bahamut Chronicle",
         "status": -1,
-        "rating": 0.0,
+        "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21188-VFUo0sASxOfO.jpg",
         "items": [
@@ -92,10 +87,9 @@
                 "title": "Undefeated Bahamut Chronicle",
                 "status": -1,
                 "type": "SERIE",
-                "rating": 0.0,
+                "rating": 0,
                 "watchedEpisodes": [],
-                "episodesCount": 12,
-                "anilistId": 21188
+                "episodesCount": 12
             }
         ]
     },
@@ -103,7 +97,7 @@
         "id": "studio-apartment-good-lighting-angel-included",
         "title": "Studio Apartment, Good Lighting, Angel Included",
         "status": -1,
-        "rating": 0.0,
+        "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx169927-3FwBuKn4x5LL.jpg",
         "items": [
@@ -112,10 +106,9 @@
                 "title": "Studio Apartment, Good Lighting, Angel Included",
                 "status": -1,
                 "type": "SERIE",
-                "rating": 0.0,
+                "rating": 0,
                 "watchedEpisodes": [],
-                "episodesCount": 12,
-                "anilistId": 169927
+                "episodesCount": 12
             }
         ]
     },
@@ -132,7 +125,7 @@
                 "title": "Rascal Does Not Dream of Bunny Girl Senpai",
                 "status": 1,
                 "type": "SERIE",
-                "rating": 0,
+                "rating": 10,
                 "watchedEpisodes": [],
                 "episodesCount": 13
             },
@@ -141,7 +134,7 @@
                 "title": "Rascal Does Not Dream of a Dreaming Girl",
                 "status": 1,
                 "type": "MOVIE",
-                "rating": 0,
+                "rating": 10,
                 "watchedEpisodes": [],
                 "episodesCount": 1
             },
@@ -150,7 +143,7 @@
                 "title": "Rascal Does Not Dream of a Sister Venturing Out",
                 "status": 1,
                 "type": "MOVIE",
-                "rating": 0,
+                "rating": 9.8,
                 "watchedEpisodes": [],
                 "episodesCount": 1
             },
@@ -159,7 +152,7 @@
                 "title": "Rascal Does Not Dream of a Knapsack Kid",
                 "status": 1,
                 "type": "MOVIE",
-                "rating": 0,
+                "rating": 9.8,
                 "watchedEpisodes": [],
                 "episodesCount": 1
             },
@@ -168,7 +161,7 @@
                 "title": "Rascal Does Not Dream of Santa Claus",
                 "status": 1,
                 "type": "SERIE",
-                "rating": 0,
+                "rating": 9.1,
                 "watchedEpisodes": [],
                 "episodesCount": 13
             },
@@ -3101,11 +3094,22 @@
             {
                 "id": "date-a-live-series",
                 "title": "Date A Live",
-                "status": 0,
+                "status": 1,
                 "type": "SERIE",
-                "rating": 0,
+                "rating": 7.1,
                 "watchedEpisodes": [
-                    1
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12
                 ],
                 "episodesCount": 12
             },
