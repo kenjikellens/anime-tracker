@@ -7,9 +7,9 @@ const WATCH_PROVIDER_DOMAIN = "miruro.ru";
 const WATCH_PROVIDER_SEARCH_PATH = "/search?query=";
 
 const SVG_ICONS = {
-    star: `<svg viewBox="0 0 24 24" fill="currentColor" style="width: 1em; height: 1em; display: inline-block; vertical-align: middle; margin-right: 4px;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`,
-    play: `<svg viewBox="0 0 24 24" fill="currentColor" style="width: 1em; height: 1em; display: inline-block; vertical-align: middle;"><path d="M8 5v14l11-7z"/></svg>`,
-    chevronDown: (transformStyle) => `<svg viewBox="0 0 24 24" fill="currentColor" class="accordion-icon" style="width: 1.2em; height: 1.2em; display: inline-block; vertical-align: middle; transition: transform 0.2s; ${transformStyle}"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>`
+    star: `<svg style="width: 1em; height: 1em; display: inline-block; vertical-align: middle; margin-right: 4px;"><use href="#icon-star"></use></svg>`,
+    play: `<svg style="width: 1em; height: 1em; display: inline-block; vertical-align: middle;"><use href="#icon-play"></use></svg>`,
+    chevronDown: (transformStyle) => `<svg class="accordion-icon" style="width: 1.2em; height: 1.2em; display: inline-block; vertical-align: middle; transition: transform 0.2s; ${transformStyle}"><use href="#icon-chevron-down"></use></svg>`
 };
 
 /**
@@ -22,156 +22,132 @@ export class DetailRenderer {
      * Restricts the global dropdown to watch statuses, and includes item-only release statuses.
      */
     static renderDetail(container, anime, onItemStatusChange, onGlobalStatusChange, onRatingChange, onEpisodeToggle, onRatingClick = null, openItemIds = [], onItemRatingClick = null) {
-        container.innerHTML = '';
-        
-        let globalStatusSelect = `
-            <select class="status-current detail-action-btn" id="global-status-select" style="width: 100%;">
-                <option value="-1" ${anime.status === -1 ? 'selected' : ''}>Te Bekijken</option>
-                <option value="0" ${anime.status === 0 ? 'selected' : ''}>Bezig</option>
-                <option value="1" ${anime.status === 1 ? 'selected' : ''}>Bekeken</option>
-            </select>
-        `;
+        const layout = container.querySelector('.anime-detail-layout-v3');
+        if (!layout) return;
+
+        // Set sidebar classes
+        const sidebar = layout.querySelector('.anime-detail-sidebar-v3');
+        const sidebarGlow = RatingManager.getCardClass(anime.rating);
+        sidebar.className = `anime-detail-sidebar-v3 ${sidebarGlow}`.trim();
+
+        // Populate poster
         const title = anime?.title || '';
         const initials = title.trim().split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0]?.toUpperCase() ?? '').join('') || '??';
         const hash = title.split('').reduce((acc, char) => char.charCodeAt(0) + acc, 0);
         const hue = hash % 360;
 
-        const posterHtml = anime.coverImage
+        const posterWrap = layout.querySelector('.sidebar-poster-wrap');
+        posterWrap.innerHTML = anime.coverImage
             ? `<img class="detail-poster" src="${anime.coverImage}" alt="${title} cover" loading="lazy" />`
             : `<div class="detail-poster-fallback" style="background: linear-gradient(135deg, hsl(${hue}, 60%, 45%), hsl(${(hue + 40) % 360}, 70%, 35%));">${initials}</div>`;
 
-        const layout = document.createElement('div');
-        layout.className = 'anime-detail-layout-v3';
-
-        // --- SIDEBAR ---
-        const sidebar = document.createElement('aside');
-        /** Applies glow-gold effect to the sidebar for legendary-rated anime (>= 9). */
-        const sidebarGlow = RatingManager.getCardClass(anime.rating);
-        sidebar.className = `anime-detail-sidebar-v3 ${sidebarGlow}`.trim();
-
-        const posterWrap = document.createElement('div');
-        posterWrap.className = 'sidebar-poster-wrap';
-        posterWrap.innerHTML = posterHtml;
-
-        const sidebarInfo = document.createElement('div');
-        sidebarInfo.className = 'sidebar-info';
-
-        const sidebarTitle = document.createElement('h2');
-        sidebarTitle.className = 'sidebar-title';
+        // Title
+        const sidebarTitle = layout.querySelector('.sidebar-title');
         sidebarTitle.textContent = title;
 
-        const avgRating = anime.getAverageItemRating();
-
-        const actionsDiv = document.createElement('div');
-        actionsDiv.className = 'sidebar-actions-v3';
-
-        // Helper to generate 10-segmented bars HTML with exact rating category colors.
-        const createSegmentsHtml = (score, isSmall = false) => {
-            let html = `<div class="segmented-rating-bar${isSmall ? ' small' : ''}">`;
-            const colors = [
-                '#e74c3c', '#e74c3c', '#e74c3c', '#e74c3c', // 1, 2, 3, 4 -> Red / Garbage (< 4.0)
-                '#e67e22',                                 // 5 -> Orange / Bad (4.0+)
-                '#f1c40f',                                 // 6 -> Yellow / Regular (5.0+)
-                '#a2d149',                                 // 7 -> Lime Green / Good (6.0+)
-                '#2ecc71',                                 // 8 -> Bright Green / Great (7.0+)
-                '#27ae60',                                 // 9 -> Dark Green / Awesome (8.0+)
-                'linear-gradient(130deg, #ffe066 0%, #ffd700 50%, #b38f00 100%)' // 10 -> Premium Gold Gradient (9.0+)
-            ];
-            for (let i = 1; i <= 10; i++) {
-                const fillWidth = Math.min(100, Math.max(0, (score - (i - 1)) * 100));
-                const color = colors[i - 1];
-                const isGold = (i === 10);
-                const extraStyle = isGold ? 'box-shadow: 0 0 8px rgba(255, 215, 0, 0.7);' : '';
-                html += `
-                    <div class="segment">
-                        <div class="segment-fill" style="width: 0%; background: ${color}; ${extraStyle} transition: width 0.10s linear !important; transition-delay: ${(i - 1) * 0.10}s !important;" data-width="${fillWidth}%"></div>
-                    </div>
-                `;
-            }
-            html += `</div>`;
-            return html;
-        };
-
-        // Helper to determine the text color of the rating display.
-        const getScoreColor = (score) => {
-            if (!score || score === 0) return 'var(--text-muted)';
-            if (score >= 9.0) return '#ffd700';
-            if (score >= 8.0) return '#27ae60';
-            if (score >= 7.0) return '#2ecc71';
-            if (score >= 6.0) return '#a2d149';
-            if (score >= 5.0) return '#f1c40f';
-            if (score >= 4.0) return '#e67e22';
-            return '#e74c3c';
-        };
-
-        const userScoreColor = getScoreColor(anime.rating);
-        const avgScoreColor = getScoreColor(avgRating);
-
-        actionsDiv.innerHTML = `
-            <div class="status-alinea">
-                ${globalStatusSelect}
-            </div>
-            <div class="sidebar-ratings-container">
-                <div class="sidebar-rating-block rating-actionable" title="Klik om te beoordelen">
-                    <div class="sidebar-rating-label">
-                        <span>Jouw Beoordeling</span>
-                        <span class="sidebar-rating-val" style="color: ${userScoreColor};">
-                            ${anime.rating > 0 ? anime.rating.toFixed(1) + '/10' : 'NR'}
-                        </span>
-                    </div>
-                    ${createSegmentsHtml(anime.rating)}
-                </div>
-                <div class="sidebar-rating-block small" title="Gemiddelde rating">
-                    <div class="sidebar-rating-label">
-                        <span>Gemiddelde</span>
-                        <span class="sidebar-rating-val" style="color: ${avgScoreColor};">
-                            ${avgRating > 0 ? avgRating.toFixed(1) + '/10' : '—'}
-                        </span>
-                    </div>
-                    ${createSegmentsHtml(avgRating, true)}
-                </div>
-            </div>
-        `;
+        // Global status select & ratings
+        const gSelect = layout.querySelector('#global-status-select');
+        const ratingsContainer = layout.querySelector('.sidebar-ratings-container');
         
-        const ratingBlock = actionsDiv.querySelector('.rating-actionable');
-        if (ratingBlock && onRatingClick) {
-            ratingBlock.addEventListener('click', (e) => {
-                e.stopPropagation();
-                onRatingClick(anime);
+        if (gSelect) {
+            gSelect.style.display = '';
+            gSelect.value = anime.status;
+            
+            const newGSelect = gSelect.cloneNode(true);
+            gSelect.parentNode.replaceChild(newGSelect, gSelect);
+            newGSelect.addEventListener('change', (e) => {
+                onGlobalStatusChange(anime, e.target.value);
             });
         }
-        
-        const gSelect = actionsDiv.querySelector('#global-status-select');
-        gSelect.addEventListener('change', (e) => {
-            onGlobalStatusChange(anime, e.target.value);
-        });
+        if (ratingsContainer) {
+            ratingsContainer.style.display = '';
+            
+            const createSegmentsHtml = (score, isSmall = false) => {
+                let html = `<div class="segmented-rating-bar${isSmall ? ' small' : ''}">`;
+                const colors = [
+                    '#e74c3c', '#e74c3c', '#e74c3c', '#e74c3c',
+                    '#e67e22',
+                    '#f1c40f',
+                    '#a2d149',
+                    '#2ecc71',
+                    '#27ae60',
+                    'linear-gradient(130deg, #ffe066 0%, #ffd700 50%, #b38f00 100%)'
+                ];
+                for (let i = 1; i <= 10; i++) {
+                    const fillWidth = Math.min(100, Math.max(0, (score - (i - 1)) * 100));
+                    const color = colors[i - 1];
+                    const isGold = (i === 10);
+                    const extraStyle = isGold ? 'box-shadow: 0 0 8px rgba(255, 215, 0, 0.7);' : '';
+                    html += `
+                        <div class="segment">
+                            <div class="segment-fill" style="width: 0%; background: ${color}; ${extraStyle} transition: width 0.10s linear !important; transition-delay: ${(i - 1) * 0.10}s !important;" data-width="${fillWidth}%"></div>
+                        </div>
+                    `;
+                }
+                html += `</div>`;
+                return html;
+            };
 
-        sidebarInfo.appendChild(sidebarTitle);
-        sidebarInfo.appendChild(actionsDiv);
+            const getScoreColor = (score) => {
+                if (!score || score === 0) return 'var(--text-muted)';
+                if (score >= 9.0) return '#ffd700';
+                if (score >= 8.0) return '#27ae60';
+                if (score >= 7.0) return '#2ecc71';
+                if (score >= 6.0) return '#a2d149';
+                if (score >= 5.0) return '#f1c40f';
+                if (score >= 4.0) return '#e67e22';
+                return '#e74c3c';
+            };
 
-        sidebar.appendChild(posterWrap);
-        sidebar.appendChild(sidebarInfo);
+            const avgRating = anime.getAverageItemRating();
+            const userScoreColor = getScoreColor(anime.rating);
+            const avgScoreColor = getScoreColor(avgRating);
 
-        // --- MAIN CONTENT ---
-        const mainContent = document.createElement('main');
-        mainContent.className = 'anime-detail-main-v3';
-        
-        const listDiv = document.createElement('div');
-        listDiv.className = 'episodes-list-v3';
-        
+            const userRatingVal = layout.querySelector('.sidebar-rating-block:not(.small) .sidebar-rating-val');
+            userRatingVal.style.color = userScoreColor;
+            userRatingVal.textContent = anime.rating > 0 ? anime.rating.toFixed(1) + '/10' : 'NR';
+
+            const userBarWrap = layout.querySelector('.user-segmented-bar');
+            userBarWrap.innerHTML = createSegmentsHtml(anime.rating);
+
+            const avgRatingVal = layout.querySelector('.sidebar-rating-block.small .sidebar-rating-val');
+            avgRatingVal.style.color = avgScoreColor;
+            avgRatingVal.textContent = avgRating > 0 ? avgRating.toFixed(1) + '/10' : '—';
+
+            const avgBarWrap = layout.querySelector('.avg-segmented-bar');
+            avgBarWrap.innerHTML = createSegmentsHtml(avgRating, true);
+
+            const ratingBlock = layout.querySelector('.rating-actionable');
+            const newRatingBlock = ratingBlock.cloneNode(true);
+            ratingBlock.parentNode.replaceChild(newRatingBlock, ratingBlock);
+            if (onRatingClick) {
+                newRatingBlock.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    onRatingClick(anime);
+                });
+            }
+        }
+
+        // Render episodes/accordion list
+        const listDiv = layout.querySelector('.episodes-list-v3');
+        listDiv.innerHTML = '';
         if (anime.items.length === 0) {
             listDiv.innerHTML = '<p class="text-muted">Geen episoden/seizoenen gevonden in deze groep.</p>';
         } else {
-            anime.items.forEach(item => {
+            const fragment = document.createDocumentFragment();
+            anime.items.forEach((item, index) => {
                 const isOpen = openItemIds.includes(item.id);
-                const rowWrapper = document.createElement('div');
-                rowWrapper.className = `item-accordion-wrapper ${isOpen ? 'is-open' : ''}`;
+                const rowWrapper = document.createElement('details');
+                rowWrapper.className = 'item-accordion-wrapper';
                 rowWrapper.setAttribute('data-item-id', item.id);
+                if (isOpen) {
+                    rowWrapper.setAttribute('open', '');
+                }
                 
                 const typeClass = `type-${(item.type || 'serie').toLowerCase()}`;
                 const typeHtml = item.type ? `<span class="item-type-badge ${typeClass}">${item.type}</span>` : '';
                 
-                const rowHeader = document.createElement('div');
+                const rowHeader = document.createElement('summary');
                 rowHeader.className = `detail-item-row ${item.status === 1 ? 'watched' : ''}`;
                 
                 let itemStatusSelect = `
@@ -185,7 +161,6 @@ export class DetailRenderer {
                 `;
 
                 let searchTitle = item.title.replace(/(^|\s+)Season\s+\d+/i, '').replace(/(^|\s+)Cour\s+\d+/i, '').trim();
-                // Fallback to the parent anime title when item title is generic (e.g. "Season 1")
                 if (!searchTitle) searchTitle = anime.title;
                 let keyword = encodeURIComponent(searchTitle).replace(/%20/g, '+');
                 let watchUrl = `https://${WATCH_PROVIDER_DOMAIN}${WATCH_PROVIDER_SEARCH_PATH}${keyword}`;
@@ -205,7 +180,7 @@ export class DetailRenderer {
                 `;
 
                 rowHeader.innerHTML = `
-                    ${SVG_ICONS.chevronDown(`transform: ${isOpen ? 'rotate(-180deg)' : 'rotate(0deg)'};`)}
+                    ${SVG_ICONS.chevronDown('')}
                     <div class="title-badge-group">
                         <div class="badge-area">${typeHtml}</div>
                         <div class="detail-item-title">${item.title}</div>
@@ -221,6 +196,7 @@ export class DetailRenderer {
                 if (ratingBadge && onItemRatingClick) {
                     ratingBadge.addEventListener('click', (e) => {
                         e.stopPropagation();
+                        e.preventDefault();
                         onItemRatingClick(item);
                     });
                 }
@@ -230,6 +206,11 @@ export class DetailRenderer {
                 itemSelect.addEventListener('change', (e) => {
                     onItemStatusChange(item, e.target.value);
                 });
+
+                const playBtnElement = rowHeader.querySelector('.item-play-btn');
+                if (playBtnElement) {
+                    playBtnElement.addEventListener('click', e => e.stopPropagation());
+                }
                 
                 const episodesContainer = document.createElement('div');
                 episodesContainer.className = 'episodes-container';
@@ -252,28 +233,12 @@ export class DetailRenderer {
                     episodesContainer.appendChild(epDiv);
                 }
                 
-                rowHeader.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const icon = rowHeader.querySelector('.accordion-icon');
-                    const isOpening = !rowWrapper.classList.contains('is-open');
-                    rowWrapper.classList.toggle('is-open');
-                    if (icon) {
-                        icon.style.transform = isOpening ? 'rotate(180deg)' : 'rotate(0deg)';
-                    }
-                });
-                
                 rowWrapper.appendChild(rowHeader);
                 rowWrapper.appendChild(episodesContainer);
-                listDiv.appendChild(rowWrapper);
+                fragment.appendChild(rowWrapper);
             });
+            listDiv.appendChild(fragment);
         }
-
-        mainContent.appendChild(listDiv);
-
-        layout.appendChild(sidebar);
-        layout.appendChild(mainContent);
-        container.appendChild(layout);
 
         // Staggered loading animation for ratings
         requestAnimationFrame(() => {

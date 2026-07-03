@@ -15,6 +15,61 @@
 
 </head>
 <body>
+    <!-- SVG sprite sheet loaded once and reused via <use> tags -->
+    <svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <symbol id="icon-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+        </symbol>
+        <symbol id="icon-bell" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
+        </symbol>
+        <symbol id="icon-chevron-down" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+        </symbol>
+        <symbol id="icon-chevron-right" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+        </symbol>
+        <symbol id="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+        </symbol>
+        <symbol id="icon-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+        </symbol>
+        <symbol id="icon-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>
+        </symbol>
+        <symbol id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+        </symbol>
+        <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </symbol>
+        <symbol id="icon-star-half" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27V2z"/><path d="M22 9.24l-7.19-.62L12 2v15.27l6.18 3.73-1.64-7.03L22 9.24zM12 15.4V6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" opacity="0.4"/>
+        </symbol>
+        <symbol id="icon-star" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+        </symbol>
+        <symbol id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </symbol>
+    </defs>
+    </svg>
+
+    <!-- Splash screen overlay with circular progress loader -->
+    <div id="splash-screen" class="splash-screen hidden">
+        <div style="position: relative; display: flex; align-items: center; justify-content: center;">
+            <svg width="120" height="120" viewBox="0 0 120 120" class="circular-loader-svg">
+                <circle cx="60" cy="60" r="50" class="loader-bg-circle" />
+                <circle cx="60" cy="60" r="50" class="loader-progress-circle" />
+            </svg>
+        </div>
+    </div>
+
     <!-- Top-level navigation: logo, search, theme toggle, backup trigger, AniList sync placeholder -->
     <header class="header-main">
         <div class="header-content">
@@ -25,98 +80,50 @@
             <div class="header-center">
                 <!-- Search is bound in `js/app.js` via `SearchManager.setup` -->
                 <div class="search-bar">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 1em; height: 1em; display: inline-block; vertical-align: middle; margin-right: 8px; opacity: 0.7;" class="search-icon"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <svg class="search-icon" style="width: 1em; height: 1em; display: inline-block; vertical-align: middle; margin-right: 8px; opacity: 0.7; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><use href="#icon-search"></use></svg>
                     <input type="text" id="search-input" placeholder="Zoek in je lijst...">
                 </div>
             </div>
             <div class="header-right">
                 <!-- Opens a JSON backup download via `DataStore.triggerBackup` -->
-                <button id="download-btn" class="hidden" title="Download backup"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 1.2em; height: 1.2em; display: inline-block; vertical-align: middle;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+                <button id="download-btn" class="hidden" title="Download backup"><svg style="width: 1.2em; height: 1.2em; display: inline-block; vertical-align: middle; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><use href="#icon-download"></use></svg></button>
                 <!-- Toggles the global light/dark theme -->
-                <button id="theme-toggle" title="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 1.2em; height: 1.2em; display: inline-block; vertical-align: middle;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+                <button id="theme-toggle" title="Switch theme">
+                    <svg class="theme-icon icon-sun" style="width: 1.2em; height: 1.2em; display: inline-block; vertical-align: middle; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><use href="#icon-sun"></use></svg>
+                    <svg class="theme-icon icon-moon" style="width: 1.2em; height: 1.2em; display: inline-block; vertical-align: middle; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><use href="#icon-moon"></use></svg>
+                </button>
             </div>
         </div>
     </header>
 
-    <div id="app">
-        <!-- Main controls: status filters, sort selector, grid/list toggle, size selector -->
-        <div class="toolbar">
-            <!-- Status filters map to anime.status values in `js/app.js` -->
-            <div class="filter-group">
-                <button class="filter-btn active" data-filter="all">Alles</button>
-                <button class="filter-btn" data-filter="airing">Airing</button>
-                <button class="filter-btn" data-filter="upcoming">Upcoming</button>
-                <button class="filter-btn" data-filter="-1">Te Bekijken</button>
-                <button class="filter-btn" data-filter="0">Bezig</button>
-                <button class="filter-btn" data-filter="1">Bekeken</button>
+    <div id="app"></div>
+
+    <footer>
+        <div class="footer-row">
+            <div class="footer-col brand-info">
+                <h3><span class="ras">RAS</span><span class="cal">CAL</span></h3>
+                <p>Jouw ultieme offline-first anime-bibliotheek voor het bijhouden van franchises, seizoenen, films en afleveringen.</p>
             </div>
-
-            <!-- Sort order controls the repository result order before render -->
-            <div class="sort-group">
-                <select id="sort-select">
-                    <option value="default">Sorteren: Standaard</option>
-                    <option value="title-asc">Titel A→Z</option>
-                    <option value="title-desc">Titel Z→A</option>
-                    <option value="rating-desc">Beoordeling ↓</option>
-                    <option value="rating-asc">Beoordeling ↑</option>
-                    <option value="status">Status</option>
-                </select>
+            <div class="footer-col footer-links">
+                <h4>Navigatie</h4>
+                <ul>
+                    <li><a href="#/">Alles</a></li>
+                    <li><a href="#/" onclick="document.querySelector('[data-filter=\'airing\']')?.click(); return false;">Airing</a></li>
+                    <li><a href="#/" onclick="document.querySelector('[data-filter=\'upcoming\']')?.click(); return false;">Upcoming</a></li>
+                    <li><a href="#/" onclick="document.querySelector('[data-filter=\'-1\']')?.click(); return false;">Te Bekijken</a></li>
+                    <li><a href="#/" onclick="document.querySelector('[data-filter=\'0\']')?.click(); return false;">Bezig</a></li>
+                    <li><a href="#/" onclick="document.querySelector('[data-filter=\'1\']')?.click(); return false;">Bekeken</a></li>
+                </ul>
             </div>
-
-
-            <div class="toolbar-right">
-                <!-- Grid sizing is only visible while the grid layout is active -->
-                <div class="size-toggle" id="size-toggle-container" style="display: flex; align-items: center; gap: 6px;">
-                    <span style="font-size: 14px; font-weight: 600; color: var(--text-muted); margin-right: 4px;">Grid:</span>
-                    <button class="size-btn" id="grid-cols-minus" title="Minder kolommen">&minus;</button>
-                    <span id="grid-cols-val" style="font-size: 16px; font-weight: 700; min-width: 24px; text-align: center; font-family: 'Outfit', sans-serif; color: var(--text);">5</span>
-                    <button class="size-btn" id="grid-cols-plus" title="Meer kolommen">+</button>
-                </div>
-
-                <!-- Grid/list toggle changes the container class in `js/app.js` -->
-                <div class="view-toggle">
-                    <button class="view-btn active" id="grid-btn" title="Grid view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 1.2em; height: 1.2em; display: inline-block; vertical-align: middle;"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></button>
-                    <button class="view-btn" id="list-btn" title="List view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 1.2em; height: 1.2em; display: inline-block; vertical-align: middle;"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></button>
-                </div>
-
-                <span class="item-count" id="item-count">0 items</span>
+            <div class="footer-col footer-credits">
+                <h4>Data &amp; Media</h4>
+                <p>Streaming en info via <span class="provider-brand">Miruro.ru</span> en metadata/covers via de <span class="provider-brand">AniList GraphQL API</span>.</p>
             </div>
         </div>
-
-        <!-- Main content area: filled dynamically by `CardRenderer.renderAll` -->
-        <main>
-            <div id="anime-container" class="grid-view">
-                <!-- Dynamically filled by JavaScript -->
-            </div>
-        </main>
-
-        <footer>
-            <div class="footer-row">
-                <div class="footer-col brand-info">
-                    <h3><span class="ras">RAS</span><span class="cal">CAL</span></h3>
-                    <p>Jouw ultieme offline-first anime-bibliotheek voor het bijhouden van franchises, seizoenen, films en afleveringen.</p>
-                </div>
-                <div class="footer-col footer-links">
-                    <h4>Navigatie</h4>
-                    <ul>
-                        <li><a href="#" onclick="document.querySelector('[data-filter=\'all\']').click(); return false;">Alles</a></li>
-                        <li><a href="#" onclick="document.querySelector('[data-filter=\'airing\']').click(); return false;">Airing</a></li>
-                        <li><a href="#" onclick="document.querySelector('[data-filter=\'upcoming\']').click(); return false;">Upcoming</a></li>
-                        <li><a href="#" onclick="document.querySelector('[data-filter=\'-1\']').click(); return false;">Te Bekijken</a></li>
-                        <li><a href="#" onclick="document.querySelector('[data-filter=\'0\']').click(); return false;">Bezig</a></li>
-                        <li><a href="#" onclick="document.querySelector('[data-filter=\'1\']').click(); return false;">Bekeken</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col footer-credits">
-                    <h4>Data &amp; Media</h4>
-                    <p>Streaming en info via <span class="provider-brand">Miruro.ru</span> en metadata/covers via de <span class="provider-brand">AniList GraphQL API</span>.</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 RASCAL Anime Tracker &bull; Volledig lokaal &amp; privacy-vriendelijk</p>
-            </div>
-        </footer>
-    </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 RASCAL Anime Tracker &bull; Volledig lokaal &amp; privacy-vriendelijk</p>
+        </div>
+    </footer>
 
     <!-- Shared modals: rating modal and detail modal shell -->
     
@@ -147,6 +154,7 @@
             <div id="detail-content"></div>
         </div>
     </div>
+
 
     <!-- Logic & domain scripts -->
     <script type="module" src="js/app.js"></script>

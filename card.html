@@ -1,57 +1,47 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RASCAL - Anime Details</title>
-    <link rel="stylesheet" href="css/styles.css?v=3.1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-</head>
-<body>
-    <!-- Detail page header: back link context plus theme toggle -->
-    <header class="header-main">
-        <div class="header-content">
-            <div class="header-left">
-                <!-- Brand mark links back to the overview -->
-                <a href="index.html" style="text-decoration: none;"><h1 class="logo-rascal"><span class="ras">RAS</span><span class="cal">CAL</span></h1></a>
-            </div>
-            <div class="header-center"></div>
-            <div class="header-right">
-                <!-- Theme toggle is shared with the overview page -->
-                <button id="theme-toggle" title="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 1.2em; height: 1.2em; display: inline-block; vertical-align: middle;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
-            </div>
-        </div>
-    </header>
+<!-- Back navigation returned by the detail page -->
+<a href="#/" class="back-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 1em; height: 1em; display: inline-block; vertical-align: middle; margin-right: 6px;"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Terug naar overzicht</a>
 
-    <div id="app">
-        <!-- Back navigation returned by the detail page -->
-        <a href="index.html" class="back-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 1em; height: 1em; display: inline-block; vertical-align: middle; margin-right: 6px;"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Terug naar overzicht</a>
-        
-        <!-- Detail content is filled by `js/card.js` -->
-        <div id="detail-container">
-            <p>Laden...</p>
-        </div>
-    </div>
+<!-- Detail content is populated by DetailRenderer -->
+<div id="detail-container">
+    <div class="anime-detail-layout-v3">
+        <!-- --- SIDEBAR --- -->
+        <aside class="anime-detail-sidebar-v3">
+            <div class="sidebar-poster-wrap"></div>
+            <div class="sidebar-info">
+                <h2 class="sidebar-title"></h2>
+                <div class="sidebar-actions-v3">
+                    <div class="status-alinea">
+                        <select class="status-current detail-action-btn" id="global-status-select" style="width: 100%;">
+                            <option value="-1">Te Bekijken</option>
+                            <option value="0">Bezig</option>
+                            <option value="1">Bekeken</option>
+                        </select>
+                    </div>
+                    <div class="sidebar-ratings-container">
+                        <div class="sidebar-rating-block rating-actionable" title="Klik om te beoordelen">
+                            <div class="sidebar-rating-label">
+                                <span>Jouw Beoordeling</span>
+                                <span class="sidebar-rating-val">NR</span>
+                            </div>
+                            <div class="user-segmented-bar"></div>
+                        </div>
+                        <div class="sidebar-rating-block small" title="Gemiddelde rating">
+                            <div class="sidebar-rating-label">
+                                <span>Gemiddelde</span>
+                                <span class="sidebar-rating-val">—</span>
+                            </div>
+                            <div class="avg-segmented-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
 
-    <!-- Rating modal reused from the overview page -->
-    <div id="modal-overlay" class="hidden">
-        <div class="modal">
-            <h3>Deze anime beoordelen?</h3>
-            <p id="modal-title"></p>
-            <div class="rating-input">
-                <input type="number" id="rating-number" min="0" max="10" step="0.1" value="7.0">
-                <span class="max-rating">/ 10</span>
+        <!-- --- MAIN CONTENT --- -->
+        <main class="anime-detail-main-v3">
+            <div class="episodes-list-v3">
+                <p>Laden...</p>
             </div>
-            <div class="modal-buttons">
-                <button id="clear-rating" class="btn-secondary" style="margin-right:auto; color:var(--text-muted); border-color:var(--border);">Wissen</button>
-                <button id="cancel-rating" class="btn-secondary">Annuleren</button>
-                <button id="save-rating" class="btn-primary">Opslaan</button>
-            </div>
-        </div>
+        </main>
     </div>
-    <!-- Domain scripts -->
-    <script type="module" src="js/card.js?v=3.1.0"></script>
-</body>
-</html>
+</div>
