@@ -530,9 +530,9 @@ footer {
    ANIME CARD COMPONENTS
    ========================================================================== */
 
-/* The base component for an anime entry, providing a surface, border, and transition effects. Elevated above stack layers. */
+/* The base component for an anime entry: Single, clean, translucent container with transparent border by default */
 .anime-card {
-    background: rgba(255, 255, 255, 0.05); 
+    background: rgba(255, 255, 255, 0.06) !important; 
     border: 2px solid transparent !important;
     border-radius: 12px;    
     padding: 12px; 
@@ -541,31 +541,33 @@ footer {
     gap: 14px;
     position: relative;
     z-index: 5;
-    transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: border-color 0.13s ease, background-color 0.13s ease;
     overflow: visible;
-    user-select: none; /* Make card feel more like a button */
+    user-select: none;
 }
 
-/* Brightness enhancement for the main card when its wrapper is hovered. */
-.anime-card-wrapper:hover .anime-card {
-    filter: brightness(1.15);
+/* Ensure rated and watched cards remain 100% uniform with the translucent background */
+.anime-card.glow-gold,
+.anime-card.glow-red,
+.anime-card.status-watched,
+.anime-card.r-cinema,
+.anime-card.r-awesome,
+.anime-card.r-great,
+.anime-card.r-good,
+.anime-card.r-regular,
+.anime-card.r-bad,
+.anime-card.r-garbage {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
 }
 
-/* Styles interactive sub-elements inside the card as pointers. */
-.anime-card *, .anime-card .rating-badge, .anime-card .avg-rating-badge {
-    cursor: pointer;
-}
-
-/* Stacking context for poster and info to ensure they appear above any pseudo-element effects. */
-.card-poster, .card-info {
-    position: relative;
-    z-index: 1;
-}
-
-/* Styled hover and focus states for the main card to add a glowing purple border. */
-.anime-card-wrapper:hover .anime-card, .anime-card-wrapper:focus-within .anime-card {
-    border-color: var(--hover-border); 
-    box-shadow: inset 0 0 0 1px var(--hover-border);
+/* Hover and focus states for cards: border appears cleanly using --hover-border */
+.anime-card:hover,
+.anime-card-wrapper:hover .anime-card, 
+.anime-card-wrapper:focus-within .anime-card {
+    border-color: var(--hover-border) !important; 
+    box-shadow: inset 0 0 0 1px var(--hover-border) !important;
 }
 
 /* ---------------- GRID VIEW LAYOUT ---------------- */
@@ -953,7 +955,12 @@ footer {
 /* Visual feedback for cards that have been completed, using a muted surface color. */
 .anime-card[data-status="1"],
 .anime-card.status-watched {
-    background: var(--surface-2);
+    background: rgba(255, 255, 255, 0.06) !important;
+}
+
+[data-theme="light"] .anime-card[data-status="1"],
+[data-theme="light"] .anime-card.status-watched {
+    background: rgba(0, 0, 0, 0.04) !important;
 }
 
 /* Individual status icon/label used primarily in the list view for quick identification. */

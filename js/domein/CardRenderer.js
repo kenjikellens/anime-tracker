@@ -114,14 +114,27 @@ export class CardRenderer {
         wrapper.setAttribute('data-id', anime.id);
 
         const itemCount = anime.items.length;
-        // Single container per anime: card-stack-layers disabled for clean single card design
+        if (itemCount > 1) {
+            const layersCount = Math.min(itemCount, 6);
+            for (let i = 1; i <= layersCount; i++) {
+                const layer = document.createElement('div');
+                layer.className = `card-stack-layer layer-${i}`;
+                wrapper.insertBefore(layer, wrapper.firstChild);
+            }
+        }
 
         const mainCard = wrapper.querySelector('.anime-card');
         mainCard.setAttribute('data-id', anime.id);
         mainCard.setAttribute('data-status', anime.status);
         mainCard.setAttribute('data-has-airing', anime.items.some(item => item.status === 3) ? 'true' : 'false');
         mainCard.setAttribute('data-has-upcoming', anime.items.some(item => item.status === 2) ? 'true' : 'false');
-        // Keep mainCard uniform without rating or status background class overrides
+        const cardClass = RatingManager.getCardClass(anime.rating);
+        if (cardClass) {
+            mainCard.classList.add(cardClass);
+        }
+        if (anime.status === 1) {
+            mainCard.classList.add("status-watched");
+        }
 
         const posterDiv = wrapper.querySelector('.card-poster');
         posterDiv.innerHTML = this.getPosterMarkup(anime);
