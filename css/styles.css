@@ -8,6 +8,8 @@
 :root {
     --bg: #f0f0f0;
     --surface: #ffffff;
+    --surface-card: #e5e5e5;
+    --surface-hover: #d5d5d5;
     --surface-2: #e8e8e8;
     --border: transparent;
     --text: #1a1a1a;
@@ -33,6 +35,8 @@
 [data-theme="dark"] {
     --bg: #121212;
     --surface: #1e1e1e;
+    --surface-card: #252525;
+    --surface-hover: #383838;
     --surface-2: #282828;
     --border: transparent;
     --text: #e0e0e0;
@@ -368,7 +372,8 @@ textarea {
 }
 
 .grid-view .anime-card {
-    background: var(--surface);
+    background: var(--surface-card);
+    backdrop-filter: blur(8px);
     border: none;
     border-radius: 12px;
     padding: 12px;
@@ -481,7 +486,8 @@ textarea {
     align-items: center;
     gap: 16px;
     padding: 10px 16px;
-    background: var(--surface);
+    background: var(--surface-card);
+    backdrop-filter: blur(8px);
     border: none;
     border-radius: 10px;
     transition: background 0.15s ease;
@@ -1117,7 +1123,32 @@ footer {
 /* --------------------------------------------------------------------------
    9. ULTIMATE HOVER INTERACTION SYSTEM (CENTRAL HOVER STATE)
    -------------------------------------------------------------------------- */
-/* Universal ultimate hover effect rule */
+/* Base positioning for elements with ultimate hover effect */
+.ultimate-hover-effect {
+    position: relative;
+    z-index: 1;
+    transition: background-color 0.15s ease;
+}
+
+/* Background expansion layer pseudo-element */
+.ultimate-hover-effect::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: transparent;
+    border-radius: inherit;
+    transition: inset 0.15s ease, background-color 0.15s ease;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Synchronizes base container background with hover surface color */
 .ultimate-hover-effect:hover {
-    background: #ff0000;
+    background-color: var(--surface-hover);
+}
+
+/* Expands container background outward by 3px (1.03x scale equivalent) with matching solid surface color */
+.ultimate-hover-effect:hover::before {
+    inset: -2px;
+    background-color: var(--surface-hover);
 }
