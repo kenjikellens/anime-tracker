@@ -1,2916 +1,852 @@
 /* ==========================================================================
-   DESIGN TOKENS & CUSTOM PROPERTIES
+   RASCAL — COMPLETE MODULAR DESIGN SYSTEM (BORDERLESS & THEME-AWARE)
    ========================================================================== */
 
-/* Defines the core color palette and variables for the Light theme. 
-   Configures body background, surfaces, borders, text colors, and shadows. */
+/* --------------------------------------------------------------------------
+   1. COLOR TOKENS & THEME VARIABLES
+   -------------------------------------------------------------------------- */
 :root {
-    --bg: #f0f0f0;               /* Page background — lichtgrijs */
-    --surface: #ffffff;          /* Card surface — wit voor duidelijk contrast */
-    --surface-2: #f5f5f5;        /* Deeper surface (e.g., detail blocks, hovered items) */
-    --border: #c0c0c0;           /* Border color — zichtbaar grijs */
-    --text: #1a1a1a;             /* Primary high-contrast text color */
-    --text-muted: #666;          /* Low-contrast secondary/muted text */
-    --white: #1a1a1a;            /* Active elements (buttons, highlighted titles) — dark text in light mode for readability */
-    --status-none: #999;         /* Gray: To Watch (-1) status indicator */
-    --status-watching: #666;     /* Med-gray: Currently Watching (0) status indicator */
-    --status-done: #007acc;      /* Blue: Watched (1) status indicator */
-    --status-upcoming: #e040fb;  /* Magenta: Upcoming (2) status indicator */
-    --status-airing: #5bbcff;    /* Light blue: Airing (3) status indicator */
-    --modal-bg: rgba(0,0,0,0.3); /* Semi-transparent overlay for modals */
-    --shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Soft interface element shadow */
-    --header-bg: #e0e0e0;        /* Distinct background for top header bar */
-    --border-width: 1px;
+    --bg: #f0f0f0;
+    --surface: #ffffff;
+    --surface-2: #e8e8e8;
+    --border: transparent;
+    --text: #1a1a1a;
+    --text-muted: #666666;
+    --white: #1a1a1a;
+    --status-none: #999999;
+    --status-watching: #666666;
+    --status-done: #007acc;
+    --status-upcoming: #e040fb;
+    --status-airing: #5bbcff;
+    --modal-bg: rgba(0, 0, 0, 0.4);
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    --header-bg: #e0e0e0;
+    --border-width: 0px;
     --primary: #9d4edd;
     --primary-rgb: 157, 78, 221;
-    --hover-border: #1a1a1a;
-    --active-bg: #f3e8ff;        /* Light purple background for active toggles (light mode) */
-    --active-color: #7b2cbf;     /* Darker purple text/icon for active toggles (light mode) */
-    --active-border: #d8b4fe;    /* Purple border for active toggles (light mode) */
+    --hover-border: transparent;
+    --active-bg: #f3e8ff;
+    --active-color: #7b2cbf;
+    --active-border: transparent;
 }
 
-/* Adjusts variables for a high-vibrancy Dark theme to improve readability in low light. */
 [data-theme="dark"] {
-    --bg: #1e1e1e;
-    --surface: #383838;
-    --surface-2: #444;
-    --border: #505050;
-    --text: #d4d4d4;
-    --text-muted: #999;
+    --bg: #121212;
+    --surface: #1e1e1e;
+    --surface-2: #282828;
+    --border: transparent;
+    --text: #e0e0e0;
+    --text-muted: #aaaaaa;
     --white: #ffffff;
-    --status-none: #666;
-    --status-watching: #999;
-    --status-done: #4da6ff;       /* Vibrant blue for dark mode readability */
-    --status-upcoming: #ea80fc;   /* Bright magenta for dark mode */
-    --status-airing: #8fd3ff;     /* Light blue for dark mode */
-    --modal-bg: rgba(0,0,0,0.5);
-    --shadow: 0 4px 20px rgba(255, 255, 255, 0.05);
+    --status-none: #666666;
+    --status-watching: #999999;
+    --status-done: #4da6ff;
+    --status-upcoming: #ea80fc;
+    --status-airing: #8fd3ff;
+    --modal-bg: rgba(0, 0, 0, 0.6);
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     --header-bg: #282828;
     --primary: #9d4edd;
-    --primary-rgb: 157, 78, 221;
-    --hover-border: #ffffff;
-    --active-bg: #ffffff;        /* White background for active toggles (dark mode) */
-    --active-color: #1e1e1e;     /* Dark text for active toggles (dark mode) */
-    --active-border: #ffffff;    /* White border for active toggles (dark mode) */
+    --hover-border: transparent;
+    --active-bg: #ffffff;
+    --active-color: #1e1e1e;
+    --active-border: transparent;
 }
 
-/* ==========================================================================
-   GLOBAL RESET & BASE STYLES
-   ========================================================================== */
-
-/* Universal Reset: Standardized box model and typography across all elements. */
-* { 
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
-    font-family: 'Outfit', sans-serif; 
+/* --------------------------------------------------------------------------
+   2. GLOBAL RESET, INTERACTIVE CURSORS & BASE UTILITIES
+   -------------------------------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
 }
 
-/* Styles interactive elements (links, buttons, selectors, cards) and their children with pointer cursor. */
-a, button, select, [role="button"], .rating-badge, .anime-card, .anime-card *, .item-play-btn, .view-btn, .size-btn, input[type="checkbox"], label, .status-option, .table-header-row, .expand-icon { 
-    cursor: pointer !important; 
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Ensure inputs and textareas still show the text cursor */
+/* Universal pointer cursor for interactive elements */
+a, button, select, [role="button"], .rating-badge, .anime-card,
+.item-play-btn, .view-btn, .size-btn, input[type="checkbox"], label,
+.status-option, .table-header-row, .expand-icon, summary {
+    cursor: pointer !important;
+}
+
 input, textarea {
     cursor: text !important;
 }
 
-
-/* Configures the primary background, text color, and base font settings for the document. */
-body {
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    font-size: 16px;
-    line-height: 1.5;
+.hidden {
+    display: none !important;
 }
 
-/* Utility class to completely hide elements from both the visual layout and screen readers. */
-.hidden { display: none !important; }
+/* Unified Hover Interaction System */
+a:hover, button:hover, select:hover, .filter-btn:hover, .view-btn:hover, .size-btn:hover {
+    opacity: 0.85;
+    border-color: transparent !important;
+}
 
+/* SVG Utility Icon Classes */
+.svg-icon {
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    vertical-align: middle;
+}
 
-/* ==========================================================================
-   LAYOUT & CONTAINERS
-   ========================================================================== */
+.svg-icon-margin {
+    margin-right: 4px;
+}
 
-/* Primary application wrapper that restricts the maximum width and centers the content. 
-   Increased side padding on desktop to create a more premium, spaced-out layout on both sides. */
+.svg-icon-large {
+    width: 1.2em;
+    height: 1.2em;
+}
+
+/* --------------------------------------------------------------------------
+   3. HEADER, SEARCH & TOOLBAR CONTROLS
+   -------------------------------------------------------------------------- */
 #app {
     max-width: 1850px;
     margin: 0 auto;
-    padding: 32px 48px 28px; /* Increased side padding for breathing room on the outer edges */
+    padding: 32px 48px 28px;
 }
 
-/* Container styling for the main site footer. */
-footer {
-    max-width: 1850px;
-    margin: 60px auto 0;
-    padding: 3rem 48px 2rem;
-    color: var(--text-muted);
-    font-size: 14px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-/* Row wrapper for footer columns layout. */
-.footer-row {
-    display: grid;
-    grid-template-columns: 2fr 1fr 2fr;
-    gap: 40px;
-}
-
-/* Individual footer column container. */
-.footer-col {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-/* Footer headers for branding or info categories. */
-.footer-col h3, .footer-col h4 {
-    color: var(--white);
-    font-weight: 700;
-}
-
-/* Logo styling inside the footer for branding consistency. */
-.footer-col h3 .ras { color: var(--primary); }
-
-/* Logo suffix portion styled with theme-aware text color for readability in both light and dark modes. */
-.footer-col h3 .cal { color: var(--text); }
-
-/* Subtext/description paragraphs within footer columns. */
-.footer-col p {
-    line-height: 1.6;
-    font-size: 13px;
-    max-width: 400px;
-}
-
-/* Unordered lists for links in footer columns. */
-.footer-col ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-/* Interactive anchor links within footer columns. */
-.footer-col a {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 13px;
-    transition: color 0.15s ease;
-}
-
-/* Hover feedback for footer navigation links. */
-.footer-col a:hover {
-    color: var(--primary);
-}
-
-/* Brand mention colors for integrated data sources in the credits. */
-.provider-brand {
-    color: var(--white);
-    font-weight: 600;
-}
-
-/* Bottom copyright bar in the footer. */
-.footer-bottom {
-    border-top: 1px solid var(--border);
-    padding-top: 1.5rem;
-    text-align: center;
-    font-size: 12px;
-    opacity: 0.8;
-}
-
-/* ==========================================================================
-   HEADER & NAVIGATION
-   ========================================================================== */
-
-/* The main horizontal navigation bar fixed at the top of the application. */
 .header-main {
-    width: 100%;
     background: var(--header-bg);
-    border-bottom: var(--border-width, 1px) solid var(--border);
-    box-shadow: var(--shadow);
-    padding: 18px 0;
-    position: relative;
+    border: none;
+    padding: 16px 0;
+    position: sticky;
+    top: 0;
     z-index: 100;
 }
 
-/* Centered container within the header that uses a grid for logo, search, and actions. 
-   Side padding is kept consistent with the main app container for perfect alignment. */
 .header-content {
     max-width: 1850px;
     margin: 0 auto;
-    padding: 0 48px; /* Aligned with #app side padding on desktop */
+    padding: 0 48px;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
     gap: 24px;
 }
 
+.header-left {
+    display: flex;
+    align-items: center;
+}
 
-
-/* Container for the brand logo on the left side of the header. */
-.header-left { display: flex; align-items: center; }
-
-/* The RASCAL brand logo with specific typography and spacing for brand identity. */
 .logo-rascal {
-    font-size: 2rem;
+    font-size: 24px;
     font-weight: 800;
-    letter-spacing: 2.5px;
-    user-select: none;
+    letter-spacing: 1px;
 }
 
-/* Styles the 'RAS' portion of the logo with a distinct purple accent and glow. */
-.logo-rascal .ras { color: #9d4edd; text-shadow: 0 0 10px rgba(157, 78, 221, 0.3); }
-
-/* Styles the 'CAL' portion of the logo with theme-aware text color for readability in both light and dark modes. */
-.logo-rascal .cal { color: var(--text); }
-
-/* Central header container styling for the search input bar. */
-.header-center {
-    width: 650px;
-    max-width: 100%;
+.logo-rascal .ras {
+    color: var(--primary);
 }
 
-/* Prominent search input bar styling with subtle focus indicator ring. */
-.search-bar {
-    display: flex;
-    align-items: center;
-    background: var(--surface);
-    border: 2px solid var(--border);
-    border-radius: 12px;
-    padding: 0 18px;
-    min-height: 52px;
-    width: 100%;
-    transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-/* Visual feedback for the search bar when the user clicks inside to type. */
-.search-bar:focus-within {
-    border-color: var(--hover-border);
-    box-shadow: inset 0 0 0 1px var(--hover-border);
-}
-
-/* Decorative search icon positioned inside the search input bar. */
-.search-bar i {
-    color: var(--text-muted);
-    margin-right: 12px;
-}
-
-/* The actual text input field within the search bar component. */
-.search-bar input {
-    background: transparent;
-    border: none;
-    padding: 14px 0;
+.logo-rascal .cal {
     color: var(--text);
-    outline: none;
-    width: 100%;
-    font-size: 16px;
-    font-weight: 500;
 }
 
-/* Right-aligned container for global action buttons like sync and theme toggle. */
-.header-right {
+.header-center {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    width: 100%;
+}
+
+.search-bar {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    display: flex;
     align-items: center;
-    gap: 8px;
 }
 
-/* Unified styling for buttons in the header right section for a cohesive look. */
-.header-right button {
-    background: var(--surface); border: 2px solid transparent;
-    color: var(--text); width: 46px; height: 46px; border-radius: 10px;
-    font-size: 16px; display: flex;
-    align-items: center; justify-content: center;
-    transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
-    appearance: none;
-    -webkit-appearance: none;
-    box-shadow: var(--shadow);
-}
-
-/* Hover state for header action buttons providing a subtle background shift. */
-.header-right button:hover {
-    background: var(--surface-2);
-}
-
-/* Focus state for header buttons to ensure accessibility during keyboard navigation. */
-.header-right button:focus-visible {
+.search-bar input {
+    width: 100%;
+    padding: 10px 16px 10px 40px;
+    background: var(--surface);
+    border: none;
+    border-radius: 20px;
+    color: var(--text);
+    font-size: 14px;
     outline: none;
-    border-color: var(--hover-border);
-    box-shadow: inset 0 0 0 1px var(--hover-border);
 }
 
-/* Icons within the header buttons, ensuring they are properly centered and sized. */
-.header-right button i {
-    font-size: 17px;
-    line-height: 1;
+.search-bar .search-icon {
+    position: absolute;
+    left: 14px;
+    color: var(--text-muted);
     pointer-events: none;
 }
 
-
-/* A dropdown selector used in the header to switch between different data sources. */
-.header-select {
-    background: var(--surface); 
-    border: 2px solid transparent;
-    color: var(--text-muted);
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-size: 13px;
-    margin-right: 12px;
-    font-family: 'Outfit', sans-serif;
-    transition: all 0.13s ease;
+.header-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
 }
 
-/* Hover effects for the source selector dropdown to improve interactivity. */
-.header-select:hover {
-    background: var(--surface-2);
+.header-right button {
+    background: var(--surface);
+    border: none;
     color: var(--text);
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease;
 }
 
-/* Indicates that local data is out of sync by applying a glowing animation to the download button. */
-#download-btn.sync-needed {
-    background: #9d4edd;
-    color: #fff;
-    border-color: #9d4edd;
-    animation: pulse-purple 1s infinite;
-}
-
-/* Animation sequence for the sync-needed pulse effect. */
-@keyframes pulse-purple {
-    0% { box-shadow: 0 0 0 0 rgba(157, 78, 221, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(157, 78, 221, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(157, 78, 221, 0); }
-}
-
-/* ==========================================================================
-   TOOLBAR & FILTERS
-   ========================================================================== */
-
-/* A horizontal bar below the header containing all list manipulation controls (filters, sorting, views). */
+/* Toolbar Controls */
 .toolbar {
-    display: flex; align-items: center; gap: 12px;
-    margin-bottom: 24px; flex-wrap: wrap;
-}
-
-/* Group for status-based filter toggle buttons. */
-.filter-group { display: flex; gap: 6px; }
-
-/* Interactive buttons for filtering the list by anime status (e.g., Watching, Done). */
-.filter-btn {
-    background: var(--surface); border: 2px solid transparent;
-    color: var(--text-muted); padding: 10px 16px; border-radius: 8px;
-    font-weight: 600; font-size: 14px;
-    font-family: 'Outfit', sans-serif;
-    transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-/* Highlighted state for the currently active filter button. 
-   Uses theme-specific active variables for background, text color, and border. */
-.filter-btn.active {
-    background: var(--active-bg); 
-    color: var(--active-color); 
-    border-color: transparent; 
-    font-weight: 600;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-/* Semi-transparent state for inactive filter buttons to emphasize the active one. */
-.filter-btn:not(.active) {
-    opacity: 0.6;
-    background: var(--surface-2);
-}
-
-/* Hover feedback for inactive filter buttons to indicate they are clickable. */
-.filter-btn:not(.active):hover { 
-    border-color: var(--text-muted); 
-    color: var(--text); 
-    opacity: 1;
-    box-shadow: inset 0 0 0 1px var(--text-muted);
-}
-
-/* Container and dropdown for changing the display order of the anime list. */
-.sort-group select {
-    background: var(--surface); border: 2px solid transparent;
-    color: var(--text); padding: 10px 14px; border-radius: 8px;
-    font-family: 'Outfit', sans-serif; font-size: 14px; outline: none;
-}
-
-/* Hover feedback for the sort selector dropdown. */
-.sort-group select:hover {
-    border-color: var(--text-muted);
-}
-
-/* Right-aligned portion of the toolbar containing view toggles and item statistics. */
-.toolbar-right {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-left: auto;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
 }
 
-/* Container for buttons that switch between different layout modes (Grid vs List). */
-.view-toggle { display: flex; gap: 6px; }
-
-/* Individual buttons for selecting specific layout views. */
-.view-btn {
-    background: var(--surface); border: 2px solid transparent;
-    color: var(--text-muted); width: 42px; height: 42px;
-    border-radius: 8px; font-size: 14px;
-    transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-/* Highlighted state for the active view or size toggle button.
-   Applies theme-aware styling and soft shadow for elevation. */
-.view-btn.active, .size-btn.active {
-    background-color: var(--active-bg) !important;
-    color: var(--active-color) !important;
-    border-color: transparent !important;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Hover feedback for view buttons. */
-.view-btn:not(.active):hover { border-color: var(--text-muted); opacity: 1; }
-
-/* Display text showing the total number of items currently visible in the filtered list. */
-.item-count {
-    color: var(--text-muted);
-    font-size: 14px;
-    white-space: nowrap;
-    margin: 0 8px;
-    line-height: 1.3;
-}
-
-/* Container for controls that adjust the grid density (column count). */
-.size-toggle { display: flex; gap: 6px; }
-
-/* Buttons used to increment or decrement the number of grid columns. */
-.size-btn {
-    background: var(--surface); border: 2px solid transparent;
-    color: var(--text-muted); width: 42px; height: 42px;
-    border-radius: 8px; font-size: 14px; font-weight: 700;
-    transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-
-/* Hover feedback for grid size buttons. */
-.size-btn:not(.active):hover { border-color: var(--text-muted); opacity: 1; }
-
-/* ==========================================================================
-   ANIME LIST SYSTEM
-   ========================================================================== */
-
-/* #anime-container: The primary container for the anime list, managing the vertical flow of status groups. 
-   Uses a flex column layout with a gap between status sections. Gap has been reduced to make layout thinner. */
-#anime-container {
+.filter-group {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: stretch;
+    gap: 6px;
+}
+
+.filter-btn {
+    background: var(--surface);
+    border: none;
+    color: var(--text-muted);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.15s ease;
+}
+
+.filter-btn.active {
+    background: var(--active-bg);
+    color: var(--active-color);
+    border: none !important;
+}
+
+.sort-group select {
+    background: var(--surface);
+    border: none;
+    color: var(--text);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+.toolbar-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.view-toggle, .size-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.size-toggle-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-right: 4px;
+}
+
+.size-val {
+    font-size: 16px;
+    font-weight: 700;
+    min-width: 24px;
+    text-align: center;
+    color: var(--text);
+}
+
+.view-btn, .size-btn {
+    background: var(--surface);
+    border: none;
+    color: var(--text-muted);
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.view-btn.active, .size-btn.active {
+    background: var(--active-bg);
+    color: var(--active-color);
+    border: none !important;
+}
+
+.item-count {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   4. ANIME CONTAINER, GRID VIEW & PURE DATA TABLE LIST VIEW
+   -------------------------------------------------------------------------- */
+#anime-container {
     width: 100%;
 }
 
-/* A group of anime cards sharing the same status, displayed as a vertical or grid stack. */
+/* Status Column Container */
 .status-column {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    width: 100%;
 }
 
-/* Sticky header for each status group (e.g., "Bezig") that remains visible while scrolling. */
-.status-group-header {
-    grid-column: 1 / -1; /* Stretch across all grid columns */
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 8px 12px;
-    margin: 12px 0 6px 0;
-    background: var(--bg);
-    border-bottom: 2px solid var(--border);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    font-weight: 800;
-    font-size: 1.15rem;
-    color: var(--white);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* Dark theme specific adjustments for the sticky status group headers. */
-[data-theme="midnight"] .status-group-header {
-    background: #000;
-    border-bottom-color: #fff;
-}
-
-/* Icons within the status group headers, colored with the primary accent. */
-.status-group-header i {
-    width: 24px;
-    text-align: center;
-    color: #9d4edd;
-}
-
-/* A pill badge showing the number of items within a specific status group. */
-.group-count {
-    background: var(--surface-2);
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    padding: 3px 10px;
-    border-radius: 999px;
-    margin-left: auto;
-    font-weight: 600;
-}
-
-/* ==========================================================================
-   ANIME CARD COMPONENTS
-   ========================================================================== */
-
-/* The base component for an anime entry: Single, clean, translucent container with transparent border by default */
-.anime-card {
-    background: rgba(255, 255, 255, 0.06) !important; 
-    border: 2px solid transparent !important;
-    border-radius: 12px;    
-    padding: 12px; 
-    display: flex; 
-    flex-direction: row; 
-    gap: 14px;
-    position: relative;
-    z-index: 5;
-    transition: border-color 0.13s ease, background-color 0.13s ease;
-    overflow: visible;
-    user-select: none;
-}
-
-/* Ensure rated and watched cards remain 100% uniform with the translucent background */
-.anime-card.glow-gold,
-.anime-card.glow-red,
-.anime-card.status-watched,
-.anime-card.r-cinema,
-.anime-card.r-awesome,
-.anime-card.r-great,
-.anime-card.r-good,
-.anime-card.r-regular,
-.anime-card.r-bad,
-.anime-card.r-garbage {
-    background: rgba(255, 255, 255, 0.06) !important;
-    border-color: transparent !important;
-    box-shadow: none !important;
-}
-
-/* Hover and focus states for cards: border appears cleanly using --hover-border */
-.anime-card:hover,
-.anime-card-wrapper:hover .anime-card, 
-.anime-card-wrapper:focus-within .anime-card {
-    border-color: var(--hover-border) !important; 
-    box-shadow: inset 0 0 0 1px var(--hover-border) !important;
-}
-
-/* ---------------- GRID VIEW LAYOUT ---------------- */
-
-/* #anime-container.grid-view .status-column: Configures the status columns to display as a multi-column responsive grid.
-   Uses grid layout with a gap between cards. Row gap is larger to accommodate fanned-out background stack cards. */
+/* --- GRID VIEW LAYOUT --- */
 #anime-container.grid-view .status-column {
     display: grid;
     grid-template-columns: repeat(var(--grid-cols, 5), 1fr);
     gap: 16px;
-    align-content: start;
-    width: 100%;
 }
 
-/* Grid-specific container properties for the wrapper. */
-#anime-container.grid-view .anime-card-wrapper {
-    container-type: inline-size;
-    container-name: card;
-}
-
-/* #anime-container.grid-view .anime-card: Specific layout adjustments for the anime card when displayed in a grid format.
-   Uses a row layout with reduced padding and gap to make it compact. Stretches to fill wrapper. */
 #anime-container.grid-view .anime-card {
+    background: var(--surface);
+    border: none;
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
     flex-direction: row;
-    min-height: 152px;
-    height: 100%;
-    align-items: stretch;
-    overflow: hidden;
-    padding: 8px;
-    gap: 10px;
+    gap: 12px;
+    position: relative;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* #anime-container.grid-view .anime-card .card-info: Reduces the vertical gap between title, subtitle, and action buttons in grid cards. */
-#anime-container.grid-view .anime-card .card-info {
-    gap: 4px !important;
-}
-
-/* #anime-container.grid-view .anime-card .card-header: Reduces the bottom margin of the card header in grid cards. */
-#anime-container.grid-view .anime-card .card-header {
-    margin-bottom: 4px;
-}
-
-/* Fixed dimensions for the poster image within a grid-view card. */
-#anime-container.grid-view .anime-card .card-poster {
+#anime-container.grid-view .card-poster {
     width: 104px;
     height: 152px;
     flex-shrink: 0;
-    margin-right: 4px;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-/* Container for text information within a grid-view card. */
-#anime-container.grid-view .anime-card .card-info {
+.poster-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.poster-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 800;
+    text-transform: uppercase;
+    border-radius: 6px;
+}
+
+#anime-container.grid-view .card-info {
     flex: 1;
     min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-/* ---------------- PURE DATA TABLE LAYOUT ---------------- */
-
-/* Status Column Container in List View: Tight 0px gap for seamless table row stacking */
-.list-view .status-column {
-    display: flex; 
-    flex-direction: column; 
-    gap: 0; 
-    width: 100%;
+#anime-container.grid-view .card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.3;
 }
 
-/* In List View mode, unwrap card structural containers so children align directly into the 7 CSS Grid columns */
-#anime-container.list-view .card-info,
-#anime-container.list-view .card-header,
-#anime-container.list-view .card-actions {
-    display: contents !important;
+#anime-container.grid-view .card-title span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
-/* In Grid View mode, hide table-specific status cell */
+#anime-container.grid-view .card-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
 #anime-container.grid-view .card-status-cell {
-    display: none !important;
+    display: none;
 }
 
-/* Pure Data Table Rows (No Card/Button Containers) */
+#anime-container.grid-view .card-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+#anime-container.grid-view .expand-icon {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: var(--text-muted);
+}
+
+/* --- PURE DATA TABLE LIST VIEW --- */
+#anime-container.list-view .status-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.table-header-row {
+    display: grid;
+    grid-template-columns: 44px minmax(220px, 1fr) 90px 140px 100px 100px 40px;
+    gap: 12px;
+    align-items: center;
+    padding: 8px 12px;
+    background: var(--surface-2);
+    border: none;
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
 #anime-container.list-view .anime-card {
     display: grid;
     grid-template-columns: 44px minmax(220px, 1fr) 90px 140px 100px 100px 40px;
     gap: 12px;
     align-items: center;
-    padding: 6px 12px; 
+    padding: 8px 12px;
+    background: var(--surface);
+    border: none;
     border-radius: 0;
-    border-bottom: 1px solid var(--border) !important;
-    border-top: none !important;
-    border-left: none !important;
-    border-right: none !important;
-    min-height: 44px;
-    width: 100%;
-    box-sizing: border-box;
-    background: transparent !important;
-    transition: background-color 0.13s ease;
-    position: relative;
 }
 
-/* Hover Row Highlight */
-#anime-container.list-view .anime-card:hover {
-    background: rgba(255, 255, 255, 0.05) !important;
-    border-color: var(--border) !important;
-    box-shadow: none !important;
+#anime-container.list-view .card-poster {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    width: 32px;
+    height: 44px;
+    border-radius: 4px;
+    overflow: hidden;
 }
 
-[data-theme="light"] #anime-container.list-view .anime-card:hover {
-    background: rgba(0, 0, 0, 0.04) !important;
-}
-
-/* Table cell alignment & grid-row 1 enforcement */
-#anime-container.list-view .anime-card .card-poster { grid-column: 1 !important; grid-row: 1 !important; }
-#anime-container.list-view .anime-card .card-title { grid-column: 2 !important; grid-row: 1 !important; }
-#anime-container.list-view .anime-card .card-subtitle { grid-column: 3 !important; grid-row: 1 !important; }
-#anime-container.list-view .anime-card .card-status-cell { grid-column: 4 !important; grid-row: 1 !important; }
-#anime-container.list-view .anime-card .rating-badge { grid-column: 5 !important; grid-row: 1 !important; }
-#anime-container.list-view .anime-card .avg-rating-text { grid-column: 6 !important; grid-row: 1 !important; }
-#anime-container.list-view .anime-card .expand-icon { grid-column: 7 !important; grid-row: 1 !important; }
-
-#anime-container.list-view .card-subtitle,
-#anime-container.list-view .card-status-cell,
-#anime-container.list-view .rating-badge,
-#anime-container.list-view .avg-rating-text,
-#anime-container.list-view .expand-icon {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    text-align: center !important;
-}
-
-/* Table cell sub-styles */
-#anime-container.list-view .card-subtitle {
-    background: var(--surface-2);
-    padding: 3px 8px;
-    border-radius: 999px;
-    font-size: 11px !important;
+#anime-container.list-view .card-title {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    font-size: 14px;
     font-weight: 600;
+}
+
+#anime-container.list-view .card-title span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#anime-container.list-view .card-subtitle {
+    grid-column: 3 !important;
+    grid-row: 1 !important;
+    font-size: 13px;
     color: var(--text-muted);
+    display: flex;
+    align-items: center;
 }
 
 #anime-container.list-view .card-status-cell {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--text);
-    padding: 4px 10px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 6px;
-}
-
-[data-theme="light"] #anime-container.list-view .card-status-cell {
-    background: rgba(0, 0, 0, 0.05);
-}
-
-/* Explicit table cell poster sizing */
-#anime-container.list-view .anime-card .card-poster {
-    width: 32px !important;
-    height: 44px !important;
-    flex-shrink: 0 !important;
-    border-radius: 4px !important;
-    display: block !important;
-}
-
-/* Single line title truncation for table title column */
-#anime-container.list-view .anime-card .card-title,
-#anime-container.list-view .anime-card .card-title span {
-    font-size: 14px !important;
-    font-weight: 700 !important;
-    color: var(--white) !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    display: block !important;
-}
-
-/* Subtle vertical cell dividers for data table look */
-.table-header-row .th-cell:not(:last-child),
-#anime-container.list-view .anime-card > div:not(:last-child) {
-    border-right: 1px solid var(--border);
-    padding-right: 8px;
-}
-
-/* ---------------- CARD SUB-ELEMENTS ---------------- */
-
-/* Poster container with aspect-ratio, enforcing corner rounding and cropping. */
-.card-poster {
-    flex-shrink: 0;
-    aspect-ratio: 2/3;
-    background: var(--surface-2);
-    border-radius: 8px;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Ensures the actual poster image covers the entire container while maintaining its aspect ratio. */
-.card-poster img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-}
-
-/* Wrapper element to containerize stacked deck layers and the main card. */
-.anime-card-wrapper {
-    position: relative;
-    overflow: visible;
-}
-
-/* Elevated stack index on hover to ensure fanned-out layers render above subsequent grid items. */
-.anime-card-wrapper:hover {
-    z-index: 10;
-}
-
-/* Card stack layers removed completely */
-
-/* Compact poster sizing specifically for the small list view layout. */
-#anime-container.size-s.list-view .card-poster {
-    height: 24px !important;
-    width: 17px !important;
-}
-
-/* Positioning for list view posters as the first element in the grid row. */
-#anime-container.list-view .card-poster { 
-    grid-area: 1 / 1; height: 32px; width: 22px; border-radius: 3px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
-    display: block;
-    overflow: visible;
-}
-
-/* Distinctive release badges that appear in the corner of upcoming or airing items. */
-.label-release {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    z-index: 3;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    color: var(--white);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
-    pointer-events: none;
-}
-
-.label-airing {
-    background: var(--status-airing);
-}
-
-.label-upcoming {
-    background: var(--status-upcoming);
-}
-
-.label-release + .label-release {
-    top: 42px;
-}
-
-/* Individual icons and text inside the release badge for granular control. */
-.label-release-icon,
-.label-release-text {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Circular variant of the release badge for the grid layout. */
-.grid-view .label-release {
-    width: 28px;
-    height: 28px;
-    border-radius: 999px;
-}
-
-/* Hides the text in the grid release badge to keep it compact. */
-.grid-view .label-release-text { display: none; }
-
-/* Horizontal pill variant of the release badge for the list layout. */
-.list-view .label-release {
-    top: -7px;
-    left: -7px;
-    padding: 3px 8px;
-    border-radius: 999px;
-}
-
-.list-view .label-release + .label-release {
-    top: 14px;
-}
-
-/* Hides the icon in the list release badge to save horizontal space. */
-.list-view .label-release-icon { display: none; }
-
-/* Small, bold font styling for the text inside the list view's release badge. */
-.list-view .label-release-text {
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    line-height: 1;
-    white-space: nowrap;
-}
-
-/* Flex container for the text-based information on the card (title, subtitle). */
-.card-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-width: 0;
-}
-
-/* Spacing and cursor behavior for the top section of the card info. */
-.card-header { margin-bottom: 10px; cursor: default; }
-
-/* Typography and layout for the anime title, ensuring it truncates properly. */
-.card-title {
-    font-size: 17px; font-weight: 700; color: var(--white);
-    display: flex; justify-content: space-between; align-items: flex-start;
-    gap: 8px;
-    line-height: 1.35;
-}
-
-/* .card-title span: Multi-line truncation for the anime title to prevent it from breaking the layout.
-   Limits the title text block to a maximum of 3 lines before displaying an ellipsis. */
-.card-title span {
-    overflow: hidden; text-overflow: ellipsis; display: -webkit-box;
-    -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical;
-}
-
-/* Positioning and typography for the title specifically in the list layout. */
-#anime-container.list-view .card-title span { 
-    grid-area: 1 / 2; 
-    white-space: nowrap; 
-    overflow: hidden; 
-    text-overflow: ellipsis; 
+    grid-column: 4 !important;
+    grid-row: 1 !important;
     font-size: 13px;
     font-weight: 600;
+    color: var(--text);
 }
 
-/* Extreme truncation for the title in the compact small list view. */
-#anime-container.size-s.list-view .card-title span {
-    font-size: 12px !important;
-    display: block !important;
+#anime-container.list-view .rating-badge {
+    grid-column: 5 !important;
+    grid-row: 1 !important;
+    justify-self: start;
 }
 
-/* Show items count in column 3 in list view */
-#anime-container.list-view .card-subtitle {
-    display: inline-flex !important;
-    grid-column: 3;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Icon that indicates whether a list item is expanded to show more details. */
-.expand-icon {
-    font-size: 10px; color: var(--text-muted); margin-left: auto;
-    transition: transform 0.2s ease;
-}
-
-/* Specific styling for the expand action button in list view (column 7). */
-.list-view .expand-icon {
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    background: var(--surface-2);
+#anime-container.list-view .avg-rating-text {
+    grid-column: 6 !important;
+    grid-row: 1 !important;
+    font-size: 13px;
     color: var(--text-muted);
-    border: 2px solid transparent !important;
-    grid-column: 7;
-    justify-self: center;
-    cursor: pointer;
-    transition: all 0.13s ease;
-}
-
-.list-view .expand-icon:hover {
-    background: var(--surface-2);
-    color: var(--white);
-    border-color: var(--hover-border) !important;
-    box-shadow: inset 0 0 0 1px var(--hover-border) !important;
-}
-
-/* Hides the expand icon in grid view as interaction happens via modal. */
-.grid-view .expand-icon {
-    display: none;
-}
-
-/* ==========================================================================
-   RATING BADGES & STATUS INDICATORS
-   ========================================================================== */
-
-/* Status bar line on left edge removed per user request */
-
-/* Visual feedback for cards that have been completed, using a muted surface color. */
-.anime-card[data-status="1"],
-.anime-card.status-watched {
-    background: rgba(255, 255, 255, 0.06) !important;
-}
-
-[data-theme="light"] .anime-card[data-status="1"],
-[data-theme="light"] .anime-card.status-watched {
-    background: rgba(0, 0, 0, 0.04) !important;
-}
-
-/* Individual status icon/label used primarily in the list view for quick identification. */
-.list-view .anime-card .status-indicator {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    flex-shrink: 0;
-    font-size: 16px;
-    background: var(--bg);
-    border: 1px solid var(--border);
 }
 
-/* Color variant for the "Done" status indicator. */
-.list-view .anime-card .status-indicator.status-done {
-    background: rgba(0, 122, 204, 0.1);
-    color: var(--status-done);
-    border-color: rgba(0, 122, 204, 0.3);
-}
-
-/* Color variant for the "Watching" status indicator. */
-.list-view .anime-card .status-indicator.status-watching {
-    background: rgba(136, 136, 136, 0.1);
-    color: var(--status-watching);
-}
-
-/* Color variant for the "Not Started" status indicator. */
-.list-view .anime-card .status-indicator.status-none {
-    background: rgba(187, 187, 187, 0.05);
-    color: var(--status-none);
-}
-
-/* Hides the status indicator in grid view to maintain a clean aesthetic. */
-.grid-view .anime-card .status-indicator { display: none !important; }
-
-/* ---------------- RATING BADGES ---------------- */
-
-/* The user's personal rating badge, displayed with color-coded importance. */
-.rating-badge {
-    padding: 5px 10px;
-    border-radius: 8px; 
-    font-weight: 700; 
-    color: var(--white);
-    font-size: 12px; 
-    border: 2px solid var(--border);
-    transition: all 0.13s ease;
-    background: var(--surface-2);
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    white-space: nowrap;
-    user-select: none;
-}
-
-/* Floating variant of the rating badge positioned at the bottom-right of a grid card. */
-.grid-view .anime-card .rating-badge {
-    position: absolute;
-    bottom: 8px;
-    right: 8px;
-    z-index: 10;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-    font-size: 14px;
-    padding: 3px 10px;
-}
-
-.avg-rating-text {
-    font-weight: 700;
-    color: var(--text-muted);
-    font-size: 12px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    white-space: nowrap;
-    user-select: none;
-}
-
-/* Ensures the rating badge has a consistent height and look when used in list or detail views. */
-.item-rating-badge,
-#anime-container.list-view .rating-badge,
-#anime-container.list-view .avg-rating-text {
-    height: 36px !important;
-    padding: 0 12px !important;
-    font-size: 0.85rem !important;
-    border-radius: 10px !important;
-}
-
-/* Positioning for the rating badge specifically in the list view layout (Column 5). */
-#anime-container.list-view .rating-badge { 
-    grid-column: 5; 
-    align-self: center; 
-    justify-self: center;
-    min-width: 56px;
-    justify-content: center;
-    box-shadow: none;
-}
-
-/* Rating badge hover effect: subtle lighten for interactivity. */
-.rating-badge:hover {
-    filter: brightness(1.3) !important;
-}
-
-/* Small star icon inside the rating badge for visual context. */
-.rating-badge i { font-size: 11px; opacity: 0.8; }
-
-/* Badge displaying the average community rating from external sources like AniList. */
-.avg-rating-badge {
-    font-weight: 700; 
-    color: var(--text-muted);
-    font-size: 12px; 
-    border: none;
-    background: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    white-space: nowrap;
-    padding: 0;
-}
-
-/* Hides the average rating in grid view to avoid visual clutter on small cards. */
-.grid-view .anime-card .avg-rating-badge {
-    display: none !important;
-}
-
-/* Positioning for the average rating text in the list view layout (Column 6). */
-#anime-container.list-view .avg-rating-text {
-    grid-column: 6;
-    align-self: center;
+#anime-container.list-view .expand-icon {
+    grid-column: 7 !important;
+    grid-row: 1 !important;
     justify-self: center;
 }
 
-/* Average rating icon styling. */
-.avg-rating-badge i { font-size: 10px; opacity: 0.7; }
-
-/* ---------------- COLOR SCALES (Rating based - Badges Only) ---------------- */
-
-/* Styles rating badges with score category colors */
-.rating-badge.r-cinema { background: linear-gradient(135deg, #ffe066 0%, #ffd700 50%, #b38f00 100%) !important; color: #1a1a1a !important; border-color: #ffd700 !important; box-shadow: 0 0 10px rgba(255, 215, 0, 0.4) !important; }
-.rating-badge.r-awesome { background-color: rgba(39, 174, 96, 0.35) !important; color: #27ae60 !important; border-color: rgba(39, 174, 96, 0.7) !important; font-weight: 800 !important; }
-.rating-badge.r-great { background-color: rgba(46, 204, 113, 0.35) !important; color: #2ecc71 !important; border-color: rgba(46, 204, 113, 0.7) !important; font-weight: 800 !important; }
-.rating-badge.r-good { background-color: rgba(162, 209, 73, 0.35) !important; color: #a2d149 !important; border-color: rgba(162, 209, 73, 0.7) !important; font-weight: 800 !important; }
-.rating-badge.r-regular { background-color: rgba(241, 196, 15, 0.35) !important; color: #f1c40f !important; border-color: rgba(241, 196, 15, 0.7) !important; font-weight: 800 !important; }
-.rating-badge.r-bad { background-color: rgba(230, 126, 34, 0.35) !important; color: #e67e22 !important; border-color: rgba(230, 126, 34, 0.7) !important; font-weight: 800 !important; }
-.rating-badge.r-garbage { background-color: rgba(231, 76, 60, 0.35) !important; color: #e74c3c !important; border-color: rgba(231, 76, 60, 0.7) !important; font-weight: 800 !important; }
-.rating-badge.unrated { background-color: rgba(255, 255, 255, 0.05) !important; color: var(--text-muted) !important; border-color: rgba(255, 255, 255, 0.1) !important; font-weight: 400; opacity: 0.6; }
-
-/* ---------------- SPECIAL "GLOW" STATES ---------------- */
-
-
-
-/* Styles the high-rated detail sidebar in dark mode with a glowing gold border and subtle gold background. */
-.anime-detail-sidebar-v3.glow-gold {
-    border: 2px solid #ffd700;
-    animation: goldBorderShift 3s infinite ease-in-out;
-    background: rgba(60, 50, 26, 0.92) !important;
-}
-
-/* [data-theme="light"] .anime-detail-sidebar-v3.glow-gold: Light mode variant of the gold-rated sidebar,
-   using a slightly darker gold base. Also uses the gold border animation. */
-[data-theme="light"] .anime-detail-sidebar-v3.glow-gold {
-    border: 2px solid #e6b800;
-    animation: goldBorderShiftLight 3s infinite ease-in-out;
-}
-
-/* @keyframes goldBorderShift: Smoothly transitions the border color between gold, a lighter gold, and a darker gold. */
-@keyframes goldBorderShift {
-    0%   { border-color: #ffd700; }
-    33%  { border-color: #ffe066; } /* Lighter gold */
-    66%  { border-color: #b38f00; } /* Darker gold */
-    100% { border-color: #ffd700; }
-}
-
-/* @keyframes goldBorderShiftLight: Smoothly transitions the border color between base gold, a lighter gold, and a darker gold for light mode. */
-@keyframes goldBorderShiftLight {
-    0%   { border-color: #e6b800; }
-    33%  { border-color: #ffd700; } /* Lighter gold */
-    66%  { border-color: #997a00; } /* Darker gold */
-    100% { border-color: #e6b800; }
-}
-
-/* Warning Red Glow applied to cards with very low ratings (< 2.0). No external shadow. */
-.anime-card.glow-red {
-    box-shadow: none !important;
-    background-image: radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.15) 0%, transparent 70%) !important;
-}
-
-/* Hover state for red-glow cards: no shadow, handled by global border rule. */
-.anime-card.glow-red:hover, .anime-card.glow-red:focus-within {
-    box-shadow: none !important;
-}
-
-/* ==========================================================================
-   INTERACTIVE OVERLAYS
-   ========================================================================== */
-
-/* Container for the status selection dropdown, managing its own positioning context. */
-.status-dropdown {
-    position: relative;
+/* --------------------------------------------------------------------------
+   5. DETAIL PAGE & ACCORDION SYSTEM (card.html & DetailRenderer.js)
+   -------------------------------------------------------------------------- */
+.back-btn {
     display: inline-flex;
-    z-index: 50;
-}
-
-/* The interactive button showing the current status; clicking this opens the status menu. */
-.status-current,
-.item-status-select,
-#global-status-select {
-    background: var(--surface-2);
-    border: var(--border-width, 1px) solid var(--border);
-    color: var(--text);
-    padding: 10px 16px;
-    border-radius: 10px;
-    font-size: 14px;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    text-decoration: none;
     font-weight: 600;
-    font-family: 'Outfit', sans-serif;
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
+    font-size: 14px;
+    margin-bottom: 24px;
+    padding: 8px 16px;
+    background: var(--surface);
+    border: none;
+    border-radius: 8px;
+    transition: color 0.15s ease, background 0.15s ease;
+}
+
+.back-btn:hover {
+    color: var(--primary);
+    background: var(--surface-2);
+}
+
+/* Status Dropdowns in Detail Page */
+.detail-action-btn, #global-status-select, .item-status-select {
     width: 100%;
-    min-width: 132px;
-    min-height: 32px;
-    transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    appearance: none;
-    -webkit-appearance: none;
-}
-
-/* Dark mode override status selects with a visible white chevron. */
-[data-theme="dark"] .item-status-select,
-[data-theme="dark"] #global-status-select {
-    background: #2a2a2a !important;
-    border-color: rgba(157, 78, 221, 0.3) !important;
-    color: #ffffff !important;
-    /* White chevron arrow for dark backgrounds */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23ffffff' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C2.185 5.355 2.408 5 2.811 5h9.378c.403 0 .626.355.361.658l-4.796 5.482a.5.5 0 0 1-.740 0z'/%3E%3C/svg%3E") !important;
-    background-repeat: no-repeat !important;
-    background-position: right 10px center !important;
-    background-size: 12px !important;
-    padding-right: 32px !important;
-}
-
-/* Dark mode: dropdown option list styling for readable contrast. */
-[data-theme="dark"] .item-status-select option,
-[data-theme="dark"] #global-status-select option {
-    background: #1e1e1e;
-    color: #e0e0e0;
-    padding: 8px;
-}
-
-/* Hover feedback for the status selection button. */
-.status-current:hover {
-    background: var(--surface);
-    border-color: var(--text-muted);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-/* Dark mode hover: subtle neutral lighten — uses background-color to preserve the SVG chevron. */
-[data-theme="dark"] .item-status-select:hover,
-[data-theme="dark"] #global-status-select:hover {
-    background-color: #3a3a3a !important;
-    border-color: rgba(255, 255, 255, 0.25) !important;
-}
-
-/* Icons and status images within the status selection buttons. */
-.status-current img,
-.status-option img {
-    width: 14px;
-    height: 14px;
-    object-fit: contain;
-    filter: brightness(0) invert(1);
-}
-
-/* Ensures status images are NOT inverted in light mode for proper visibility. */
-[data-theme="light"] .status-current img,
-[data-theme="light"] .status-option img {
-    filter: none;
-}
-
-/* The floating menu that appears when a status dropdown is opened. */
-.status-menu {
-    display: none;
-    position: fixed;
-    background: rgba(40, 40, 40, 0.92);
-    backdrop-filter: blur(12px) saturate(180%);
-    -webkit-backdrop-filter: blur(12px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 14px;
-    z-index: 200000 !important;
-    min-width: 190px;
-    box-shadow: 0 12px 50px rgba(0,0,0,0.5);
-    padding: 8px;
-    overflow: hidden;
-    flex-direction: column;
-    transform-origin: top left;
-}
-
-/* Light theme variant for the floating status menu. */
-[data-theme="light"] .status-menu {
-    background: rgba(255, 255, 255, 0.92);
-    border-color: rgba(0, 0, 0, 0.1);
-}
-
-/* Activates the display and entry animation of the status menu when open. */
-.status-dropdown.open .status-menu {
-    display: flex;
-    animation: menuFadeIn 0.1s ease-out;
-}
-
-/* Subtle fade-in animation for the status menu. */
-@keyframes menuFadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-/* Individual options within the status menu, with hover and focus states. */
-.status-option {
-    padding: 12px 14px;
-    font-size: 14px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-family: 'Outfit', sans-serif;
-    color: var(--text);
-    border-radius: 8px;
-    transition: all 0.13s ease;
-    margin-bottom: 2px;
-    border: 2px solid transparent;
-}
-
-/* Removes extra margin from the last menu option. */
-.status-option:last-child {
-    margin-bottom: 0;
-}
-
-/* Hover feedback for individual status options. */
-.status-option:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--text);
-}
-
-/* Hover feedback for status options in light mode. */
-[data-theme="light"] .status-option:hover {
-    background: rgba(0, 0, 0, 0.05);
-}
-
-/* Icons inside the status options for visual guidance. */
-.status-option i {
-    width: 16px;
-    text-align: center;
-    opacity: 0.8;
-}
-
-/* ---------------- BATCH ACTION BAR ---------------- */
-
-/* Floating bar that appears when multiple items (e.g., episodes) are selected for bulk updates. */
-.batch-bar {
-    position: fixed;
-    z-index: 10000;
-    background: rgba(30, 30, 30, 0.85);
-    backdrop-filter: blur(12px) saturate(160%);
-    -webkit-backdrop-filter: blur(12px) saturate(160%);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    padding: 12px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.6);
-    min-width: 220px;
-    color: white;
-    font-family: 'Outfit', sans-serif;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-/* Header within the batch bar showing current selection count and close trigger. */
-.batch-header {
-    display: flex; justify-content: space-between; align-items: center;
-    border-bottom: 1px solid rgba(136, 136, 136, 0.2);
-    padding-bottom: 8px;
-    font-size: 13px;
-}
-
-/* Close button for the batch bar to clear selection and hide the interface. */
-.batch-close {
-    background: none; border: 1px solid transparent; color: var(--text-muted);
-    font-size: 18px;
-}
-
-/* Hover feedback for the batch close button. */
-.batch-close:hover { color: white; }
-
-/* Group for the various batch operation buttons (e.g., Mark as Watched). */
-.batch-options {
-    display: flex; flex-direction: column; gap: 4px;
-}
-
-/* Standardized buttons inside the batch options group. */
-.batch-options button {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--text);
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 600;
-    text-align: left;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.13s;
-}
-
-/* Hover effects for batch operation buttons. */
-.batch-options button:hover {
-    background: var(--white);
-    color: var(--bg);
-}
-
-/* Utility classes for consistently small or tiny action buttons. */
-.btn-small { padding: 4px 8px; font-size: 11px; }
-.btn-tiny { padding: 3px 6px; font-size: 10px; }
-
-/* ==========================================================================
-   DETAIL & FRANCHISE CONTENT
-   ========================================================================== */
-
-/* The expandable container below an anime card or in the modal that reveals seasons and episodes. */
-.card-detail {
-    margin-top: 12px; padding-top: 12px;
-    border-top: var(--border-width, 1px) solid var(--border);
-}
-
-/* Container for grouping related anime items (e.g., sequels, movies) within a franchise. */
-.card-detail-group {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding: 6px 0;
-}
-
-/* A structural block representing a single item within a franchise group (e.g., Season 1). */
-.item-block {
-    background: var(--surface-2);
-    border-radius: 8px;
-    padding: 8px 12px;
-    border: 1px solid var(--border);
-}
-
-/* Header for an item block containing its type badge and title information. */
-.item-header {
-    margin-bottom: 12px;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 8px;
-}
-
-/* Layout for the title and secondary info within an item header. */
-.item-title-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-/* A colored badge indicating the media type of an item (e.g., Movie, Series, OVA). */
-.item-type-badge {
-    display: inline-block;
-    font-size: 10px;
-    text-transform: uppercase;
-    font-weight: 900;
-    padding: 3px 10px;
-    border-radius: 6px;
-    letter-spacing: 0.5px;
-    margin-bottom: 6px;
-    line-height: 1;
-}
-
-/* Specific color variant for TV Series and Movies using purple accent. */
-.item-type-badge.type-serie,
-.item-type-badge.type-movie {
-    background: rgba(157, 78, 221, 0.15);
-    color: #9d4edd;
-    border: 1px solid rgba(157, 78, 221, 0.3);
-}
-
-/* Specific color variant for Spin-off series. */
-.item-type-badge.type-spin-off {
-    background: rgba(255, 105, 180, 0.15);
-    color: #FF69B4;
-    border: 1px solid rgba(255, 105, 180, 0.3);
-}
-
-/* Specific color variant for Special episodes. */
-.item-type-badge.type-special {
-    background: rgba(59, 130, 246, 0.15);
-    color: #3b82f6;
-    border: 1px solid rgba(59, 130, 246, 0.3);
-}
-
-/* Specific color variant for OVA and ONA releases. */
-.item-type-badge.type-ova,
-.item-type-badge.type-ona {
-    background: rgba(0, 128, 128, 0.15);
-    color: #008080;
-    border: 1px solid rgba(0, 128, 128, 0.3);
-}
-
-/* Text styling for the title of an individual item within a franchise. */
-.item-title-text {
-    font-weight: 700;
-    font-size: 14px;
-    color: var(--white);
-}
-
-/* Muted text styling for the release year of an item. */
-.item-year-text {
-    color: var(--text-muted);
-    font-size: 12px;
-}
-
-/* ---------------- SEASONS & EPISODES ---------------- */
-
-/* Container for a specific season, providing internal spacing and a subtle background. */
-.season-block {
-    margin-bottom: 8px;
-    background: rgba(255,255,255,0.02);
-    border-radius: 6px;
-    padding: 0 4px;
-    border-left: 2px solid transparent;
-}
-
-/* Interactive header for a season that toggles the visibility of its episode list. */
-.season-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 10px;
-    border-radius: 4px;
-    transition: background 0.13s ease;
-    border: 1px solid transparent;
-}
-
-/* Hover effect for the season header to indicate interactivity. */
-.season-header:hover { background: rgba(255,255,255,0.05); }
-
-/* Bold typography for the season title. */
-.season-title {
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 0.2px;
-    color: var(--text);
-    flex: 1;
-}
-
-/* Accent styling for special season titles (e.g., OVAs, Specials) using purple. */
-.season-specials .season-title { color: #9d4edd; opacity: 0.9; }
-
-/* Distinctive background and border for special season containers using purple. */
-.season-specials { background: rgba(157, 78, 221, 0.03); border-radius: 4px; border: 1px dashed rgba(157, 78, 221, 0.1); padding: 4px 8px; margin-bottom: 12px; }
-
-/* The container for the list of episodes, using a tree-like indentation. */
-.episode-list {
-    position: relative;
-    margin-left: 28px;
-    padding-left: 4px;
-    margin-top: 0;
-    margin-bottom: 8px;
-}
-
-/* Vertical line element that creates the "stem" of the episode tree structure. */
-.episode-list:before {
-    content: '';
-    position: absolute;
-    left: -14px;
-    top: -10px;
-    bottom: 16px;
-    width: 2px;
-    background: var(--border);
-    opacity: 0.5;
-}
-
-/* A single row representing an episode, with interactive states and status indicators. */
-.episode-row {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 8px 12px;
-    font-size: 13px;
-    border-radius: 8px;
-    transition: all 0.13s ease;
-    border: 2px solid transparent;
-}
-
-/* Horizontal line element connecting the episode row to the vertical tree stem. */
-.episode-row:before {
-    content: '';
-    position: absolute;
-    left: -14px;
-    top: 50%;
-    width: 14px;
-    height: 1px;
-    background: var(--border);
-    opacity: 0.5;
-}
-
-/* Hover feedback for individual episode rows. */
-.episode-row:hover {
-    background: var(--surface);
-}
-
-/* Visual indicator for a selected episode row, used for batch operations. */
-.episode-row.selected {
-    background: rgba(0, 122, 204, 0.15) !important;
-    border-color: rgba(0, 122, 204, 0.5);
-    box-shadow: 0 0 10px rgba(0, 122, 204, 0.1);
-}
-
-/* Muted text styling for episodes that have already been watched. */
-.episode-row[data-status="1"] .ep-title { color: var(--text-muted); }
-
-/* Main title text for an episode row. */
-.ep-title { flex: 1; color: var(--text); }
-
-/* Container for action buttons related to an individual item (e.g., Progress controls). */
-.item-actions-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    padding: 6px 0;
-}
-
-/* ---------------- PROGRESS CONTROLS ---------------- */
-
-/* Unified control for incrementing or decrementing the watched episode/item count. */
-.progress-control {
-    display: inline-flex;
-    align-items: center;
-    gap: 0;
-    background: var(--surface-2);
-    border: 2px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-    height: 36px;
-}
-
-/* Individual buttons within the progress control for plus/minus actions. */
-.progress-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 100%;
-    border: none;
-    background: transparent;
-    color: var(--text);
-    font-size: 12px;
-    transition: background 0.1s ease;
-}
-
-/* Hover feedback for progress control buttons. */
-.progress-btn:hover:not(:disabled) {
-    background: var(--surface);
-}
-
-/* Disabled state for progress buttons (e.g., when at minimum or maximum value). */
-.progress-btn:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-}
-
-/* Center text in the progress control displaying the current numeric progress. */
-.progress-text {
-    padding: 0 10px;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text);
-    white-space: nowrap;
-    font-family: 'Outfit', sans-serif;
-    border-left: 1px solid var(--border);
-    border-right: 1px solid var(--border);
-    height: 100%;
-    display: inline-flex;
-    align-items: center;
-}
-/* ==========================================================================
-   MODAL SYSTEM
-   ========================================================================== */
-
-/* Fullscreen semi-transparent overlay that sits behind modals to block interaction with the rest of the app. */
-#detail-overlay {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    z-index: 9999;
-    align-items: center;
-    justify-content: center;
-}
-
-/* The primary container for the anime detail modal, using a sleek dark theme by default. */
-.detail-modal {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    width: 95%;
-    max-width: 1400px;
-    max-height: 90vh;
-    overflow-y: auto;
-    position: relative;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    display: flex;
-    flex-direction: column;
-}
-
-/* Specific styling for the smaller rating selection modal. */
-.rating-modal {
-    max-width: 450px;
-    border-radius: 24px;
-    background: var(--surface);
-}
-
-/* Internal padding for modal content to ensure text doesn't touch the edges. */
-.modal-content { padding: 30px; }
-
-/* Sticky header for modals containing the title and close action. */
-.modal-header {
-    padding: 20px 30px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    background: var(--bg);
-    z-index: 100;
-}
-
-/* Large, prominent title for the modal header. */
-.modal-title { font-size: 24px; font-weight: 800; color: var(--white); margin: 0; }
-
-/* Floating close button for modals, styled as a subtle circle. */
-.modal-close {
+    padding: 10px 14px;
     background: var(--surface-2);
     border: none;
+    border-radius: 8px;
     color: var(--text);
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.13s;
-    border: 2px solid transparent;
-}
-
-/* Hover feedback for the modal close button. */
-.modal-close:hover { background: var(--surface); color: var(--white); transform: scale(1.1); }
-
-/* The main scrollable area of the modal. */
-.modal-body { padding: 30px; flex: 1; }
-
-/* Sticky footer for modals containing primary actions. */
-.modal-footer {
-    padding: 20px 30px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: flex-end;
-    gap: 12px;
-    position: sticky;
-    bottom: 0;
-    background: var(--bg);
-    z-index: 100;
-}
-
-/* Generic button styling within the modal footer. */
-.modal-footer button {
-    padding: 10px 24px;
-    border-radius: 10px;
+    font-size: 14px;
     font-weight: 600;
-    transition: all 0.13s;
-    border: 2px solid transparent;
-}
-
-/* Hover feedback for modal footer buttons. */
-.modal-footer button:hover {
-    background: var(--surface-2);
-}
-
-/* ---------------- RATING MODAL SPECIFICS ---------------- */
-
-/* Grid container for the numeric rating options (0-10). */
-.rating-options {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
-    margin-top: 20px;
-}
-
-/* Individual interactive numeric score buttons. */
-.rating-option {
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 15px;
-    border-radius: 12px;
-    text-align: center;
-    font-weight: 700;
-    transition: all 0.13s;
-}
-
-/* Hover and active states for rating options. */
-.rating-option:hover { background: var(--surface); border-color: var(--primary); color: var(--primary); }
-.rating-option.active { background: var(--primary); color: #000; border-color: var(--primary); }
-
-/* ---------------- DETAIL MODAL V3 LAYOUT ---------------- */
-
-/* Advanced grid-based layout for the anime detail modal, separating content into clear functional columns. */
-.anime-detail-layout-v3 {
-    display: grid !important;
-    /* Final distribution: 7.5% | 25% | 7.5% | 52.5% | 7.5% */
-    grid-template-columns: 7.5% 25% 7.5% 52.5% 7.5% !important;
-    gap: 0 !important;
-    max-width: 100% !important;
-    width: 100% !important;
-    margin: 10px 0 40px 0 !important; /* Reduced top margin from 40px to 10px */
-    padding: 0 !important;
-    position: relative;
-    z-index: 10;
-    align-items: start;
-}
-
-.anime-detail-sidebar-v3 {
-    grid-column: 2 !important; /* Map to the 15% slot */
-    background: rgba(40, 40, 40, 0.92) !important;
-    backdrop-filter: blur(12px) saturate(180%);
-    -webkit-backdrop-filter: blur(12px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
-    border-radius: 24px !important;
-    padding: 24px !important;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.05) !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 20px !important;
-    position: sticky !important;
-    top: 20px !important;
-    transition: all 0.2s ease;
-}
-
-/* Light mode override: sidebar uses the surface color instead of the hardcoded dark glass. */
-[data-theme="light"] .anime-detail-sidebar-v3 {
-    background: var(--surface) !important;
-    border: 1px solid var(--border) !important;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.12), inset 0 0 0 1px rgba(0,0,0,0.04) !important;
-}
-
-.sidebar-poster-wrap {
-    width: 100% !important;
-    display: flex !important;
-    justify-content: center !important;
-    margin-bottom: 8px;
-}
-
-.sidebar-poster-wrap .detail-poster,
-.sidebar-poster-wrap .detail-poster-fallback {
-    width: 100% !important;
-    max-width: 64% !important; /* Reduced to ~16% of total width (16/25 = 64%) */
-    max-height: 75vh !important; /* dynamic height limit to keep container visible */
-    aspect-ratio: 2 / 3 !important;
-    border-radius: 14px !important;
-    object-fit: cover !important;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.4) !important;
-    display: flex !important; align-items: center; justify-content: center;
-}
-
-.sidebar-info { display: flex; flex-direction: column; gap: 10px; }
-
-.sidebar-title {
-    font-size: 1.5rem !important; /* Micro title */
-    font-weight: 850 !important;
-    line-height: 1.1 !important;
-    color: #ffffff !important;
-    margin: 0 !important;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
-}
-
-/* Light mode override: sidebar title uses the standard dark text color. */
-[data-theme="light"] .anime-detail-sidebar-v3 .sidebar-title {
-    color: var(--text) !important;
-    text-shadow: none !important;
-}
-
-/* Container for the sidebar action items in the details sidebar. */
-.sidebar-actions-v3 {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 16px !important;
-    width: 100% !important;
-    align-items: stretch !important;
-}
-
-/* Container for forcing the select dropdown onto its own full-width line. */
-.status-alinea {
-    width: 100% !important;
-}
-
-/* Styles the global status select dropdown in the detail sidebar. */
-.status-alinea .status-current {
-    width: 100% !important;
-    background: rgba(255, 255, 255, 0.08) !important;
-    color: var(--text) !important;
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
-    border-radius: 12px !important;
-    padding: 10px 14px !important;
-    font-size: 14px !important;
-    font-weight: 600 !important;
-    transition: all 0.2s ease !important;
-    outline: none !important;
-}
-
-/* Light theme background and border override for status dropdown. */
-[data-theme="light"] .status-alinea .status-current {
-    background: var(--surface-2) !important;
-    border-color: var(--border) !important;
-    color: var(--text) !important;
-}
-
-/* Container for the sidebar segmented rating bars. */
-.sidebar-ratings-container {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 14px !important;
-    width: 100% !important;
-}
-
-/* A block representing a single rating indicator in the sidebar. */
-.sidebar-rating-block {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 6px !important;
-    width: 100% !important;
-    padding: 10px 12px !important;
-    border: 1px solid transparent !important;
-    border-radius: 14px !important;
-}
-
-/* Special styling for actionable rating block (personal score) that opens rating modal. */
-.sidebar-rating-block.rating-actionable {
-    cursor: pointer !important;
-    transition: all 0.2s ease !important;
-}
-
-/* Hover effect for actionable rating block. */
-.sidebar-rating-block.rating-actionable:hover {
-    background: rgba(255, 255, 255, 0.04) !important;
-    border-color: rgba(255, 255, 255, 0.08) !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
-}
-
-/* Light mode override for actionable rating block. */
-[data-theme="light"] .sidebar-rating-block.rating-actionable {
-    background: transparent !important;
-    border-color: transparent !important;
-}
-
-/* Light mode hover effect for actionable rating block. */
-[data-theme="light"] .sidebar-rating-block.rating-actionable:hover {
-    background: rgba(0, 0, 0, 0.02) !important;
-    border-color: rgba(0, 0, 0, 0.04) !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
-}
-
-/* The flex container displaying the label and rating value. */
-.sidebar-rating-label {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    font-size: 12px !important;
-    font-weight: 750 !important;
-    color: var(--text-muted) !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.8px !important;
-}
-
-/* Ensure the text label inside the clickable rating block stands out. */
-.sidebar-rating-block.rating-actionable .sidebar-rating-label span:first-child {
-    color: var(--text) !important;
-}
-
-/* The 10-segmented bar container. */
-.segmented-rating-bar {
-    display: flex !important;
-    gap: 4px !important;
-    width: 100% !important;
-    height: 6px !important;
-}
-
-/* Smaller version of segmented bar for average rating. */
-.segmented-rating-bar.small {
-    height: 4px !important;
-    gap: 2px !important;
-}
-
-/* Micro sizing for average rating block. */
-.sidebar-rating-block.small .sidebar-rating-label {
-    font-size: 10px !important;
-}
-
-/* Individual segment of the rating bar. */
-.segmented-rating-bar .segment {
-    flex: 1 !important;
-    height: 100% !important;
-    background: rgba(255, 255, 255, 0.08) !important;
-    border-radius: 2px !important;
-    overflow: hidden !important;
-    position: relative !important;
-}
-
-/* Light mode segment background override. */
-[data-theme="light"] .segmented-rating-bar .segment {
-    background: rgba(0, 0, 0, 0.06) !important;
-}
-
-/* Colored fill element inside a segment. */
-.segmented-rating-bar .segment-fill {
-    height: 100% !important;
-    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-.anime-detail-main-v3 {
-    grid-column: 4 !important; /* Map to the 60% slot */
-    min-width: 0 !important;
-    padding-top: 0; 
-}
-
-/* Accordion behavior fixing */
-.item-accordion-wrapper {
-    background: rgba(255, 255, 255, 0.03) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    border-radius: 12px !important;
-    margin-bottom: 8px;
-    overflow: hidden;
-    transition: all 0.2s ease;
-}
-
-.item-accordion-wrapper[open] {
-    background: rgba(255, 255, 255, 0.06) !important;
-    border-color: var(--primary) !important;
-}
-
-/* Interactive row layout for individual items (seasons/movies) on detail page. */
-.detail-item-row {
-    padding: 8px 16px !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 12px !important; /* Spacing between chevron and title */
-    border: 2px solid transparent !important;
-    border-left: 3px solid transparent !important;
-    list-style: none;
-    cursor: pointer;
     outline: none;
+}
+
+.item-status-select {
+    width: auto;
+    padding: 6px 12px;
+    font-size: 13px;
+}
+
+/* Item Accordion Row */
+.episodes-list-v3 {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.item-accordion-wrapper {
+    background: var(--surface);
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.detail-item-row {
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--surface);
+    list-style: none;
+    font-weight: 600;
+    font-size: 15px;
 }
 
 .detail-item-row::-webkit-details-marker {
     display: none;
 }
 
-.item-accordion-wrapper[open] .accordion-icon {
-    transform: rotate(180deg) !important;
-}
-
-/* Hover feedback for detail item rows, rendering a subtle paars border indicator. */
-.detail-item-row:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-left-color: var(--primary) !important;
-}
-
-.item-info-col {
-    flex: 1 !important; /* Pushes the title to fill the left-side space */
+.title-badge-group {
     display: flex;
-    flex-direction: column;
-    gap: 4px;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+}
+
+.detail-item-title {
+    font-weight: 700;
+    color: var(--white);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-type-badge {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: var(--surface-2);
+    border: none;
+    color: var(--text-muted);
+}
+
+.item-type-badge.type-serie { background: rgba(157, 78, 221, 0.15); color: var(--primary); }
+.item-type-badge.type-film { background: rgba(0, 122, 204, 0.15); color: var(--status-done); }
+
+.item-actions-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Theme-Aware Neutral Play Button */
+.item-play-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: var(--surface-2);
+    color: var(--text);
+    border: none;
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.item-play-btn:hover {
+    background: var(--surface);
+    color: var(--primary);
+}
+
+.sidebar-rating-block {
+    margin-top: 12px;
+}
+
+.sidebar-rating-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text-muted);
+}
+
+.sidebar-rating-val {
+    font-weight: 800;
+    color: var(--white);
 }
 
 .episodes-container {
-    display: none !important; 
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-    gap: 8px;
-    padding: 12px !important; /* Minimal padding */
-    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
-}
-
-.item-accordion-wrapper[open] .episodes-container {
-    display: grid !important;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+    padding: 16px;
+    background: var(--surface-2);
+    border: none;
 }
 
 .episode-checkbox-wrap {
-    background: rgba(255, 255, 255, 0.05) !important;
-    border-radius: 6px;
-    padding: 6px 10px; /* Minimal padding */
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 0.8rem;
-}
-
-
-/* --- BACK BUTTON --- */
-.back-btn {
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 10px !important;
-    color: var(--text-muted) !important;
-    text-decoration: none !important;
-    font-weight: 600 !important;
-    font-size: 0.95rem !important;
-    margin-bottom: 20px !important; /* Reduced from 30px */
-    transition: color 0.13s ease;
-    padding: 8px 0;
-}
-
-/* Hover uses the theme-aware border color (white in dark mode) for warmth and visibility. */
-.back-btn:hover {
-    color: var(--hover-border) !important;
-}
-
-.back-btn i {
-    font-size: 0.8rem;
-}
-
-/* ==========================================================================
-   STANDALONE DETAIL VIEW
-   ========================================================================== */
-
-/* The root container for the dedicated, standalone anime detail page. */
-.detail-page-v3 {
-    background: var(--bg);
-    min-height: 100vh;
-    color: var(--text);
-    padding-bottom: 80px;
-}
-
-/* Internal container that manages the grid layout for the standalone detail page. */
-.detail-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    display: grid;
-    grid-template-columns: 320px 1fr;
-    gap: 60px;
-    align-items: start;
-}
-
-/* ---------------- SIDEBAR (Metadata) ---------------- */
-
-/* Sticky container for the sidebar, ensuring metadata remains visible during scroll. */
-.sidebar-sticky {
-    position: sticky;
-    top: 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-/* Large poster image styling for the standalone detail page. */
-.sidebar-poster {
-    width: 100%;
-    aspect-ratio: 2/3;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    border: 1px solid var(--border);
-}
-
-/* Ensures the poster image covers its container. */
-.sidebar-poster img { width: 100%; height: 100%; object-fit: cover; }
-
-/* Large typography for the primary anime title in the sidebar. */
-.sidebar-title {
-    font-size: 28px;
-    font-weight: 800;
-    color: var(--white);
-    line-height: 1.2;
-}
-
-/* Muted typography for the secondary or romaji title. */
-.sidebar-subtitle {
-    font-size: 16px;
-    color: var(--text-muted);
-    margin-top: 8px;
-}
-
-/* A logical grouping of metadata items (e.g., Format, Status, Episodes). */
-.sidebar-section {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding-top: 20px;
-    border-top: 1px solid var(--border);
-}
-
-/* Descriptive label for a metadata field. */
-.section-label {
-    font-size: 12px;
-    text-transform: uppercase;
-    font-weight: 800;
-    color: var(--text-muted);
-    letter-spacing: 1px;
-}
-
-/* The actual data value for a metadata field. */
-.section-value {
-    font-size: 15px;
-    color: var(--text);
+    padding: 8px 12px;
+    background: var(--surface);
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
     font-weight: 600;
 }
 
-/* ---------------- MAIN CONTENT (Synopsis & Seasons) ---------------- */
-
-/* The primary content area for the dedicated detail page. */
-.main-content {
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
+/* --------------------------------------------------------------------------
+   6. MODAL SYSTEM, RATING BADGES & ACCORDIONS
+   -------------------------------------------------------------------------- */
+/* Rating Badges */
+.rating-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    border: none;
+    background: var(--surface-2);
 }
 
-/* A large section for content such as Synopsis or the Episode tree. */
-.detail-section {
+.rating-badge.r-cinema { background: linear-gradient(135deg, #ffe066 0%, #ffd700 50%, #b38f00 100%) !important; color: #1a1a1a !important; }
+.rating-badge.r-awesome { background-color: rgba(39, 174, 96, 0.25) !important; color: #27ae60 !important; }
+.rating-badge.r-great { background-color: rgba(46, 204, 113, 0.25) !important; color: #2ecc71 !important; }
+.rating-badge.r-good { background-color: rgba(162, 209, 73, 0.25) !important; color: #a2d149 !important; }
+.rating-badge.r-regular { background-color: rgba(241, 196, 15, 0.25) !important; color: #f1c40f !important; }
+.rating-badge.r-bad { background-color: rgba(230, 126, 34, 0.25) !important; color: #e67e22 !important; }
+.rating-badge.r-garbage { background-color: rgba(231, 76, 60, 0.25) !important; color: #e74c3c !important; }
+.rating-badge.unrated { background-color: transparent !important; color: var(--text-muted) !important; }
+
+.glow-gold { box-shadow: 0 0 12px rgba(255, 215, 0, 0.4) !important; }
+.glow-red { box-shadow: 0 0 12px rgba(231, 76, 60, 0.4) !important; }
+
+/* Detail Accordion & Layout V3 */
+.anime-detail-layout-v3 {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 32px;
+    margin-top: 24px;
+}
+
+.anime-detail-sidebar-v3 {
+    background: var(--surface);
+    border: none;
+    border-radius: 16px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-/* Bold typography for section headings within the detail page. */
-.detail-section h2 {
-    font-size: 22px;
-    font-weight: 800;
-    color: var(--white);
-    display: flex;
-    align-items: center;
-    gap: 12px;
+.sidebar-poster-wrap .detail-poster {
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
 }
 
-/* Descriptive icon inside detail section headers. */
-.detail-section h2 i { color: var(--primary); font-size: 18px; }
-
-/* Paragraph styling for the anime's synopsis, ensuring high readability. */
-.synopsis-text {
-    font-size: 16px;
-    line-height: 1.7;
-    color: var(--text-muted);
-    max-width: 900px;
-}
-
-/* ==========================================================================
-   RESPONSIVE BREAKPOINTS
-   ========================================================================== */
-
-/* ---------------- CONTAINER QUERIES (Card-Specific Scaling) ---------------- */
-
-/* LARGE CARD (min-width: 280px): Enhances typography and poster size for spacious layouts. */
-@container card (min-width: 280px) {
-    .card-title span { font-size: 1.15rem; line-height: 1.3; }
-    .card-poster { width: 120px; }
-    .rating-badge { font-size: 14px; padding: 4px 12px; bottom: 8px; right: 8px; }
-    .rating-badge i { font-size: 11px; }
-    .status-indicator { width: 44px; height: 44px; font-size: 20px; }
-}
-
-/* MEDIUM CARD (220px - 279px): Compacts spacing and font sizes to fit tighter grids. */
-@container card (max-width: 279px) and (min-width: 220px) {
-    .anime-card { gap: 12px; padding: 10px; }
-    .card-title span { font-size: 0.95rem; line-height: 1.25; -webkit-line-clamp: 2; line-clamp: 2;}
-    .card-subtitle { font-size: 0.75rem; }
-    .card-poster { width: 85px; }
-    .rating-badge { font-size: 12px; padding: 2px 8px; bottom: 6px; right: 6px; }
-    .rating-badge i { font-size: 10px; }
-    .status-indicator { width: 34px; height: 34px; font-size: 13px; }
-}
-
-/* COMPACT CARD (max-width: 219px): Switches to a text-only centered layout when space is critical. */
-@container card (max-width: 219px) {
-    .anime-card { 
-        padding: 14px; 
-        min-height: 110px;
-        flex-direction: column; 
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        gap: 12px; 
-    }
-    .card-poster { display: none !important; }
-    .card-info { width: 100%; gap: 10px; align-items: center; justify-content: center; }
-    .card-title span { 
-        font-size: 0.9rem;
-        line-height: 1.3; 
-        -webkit-line-clamp: 4; 
-        line-clamp: 4;
-        white-space: normal;
-        word-break: normal;
-    }
-    .card-subtitle { display: none !important; }
-    .rating-badge { position: static !important; font-size: 12px; padding: 4px 10px; border-radius: 6px; }
-}
-
-/* ---------------- MEDIA QUERIES (Global Layout) ---------------- */
-
-/* TABLET & SMALL DESKTOP (Max 1200px): Adjusts grid densities and header spacing. */
-@media (max-width: 1200px) {
-    .header-content { grid-template-columns: minmax(0, 1fr) minmax(320px, 1.5fr) auto; gap: 18px; padding: 0 20px; }
-    #app { padding: 28px 20px 24px; }
-    .toolbar { gap: 10px; }
-    .filter-btn { padding: 9px 14px; }
-    
-    /* Forced grid column adjustments for different sizes on tablet. */
-    #anime-container.grid-view.size-l .status-column { grid-template-columns: repeat(3, 1fr) !important; }
-    #anime-container.grid-view.size-m .status-column { grid-template-columns: repeat(4, 1fr) !important; }
-    #anime-container.grid-view.size-s .status-column { grid-template-columns: repeat(5, 1fr) !important; }
-
-    #anime-container.grid-view .anime-card { min-height: 144px; }
-    #anime-container.grid-view .anime-card .card-poster { width: 96px; height: 144px; }
-}
-
-/* MOBILE (Max 768px): Optimizes the UI for single-column vertical interaction. */
-@media (max-width: 768px) {
-    #app { padding: 18px 12px 20px; }
-    .header-main { padding: 10px 14px; }
-    .header-content { grid-template-columns: auto 1fr auto; gap: 12px; padding: 0 12px; }
-    .logo { font-size: 18px; }
-    .search-container { max-width: none; }
-    .search-input { height: 38px; font-size: 13px; }
-    
-    /* Toolbar reorganization for mobile screens. */
-    .toolbar { flex-direction: column; align-items: stretch; gap: 16px; }
-    .filter-group { overflow-x: auto; padding-bottom: 4px; white-space: nowrap; -webkit-overflow-scrolling: touch; }
-    .filter-btn { padding: 8px 12px; font-size: 13px; }
-    .toolbar-right { margin-left: 0; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 12px; }
-
-    /* Forces all grid views to a 2-column or 3-column layout on mobile. Column-gap is tight while row-gap is larger for card stacking. */
-    #anime-container.grid-view .status-column { grid-template-columns: repeat(2, 1fr) !important; gap: 12px; }
-    #anime-container.grid-view.size-s .status-column { grid-template-columns: repeat(3, 1fr) !important; }
-}
-
-/* SMALL MOBILE (Max 480px): Maximum compression for the tightest screens. */
-@media (max-width: 480px) {
-    .header-content { grid-template-columns: 1fr auto; }
-    .search-container { grid-row: 2; grid-column: 1 / -1; }
-    .logo-text { display: none; }
-    #anime-container.grid-view .status-column { grid-template-columns: 1fr !important; }
-    #anime-container.grid-view.size-s .status-column { grid-template-columns: repeat(2, 1fr) !important; }
-}
-
-/* DETAIL PAGE OVERRIDES (Mobile) */
-@media (max-width: 768px) {
-    #app {
-        padding: 18px 12px 20px;
-    }
-
-    .header-content {
-        grid-template-columns: minmax(0, 1fr) auto;
-        grid-template-rows: auto auto;
-        gap: 12px;
-    }
-
-    .logo-rascal {
-        font-size: 1.7rem;
-        letter-spacing: 1.8px;
-    }
-
-    .header-center {
-        grid-column: 1 / -1;
-        grid-row: 2;
-        max-width: 100%;
-    }
-
-    .header-right {
-        gap: 8px;
-        flex-wrap: wrap;
-    }
-
-    .header-right button {
-        width: 42px;
-        height: 42px;
-    }
-
-    .header-right button i {
-        font-size: 15px;
-    }
-
-    .search-bar {
-        min-height: 48px;
-        padding: 0 14px;
-    }
-    
-    .toolbar {
-        justify-content: flex-start;
-        gap: 8px;
-        align-items: stretch;
-    }
-    .filter-group {
-        flex-wrap: wrap;
-        gap: 8px;
-        flex: 1 1 100%;
-    }
-
-    .filter-btn {
-        padding: 8px 12px;
-        font-size: 13px;
-    }
-
-    .sort-group {
-        flex: 1 1 100%;
-    }
-
-    .sort-group select {
-        width: 100%;
-    }
-
-    /* Verberg S/M/L knoppen op kleine schermen — alleen grid/lijst toggle blijft */
-    .size-toggle {
-        display: none !important;
-    }
-
-    .item-count {
-        width: 100%;
-        margin: 2px 0 0;
-    }
-
-    /* Grid view: always 2 columns regardless of size settings on mobile, separating gaps. */
-    #anime-container.grid-view.size-l .status-column,
-    #anime-container.grid-view.size-m .status-column,
-    #anime-container.grid-view.size-s .status-column {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 10px;
-    }
-    
-    #anime-container.grid-view .anime-card {
-        min-height: 124px;
-        padding: 10px;
-        gap: 10px;
-    }
-
-    #anime-container.grid-view .anime-card .card-poster {
-        width: 82px;
-        height: 124px;
-    }
-
-    #anime-container.list-view .anime-card, 
-    #anime-container.size-m.list-view .anime-card,
-    #anime-container.size-s.list-view .anime-card {
-        grid-template-columns: 28px minmax(0, 1fr) auto 20px !important;
-        padding: 8px 12px;
-    }
-
-    /* Compacte rating badge in lijst op kleine schermen */
-    #anime-container.list-view .rating-badge {
-        font-size: 10px !important;
-        padding: 1px 6px !important;
-        margin-right: 0 !important;
-        border-radius: 4px;
-    }
-
-    #anime-container.list-view .rating-badge i {
-        display: none;
-    }
-
-    #anime-container.list-view .card-title span {
-        font-size: 12px;
-    }
-
-    .status-group-header {
-        padding: 12px 14px;
-        margin: 18px 0 10px 0;
-        font-size: 1rem;
-    }
-
-    .modal {
-        width: min(100%, 360px);
-        padding: 22px;
-    }
-
-    
-
-    .modal-detail {
-        width: 100vw;
-        max-width: 100vw;
-        height: 100%;
-        max-height: 100%;
-        border-radius: 0;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        margin: 0; /* Remove default centering margins if any */
-    }
-
-    .modal-body-layout {
-        display: flex;
-        flex-direction: column;
-        grid-template-columns: none;
-        overflow-y: auto;
-        height: 100%;
-    }
-
-    .modal-sidebar {
-        height: auto;
-        padding: 12px;
-        background: var(--surface-2); /* Slight contrast for the banner area */
-    }
-    
-    .modal-sidebar-poster {
-        max-height: 160px;
-        border-radius: 12px !important;
-        clip-path: inset(0 round 12px);
-    }
-
-    .modal-main {
-        padding: 16px;
-        flex: 1;
-        overflow-y: visible; /* Scroll happens on .modal-body-layout */
-    }
-
-    .modal-detail-header {
-        margin-bottom: 16px;
-        padding-bottom: 16px;
-        gap: 8px;
-        position: relative; /* For absolute positioning of close button if needed */
-    }
-    
-    .modal-close-row {
-        position: absolute;
-        top: -60px; /* Position relative to the header, overlaying the poster or just above content */
-        right: 0;
-        justify-content: flex-end;
-        z-index: 10;
-        pointer-events: none; /* Let clicks pass through empty space */
-    }
-
-    .modal-close-row .btn-close {
-        pointer-events: auto; /* Re-enable clicks on the button itself */
-        background: rgba(var(--surface-rgb), 0.8); /* Semi-transparent background */
-        backdrop-filter: blur(4px);
-    }
-
-    #detail-title {
-        font-size: 1.5rem;
-        margin-top: 8px;
-    }
-
-    .modal-global-actions {
-        gap: 6px;
-        flex-wrap: wrap;
-    }
-
-    .modal-global-actions .status-current,
-    .modal-global-actions .modal-play-btn,
-    .modal-global-actions .rating-badge {
-        min-height: 36px !important;
-        height: 36px !important;
-        padding: 0 12px !important;
-        font-size: 12px !important;
-    }
-
-    .status-current {
-        padding: 9px 14px;
-        min-width: 124px;
-        font-size: 13px;
-    }
-
-    .status-menu {
-        min-width: 180px;
-    }
-
-    .modal-content {
-        width: 95% !important;
-        padding: 20px;
-    }
-    .detail-modal-custom {
-        width: 100%;
-        max-height: 90vh;
-        border-radius: 12px 12px 0 0;
-        bottom: 0;
-        top: auto;
-        transform: translateY(100%); /* Setup voor slide-up als je dat zou willen */
-    }
-    .detail-overlay:not(.hidden) .detail-modal-custom {
-        transform: translateY(0);
-    }
-    
-    .batch-bar {
-        left: 10px !important;
-        bottom: 10px !important;
-        top: auto !important;
-        width: calc(100vw - 20px);
-    }
-}
-
-@media (orientation: portrait) {
-    .toolbar {
-        row-gap: 10px;
-    }
-
-    .filter-group {
-        flex-wrap: wrap;
-    }
-
-    .item-count {
-        width: 100%;
-        margin-left: 0;
-    }
-
-    .modal-detail {
-        width: min(92vw, 880px);
-    }
-
-    .modal-body-layout {
-        grid-template-columns: minmax(220px, 28%) 1fr;
-    }
-}
-
-/* Rating Modal & Global Modals */
-#modal-overlay, #detail-overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.7);
-    backdrop-filter: blur(8px);
+.detail-poster-fallback {
+    width: 100%;
+    aspect-ratio: 2/3;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 2000;
-    transition: opacity 0.2s;
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.sidebar-title {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.segmented-rating-bar {
+    display: flex;
+    gap: 3px;
+    width: 100%;
+    height: 8px;
+}
+
+.segment {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.segment-fill {
+    height: 100%;
+    border-radius: 2px;
+}
+
+/* Modals & Rating Inputs */
+#modal-overlay, #detail-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--modal-bg);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
 }
 
 .modal {
     background: var(--surface);
-    border: 1px solid var(--border);
+    border: none;
     border-radius: 16px;
-    padding: 32px;
-    width: min(90vw, 420px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    text-align: center;
+    padding: 28px;
+    max-width: 480px;
+    width: 90%;
+    box-shadow: var(--shadow);
 }
 
-.modal h3 { margin-bottom: 8px; font-size: 1.5rem; }
-.modal p { color: var(--text-muted); margin-bottom: 24px; }
+.modal h3 {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.modal p {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
 
 .rating-input {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    margin-bottom: 30px;
+    gap: 8px;
+    margin-bottom: 24px;
 }
 
-.rating-input input[type="number"] {
-    background: var(--surface-2);
-    border: 2px solid var(--border);
-    border-radius: 12px;
-    padding: 12px;
-    width: 100px;
-    font-size: 2rem;
+#rating-number {
+    width: 90px;
+    padding: 8px 12px;
+    font-size: 24px;
     font-weight: 800;
-    color: var(--primary);
     text-align: center;
-    outline: none;
-    transition: border-color 0.13s;
+    background: var(--surface-2);
+    border: none;
+    border-radius: 8px;
+    color: var(--text);
 }
 
-.rating-input input[type="number"]:focus {
-    border-color: var(--primary);
+.max-rating {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-muted);
 }
-
-.max-rating { font-size: 1.5rem; font-weight: 600; color: var(--text-muted); }
 
 .modal-buttons {
     display: flex;
-    gap: 12px;
+    align-items: center;
     justify-content: flex-end;
+    gap: 10px;
 }
 
-.modal-buttons button {
-    padding: 10px 20px;
+.btn-primary {
+    background: var(--primary);
+    color: #ffffff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+.btn-secondary {
+    background: var(--surface-2);
+    color: var(--text);
+    border: none;
+    padding: 10px 18px;
     border-radius: 8px;
     font-weight: 600;
-    transition: all 0.13s;
 }
 
-/* Hover feedback for modal buttons. */
-.modal-buttons button:hover {
-    opacity: 0.9;
-}
-
-.btn-primary { 
-    background: var(--primary); 
-    color: #000; 
-    border: 2px solid transparent; 
-}
-
-.btn-secondary { 
-    background: transparent; 
-    color: var(--text); 
-    border: 2px solid transparent; 
-}
-
-.btn-primary:hover { opacity: 0.9; }
-.btn-secondary:hover { background: var(--surface-2); }
-
-
-
-
-
-
-/* Item Actions Group (Status + Play) */
-.item-actions-group {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-left: auto;
-}
-
-.item-play-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    background: transparent;
-    border: 2px solid transparent;
-    color: #ffb300;
-    text-decoration: none;
-    transition: all 0.13s ease;
-    flex-shrink: 0;
-}
-
-.item-play-btn:hover {
-    background: #ffb300;
-    color: #000;
-    box-shadow: 0 4px 12px rgba(255, 179, 0, 0.4);
-}
-
-.item-play-btn i {
-    font-size: 14px;
-    margin-left: 2px;
-}
-
-/* ==========================================================================
-   LIGHT MODE OVERRIDES
-   ========================================================================== */
-
-/* Typography adjustments for the sidebar and card titles in light mode. */
-[data-theme="light"] .sidebar-title,
-[data-theme="light"] .card-title {
-    color: #1a1a1a !important;
-    text-shadow: none !important;
-}
-
-/* Light mode specific background and border for cards and accordions. */
-[data-theme="light"] .anime-card,
-[data-theme="light"] .item-accordion-wrapper {
-    background: rgba(0, 0, 0, 0.04) !important;
-    border: 2px solid transparent !important;
-}
-
-/* Darkens the card background on hover in light mode to provide clear feedback. */
-[data-theme="light"] .anime-card-wrapper:hover .anime-card {
-    filter: brightness(0.9) !important;
-}
-
-/* Lighter, cleaner accordion rows on the detail page in light mode. */
-[data-theme="light"] .anime-detail-main-v3 .item-accordion-wrapper {
-    background: #ffffff !important;
-    border: 1px solid #c8c8c8 !important;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
-}
-
-/* Subtle hover feedback on detail rows in light mode. */
-[data-theme="light"] .detail-item-row:hover {
-    background: rgba(0, 0, 0, 0.03) !important;
-}
-
-/* Episodes section gets a faint divider and light background in light mode. */
-[data-theme="light"] .episodes-container {
-    border-top: 1px solid #ddd !important;
-    background: #f7f7f7 !important;
-}
-
-/* Episode checkboxes are light and readable in light mode. */
-[data-theme="light"] .episode-checkbox-wrap {
-    background: #ececec !important;
-    color: var(--text) !important;
-}
-
-/* Enhanced visibility for opened accordion wrappers in light mode. */
-[data-theme="light"] .item-accordion-wrapper[open] {
-    border: 2px solid #ffffff !important;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3) !important;
-}
-
-/* Rating badge color overrides for maximum contrast in light mode. */
-[data-theme="light"] .rating-badge.r-cinema { background-color: #ffd700 !important; color: #000 !important; border-color: #b8860b !important; }
-[data-theme="light"] .rating-badge.r-awesome { background-color: #27ae60 !important; color: #000 !important; border-color: #1e8449 !important; }
-[data-theme="light"] .rating-badge.r-great { background-color: #2ecc71 !important; color: #000 !important; border-color: #27ae60 !important; }
-[data-theme="light"] .rating-badge.r-good { background-color: #a2d149 !important; color: #000 !important; border-color: #7fb33a !important; }
-[data-theme="light"] .rating-badge.r-regular { background-color: #f1c40f !important; color: #000 !important; border-color: #d4ac0d !important; }
-[data-theme="light"] .rating-badge.r-bad { background-color: #e67e22 !important; color: #fff !important; border-color: #a04000 !important; }
-[data-theme="light"] .rating-badge.r-garbage { background-color: #e74c3c !important; color: #fff !important; border-color: #922b21 !important; }
-
-/* Styling for unrated badges in light mode. */
-[data-theme="light"] .rating-badge.unrated {
-    background-color: #bbb !important;
-    color: #333 !important;
-    border: 1px solid #999 !important;
-}
-
-/* Overrides for status selection dropdowns in light mode. */
-[data-theme="light"] .item-status-select,
-[data-theme="light"] #global-status-select {
-    background-color: #ffffff !important;
-    color: #1a1a1a !important;
-    border: 1px solid #555 !important;
-    /* Single chevron arrow anchored to the right — prevents it from tiling */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23333333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C2.185 5.355 2.408 5 2.811 5h9.378c.403 0 .626.355.361.658l-4.796 5.482a.5.5 0 0 1-.740 0z'/%3E%3C/svg%3E") !important;
-    background-repeat: no-repeat !important;
-    background-position: right 10px center !important;
-    background-size: 12px !important;
-    padding-right: 32px !important;
-}
-
-/* Light mode hover: subtle neutral darken — uses background-color to preserve the SVG chevron. */
-[data-theme="light"] .item-status-select:hover,
-[data-theme="light"] #global-status-select:hover {
-    background-color: #ebebeb !important;
-    border-color: #444 !important;
-}
-
-/* Floating status menu overrides for light mode. */
-[data-theme="light"] .status-menu {
-    background: rgba(255, 255, 255, 0.95);
-    border-color: rgba(0, 0, 0, 0.1);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-}
-
-/* Hover feedback for status options in light mode. */
-[data-theme="light"] .status-option:hover {
-    background: rgba(0, 0, 0, 0.05);
-}
-
-/* Batch action bar overrides for light mode. */
-[data-theme="light"] .batch-bar {
-    background: rgba(255, 255, 255, 0.95);
-    color: #1a1a1a;
-    border-color: rgba(0, 0, 0, 0.15);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-}
-
-
-
-/* ==========================================================================
-   GLOBAL BUTTON DEFAULT BORDER TRANSPARENCY
-   ========================================================================== */
-
-/* Enforces 100% transparent border on all buttons in default state (when not hovered) */
-button:not(:hover),
-select:not(:hover),
-.filter-btn:not(:hover),
-.view-btn:not(:hover),
-.size-btn:not(:hover),
-.header-right button:not(:hover),
-.item-play-btn:not(:hover),
-.btn-primary:not(:hover),
-.btn-secondary:not(:hover),
-.btn-close:not(:hover),
-.header-select:not(:hover),
-.status-current:not(:hover),
-.item-status-select:not(:hover),
-#global-status-select:not(:hover) {
-    border-color: transparent !important;
-}
-
-/* ==========================================================================
-   GLOBAL CLICKABLE HOVER EFFECTS (ENFORCED)
-   ========================================================================== */
-
-/* This section ensures a clear, non-shifting white border on hover for ALL clickable items.
-   We use 'box-shadow' instead of 'border' to prevent layout shifts (UI jitter).
-   The color is set to white (#ffffff) as per the user's specific request.
-   This rule covers buttons, selects, cards, badges, and all interactive rows. */
-
-/* Applies a standard border and shadow on hover to all interactive elements. */
-button:hover,
-select:hover,
-input[type="button"]:hover,
-input[type="submit"]:hover,
-input[type="reset"]:hover,
-.anime-card:hover,
-.rating-badge:hover,
-.status-current:hover,
-.item-status-select:hover,
-#global-status-select:hover,
-.status-option:hover,
-.batch-close:hover,
-.batch-options button:hover,
-.season-header:hover,
-.episode-row:hover,
-.progress-btn:hover,
-.modal-close:hover,
-.modal-footer button:hover,
-.rating-option:hover,
-.detail-item-row:hover,
-.btn-primary:hover,
-.btn-secondary:hover,
-.btn-close:hover,
-.modal-play-btn:hover,
-.episode-checkbox-wrap:hover,
-.view-btn:hover,
-.size-btn:hover,
-.filter-btn:hover,
-.header-select:hover,
-.search-bar:hover,
-.item-accordion-wrapper:hover,
-.sidebar-sticky .rating-badge:hover,
-.modal-sidebar .rating-badge:hover,
-.anime-detail-sidebar-v3.glow-gold:hover,
-.anime-detail-sidebar-v3 .status-current:hover,
-.modal-detail-header .btn-close:hover,
-.expand-icon:hover {
-    border-color: var(--hover-border) !important;
-    box-shadow: inset 0 0 0 1px var(--hover-border) !important;
-    transition: border-color 0.13s ease !important;
-}
-
-/* Explicitly disable the inner hover effect for the search input to ensure only the outer bar shows the border. */
-.search-bar:hover input,
-.search-bar input:hover {
-    box-shadow: none !important;
-}
-
-/* Ensure links and link-like buttons do not have the box-shadow border on hover as per user request. */
-.back-btn:hover,
-.item-play-btn:hover,
-a:hover,
-a *:hover {
-    box-shadow: none !important;
-}
-
-/* Splash screen covering the view during loading states */
+/* Splash Loader Overlay */
 .splash-screen {
     position: fixed;
     top: 0;
@@ -2918,37 +854,30 @@ a *:hover {
     width: 100vw;
     height: 100vh;
     background: var(--bg);
-    z-index: 9999;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    transition: opacity 0.6s ease, visibility 0.6s ease;
-    opacity: 1;
-    visibility: visible;
+    z-index: 9999;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
 }
 
-/* Hidden state of the splash screen transition overlay */
-.splash-screen.hidden {
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-    display: flex !important;
+.loader-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* SVG circular progress loader wrapper styling */
 .circular-loader-svg {
     transform: rotate(-90deg);
 }
 
-/* Circular track background line */
 .loader-bg-circle {
     fill: none;
     stroke: var(--surface-2);
     stroke-width: 8;
 }
 
-/* Animated circular loading progress line */
 .loader-progress-circle {
     fill: none;
     stroke: var(--primary);
@@ -2959,26 +888,123 @@ a *:hover {
     transition: stroke-dashoffset 0.1s linear;
 }
 
-/* Sun icon visible in dark mode */
-html[data-theme="dark"] .icon-sun {
-    display: inline-block !important;
+/* --------------------------------------------------------------------------
+   7. FOOTER STYLING
+   -------------------------------------------------------------------------- */
+footer {
+    margin-top: 60px;
+    background: var(--surface);
+    border-top: none;
+    padding: 40px 48px 24px;
 }
 
-/* Sun icon hidden in light mode */
-html:not([data-theme="dark"]) .icon-sun {
-    display: none !important;
+.footer-row {
+    max-width: 1850px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.5fr;
+    gap: 40px;
+    margin-bottom: 32px;
 }
 
-/* Moon icon hidden in dark mode */
-html[data-theme="dark"] .icon-moon {
-    display: none !important;
+.footer-col h3, .footer-col h4 {
+    font-weight: 700;
+    margin-bottom: 12px;
 }
 
-/* Moon icon visible in light mode */
-html:not([data-theme="dark"]) .icon-moon {
-    display: inline-block !important;
+.footer-col h3 .ras { color: var(--primary); }
+.footer-col h3 .cal { color: var(--text); }
+
+.footer-col p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.5;
 }
 
+.footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
 
+.footer-col a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.15s ease;
+}
 
+.footer-col a:hover {
+    color: var(--primary);
+}
 
+.provider-brand {
+    font-weight: 600;
+    color: var(--text);
+}
+
+.footer-bottom {
+    max-width: 1850px;
+    margin: 0 auto;
+    padding-top: 20px;
+    border-top: none;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   8. CONSOLIDATED RESPONSIVE MEDIA QUERIES
+   -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+    #app, footer {
+        padding: 24px 24px 20px;
+    }
+    .header-content {
+        padding: 0 24px;
+    }
+    .anime-detail-layout-v3 {
+        grid-template-columns: 240px 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    #app, footer {
+        padding: 16px 16px 20px;
+    }
+    .header-content {
+        grid-template-columns: 1fr auto;
+        gap: 12px;
+        padding: 0 16px;
+    }
+    .header-center {
+        grid-row: 2;
+        grid-column: 1 / -1;
+    }
+    .toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .toolbar-right {
+        margin-left: 0;
+        justify-content: space-between;
+    }
+    #anime-container.grid-view .status-column {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    .anime-detail-layout-v3 {
+        grid-template-columns: 1fr;
+    }
+    .footer-row {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    #anime-container.grid-view .status-column {
+        grid-template-columns: 1fr !important;
+    }
+}

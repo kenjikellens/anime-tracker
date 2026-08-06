@@ -1,11 +1,11 @@
 import { RatingManager } from './RatingManager.js';
 
 const SVG_ICONS = {
-    star: `<svg style="width: 1em; height: 1em; display: inline-block; vertical-align: middle; margin-right: 4px;"><use href="#icon-star"></use></svg>`,
-    starHalf: `<svg style="width: 1em; height: 1em; display: inline-block; vertical-align: middle; margin-right: 4px; opacity: 0.7;"><use href="#icon-star-half"></use></svg>`,
-    play: `<svg style="width: 1em; height: 1em; display: inline-block; vertical-align: middle;"><use href="#icon-play"></use></svg>`,
-    bell: `<svg style="width: 1em; height: 1em; display: inline-block; vertical-align: middle;"><use href="#icon-bell"></use></svg>`,
-    chevronRight: `<svg class="expand-icon" style="width: 1.2em; height: 1.2em; vertical-align: middle;"><use href="#icon-chevron-right"></use></svg>`
+    star: `<svg class="svg-icon svg-icon-margin"><use href="#icon-star"></use></svg>`,
+    starHalf: `<svg class="svg-icon svg-icon-margin" style="opacity: 0.7;"><use href="#icon-star-half"></use></svg>`,
+    play: `<svg class="svg-icon"><use href="#icon-play"></use></svg>`,
+    bell: `<svg class="svg-icon"><use href="#icon-bell"></use></svg>`,
+    chevronRight: `<svg class="expand-icon svg-icon-large"><use href="#icon-chevron-right"></use></svg>`
 };
 
 /**
@@ -21,9 +21,9 @@ export class CardRenderer {
         const hue = hash % 360;
 
         if (anime.coverImage) {
-            return `<img src="${anime.coverImage}" style="width:100%; height:100%; object-fit:cover; border-radius: 6px;" loading="lazy" />`;
+            return `<img src="${anime.coverImage}" class="poster-img" loading="lazy" />`;
         }
-        return `<div style="width:100%; height:100%; background: linear-gradient(135deg, hsl(${hue}, 60%, 50%), hsl(${(hue + 40) % 360}, 70%, 40%)); display:flex; align-items:center; justify-content:center; color:#fff; font-size: 24px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; box-shadow: inset 0 0 20px rgba(0,0,0,0.1); border-radius: 6px;">${anime.title.substring(0,2)}</div>`;
+        return `<div class="poster-fallback" style="background: linear-gradient(135deg, hsl(${hue}, 60%, 50%), hsl(${(hue + 40) % 360}, 70%, 40%));">${anime.title.substring(0,2)}</div>`;
     }
 
     /**

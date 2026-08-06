@@ -35,82 +35,57 @@ let currentProgress = 0;
 
 /**
  * Starts the circular progress loader animation on the splash screen.
- * @param {boolean} [showSpinner=true] - Whether to show the spinner.
- * @param {number} [transitionDuration=0.6] - Transition duration in seconds.
- * @returns {Promise<void>} Resolves when the splash screen fade-in completes.
  */
-function startLoader(showSpinner = true, transitionDuration = 0.6) {
+function startLoader() {
     const splash = document.getElementById('splash-screen');
     const circle = splash?.querySelector('.loader-progress-circle');
     const loaderSvg = splash?.querySelector('.circular-loader-svg');
-    if (!splash || !circle) return Promise.resolve();
+    if (!splash || !circle) return;
 
     clearInterval(loadingInterval);
-    currentProgress = 0;
-    
+    currentProgress = 10;
+
     if (loaderSvg) {
-        loaderSvg.style.display = showSpinner ? 'block' : 'none';
+        loaderSvg.style.display = 'block';
     }
-    
-    splash.style.transition = `opacity ${transitionDuration}s ease, visibility ${transitionDuration}s ease`;
+
     splash.classList.remove('hidden');
-    circle.style.strokeDashoffset = '314.16';
+    splash.style.opacity = '1';
+    splash.style.visibility = 'visible';
+    circle.style.strokeDashoffset = (314.16 * 0.9).toString();
 
-    if (showSpinner) {
-        const stepMs = 50;
-        const totalMs = 4000;
-        const progressPerStep = (stepMs / totalMs) * 100;
-
-        loadingInterval = setInterval(() => {
-            if (currentProgress < 99) {
-                currentProgress += progressPerStep;
-                if (currentProgress > 99) currentProgress = 99;
-                
-                const offset = 314.16 * (1 - currentProgress / 100);
-                circle.style.strokeDashoffset = offset;
-            }
-        }, stepMs);
-    }
-
-    return new Promise(resolve => setTimeout(resolve, 700));
+    const stepMs = 40;
+    loadingInterval = setInterval(() => {
+        if (currentProgress < 90) {
+            currentProgress += 3;
+            const offset = 314.16 * (1 - currentProgress / 100);
+            circle.style.strokeDashoffset = offset;
+        }
+    }, stepMs);
 }
 
 /**
- * Rapidly completes the circular loader progress to 100% and hides the splash screen.
- * @param {number} [transitionDuration=0.6] - Transition duration in seconds.
+ * Completes the circular loader progress to 100% and smoothly fades out the splash screen.
  */
-function finishLoader(transitionDuration = 0.6) {
+function finishLoader() {
     const splash = document.getElementById('splash-screen');
     const circle = splash?.querySelector('.loader-progress-circle');
     if (!splash || !circle) return;
 
     clearInterval(loadingInterval);
 
-    const startVal = currentProgress;
-    const targetVal = 100;
-    const duration = currentProgress > 0 ? 500 : 0;
-    const startTime = performance.now();
+    // Rapidly fill remaining stroke to 100%
+    circle.style.strokeDashoffset = '0';
 
-    splash.style.transition = `opacity ${transitionDuration}s ease, visibility ${transitionDuration}s ease`;
+    setTimeout(() => {
+        splash.style.transition = 'opacity 0.3s ease, visibility 0.3s ease';
+        splash.style.opacity = '0';
+        splash.style.visibility = 'hidden';
 
-    function animate(now) {
-        const elapsed = now - startTime;
-        const progress = duration > 0 ? Math.min(elapsed / duration, 1) : 1;
-        const current = startVal + (targetVal - startVal) * progress;
-
-        const offset = 314.16 * (1 - current / 100);
-        circle.style.strokeDashoffset = offset;
-
-        if (progress < 1) {
-            requestAnimationFrame(animate);
-        } else {
-            setTimeout(() => {
-                splash.classList.add('hidden');
-            }, 100);
-        }
-    }
-
-    requestAnimationFrame(animate);
+        setTimeout(() => {
+            splash.classList.add('hidden');
+        }, 300);
+    }, 150);
 }
 
 /**
@@ -122,8 +97,9 @@ async function handleRoute() {
     const appContainer = document.getElementById('app');
     if (!appContainer) return;
 
+    startLoader();
+
     if (hash === '#/' || hash === '') {
-        await startLoader(false, 0.2);
         const response = await fetch('home.html');
         appContainer.innerHTML = await response.text();
 
@@ -131,9 +107,8 @@ async function handleRoute() {
         setupFilters();
         setupSorting();
         setupViewToggles();
-        finishLoader(0.2);
+        finishLoader();
     } else if (hash.startsWith('#/anime/')) {
-        await startLoader();
         const id = hash.replace('#/anime/', '');
         currentDetailAnime = repository.getById(id);
 
@@ -175,6 +150,7 @@ async function handleRoute() {
  * Binds global header/footer listeners and runs the initial router match.
  */
 async function init() {
+    startLoader(true, 0.3);
     ThemeManager.initTheme();
     const data = await DataStore.loadInitialData();
     const normalized = repository.loadAndNormalize(data);

@@ -25,17 +25,17 @@
 
     <div class="toolbar-right">
         <!-- Grid sizing is only visible while the grid layout is active -->
-        <div class="size-toggle" id="size-toggle-container" style="display: flex; align-items: center; gap: 6px;">
-            <span style="font-size: 14px; font-weight: 600; color: var(--text-muted); margin-right: 4px;">Grid:</span>
+        <div class="size-toggle" id="size-toggle-container">
+            <span class="size-toggle-label">Grid:</span>
             <button class="size-btn" id="grid-cols-minus" title="Minder kolommen">&minus;</button>
-            <span id="grid-cols-val" style="font-size: 16px; font-weight: 700; min-width: 24px; text-align: center; font-family: 'Outfit', sans-serif; color: var(--text);">5</span>
+            <span id="grid-cols-val" class="size-val">5</span>
             <button class="size-btn" id="grid-cols-plus" title="Meer kolommen">+</button>
         </div>
 
         <!-- Grid/list toggle changes the container class in `js/app.js` -->
         <div class="view-toggle">
-            <button class="view-btn active" id="grid-btn" title="Grid view"><svg style="width: 1.2em; height: 1.2em; display: inline-block; vertical-align: middle; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><use href="#icon-grid"></use></svg></button>
-            <button class="view-btn" id="list-btn" title="List view"><svg style="width: 1.2em; height: 1.2em; display: inline-block; vertical-align: middle; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><use href="#icon-list"></use></svg></button>
+            <button class="view-btn active" id="grid-btn" title="Grid view"><svg class="svg-icon-large"><use href="#icon-grid"></use></svg></button>
+            <button class="view-btn" id="list-btn" title="List view"><svg class="svg-icon-large"><use href="#icon-list"></use></svg></button>
         </div>
 
         <span class="item-count" id="item-count">0 items</span>
@@ -62,16 +62,16 @@
                 <div class="card-status-cell"></div>
                 <div class="card-actions">
                     <div class="avg-rating-text" title="Gemiddelde item-rating">
-                        <svg style="width: 1em; height: 1em; display: inline-block; vertical-align: middle; margin-right: 4px;"><use href="#icon-star-half"></use></svg>
+                        <svg class="svg-icon svg-icon-margin"><use href="#icon-star-half"></use></svg>
                         <span class="avg-rating-val"></span>
                     </div>
                     <div class="rating-badge" title="Beoordeel deze anime">
-                        <svg style="width: 1em; height: 1em; display: inline-block; vertical-align: middle; margin-right: 4px;"><use href="#icon-star"></use></svg>
+                        <svg class="svg-icon svg-icon-margin"><use href="#icon-star"></use></svg>
                         <span class="rating-val"></span>
                     </div>
                 </div>
             </div>
-            <svg class="expand-icon" style="width: 1.2em; height: 1.2em; vertical-align: middle;"><use href="#icon-chevron-right"></use></svg>
+            <svg class="expand-icon svg-icon-large"><use href="#icon-chevron-right"></use></svg>
         </div>
     </div>
 </template>

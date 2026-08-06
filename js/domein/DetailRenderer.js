@@ -7,9 +7,9 @@ const WATCH_PROVIDER_DOMAIN = "miruro.ru";
 const WATCH_PROVIDER_SEARCH_PATH = "/search?query=";
 
 const SVG_ICONS = {
-    star: `<svg style="width: 1em; height: 1em; display: inline-block; vertical-align: middle; margin-right: 4px;"><use href="#icon-star"></use></svg>`,
-    play: `<svg style="width: 1em; height: 1em; display: inline-block; vertical-align: middle;"><use href="#icon-play"></use></svg>`,
-    chevronDown: (transformStyle) => `<svg class="accordion-icon" style="width: 1.2em; height: 1.2em; display: inline-block; vertical-align: middle; transition: transform 0.2s; ${transformStyle}"><use href="#icon-chevron-down"></use></svg>`
+    star: `<svg class="svg-icon svg-icon-margin"><use href="#icon-star"></use></svg>`,
+    play: `<svg class="svg-icon"><use href="#icon-play"></use></svg>`,
+    chevronDown: (transformStyle) => `<svg class="accordion-icon svg-icon-large" style="${transformStyle}"><use href="#icon-chevron-down"></use></svg>`
 };
 
 /**

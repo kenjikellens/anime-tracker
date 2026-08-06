@@ -6,7 +6,7 @@
     <title>RASCAL - Home</title>
     
     <!-- Design & Fonts -->
-    <link rel="stylesheet" href="css/styles.css?v=1.9.27">
+    <link rel="stylesheet" href="css/styles.css?v=2.0.3">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -61,8 +61,8 @@
     </svg>
 
     <!-- Splash screen overlay with circular progress loader -->
-    <div id="splash-screen" class="splash-screen hidden">
-        <div style="position: relative; display: flex; align-items: center; justify-content: center;">
+    <div id="splash-screen" class="splash-screen">
+        <div class="loader-wrap">
             <svg width="120" height="120" viewBox="0 0 120 120" class="circular-loader-svg">
                 <circle cx="60" cy="60" r="50" class="loader-bg-circle" />
                 <circle cx="60" cy="60" r="50" class="loader-progress-circle" />
@@ -80,17 +80,17 @@
             <div class="header-center">
                 <!-- Search is bound in `js/app.js` via `SearchManager.setup` -->
                 <div class="search-bar">
-                    <svg class="search-icon" style="width: 1em; height: 1em; display: inline-block; vertical-align: middle; margin-right: 8px; opacity: 0.7; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><use href="#icon-search"></use></svg>
+                    <svg class="search-icon svg-icon"><use href="#icon-search"></use></svg>
                     <input type="text" id="search-input" placeholder="Zoek in je lijst...">
                 </div>
             </div>
             <div class="header-right">
                 <!-- Opens a JSON backup download via `DataStore.triggerBackup` -->
-                <button id="download-btn" class="hidden" title="Download backup"><svg style="width: 1.2em; height: 1.2em; display: inline-block; vertical-align: middle; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><use href="#icon-download"></use></svg></button>
+                <button id="download-btn" class="hidden" title="Download backup"><svg class="svg-icon-large"><use href="#icon-download"></use></svg></button>
                 <!-- Toggles the global light/dark theme -->
                 <button id="theme-toggle" title="Switch theme">
-                    <svg class="theme-icon icon-sun" style="width: 1.2em; height: 1.2em; display: inline-block; vertical-align: middle; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><use href="#icon-sun"></use></svg>
-                    <svg class="theme-icon icon-moon" style="width: 1.2em; height: 1.2em; display: inline-block; vertical-align: middle; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><use href="#icon-moon"></use></svg>
+                    <svg class="theme-icon icon-sun svg-icon-large"><use href="#icon-sun"></use></svg>
+                    <svg class="theme-icon icon-moon svg-icon-large"><use href="#icon-moon"></use></svg>
                 </button>
             </div>
         </div>
