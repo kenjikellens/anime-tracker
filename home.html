@@ -52,22 +52,20 @@
 <!-- Template used by CardRenderer to populate the anime list dynamically -->
 <template id="anime-card-template">
     <div class="anime-card-wrapper">
-        <!-- Stack layers will be inserted here dynamically if items > 1 -->
         <div class="anime-card">
             <div class="card-poster"></div>
-            <div class="card-info" style="gap: 8px;">
+            <div class="card-info">
                 <div class="card-header">
-                    <div class="card-title">
-                        <span style="font-size:1.1rem; line-height: 1.2;"></span>
-                    </div>
+                    <div class="card-title"><span></span></div>
                 </div>
-                <div class="card-subtitle" style="font-size: 0.85rem; color: var(--text-muted); opacity: 0.8;"></div>
-                <div class="card-actions" style="display: flex; gap: 12px; position: absolute; bottom: 8px; right: 8px; z-index: 10; align-items: center;">
-                    <div class="avg-rating-text" style="pointer-events: none; color: var(--text-muted);" title="Gemiddelde item-rating">
+                <div class="card-subtitle"></div>
+                <div class="card-status-cell"></div>
+                <div class="card-actions">
+                    <div class="avg-rating-text" title="Gemiddelde item-rating">
                         <svg style="width: 1em; height: 1em; display: inline-block; vertical-align: middle; margin-right: 4px;"><use href="#icon-star-half"></use></svg>
                         <span class="avg-rating-val"></span>
                     </div>
-                    <div class="rating-badge" style="cursor: pointer; position: relative !important; bottom: auto !important; right: auto !important; z-index: auto !important;" title="Beoordeel deze anime">
+                    <div class="rating-badge" title="Beoordeel deze anime">
                         <svg style="width: 1em; height: 1em; display: inline-block; vertical-align: middle; margin-right: 4px;"><use href="#icon-star"></use></svg>
                         <span class="rating-val"></span>
                     </div>

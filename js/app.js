@@ -527,6 +527,7 @@ function setupViewToggles() {
             container.classList.add('grid-view');
             container.style.setProperty('--grid-cols', currentGridCols);
             if (sizeToggleContainer) sizeToggleContainer.style.display = 'flex';
+            renderData();
         });
     }
 
@@ -540,6 +541,7 @@ function setupViewToggles() {
             container.classList.remove('grid-view');
             container.classList.add('list-view');
             if (sizeToggleContainer) sizeToggleContainer.style.display = 'none';
+            renderData();
         });
     }
 

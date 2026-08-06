@@ -488,8 +488,8 @@ footer {
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 14px 18px;
-    margin: 24px 0 12px 0;
+    padding: 8px 12px;
+    margin: 12px 0 6px 0;
     background: var(--bg);
     border-bottom: 2px solid var(--border);
     position: sticky;
@@ -577,8 +577,7 @@ footer {
 #anime-container.grid-view .status-column {
     display: grid;
     grid-template-columns: repeat(var(--grid-cols, 5), 1fr);
-    column-gap: 16px;
-    row-gap: 52px;
+    gap: 16px;
     align-content: start;
     width: 100%;
 }
@@ -625,58 +624,163 @@ footer {
     min-width: 0;
 }
 
-/* ---------------- LIST VIEW LAYOUT ---------------- */
+/* ---------------- PURE DATA TABLE LAYOUT ---------------- */
 
-/* Configures the status columns to display as a simple vertical stack of full-width items. */
+/* Sticky Table Header Row displaying explicit column headers */
+.table-header-row {
+    display: grid;
+    grid-template-columns: 44px minmax(220px, 1fr) 90px 140px 100px 100px 40px;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 12px;
+    background: var(--surface-2);
+    border-bottom: 2px solid var(--border);
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    margin-bottom: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.table-header-row .th-cell {
+    display: flex;
+    align-items: center;
+}
+
+.table-header-row .th-items,
+.table-header-row .th-status,
+.table-header-row .th-rating,
+.table-header-row .th-avg,
+.table-header-row .th-action {
+    justify-content: center;
+}
+
+/* Status Column Container in List View: Tight 0px gap for seamless table row stacking */
 .list-view .status-column {
     display: flex; 
     flex-direction: column; 
-    gap: 6px; 
+    gap: 0; 
     width: 100%;
 }
 
-/* Grid-based layout for the anime card when displayed in list view for better alignment. */
+/* In List View mode, unwrap card structural containers so children align directly into the 7 CSS Grid columns */
+#anime-container.list-view .card-info,
+#anime-container.list-view .card-header,
+#anime-container.list-view .card-actions {
+    display: contents !important;
+}
+
+/* In Grid View mode, hide table-specific status cell */
+#anime-container.grid-view .card-status-cell {
+    display: none !important;
+}
+
+/* Pure Data Table Rows (No Card/Button Containers) */
 #anime-container.list-view .anime-card {
     display: grid;
-    grid-template-columns: 44px minmax(0, 1fr) auto auto 24px;
+    grid-template-columns: 44px minmax(220px, 1fr) 90px 140px 100px 100px 40px;
     gap: 12px;
     align-items: center;
-    padding: 6px 16px; 
-    border-radius: 8px;
-    min-height: 48px;
+    padding: 6px 12px; 
+    border-radius: 0;
+    border-bottom: 1px solid var(--border) !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    min-height: 44px;
     width: 100%;
     box-sizing: border-box;
-    transition: transform 0.13s ease, box-shadow 0.13s ease, border-color 0.13s ease;
+    background: transparent !important;
+    transition: background-color 0.13s ease;
     position: relative;
 }
 
-/* Subtle shadow and purple border highlight on list items when hovered. */
+/* Hover Row Highlight */
 #anime-container.list-view .anime-card:hover {
-    box-shadow: 0 4px 16px rgba(157, 78, 221, 0.25);
-    border-color: var(--primary);
-    transform: scale(1.008);
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: var(--border) !important;
+    box-shadow: none !important;
 }
 
-/* Specific column distribution for the medium-sized list items. */
-#anime-container.size-m.list-view .anime-card {
-    grid-template-columns: 44px minmax(0, 1fr) auto auto 24px;
-    padding: 6px 16px;
-    min-height: 48px;
+[data-theme="light"] #anime-container.list-view .anime-card:hover {
+    background: rgba(0, 0, 0, 0.04) !important;
 }
 
-/* Extremely compact layout for small-sized list items to fit more content. */
-#anime-container.size-s.list-view .anime-card {
-    grid-template-columns: 32px minmax(0, 1fr) auto 20px;
-    padding: 4px 12px;
-    min-height: 40px !important;
-    height: auto !important;
+/* Table cell alignment & grid-row 1 enforcement */
+#anime-container.list-view .anime-card .card-poster { grid-column: 1 !important; grid-row: 1 !important; }
+#anime-container.list-view .anime-card .card-title { grid-column: 2 !important; grid-row: 1 !important; }
+#anime-container.list-view .anime-card .card-subtitle { grid-column: 3 !important; grid-row: 1 !important; }
+#anime-container.list-view .anime-card .card-status-cell { grid-column: 4 !important; grid-row: 1 !important; }
+#anime-container.list-view .anime-card .rating-badge { grid-column: 5 !important; grid-row: 1 !important; }
+#anime-container.list-view .anime-card .avg-rating-text { grid-column: 6 !important; grid-row: 1 !important; }
+#anime-container.list-view .anime-card .expand-icon { grid-column: 7 !important; grid-row: 1 !important; }
+
+#anime-container.list-view .card-subtitle,
+#anime-container.list-view .card-status-cell,
+#anime-container.list-view .rating-badge,
+#anime-container.list-view .avg-rating-text,
+#anime-container.list-view .expand-icon {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
 }
 
-/* Redundant structural containers are removed from the flow in list view to simplify the grid. */
-#anime-container.list-view .card-info,
-#anime-container.list-view .card-header,
-#anime-container.list-view .card-title {
-    display: contents;
+/* Table cell sub-styles */
+#anime-container.list-view .card-subtitle {
+    background: var(--surface-2);
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-size: 11px !important;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+#anime-container.list-view .card-status-cell {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text);
+    padding: 4px 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+}
+
+[data-theme="light"] #anime-container.list-view .card-status-cell {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* Explicit table cell poster sizing */
+#anime-container.list-view .anime-card .card-poster {
+    width: 32px !important;
+    height: 44px !important;
+    flex-shrink: 0 !important;
+    border-radius: 4px !important;
+    display: block !important;
+}
+
+/* Single line title truncation for table title column */
+#anime-container.list-view .anime-card .card-title,
+#anime-container.list-view .anime-card .card-title span {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    color: var(--white) !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: block !important;
+}
+
+/* Subtle vertical cell dividers for data table look */
+.table-header-row .th-cell:not(:last-child),
+#anime-container.list-view .anime-card > div:not(:last-child) {
+    border-right: 1px solid var(--border);
+    padding-right: 8px;
 }
 
 /* ---------------- CARD SUB-ELEMENTS ---------------- */
@@ -707,81 +811,7 @@ footer {
     z-index: 10;
 }
 
-/* Background card layers that sit behind the main card to represent items count. */
-.card-stack-layer {
-    display: none !important;
-}
-
-/* The first background card layer with minimal vertical offset and highest opacity. */
-.card-stack-layer.layer-1 { top: 4px; opacity: 0.9; z-index: 4; }
-
-/* The second background card layer with medium vertical offset and opacity. */
-.card-stack-layer.layer-2 { top: 8px; opacity: 0.75; z-index: 3; }
-
-/* The third background card layer with medium-high vertical offset and opacity. */
-.card-stack-layer.layer-3 { top: 12px; opacity: 0.6; z-index: 2; }
-
-/* The fourth background card layer with high vertical offset and opacity. */
-.card-stack-layer.layer-4 { top: 16px; opacity: 0.45; z-index: 1; }
-
-/* The fifth background card layer with very high vertical offset and lower opacity. */
-.card-stack-layer.layer-5 { top: 20px; opacity: 0.3; z-index: 0; }
-
-/* The sixth background card layer with maximum vertical offset and lowest opacity. */
-.card-stack-layer.layer-6 { top: 24px; opacity: 0.15; z-index: -1; }
-
-/* Expanded vertical offset for the first background layer on wrapper hover. */
-.anime-card-wrapper:hover .card-stack-layer.layer-1 { top: 8px; }
-
-/* Expanded vertical offset for the second background layer on wrapper hover. */
-.anime-card-wrapper:hover .card-stack-layer.layer-2 { top: 16px; }
-
-/* Expanded vertical offset for the third background layer on wrapper hover. */
-.anime-card-wrapper:hover .card-stack-layer.layer-3 { top: 24px; }
-
-/* Expanded vertical offset for the fourth background layer on wrapper hover. */
-.anime-card-wrapper:hover .card-stack-layer.layer-4 { top: 32px; }
-
-/* Expanded vertical offset for the fifth background layer on wrapper hover. */
-.anime-card-wrapper:hover .card-stack-layer.layer-5 { top: 40px; }
-
-/* Expanded vertical offset for the sixth background layer on wrapper hover. */
-.anime-card-wrapper:hover .card-stack-layer.layer-6 { top: 48px; }
-
-/* Adjusts the width and margins of the card wrapper in list view. 
-   Reduces wrapper width slightly to prevent horizontal overflow when backing layers fan out to the right. */
-.list-view .anime-card-wrapper {
-    margin-right: 24px;
-    width: calc(100% - 24px);
-}
-
-/* Base style for the background stacked card layers in list view.
-   Enables display, aligns them to the top, and applies matching border radius. */
-.list-view .card-stack-layer {
-    display: block;
-    top: 0;
-    left: 0;
-    height: 100%;
-    border-radius: 8px;
-}
-
-/* Horizontal spacing offsets for each background card layer in list view.
-   Steps each layer progressively to the right (left property) to create the side-stacked appearance. */
-.list-view .card-stack-layer.layer-1 { left: 4px; top: 0; }
-.list-view .card-stack-layer.layer-2 { left: 8px; top: 0; }
-.list-view .card-stack-layer.layer-3 { left: 12px; top: 0; }
-.list-view .card-stack-layer.layer-4 { left: 16px; top: 0; }
-.list-view .card-stack-layer.layer-5 { left: 20px; top: 0; }
-.list-view .card-stack-layer.layer-6 { left: 24px; top: 0; }
-
-/* Fanned-out hover offsets for each background card layer in list view.
-   Increases the horizontal spacing (left property) on hover to create a fanning animation effect. */
-.list-view .anime-card-wrapper:hover .card-stack-layer.layer-1 { left: 6px; top: 0; }
-.list-view .anime-card-wrapper:hover .card-stack-layer.layer-2 { left: 12px; top: 0; }
-.list-view .anime-card-wrapper:hover .card-stack-layer.layer-3 { left: 18px; top: 0; }
-.list-view .anime-card-wrapper:hover .card-stack-layer.layer-4 { left: 24px; top: 0; }
-.list-view .anime-card-wrapper:hover .card-stack-layer.layer-5 { left: 30px; top: 0; }
-.list-view .anime-card-wrapper:hover .card-stack-layer.layer-6 { left: 36px; top: 0; }
+/* Card stack layers removed completely */
 
 /* Compact poster sizing specifically for the small list view layout. */
 #anime-container.size-s.list-view .card-poster {
@@ -908,9 +938,12 @@ footer {
     display: block !important;
 }
 
-/* Hidden in list view cards — only useful on grid cards or detailed views. */
+/* Show items count in column 3 in list view */
 #anime-container.list-view .card-subtitle {
-    display: none !important;
+    display: inline-flex !important;
+    grid-column: 3;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Icon that indicates whether a list item is expanded to show more details. */
@@ -919,15 +952,28 @@ footer {
     transition: transform 0.2s ease;
 }
 
-/* Specific styling for the expand icon in list view. */
+/* Specific styling for the expand action button in list view (column 7). */
 .list-view .expand-icon {
-    display: block;
-    font-size: 0.9em;
-    opacity: 0.4;
-    text-align: right;
-    grid-area: 1 / 5;
-    justify-self: end;
-    margin: 0;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--surface-2);
+    color: var(--text-muted);
+    border: 2px solid transparent !important;
+    grid-column: 7;
+    justify-self: center;
+    cursor: pointer;
+    transition: all 0.13s ease;
+}
+
+.list-view .expand-icon:hover {
+    background: var(--surface-2);
+    color: var(--white);
+    border-color: var(--hover-border) !important;
+    box-shadow: inset 0 0 0 1px var(--hover-border) !important;
 }
 
 /* Hides the expand icon in grid view as interaction happens via modal. */
@@ -1050,10 +1096,11 @@ footer {
     border-radius: 10px !important;
 }
 
-/* Positioning for the rating badge specifically in the list view layout. */
+/* Positioning for the rating badge specifically in the list view layout (Column 5). */
 #anime-container.list-view .rating-badge { 
-    grid-area: 1 / 4; 
+    grid-column: 5; 
     align-self: center; 
+    justify-self: center;
     min-width: 56px;
     justify-content: center;
     box-shadow: none;
@@ -1086,9 +1133,9 @@ footer {
     display: none !important;
 }
 
-/* Positioning for the average rating text in the list view layout. */
+/* Positioning for the average rating text in the list view layout (Column 6). */
 #anime-container.list-view .avg-rating-text {
-    grid-area: 1 / 3;
+    grid-column: 6;
     align-self: center;
     justify-self: center;
 }
@@ -2303,7 +2350,7 @@ footer {
     .toolbar-right { margin-left: 0; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 12px; }
 
     /* Forces all grid views to a 2-column or 3-column layout on mobile. Column-gap is tight while row-gap is larger for card stacking. */
-    #anime-container.grid-view .status-column { grid-template-columns: repeat(2, 1fr) !important; column-gap: 12px; row-gap: 52px; }
+    #anime-container.grid-view .status-column { grid-template-columns: repeat(2, 1fr) !important; gap: 12px; }
     #anime-container.grid-view.size-s .status-column { grid-template-columns: repeat(3, 1fr) !important; }
 }
 
@@ -2397,8 +2444,7 @@ footer {
     #anime-container.grid-view.size-m .status-column,
     #anime-container.grid-view.size-s .status-column {
         grid-template-columns: repeat(2, 1fr) !important;
-        column-gap: 10px;
-        row-gap: 52px;
+        gap: 10px;
     }
     
     #anime-container.grid-view .anime-card {

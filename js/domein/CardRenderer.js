@@ -47,6 +47,24 @@ export class CardRenderer {
     }
 
     /**
+     * Creates a sticky table header row for List View with 7 explicit columns.
+     */
+    static createTableHeader() {
+        const header = document.createElement('div');
+        header.className = 'table-header-row';
+        header.innerHTML = `
+            <div class="th-cell th-cover">Cover</div>
+            <div class="th-cell th-title">Titel</div>
+            <div class="th-cell th-items">Items</div>
+            <div class="th-cell th-status">Status</div>
+            <div class="th-cell th-rating">Mijn Rating</div>
+            <div class="th-cell th-avg">Gem. Score</div>
+            <div class="th-cell th-action">Actie</div>
+        `;
+        return header;
+    }
+
+    /**
      * Renders a subset of anime cards (a batch) and appends them to the container.
      * This affects the `#anime-container` DOM element by dynamically adding card components.
      */
@@ -59,6 +77,10 @@ export class CardRenderer {
             }
         }
         
+        if (container.classList.contains('list-view') && !container.querySelector('.table-header-row')) {
+            container.insertBefore(this.createTableHeader(), container.firstChild);
+        }
+
         let wrapper = container.querySelector('.status-column');
         if (!wrapper) {
             wrapper = document.createElement('div');
@@ -114,14 +136,6 @@ export class CardRenderer {
         wrapper.setAttribute('data-id', anime.id);
 
         const itemCount = anime.items.length;
-        if (itemCount > 1) {
-            const layersCount = Math.min(itemCount, 6);
-            for (let i = 1; i <= layersCount; i++) {
-                const layer = document.createElement('div');
-                layer.className = `card-stack-layer layer-${i}`;
-                wrapper.insertBefore(layer, wrapper.firstChild);
-            }
-        }
 
         const mainCard = wrapper.querySelector('.anime-card');
         mainCard.setAttribute('data-id', anime.id);
@@ -141,6 +155,16 @@ export class CardRenderer {
 
         wrapper.querySelector('.card-title span').textContent = anime.title;
         wrapper.querySelector('.card-subtitle').textContent = `${itemCount} items`;
+
+        const statusCell = wrapper.querySelector('.card-status-cell');
+        if (statusCell) {
+            let statusText = 'Te Bekijken';
+            if (anime.status === 1) statusText = 'Bekeken';
+            else if (anime.status === 0) statusText = 'Bezig';
+            if (anime.items.some(item => item.status === 3)) statusText = 'Airing';
+            if (anime.items.some(item => item.status === 2)) statusText = 'Upcoming';
+            statusCell.textContent = statusText;
+        }
 
         const avgRating = anime.getAverageItemRating();
         wrapper.querySelector('.avg-rating-val').textContent = avgRating > 0 ? avgRating.toFixed(1) : '—';
