@@ -11,10 +11,12 @@
 - Azumanga Daioh
 - Baka to Test to Shoukanjuu
 - Berserk
+- Black Summoner
 - Blade Dance of the Elementalers
 - Blue Box
 - Bottom-Tier Character Tomozaki
 - Can a Boy and Girl Friendship Hold Up? (No, It Can't!!)
+- Castle Town Dandelion
 - Chitose Is in the Ramune Bottle
 - Clannad
 - Class President is a Maid!
@@ -45,6 +47,7 @@
 - Itazura na Kiss
 - Kaguya-sama: Love is War
 - Kiss x Sis
+- Kono Oto Tomare!: Sounds of Life
 - KonoSuba: God's Blessing on This Wonderful World!
 - Ladies versus Butlers!
 - Love is Like a Cocktail
@@ -66,6 +69,7 @@
 - My Teen Romantic Comedy SNAFU (Oregairu)
 - Nisekoi: False Love
 - Nukitashi THE ANIMATION
+- Oh Boy, Was I Wrong About Her
 - Orange
 - Oreshura
 - ORESUKI: Are you the only one who loves me?
@@ -78,6 +82,7 @@
 - ReLIFE
 - Redo of Healer
 - Rent-a-Girlfriend
+- Rich Girl Caretaker
 - Saekano: How to Raise a Boring Girlfriend
 - Seitokai Yakuindomo
 - SHIMONETA: A Boring World Where the Concept of Dirty Jokes Doesn't Exist
@@ -99,6 +104,7 @@
 - The Pet Girl of Sakurasou
 - The Quintessential Quintuplets
 - The Ryuo's Work is Never Done!
+- The Testament of Sister New Devil
 - The Warrior Princess and the Barbaric King
 - To Love Ru
 - Tomo-chan is a Girl!

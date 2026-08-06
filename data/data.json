@@ -4621,5 +4621,174 @@
                 "episodesCount": 5
             }
         ]
+    },
+    {
+        "id": "oh-boy-was-i-wrong-about-her",
+        "title": "Oh Boy, Was I Wrong About Her",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx169583-0ZTdBGrKNIbe.jpg",
+        "items": [
+            {
+                "id": "oh-boy-was-i-wrong-about-her-season-1",
+                "title": "Oh Boy, Was I Wrong About Her",
+                "status": 3,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            }
+        ]
+    },
+    {
+        "id": "castle-town-dandelion",
+        "title": "Castle Town Dandelion",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20951-ZlzLXi9rG09L.png",
+        "items": [
+            {
+                "id": "castle-town-dandelion-serie",
+                "title": "Castle Town Dandelion",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            }
+        ]
+    },
+    {
+        "id": "the-testament-of-sister-new-devil",
+        "title": "The Testament of Sister New Devil",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20678-58D9Yhi4GcH2.png",
+        "items": [
+            {
+                "id": "the-testament-of-sister-new-devil-season-1",
+                "title": "The Testament of Sister New Devil",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "the-testament-of-sister-new-devil-ova",
+                "title": "The Testament of Sister New Devil OVA",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "the-testament-of-sister-new-devil-burst",
+                "title": "The Testament of Sister New Devil BURST",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 10
+            },
+            {
+                "id": "the-testament-of-sister-new-devil-departures",
+                "title": "The Testament of Sister New Devil DEPARTURES",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            }
+        ]
+    },
+    {
+        "id": "rich-girl-caretaker",
+        "title": "Rich Girl Caretaker",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx201514-BHAeWhSbcBrT.png",
+        "items": [
+            {
+                "id": "rich-girl-caretaker-season-1",
+                "title": "Rich Girl Caretaker",
+                "status": 3,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            }
+        ]
+    },
+    {
+        "id": "the-warrior-princess-and-the-barbaric-king",
+        "title": "The Warrior Princess and the Barbaric King",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx182483-La7chs6htDWr.jpg",
+        "items": [
+            {
+                "id": "the-warrior-princess-and-the-barbaric-king-serie",
+                "title": "The Warrior Princess and the Barbaric King",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            }
+        ]
+    },
+    {
+        "id": "kono-oto-tomare-sounds-of-life",
+        "title": "Kono Oto Tomare!: Sounds of Life",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "",
+        "items": [
+            {
+                "id": "kono-oto-tomare-sounds-of-life-season-1",
+                "title": "Kono Oto Tomare!: Sounds of Life Season 1",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 13
+            },
+            {
+                "id": "kono-oto-tomare-sounds-of-life-season-2",
+                "title": "Kono Oto Tomare!: Sounds of Life Season 2",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 13
+            }
+        ]
+    },
+    {
+        "id": "black-summoner",
+        "title": "Black Summoner",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx145260-Yt5W8aQQKqF2.jpg",
+        "items": [
+            {
+                "id": "black-summoner-serie",
+                "title": "Black Summoner",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            }
+        ]
     }
 ]

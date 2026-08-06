@@ -384,6 +384,7 @@ a:hover, button:hover, select:hover, .filter-btn:hover, .view-btn:hover, .size-b
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
 }
 

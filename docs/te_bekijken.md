@@ -326,3 +326,29 @@
 
 ## World's End Harem
 - [ ] World's End Harem (SERIE - 11 eps)
+
+## Oh Boy, Was I Wrong About Her
+- [ ] Oh Boy, Was I Wrong About Her (SERIE - 12 eps)
+
+## Castle Town Dandelion
+- [ ] Castle Town Dandelion (SERIE - 12 eps)
+
+## The Testament of Sister New Devil
+- [ ] The Testament of Sister New Devil (SERIE - 12 eps)
+- [ ] The Testament of Sister New Devil OVA (OVA - 1 ep)
+- [ ] The Testament of Sister New Devil BURST (SERIE - 10 eps)
+- [ ] The Testament of Sister New Devil DEPARTURES (OVA - 1 ep)
+
+## Rich Girl Caretaker
+- [ ] Rich Girl Caretaker (SERIE - 12 eps)
+
+## The Warrior Princess and the Barbaric King
+- [ ] The Warrior Princess and the Barbaric King (SERIE - 12 eps)
+
+## Kono Oto Tomare!: Sounds of Life
+- [ ] Kono Oto Tomare!: Sounds of Life Season 1 (SERIE - 13 eps)
+- [ ] Kono Oto Tomare!: Sounds of Life Season 2 (SERIE - 13 eps)
+
+## Black Summoner
+- [ ] Black Summoner (SERIE - 12 eps)
+
