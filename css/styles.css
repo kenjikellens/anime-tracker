@@ -252,8 +252,8 @@ footer {
 
 /* Visual feedback for the search bar when the user clicks inside to type. */
 .search-bar:focus-within {
-    border-color: #9d4edd;
-    box-shadow: 0 0 0 2px rgba(157, 78, 221, 0.1);
+    border-color: var(--hover-border);
+    box-shadow: inset 0 0 0 1px var(--hover-border);
 }
 
 /* Decorative search icon positioned inside the search input bar. */
@@ -284,7 +284,7 @@ footer {
 
 /* Unified styling for buttons in the header right section for a cohesive look. */
 .header-right button {
-    background: var(--surface); border: 2px solid var(--border);
+    background: var(--surface); border: 2px solid transparent;
     color: var(--text); width: 46px; height: 46px; border-radius: 10px;
     font-size: 16px; display: flex;
     align-items: center; justify-content: center;
@@ -302,8 +302,8 @@ footer {
 /* Focus state for header buttons to ensure accessibility during keyboard navigation. */
 .header-right button:focus-visible {
     outline: none;
-    border-color: var(--text-muted);
-    box-shadow: 0 0 0 2px rgba(157, 78, 221, 0.12);
+    border-color: var(--hover-border);
+    box-shadow: inset 0 0 0 1px var(--hover-border);
 }
 
 /* Icons within the header buttons, ensuring they are properly centered and sized. */
@@ -317,7 +317,7 @@ footer {
 /* A dropdown selector used in the header to switch between different data sources. */
 .header-select {
     background: var(--surface); 
-    border: 2px solid var(--border);
+    border: 2px solid transparent;
     color: var(--text-muted);
     padding: 8px 12px;
     border-radius: 8px;
@@ -363,7 +363,7 @@ footer {
 
 /* Interactive buttons for filtering the list by anime status (e.g., Watching, Done). */
 .filter-btn {
-    background: var(--surface); border: 2px solid var(--border);
+    background: var(--surface); border: 2px solid transparent;
     color: var(--text-muted); padding: 10px 16px; border-radius: 8px;
     font-weight: 600; font-size: 14px;
     font-family: 'Outfit', sans-serif;
@@ -375,7 +375,7 @@ footer {
 .filter-btn.active {
     background: var(--active-bg); 
     color: var(--active-color); 
-    border-color: var(--active-border); 
+    border-color: transparent; 
     font-weight: 600;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
@@ -396,7 +396,7 @@ footer {
 
 /* Container and dropdown for changing the display order of the anime list. */
 .sort-group select {
-    background: var(--surface); border: 2px solid var(--border);
+    background: var(--surface); border: 2px solid transparent;
     color: var(--text); padding: 10px 14px; border-radius: 8px;
     font-family: 'Outfit', sans-serif; font-size: 14px; outline: none;
 }
@@ -419,7 +419,7 @@ footer {
 
 /* Individual buttons for selecting specific layout views. */
 .view-btn {
-    background: var(--surface); border: 2px solid var(--border);
+    background: var(--surface); border: 2px solid transparent;
     color: var(--text-muted); width: 42px; height: 42px;
     border-radius: 8px; font-size: 14px;
     transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -430,7 +430,7 @@ footer {
 .view-btn.active, .size-btn.active {
     background-color: var(--active-bg) !important;
     color: var(--active-color) !important;
-    border-color: var(--active-border) !important;
+    border-color: transparent !important;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -451,7 +451,7 @@ footer {
 
 /* Buttons used to increment or decrement the number of grid columns. */
 .size-btn {
-    background: var(--surface); border: 2px solid var(--border);
+    background: var(--surface); border: 2px solid transparent;
     color: var(--text-muted); width: 42px; height: 42px;
     border-radius: 8px; font-size: 14px; font-weight: 700;
     transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -532,8 +532,8 @@ footer {
 
 /* The base component for an anime entry, providing a surface, border, and transition effects. Elevated above stack layers. */
 .anime-card {
-    background: var(--surface); 
-    border: 2px solid var(--border);
+    background: rgba(255, 255, 255, 0.05); 
+    border: 2px solid transparent !important;
     border-radius: 12px;    
     padding: 12px; 
     display: flex; 
@@ -564,9 +564,8 @@ footer {
 
 /* Styled hover and focus states for the main card to add a glowing purple border. */
 .anime-card-wrapper:hover .anime-card, .anime-card-wrapper:focus-within .anime-card {
-    border-color: var(--primary); 
-    box-shadow: 0 8px 30px rgba(157, 78, 221, 0.3), inset 0 0 0 2px var(--primary);
-    transform: scale(1.015);
+    border-color: var(--hover-border); 
+    box-shadow: inset 0 0 0 1px var(--hover-border);
 }
 
 /* ---------------- GRID VIEW LAYOUT ---------------- */
@@ -708,15 +707,7 @@ footer {
 
 /* Background card layers that sit behind the main card to represent items count. */
 .card-stack-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--surface-2);
-    border: 2px solid var(--border);
-    border-radius: 12px;
-    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: none !important;
 }
 
 /* The first background card layer with minimal vertical offset and highest opacity. */
@@ -1098,46 +1089,17 @@ footer {
 /* Average rating icon styling. */
 .avg-rating-badge i { font-size: 10px; opacity: 0.7; }
 
-/* ---------------- COLOR SCALES (Rating based) ---------------- */
+/* ---------------- COLOR SCALES (Rating based - Badges Only) ---------------- */
 
-/* Maximum score category: Gold / Cinema quality. */
-.r-cinema { background-color: rgba(255, 215, 0, 0.35) !important; color: #ffd700 !important; border-color: rgba(255, 215, 0, 0.7) !important; font-weight: 800 !important; }
-
-/* Styles the masterpiece rating badge (>= 9.0) with a premium gold gradient and high contrast dark text. */
-.rating-badge.r-cinema {
-    background: linear-gradient(135deg, #ffe066 0%, #ffd700 50%, #b38f00 100%) !important;
-    color: #1a1a1a !important;
-    border-color: #ffd700 !important;
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.4) !important;
-}
-
-
-/* Excellent score category: Dark Green. */
-.r-awesome { background-color: rgba(39, 174, 96, 0.35) !important; color: #27ae60 !important; border-color: rgba(39, 174, 96, 0.7) !important; font-weight: 800 !important; }
-
-/* Great score category: Bright Green. */
-.r-great { background-color: rgba(46, 204, 113, 0.35) !important; color: #2ecc71 !important; border-color: rgba(46, 204, 113, 0.7) !important; font-weight: 800 !important; }
-
-/* Good score category: Lime Green. */
-.r-good { background-color: rgba(162, 209, 73, 0.35) !important; color: #a2d149 !important; border-color: rgba(162, 209, 73, 0.7) !important; font-weight: 800 !important; }
-
-/* Regular/Average score category: Yellow. */
-.r-regular { background-color: rgba(241, 196, 15, 0.35) !important; color: #f1c40f !important; border-color: rgba(241, 196, 15, 0.7) !important; font-weight: 800 !important; }
-
-/* Bad score category: Orange. */
-.r-bad { background-color: rgba(230, 126, 34, 0.35) !important; color: #e67e22 !important; border-color: rgba(230, 126, 34, 0.7) !important; font-weight: 800 !important; }
-
-/* Garbage score category: Red. */
-.r-garbage { background-color: rgba(231, 76, 60, 0.35) !important; color: #e74c3c !important; border-color: rgba(231, 76, 60, 0.7) !important; font-weight: 800 !important; }
-
-/* Styling for unrated items: Muted gray and low opacity. */
+/* Styles rating badges with score category colors */
+.rating-badge.r-cinema { background: linear-gradient(135deg, #ffe066 0%, #ffd700 50%, #b38f00 100%) !important; color: #1a1a1a !important; border-color: #ffd700 !important; box-shadow: 0 0 10px rgba(255, 215, 0, 0.4) !important; }
+.rating-badge.r-awesome { background-color: rgba(39, 174, 96, 0.35) !important; color: #27ae60 !important; border-color: rgba(39, 174, 96, 0.7) !important; font-weight: 800 !important; }
+.rating-badge.r-great { background-color: rgba(46, 204, 113, 0.35) !important; color: #2ecc71 !important; border-color: rgba(46, 204, 113, 0.7) !important; font-weight: 800 !important; }
+.rating-badge.r-good { background-color: rgba(162, 209, 73, 0.35) !important; color: #a2d149 !important; border-color: rgba(162, 209, 73, 0.7) !important; font-weight: 800 !important; }
+.rating-badge.r-regular { background-color: rgba(241, 196, 15, 0.35) !important; color: #f1c40f !important; border-color: rgba(241, 196, 15, 0.7) !important; font-weight: 800 !important; }
+.rating-badge.r-bad { background-color: rgba(230, 126, 34, 0.35) !important; color: #e67e22 !important; border-color: rgba(230, 126, 34, 0.7) !important; font-weight: 800 !important; }
+.rating-badge.r-garbage { background-color: rgba(231, 76, 60, 0.35) !important; color: #e74c3c !important; border-color: rgba(231, 76, 60, 0.7) !important; font-weight: 800 !important; }
 .rating-badge.unrated { background-color: rgba(255, 255, 255, 0.05) !important; color: var(--text-muted) !important; border-color: rgba(255, 255, 255, 0.1) !important; font-weight: 400; opacity: 0.6; }
-
-/* Ensures average rating badges remain borderless and transparent regardless of their score category. */
-.avg-rating-badge.r-cinema, .avg-rating-badge.r-awesome, .avg-rating-badge.r-great, .avg-rating-badge.r-good, .avg-rating-badge.r-regular, .avg-rating-badge.r-bad, .avg-rating-badge.r-garbage, .avg-rating-badge.unrated {
-    background-color: transparent !important;
-    border-color: transparent !important;
-}
 
 /* ---------------- SPECIAL "GLOW" STATES ---------------- */
 
@@ -2691,13 +2653,13 @@ footer {
 .btn-primary { 
     background: var(--primary); 
     color: #000; 
-    border: 2px solid var(--primary); 
+    border: 2px solid transparent; 
 }
 
 .btn-secondary { 
     background: transparent; 
     color: var(--text); 
-    border: 2px solid var(--border); 
+    border: 2px solid transparent; 
 }
 
 .btn-primary:hover { opacity: 0.9; }
@@ -2724,7 +2686,7 @@ footer {
     height: 32px;
     border-radius: 8px;
     background: transparent;
-    border: 2px solid #ffb300;
+    border: 2px solid transparent;
     color: #ffb300;
     text-decoration: none;
     transition: all 0.13s ease;
@@ -2756,8 +2718,8 @@ footer {
 /* Light mode specific background and border for cards and accordions. */
 [data-theme="light"] .anime-card,
 [data-theme="light"] .item-accordion-wrapper {
-    background: #d5d5d5 !important;
-    border: 1px solid #555 !important;
+    background: rgba(0, 0, 0, 0.04) !important;
+    border: 2px solid transparent !important;
 }
 
 /* Darkens the card background on hover in light mode to provide clear feedback. */
@@ -2796,13 +2758,13 @@ footer {
 }
 
 /* Rating badge color overrides for maximum contrast in light mode. */
-[data-theme="light"] .r-cinema { background-color: #ffd700 !important; color: #000 !important; border-color: #b8860b !important; }
-[data-theme="light"] .r-awesome { background-color: #27ae60 !important; color: #000 !important; border-color: #1e8449 !important; }
-[data-theme="light"] .r-great { background-color: #2ecc71 !important; color: #000 !important; border-color: #27ae60 !important; }
-[data-theme="light"] .r-good { background-color: #a2d149 !important; color: #000 !important; border-color: #7fb33a !important; }
-[data-theme="light"] .r-regular { background-color: #f1c40f !important; color: #000 !important; border-color: #d4ac0d !important; }
-[data-theme="light"] .r-bad { background-color: #e67e22 !important; color: #fff !important; border-color: #a04000 !important; }
-[data-theme="light"] .r-garbage { background-color: #e74c3c !important; color: #fff !important; border-color: #922b21 !important; }
+[data-theme="light"] .rating-badge.r-cinema { background-color: #ffd700 !important; color: #000 !important; border-color: #b8860b !important; }
+[data-theme="light"] .rating-badge.r-awesome { background-color: #27ae60 !important; color: #000 !important; border-color: #1e8449 !important; }
+[data-theme="light"] .rating-badge.r-great { background-color: #2ecc71 !important; color: #000 !important; border-color: #27ae60 !important; }
+[data-theme="light"] .rating-badge.r-good { background-color: #a2d149 !important; color: #000 !important; border-color: #7fb33a !important; }
+[data-theme="light"] .rating-badge.r-regular { background-color: #f1c40f !important; color: #000 !important; border-color: #d4ac0d !important; }
+[data-theme="light"] .rating-badge.r-bad { background-color: #e67e22 !important; color: #fff !important; border-color: #a04000 !important; }
+[data-theme="light"] .rating-badge.r-garbage { background-color: #e74c3c !important; color: #fff !important; border-color: #922b21 !important; }
 
 /* Styling for unrated badges in light mode. */
 [data-theme="light"] .rating-badge.unrated {
@@ -2853,6 +2815,28 @@ footer {
 }
 
 
+
+/* ==========================================================================
+   GLOBAL BUTTON DEFAULT BORDER TRANSPARENCY
+   ========================================================================== */
+
+/* Enforces 100% transparent border on all buttons in default state (when not hovered) */
+button:not(:hover),
+select:not(:hover),
+.filter-btn:not(:hover),
+.view-btn:not(:hover),
+.size-btn:not(:hover),
+.header-right button:not(:hover),
+.item-play-btn:not(:hover),
+.btn-primary:not(:hover),
+.btn-secondary:not(:hover),
+.btn-close:not(:hover),
+.header-select:not(:hover),
+.status-current:not(:hover),
+.item-status-select:not(:hover),
+#global-status-select:not(:hover) {
+    border-color: transparent !important;
+}
 
 /* ==========================================================================
    GLOBAL CLICKABLE HOVER EFFECTS (ENFORCED)
