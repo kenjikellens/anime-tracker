@@ -404,11 +404,8 @@ a:hover, button:hover, select:hover, .filter-btn:hover, .view-btn:hover, .size-b
     margin-top: 8px;
 }
 
-#anime-container.grid-view .expand-icon {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    color: var(--text-muted);
+.expand-icon {
+    display: none !important;
 }
 
 /* --- PURE DATA TABLE LIST VIEW --- */
@@ -420,7 +417,7 @@ a:hover, button:hover, select:hover, .filter-btn:hover, .view-btn:hover, .size-b
 
 .table-header-row {
     display: grid;
-    grid-template-columns: 44px minmax(220px, 1fr) 90px 140px 100px 100px 40px;
+    grid-template-columns: 44px minmax(220px, 1fr) 90px 140px 100px 100px;
     gap: 12px;
     align-items: center;
     padding: 8px 12px;
@@ -435,7 +432,7 @@ a:hover, button:hover, select:hover, .filter-btn:hover, .view-btn:hover, .size-b
 
 #anime-container.list-view .anime-card {
     display: grid;
-    grid-template-columns: 44px minmax(220px, 1fr) 90px 140px 100px 100px 40px;
+    grid-template-columns: 44px minmax(220px, 1fr) 90px 140px 100px 100px;
     gap: 12px;
     align-items: center;
     padding: 8px 12px;
@@ -496,12 +493,6 @@ a:hover, button:hover, select:hover, .filter-btn:hover, .view-btn:hover, .size-b
     color: var(--text-muted);
     display: flex;
     align-items: center;
-}
-
-#anime-container.list-view .expand-icon {
-    grid-column: 7 !important;
-    grid-row: 1 !important;
-    justify-self: center;
 }
 
 /* --------------------------------------------------------------------------
