@@ -80,7 +80,7 @@ export class DetailRenderer {
                     const extraStyle = isGold ? 'box-shadow: 0 0 8px rgba(255, 215, 0, 0.7);' : '';
                     html += `
                         <div class="segment">
-                            <div class="segment-fill" style="width: 0%; background: ${color}; ${extraStyle} transition: width 0.10s linear !important; transition-delay: ${(i - 1) * 0.10}s !important;" data-width="${fillWidth}%"></div>
+                            <div class="segment-fill" style="width: 0%; background: ${color}; ${extraStyle} transition: width 0.10s linear; transition-delay: ${(i - 1) * 0.10}s;" data-width="${fillWidth}%"></div>
                         </div>
                     `;
                 }
@@ -151,7 +151,7 @@ export class DetailRenderer {
                 rowHeader.className = `detail-item-row ${item.status === 1 ? 'watched' : ''}`;
                 
                 let itemStatusSelect = `
-                    <select class="item-status-select" id="status-${item.id}">
+                    <select class="app-dropdown item-status-select ultimate-hover-effect" id="status-${item.id}">
                         <option value="3" ${item.status === 3 ? 'selected' : ''}>Airing</option>
                         <option value="2" ${item.status === 2 ? 'selected' : ''}>Upcoming</option>
                         <option value="-1" ${item.status === -1 ? 'selected' : ''}>Te Bekijken</option>

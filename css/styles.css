@@ -86,28 +86,22 @@ label,
 .table-header-row,
 .expand-icon,
 summary {
-    cursor: pointer !important;
+    cursor: pointer;
 }
 
 input,
 textarea {
-    cursor: text !important;
+    cursor: text;
 }
 
-.hidden {
-    display: none !important;
+/* Hidden utility class for hiding DOM elements including modal overlays */
+.hidden,
+#modal-overlay.hidden,
+#detail-overlay.hidden {
+    display: none;
 }
 
-/* Unified Hover Interaction System */
-a:hover,
-button:hover,
-select:hover,
-.filter-btn:hover,
-.view-btn:hover,
-.size-btn:hover {
-    opacity: 0.85;
-    border-color: transparent !important;
-}
+
 
 /* SVG Utility Icon Classes */
 .svg-icon {
@@ -129,12 +123,14 @@ select:hover,
 /* --------------------------------------------------------------------------
    3. HEADER, SEARCH & TOOLBAR CONTROLS
    -------------------------------------------------------------------------- */
+/* Main application outer container layout */
 #app {
-    max-width: 1850px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 32px 48px 28px;
+    padding: 24px 20px 28px;
 }
 
+/* Sticky top main navigation header wrapper */
 .header-main {
     background: var(--header-bg);
     border: none;
@@ -144,10 +140,11 @@ select:hover,
     z-index: 100;
 }
 
+/* Inner header layout grid container */
 .header-content {
-    max-width: 1850px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 0 48px;
+    padding: 0 20px;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
@@ -276,16 +273,18 @@ select:hover,
 .filter-btn.active {
     background: var(--active-bg);
     color: var(--active-color);
-    border: none !important;
+    border: none;
 }
 
-.sort-group select {
+/* Unified application dropdown selector base component */
+.app-dropdown {
     background: var(--surface);
     border: none;
     color: var(--text);
     padding: 8px 14px;
     border-radius: 8px;
     font-size: 14px;
+    font-weight: 600;
     outline: none;
 }
 
@@ -337,7 +336,7 @@ select:hover,
 .size-btn.active {
     background: var(--active-bg);
     color: var(--active-color);
-    border: none !important;
+    border: none;
 }
 
 .item-count {
@@ -362,13 +361,13 @@ select:hover,
 }
 
 /* --- GRID VIEW LAYOUT --- */
-#anime-container.grid-view .status-column {
+.grid-view .status-column {
     display: grid;
     grid-template-columns: repeat(var(--grid-cols, 5), 1fr);
     gap: 16px;
 }
 
-#anime-container.grid-view .anime-card {
+.grid-view .anime-card {
     background: var(--surface);
     border: none;
     border-radius: 12px;
@@ -380,7 +379,7 @@ select:hover,
     transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-#anime-container.grid-view .card-poster {
+.grid-view .card-poster {
     width: 104px;
     height: 152px;
     flex-shrink: 0;
@@ -408,7 +407,7 @@ select:hover,
     border-radius: 6px;
 }
 
-#anime-container.grid-view .card-info {
+.grid-view .card-info {
     flex: 1;
     min-width: 0;
     display: flex;
@@ -416,14 +415,14 @@ select:hover,
     justify-content: space-between;
 }
 
-#anime-container.grid-view .card-title {
+.grid-view .card-title {
     font-size: 16px;
     font-weight: 700;
     color: var(--white);
     line-height: 1.3;
 }
 
-#anime-container.grid-view .card-title span {
+.grid-view .card-title span {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -432,16 +431,16 @@ select:hover,
     -webkit-box-orient: vertical;
 }
 
-#anime-container.grid-view .card-subtitle {
+.grid-view .card-subtitle {
     font-size: 12px;
     color: var(--text-muted);
 }
 
-#anime-container.grid-view .card-status-cell {
+.grid-view .card-status-cell {
     display: none;
 }
 
-#anime-container.grid-view .card-actions {
+.grid-view .card-actions {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -449,94 +448,118 @@ select:hover,
 }
 
 .expand-icon {
-    display: none !important;
+    display: none;
 }
 
-/* --- PURE DATA TABLE LIST VIEW --- */
-#anime-container.list-view .status-column {
+/* --- MODERN DATA TABLE LIST VIEW --- */
+
+/* List view vertical column wrapper */
+.list-view .status-column {
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: 4px;
 }
 
+/* Optional list view table header row */
 .table-header-row {
     display: grid;
-    grid-template-columns: 44px minmax(220px, 1fr) 90px 140px 100px 100px;
-    gap: 12px;
+    grid-template-columns: 40px minmax(200px, 1fr) 100px 130px 75px 80px;
+    gap: 16px;
     align-items: center;
-    padding: 8px 12px;
-    background: var(--surface-2);
-    border: none;
+    padding: 8px 16px;
+    font-size: 11px;
     font-weight: 700;
-    font-size: 12px;
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
-#anime-container.list-view .anime-card {
+/* List view anime card row container */
+.list-view .anime-card {
     display: grid;
-    grid-template-columns: 44px minmax(220px, 1fr) 90px 140px 100px 100px;
-    gap: 12px;
+    grid-template-columns: 40px minmax(200px, 1fr) 100px 130px 75px 80px;
     align-items: center;
-    padding: 8px 12px;
+    gap: 16px;
+    padding: 10px 16px;
     background: var(--surface);
     border: none;
-    border-radius: 0;
+    border-radius: 10px;
+    transition: background 0.15s ease;
 }
 
-#anime-container.list-view .card-poster {
-    grid-column: 1 !important;
-    grid-row: 1 !important;
-    width: 32px;
-    height: 44px;
-    border-radius: 4px;
+/* List view poster thumbnail */
+.list-view .card-poster {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
     overflow: hidden;
 }
 
-#anime-container.list-view .card-title {
-    grid-column: 2 !important;
-    grid-row: 1 !important;
+/* Flatten card-info container into parent grid */
+.list-view .card-info {
+    display: contents;
+}
+
+/* List view title header container */
+.list-view .card-header {
+    min-width: 0;
+}
+
+/* List view title text styling */
+.list-view .card-title {
     font-size: 14px;
     font-weight: 600;
 }
 
-#anime-container.list-view .card-title span {
+/* List view title overflow text ellipsis */
+.list-view .card-title span {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: block;
 }
 
-#anime-container.list-view .card-subtitle {
-    grid-column: 3 !important;
-    grid-row: 1 !important;
+/* List view subtitle item count text */
+.list-view .card-subtitle {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* List view status badge pill */
+.list-view .card-status-cell {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: var(--surface-2);
+    display: inline-flex;
+    justify-content: center;
+    width: fit-content;
+}
+
+/* Flatten card-actions container into parent grid */
+.list-view .card-actions {
+    display: contents;
+}
+
+/* Average rating text container (hidden in grid view by default) */
+.avg-rating-text {
+    display: none;
+}
+
+/* Average rating column display in list view */
+.list-view .avg-rating-text {
     font-size: 13px;
     color: var(--text-muted);
     display: flex;
     align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
 }
 
-#anime-container.list-view .card-status-cell {
-    grid-column: 4 !important;
-    grid-row: 1 !important;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text);
-}
-
-#anime-container.list-view .rating-badge {
-    grid-column: 5 !important;
-    grid-row: 1 !important;
-    justify-self: start;
-}
-
-#anime-container.list-view .avg-rating-text {
-    grid-column: 6 !important;
-    grid-row: 1 !important;
-    font-size: 13px;
-    color: var(--text-muted);
-    display: flex;
-    align-items: center;
+/* Rating badge button alignment in list view */
+.list-view .rating-badge {
+    justify-self: end;
 }
 
 /* --------------------------------------------------------------------------
@@ -558,30 +581,20 @@ select:hover,
     transition: color 0.15s ease, background 0.15s ease;
 }
 
-.back-btn:hover {
-    color: var(--primary);
-    background: var(--surface-2);
-}
 
-/* Status Dropdowns in Detail Page */
-.detail-action-btn,
-#global-status-select,
-.item-status-select {
+
+/* Status dropdown variants using unified app-dropdown base */
+.app-dropdown.full-width {
     width: 100%;
     padding: 10px 14px;
     background: var(--surface-2);
-    border: none;
-    border-radius: 8px;
-    color: var(--text);
-    font-size: 14px;
-    font-weight: 600;
-    outline: none;
 }
 
-.item-status-select {
+.app-dropdown.item-status-select {
     width: auto;
     padding: 6px 12px;
     font-size: 13px;
+    background: var(--surface-2);
 }
 
 /* Item Accordion Row */
@@ -671,10 +684,7 @@ select:hover,
     transition: background 0.15s ease, color 0.15s ease;
 }
 
-.item-play-btn:hover {
-    background: var(--surface);
-    color: var(--primary);
-}
+
 
 .sidebar-rating-block {
     margin-top: 12px;
@@ -732,43 +742,43 @@ select:hover,
 }
 
 .rating-badge.r-cinema {
-    background: linear-gradient(135deg, #ffe066 0%, #ffd700 50%, #b38f00 100%) !important;
-    color: #1a1a1a !important;
+    background: linear-gradient(135deg, #ffe066 0%, #ffd700 50%, #b38f00 100%);
+    color: #1a1a1a;
 }
 
 .rating-badge.r-awesome {
-    background-color: rgba(39, 174, 96, 0.25) !important;
-    color: #27ae60 !important;
+    background-color: rgba(39, 174, 96, 0.25);
+    color: #27ae60;
 }
 
 .rating-badge.r-great {
-    background-color: rgba(46, 204, 113, 0.25) !important;
-    color: #2ecc71 !important;
+    background-color: rgba(46, 204, 113, 0.25);
+    color: #2ecc71;
 }
 
 .rating-badge.r-good {
-    background-color: rgba(162, 209, 73, 0.25) !important;
-    color: #a2d149 !important;
+    background-color: rgba(162, 209, 73, 0.25);
+    color: #a2d149;
 }
 
 .rating-badge.r-regular {
-    background-color: rgba(241, 196, 15, 0.25) !important;
-    color: #f1c40f !important;
+    background-color: rgba(241, 196, 15, 0.25);
+    color: #f1c40f;
 }
 
 .rating-badge.r-bad {
-    background-color: rgba(230, 126, 34, 0.25) !important;
-    color: #e67e22 !important;
+    background-color: rgba(230, 126, 34, 0.25);
+    color: #e67e22;
 }
 
 .rating-badge.r-garbage {
-    background-color: rgba(231, 76, 60, 0.25) !important;
-    color: #e74c3c !important;
+    background-color: rgba(231, 76, 60, 0.25);
+    color: #e74c3c;
 }
 
 .rating-badge.unrated {
-    background-color: transparent !important;
-    color: var(--text-muted) !important;
+    background-color: transparent;
+    color: var(--text-muted);
 }
 
 
@@ -973,11 +983,11 @@ footer {
     margin-top: 60px;
     background: var(--surface);
     border-top: none;
-    padding: 40px 48px 24px;
+    padding: 40px 20px 24px;
 }
 
 .footer-row {
-    max-width: 1850px;
+    max-width: 100%;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 2fr 1fr 1.5fr;
@@ -1019,9 +1029,7 @@ footer {
     transition: color 0.15s ease;
 }
 
-.footer-col a:hover {
-    color: var(--primary);
-}
+
 
 .provider-brand {
     font-weight: 600;
@@ -1029,7 +1037,7 @@ footer {
 }
 
 .footer-bottom {
-    max-width: 1850px;
+    max-width: 100%;
     margin: 0 auto;
     padding-top: 20px;
     border-top: none;
@@ -1045,11 +1053,11 @@ footer {
 
     #app,
     footer {
-        padding: 24px 24px 20px;
+        padding: 20px 16px 20px;
     }
 
     .header-content {
-        padding: 0 24px;
+        padding: 0 16px;
     }
 
     .anime-detail-layout-v3 {
@@ -1086,8 +1094,8 @@ footer {
         justify-content: space-between;
     }
 
-    #anime-container.grid-view .status-column {
-        grid-template-columns: repeat(2, 1fr) !important;
+    .grid-view .status-column {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .anime-detail-layout-v3 {
@@ -1101,7 +1109,15 @@ footer {
 }
 
 @media (max-width: 480px) {
-    #anime-container.grid-view .status-column {
-        grid-template-columns: 1fr !important;
+    .grid-view .status-column {
+        grid-template-columns: 1fr;
     }
+}
+
+/* --------------------------------------------------------------------------
+   9. ULTIMATE HOVER INTERACTION SYSTEM (CENTRAL HOVER STATE)
+   -------------------------------------------------------------------------- */
+/* Universal ultimate hover effect rule */
+.ultimate-hover-effect:hover {
+    background: #ff0000;
 }
