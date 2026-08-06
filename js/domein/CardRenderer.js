@@ -14,54 +14,16 @@ const SVG_ICONS = {
  */
 export class CardRenderer {
     /**
-     * Generates HTML markup for the card poster, including hue gradient fallbacks and release badges.
+     * Generates HTML markup for the card poster, including hue gradient fallbacks.
      */
     static getPosterMarkup(anime) {
         const hash = anime.title.split('').reduce((acc, char) => char.charCodeAt(0) + acc, 0);
         const hue = hash % 360;
 
-        let posterContent = `<div style="width:100%; height:100%; background: linear-gradient(135deg, hsl(${hue}, 60%, 50%), hsl(${(hue + 40) % 360}, 70%, 40%)); display:flex; align-items:center; justify-content:center; color:#fff; font-size: 24px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; box-shadow: inset 0 0 20px rgba(0,0,0,0.1); border-radius: 6px;">${anime.title.substring(0,2)}</div>`;
         if (anime.coverImage) {
-            posterContent = `<img src="${anime.coverImage}" style="width:100%; height:100%; object-fit:cover; border-radius: 6px;" loading="lazy" />`;
+            return `<img src="${anime.coverImage}" style="width:100%; height:100%; object-fit:cover; border-radius: 6px;" loading="lazy" />`;
         }
-
-        const releaseLabels = [];
-        if (anime.items.some(item => item.status === 3)) {
-            releaseLabels.push(`
-                <div class="label-release label-airing" aria-label="Airing content">
-                    <span class="label-release-icon">${SVG_ICONS.play}</span>
-                    <span class="label-release-text">AIRING</span>
-                </div>
-            `);
-        }
-        if (anime.items.some(item => item.status === 2)) {
-            releaseLabels.push(`
-                <div class="label-release label-upcoming" aria-label="Upcoming content">
-                    <span class="label-release-icon">${SVG_ICONS.bell}</span>
-                    <span class="label-release-text">UPCOMING</span>
-                </div>
-            `);
-        }
-
-        return `${posterContent}${releaseLabels.join('')}`;
-    }
-
-    /**
-     * Creates a sticky table header row for List View with 7 explicit columns.
-     */
-    static createTableHeader() {
-        const header = document.createElement('div');
-        header.className = 'table-header-row';
-        header.innerHTML = `
-            <div class="th-cell th-cover">Cover</div>
-            <div class="th-cell th-title">Titel</div>
-            <div class="th-cell th-items">Items</div>
-            <div class="th-cell th-status">Status</div>
-            <div class="th-cell th-rating">Mijn Rating</div>
-            <div class="th-cell th-avg">Gem. Score</div>
-            <div class="th-cell th-action">Actie</div>
-        `;
-        return header;
+        return `<div style="width:100%; height:100%; background: linear-gradient(135deg, hsl(${hue}, 60%, 50%), hsl(${(hue + 40) % 360}, 70%, 40%)); display:flex; align-items:center; justify-content:center; color:#fff; font-size: 24px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; box-shadow: inset 0 0 20px rgba(0,0,0,0.1); border-radius: 6px;">${anime.title.substring(0,2)}</div>`;
     }
 
     /**
@@ -75,10 +37,6 @@ export class CardRenderer {
                 container.innerHTML = '<p class="text-muted" style="padding: 20px;">Geen animes gevonden.</p>';
                 return;
             }
-        }
-        
-        if (container.classList.contains('list-view') && !container.querySelector('.table-header-row')) {
-            container.insertBefore(this.createTableHeader(), container.firstChild);
         }
 
         let wrapper = container.querySelector('.status-column');

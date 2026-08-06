@@ -626,41 +626,6 @@ footer {
 
 /* ---------------- PURE DATA TABLE LAYOUT ---------------- */
 
-/* Sticky Table Header Row displaying explicit column headers */
-.table-header-row {
-    display: grid;
-    grid-template-columns: 44px minmax(220px, 1fr) 90px 140px 100px 100px 40px;
-    gap: 12px;
-    align-items: center;
-    padding: 10px 12px;
-    background: var(--surface-2);
-    border-bottom: 2px solid var(--border);
-    font-size: 11px;
-    font-weight: 800;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    margin-bottom: 4px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.table-header-row .th-cell {
-    display: flex;
-    align-items: center;
-}
-
-.table-header-row .th-items,
-.table-header-row .th-status,
-.table-header-row .th-rating,
-.table-header-row .th-avg,
-.table-header-row .th-action {
-    justify-content: center;
-}
-
 /* Status Column Container in List View: Tight 0px gap for seamless table row stacking */
 .list-view .status-column {
     display: flex; 
@@ -985,18 +950,7 @@ footer {
    RATING BADGES & STATUS INDICATORS
    ========================================================================== */
 
-/* High-level status bar on the left edge of the card, color-coded by the anime's progress. */
-.anime-card::before {
-    content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
-    z-index: 2;
-}
-
-/* Color definitions for the status bar based on the data-status attribute. */
-.anime-card[data-status="-1"]::before { background: var(--status-none); }   /* Te Bekijken */
-.anime-card[data-status="0"]::before  { background: var(--status-watching); } /* Bezig */
-.anime-card[data-status="1"]::before  { display: none; }                     /* Bekeken: no bar */
-.anime-card[data-has-upcoming="true"]::before { background: var(--status-upcoming); display: block; }
-.anime-card[data-has-airing="true"]::before { background: var(--status-airing); display: block; }
+/* Status bar line on left edge removed per user request */
 
 /* Visual feedback for cards that have been completed, using a muted surface color. */
 .anime-card[data-status="1"],
