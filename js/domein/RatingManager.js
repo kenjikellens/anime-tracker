@@ -9,7 +9,6 @@ export class RatingManager {
     static getCardClass(rating) {
         if (!rating || rating === 0) return '';
         if (rating >= 9) return 'glow-gold';
-        if (rating < 2) return 'glow-red';
         return '';
     }
 

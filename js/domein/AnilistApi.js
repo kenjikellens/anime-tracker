@@ -29,6 +29,10 @@ export class AnilistApi {
                 body: JSON.stringify({ query, variables })
             });
 
+            if (!res.ok) {
+                return null;
+            }
+
             const data = await res.json();
             if (data.data && data.data.Media) {
                 return data.data.Media;
@@ -66,6 +70,10 @@ export class AnilistApi {
                 },
                 body: JSON.stringify({ query, variables })
             });
+
+            if (!res.ok) {
+                return null;
+            }
 
             const data = await res.json();
             if (data.data && data.data.Media) {

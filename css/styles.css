@@ -71,13 +71,26 @@ body {
 }
 
 /* Universal pointer cursor for interactive elements */
-a, button, select, [role="button"], .rating-badge, .anime-card,
-.item-play-btn, .view-btn, .size-btn, input[type="checkbox"], label,
-.status-option, .table-header-row, .expand-icon, summary {
+a,
+button,
+select,
+[role="button"],
+.rating-badge,
+.anime-card,
+.item-play-btn,
+.view-btn,
+.size-btn,
+input[type="checkbox"],
+label,
+.status-option,
+.table-header-row,
+.expand-icon,
+summary {
     cursor: pointer !important;
 }
 
-input, textarea {
+input,
+textarea {
     cursor: text !important;
 }
 
@@ -86,7 +99,12 @@ input, textarea {
 }
 
 /* Unified Hover Interaction System */
-a:hover, button:hover, select:hover, .filter-btn:hover, .view-btn:hover, .size-btn:hover {
+a:hover,
+button:hover,
+select:hover,
+.filter-btn:hover,
+.view-btn:hover,
+.size-btn:hover {
     opacity: 0.85;
     border-color: transparent !important;
 }
@@ -207,6 +225,29 @@ a:hover, button:hover, select:hover, .filter-btn:hover, .view-btn:hover, .size-b
     transition: background 0.15s ease;
 }
 
+/* Theme Toggle Button Icon Visibility */
+
+/* Displays the sun icon in light mode */
+.theme-icon.icon-sun {
+    display: block;
+}
+
+/* Hides the moon icon in light mode */
+.theme-icon.icon-moon {
+    display: none;
+}
+
+/* Hides the sun icon when dark mode is enabled */
+[data-theme="dark"] .theme-icon.icon-sun {
+    display: none;
+}
+
+/* Displays the moon icon when dark mode is enabled */
+[data-theme="dark"] .theme-icon.icon-moon {
+    display: block;
+}
+
+
 /* Toolbar Controls */
 .toolbar {
     display: flex;
@@ -255,7 +296,8 @@ a:hover, button:hover, select:hover, .filter-btn:hover, .view-btn:hover, .size-b
     gap: 16px;
 }
 
-.view-toggle, .size-toggle {
+.view-toggle,
+.size-toggle {
     display: flex;
     align-items: center;
     gap: 6px;
@@ -276,7 +318,8 @@ a:hover, button:hover, select:hover, .filter-btn:hover, .view-btn:hover, .size-b
     color: var(--text);
 }
 
-.view-btn, .size-btn {
+.view-btn,
+.size-btn {
     background: var(--surface);
     border: none;
     color: var(--text-muted);
@@ -290,7 +333,8 @@ a:hover, button:hover, select:hover, .filter-btn:hover, .view-btn:hover, .size-b
     font-size: 14px;
 }
 
-.view-btn.active, .size-btn.active {
+.view-btn.active,
+.size-btn.active {
     background: var(--active-bg);
     color: var(--active-color);
     border: none !important;
@@ -520,7 +564,9 @@ a:hover, button:hover, select:hover, .filter-btn:hover, .view-btn:hover, .size-b
 }
 
 /* Status Dropdowns in Detail Page */
-.detail-action-btn, #global-status-select, .item-status-select {
+.detail-action-btn,
+#global-status-select,
+.item-status-select {
     width: 100%;
     padding: 10px 14px;
     background: var(--surface-2);
@@ -594,8 +640,15 @@ a:hover, button:hover, select:hover, .filter-btn:hover, .view-btn:hover, .size-b
     color: var(--text-muted);
 }
 
-.item-type-badge.type-serie { background: rgba(157, 78, 221, 0.15); color: var(--primary); }
-.item-type-badge.type-film { background: rgba(0, 122, 204, 0.15); color: var(--status-done); }
+.item-type-badge.type-serie {
+    background: rgba(157, 78, 221, 0.15);
+    color: var(--primary);
+}
+
+.item-type-badge.type-film {
+    background: rgba(0, 122, 204, 0.15);
+    color: var(--status-done);
+}
 
 .item-actions-group {
     display: flex;
@@ -678,17 +731,49 @@ a:hover, button:hover, select:hover, .filter-btn:hover, .view-btn:hover, .size-b
     background: var(--surface-2);
 }
 
-.rating-badge.r-cinema { background: linear-gradient(135deg, #ffe066 0%, #ffd700 50%, #b38f00 100%) !important; color: #1a1a1a !important; }
-.rating-badge.r-awesome { background-color: rgba(39, 174, 96, 0.25) !important; color: #27ae60 !important; }
-.rating-badge.r-great { background-color: rgba(46, 204, 113, 0.25) !important; color: #2ecc71 !important; }
-.rating-badge.r-good { background-color: rgba(162, 209, 73, 0.25) !important; color: #a2d149 !important; }
-.rating-badge.r-regular { background-color: rgba(241, 196, 15, 0.25) !important; color: #f1c40f !important; }
-.rating-badge.r-bad { background-color: rgba(230, 126, 34, 0.25) !important; color: #e67e22 !important; }
-.rating-badge.r-garbage { background-color: rgba(231, 76, 60, 0.25) !important; color: #e74c3c !important; }
-.rating-badge.unrated { background-color: transparent !important; color: var(--text-muted) !important; }
+.rating-badge.r-cinema {
+    background: linear-gradient(135deg, #ffe066 0%, #ffd700 50%, #b38f00 100%) !important;
+    color: #1a1a1a !important;
+}
 
-.glow-gold { box-shadow: 0 0 12px rgba(255, 215, 0, 0.4) !important; }
-.glow-red { box-shadow: 0 0 12px rgba(231, 76, 60, 0.4) !important; }
+.rating-badge.r-awesome {
+    background-color: rgba(39, 174, 96, 0.25) !important;
+    color: #27ae60 !important;
+}
+
+.rating-badge.r-great {
+    background-color: rgba(46, 204, 113, 0.25) !important;
+    color: #2ecc71 !important;
+}
+
+.rating-badge.r-good {
+    background-color: rgba(162, 209, 73, 0.25) !important;
+    color: #a2d149 !important;
+}
+
+.rating-badge.r-regular {
+    background-color: rgba(241, 196, 15, 0.25) !important;
+    color: #f1c40f !important;
+}
+
+.rating-badge.r-bad {
+    background-color: rgba(230, 126, 34, 0.25) !important;
+    color: #e67e22 !important;
+}
+
+.rating-badge.r-garbage {
+    background-color: rgba(231, 76, 60, 0.25) !important;
+    color: #e74c3c !important;
+}
+
+.rating-badge.unrated {
+    background-color: transparent !important;
+    color: var(--text-muted) !important;
+}
+
+
+
+
 
 /* Detail Accordion & Layout V3 */
 .anime-detail-layout-v3 {
@@ -751,7 +836,8 @@ a:hover, button:hover, select:hover, .filter-btn:hover, .view-btn:hover, .size-b
 }
 
 /* Modals & Rating Inputs */
-#modal-overlay, #detail-overlay {
+#modal-overlay,
+#detail-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -899,13 +985,19 @@ footer {
     margin-bottom: 32px;
 }
 
-.footer-col h3, .footer-col h4 {
+.footer-col h3,
+.footer-col h4 {
     font-weight: 700;
     margin-bottom: 12px;
 }
 
-.footer-col h3 .ras { color: var(--primary); }
-.footer-col h3 .cal { color: var(--text); }
+.footer-col h3 .ras {
+    color: var(--primary);
+}
+
+.footer-col h3 .cal {
+    color: var(--text);
+}
 
 .footer-col p {
     color: var(--text-muted);
@@ -950,12 +1042,16 @@ footer {
    8. CONSOLIDATED RESPONSIVE MEDIA QUERIES
    -------------------------------------------------------------------------- */
 @media (max-width: 1200px) {
-    #app, footer {
+
+    #app,
+    footer {
         padding: 24px 24px 20px;
     }
+
     .header-content {
         padding: 0 24px;
     }
+
     .anime-detail-layout-v3 {
         grid-template-columns: 240px 1fr;
         gap: 20px;
@@ -963,32 +1059,41 @@ footer {
 }
 
 @media (max-width: 768px) {
-    #app, footer {
+
+    #app,
+    footer {
         padding: 16px 16px 20px;
     }
+
     .header-content {
         grid-template-columns: 1fr auto;
         gap: 12px;
         padding: 0 16px;
     }
+
     .header-center {
         grid-row: 2;
         grid-column: 1 / -1;
     }
+
     .toolbar {
         flex-direction: column;
         align-items: stretch;
     }
+
     .toolbar-right {
         margin-left: 0;
         justify-content: space-between;
     }
+
     #anime-container.grid-view .status-column {
         grid-template-columns: repeat(2, 1fr) !important;
     }
+
     .anime-detail-layout-v3 {
         grid-template-columns: 1fr;
     }
+
     .footer-row {
         grid-template-columns: 1fr;
         gap: 24px;

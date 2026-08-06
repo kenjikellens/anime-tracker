@@ -1745,7 +1745,7 @@
         "status": 1,
         "rating": 4,
         "releaseDate": "",
-        "coverImage": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx5042-FZ8XdXStvn0u.png",
         "items": [
             {
                 "id": "kiss-x-sis-tv",
@@ -1765,7 +1765,8 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "anilistId": 5042
     },
     {
         "id": "rent-a-girlfriend",
@@ -4750,7 +4751,7 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "",
-        "coverImage": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx103302-RVGwGRDGdMQq.jpg",
         "items": [
             {
                 "id": "kono-oto-tomare-sounds-of-life-season-1",
@@ -4770,7 +4771,8 @@
                 "watchedEpisodes": [],
                 "episodesCount": 13
             }
-        ]
+        ],
+        "anilistId": 103302
     },
     {
         "id": "black-summoner",

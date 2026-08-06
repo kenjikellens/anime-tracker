@@ -190,8 +190,13 @@ async function hydrateAnilistData() {
             if (anime.anilistId) {
                 apiData = await AnilistApi.fetchMediaById(anime.anilistId);
             } else {
-                const searchTerm = anime.items.length > 0 ? anime.items[0].title : anime.title;
-                apiData = await AnilistApi.fetchMediaByTitle(searchTerm);
+                const itemTitle = anime.items.length > 0 ? anime.items[0].title : null;
+                if (itemTitle) {
+                    apiData = await AnilistApi.fetchMediaByTitle(itemTitle);
+                }
+                if (!apiData) {
+                    apiData = await AnilistApi.fetchMediaByTitle(anime.title);
+                }
             }
 
             if (apiData) {
