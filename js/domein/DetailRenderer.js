@@ -151,7 +151,7 @@ export class DetailRenderer {
                 rowHeader.className = `detail-item-row ${item.status === 1 ? 'watched' : ''}`;
                 
                 let itemStatusSelect = `
-                    <select class="app-dropdown item-status-select ultimate-hover-effect" id="status-${item.id}">
+                    <select class="app-dropdown item-status-select ultimate-hover-effect hover-color-change" id="status-${item.id}">
                         <option value="3" ${item.status === 3 ? 'selected' : ''}>Airing</option>
                         <option value="2" ${item.status === 2 ? 'selected' : ''}>Upcoming</option>
                         <option value="-1" ${item.status === -1 ? 'selected' : ''}>Te Bekijken</option>

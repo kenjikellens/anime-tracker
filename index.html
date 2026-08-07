@@ -86,9 +86,9 @@
             </div>
             <div class="header-right">
                 <!-- Opens a JSON backup download via `DataStore.triggerBackup` -->
-                <button id="download-btn" class="hidden ultimate-hover-effect" title="Download backup"><svg class="svg-icon-large"><use href="#icon-download"></use></svg></button>
+                <button id="download-btn" class="hidden ultimate-hover-effect hover-color-change" title="Download backup"><svg class="svg-icon-large"><use href="#icon-download"></use></svg></button>
                 <!-- Toggles the global light/dark theme -->
-                <button id="theme-toggle" class="ultimate-hover-effect" title="Switch theme">
+                <button id="theme-toggle" class="ultimate-hover-effect hover-color-change" title="Switch theme">
                     <svg class="theme-icon icon-sun svg-icon-large"><use href="#icon-sun"></use></svg>
                     <svg class="theme-icon icon-moon svg-icon-large"><use href="#icon-moon"></use></svg>
                 </button>
@@ -107,12 +107,12 @@
             <div class="footer-col footer-links">
                 <h4>Navigatie</h4>
                 <ul>
-                    <li><a href="#/" class="ultimate-hover-effect">Alles</a></li>
-                    <li><a href="#/" class="ultimate-hover-effect" onclick="document.querySelector('[data-filter=\'airing\']')?.click(); return false;">Airing</a></li>
-                    <li><a href="#/" class="ultimate-hover-effect" onclick="document.querySelector('[data-filter=\'upcoming\']')?.click(); return false;">Upcoming</a></li>
-                    <li><a href="#/" class="ultimate-hover-effect" onclick="document.querySelector('[data-filter=\'-1\']')?.click(); return false;">Te Bekijken</a></li>
-                    <li><a href="#/" class="ultimate-hover-effect" onclick="document.querySelector('[data-filter=\'0\']')?.click(); return false;">Bezig</a></li>
-                    <li><a href="#/" class="ultimate-hover-effect" onclick="document.querySelector('[data-filter=\'1\']')?.click(); return false;">Bekeken</a></li>
+                    <li><a href="#/" class="ultimate-hover-effect hover-color-change">Alles</a></li>
+                    <li><a href="#/" class="ultimate-hover-effect hover-color-change" onclick="document.querySelector('[data-filter=\'airing\']')?.click(); return false;">Airing</a></li>
+                    <li><a href="#/" class="ultimate-hover-effect hover-color-change" onclick="document.querySelector('[data-filter=\'upcoming\']')?.click(); return false;">Upcoming</a></li>
+                    <li><a href="#/" class="ultimate-hover-effect hover-color-change" onclick="document.querySelector('[data-filter=\'-1\']')?.click(); return false;">Te Bekijken</a></li>
+                    <li><a href="#/" class="ultimate-hover-effect hover-color-change" onclick="document.querySelector('[data-filter=\'0\']')?.click(); return false;">Bezig</a></li>
+                    <li><a href="#/" class="ultimate-hover-effect hover-color-change" onclick="document.querySelector('[data-filter=\'1\']')?.click(); return false;">Bekeken</a></li>
                 </ul>
             </div>
             <div class="footer-col footer-credits">
@@ -137,8 +137,8 @@
                 <span class="max-rating">/ 10</span>
             </div>
             <div class="modal-buttons">
-                <button id="clear-rating" class="btn-secondary ultimate-hover-effect" style="margin-right:auto; color:var(--text-muted); border-color:var(--border);">Wissen</button>
-                <button id="cancel-rating" class="btn-secondary ultimate-hover-effect">Annuleren</button>
+                <button id="clear-rating" class="btn-secondary ultimate-hover-effect hover-color-change" style="margin-right:auto; color:var(--text-muted); border-color:var(--border);">Wissen</button>
+                <button id="cancel-rating" class="btn-secondary ultimate-hover-effect hover-color-change">Annuleren</button>
                 <button id="save-rating" class="btn-primary ultimate-hover-effect">Opslaan</button>
             </div>
         </div>
@@ -149,7 +149,7 @@
         <div class="modal modal-detail">
             <div class="modal-detail-header">
                 <h3 id="detail-title"></h3>
-                <button id="close-detail" class="btn-close ultimate-hover-effect">&times;</button>
+                <button id="close-detail" class="btn-close ultimate-hover-effect hover-color-change">&times;</button>
             </div>
             <div id="detail-content"></div>
         </div>

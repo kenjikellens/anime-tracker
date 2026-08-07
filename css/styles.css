@@ -747,6 +747,11 @@ textarea {
     background: var(--surface-2);
 }
 
+/* Lighter brightness filter on the expanding inset layer of rating badges during hover */
+.rating-badge:hover::before {
+    filter: brightness(1.3);
+}
+
 .rating-badge.r-cinema {
     background: linear-gradient(135deg, #ffe066 0%, #ffd700 50%, #b38f00 100%);
     color: #1a1a1a;
@@ -1121,34 +1126,37 @@ footer {
 }
 
 /* --------------------------------------------------------------------------
-   9. ULTIMATE HOVER INTERACTION SYSTEM (CENTRAL HOVER STATE)
+   9. ULTIMATE HOVER INTERACTION SYSTEM (MODULAR HOVER SYSTEM)
    -------------------------------------------------------------------------- */
-/* Base positioning for elements with ultimate hover effect */
+/* Base positioning for elements with ultimate hover expansion effect */
 .ultimate-hover-effect {
     position: relative;
     z-index: 1;
-    transition: background-color 0.15s ease;
 }
 
-/* Background expansion layer pseudo-element */
+/* Background expansion layer pseudo-element using inherited background (supports solid colors & gradients) */
 .ultimate-hover-effect::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: transparent;
+    background: inherit;
     border-radius: inherit;
-    transition: inset 0.15s ease, background-color 0.15s ease;
+    transition: inset 0.15s ease, background 0.15s ease, filter 0.15s ease;
     z-index: -1;
     pointer-events: none;
 }
 
-/* Synchronizes base container background with hover surface color */
-.ultimate-hover-effect:hover {
-    background-color: var(--surface-hover);
-}
-
-/* Expands container background outward by 3px (1.03x scale equivalent) with matching solid surface color */
+/* Expands container background outward by inset offset on hover */
 .ultimate-hover-effect:hover::before {
     inset: -2px;
+}
+
+/* Separate utility class for surface hover color transition */
+.hover-color-change {
+    transition: background-color 0.15s ease;
+}
+
+/* Changes background color to surface hover state on hover */
+.hover-color-change:hover {
     background-color: var(--surface-hover);
 }
