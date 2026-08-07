@@ -173,7 +173,7 @@ export class DetailRenderer {
 
                 const itemRatingClass = RatingManager.getBadgeClass(item.rating);
                 let itemRatingBtn = `
-                    <div class="rating-badge item-rating-badge ${itemRatingClass}" title="Beoordeel dit item" data-item-id="${item.id}">
+                    <div class="rating-badge item-rating-badge ultimate-hover-effect ${itemRatingClass}" title="Beoordeel dit item" data-item-id="${item.id}">
                         ${SVG_ICONS.star} 
                         <span>${item.rating > 0 ? item.rating.toFixed(1) : 'NR'}</span>
                     </div>
