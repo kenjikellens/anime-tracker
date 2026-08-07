@@ -86,7 +86,95 @@
         </div>
     </header>
 
-    <div id="app"></div>
+    <div id="app">
+        <!-- Main controls: status filters, sort selector, grid/list toggle, size selector -->
+        <div class="toolbar">
+            <!-- Status filters map to anime.status values in `js/app.js` -->
+            <div class="filter-group">
+                <button class="filter-btn active ultimate-hover-effect" data-filter="all">Alles</button>
+                <button class="filter-btn ultimate-hover-effect" data-filter="airing">Airing</button>
+                <button class="filter-btn ultimate-hover-effect" data-filter="upcoming">Upcoming</button>
+                <button class="filter-btn ultimate-hover-effect" data-filter="-1">Te Bekijken</button>
+                <button class="filter-btn ultimate-hover-effect" data-filter="0">Bezig</button>
+                <button class="filter-btn ultimate-hover-effect" data-filter="1">Bekeken</button>
+            </div>
+
+            <!-- Sort order controls the repository result order before render -->
+            <div class="sort-group">
+                <select id="sort-select" class="app-dropdown ultimate-hover-effect">
+                    <option value="default">Sorteren: Standaard</option>
+                    <option value="title-asc">Titel A→Z</option>
+                    <option value="title-desc">Titel Z→A</option>
+                    <option value="rating-desc">Beoordeling ↓</option>
+                    <option value="rating-asc">Beoordeling ↑</option>
+                    <option value="status">Status</option>
+                </select>
+            </div>
+
+            <div class="toolbar-right">
+                <!-- Grid sizing is only visible while the grid layout is active -->
+                <div class="size-toggle" id="size-toggle-container">
+                    <span class="size-toggle-label">Grid:</span>
+                    <button class="size-btn ultimate-hover-effect" id="grid-cols-minus" title="Minder kolommen">&minus;</button>
+                    <span id="grid-cols-val" class="size-val">5</span>
+                    <button class="size-btn ultimate-hover-effect" id="grid-cols-plus" title="Meer kolommen">+</button>
+                </div>
+
+                <!-- Grid/list toggle changes the container class in `js/app.js` -->
+                <div class="view-toggle">
+                    <button class="view-btn active ultimate-hover-effect" id="grid-btn" title="Grid view"><svg class="svg-icon-large"><use href="#icon-grid"></use></svg></button>
+                    <button class="view-btn ultimate-hover-effect" id="list-btn" title="List view"><svg class="svg-icon-large"><use href="#icon-list"></use></svg></button>
+                </div>
+
+                <span class="item-count" id="item-count">0 items</span>
+            </div>
+        </div>
+
+        <!-- Main content area: filled dynamically by `CardRenderer.renderAll` -->
+        <main>
+            <!-- General app loader displayed during initial data initialization -->
+            <div id="general-app-loader" class="general-app-loader" data-visible="true">
+                <svg width="48" height="48" viewBox="0 0 32 32" class="card-spinner-svg">
+                    <circle cx="16" cy="16" r="12" class="card-spinner-circle" />
+                </svg>
+            </div>
+            <div id="anime-container" class="grid-view">
+                <!-- Dynamically filled by JavaScript -->
+            </div>
+        </main>
+
+        <!-- Template used by CardRenderer to populate the anime list dynamically -->
+        <template id="anime-card-template">
+            <div class="anime-card-wrapper">
+                <div class="anime-card ultimate-hover-effect">
+                    <div class="card-poster">
+                        <div class="card-internal-loader">
+                            <svg width="32" height="32" viewBox="0 0 32 32" class="card-spinner-svg">
+                                <circle cx="16" cy="16" r="12" class="card-spinner-circle" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-header">
+                            <div class="card-title"><span></span></div>
+                        </div>
+                        <div class="card-subtitle"></div>
+                        <div class="card-status-cell"></div>
+                        <div class="card-actions">
+                            <div class="avg-rating-text" title="Gemiddelde item-rating">
+                                <svg class="svg-icon svg-icon-margin"><use href="#icon-star-half"></use></svg>
+                                <span class="avg-rating-val"></span>
+                            </div>
+                            <div class="rating-badge ultimate-hover-effect" title="Beoordeel deze anime">
+                                <svg class="svg-icon svg-icon-margin"><use href="#icon-star"></use></svg>
+                                <span class="rating-val"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
 
     <footer>
         <div class="footer-row">

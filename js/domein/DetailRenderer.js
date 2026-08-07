@@ -39,9 +39,27 @@ export class DetailRenderer {
         const hue = hash % 360;
 
         const posterWrap = layout.querySelector('.sidebar-poster-wrap');
+        const loaderHtml = `
+            <div class="card-internal-loader">
+                <svg width="32" height="32" viewBox="0 0 32 32" class="card-spinner-svg">
+                    <circle cx="16" cy="16" r="12" class="card-spinner-circle" />
+                </svg>
+            </div>
+        `;
+        posterWrap.dataset.cardLoading = anime.coverImage ? 'true' : 'false';
         posterWrap.innerHTML = anime.coverImage
-            ? `<img class="detail-poster" src="${anime.coverImage}" alt="${title} cover" loading="lazy" />`
+            ? `${loaderHtml}<img class="detail-poster" src="${anime.coverImage}" alt="${title} cover" loading="lazy" />`
             : `<div class="detail-poster-fallback" style="--poster-hue: ${hue};">${initials}</div>`;
+
+        const detailImgEl = posterWrap.querySelector('.detail-poster');
+        if (detailImgEl) {
+            if (detailImgEl.complete) {
+                posterWrap.dataset.cardLoading = 'false';
+            } else {
+                detailImgEl.onload = () => { posterWrap.dataset.cardLoading = 'false'; };
+                detailImgEl.onerror = () => { posterWrap.dataset.cardLoading = 'false'; };
+            }
+        }
 
         // Title
         const sidebarTitle = layout.querySelector('.sidebar-title');

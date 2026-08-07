@@ -23,8 +23,16 @@ export class CardRenderer {
         const hash = anime.title.split('').reduce((acc, char) => char.charCodeAt(0) + acc, 0);
         const hue = hash % 360;
 
+        const loaderHtml = `
+            <div class="card-internal-loader">
+                <svg width="32" height="32" viewBox="0 0 32 32" class="card-spinner-svg">
+                    <circle cx="16" cy="16" r="12" class="card-spinner-circle" />
+                </svg>
+            </div>
+        `;
+
         if (anime.coverImage) {
-            return `<img src="${anime.coverImage}" class="poster-img" loading="lazy" />`;
+            return `${loaderHtml}<img src="${anime.coverImage}" class="poster-img" loading="lazy" />`;
         }
         return `<div class="poster-fallback" style="--poster-hue: ${hue};">${anime.title.substring(0,2)}</div>`;
     }
@@ -83,6 +91,17 @@ export class CardRenderer {
             const posterDiv = div.querySelector('.card-poster');
             if (posterDiv) {
                 posterDiv.innerHTML = this.getPosterMarkup(anime);
+                const imgEl = posterDiv.querySelector('.poster-img');
+                if (imgEl) {
+                    if (imgEl.complete) {
+                        requestAnimationFrame(() => { div.dataset.cardLoading = 'false'; });
+                    } else {
+                        imgEl.onload = () => { div.dataset.cardLoading = 'false'; };
+                        imgEl.onerror = () => { div.dataset.cardLoading = 'false'; };
+                    }
+                } else {
+                    div.dataset.cardLoading = 'false';
+                }
             }
         }
     }
@@ -111,6 +130,8 @@ export class CardRenderer {
         mainCard.setAttribute('data-has-airing', anime.items.some(item => item.status === 3) ? 'true' : 'false');
         mainCard.setAttribute('data-has-upcoming', anime.items.some(item => item.status === 2) ? 'true' : 'false');
         
+        mainCard.dataset.cardLoading = anime.coverImage ? 'true' : 'false';
+
         const cardClass = RatingManager.getCardClass(anime.rating);
         if (cardClass) {
             mainCard.dataset.glow = cardClass;
@@ -122,6 +143,21 @@ export class CardRenderer {
 
         const posterDiv = wrapper.querySelector('.card-poster');
         posterDiv.innerHTML = this.getPosterMarkup(anime);
+
+        const imgEl = posterDiv.querySelector('.poster-img');
+        if (imgEl) {
+            if (imgEl.complete) {
+                // Ensure initial frame paint of card shell and spinner before fading loader
+                requestAnimationFrame(() => {
+                    setTimeout(() => {
+                        mainCard.dataset.cardLoading = 'false';
+                    }, 50);
+                });
+            } else {
+                imgEl.onload = () => { mainCard.dataset.cardLoading = 'false'; };
+                imgEl.onerror = () => { mainCard.dataset.cardLoading = 'false'; };
+            }
+        }
 
         wrapper.querySelector('.card-title span').textContent = anime.title;
         wrapper.querySelector('.card-subtitle').textContent = `${itemCount} items`;

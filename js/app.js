@@ -36,14 +36,21 @@ function normalizeStoredFilter(filter) {
  * Routes and handles rendering of views based on the window location hash.
  * Fetches dynamic templates for home.html or card.html and renders the layout.
  */
+let homeLayoutHtml = null;
+
 async function handleRoute() {
     const hash = window.location.hash || '#/';
     const appContainer = document.getElementById('app');
     if (!appContainer) return;
 
     if (hash === '#/' || hash === '') {
-        const response = await fetch('home.html');
-        appContainer.innerHTML = await response.text();
+        if (!document.getElementById('anime-container')) {
+            if (!homeLayoutHtml) {
+                const response = await fetch('home.html');
+                homeLayoutHtml = await response.text();
+            }
+            appContainer.innerHTML = homeLayoutHtml;
+        }
 
         renderData();
         setupFilters();
@@ -333,6 +340,11 @@ function renderData() {
     const itemCountEl = document.getElementById('item-count');
     if (itemCountEl) {
         itemCountEl.textContent = `${animes.length} items`;
+    }
+
+    const genLoader = document.getElementById('general-app-loader');
+    if (genLoader) {
+        genLoader.dataset.visible = 'false';
     }
 
     loadNextBatch(true);
