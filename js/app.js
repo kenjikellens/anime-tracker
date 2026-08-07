@@ -6,6 +6,7 @@ import { SearchManager } from './domein/SearchManager.js';
 import { ThemeManager } from './domein/ThemeManager.js';
 import { CookieManager } from './domein/CookieManager.js';
 import { DropdownManager } from './domein/DropdownManager.js';
+import { UI_CLASSES } from './domein/UIConstants.js';
 
 // Overview page state. Persisted in cookies so the UI survives refreshes.
 let repository = new AnimeRepository();
@@ -437,15 +438,15 @@ function setupFilters() {
     const filterBtns = document.querySelectorAll('.filter-btn');
     filterBtns.forEach(btn => {
         if (btn.getAttribute('data-filter') === currentFilter) {
-            btn.classList.add('active');
+            btn.classList.add(UI_CLASSES.ACTIVE);
         } else {
-            btn.classList.remove('active');
+            btn.classList.remove(UI_CLASSES.ACTIVE);
         }
 
         btn.addEventListener('click', (e) => {
-            filterBtns.forEach(b => b.classList.remove('active'));
+            filterBtns.forEach(b => b.classList.remove(UI_CLASSES.ACTIVE));
             const target = e.currentTarget;
-            target.classList.add('active');
+            target.classList.add(UI_CLASSES.ACTIVE);
 
             currentFilter = target.getAttribute('data-filter');
             CookieManager.set('activeFilter', currentFilter);
@@ -487,16 +488,16 @@ function setupViewToggles() {
     container.style.setProperty('--grid-cols', currentGridCols);
 
     if (currentViewMode === 'list') {
-        if (listBtn) listBtn.classList.add('active');
-        if (gridBtn) gridBtn.classList.remove('active');
-        container.classList.remove('grid-view');
-        container.classList.add('list-view');
+        if (listBtn) listBtn.classList.add(UI_CLASSES.ACTIVE);
+        if (gridBtn) gridBtn.classList.remove(UI_CLASSES.ACTIVE);
+        container.classList.remove(UI_CLASSES.GRID_VIEW);
+        container.classList.add(UI_CLASSES.LIST_VIEW);
         if (sizeToggleContainer) sizeToggleContainer.style.display = 'none';
     } else {
-        if (gridBtn) gridBtn.classList.add('active');
-        if (listBtn) listBtn.classList.remove('active');
-        container.classList.remove('grid-view');
-        container.classList.add('grid-view');
+        if (gridBtn) gridBtn.classList.add(UI_CLASSES.ACTIVE);
+        if (listBtn) listBtn.classList.remove(UI_CLASSES.ACTIVE);
+        container.classList.remove(UI_CLASSES.LIST_VIEW);
+        container.classList.add(UI_CLASSES.GRID_VIEW);
         if (sizeToggleContainer) sizeToggleContainer.style.display = 'flex';
     }
 
@@ -505,10 +506,10 @@ function setupViewToggles() {
             currentViewMode = 'grid';
             CookieManager.set('viewMode', 'grid');
 
-            gridBtn.classList.add('active');
-            if (listBtn) listBtn.classList.remove('active');
-            container.classList.remove('list-view');
-            container.classList.add('grid-view');
+            gridBtn.classList.add(UI_CLASSES.ACTIVE);
+            if (listBtn) listBtn.classList.remove(UI_CLASSES.ACTIVE);
+            container.classList.remove(UI_CLASSES.LIST_VIEW);
+            container.classList.add(UI_CLASSES.GRID_VIEW);
             container.style.setProperty('--grid-cols', currentGridCols);
             if (sizeToggleContainer) sizeToggleContainer.style.display = 'flex';
             renderData();
@@ -520,10 +521,10 @@ function setupViewToggles() {
             currentViewMode = 'list';
             CookieManager.set('viewMode', 'list');
 
-            listBtn.classList.add('active');
-            if (gridBtn) gridBtn.classList.remove('active');
-            container.classList.remove('grid-view');
-            container.classList.add('list-view');
+            listBtn.classList.add(UI_CLASSES.ACTIVE);
+            if (gridBtn) gridBtn.classList.remove(UI_CLASSES.ACTIVE);
+            container.classList.remove(UI_CLASSES.GRID_VIEW);
+            container.classList.add(UI_CLASSES.LIST_VIEW);
             if (sizeToggleContainer) sizeToggleContainer.style.display = 'none';
             renderData();
         });
@@ -557,7 +558,7 @@ function setupViewToggles() {
 function setupDownloadBtn() {
     const dBtn = document.getElementById('download-btn');
     if (dBtn) {
-        dBtn.classList.remove('hidden');
+        dBtn.classList.remove(UI_CLASSES.HIDDEN);
         dBtn.addEventListener('click', () => {
             DataStore.triggerBackup(repository);
         });

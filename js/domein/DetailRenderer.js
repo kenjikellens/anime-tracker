@@ -1,5 +1,6 @@
 import { RatingManager } from './RatingManager.js';
 import { DropdownManager } from './DropdownManager.js';
+import { UI_CLASSES, DATA_ATTRS } from './UIConstants.js';
 
 // WATCH_PROVIDER_DOMAIN: The base domain of the streaming provider for playing anime.
 const WATCH_PROVIDER_DOMAIN = "miruro.ru";

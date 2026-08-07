@@ -1,3 +1,5 @@
+import { UI_CLASSES, DATA_ATTRS } from './UIConstants.js';
+
 /**
  * DropdownManager domain module.
  * Enhances native HTML select dropdowns into fully interactive custom UI dropdown components
@@ -16,26 +18,26 @@ export class DropdownManager {
         select.style.display = 'none';
 
         // Create custom dropdown wrapper container
-        const isFullWidth = select.className.includes('full-width');
-        const isItemStatus = select.className.includes('item-status-select');
+        const isFullWidth = select.className.includes(UI_CLASSES.DROPDOWN.FULL_WIDTH);
+        const isItemStatus = select.className.includes(UI_CLASSES.DROPDOWN.ITEM_STATUS);
 
         const wrapper = document.createElement('div');
-        wrapper.className = `custom-select-wrapper${isFullWidth ? ' full-width' : ''}${isItemStatus ? ' item-status-select' : ''}`;
+        wrapper.className = `${UI_CLASSES.DROPDOWN.WRAPPER}${isFullWidth ? ` ${UI_CLASSES.DROPDOWN.FULL_WIDTH}` : ''}${isItemStatus ? ` ${UI_CLASSES.DROPDOWN.ITEM_STATUS}` : ''}`;
 
         // Get currently selected option
         const currentOpt = select.options[select.selectedIndex] || select.options[0];
 
         // Create trigger button
         const trigger = document.createElement('div');
-        trigger.className = `custom-select-trigger ultimate-hover-effect${isItemStatus ? ' item-status-select' : ''}`;
+        trigger.className = `${UI_CLASSES.DROPDOWN.TRIGGER} ${UI_CLASSES.ULTIMATE_HOVER}${isItemStatus ? ` ${UI_CLASSES.DROPDOWN.ITEM_STATUS}` : ''}`;
         trigger.setAttribute('tabindex', '0');
 
         const labelSpan = document.createElement('span');
-        labelSpan.className = 'custom-select-label';
+        labelSpan.className = UI_CLASSES.DROPDOWN.LABEL;
         labelSpan.textContent = currentOpt ? currentOpt.textContent : '';
 
         const chevronSvg = `
-            <svg class="custom-select-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="${UI_CLASSES.DROPDOWN.CHEVRON}" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
         `;
@@ -46,7 +48,7 @@ export class DropdownManager {
 
         // Create floating options menu
         const menu = document.createElement('div');
-        menu.className = 'custom-select-menu';
+        menu.className = UI_CLASSES.DROPDOWN.MENU;
 
         // Render option items
         const renderMenu = () => {
@@ -54,7 +56,7 @@ export class DropdownManager {
             Array.from(select.options).forEach((opt, idx) => {
                 const isSelected = idx === select.selectedIndex;
                 const item = document.createElement('div');
-                item.className = `custom-select-option${isSelected ? ' active' : ''}`;
+                item.className = `${UI_CLASSES.DROPDOWN.OPTION}${isSelected ? ` ${UI_CLASSES.ACTIVE}` : ''}`;
                 item.dataset.value = opt.value;
 
                 const textSpan = document.createElement('span');
@@ -63,7 +65,7 @@ export class DropdownManager {
 
                 if (isSelected) {
                     const checkSvg = `
-                        <svg class="custom-select-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="${UI_CLASSES.DROPDOWN.CHECK}" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="20 6 9 17 4 12"></polyline>
                         </svg>
                     `;
@@ -92,6 +94,7 @@ export class DropdownManager {
         // Toggle open state
         const toggle = (e) => {
             e.stopPropagation();
+            e.preventDefault();
             const isOpen = wrapper.classList.contains('open');
             DropdownManager.closeAll();
             if (!isOpen) {
@@ -104,11 +107,13 @@ export class DropdownManager {
         };
 
         trigger.addEventListener('click', toggle);
+        wrapper.addEventListener('click', (e) => e.stopPropagation());
 
         // Keyboard navigation support
         trigger.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
+                e.stopPropagation();
                 toggle(e);
             }
         });
@@ -121,7 +126,7 @@ export class DropdownManager {
      * Closes all open custom dropdown menus across the document.
      */
     static closeAll() {
-        document.querySelectorAll('.custom-select-wrapper.open').forEach(w => w.classList.remove('open'));
+        document.querySelectorAll(`.${UI_CLASSES.DROPDOWN.WRAPPER}.open`).forEach(w => w.classList.remove('open'));
     }
 
     /**
@@ -136,7 +141,7 @@ export class DropdownManager {
 
 // Global click and escape listener to close open dropdown menus
 document.addEventListener('click', (e) => {
-    if (!e.target.closest('.custom-select-wrapper')) {
+    if (!e.target.closest(`.${UI_CLASSES.DROPDOWN.WRAPPER}`)) {
         DropdownManager.closeAll();
     }
 });

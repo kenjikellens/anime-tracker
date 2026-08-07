@@ -8,6 +8,7 @@ import { StatusUpdater } from './StatusUpdater.js';
 export class AnimeRepository {
     constructor() {
         this.animes = [];
+        this.byIdMap = new Map();
     }
 
     /**
@@ -26,28 +27,36 @@ export class AnimeRepository {
     }
 
     /**
-     * Turns raw JSON rows into `Anime` instances.
+     * Turns raw JSON rows into `Anime` instances and updates the O(1) Map index.
+     * @param {Array} dataArray - Raw anime data objects.
      */
     loadFromData(dataArray) {
         this.animes = dataArray.map(data => new Anime(data));
+        this.byIdMap.clear();
+        this.animes.forEach(anime => this.byIdMap.set(anime.id, anime));
     }
 
     /**
      * Returns the full collection.
+     * @returns {Array<Anime>} The internal anime array.
      */
     getAll() {
         return this.animes;
     }
 
     /**
-     * Returns one anime by id.
+     * Returns one anime by id in O(1) time.
+     * @param {string} id - The anime ID to lookup.
+     * @returns {Anime|undefined} The matching anime model or undefined.
      */
     getById(id) {
-        return this.animes.find(a => a.id === id);
+        return this.byIdMap.get(id);
     }
 
     /**
      * Filters the anime collection by top-level watch status or item-only release status.
+     * @param {string} statusStr - The filter status identifier.
+     * @returns {Array<Anime>} Filtered anime models.
      */
     filterByStatus(statusStr) {
         if (statusStr === 'all') return this.animes;
@@ -63,6 +72,9 @@ export class AnimeRepository {
 
     /**
      * Filters the collection by a case-insensitive title query.
+     * @param {Array<Anime>} animes - The list of animes to filter.
+     * @param {string} query - The search query string.
+     * @returns {Array<Anime>} Filtered animes matching title query.
      */
     static filterByQuery(animes, query) {
         if (!query || query.trim() === '') return animes;
@@ -72,6 +84,9 @@ export class AnimeRepository {
 
     /**
      * Sorts anime records for the toolbar sort selector.
+     * @param {Array<Anime>} animes - The list of animes to sort.
+     * @param {string} criteria - The sort criteria identifier.
+     * @returns {Array<Anime>} Sorted copy of animes list.
      */
     static sort(animes, criteria) {
         const list = [...animes];
@@ -93,6 +108,7 @@ export class AnimeRepository {
 
     /**
      * Serializes the repository collection into a plain JSON format for file persistence.
+     * @returns {Array<Object>} Plain data array ready for JSON serialization.
      */
     exportToData() {
         return this.animes.map(a => ({

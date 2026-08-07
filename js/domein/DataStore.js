@@ -1,3 +1,5 @@
+let saveTimeoutId = null;
+
 /**
  * Storage helper for loading, saving, and exporting anime data.
  * Linked to: `data/data.json`, `localStorage`, and Flask `/api/save`.
@@ -5,6 +7,7 @@
 export class DataStore {
     /**
      * Loads file data first, then falls back to localStorage.
+     * @returns {Promise<Array>} Loaded anime data array.
      */
     static async loadInitialData() {
         try {
@@ -26,26 +29,36 @@ export class DataStore {
     }
 
     /**
-     * Persists the repository to localStorage and to the running server.
+     * Persists the repository to localStorage immediately and debounces network saves.
+     * @param {Object} repository - The anime repository instance to save.
      */
     static async save(repository) {
         const data = repository.exportToData();
 
+        // Immediate local storage update
         localStorage.setItem('rascal_anime_data', JSON.stringify(data));
 
-        try {
-            await fetch('/api/save', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            });
-        } catch (err) {
-            // Server not running, ignore.
-        }
+        // Debounce server API save request to batch rapid updates
+        clearTimeout(saveTimeoutId);
+        return new Promise((resolve) => {
+            saveTimeoutId = setTimeout(async () => {
+                try {
+                    await fetch('/api/save', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+                } catch (err) {
+                    // Server not running, ignore.
+                }
+                resolve();
+            }, 150);
+        });
     }
 
     /**
-     * Downloads the current state as a JSON file.
+     * Downloads the current state as a JSON file backup.
+     * @param {Object} repository - The repository model instance.
      */
     static triggerBackup(repository) {
         const data = repository.exportToData();

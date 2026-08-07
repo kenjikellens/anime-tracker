@@ -1,4 +1,5 @@
 import { RatingManager } from './RatingManager.js';
+import { UI_CLASSES, DATA_ATTRS } from './UIConstants.js';
 
 const SVG_ICONS = {
     star: `<svg class="svg-icon svg-icon-margin"><use href="#icon-star"></use></svg>`,
@@ -15,6 +16,8 @@ const SVG_ICONS = {
 export class CardRenderer {
     /**
      * Generates HTML markup for the card poster, including hue gradient fallbacks.
+     * @param {Object} anime - The anime model.
+     * @returns {string} HTML markup string for poster image or fallback.
      */
     static getPosterMarkup(anime) {
         const hash = anime.title.split('').reduce((acc, char) => char.charCodeAt(0) + acc, 0);
@@ -29,12 +32,20 @@ export class CardRenderer {
     /**
      * Renders a subset of anime cards (a batch) and appends them to the container.
      * This affects the `#anime-container` DOM element by dynamically adding card components.
+     * @param {HTMLElement} container - Target container element.
+     * @param {Array} animes - Array of anime models.
+     * @param {Function} onRatingClick - Rating click handler.
+     * @param {boolean} [isFirstBatch=false] - Whether this is the initial batch.
      */
     static renderBatch(container, animes, onRatingClick, isFirstBatch = false) {
         if (isFirstBatch) {
             container.innerHTML = '';
             if (animes.length === 0) {
-                container.innerHTML = '<p class="text-muted" style="padding: 20px;">Geen animes gevonden.</p>';
+                const emptyMsg = document.createElement('p');
+                emptyMsg.className = 'text-muted';
+                emptyMsg.style.padding = '20px';
+                emptyMsg.textContent = 'Geen animes gevonden.';
+                container.appendChild(emptyMsg);
                 return;
             }
         }
@@ -55,7 +66,9 @@ export class CardRenderer {
 
     /**
      * Renders all provided anime cards at once by delegating to the batch renderer.
-     * This affects the `#anime-container` DOM element by replacing its entire content.
+     * @param {HTMLElement} container - Target container element.
+     * @param {Array} animes - Array of anime models.
+     * @param {Function} onRatingClick - Rating click handler.
      */
     static renderAll(container, animes, onRatingClick) {
         this.renderBatch(container, animes, onRatingClick, true);
@@ -63,11 +76,10 @@ export class CardRenderer {
 
     /**
      * Re-renders and updates the poster image area for a specific anime card.
-     * This locates the rendered card by ID and replaces its poster contents.
      * @param {Object} anime - The anime model whose card image should be updated.
      */
     static updateCardImage(anime) {
-        const div = document.querySelector(`.anime-card[data-id="${anime.id}"]`);
+        const div = document.querySelector(`.anime-card[${DATA_ATTRS.ITEM_ID}="${anime.id}"]`);
         if (div) {
             const posterDiv = div.querySelector('.card-poster');
             if (posterDiv) {
@@ -78,7 +90,6 @@ export class CardRenderer {
 
     /**
      * Creates a fully structured card wrapper with backing deck layers and the main card.
-     * This clones the HTML5 template from the document, fills in data, and binds event handlers.
      * @param {Object} anime - The anime model data to render.
      * @param {Function} onRatingClick - Callback trigger when the rating badge is clicked.
      * @returns {HTMLElement} The populated anime card wrapper element.
@@ -91,13 +102,13 @@ export class CardRenderer {
 
         const clone = document.importNode(template.content, true);
         const wrapper = clone.firstElementChild;
-        wrapper.setAttribute('data-id', anime.id);
+        wrapper.setAttribute(DATA_ATTRS.ITEM_ID, anime.id);
 
         const itemCount = anime.items.length;
 
         const mainCard = wrapper.querySelector('.anime-card');
-        mainCard.setAttribute('data-id', anime.id);
-        mainCard.setAttribute('data-status', anime.status);
+        mainCard.setAttribute(DATA_ATTRS.ITEM_ID, anime.id);
+        mainCard.setAttribute(DATA_ATTRS.STATUS, anime.status);
         mainCard.setAttribute('data-has-airing', anime.items.some(item => item.status === 3) ? 'true' : 'false');
         mainCard.setAttribute('data-has-upcoming', anime.items.some(item => item.status === 2) ? 'true' : 'false');
         const cardClass = RatingManager.getCardClass(anime.rating);
