@@ -1,6 +1,6 @@
 import { RatingManager } from './RatingManager.js';
 import { DropdownManager } from './DropdownManager.js';
-import { UI_CLASSES, DATA_ATTRS } from './UIConstants.js';
+import { DATA_ATTRS } from './UIConstants.js';
 
 // WATCH_PROVIDER_DOMAIN: The base domain of the streaming provider for playing anime.
 const WATCH_PROVIDER_DOMAIN = "miruro.ru";
@@ -11,7 +11,7 @@ const WATCH_PROVIDER_SEARCH_PATH = "/search?query=";
 const SVG_ICONS = {
     star: `<svg class="svg-icon svg-icon-margin"><use href="#icon-star"></use></svg>`,
     play: `<svg class="svg-icon"><use href="#icon-play"></use></svg>`,
-    chevronDown: (transformStyle) => `<svg class="accordion-icon svg-icon-large" style="${transformStyle}"><use href="#icon-chevron-down"></use></svg>`
+    chevronDown: `<svg class="accordion-icon svg-icon-large"><use href="#icon-chevron-down"></use></svg>`
 };
 
 /**
@@ -27,7 +27,7 @@ export class DetailRenderer {
         const layout = container.querySelector('.anime-detail-layout-v3');
         if (!layout) return;
 
-        // Set sidebar classes
+        // Set sidebar rating glow
         const sidebar = layout.querySelector('.anime-detail-sidebar-v3');
         const sidebarGlow = RatingManager.getCardClass(anime.rating);
         sidebar.className = `anime-detail-sidebar-v3 ${sidebarGlow}`.trim();
@@ -41,7 +41,7 @@ export class DetailRenderer {
         const posterWrap = layout.querySelector('.sidebar-poster-wrap');
         posterWrap.innerHTML = anime.coverImage
             ? `<img class="detail-poster" src="${anime.coverImage}" alt="${title} cover" loading="lazy" />`
-            : `<div class="detail-poster-fallback" style="background: linear-gradient(135deg, hsl(${hue}, 60%, 45%), hsl(${(hue + 40) % 360}, 70%, 35%));">${initials}</div>`;
+            : `<div class="detail-poster-fallback" style="--poster-hue: ${hue};">${initials}</div>`;
 
         // Title
         const sidebarTitle = layout.querySelector('.sidebar-title');
@@ -52,7 +52,6 @@ export class DetailRenderer {
         const ratingsContainer = layout.querySelector('.sidebar-ratings-container');
         
         if (gSelect) {
-            gSelect.style.display = '';
             gSelect.value = anime.status;
             
             const newGSelect = gSelect.cloneNode(true);
@@ -62,8 +61,6 @@ export class DetailRenderer {
             });
         }
         if (ratingsContainer) {
-            ratingsContainer.style.display = '';
-            
             const createSegmentsHtml = (score, isSmall = false) => {
                 let html = `<div class="segmented-rating-bar${isSmall ? ' small' : ''}">`;
                 const colors = [
@@ -106,14 +103,14 @@ export class DetailRenderer {
             const avgScoreColor = getScoreColor(avgRating);
 
             const userRatingVal = layout.querySelector('.sidebar-rating-block:not(.small) .sidebar-rating-val');
-            userRatingVal.style.color = userScoreColor;
+            userRatingVal.style.setProperty('--score-color', userScoreColor);
             userRatingVal.textContent = anime.rating > 0 ? anime.rating.toFixed(1) + '/10' : 'NR';
 
             const userBarWrap = layout.querySelector('.user-segmented-bar');
             userBarWrap.innerHTML = createSegmentsHtml(anime.rating);
 
             const avgRatingVal = layout.querySelector('.sidebar-rating-block.small .sidebar-rating-val');
-            avgRatingVal.style.color = avgScoreColor;
+            avgRatingVal.style.setProperty('--score-color', avgScoreColor);
             avgRatingVal.textContent = avgRating > 0 ? avgRating.toFixed(1) + '/10' : '—';
 
             const avgBarWrap = layout.querySelector('.avg-segmented-bar');
@@ -134,7 +131,10 @@ export class DetailRenderer {
         const listDiv = layout.querySelector('.episodes-list-v3');
         listDiv.innerHTML = '';
         if (anime.items.length === 0) {
-            listDiv.innerHTML = '<p class="text-muted">Geen episoden/seizoenen gevonden in deze groep.</p>';
+            const emptyP = document.createElement('p');
+            emptyP.className = 'text-muted';
+            emptyP.textContent = 'Geen episoden/seizoenen gevonden in deze groep.';
+            listDiv.appendChild(emptyP);
         } else {
             const fragment = document.createDocumentFragment();
             anime.items.forEach((item, index) => {
@@ -151,6 +151,7 @@ export class DetailRenderer {
                 
                 const rowHeader = document.createElement('summary');
                 rowHeader.className = `detail-item-row ${item.status === 1 ? 'watched' : ''}`;
+                rowHeader.dataset.watched = item.status === 1 ? 'true' : 'false';
                 
                 let itemStatusSelect = `
                     <select class="app-dropdown item-status-select ultimate-hover-effect" id="status-${item.id}">
@@ -173,16 +174,16 @@ export class DetailRenderer {
                     </a>
                 `;
 
-                const itemRatingClass = RatingManager.getBadgeClass(item.rating);
+                const itemRatingTier = RatingManager.getBadgeClass(item.rating);
                 let itemRatingBtn = `
-                    <div class="rating-badge item-rating-badge ultimate-hover-effect ${itemRatingClass}" title="Beoordeel dit item" data-item-id="${item.id}">
+                    <div class="rating-badge item-rating-badge ultimate-hover-effect r-${itemRatingTier}" data-rating-tier="${itemRatingTier}" title="Beoordeel dit item" data-item-id="${item.id}">
                         ${SVG_ICONS.star} 
                         <span>${item.rating > 0 ? item.rating.toFixed(1) : 'NR'}</span>
                     </div>
                 `;
 
                 rowHeader.innerHTML = `
-                    ${SVG_ICONS.chevronDown('')}
+                    ${SVG_ICONS.chevronDown}
                     <div class="title-badge-group">
                         <div class="badge-area">${typeHtml}</div>
                         <div class="detail-item-title">${item.title}</div>

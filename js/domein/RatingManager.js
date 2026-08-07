@@ -1,35 +1,33 @@
-import { UI_CLASSES } from './UIConstants.js';
-
 /**
- * Maps ratings to visual classes and updates the anime model.
- * Linked to: rating badges and glow effects in the CSS.
+ * Maps ratings to semantic rating tiers and updates domain models.
+ * Linked to: rating badges and glow effects in CSS via data attributes.
  */
 export class RatingManager {
     /**
-     * Returns a card-level glow class.
+     * Returns a card-level glow tier identifier.
      * @param {number} rating - The rating value.
-     * @returns {string} The card glow class name or empty string.
+     * @returns {string} The card glow tier identifier or empty string.
      */
     static getCardClass(rating) {
         if (!rating || rating === 0) return '';
-        if (rating >= 9) return UI_CLASSES.RATING.GLOW_GOLD;
+        if (rating >= 9) return 'glow-gold';
         return '';
     }
 
     /**
-     * Returns a compact badge class for a numeric rating.
+     * Returns a compact semantic tier key for a numeric rating.
      * @param {number} rating - The rating value.
-     * @returns {string} The badge class token.
+     * @returns {string} Semantic rating tier identifier.
      */
     static getBadgeClass(rating) {
-        if (rating === 0 || !rating) return UI_CLASSES.RATING.UNRATED;
-        if (rating >= 9.0) return UI_CLASSES.RATING.CINEMA;
-        if (rating >= 8.0) return UI_CLASSES.RATING.AWESOME;
-        if (rating >= 7.0) return UI_CLASSES.RATING.GREAT;
-        if (rating >= 6.0) return UI_CLASSES.RATING.GOOD;
-        if (rating >= 5.0) return UI_CLASSES.RATING.REGULAR;
-        if (rating >= 4.0) return UI_CLASSES.RATING.BAD;
-        return UI_CLASSES.RATING.GARBAGE;
+        if (rating === 0 || !rating) return 'unrated';
+        if (rating >= 9.0) return 'cinema';
+        if (rating >= 8.0) return 'awesome';
+        if (rating >= 7.0) return 'great';
+        if (rating >= 6.0) return 'good';
+        if (rating >= 5.0) return 'regular';
+        if (rating >= 4.0) return 'bad';
+        return 'garbage';
     }
 
     /**

@@ -1,4 +1,4 @@
-import { UI_CLASSES, DATA_ATTRS } from './UIConstants.js';
+import { UI_CLASSES } from './UIConstants.js';
 
 /**
  * DropdownManager domain module.
@@ -13,9 +13,7 @@ export class DropdownManager {
     static bind(select) {
         if (!select || select.dataset.customDropdownBound === 'true') return;
         select.dataset.customDropdownBound = 'true';
-
-        // Hide original native select element
-        select.style.display = 'none';
+        select.dataset.bound = 'true';
 
         // Create custom dropdown wrapper container
         const isFullWidth = select.className.includes(UI_CLASSES.DROPDOWN.FULL_WIDTH);
@@ -23,6 +21,7 @@ export class DropdownManager {
 
         const wrapper = document.createElement('div');
         wrapper.className = `${UI_CLASSES.DROPDOWN.WRAPPER}${isFullWidth ? ` ${UI_CLASSES.DROPDOWN.FULL_WIDTH}` : ''}${isItemStatus ? ` ${UI_CLASSES.DROPDOWN.ITEM_STATUS}` : ''}`;
+        wrapper.dataset.open = 'false';
 
         // Get currently selected option
         const currentOpt = select.options[select.selectedIndex] || select.options[0];
@@ -56,7 +55,10 @@ export class DropdownManager {
             Array.from(select.options).forEach((opt, idx) => {
                 const isSelected = idx === select.selectedIndex;
                 const item = document.createElement('div');
-                item.className = `${UI_CLASSES.DROPDOWN.OPTION}${isSelected ? ` ${UI_CLASSES.ACTIVE}` : ''}`;
+                item.className = UI_CLASSES.DROPDOWN.OPTION;
+                if (isSelected) {
+                    item.dataset.active = 'true';
+                }
                 item.dataset.value = opt.value;
 
                 const textSpan = document.createElement('span');
@@ -95,14 +97,16 @@ export class DropdownManager {
         const toggle = (e) => {
             e.stopPropagation();
             e.preventDefault();
-            const isOpen = wrapper.classList.contains('open');
+            const isOpen = wrapper.dataset.open === 'true';
             DropdownManager.closeAll();
             if (!isOpen) {
-                wrapper.classList.add('open');
+                wrapper.dataset.open = 'true';
+                wrapper.classList.add('open'); // Fallback for CSS compatibility
             }
         };
 
         const close = () => {
+            wrapper.dataset.open = 'false';
             wrapper.classList.remove('open');
         };
 
@@ -126,7 +130,10 @@ export class DropdownManager {
      * Closes all open custom dropdown menus across the document.
      */
     static closeAll() {
-        document.querySelectorAll(`.${UI_CLASSES.DROPDOWN.WRAPPER}.open`).forEach(w => w.classList.remove('open'));
+        document.querySelectorAll(`.${UI_CLASSES.DROPDOWN.WRAPPER}`).forEach(w => {
+            w.dataset.open = 'false';
+            w.classList.remove('open');
+        });
     }
 
     /**

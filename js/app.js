@@ -32,64 +32,6 @@ function normalizeStoredFilter(filter) {
     return validFilters.includes(filter) ? filter : 'all';
 }
 
-let loadingInterval = null;
-let currentProgress = 0;
-
-/**
- * Starts the circular progress loader animation on the splash screen.
- */
-function startLoader() {
-    const splash = document.getElementById('splash-screen');
-    const circle = splash?.querySelector('.loader-progress-circle');
-    const loaderSvg = splash?.querySelector('.circular-loader-svg');
-    if (!splash || !circle) return;
-
-    clearInterval(loadingInterval);
-    currentProgress = 10;
-
-    if (loaderSvg) {
-        loaderSvg.style.display = 'block';
-    }
-
-    splash.classList.remove('hidden');
-    splash.style.opacity = '1';
-    splash.style.visibility = 'visible';
-    circle.style.strokeDashoffset = (314.16 * 0.9).toString();
-
-    const stepMs = 40;
-    loadingInterval = setInterval(() => {
-        if (currentProgress < 90) {
-            currentProgress += 3;
-            const offset = 314.16 * (1 - currentProgress / 100);
-            circle.style.strokeDashoffset = offset;
-        }
-    }, stepMs);
-}
-
-/**
- * Completes the circular loader progress to 100% and smoothly fades out the splash screen.
- */
-function finishLoader() {
-    const splash = document.getElementById('splash-screen');
-    const circle = splash?.querySelector('.loader-progress-circle');
-    if (!splash || !circle) return;
-
-    clearInterval(loadingInterval);
-
-    // Rapidly fill remaining stroke to 100%
-    circle.style.strokeDashoffset = '0';
-
-    setTimeout(() => {
-        splash.style.transition = 'opacity 0.3s ease, visibility 0.3s ease';
-        splash.style.opacity = '0';
-        splash.style.visibility = 'hidden';
-
-        setTimeout(() => {
-            splash.classList.add('hidden');
-        }, 300);
-    }, 150);
-}
-
 /**
  * Routes and handles rendering of views based on the window location hash.
  * Fetches dynamic templates for home.html or card.html and renders the layout.
@@ -98,8 +40,6 @@ async function handleRoute() {
     const hash = window.location.hash || '#/';
     const appContainer = document.getElementById('app');
     if (!appContainer) return;
-
-    startLoader();
 
     if (hash === '#/' || hash === '') {
         const response = await fetch('home.html');
@@ -110,7 +50,6 @@ async function handleRoute() {
         setupSorting();
         setupViewToggles();
         DropdownManager.bindAll(appContainer);
-        finishLoader();
     } else if (hash.startsWith('#/anime/')) {
         const id = hash.replace('#/anime/', '');
         currentDetailAnime = repository.getById(id);
@@ -141,10 +80,8 @@ async function handleRoute() {
                 await DataStore.save(repository);
                 renderDetail();
             }
-            finishLoader();
         } else {
-            appContainer.innerHTML = '<p class="text-muted" style="padding: 20px;">Anime niet gevonden.</p>';
-            finishLoader();
+            appContainer.innerHTML = '<p class="text-muted" data-empty="true">Anime niet gevonden.</p>';
         }
     }
 }
@@ -154,7 +91,6 @@ async function handleRoute() {
  * Binds global header/footer listeners and runs the initial router match.
  */
 async function init() {
-    startLoader(true, 0.3);
     ThemeManager.initTheme();
     const data = await DataStore.loadInitialData();
     const normalized = repository.loadAndNormalize(data);
@@ -240,6 +176,7 @@ function openRatingModal(target, type = 'anime') {
         currentRatingType = type;
         modalTitle.textContent = target.title;
         ratingInput.value = target.rating > 0 ? target.rating : "";
+        overlay.dataset.visible = 'true';
         overlay.classList.remove('hidden');
     }
 }
@@ -271,6 +208,7 @@ function setupRatingModal() {
 
     overlay.addEventListener('click', (e) => {
         if (e.target === overlay) {
+            overlay.dataset.visible = 'false';
             overlay.classList.add('hidden');
             currentRatingTarget = null;
             currentRatingType = null;
@@ -280,6 +218,7 @@ function setupRatingModal() {
     const cancelBtn = document.getElementById('cancel-rating');
     if (cancelBtn) {
         cancelBtn.addEventListener('click', () => {
+            overlay.dataset.visible = 'false';
             overlay.classList.add('hidden');
             currentRatingTarget = null;
             currentRatingType = null;
@@ -319,16 +258,19 @@ function setupRatingModal() {
                         renderData();
                     }
 
+                    overlay.dataset.visible = 'false';
                     overlay.classList.add('hidden');
                     currentRatingTarget = null;
                     currentRatingType = null;
                 }).catch(err => {
                     console.error(err);
+                    overlay.dataset.visible = 'false';
                     overlay.classList.add('hidden');
                     currentRatingTarget = null;
                     currentRatingType = null;
                 });
             } else {
+                overlay.dataset.visible = 'false';
                 overlay.classList.add('hidden');
             }
         });
@@ -400,8 +342,7 @@ function renderData() {
         if (!sentinel) {
             sentinel = document.createElement('div');
             sentinel.id = 'sentinel';
-            sentinel.style.height = '10px';
-            sentinel.style.margin = '20px 0';
+            sentinel.dataset.sentinel = 'true';
         }
         container.appendChild(sentinel);
 
@@ -437,15 +378,21 @@ function setupSorting() {
 function setupFilters() {
     const filterBtns = document.querySelectorAll('.filter-btn');
     filterBtns.forEach(btn => {
-        if (btn.getAttribute('data-filter') === currentFilter) {
+        const isActive = btn.getAttribute('data-filter') === currentFilter;
+        btn.dataset.active = isActive ? 'true' : 'false';
+        if (isActive) {
             btn.classList.add(UI_CLASSES.ACTIVE);
         } else {
             btn.classList.remove(UI_CLASSES.ACTIVE);
         }
 
         btn.addEventListener('click', (e) => {
-            filterBtns.forEach(b => b.classList.remove(UI_CLASSES.ACTIVE));
+            filterBtns.forEach(b => {
+                b.dataset.active = 'false';
+                b.classList.remove(UI_CLASSES.ACTIVE);
+            });
             const target = e.currentTarget;
+            target.dataset.active = 'true';
             target.classList.add(UI_CLASSES.ACTIVE);
 
             currentFilter = target.getAttribute('data-filter');
@@ -488,17 +435,31 @@ function setupViewToggles() {
     container.style.setProperty('--grid-cols', currentGridCols);
 
     if (currentViewMode === 'list') {
-        if (listBtn) listBtn.classList.add(UI_CLASSES.ACTIVE);
-        if (gridBtn) gridBtn.classList.remove(UI_CLASSES.ACTIVE);
+        if (listBtn) {
+            listBtn.dataset.active = 'true';
+            listBtn.classList.add(UI_CLASSES.ACTIVE);
+        }
+        if (gridBtn) {
+            gridBtn.dataset.active = 'false';
+            gridBtn.classList.remove(UI_CLASSES.ACTIVE);
+        }
+        container.dataset.view = 'list';
         container.classList.remove(UI_CLASSES.GRID_VIEW);
         container.classList.add(UI_CLASSES.LIST_VIEW);
-        if (sizeToggleContainer) sizeToggleContainer.style.display = 'none';
+        if (sizeToggleContainer) sizeToggleContainer.dataset.visible = 'false';
     } else {
-        if (gridBtn) gridBtn.classList.add(UI_CLASSES.ACTIVE);
-        if (listBtn) listBtn.classList.remove(UI_CLASSES.ACTIVE);
+        if (gridBtn) {
+            gridBtn.dataset.active = 'true';
+            gridBtn.classList.add(UI_CLASSES.ACTIVE);
+        }
+        if (listBtn) {
+            listBtn.dataset.active = 'false';
+            listBtn.classList.remove(UI_CLASSES.ACTIVE);
+        }
+        container.dataset.view = 'grid';
         container.classList.remove(UI_CLASSES.LIST_VIEW);
         container.classList.add(UI_CLASSES.GRID_VIEW);
-        if (sizeToggleContainer) sizeToggleContainer.style.display = 'flex';
+        if (sizeToggleContainer) sizeToggleContainer.dataset.visible = 'true';
     }
 
     if (gridBtn) {
@@ -506,12 +467,17 @@ function setupViewToggles() {
             currentViewMode = 'grid';
             CookieManager.set('viewMode', 'grid');
 
+            gridBtn.dataset.active = 'true';
             gridBtn.classList.add(UI_CLASSES.ACTIVE);
-            if (listBtn) listBtn.classList.remove(UI_CLASSES.ACTIVE);
+            if (listBtn) {
+                listBtn.dataset.active = 'false';
+                listBtn.classList.remove(UI_CLASSES.ACTIVE);
+            }
+            container.dataset.view = 'grid';
             container.classList.remove(UI_CLASSES.LIST_VIEW);
             container.classList.add(UI_CLASSES.GRID_VIEW);
             container.style.setProperty('--grid-cols', currentGridCols);
-            if (sizeToggleContainer) sizeToggleContainer.style.display = 'flex';
+            if (sizeToggleContainer) sizeToggleContainer.dataset.visible = 'true';
             renderData();
         });
     }
@@ -521,11 +487,16 @@ function setupViewToggles() {
             currentViewMode = 'list';
             CookieManager.set('viewMode', 'list');
 
+            listBtn.dataset.active = 'true';
             listBtn.classList.add(UI_CLASSES.ACTIVE);
-            if (gridBtn) gridBtn.classList.remove(UI_CLASSES.ACTIVE);
+            if (gridBtn) {
+                gridBtn.dataset.active = 'false';
+                gridBtn.classList.remove(UI_CLASSES.ACTIVE);
+            }
+            container.dataset.view = 'list';
             container.classList.remove(UI_CLASSES.GRID_VIEW);
             container.classList.add(UI_CLASSES.LIST_VIEW);
-            if (sizeToggleContainer) sizeToggleContainer.style.display = 'none';
+            if (sizeToggleContainer) sizeToggleContainer.dataset.visible = 'false';
             renderData();
         });
     }
@@ -558,6 +529,7 @@ function setupViewToggles() {
 function setupDownloadBtn() {
     const dBtn = document.getElementById('download-btn');
     if (dBtn) {
+        dBtn.dataset.visible = 'true';
         dBtn.classList.remove(UI_CLASSES.HIDDEN);
         dBtn.addEventListener('click', () => {
             DataStore.triggerBackup(repository);

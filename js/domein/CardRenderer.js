@@ -1,9 +1,9 @@
 import { RatingManager } from './RatingManager.js';
-import { UI_CLASSES, DATA_ATTRS } from './UIConstants.js';
+import { DATA_ATTRS } from './UIConstants.js';
 
 const SVG_ICONS = {
     star: `<svg class="svg-icon svg-icon-margin"><use href="#icon-star"></use></svg>`,
-    starHalf: `<svg class="svg-icon svg-icon-margin" style="opacity: 0.7;"><use href="#icon-star-half"></use></svg>`,
+    starHalf: `<svg class="svg-icon svg-icon-margin svg-icon-half"><use href="#icon-star-half"></use></svg>`,
     play: `<svg class="svg-icon"><use href="#icon-play"></use></svg>`,
     bell: `<svg class="svg-icon"><use href="#icon-bell"></use></svg>`,
     chevronRight: `<svg class="expand-icon svg-icon-large"><use href="#icon-chevron-right"></use></svg>`
@@ -26,7 +26,7 @@ export class CardRenderer {
         if (anime.coverImage) {
             return `<img src="${anime.coverImage}" class="poster-img" loading="lazy" />`;
         }
-        return `<div class="poster-fallback" style="background: linear-gradient(135deg, hsl(${hue}, 60%, 50%), hsl(${(hue + 40) % 360}, 70%, 40%));">${anime.title.substring(0,2)}</div>`;
+        return `<div class="poster-fallback" style="--poster-hue: ${hue};">${anime.title.substring(0,2)}</div>`;
     }
 
     /**
@@ -42,8 +42,7 @@ export class CardRenderer {
             container.innerHTML = '';
             if (animes.length === 0) {
                 const emptyMsg = document.createElement('p');
-                emptyMsg.className = 'text-muted';
-                emptyMsg.style.padding = '20px';
+                emptyMsg.dataset.empty = 'true';
                 emptyMsg.textContent = 'Geen animes gevonden.';
                 container.appendChild(emptyMsg);
                 return;
@@ -111,8 +110,10 @@ export class CardRenderer {
         mainCard.setAttribute(DATA_ATTRS.STATUS, anime.status);
         mainCard.setAttribute('data-has-airing', anime.items.some(item => item.status === 3) ? 'true' : 'false');
         mainCard.setAttribute('data-has-upcoming', anime.items.some(item => item.status === 2) ? 'true' : 'false');
+        
         const cardClass = RatingManager.getCardClass(anime.rating);
         if (cardClass) {
+            mainCard.dataset.glow = cardClass;
             mainCard.classList.add(cardClass);
         }
         if (anime.status === 1) {
@@ -142,9 +143,10 @@ export class CardRenderer {
         ratingValSpan.textContent = anime.rating > 0 ? anime.rating.toFixed(1) : 'NR';
 
         const ratingBtn = wrapper.querySelector('.rating-badge');
-        const badgeClass = RatingManager.getBadgeClass(anime.rating);
-        if (badgeClass) {
-            ratingBtn.classList.add(badgeClass);
+        const badgeTier = RatingManager.getBadgeClass(anime.rating);
+        if (badgeTier) {
+            ratingBtn.dataset.ratingTier = badgeTier;
+            ratingBtn.classList.add(`r-${badgeTier}`);
         }
         ratingBtn.addEventListener('click', (e) => {
             e.stopPropagation();
