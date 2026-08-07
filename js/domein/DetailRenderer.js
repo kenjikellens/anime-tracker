@@ -1,4 +1,5 @@
 import { RatingManager } from './RatingManager.js';
+import { DropdownManager } from './DropdownManager.js';
 
 // WATCH_PROVIDER_DOMAIN: The base domain of the streaming provider for playing anime.
 const WATCH_PROVIDER_DOMAIN = "miruro.ru";
@@ -239,6 +240,9 @@ export class DetailRenderer {
             });
             listDiv.appendChild(fragment);
         }
+
+        // Bind all custom dropdown components in detail view
+        DropdownManager.bindAll(container);
 
         // Staggered loading animation for ratings
         requestAnimationFrame(() => {

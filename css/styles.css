@@ -307,6 +307,107 @@ textarea {
     padding: 8px;
 }
 
+/* Custom UI Dropdown Wrapper Component */
+.custom-select-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-select-wrapper.full-width {
+    width: 100%;
+}
+
+/* Custom Dropdown Trigger Button */
+.custom-select-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background-color: var(--surface);
+    color: var(--text);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+    border: none;
+    width: 100%;
+}
+
+/* Compact item status dropdown trigger variant */
+.custom-select-trigger.item-status-select {
+    padding: 6px 12px;
+    font-size: 13px;
+    background-color: var(--surface-2);
+}
+
+/* Rotating Chevron Arrow */
+.custom-select-chevron {
+    transition: transform 0.2s ease;
+    color: var(--text-muted);
+    flex-shrink: 0;
+}
+
+.custom-select-wrapper.open .custom-select-chevron {
+    transform: rotate(180deg);
+}
+
+/* Custom Dropdown Floating Popup Menu */
+.custom-select-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    min-width: 100%;
+    width: max-content;
+    background: var(--surface);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 6px;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.custom-select-wrapper.open .custom-select-menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Custom Dropdown Option Item */
+.custom-select-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    transition: background-color 0.15s ease;
+    white-space: nowrap;
+}
+
+.custom-select-option:hover {
+    background-color: var(--surface-hover);
+}
+
+.custom-select-option.active {
+    background-color: var(--active-bg);
+    color: var(--active-color);
+}
+
+.custom-select-check {
+    color: var(--active-color);
+}
+
 .toolbar-right {
     margin-left: auto;
     display: flex;
@@ -938,11 +1039,6 @@ textarea {
     font-weight: 700;
 }
 
-/* Lighter brightness filter on primary button expanding inset layer during hover */
-.btn-primary:hover::before {
-    filter: brightness(1.15);
-}
-
 .btn-secondary {
     background: var(--surface-2);
     color: var(--text);
@@ -1046,9 +1142,6 @@ footer {
     font-size: 14px;
     transition: color 0.15s ease;
 }
-
-
-
 .provider-brand {
     font-weight: 600;
     color: var(--text);
