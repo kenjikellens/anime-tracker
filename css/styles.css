@@ -17,18 +17,18 @@
     --white: #1a1a1a;
     --status-none: #999999;
     --status-watching: #666666;
-    --status-done: #007acc;
-    --status-upcoming: #ff9800;
-    --status-airing: #5bbcff;
+    --status-done: #1a1a1a;
+    --status-upcoming: #888888;
+    --status-airing: #444444;
     --modal-bg: rgba(0, 0, 0, 0.4);
     --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     --header-bg: #e0e0e0;
     --border-width: 0px;
-    --primary: #007acc;
-    --primary-rgb: 0, 122, 204;
+    --primary: #1a1a1a;
+    --primary-rgb: 26, 26, 26;
     --hover-border: transparent;
-    --active-bg: #e6f2ff;
-    --active-color: #0066b2;
+    --active-bg: #1a1a1a;
+    --active-color: #ffffff;
     --active-border: transparent;
 }
 
@@ -44,16 +44,16 @@
     --white: #ffffff;
     --status-none: #666666;
     --status-watching: #999999;
-    --status-done: #4da6ff;
-    --status-upcoming: #ffb74d;
-    --status-airing: #8fd3ff;
+    --status-done: #ffffff;
+    --status-upcoming: #888888;
+    --status-airing: #cccccc;
     --modal-bg: rgba(0, 0, 0, 0.6);
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     --header-bg: #282828;
-    --primary: #4da6ff;
+    --primary: #ffffff;
     --hover-border: transparent;
     --active-bg: #ffffff;
-    --active-color: #1e1e1e;
+    --active-color: #121212;
     --active-border: transparent;
 }
 
@@ -782,6 +782,8 @@ select[data-bound] {
    -------------------------------------------------------------------------- */
 .back-btn {
     display: inline-flex;
+    align-self: flex-start;
+    width: fit-content;
     align-items: center;
     gap: 8px;
     color: var(--text-muted);
