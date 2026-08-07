@@ -280,16 +280,31 @@ textarea {
     border: none;
 }
 
-/* Unified application dropdown selector base component */
+/* Unified application dropdown selector with custom SVG chevron arrow */
 .app-dropdown {
-    background: var(--surface);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: var(--surface);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 14px;
     border: none;
     color: var(--text);
-    padding: 8px 14px;
+    padding: 9px 36px 9px 14px;
     border-radius: 8px;
     font-size: 14px;
     font-weight: 600;
     outline: none;
+    cursor: pointer;
+}
+
+/* Styled options dropdown menu elements */
+.app-dropdown option {
+    background-color: var(--surface);
+    color: var(--text);
+    padding: 8px;
 }
 
 .toolbar-right {
@@ -734,7 +749,7 @@ textarea {
 /* --------------------------------------------------------------------------
    6. MODAL SYSTEM, RATING BADGES & ACCORDIONS
    -------------------------------------------------------------------------- */
-/* Rating Badges — Central Base Style */
+/* Rating Badges — Base Styling */
 .rating-badge {
     display: inline-flex;
     align-items: center;
@@ -747,11 +762,6 @@ textarea {
     background: var(--surface-2);
 }
 
-/* Unified Hover Inset Highlight: applies brightness & saturation boost to the expanding ::before inset layer for ALL rating badges */
-.rating-badge:hover::before {
-    filter: brightness(1.35) saturate(1.25);
-}
-
 /* Score-specific background color classes */
 .rating-badge.r-cinema {
     background: linear-gradient(135deg, #ffe066 0%, #ffd700 50%, #b38f00 100%);
@@ -759,40 +769,39 @@ textarea {
 }
 
 .rating-badge.r-awesome {
-    background: rgba(39, 174, 96, 0.35);
-    color: #27ae60;
+    background: #27ae60;
+    color: #1a1a1a;
 }
 
 .rating-badge.r-great {
-    background: rgba(46, 204, 113, 0.35);
-    color: #2ecc71;
+    background: #2ecc71;
+    color: #1a1a1a;
 }
 
 .rating-badge.r-good {
-    background: rgba(162, 209, 73, 0.35);
-    color: #a2d149;
+    background: #a2d149;
+    color: #1a1a1a;
 }
 
 .rating-badge.r-regular {
-    background: rgba(241, 196, 15, 0.35);
-    color: #f1c40f;
+    background: #f1c40f;
+    color: #1a1a1a;
 }
 
 .rating-badge.r-bad {
-    background: rgba(230, 126, 34, 0.35);
-    color: #e67e22;
+    background: #e67e22;
+    color: #ffffff;
 }
 
 .rating-badge.r-garbage {
-    background: rgba(231, 76, 60, 0.35);
-    color: #e74c3c;
+    background: #e74c3c;
+    color: #ffffff;
 }
 
 .rating-badge.unrated {
     background: var(--surface-2);
     color: var(--text-muted);
 }
-
 
 
 
@@ -1132,37 +1141,41 @@ footer {
 }
 
 /* --------------------------------------------------------------------------
-   9. ULTIMATE HOVER INTERACTION SYSTEM (MODULAR HOVER SYSTEM)
+   9. ULTIMATE HOVER INTERACTION SYSTEM
    -------------------------------------------------------------------------- */
-/* Base positioning for elements with ultimate hover expansion effect */
+/* Base positioning & layout for elements with ultimate hover expansion effect */
 .ultimate-hover-effect {
     position: relative;
     z-index: 1;
+    transition: background-color 0.15s ease, filter 0.15s ease;
 }
 
-/* Background expansion layer pseudo-element using inherited background (supports solid colors & gradients) */
+/* Pseudo-element expansion layer inheriting host element background */
 .ultimate-hover-effect::before {
     content: '';
     position: absolute;
     inset: 0;
     background: inherit;
     border-radius: inherit;
-    transition: inset 0.15s ease, background 0.15s ease, filter 0.15s ease;
+    transition: inset 0.15s ease, background-color 0.15s ease, filter 0.15s ease;
     z-index: -1;
     pointer-events: none;
 }
 
-/* Expands container background outward by inset offset on hover */
+/* Expands inset layer by 2px on hover for all ultimate hover elements */
 .ultimate-hover-effect:hover::before {
     inset: -2px;
 }
 
-/* Separate utility class for surface hover color transition */
-.hover-color-change {
-    transition: background-color 0.15s ease;
+/* Standard surface elements (excludes active/selected elements, rating badges & primary buttons): apply surface hover background */
+.ultimate-hover-effect:not(.rating-badge):not(.btn-primary):not(.active):hover,
+.ultimate-hover-effect:not(.rating-badge):not(.btn-primary):not(.active):hover::before {
+    background-color: var(--surface-hover);
 }
 
-/* Changes background color to surface hover state on hover */
-.hover-color-change:hover {
-    background-color: var(--surface-hover);
+/* Active/selected elements, rating badges & primary buttons: preserve natural background & illuminate on hover */
+.ultimate-hover-effect.active:hover,
+.ultimate-hover-effect.rating-badge:hover,
+.ultimate-hover-effect.btn-primary:hover {
+    filter: brightness(1.2) saturate(1.1);
 }
