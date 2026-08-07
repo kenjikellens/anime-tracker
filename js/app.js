@@ -5,6 +5,7 @@ import { AnilistApi } from './domein/AnilistApi.js';
 import { SearchManager } from './domein/SearchManager.js';
 import { ThemeManager } from './domein/ThemeManager.js';
 import { CookieManager } from './domein/CookieManager.js';
+import { CustomDropdown } from './domein/CustomDropdown.js';
 
 // Overview page state. Persisted in cookies so the UI survives refreshes.
 let repository = new AnimeRepository();
@@ -107,6 +108,7 @@ async function handleRoute() {
         setupFilters();
         setupSorting();
         setupViewToggles();
+        CustomDropdown.convertAll(appContainer);
         finishLoader();
     } else if (hash.startsWith('#/anime/')) {
         const id = hash.replace('#/anime/', '');
@@ -117,6 +119,7 @@ async function handleRoute() {
             appContainer.innerHTML = await response.text();
 
             renderDetail();
+            CustomDropdown.convertAll(appContainer);
 
             // Fetch missing poster/episode data for this one record only.
             let needSave = false;

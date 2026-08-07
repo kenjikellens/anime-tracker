@@ -307,6 +307,102 @@ textarea {
     padding: 8px;
 }
 
+/* Custom UI Dropdown Component Wrapper */
+.custom-dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-dropdown-container.full-width {
+    width: 100%;
+}
+
+/* Custom UI Dropdown Trigger Button */
+.custom-dropdown-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background-color: var(--surface);
+    color: var(--text);
+    padding: 9px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+}
+
+/* Custom Dropdown Chevron Icon rotation on open */
+.custom-dropdown-chevron {
+    transition: transform 0.2s ease;
+    color: var(--text-muted);
+    flex-shrink: 0;
+}
+
+.custom-dropdown-container.open .custom-dropdown-chevron {
+    transform: rotate(180deg);
+}
+
+/* Custom Dropdown Floating Popup Menu */
+.custom-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    min-width: 100%;
+    width: max-content;
+    background: var(--surface);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 6px;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.custom-dropdown-container.open .custom-dropdown-menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Custom Dropdown Menu Option Item */
+.custom-dropdown-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    transition: background-color 0.15s ease;
+    white-space: nowrap;
+}
+
+/* Hover state on dropdown option item */
+.custom-dropdown-option:hover {
+    background-color: var(--surface-hover);
+}
+
+/* Selected option highlight */
+.custom-dropdown-option.selected {
+    background-color: var(--active-bg);
+    color: var(--active-color);
+}
+
+/* Selected option checkmark icon */
+.custom-dropdown-check {
+    color: var(--active-color);
+}
+
 .toolbar-right {
     margin-left: auto;
     display: flex;
