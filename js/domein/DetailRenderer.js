@@ -155,6 +155,28 @@ export class DetailRenderer {
             }
         }
 
+        // Render Studio, Year, and Genres metadata
+        const studioVal = layout.querySelector('#sidebar-studio-val');
+        if (studioVal) {
+            studioVal.textContent = anime.studio || '—';
+        }
+
+        const yearVal = layout.querySelector('#sidebar-year-val');
+        if (yearVal) {
+            yearVal.textContent = anime.year ? anime.year : '—';
+        }
+
+        const genresContainer = layout.querySelector('#sidebar-genres-container');
+        if (genresContainer) {
+            if (Array.isArray(anime.genres) && anime.genres.length > 0) {
+                genresContainer.innerHTML = anime.genres.map(g => `<span class="genre-badge">${g}</span>`).join('');
+                genresContainer.style.display = 'flex';
+            } else {
+                genresContainer.innerHTML = '';
+                genresContainer.style.display = 'none';
+            }
+        }
+
         // Render episodes/accordion list
         const listDiv = layout.querySelector('.episodes-list-v3');
         if (listDiv) {

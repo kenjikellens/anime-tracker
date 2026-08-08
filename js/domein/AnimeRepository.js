@@ -113,11 +113,15 @@ export class AnimeRepository {
     exportToData() {
         return this.animes.map(a => ({
             id: a.id,
+            anilistId: a.anilistId || null,
             title: a.title,
             status: [-1, 0, 1].includes(a.status) ? a.status : -1,
             rating: a.rating,
             releaseDate: a.releaseDate,
             coverImage: a.coverImage,
+            studio: a.studio || "",
+            year: a.year || null,
+            genres: a.genres || [],
 
             items: a.items.map(i => ({ id: i.id, title: i.title, status: i.status, type: i.type, rating: i.rating, watchedEpisodes: i.watchedEpisodes, episodesCount: i.episodesCount }))
         }));

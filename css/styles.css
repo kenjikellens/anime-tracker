@@ -1060,6 +1060,51 @@ select[data-bound] {
     color: var(--text-muted);
 }
 
+/* Sidebar metadata container (studio, year, genres) */
+.sidebar-metadata {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--surface-2);
+}
+
+.sidebar-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.sidebar-meta-row .meta-label {
+    color: var(--text-muted);
+}
+
+.sidebar-meta-row .meta-value {
+    color: var(--white);
+    font-weight: 700;
+}
+
+.sidebar-meta-genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.genre-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    background-color: var(--surface-2);
+    color: var(--text);
+    transition: background-color 0.15s ease;
+}
+
 /* Rating block value text */
 .sidebar-rating-val {
     font-weight: 800;

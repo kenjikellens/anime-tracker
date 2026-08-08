@@ -5,11 +5,7 @@ Documentatie van potentiële uitbreidingen en innovatieve functionaliteiten voor
 ---
 
 ## 1. Geavanceerd Statistieken & Analytics Dashboard
-- **Kijkgedrag Inzichten**:
-  - Totale gekeken tijd (dagen, uren, minuten).
-  - Verdeling van genres, studio's, seizoenen en uitgiftejaren in overzichtelijke grafieken.
-  - Gemiddelde cijferverdeling en persoonlijke waarderingen vs. AniList-gemiddelden.
-- **Franchise Voortgang**: Voortgangsbalken per franchise/universum (bijv. *"Fate Series: 75% voltooid"*).
+- Verdeling van genres, studio's, seizoenen en uitgiftejaren in overzichtelijke grafieken.
 
 ---
 
