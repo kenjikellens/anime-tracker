@@ -179,7 +179,7 @@
     {
         "id": "horimiya",
         "title": "Horimiya",
-        "status": 1,
+        "status": 0,
         "rating": 9.6,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx124080-3i22mRVPBS0T.jpg",
@@ -201,6 +201,15 @@
                 "rating": 9.5,
                 "watchedEpisodes": [],
                 "episodesCount": 13
+            },
+            {
+                "id": "hori-san-to-miyamura-kun",
+                "title": "Hori-san to Miyamura-kun",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 6
             }
         ]
     },
@@ -285,7 +294,7 @@
     {
         "id": "konosuba-god-s-blessing-on-this-wonderful-world",
         "title": "KonoSuba: God's Blessing on This Wonderful World!",
-        "status": 1,
+        "status": 0,
         "rating": 9.2,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21202-mPOr80AEjUcZ.png",
@@ -351,7 +360,43 @@
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
+                "episodesCount": 11
+            },
+            {
+                "id": "konosuba-god-s-blessing-on-this-wonderful-world-s4",
+                "title": "KonoSuba: God's Blessing on This Wonderful World! 4",
+                "status": 2,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
                 "episodesCount": 0
+            },
+            {
+                "id": "konosuba-god-s-blessing-on-this-wonderful-world-god-s-blessings-on-this-wonderful-choker",
+                "title": "KONOSUBA -God's blessing on this wonderful world!: God's Blessings On This Wonderful Choker!",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "konosuba-god-s-blessing-on-this-wonderful-world-2",
+                "title": "KONOSUBA -God's blessing on this wonderful world! 2",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 10
+            },
+            {
+                "id": "konosuba-an-explosion-on-this-wonderful-world",
+                "title": "KONOSUBA -An Explosion on This Wonderful World!",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
             }
         ]
     },
@@ -384,18 +429,18 @@
             {
                 "id": "the-100-girlfriends-who-really-really-really-really-really-love-you-s3",
                 "title": "The 100 Girlfriends Who Really, Really, Really, Really, REALLY Love You Season 3",
-                "status": 2,
+                "status": 3,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
-                "episodesCount": 1
+                "episodesCount": 12
             }
         ]
     },
     {
         "id": "high-school-dxd",
         "title": "High School DxD",
-        "status": 1,
+        "status": 0,
         "rating": 8.5,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx11617-nmxMU9Zh3H5R.jpg",
@@ -489,13 +534,22 @@
                 "rating": 0,
                 "watchedEpisodes": [],
                 "episodesCount": 1
+            },
+            {
+                "id": "high-school-dxd-fantasy-jiggles-unleashed",
+                "title": "High School DxD: Fantasy Jiggles Unleashed",
+                "status": -1,
+                "type": "SPECIAL",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 6
             }
         ]
     },
     {
         "id": "kaguya-sama-love-is-war",
         "title": "Kaguya-sama: Love is War",
-        "status": 1,
+        "status": 0,
         "rating": 8.6,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx101921-ufrjLzhSz7L1.jpg",
@@ -553,13 +607,31 @@
                 "rating": 0,
                 "watchedEpisodes": [],
                 "episodesCount": 2
+            },
+            {
+                "id": "kaguya-sama-final-chapter-movie",
+                "title": "Kaguya-sama: Love is War Final Chapter Movie",
+                "status": 2,
+                "type": "MOVIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "kaguya-sama-love-is-war",
+                "title": "Kaguya-sama: Love is War?",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
             }
         ]
     },
     {
         "id": "fruits-basket-2019",
         "title": "Fruits Basket (2019)",
-        "status": 1,
+        "status": 0,
         "rating": 8.4,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx105334-AZwEdMu4KFtV.jpg",
@@ -599,13 +671,31 @@
                 "rating": 0,
                 "watchedEpisodes": [],
                 "episodesCount": 1
+            },
+            {
+                "id": "fruits-basket",
+                "title": "Fruits Basket",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 26
+            },
+            {
+                "id": "fruits-basket-season-2",
+                "title": "Fruits Basket Season 2",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 25
             }
         ]
     },
     {
         "id": "toradora",
         "title": "Toradora!",
-        "status": 1,
+        "status": 0,
         "rating": 8.3,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx4224-PXVMBLNwy2aF.jpg",
@@ -636,13 +726,40 @@
                 "rating": 0,
                 "watchedEpisodes": [],
                 "episodesCount": 1
+            },
+            {
+                "id": "toradora-sos-hurray-for-foodies",
+                "title": "Toradora!: SOS! Hurray for Foodies",
+                "status": -1,
+                "type": "SPECIAL",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 4
+            },
+            {
+                "id": "toradora-bento-battle",
+                "title": "Toradora!: Bento Battle",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "toradora-ami-no-monomane-150-renpatsu",
+                "title": "Toradora!: Ami no Monomane 150 Renpatsu!!",
+                "status": -1,
+                "type": "SPECIAL",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
             }
         ]
     },
     {
         "id": "the-angel-next-door-spoils-me-rotten",
         "title": "The Angel Next Door Spoils Me Rotten",
-        "status": 1,
+        "status": 0,
         "rating": 8,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx143338-zhyDVYgEzsm5.png",
@@ -659,7 +776,16 @@
             {
                 "id": "the-angel-next-door-s2",
                 "title": "The Angel Next Door Spoils Me Rotten Season 2",
-                "status": 3,
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "the-angel-next-door-spoils-me-rotten2",
+                "title": "The Angel Next Door Spoils Me Rotten2",
+                "status": -1,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -692,13 +818,22 @@
                 "rating": 0,
                 "watchedEpisodes": [],
                 "episodesCount": 1
+            },
+            {
+                "id": "tokidoki-bosotto-rossiya-go-de-dereru-tonari-no-alya-san-season-2",
+                "title": "Tokidoki Bosotto Rossiya-go de Dereru Tonari no Alya-san Season 2",
+                "status": 2,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 0
             }
         ]
     },
     {
         "id": "relife",
         "title": "ReLIFE",
-        "status": 1,
+        "status": 0,
         "rating": 8.1,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21049-4AHSLeiDE9eg.png",
@@ -716,6 +851,15 @@
                 "id": "relife-kanketsu-hen",
                 "title": "ReLIFE: Kanketsu-hen",
                 "status": 1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 4
+            },
+            {
+                "id": "relife-final-arc",
+                "title": "ReLIFE: Final Arc",
+                "status": -1,
                 "type": "OVA",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -829,7 +973,7 @@
     {
         "id": "class-president-is-a-maid",
         "title": "Class President is a Maid!",
-        "status": 1,
+        "status": 0,
         "rating": 7.6,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx7054-GW4D7VAZG19W.png",
@@ -857,6 +1001,24 @@
                 "title": "Class President is a Maid!: It's a Bonus!",
                 "status": 1,
                 "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "maid-sama-it-s-an-extra",
+                "title": "Maid-Sama! It's an extra!",
+                "status": -1,
+                "type": "SPECIAL",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "maid-sama-lala-special",
+                "title": "Maid-Sama! LaLa Special",
+                "status": -1,
+                "type": "SPECIAL",
                 "rating": 0,
                 "watchedEpisodes": [],
                 "episodesCount": 1
@@ -989,6 +1151,15 @@
                 "rating": 0,
                 "watchedEpisodes": [],
                 "episodesCount": 12
+            },
+            {
+                "id": "the-iceblade-sorcerer-shall-rule-the-world-ii",
+                "title": "The Iceblade Sorcerer Shall Rule the World II",
+                "status": 2,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 0
             }
         ]
     },
@@ -1050,7 +1221,7 @@
     {
         "id": "my-little-sister-can-t-be-this-cute-oreimo",
         "title": "My Little Sister Can't Be This Cute",
-        "status": 1,
+        "status": 0,
         "rating": 7.7,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx8769-Lat76qlOwdBN.jpg",
@@ -1090,6 +1261,15 @@
                 "rating": 0,
                 "watchedEpisodes": [],
                 "episodesCount": 3
+            },
+            {
+                "id": "oreimo-animated-commentary",
+                "title": "Oreimo Animated Commentary",
+                "status": -1,
+                "type": "SPECIAL",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 16
             }
         ]
     },
@@ -1134,7 +1314,7 @@
     {
         "id": "trinity-seven",
         "title": "Trinity Seven",
-        "status": 1,
+        "status": 0,
         "rating": 6.9,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20631-LdCiy3goitcT.png",
@@ -1170,6 +1350,24 @@
                 "id": "trinity-seven-movie-2",
                 "title": "Trinity Seven Movie 2: Heavens Library & Crimson Lord",
                 "status": 1,
+                "type": "MOVIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "trinity-seven-nanatsu-no-taizai-to-nana-madoushi",
+                "title": "Trinity Seven: Nanatsu no Taizai to Nana Madoushi",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "trinity-seven-eternal-library-alchemic-girl",
+                "title": "Trinity Seven: Eternal Library & Alchemic Girl",
+                "status": -1,
                 "type": "MOVIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -3368,7 +3566,6 @@
                 "type": "SERIE",
                 "rating": 9.1,
                 "watchedEpisodes": [
-                    2,
                     3,
                     4,
                     5,
@@ -3378,7 +3575,8 @@
                     9,
                     10,
                     11,
-                    1
+                    1,
+                    2
                 ],
                 "episodesCount": 11
             },

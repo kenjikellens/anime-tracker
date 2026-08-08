@@ -23,7 +23,7 @@ export class DetailRenderer {
      * Builds the full detailed sidebar, item accordions, and status dropdowns for an anime group.
      * Restricts the global dropdown to watch statuses, and includes item-only release statuses.
      */
-    static renderDetail(container, anime, onItemStatusChange, onGlobalStatusChange, onRatingChange, onEpisodeToggle, onRatingClick = null, openItemIds = [], onItemRatingClick = null) {
+    static async renderDetail(container, anime, onItemStatusChange, onGlobalStatusChange, onRatingChange, onEpisodeToggle, onRatingClick = null, openItemIds = [], onItemRatingClick = null, minLoadStartTime = null) {
         const layout = container.querySelector('.anime-detail-layout-v3');
         if (!layout) return;
 
@@ -158,6 +158,16 @@ export class DetailRenderer {
         // Render episodes/accordion list
         const listDiv = layout.querySelector('.episodes-list-v3');
         if (listDiv) {
+            if (minLoadStartTime) {
+                const elapsed = Date.now() - minLoadStartTime;
+                const remaining = Math.max(0, 500 - elapsed);
+                if (remaining > 0) {
+                    await new Promise(resolve => setTimeout(resolve, remaining));
+                }
+            }
+
+            if (!container.isConnected) return;
+
             listDiv.innerHTML = '';
         }
         if (anime.items.length === 0) {

@@ -31,11 +31,12 @@ Hieronder staat de volledige lijst van anime series die je hebt bekeken, inclusi
 - [ ] KonoSuba: Legend of Crimson (Movie)
 - [ ] KonoSuba: An Explosion on This Wonderful World! (Spin-off Series - 12 eps)
 - [ ] KonoSuba: God's Blessing on This Wonderful World! 3 (Season 3 - 11 eps)
+- [ ] KonoSuba: God's Blessing on This Wonderful World! 4 (Announced - 2027)
 
 ## The 100 Girlfriends Who Really, Really, Really, Really, Really Love You
 - [ ] The 100 Girlfriends Season 1 (12 eps)
 - [ ] The 100 Girlfriends Season 2 (12 eps)
-- [ ] The 100 Girlfriends Season 3 (Announced - July 2026)
+- [ ] The 100 Girlfriends Season 3 (Airing - Started July 5, 2026)
 
 ## High School DxD
 - [ ] High School DxD (Season 1 - 12 eps)
@@ -70,7 +71,7 @@ Hieronder staat de volledige lijst van anime series die je hebt bekeken, inclusi
 
 ## The Angel Next Door Spoils Me Rotten
 - [ ] The Angel Next Door Spoils Me Rotten (Season 1 - 12 eps)
-- [ ] The Angel Next Door Spoils Me Rotten Season 2 (Airing - Started April 2026)
+- [ ] The Angel Next Door Spoils Me Rotten Season 2 (12 eps)
 
 ## Alya Sometimes Hides Her Feelings in Russian
 - [ ] Alya Sometimes Hides Her Feelings in Russian (Season 1 - 12 eps)

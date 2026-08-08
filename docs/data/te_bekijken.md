@@ -48,7 +48,7 @@
 - [ ] Classroom of the Elite Season 1 (12 eps)
 - [ ] Classroom of the Elite Season 2 (13 eps)
 - [ ] Classroom of the Elite Season 3 (13 eps)
-- [ ] Classroom of the Elite Season 4 (Airing - Started April 1, 2026)
+- [ ] Classroom of the Elite Season 4 (16 eps)
 
 ## Azumanga Daioh
 - [ ] Azumanga Daioh (TV Series - 26 eps)

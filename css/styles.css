@@ -884,6 +884,16 @@ select[data-bound] {
     gap: 12px;
 }
 
+/* Centered loading spinner wrapper for items list in detail view */
+.items-list-loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 200px;
+    padding: 32px 0;
+}
+
 /* Detail item wrapper container with visible overflow for floating dropdown menus */
 .item-accordion-wrapper {
     background: var(--surface);
@@ -899,10 +909,16 @@ select[data-bound] {
     align-items: center;
     gap: 12px;
     background: var(--surface);
+    border-radius: 12px;
     list-style: none;
     font-weight: 600;
     font-size: 15px;
     transition: background-color 0.15s ease;
+}
+
+/* Round top corners only when accordion details is open */
+.item-accordion-wrapper[open] > .detail-item-row {
+    border-radius: 12px 12px 0 0;
 }
 
 /* Item row hover highlight */
@@ -1057,6 +1073,7 @@ select[data-bound] {
     padding: 16px;
     background: var(--surface-2);
     border: none;
+    border-radius: 0 0 12px 12px;
 }
 
 .episode-checkbox-wrap {
@@ -1483,7 +1500,7 @@ footer {
 
 /* Expands inset layer by 2px on hover for all ultimate hover elements */
 .ultimate-hover-effect:hover::before {
-    inset: -2px;
+    inset: -1px;
 }
 
 /* Standard surface elements (excludes active/selected elements, rating badges & primary buttons): apply surface hover background */

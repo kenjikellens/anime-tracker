@@ -63,10 +63,11 @@ async function handleRoute() {
         currentDetailAnime = repository.getById(id);
 
         if (currentDetailAnime) {
+            const cardLoadStartTime = Date.now();
             const response = await fetch('card.html');
             appContainer.innerHTML = await response.text();
 
-            renderDetail();
+            renderDetail(cardLoadStartTime);
             DropdownManager.bindAll(appContainer);
 
             // Fetch missing poster/episode data for this one record only.
@@ -510,8 +511,9 @@ function setupDownloadBtn() {
 
 /**
  * Renders the detail page content and accordion elements.
+ * @param {number|null} [loadStartTime=null] - Optional start timestamp to enforce minimum loader duration.
  */
-function renderDetail() {
+function renderDetail(loadStartTime = null) {
     const container = document.getElementById('detail-container');
     if (!container || !currentDetailAnime) return;
     
@@ -528,7 +530,8 @@ function renderDetail() {
             handleEpisodeToggle,
             openGlobalRatingModal,
             openItemIds,
-            openItemRatingModal
+            openItemRatingModal,
+            loadStartTime
         );
     });
 }
