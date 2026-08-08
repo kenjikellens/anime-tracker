@@ -26,7 +26,8 @@ export class ThemeManager {
      */
     static getSavedTheme() {
         const savedTheme = CookieManager.get(THEME_KEY);
-        return savedTheme === THEMES.DARK ? THEMES.DARK : THEMES.LIGHT;
+        if (savedTheme === THEMES.LIGHT) return THEMES.LIGHT;
+        return THEMES.DARK;
     }
 
     /**
