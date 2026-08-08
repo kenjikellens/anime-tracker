@@ -147,7 +147,9 @@ export class DetailRenderer {
 
         // Render episodes/accordion list
         const listDiv = layout.querySelector('.episodes-list-v3');
-        listDiv.innerHTML = '';
+        if (listDiv) {
+            listDiv.innerHTML = '';
+        }
         if (anime.items.length === 0) {
             const emptyP = document.createElement('p');
             emptyP.className = 'text-muted';
