@@ -3,23 +3,40 @@ const path = require('path');
 
 const DATA_PATH = path.join(__dirname, '../data/data.json');
 
-async function fetchAniListMetadata(title, anilistId) {
-    const query = `
-    query ($search: String, $id: Int) {
-      Media (${anilistId ? 'id: $id' : 'search: $search'}, type: ANIME, sort: SEARCH_MATCH) {
-        id
-        seasonYear
-        startDate { year }
-        genres
-        studios {
-          nodes {
-            name
-            isAnimationStudio
-          }
-        }
+const QUERY_BY_ID = `
+query ($id: Int) {
+  Media (id: $id, type: ANIME) {
+    id
+    seasonYear
+    startDate { year }
+    genres
+    studios {
+      nodes {
+        name
+        isAnimationStudio
       }
-    }`;
+    }
+  }
+}`;
 
+const QUERY_BY_SEARCH = `
+query ($search: String) {
+  Media (search: $search, type: ANIME, sort: SEARCH_MATCH) {
+    id
+    seasonYear
+    startDate { year }
+    genres
+    studios {
+      nodes {
+        name
+        isAnimationStudio
+      }
+    }
+  }
+}`;
+
+async function fetchAniListMetadata(title, anilistId) {
+    const query = anilistId ? QUERY_BY_ID : QUERY_BY_SEARCH;
     const variables = anilistId ? { id: parseInt(anilistId) } : { search: title };
 
     for (let attempt = 1; attempt <= 3; attempt++) {
@@ -34,7 +51,7 @@ async function fetchAniListMetadata(title, anilistId) {
             });
 
             if (response.status === 429) {
-                console.warn(`Rate limited (429) for "${title}". Waiting 3 seconds (Attempt ${attempt}/3)...`);
+                console.warn(`Rate limited (429) for "${title}". Retrying in 3s (Attempt ${attempt}/3)...`);
                 await new Promise(r => setTimeout(r, 3000));
                 continue;
             }
@@ -78,7 +95,7 @@ async function main() {
         const anime = animes[i];
         
         // Skip if already enriched with studio, year, and genres
-        if (anime.studio !== undefined && anime.year !== undefined && Array.isArray(anime.genres) && anime.genres.length > 0) {
+        if (anime.studio && anime.year && Array.isArray(anime.genres) && anime.genres.length > 0) {
             continue;
         }
 
@@ -99,12 +116,12 @@ async function main() {
         }
 
         // Save progress to data.json periodically every 10 items
-        if ((i + 1) % 10 === 0) {
+        if ((i + 1) % 5 === 0) {
             fs.writeFileSync(DATA_PATH, JSON.stringify(animes, null, 4), 'utf-8');
         }
 
-        // Delay 750ms to strictly observe AniList rate limits
-        await new Promise(resolve => setTimeout(resolve, 750));
+        // Delay 1000ms to strictly observe AniList rate limits
+        await new Promise(resolve => setTimeout(resolve, 1000));
     }
 
     console.log(`Enrichment finished. Updated ${updatedCount} entries.`);

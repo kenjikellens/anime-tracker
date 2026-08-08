@@ -26,9 +26,16 @@
                 "episodesCount": 4
             }
         ],
-        "studio": "",
-        "year": null,
-        "genres": []
+        "studio": "Passione",
+        "year": 2025,
+        "genres": [
+            "Action",
+            "Comedy",
+            "Drama",
+            "Ecchi",
+            "Romance"
+        ],
+        "anilistId": 174188
     },
     {
         "id": "worlds-end-harem",
@@ -48,9 +55,13 @@
                 "episodesCount": 11
             }
         ],
-        "studio": "",
-        "year": null,
-        "genres": []
+        "studio": "AXsiZ",
+        "year": 2022,
+        "genres": [
+            "Ecchi",
+            "Sci-Fi"
+        ],
+        "anilistId": 118465
     },
     {
         "id": "how-a-realist-hero-rebuilt-the-kingdom",
@@ -79,9 +90,15 @@
                 "episodesCount": 13
             }
         ],
-        "studio": "",
-        "year": null,
-        "genres": []
+        "studio": "J.C.STAFF",
+        "year": 2021,
+        "genres": [
+            "Action",
+            "Adventure",
+            "Fantasy",
+            "Romance"
+        ],
+        "anilistId": 117612
     },
     {
         "id": "undefeated-bahamut-chronicle",
@@ -101,9 +118,17 @@
                 "episodesCount": 12
             }
         ],
-        "studio": "",
-        "year": null,
-        "genres": []
+        "studio": "Lerche",
+        "year": 2016,
+        "genres": [
+            "Action",
+            "Ecchi",
+            "Fantasy",
+            "Mecha",
+            "Romance",
+            "Supernatural"
+        ],
+        "anilistId": 21188
     },
     {
         "id": "studio-apartment-good-lighting-angel-included",
@@ -123,9 +148,15 @@
                 "episodesCount": 12
             }
         ],
-        "studio": "",
-        "year": null,
-        "genres": []
+        "studio": "Okuruto Noboru",
+        "year": 2024,
+        "genres": [
+            "Comedy",
+            "Romance",
+            "Slice of Life",
+            "Supernatural"
+        ],
+        "anilistId": 169927
     },
     {
         "id": "rascal-does-not-dream",
@@ -190,9 +221,16 @@
                 "episodesCount": 1
             }
         ],
-        "studio": "",
-        "year": null,
-        "genres": []
+        "studio": "CloverWorks",
+        "year": 2025,
+        "genres": [
+            "Drama",
+            "Mystery",
+            "Psychological",
+            "Romance",
+            "Supernatural"
+        ],
+        "anilistId": 171046
     },
     {
         "id": "horimiya",
@@ -230,9 +268,14 @@
                 "episodesCount": 6
             }
         ],
-        "studio": "",
-        "year": null,
-        "genres": []
+        "studio": "CloverWorks",
+        "year": 2021,
+        "genres": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 124080
     },
     {
         "id": "my-teen-romantic-comedy-snafu-oregairu",
@@ -311,9 +354,15 @@
                 "episodesCount": 1
             }
         ],
-        "studio": "",
-        "year": null,
-        "genres": []
+        "studio": "Brain's Base",
+        "year": 2013,
+        "genres": [
+            "Comedy",
+            "Drama",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 14813
     },
     {
         "id": "konosuba-god-s-blessing-on-this-wonderful-world",
@@ -423,9 +472,15 @@
                 "episodesCount": 12
             }
         ],
-        "studio": "",
-        "year": null,
-        "genres": []
+        "studio": "Studio DEEN",
+        "year": 2016,
+        "genres": [
+            "Adventure",
+            "Comedy",
+            "Ecchi",
+            "Fantasy"
+        ],
+        "anilistId": 21202
     },
     {
         "id": "the-100-girlfriends-who-really-really-really-really-really-love-you",
@@ -463,9 +518,14 @@
                 "episodesCount": 12
             }
         ],
-        "studio": "",
-        "year": null,
-        "genres": []
+        "studio": "Bibury Animation Studios",
+        "year": 2023,
+        "genres": [
+            "Comedy",
+            "Ecchi",
+            "Romance"
+        ],
+        "anilistId": 162694
     },
     {
         "id": "high-school-dxd",
@@ -574,7 +634,17 @@
                 "watchedEpisodes": [],
                 "episodesCount": 6
             }
-        ]
+        ],
+        "studio": "TNK",
+        "year": 2012,
+        "genres": [
+            "Action",
+            "Comedy",
+            "Ecchi",
+            "Fantasy",
+            "Romance"
+        ],
+        "anilistId": 11617
     },
     {
         "id": "kaguya-sama-love-is-war",
@@ -656,7 +726,16 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "A-1 Pictures",
+        "year": 2019,
+        "genres": [
+            "Comedy",
+            "Psychological",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 101921
     },
     {
         "id": "fruits-basket-2019",
@@ -720,7 +799,17 @@
                 "watchedEpisodes": [],
                 "episodesCount": 25
             }
-        ]
+        ],
+        "studio": "TMS Entertainment",
+        "year": 2019,
+        "genres": [
+            "Comedy",
+            "Drama",
+            "Romance",
+            "Slice of Life",
+            "Supernatural"
+        ],
+        "anilistId": 105334
     },
     {
         "id": "toradora",
@@ -784,7 +873,16 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "J.C.STAFF",
+        "year": 2008,
+        "genres": [
+            "Comedy",
+            "Drama",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 4224
     },
     {
         "id": "the-angel-next-door-spoils-me-rotten",
@@ -821,7 +919,14 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "project No.9",
+        "year": 2023,
+        "genres": [
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 143338
     },
     {
         "id": "alya-sometimes-hides-her-feelings-in-russian",
@@ -858,7 +963,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 0
             }
-        ]
+        ],
+        "studio": "Doga Kobo",
+        "year": 2024,
+        "genres": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 162804
     },
     {
         "id": "relife",
@@ -895,7 +1008,16 @@
                 "watchedEpisodes": [],
                 "episodesCount": 4
             }
-        ]
+        ],
+        "studio": "TMS Entertainment",
+        "year": 2016,
+        "genres": [
+            "Comedy",
+            "Drama",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 21049
     },
     {
         "id": "the-fragrant-flower-blooms-with-dignity",
@@ -914,7 +1036,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 13
             }
-        ]
+        ],
+        "studio": "CloverWorks",
+        "year": 2025,
+        "genres": [
+            "Comedy",
+            "Drama",
+            "Romance"
+        ],
+        "anilistId": 181444
     },
     {
         "id": "the-pet-girl-of-sakurasou",
@@ -933,7 +1063,16 @@
                 "watchedEpisodes": [],
                 "episodesCount": 24
             }
-        ]
+        ],
+        "studio": "J.C.STAFF",
+        "year": 2012,
+        "genres": [
+            "Comedy",
+            "Drama",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 13759
     },
     {
         "id": "my-dress-up-darling",
@@ -961,7 +1100,16 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "CloverWorks",
+        "year": 2022,
+        "genres": [
+            "Comedy",
+            "Ecchi",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 132405
     },
     {
         "id": "a-couple-of-cuckoos",
@@ -998,7 +1146,14 @@
                 "watchedEpisodes": [],
                 "episodesCount": 24
             }
-        ]
+        ],
+        "studio": "Shin-Ei Animation",
+        "year": 2022,
+        "genres": [
+            "Comedy",
+            "Romance"
+        ],
+        "anilistId": 132052
     },
     {
         "id": "class-president-is-a-maid",
@@ -1053,7 +1208,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "J.C.STAFF",
+        "year": 2010,
+        "genres": [
+            "Comedy",
+            "Drama",
+            "Romance"
+        ],
+        "anilistId": 7054
     },
     {
         "id": "and-you-thought-there-is-never-a-girl-online",
@@ -1072,7 +1235,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "project No.9",
+        "year": 2016,
+        "genres": [
+            "Comedy",
+            "Ecchi",
+            "Romance"
+        ],
+        "anilistId": 21290
     },
     {
         "id": "love-chunibyo-other-delusions",
@@ -1163,7 +1334,13 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "Kyoto Animation",
+        "year": 2014,
+        "genres": [
+            "Comedy"
+        ],
+        "anilistId": 20660
     },
     {
         "id": "the-iceblade-sorcerer-shall-rule-the-world",
@@ -1191,7 +1368,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 0
             }
-        ]
+        ],
+        "studio": "CLOUDHEARTS",
+        "year": 2023,
+        "genres": [
+            "Action",
+            "Adventure",
+            "Fantasy"
+        ],
+        "anilistId": 148116
     },
     {
         "id": "danganronpa",
@@ -1246,7 +1431,17 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "Lerche",
+        "year": 2013,
+        "genres": [
+            "Horror",
+            "Mystery",
+            "Psychological",
+            "Sci-Fi",
+            "Thriller"
+        ],
+        "anilistId": 16592
     },
     {
         "id": "my-little-sister-can-t-be-this-cute-oreimo",
@@ -1301,7 +1496,14 @@
                 "watchedEpisodes": [],
                 "episodesCount": 16
             }
-        ]
+        ],
+        "studio": "AIC Build",
+        "year": 2010,
+        "genres": [
+            "Comedy",
+            "Slice of Life"
+        ],
+        "anilistId": 8769
     },
     {
         "id": "the-dreaming-boy-is-a-realist",
@@ -1320,7 +1522,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "Studio Gokumi",
+        "year": 2023,
+        "genres": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 157397
     },
     {
         "id": "pseudo-harem",
@@ -1339,7 +1549,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "Nomad",
+        "year": 2024,
+        "genres": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 163623
     },
     {
         "id": "trinity-seven",
@@ -1403,7 +1621,17 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "Plum",
+        "year": 2014,
+        "genres": [
+            "Action",
+            "Comedy",
+            "Ecchi",
+            "Fantasy",
+            "Romance"
+        ],
+        "anilistId": 20631
     },
     {
         "id": "akashic-records-of-bastard-magic-instructor",
@@ -1422,7 +1650,10 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "",
+        "year": null,
+        "genres": []
     },
     {
         "id": "masamune-kun-s-revenge",
@@ -1459,7 +1690,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "SILVER LINK.",
+        "year": 2017,
+        "genres": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 21857
     },
     {
         "id": "shikimori-s-not-just-a-cutie",
@@ -1478,7 +1717,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "Doga Kobo",
+        "year": 2022,
+        "genres": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 127911
     },
     {
         "id": "the-dangers-in-my-heart",
@@ -1515,7 +1762,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "Shin-Ei Animation",
+        "year": 2023,
+        "genres": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 153152
     },
     {
         "id": "more-than-a-married-couple-but-not-lovers",
@@ -1534,7 +1789,16 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "studio MOTHER",
+        "year": 2022,
+        "genres": [
+            "Comedy",
+            "Drama",
+            "Ecchi",
+            "Romance"
+        ],
+        "anilistId": 141949
     },
     {
         "id": "golden-time",
@@ -1553,7 +1817,14 @@
                 "watchedEpisodes": [],
                 "episodesCount": 24
             }
-        ]
+        ],
+        "studio": "Robot",
+        "year": 2013,
+        "genres": [
+            "Comedy",
+            "Fantasy"
+        ],
+        "anilistId": 102755
     },
     {
         "id": "haganai-i-don-t-have-many-friends",
@@ -1599,7 +1870,10 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "",
+        "year": null,
+        "genres": []
     },
     {
         "id": "eromanga-sensei",
@@ -1627,7 +1901,17 @@
                 "watchedEpisodes": [],
                 "episodesCount": 2
             }
-        ]
+        ],
+        "studio": "A-1 Pictures",
+        "year": 2017,
+        "genres": [
+            "Comedy",
+            "Drama",
+            "Ecchi",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 21685
     },
     {
         "id": "shimoneta-a-boring-world-where-the-concept-of-dirty-jokes-doesn-t-exist",
@@ -1646,7 +1930,14 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "J.C.STAFF",
+        "year": 2015,
+        "genres": [
+            "Comedy",
+            "Ecchi"
+        ],
+        "anilistId": 20910
     },
     {
         "id": "prison-school",
@@ -1674,7 +1965,14 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "J.C.STAFF",
+        "year": 2015,
+        "genres": [
+            "Comedy",
+            "Ecchi"
+        ],
+        "anilistId": 20807
     },
     {
         "id": "the-genius-prince-s-guide-to-raising-a-nation-out-of-debt",
@@ -1693,7 +1991,14 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "Yokohama Animation Lab",
+        "year": 2022,
+        "genres": [
+            "Comedy",
+            "Fantasy"
+        ],
+        "anilistId": 129190
     },
     {
         "id": "don-t-toy-with-me-miss-nagatoro",
@@ -1721,7 +2026,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "Telecom Animation Film",
+        "year": 2021,
+        "genres": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 120697
     },
     {
         "id": "medaka-kuroiwa-is-impervious-to-my-charms",
@@ -1749,7 +2062,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "SynergySP",
+        "year": 2025,
+        "genres": [
+            "Comedy",
+            "Ecchi",
+            "Romance"
+        ],
+        "anilistId": 177552
     },
     {
         "id": "my-girlfriend-is-shobitch",
@@ -1777,7 +2098,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 2
             }
-        ]
+        ],
+        "studio": "diomedéa",
+        "year": 2017,
+        "genres": [
+            "Comedy",
+            "Ecchi",
+            "Romance"
+        ],
+        "anilistId": 98951
     },
     {
         "id": "bottom-tier-character-tomozaki",
@@ -1814,7 +2143,16 @@
                 "watchedEpisodes": [],
                 "episodesCount": 13
             }
-        ]
+        ],
+        "studio": "project No.9",
+        "year": 2021,
+        "genres": [
+            "Comedy",
+            "Drama",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 112443
     },
     {
         "id": "can-a-boy-and-girl-friendship-hold-up-no-it-can-t",
@@ -1833,7 +2171,14 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "J.C.STAFF",
+        "year": 2025,
+        "genres": [
+            "Comedy",
+            "Romance"
+        ],
+        "anilistId": 153554
     },
     {
         "id": "hensuki-are-you-willing-to-fall-in-love-with-a-pervert-as-long-as-she-s-a-cutie",
@@ -1852,7 +2197,16 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "GEEKTOYS",
+        "year": 2019,
+        "genres": [
+            "Comedy",
+            "Ecchi",
+            "Mystery",
+            "Romance"
+        ],
+        "anilistId": 107961
     },
     {
         "id": "my-little-monster",
@@ -1880,7 +2234,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "Brain's Base",
+        "year": 2012,
+        "genres": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 14227
     },
     {
         "id": "blue-box",
@@ -1908,7 +2270,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "Telecom Animation Film",
+        "year": 2024,
+        "genres": [
+            "Romance",
+            "Slice of Life",
+            "Sports"
+        ],
+        "anilistId": 170942
     },
     {
         "id": "the-children-of-shiunji-family",
@@ -1927,7 +2297,14 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "Doga Kobo",
+        "year": 2025,
+        "genres": [
+            "Comedy",
+            "Romance"
+        ],
+        "anilistId": 174802
     },
     {
         "id": "gamers",
@@ -1946,7 +2323,16 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "PINE JAM",
+        "year": 2017,
+        "genres": [
+            "Comedy",
+            "Drama",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 97766
     },
     {
         "id": "redo-of-healer",
@@ -1965,7 +2351,16 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "TNK",
+        "year": 2021,
+        "genres": [
+            "Action",
+            "Adventure",
+            "Ecchi",
+            "Fantasy"
+        ],
+        "anilistId": 113425
     },
     {
         "id": "kiss-x-sis",
@@ -1993,7 +2388,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "feel.",
+        "year": 2009,
+        "genres": [
+            "Comedy",
+            "Ecchi",
+            "Romance"
+        ],
+        "anilistId": 5042
     },
     {
         "id": "rent-a-girlfriend",
@@ -2061,7 +2464,15 @@
                 ],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "TMS Entertainment",
+        "year": 2020,
+        "genres": [
+            "Comedy",
+            "Drama",
+            "Romance"
+        ],
+        "anilistId": 113813
     },
     {
         "id": "your-lie-in-april-shigatsu-wa-kimi-no-uso",
@@ -2089,7 +2500,16 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "A-1 Pictures",
+        "year": 2014,
+        "genres": [
+            "Drama",
+            "Music",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 20665
     },
     {
         "id": "orange",
@@ -2117,7 +2537,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "TMS Entertainment",
+        "year": 2016,
+        "genres": [
+            "Drama",
+            "Romance",
+            "Supernatural"
+        ],
+        "anilistId": 21647
     },
     {
         "id": "a-silent-voice-koe-no-katachi",
@@ -2136,7 +2564,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "Kyoto Animation",
+        "year": 2016,
+        "genres": [
+            "Drama",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 20954
     },
     {
         "id": "i-want-to-eat-your-pancreas-kimi-no-suizou-wo-tabetai",
@@ -2155,7 +2591,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "Studio VOLN",
+        "year": 2018,
+        "genres": [
+            "Drama",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 99750
     },
     {
         "id": "inexpressive-kashiwada-and-expressive-oota",
@@ -2174,7 +2618,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "STUDIO POLON",
+        "year": 2025,
+        "genres": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 187940
     },
     {
         "id": "umamusume-pretty-derby",
@@ -2238,7 +2690,16 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "P.A.WORKS",
+        "year": 2018,
+        "genres": [
+            "Drama",
+            "Music",
+            "Slice of Life",
+            "Sports"
+        ],
+        "anilistId": 98514
     },
     {
         "id": "my-matchmaking-partner-is-my-student-an-aggressive-trouble-maker",
@@ -2257,7 +2718,10 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "",
+        "year": null,
+        "genres": []
     },
     {
         "id": "chitose-is-in-the-ramune-bottle",
@@ -2285,7 +2749,10 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "",
+        "year": null,
+        "genres": []
     },
     {
         "id": "food-for-the-soul",
@@ -2309,7 +2776,10 @@
                 ],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "",
+        "year": null,
+        "genres": []
     },
     {
         "id": "makeine-too-many-losing-heroines",
@@ -2337,7 +2807,10 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "",
+        "year": null,
+        "genres": []
     },
     {
         "id": "the-melancholy-of-haruhi-suzumiya",
@@ -2392,7 +2865,10 @@
                 "watchedEpisodes": [],
                 "episodesCount": 17
             }
-        ]
+        ],
+        "studio": "",
+        "year": null,
+        "genres": []
     },
     {
         "id": "classroom-of-the-elite",
@@ -2438,7 +2914,10 @@
                 "watchedEpisodes": [],
                 "episodesCount": 16
             }
-        ]
+        ],
+        "studio": "",
+        "year": null,
+        "genres": []
     },
     {
         "id": "azumanga-daioh",
@@ -2466,7 +2945,10 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "",
+        "year": null,
+        "genres": []
     },
     {
         "id": "teasing-master-takagi-san",
@@ -2564,7 +3046,10 @@
                 ],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "",
+        "year": null,
+        "genres": []
     },
     {
         "id": "clannad",
@@ -2674,7 +3159,17 @@
                 ],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "Animation Do",
+        "year": 2007,
+        "genres": [
+            "Comedy",
+            "Drama",
+            "Romance",
+            "Slice of Life",
+            "Supernatural"
+        ],
+        "anilistId": 2167
     },
     {
         "id": "the-ryuo-s-work-is-never-done",
@@ -2693,7 +3188,14 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "project No.9",
+        "year": 2018,
+        "genres": [
+            "Comedy",
+            "Slice of Life"
+        ],
+        "anilistId": 99507
     },
     {
         "id": "tune-in-to-the-midnight-heart",
@@ -2734,7 +3236,14 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "Gekkou",
+        "year": 2026,
+        "genres": [
+            "Comedy",
+            "Romance"
+        ],
+        "anilistId": 187942
     },
     {
         "id": "aho-girl",
@@ -2766,7 +3275,14 @@
                 ],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "diomedéa",
+        "year": 2017,
+        "genres": [
+            "Comedy",
+            "Romance"
+        ],
+        "anilistId": 98251
     },
     {
         "id": "ghost-stories",
@@ -2785,7 +3301,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 20
             }
-        ]
+        ],
+        "studio": "Studio Pierrot",
+        "year": 2000,
+        "genres": [
+            "Horror",
+            "Mystery",
+            "Supernatural"
+        ],
+        "anilistId": 1281
     },
     {
         "id": "the-comic-artist-and-his-assistants",
@@ -2813,7 +3337,16 @@
                 "watchedEpisodes": [],
                 "episodesCount": 6
             }
-        ]
+        ],
+        "studio": "ZEXCS",
+        "year": 2014,
+        "genres": [
+            "Comedy",
+            "Ecchi",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 20537
     },
     {
         "id": "re-zero-starting-life-in-another-world",
@@ -2917,7 +3450,19 @@
                 "watchedEpisodes": [],
                 "episodesCount": 0
             }
-        ]
+        ],
+        "studio": "WHITE FOX",
+        "year": 2016,
+        "genres": [
+            "Action",
+            "Adventure",
+            "Drama",
+            "Fantasy",
+            "Psychological",
+            "Romance",
+            "Thriller"
+        ],
+        "anilistId": 21355
     },
     {
         "id": "spy-x-family",
@@ -3027,7 +3572,16 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "CloverWorks",
+        "year": 2022,
+        "genres": [
+            "Action",
+            "Comedy",
+            "Slice of Life",
+            "Supernatural"
+        ],
+        "anilistId": 140960
     },
     {
         "id": "our-last-crusade-or-the-rise-of-a-new-world",
@@ -3055,7 +3609,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "SILVER LINK.",
+        "year": 2020,
+        "genres": [
+            "Action",
+            "Fantasy",
+            "Romance"
+        ],
+        "anilistId": 112667
     },
     {
         "id": "love-is-like-a-cocktail",
@@ -3074,7 +3636,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 13
             }
-        ]
+        ],
+        "studio": "Creators in Pack",
+        "year": 2017,
+        "genres": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 98657
     },
     {
         "id": "mom-i-m-sorry",
@@ -3093,7 +3663,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 18
             }
-        ]
+        ],
+        "studio": "Studio Goindol",
+        "year": 2024,
+        "genres": [
+            "Comedy",
+            "Drama",
+            "Slice of Life"
+        ],
+        "anilistId": 177512
     },
     {
         "id": "9-nine-ruler-s-crown",
@@ -3112,7 +3690,18 @@
                 "watchedEpisodes": [],
                 "episodesCount": 13
             }
-        ]
+        ],
+        "studio": "PRA",
+        "year": 2025,
+        "genres": [
+            "Drama",
+            "Mystery",
+            "Psychological",
+            "Romance",
+            "Slice of Life",
+            "Supernatural"
+        ],
+        "anilistId": 177761
     },
     {
         "id": "quintessential-quintuplets",
@@ -3189,7 +3778,16 @@
                 ],
                 "episodesCount": 2
             }
-        ]
+        ],
+        "studio": "Tezuka Productions",
+        "year": 2019,
+        "genres": [
+            "Comedy",
+            "Drama",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 103572
     },
     {
         "id": "yamada-kun-lv999",
@@ -3208,7 +3806,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 13
             }
-        ]
+        ],
+        "studio": "MADHOUSE",
+        "year": 2023,
+        "genres": [
+            "Comedy",
+            "Drama",
+            "Romance"
+        ],
+        "anilistId": 154965
     },
     {
         "id": "blade-dance-of-the-elementalers",
@@ -3227,7 +3833,18 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "TNK",
+        "year": 2014,
+        "genres": [
+            "Action",
+            "Comedy",
+            "Ecchi",
+            "Fantasy",
+            "Romance",
+            "Supernatural"
+        ],
+        "anilistId": 20663
     },
     {
         "id": "to-love-ru",
@@ -3309,7 +3926,16 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "Xebec",
+        "year": 2008,
+        "genres": [
+            "Comedy",
+            "Ecchi",
+            "Romance",
+            "Sci-Fi"
+        ],
+        "anilistId": 3455
     },
     {
         "id": "date-a-live",
@@ -3422,7 +4048,19 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "AIC Plus+",
+        "year": 2013,
+        "genres": [
+            "Action",
+            "Comedy",
+            "Ecchi",
+            "Fantasy",
+            "Mecha",
+            "Romance",
+            "Sci-Fi"
+        ],
+        "anilistId": 15583
     },
     {
         "id": "gridman-universe",
@@ -3459,7 +4097,16 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "TRIGGER",
+        "year": 2023,
+        "genres": [
+            "Action",
+            "Mecha",
+            "Romance",
+            "Sci-Fi"
+        ],
+        "anilistId": 142684
     },
     {
         "id": "i-made-friends-with-the-second-prettiest-girl-in-my-class",
@@ -3491,7 +4138,14 @@
                 ],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "CONNECT",
+        "year": 2026,
+        "genres": [
+            "Comedy",
+            "Romance"
+        ],
+        "anilistId": 169580
     },
     {
         "id": "the-warrior-princess-and-the-barbaric-king",
@@ -3510,7 +4164,16 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "Jumondou",
+        "year": 2026,
+        "genres": [
+            "Comedy",
+            "Ecchi",
+            "Fantasy",
+            "Romance"
+        ],
+        "anilistId": 182483
     },
     {
         "id": "domestic-girlfriend",
@@ -3542,7 +4205,15 @@
                 ],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "diomedéa",
+        "year": 2019,
+        "genres": [
+            "Drama",
+            "Ecchi",
+            "Romance"
+        ],
+        "anilistId": 103139
     },
     {
         "id": "acchi-kocchi",
@@ -3579,7 +4250,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "AIC",
+        "year": 2012,
+        "genres": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 12291
     },
     {
         "id": "oshi-no-ko",
@@ -3663,7 +4342,16 @@
                 "watchedEpisodes": [],
                 "episodesCount": 0
             }
-        ]
+        ],
+        "studio": "Doga Kobo",
+        "year": 2023,
+        "genres": [
+            "Drama",
+            "Mystery",
+            "Psychological",
+            "Supernatural"
+        ],
+        "anilistId": 150672
     },
     {
         "id": "baka-to-test-to-shoukanjuu",
@@ -3727,7 +4415,14 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "SILVER LINK.",
+        "year": 2010,
+        "genres": [
+            "Comedy",
+            "Romance"
+        ],
+        "anilistId": 6347
     },
     {
         "id": "nisekoi",
@@ -3782,7 +4477,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "Shaft",
+        "year": 2014,
+        "genres": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 18897
     },
     {
         "id": "mayo-chiki",
@@ -3801,7 +4504,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 13
             }
-        ]
+        ],
+        "studio": "feel.",
+        "year": 2011,
+        "genres": [
+            "Comedy",
+            "Ecchi",
+            "Romance"
+        ],
+        "anilistId": 10110
     },
     {
         "id": "oreshura",
@@ -3820,7 +4531,14 @@
                 "watchedEpisodes": [],
                 "episodesCount": 13
             }
-        ]
+        ],
+        "studio": "A-1 Pictures",
+        "year": 2013,
+        "genres": [
+            "Comedy",
+            "Romance"
+        ],
+        "anilistId": 14749
     },
     {
         "id": "ladies-versus-butlers",
@@ -3848,7 +4566,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 6
             }
-        ]
+        ],
+        "studio": "Xebec",
+        "year": 2010,
+        "genres": [
+            "Comedy",
+            "Ecchi",
+            "Romance"
+        ],
+        "anilistId": 7148
     },
     {
         "id": "yosuga-no-sora",
@@ -3880,7 +4606,15 @@
                 ],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "feel.",
+        "year": 2010,
+        "genres": [
+            "Drama",
+            "Ecchi",
+            "Romance"
+        ],
+        "anilistId": 8861
     },
     {
         "id": "abnormal-physiology-seminar",
@@ -3908,7 +4642,14 @@
                 "watchedEpisodes": [],
                 "episodesCount": 13
             }
-        ]
+        ],
+        "studio": "Xebec",
+        "year": 2010,
+        "genres": [
+            "Comedy",
+            "Ecchi"
+        ],
+        "anilistId": 8101
     },
     {
         "id": "my-wife-is-the-student-council-president",
@@ -3954,7 +4695,10 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "",
+        "year": null,
+        "genres": []
     },
     {
         "id": "a-sister-s-all-you-need",
@@ -3991,7 +4735,10 @@
                 "watchedEpisodes": [],
                 "episodesCount": 6
             }
-        ]
+        ],
+        "studio": "",
+        "year": null,
+        "genres": []
     },
     {
         "id": "food-wars",
@@ -4082,7 +4829,10 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "",
+        "year": null,
+        "genres": []
     },
     {
         "id": "nisekoi",
@@ -4137,7 +4887,10 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "",
+        "year": null,
+        "genres": []
     },
     {
         "id": "gj-club",
@@ -4165,7 +4918,14 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "Doga Kobo",
+        "year": 2013,
+        "genres": [
+            "Comedy",
+            "Slice of Life"
+        ],
+        "anilistId": 14811
     },
     {
         "id": "campione",
@@ -4184,7 +4944,16 @@
                 "watchedEpisodes": [],
                 "episodesCount": 13
             }
-        ]
+        ],
+        "studio": "diomedéa",
+        "year": 2012,
+        "genres": [
+            "Action",
+            "Comedy",
+            "Ecchi",
+            "Romance"
+        ],
+        "anilistId": 12293
     },
     {
         "id": "monogatari",
@@ -4347,7 +5116,18 @@
                 "watchedEpisodes": [],
                 "episodesCount": 0
             }
-        ]
+        ],
+        "studio": "Shaft",
+        "year": 2013,
+        "genres": [
+            "Comedy",
+            "Drama",
+            "Mystery",
+            "Psychological",
+            "Romance",
+            "Supernatural"
+        ],
+        "anilistId": 17074
     },
     {
         "id": "nisekoi",
@@ -4402,7 +5182,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "Shaft",
+        "year": 2014,
+        "genres": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 18897
     },
     {
         "id": "higehiro",
@@ -4421,7 +5209,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 13
             }
-        ]
+        ],
+        "studio": "project No.9",
+        "year": 2021,
+        "genres": [
+            "Drama",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 114232
     },
     {
         "id": "itazura-na-kiss",
@@ -4440,7 +5236,14 @@
                 "watchedEpisodes": [],
                 "episodesCount": 25
             }
-        ]
+        ],
+        "studio": "TMS Entertainment",
+        "year": 2008,
+        "genres": [
+            "Comedy",
+            "Romance"
+        ],
+        "anilistId": 3731
     },
     {
         "id": "tomo-chan-is-a-girl",
@@ -4459,7 +5262,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 13
             }
-        ]
+        ],
+        "studio": "Lay-duce",
+        "year": 2023,
+        "genres": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 151806
     },
     {
         "id": "my-friends-little-sister-has-it-in-for-me",
@@ -4478,7 +5289,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "BLADE",
+        "year": 2025,
+        "genres": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 129195
     },
     {
         "id": "mistress-kanan-is-devilishly-easy",
@@ -4497,7 +5316,16 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "Studio KAI",
+        "year": 2026,
+        "genres": [
+            "Comedy",
+            "Ecchi",
+            "Fantasy",
+            "Romance"
+        ],
+        "anilistId": 190704
     },
     {
         "id": "worlds-end-harem",
@@ -4516,7 +5344,14 @@
                 "watchedEpisodes": [],
                 "episodesCount": 11
             }
-        ]
+        ],
+        "studio": "AXsiZ",
+        "year": 2022,
+        "genres": [
+            "Ecchi",
+            "Sci-Fi"
+        ],
+        "anilistId": 118465
     },
     {
         "id": "saekano",
@@ -4553,7 +5388,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "A-1 Pictures",
+        "year": 2015,
+        "genres": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 20657
     },
     {
         "id": "seitokai-yakuindomo",
@@ -4617,7 +5460,14 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "GoHands",
+        "year": 2010,
+        "genres": [
+            "Comedy",
+            "Slice of Life"
+        ],
+        "anilistId": 8675
     },
     {
         "id": "dealing-with-mikadono-sisters-is-a-breeze",
@@ -4636,7 +5486,14 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "P.A.WORKS",
+        "year": 2025,
+        "genres": [
+            "Comedy",
+            "Romance"
+        ],
+        "anilistId": 178886
     },
     {
         "id": "nisekoi-false-love",
@@ -4691,7 +5548,15 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "Shaft",
+        "year": 2014,
+        "genres": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 18897
     },
     {
         "id": "yamada-kun-and-the-seven-witches",
@@ -4737,7 +5602,10 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "",
+        "year": null,
+        "genres": []
     },
     {
         "id": "the-cafe-terrace-and-its-goddesses",
@@ -4765,7 +5633,10 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "",
+        "year": null,
+        "genres": []
     },
     {
         "id": "oresuki-are-you-the-only-one-who-loves-me",
@@ -4802,7 +5673,17 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "CONNECT",
+        "year": 2019,
+        "genres": [
+            "Comedy",
+            "Drama",
+            "Ecchi",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 104464
     },
     {
         "id": "from-me-to-you",
@@ -4848,7 +5729,16 @@
                 "watchedEpisodes": [],
                 "episodesCount": 5
             }
-        ]
+        ],
+        "studio": "Production I.G",
+        "year": 2009,
+        "genres": [
+            "Comedy",
+            "Drama",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 6045
     },
     {
         "id": "oh-boy-was-i-wrong-about-her",
@@ -4867,7 +5757,14 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "project No.9",
+        "year": 2026,
+        "genres": [
+            "Comedy",
+            "Romance"
+        ],
+        "anilistId": 169583
     },
     {
         "id": "castle-town-dandelion",
@@ -4886,7 +5783,14 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "Production IMS",
+        "year": 2015,
+        "genres": [
+            "Comedy",
+            "Slice of Life"
+        ],
+        "anilistId": 20951
     },
     {
         "id": "the-testament-of-sister-new-devil",
@@ -4932,7 +5836,16 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ]
+        ],
+        "studio": "Production IMS",
+        "year": 2015,
+        "genres": [
+            "Action",
+            "Ecchi",
+            "Fantasy",
+            "Romance"
+        ],
+        "anilistId": 20678
     },
     {
         "id": "rich-girl-caretaker",
@@ -4951,7 +5864,14 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "Brain's Base",
+        "year": 2026,
+        "genres": [
+            "Comedy",
+            "Romance"
+        ],
+        "anilistId": 201514
     },
     {
         "id": "the-warrior-princess-and-the-barbaric-king",
@@ -4970,7 +5890,16 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "Jumondou",
+        "year": 2026,
+        "genres": [
+            "Comedy",
+            "Ecchi",
+            "Fantasy",
+            "Romance"
+        ],
+        "anilistId": 182483
     },
     {
         "id": "kono-oto-tomare-sounds-of-life",
@@ -4998,7 +5927,16 @@
                 "watchedEpisodes": [],
                 "episodesCount": 13
             }
-        ]
+        ],
+        "studio": "Platinum Vision",
+        "year": 2019,
+        "genres": [
+            "Drama",
+            "Music",
+            "Romance",
+            "Slice of Life"
+        ],
+        "anilistId": 103302
     },
     {
         "id": "black-summoner",
@@ -5017,6 +5955,14 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ]
+        ],
+        "studio": "Satelight",
+        "year": 2022,
+        "genres": [
+            "Action",
+            "Adventure",
+            "Fantasy"
+        ],
+        "anilistId": 145260
     }
 ]

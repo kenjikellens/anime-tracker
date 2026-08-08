@@ -983,13 +983,50 @@ select[data-bound] {
 }
 
 .item-type-badge.type-serie {
-    background: rgba(157, 78, 221, 0.15);
-    color: var(--primary);
+    background: rgba(157, 78, 221, 0.18);
+    color: #b5179e;
+}
+[data-theme="dark"] .item-type-badge.type-serie {
+    background: rgba(157, 78, 221, 0.25);
+    color: #d884ff;
 }
 
-.item-type-badge.type-film {
-    background: rgba(0, 122, 204, 0.15);
-    color: var(--status-done);
+.item-type-badge.type-film,
+.item-type-badge.type-movie {
+    background: rgba(0, 122, 204, 0.18);
+    color: #007acc;
+}
+[data-theme="dark"] .item-type-badge.type-film,
+[data-theme="dark"] .item-type-badge.type-movie {
+    background: rgba(0, 150, 255, 0.25);
+    color: #64b5f6;
+}
+
+.item-type-badge.type-ova {
+    background: rgba(46, 204, 113, 0.18);
+    color: #27ae60;
+}
+[data-theme="dark"] .item-type-badge.type-ova {
+    background: rgba(46, 204, 113, 0.25);
+    color: #2ecc71;
+}
+
+.item-type-badge.type-special {
+    background: rgba(241, 196, 15, 0.18);
+    color: #d35400;
+}
+[data-theme="dark"] .item-type-badge.type-special {
+    background: rgba(241, 196, 15, 0.25);
+    color: #f39c12;
+}
+
+.item-type-badge.type-ona {
+    background: rgba(22, 160, 133, 0.18);
+    color: #16a085;
+}
+[data-theme="dark"] .item-type-badge.type-ona {
+    background: rgba(26, 188, 156, 0.25);
+    color: #1abc9c;
 }
 
 /* Actions group for item row rating, status dropdown, and play button with fixed column alignment */
