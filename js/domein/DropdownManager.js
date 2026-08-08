@@ -102,12 +102,20 @@ export class DropdownManager {
             if (!isOpen) {
                 wrapper.dataset.open = 'true';
                 wrapper.classList.add('open'); // Fallback for CSS compatibility
+                const row = wrapper.closest('.detail-item-row');
+                if (row) row.classList.add('dropdown-open');
+                const acc = wrapper.closest('.item-accordion-wrapper');
+                if (acc) acc.classList.add('dropdown-open');
             }
         };
 
         const close = () => {
             wrapper.dataset.open = 'false';
             wrapper.classList.remove('open');
+            const row = wrapper.closest('.detail-item-row');
+            if (row) row.classList.remove('dropdown-open');
+            const acc = wrapper.closest('.item-accordion-wrapper');
+            if (acc) acc.classList.remove('dropdown-open');
         };
 
         trigger.addEventListener('click', toggle);
@@ -133,6 +141,9 @@ export class DropdownManager {
         document.querySelectorAll(`.${UI_CLASSES.DROPDOWN.WRAPPER}`).forEach(w => {
             w.dataset.open = 'false';
             w.classList.remove('open');
+        });
+        document.querySelectorAll('.dropdown-open').forEach(el => {
+            el.classList.remove('dropdown-open');
         });
     }
 

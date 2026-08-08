@@ -60,7 +60,7 @@
     --active-bg: #ffffff;
     --active-color: #121212;
     --active-border: transparent;
-    --status-btn-bg: #e8e8e8;
+    --status-btn-bg: #d8d8d8;
     --status-btn-color: #121212;
     --status-btn-hover: #ffffff;
     --search-bg: #353535;
@@ -399,16 +399,18 @@ select[data-bound] {
     width: 100%;
 }
 
-/* Custom Dropdown Trigger & Action Button (Light in dark mode, dark in light mode) */
+/* Custom Dropdown Trigger & Action Button (Shared class for status buttons and play button) */
 .status-btn-style,
-.custom-select-trigger {
+.custom-select-trigger,
+.item-play-btn {
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
     background-color: var(--status-btn-bg) !important;
     color: var(--status-btn-color) !important;
-    padding: 8px 14px;
+    height: 36px;
+    padding: 0 14px;
     border-radius: 8px;
     font-size: 14px;
     font-weight: 700;
@@ -421,7 +423,8 @@ select[data-bound] {
 }
 
 .status-btn-style::before,
-.custom-select-trigger::before {
+.custom-select-trigger::before,
+.item-play-btn::before {
     background-color: var(--status-btn-bg) !important;
 }
 
@@ -436,6 +439,8 @@ select[data-bound] {
 .status-btn-style:focus::before,
 .custom-select-trigger:hover,
 .custom-select-trigger:hover::before,
+.item-play-btn:hover,
+.item-play-btn:hover::before,
 .custom-select-wrapper:hover .custom-select-trigger,
 .custom-select-wrapper:hover .custom-select-trigger::before {
     background-color: var(--status-btn-hover) !important;
@@ -444,8 +449,9 @@ select[data-bound] {
 
 /* Compact item status dropdown trigger variant */
 .custom-select-trigger.item-status-select {
-    padding: 6px 12px;
+    padding: 0 12px;
     font-size: 13px;
+    height: 36px;
 }
 
 /* Rotating Chevron Arrow */
@@ -469,27 +475,35 @@ select[data-bound] {
     width: max-content;
     background: var(--surface);
     border-radius: 12px;
-    box-shadow: var(--shadow);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     padding: 6px;
-    z-index: 1000;
+    z-index: 10001 !important;
     opacity: 0;
-    transform: translateY(-8px);
     pointer-events: none;
-    transition: opacity 0.18s ease, transform 0.18s ease;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: opacity 0.18s ease;
+    border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-/* Elevated z-index and positioning for open dropdown wrapper container */
+/* Elevated z-index and positioning for open dropdown wrapper container and parent rows */
+.item-accordion-wrapper.dropdown-open,
+.detail-item-row.dropdown-open,
+.item-accordion-wrapper:has(.custom-select-wrapper.open),
+.item-accordion-wrapper:has(.custom-select-wrapper[data-open="true"]),
+.detail-item-row:has(.custom-select-wrapper.open),
+.detail-item-row:has(.custom-select-wrapper[data-open="true"]) {
+    z-index: 9999 !important;
+    position: relative;
+}
+
 .custom-select-wrapper.open,
 .custom-select-wrapper[data-open="true"] {
-    z-index: 1001;
+    z-index: 10000 !important;
     position: relative;
 }
 
 .custom-select-wrapper.open .custom-select-menu,
 .custom-select-wrapper[data-open="true"] .custom-select-menu {
     opacity: 1;
-    transform: translateY(0);
     pointer-events: auto;
 }
 
@@ -1037,9 +1051,10 @@ select[data-bound] {
     flex-shrink: 0;
 }
 
-/* Fixed column width for item rating badge for table-like alignment */
+/* Fixed column width & matching 36px height for item rating badge */
 .item-actions-group .rating-badge {
     width: 72px;
+    height: 36px;
     flex-shrink: 0;
     display: inline-flex;
     align-items: center;
@@ -1047,7 +1062,7 @@ select[data-bound] {
     text-align: center;
 }
 
-/* Fixed column width for item status select dropdown wrapper for table-like alignment */
+/* Fixed column width for item status select dropdown wrapper */
 .item-actions-group .custom-select-wrapper {
     width: 140px;
     flex-shrink: 0;
@@ -1055,8 +1070,6 @@ select[data-bound] {
 
 /* Item play button fixed dimensions */
 .item-play-btn {
-    display: inline-flex;
-    align-items: center;
     justify-content: center;
     width: 36px;
     height: 36px;
