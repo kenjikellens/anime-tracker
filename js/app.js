@@ -1,4 +1,5 @@
 import { AnimeRepository } from './domein/AnimeRepository.js';
+import { RatingManager } from './domein/RatingManager.js';
 import { DataStore } from './domein/DataStore.js';
 import { CardRenderer } from './domein/CardRenderer.js';
 import { AnilistApi } from './domein/AnilistApi.js';
@@ -213,24 +214,19 @@ function setupRatingModal() {
     const overlay = document.getElementById('modal-overlay');
     if (!overlay) return;
 
+    const closeRatingModal = () => {
+        overlay.dataset.visible = 'false';
+        overlay.classList.add('hidden');
+        currentRatingTarget = null;
+        currentRatingType = null;
+    };
+
     overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) {
-            overlay.dataset.visible = 'false';
-            overlay.classList.add('hidden');
-            currentRatingTarget = null;
-            currentRatingType = null;
-        }
+        if (e.target === overlay) closeRatingModal();
     });
 
     const cancelBtn = document.getElementById('cancel-rating');
-    if (cancelBtn) {
-        cancelBtn.addEventListener('click', () => {
-            overlay.dataset.visible = 'false';
-            overlay.classList.add('hidden');
-            currentRatingTarget = null;
-            currentRatingType = null;
-        });
-    }
+    if (cancelBtn) cancelBtn.addEventListener('click', closeRatingModal);
 
     const clearBtn = document.getElementById('clear-rating');
     if (clearBtn) {
@@ -242,19 +238,19 @@ function setupRatingModal() {
 
     const saveBtn = document.getElementById('save-rating');
     if (saveBtn) {
-        saveBtn.addEventListener('click', () => {
+        saveBtn.addEventListener('click', async () => {
             const ratingInput = document.getElementById('rating-number');
             if (currentRatingTarget && ratingInput) {
-                import('./domein/RatingManager.js').then(async (module) => {
+                try {
                     let val = parseFloat(ratingInput.value);
                     if (isNaN(val)) val = 0;
                     if (val < 0) val = 0;
                     if (val > 10) val = 10;
 
                     if (currentRatingType === 'anime') {
-                        module.RatingManager.updateRating(currentRatingTarget, val);
+                        RatingManager.updateRating(currentRatingTarget, val);
                     } else if (currentRatingType === 'item') {
-                        module.RatingManager.updateItemRating(currentRatingTarget, val);
+                        RatingManager.updateItemRating(currentRatingTarget, val);
                     }
 
                     await DataStore.save(repository);
@@ -265,20 +261,13 @@ function setupRatingModal() {
                         renderData();
                     }
 
-                    overlay.dataset.visible = 'false';
-                    overlay.classList.add('hidden');
-                    currentRatingTarget = null;
-                    currentRatingType = null;
-                }).catch(err => {
+                    closeRatingModal();
+                } catch (err) {
                     console.error(err);
-                    overlay.dataset.visible = 'false';
-                    overlay.classList.add('hidden');
-                    currentRatingTarget = null;
-                    currentRatingType = null;
-                });
+                    closeRatingModal();
+                }
             } else {
-                overlay.dataset.visible = 'false';
-                overlay.classList.add('hidden');
+                closeRatingModal();
             }
         });
     }
@@ -446,50 +435,30 @@ function setupViewToggles() {
     colsVal.textContent = currentGridCols;
     container.style.setProperty('--grid-cols', currentGridCols);
 
-    if (currentViewMode === 'list') {
-        if (listBtn) {
-            listBtn.dataset.active = 'true';
-            listBtn.classList.add(UI_CLASSES.ACTIVE);
-        }
+    function applyViewMode(mode) {
+        const isGrid = mode === 'grid';
         if (gridBtn) {
-            gridBtn.dataset.active = 'false';
-            gridBtn.classList.remove(UI_CLASSES.ACTIVE);
-        }
-        container.dataset.view = 'list';
-        container.classList.remove(UI_CLASSES.GRID_VIEW);
-        container.classList.add(UI_CLASSES.LIST_VIEW);
-        if (sizeToggleContainer) sizeToggleContainer.dataset.visible = 'false';
-    } else {
-        if (gridBtn) {
-            gridBtn.dataset.active = 'true';
-            gridBtn.classList.add(UI_CLASSES.ACTIVE);
+            gridBtn.dataset.active = isGrid ? 'true' : 'false';
+            gridBtn.classList.toggle(UI_CLASSES.ACTIVE, isGrid);
         }
         if (listBtn) {
-            listBtn.dataset.active = 'false';
-            listBtn.classList.remove(UI_CLASSES.ACTIVE);
+            listBtn.dataset.active = isGrid ? 'false' : 'true';
+            listBtn.classList.toggle(UI_CLASSES.ACTIVE, !isGrid);
         }
-        container.dataset.view = 'grid';
-        container.classList.remove(UI_CLASSES.LIST_VIEW);
-        container.classList.add(UI_CLASSES.GRID_VIEW);
-        if (sizeToggleContainer) sizeToggleContainer.dataset.visible = 'true';
+        container.dataset.view = mode;
+        container.classList.toggle(UI_CLASSES.GRID_VIEW, isGrid);
+        container.classList.toggle(UI_CLASSES.LIST_VIEW, !isGrid);
+        if (sizeToggleContainer) sizeToggleContainer.dataset.visible = isGrid ? 'true' : 'false';
     }
+
+    applyViewMode(currentViewMode);
 
     if (gridBtn) {
         gridBtn.addEventListener('click', () => {
             currentViewMode = 'grid';
             CookieManager.set('viewMode', 'grid');
-
-            gridBtn.dataset.active = 'true';
-            gridBtn.classList.add(UI_CLASSES.ACTIVE);
-            if (listBtn) {
-                listBtn.dataset.active = 'false';
-                listBtn.classList.remove(UI_CLASSES.ACTIVE);
-            }
-            container.dataset.view = 'grid';
-            container.classList.remove(UI_CLASSES.LIST_VIEW);
-            container.classList.add(UI_CLASSES.GRID_VIEW);
+            applyViewMode('grid');
             container.style.setProperty('--grid-cols', currentGridCols);
-            if (sizeToggleContainer) sizeToggleContainer.dataset.visible = 'true';
             renderData();
         });
     }
@@ -498,17 +467,7 @@ function setupViewToggles() {
         listBtn.addEventListener('click', () => {
             currentViewMode = 'list';
             CookieManager.set('viewMode', 'list');
-
-            listBtn.dataset.active = 'true';
-            listBtn.classList.add(UI_CLASSES.ACTIVE);
-            if (gridBtn) {
-                gridBtn.dataset.active = 'false';
-                gridBtn.classList.remove(UI_CLASSES.ACTIVE);
-            }
-            container.dataset.view = 'list';
-            container.classList.remove(UI_CLASSES.GRID_VIEW);
-            container.classList.add(UI_CLASSES.LIST_VIEW);
-            if (sizeToggleContainer) sizeToggleContainer.dataset.visible = 'false';
+            applyViewMode('list');
             renderData();
         });
     }
@@ -574,6 +533,13 @@ function renderDetail() {
     });
 }
 
+async function withStatusUpdater(fn) {
+    const { StatusUpdater } = await import('./domein/StatusUpdater.js');
+    fn(StatusUpdater);
+    await DataStore.save(repository);
+    renderDetail();
+}
+
 /**
  * Toggles an episode check status for a specific detail item.
  * @param {Object} item - The detail item model.
@@ -581,11 +547,7 @@ function renderDetail() {
  */
 function handleEpisodeToggle(item, episodeNum) {
     if (currentDetailAnime) {
-        import('./domein/StatusUpdater.js').then(module => {
-            module.StatusUpdater.toggleEpisode(item, episodeNum, currentDetailAnime);
-            DataStore.save(repository);
-            renderDetail();
-        });
+        withStatusUpdater(s => s.toggleEpisode(item, episodeNum, currentDetailAnime));
     }
 }
 
@@ -596,11 +558,7 @@ function handleEpisodeToggle(item, episodeNum) {
  */
 function handleItemStatus(item, newStatus) {
     if (currentDetailAnime) {
-        import('./domein/StatusUpdater.js').then(module => {
-            module.StatusUpdater.updateItemStatus(item, newStatus, currentDetailAnime);
-            DataStore.save(repository);
-            renderDetail();
-        });
+        withStatusUpdater(s => s.updateItemStatus(item, newStatus, currentDetailAnime));
     }
 }
 
@@ -610,11 +568,7 @@ function handleItemStatus(item, newStatus) {
  * @param {string} newStatus - The new status value.
  */
 function handleGlobalStatus(anime, newStatus) {
-    import('./domein/StatusUpdater.js').then(module => {
-        module.StatusUpdater.updateGlobalStatus(anime, newStatus);
-        DataStore.save(repository);
-        renderDetail();
-    });
+    withStatusUpdater(s => s.updateGlobalStatus(anime, newStatus));
 }
 
 document.addEventListener('DOMContentLoaded', init);

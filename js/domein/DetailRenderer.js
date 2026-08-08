@@ -120,28 +120,38 @@ export class DetailRenderer {
             const userScoreColor = getScoreColor(anime.rating);
             const avgScoreColor = getScoreColor(avgRating);
 
-            const userRatingVal = layout.querySelector('.sidebar-rating-block:not(.small) .sidebar-rating-val');
-            userRatingVal.style.setProperty('--score-color', userScoreColor);
-            userRatingVal.textContent = anime.rating > 0 ? anime.rating.toFixed(1) + '/10' : 'NR';
+            const userRatingVal = layout.querySelector('.sidebar-rating-block.rating-actionable .sidebar-rating-val');
+            if (userRatingVal) {
+                userRatingVal.style.setProperty('--score-color', userScoreColor);
+                userRatingVal.textContent = anime.rating > 0 ? anime.rating.toFixed(1) + '/10' : 'NR';
+            }
 
             const userBarWrap = layout.querySelector('.user-segmented-bar');
-            userBarWrap.innerHTML = createSegmentsHtml(anime.rating);
+            if (userBarWrap) {
+                userBarWrap.innerHTML = createSegmentsHtml(anime.rating);
+            }
 
-            const avgRatingVal = layout.querySelector('.sidebar-rating-block.small .sidebar-rating-val');
-            avgRatingVal.style.setProperty('--score-color', avgScoreColor);
-            avgRatingVal.textContent = avgRating > 0 ? avgRating.toFixed(1) + '/10' : '—';
+            const avgRatingVal = layout.querySelector('.sidebar-rating-block:not(.rating-actionable) .sidebar-rating-val');
+            if (avgRatingVal) {
+                avgRatingVal.style.setProperty('--score-color', avgScoreColor);
+                avgRatingVal.textContent = avgRating > 0 ? avgRating.toFixed(1) + '/10' : '—';
+            }
 
             const avgBarWrap = layout.querySelector('.avg-segmented-bar');
-            avgBarWrap.innerHTML = createSegmentsHtml(avgRating, true);
+            if (avgBarWrap) {
+                avgBarWrap.innerHTML = createSegmentsHtml(avgRating, true);
+            }
 
             const ratingBlock = layout.querySelector('.rating-actionable');
-            const newRatingBlock = ratingBlock.cloneNode(true);
-            ratingBlock.parentNode.replaceChild(newRatingBlock, ratingBlock);
-            if (onRatingClick) {
-                newRatingBlock.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    onRatingClick(anime);
-                });
+            if (ratingBlock) {
+                const newRatingBlock = ratingBlock.cloneNode(true);
+                ratingBlock.parentNode.replaceChild(newRatingBlock, ratingBlock);
+                if (onRatingClick) {
+                    newRatingBlock.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        onRatingClick(anime);
+                    });
+                }
             }
         }
 
@@ -170,7 +180,7 @@ export class DetailRenderer {
                 const typeHtml = item.type ? `<span class="item-type-badge ${typeClass}">${item.type}</span>` : '';
                 
                 const rowHeader = document.createElement('summary');
-                rowHeader.className = `detail-item-row ${item.status === 1 ? 'watched' : ''}`;
+                rowHeader.className = `detail-item-row ultimate-hover-effect ${item.status === 1 ? 'watched' : ''}`;
                 rowHeader.dataset.watched = item.status === 1 ? 'true' : 'false';
                 
                 let itemStatusSelect = `
@@ -189,7 +199,7 @@ export class DetailRenderer {
                 let watchUrl = `https://${WATCH_PROVIDER_DOMAIN}${WATCH_PROVIDER_SEARCH_PATH}${keyword}`;
 
                 let playBtn = `
-                    <a href="${watchUrl}" target="_blank" class="item-play-btn" onclick="event.stopPropagation()" title="Zoek op ${WATCH_PROVIDER_DOMAIN}">
+                    <a href="${watchUrl}" target="_blank" class="item-play-btn status-btn-style ultimate-hover-effect" onclick="event.stopPropagation()" title="Zoek op ${WATCH_PROVIDER_DOMAIN}">
                         ${SVG_ICONS.play}
                     </a>
                 `;

@@ -28,7 +28,7 @@ export class DropdownManager {
 
         // Create trigger button
         const trigger = document.createElement('div');
-        trigger.className = `${UI_CLASSES.DROPDOWN.TRIGGER} ${UI_CLASSES.ULTIMATE_HOVER}${isItemStatus ? ` ${UI_CLASSES.DROPDOWN.ITEM_STATUS}` : ''}`;
+        trigger.className = `${UI_CLASSES.DROPDOWN.TRIGGER} status-btn-style ${UI_CLASSES.ULTIMATE_HOVER}${isItemStatus ? ` ${UI_CLASSES.DROPDOWN.ITEM_STATUS}` : ''}`;
         trigger.setAttribute('tabindex', '0');
 
         const labelSpan = document.createElement('span');
@@ -36,8 +36,8 @@ export class DropdownManager {
         labelSpan.textContent = currentOpt ? currentOpt.textContent : '';
 
         const chevronSvg = `
-            <svg class="${UI_CLASSES.DROPDOWN.CHEVRON}" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9"></polyline>
+            <svg class="${UI_CLASSES.DROPDOWN.CHEVRON} svg-icon-margin" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <use href="#icon-chevron-down"></use>
             </svg>
         `;
 
@@ -68,7 +68,7 @@ export class DropdownManager {
                 if (isSelected) {
                     const checkSvg = `
                         <svg class="${UI_CLASSES.DROPDOWN.CHECK}" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="20 6 9 17 4 12"></polyline>
+                            <use href="#icon-check"></use>
                         </svg>
                     `;
                     item.insertAdjacentHTML('beforeend', checkSvg);

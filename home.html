@@ -44,6 +44,12 @@
 
 <!-- Main content area: filled dynamically by `CardRenderer.renderAll` -->
 <main>
+    <!-- General app loader displayed during initial data initialization -->
+    <div id="general-app-loader" class="general-app-loader" data-visible="true">
+        <svg width="48" height="48" viewBox="0 0 32 32" class="card-spinner-svg">
+            <circle cx="16" cy="16" r="12" class="card-spinner-circle" />
+        </svg>
+    </div>
     <div id="anime-container" class="grid-view">
         <!-- Dynamically filled by JavaScript -->
     </div>

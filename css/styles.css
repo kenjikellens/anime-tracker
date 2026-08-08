@@ -30,6 +30,11 @@
     --active-bg: #1a1a1a;
     --active-color: #ffffff;
     --active-border: transparent;
+    --status-btn-bg: #1a1a1a;
+    --status-btn-color: #ffffff;
+    --status-btn-hover: #333333;
+    --search-bg: #f5f5f5;
+    --search-hover-bg: #ffffff;
 }
 
 [data-theme="dark"] {
@@ -55,6 +60,11 @@
     --active-bg: #ffffff;
     --active-color: #121212;
     --active-border: transparent;
+    --status-btn-bg: #e8e8e8;
+    --status-btn-color: #121212;
+    --status-btn-hover: #ffffff;
+    --search-bg: #353535;
+    --search-hover-bg: #454545;
 }
 
 /* --------------------------------------------------------------------------
@@ -226,22 +236,40 @@ select[data-bound] {
     max-width: 600px;
 }
 
+/* Search bar text input styling (Lighter than header background in both themes) */
 .search-bar input {
     width: 100%;
     padding: 10px 16px 10px 40px;
-    background: var(--surface);
+    background-color: var(--search-bg) !important;
+    color: var(--text);
     border: none;
     border-radius: 20px;
-    color: var(--text);
     font-size: 14px;
     outline: none;
+    transition: background-color 0.2s ease;
 }
 
+.search-bar input::before {
+    background-color: var(--search-bg) !important;
+}
+
+/* Search bar input hover & focus state (becomes even lighter in both themes) */
+.search-bar input:hover,
+.search-bar input:hover::before,
+.search-bar input:focus,
+.search-bar input:focus::before,
+.search-bar:focus-within input,
+.search-bar:focus-within input::before {
+    background-color: var(--search-hover-bg) !important;
+}
+
+/* Search icon positioning */
 .search-bar .search-icon {
     position: absolute;
     left: 14px;
     color: var(--text-muted);
     pointer-events: none;
+    z-index: 2;
 }
 
 .header-right {
@@ -251,17 +279,30 @@ select[data-bound] {
     gap: 12px;
 }
 
+/* Header right action buttons (download & theme toggle) matching search bar background & hover */
 .header-right button {
-    background: var(--surface);
-    border: none;
-    color: var(--text);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 42px;
     height: 42px;
     border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s ease;
+    background-color: var(--search-bg) !important;
+    color: var(--text) !important;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.header-right button::before {
+    background-color: var(--search-bg) !important;
+}
+
+.header-right button:hover,
+.header-right button:hover::before {
+    background-color: var(--search-hover-bg) !important;
+    color: var(--text) !important;
 }
 
 /* Theme Toggle Button Icon Visibility */
@@ -358,30 +399,53 @@ select[data-bound] {
     width: 100%;
 }
 
-/* Custom Dropdown Trigger Button */
+/* Custom Dropdown Trigger & Action Button (Light in dark mode, dark in light mode) */
+.status-btn-style,
 .custom-select-trigger {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    background-color: var(--surface);
-    color: var(--text);
+    background-color: var(--status-btn-bg) !important;
+    color: var(--status-btn-color) !important;
     padding: 8px 14px;
     border-radius: 8px;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     user-select: none;
     outline: none;
     border: none;
     width: 100%;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.status-btn-style::before,
+.custom-select-trigger::before {
+    background-color: var(--status-btn-bg) !important;
+}
+
+.custom-select-trigger .custom-select-chevron {
+    color: var(--status-btn-color) !important;
+}
+
+/* Custom Dropdown Trigger & Action Button Hover */
+.status-btn-style:hover,
+.status-btn-style:hover::before,
+.status-btn-style:focus,
+.status-btn-style:focus::before,
+.custom-select-trigger:hover,
+.custom-select-trigger:hover::before,
+.custom-select-wrapper:hover .custom-select-trigger,
+.custom-select-wrapper:hover .custom-select-trigger::before {
+    background-color: var(--status-btn-hover) !important;
+    color: var(--status-btn-color) !important;
 }
 
 /* Compact item status dropdown trigger variant */
 .custom-select-trigger.item-status-select {
     padding: 6px 12px;
     font-size: 13px;
-    background-color: var(--surface-2);
 }
 
 /* Rotating Chevron Arrow */
@@ -415,11 +479,24 @@ select[data-bound] {
     border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+/* Elevated z-index and positioning for open dropdown wrapper container */
+.custom-select-wrapper.open,
+.custom-select-wrapper[data-open="true"] {
+    z-index: 1001;
+    position: relative;
+}
+
 .custom-select-wrapper.open .custom-select-menu,
 .custom-select-wrapper[data-open="true"] .custom-select-menu {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
+}
+
+/* Right-aligned floating dropdown menu for item action rows */
+.item-actions-group .custom-select-menu {
+    right: 0;
+    left: auto;
 }
 
 /* Custom Dropdown Option Item */
@@ -442,13 +519,16 @@ select[data-bound] {
     background-color: var(--surface-hover);
 }
 
-.custom-select-option.active {
-    background-color: var(--active-bg);
-    color: var(--active-color);
+/* Active selected dropdown option item */
+.custom-select-option.active,
+.custom-select-option[data-active="true"] {
+    background-color: var(--surface-2);
+    color: var(--primary);
 }
 
+/* Custom select checkmark icon color matching theme primary text */
 .custom-select-check {
-    color: var(--active-color);
+    color: var(--primary);
 }
 
 .toolbar-right {
@@ -543,8 +623,7 @@ select[data-bound] {
     transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.grid-view .card-poster,
-#anime-container[data-view="grid"] .card-poster {
+.grid-view .card-poster {
     width: 104px;
     height: 152px;
     flex-shrink: 0;
@@ -621,8 +700,7 @@ select[data-bound] {
     background: linear-gradient(135deg, hsl(var(--poster-hue, 200), 60%, 50%), hsl(calc(var(--poster-hue, 200) + 40), 70%, 40%));
 }
 
-.grid-view .card-info,
-#anime-container[data-view="grid"] .card-info {
+.grid-view .card-info {
     flex: 1;
     min-width: 0;
     display: flex;
@@ -630,16 +708,14 @@ select[data-bound] {
     justify-content: space-between;
 }
 
-.grid-view .card-title,
-#anime-container[data-view="grid"] .card-title {
+.grid-view .card-title {
     font-size: 16px;
     font-weight: 700;
     color: var(--white);
     line-height: 1.3;
 }
 
-.grid-view .card-title span,
-#anime-container[data-view="grid"] .card-title span {
+.grid-view .card-title span {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -648,19 +724,16 @@ select[data-bound] {
     -webkit-box-orient: vertical;
 }
 
-.grid-view .card-subtitle,
-#anime-container[data-view="grid"] .card-subtitle {
+.grid-view .card-subtitle {
     font-size: 12px;
     color: var(--text-muted);
 }
 
-.grid-view .card-status-cell,
-#anime-container[data-view="grid"] .card-status-cell {
+.grid-view .card-status-cell {
     display: none;
 }
 
-.grid-view .card-actions,
-#anime-container[data-view="grid"] .card-actions {
+.grid-view .card-actions {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -674,8 +747,7 @@ select[data-bound] {
 /* --- MODERN DATA TABLE LIST VIEW --- */
 
 /* List view vertical column wrapper */
-.list-view .status-column,
-#anime-container[data-view="list"] .status-column {
+.list-view .status-column {
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -805,31 +877,22 @@ select[data-bound] {
     transition: color 0.15s ease, background 0.15s ease;
 }
 
-/* Status dropdown variants using unified app-dropdown base */
-.app-dropdown.full-width {
-    width: 100%;
-}
-
-.app-dropdown.item-status-select {
-    width: auto;
-    font-size: 13px;
-    padding: 6px 32px 6px 12px;
-}
-
-/* Item Accordion Row */
+/* Item Accordion List Container */
 .episodes-list-v3 {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
+/* Detail item wrapper container with visible overflow for floating dropdown menus */
 .item-accordion-wrapper {
     background: var(--surface);
     border: none;
     border-radius: 12px;
-    overflow: hidden;
+    overflow: visible;
 }
 
+/* Detail item header summary row */
 .detail-item-row {
     padding: 14px 18px;
     display: flex;
@@ -839,12 +902,30 @@ select[data-bound] {
     list-style: none;
     font-weight: 600;
     font-size: 15px;
+    transition: background-color 0.15s ease;
+}
+
+/* Item row hover highlight */
+.detail-item-row:hover {
+    background-color: var(--surface-hover);
 }
 
 .detail-item-row::-webkit-details-marker {
     display: none;
 }
 
+/* Chevron arrow rotation transition */
+.detail-item-row .accordion-icon {
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+/* Rotates chevron arrow 180deg when accordion details is open */
+.item-accordion-wrapper[open] .detail-item-row .accordion-icon {
+    transform: rotate(180deg);
+}
+
+/* Title and badge container group */
 .title-badge-group {
     display: flex;
     align-items: center;
@@ -853,6 +934,16 @@ select[data-bound] {
     min-width: 0;
 }
 
+/* Fixed width badge area for table-like alignment of titles */
+.badge-area {
+    width: 75px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Detail item title text styling */
 .detail-item-title {
     font-weight: 700;
     color: var(--white);
@@ -861,7 +952,9 @@ select[data-bound] {
     text-overflow: ellipsis;
 }
 
+/* Type badge label base styling */
 .item-type-badge {
+    display: inline-block;
     padding: 2px 8px;
     border-radius: 4px;
     font-size: 11px;
@@ -870,6 +963,7 @@ select[data-bound] {
     background: var(--surface-2);
     border: none;
     color: var(--text-muted);
+    text-align: center;
 }
 
 .item-type-badge.type-serie {
@@ -882,42 +976,75 @@ select[data-bound] {
     color: var(--status-done);
 }
 
+/* Actions group for item row rating, status dropdown, and play button with fixed column alignment */
 .item-actions-group {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    flex-shrink: 0;
 }
 
-/* Theme-Aware Neutral Play Button */
+/* Fixed column width for item rating badge for table-like alignment */
+.item-actions-group .rating-badge {
+    width: 72px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Fixed column width for item status select dropdown wrapper for table-like alignment */
+.item-actions-group .custom-select-wrapper {
+    width: 140px;
+    flex-shrink: 0;
+}
+
+/* Item play button fixed dimensions */
 .item-play-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 6px;
-    background: var(--surface-2);
-    color: var(--text);
-    border: none;
-    text-decoration: none;
-    transition: background 0.15s ease, color 0.15s ease;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    padding: 0;
 }
 
+/* Sidebar rating blocks container with spacing */
+.sidebar-ratings-container {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 16px;
+}
 
-
+/* Uniform sidebar rating block container styling */
 .sidebar-rating-block {
-    margin-top: 12px;
+    background: var(--surface-2);
+    padding: 12px 14px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
+/* Actionable rating block interactive cursor */
+.sidebar-rating-block.rating-actionable {
+    cursor: pointer;
+}
+
+/* Rating block label header text */
 .sidebar-rating-label {
     display: flex;
     justify-content: space-between;
     font-size: 13px;
     font-weight: 600;
-    margin-bottom: 6px;
     color: var(--text-muted);
 }
 
+/* Rating block value text */
 .sidebar-rating-val {
     font-weight: 800;
     color: var(--white);
@@ -1016,9 +1143,6 @@ select[data-bound] {
     color: var(--text-muted);
 }
 
-/* Back button hover effect */
-
-
 /* Detail Accordion & Layout V3 */
 .anime-detail-layout-v3 {
     display: grid;
@@ -1064,20 +1188,17 @@ select[data-bound] {
 }
 
 .detail-poster-fallback {
-    width: 100%;
     aspect-ratio: 2/3;
     border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;
     font-size: 32px;
-    font-weight: 800;
 }
 
+/* Sidebar anime title text styling with bottom margin spacing */
 .sidebar-title {
     font-size: 20px;
     font-weight: 800;
+    margin-bottom: 16px;
+    line-height: 1.3;
 }
 
 .segmented-rating-bar {
@@ -1254,6 +1375,7 @@ footer {
     font-size: 14px;
     transition: color 0.15s ease;
 }
+
 .provider-brand {
     font-weight: 600;
     color: var(--text);

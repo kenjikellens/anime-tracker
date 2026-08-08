@@ -5,6 +5,27 @@ const apiCache = new Map();
  * Uses in-memory Map caching to eliminate duplicate GraphQL requests.
  */
 export class AnilistApi {
+    static async _fetch(cacheKey, query, variables) {
+        if (apiCache.has(cacheKey)) return apiCache.get(cacheKey);
+        try {
+            const res = await fetch('https://graphql.anilist.co', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({ query, variables })
+            });
+            if (!res.ok) return null;
+            const data = await res.json();
+            if (data.data && data.data.Media) {
+                apiCache.set(cacheKey, data.data.Media);
+                return data.data.Media;
+            }
+            return null;
+        } catch (err) {
+            console.error('Anilist API fetch failed for', cacheKey, err);
+            return null;
+        }
+    }
+
     /**
      * Searches AniList by title text with in-memory caching.
      * @param {string} title - The anime title to search.
@@ -13,10 +34,6 @@ export class AnilistApi {
     static async fetchMediaByTitle(title) {
         if (!title) return null;
         const cacheKey = `title:${title.trim().toLowerCase()}`;
-        if (apiCache.has(cacheKey)) {
-            return apiCache.get(cacheKey);
-        }
-
         const query = `
         query ($search: String) {
           Media (search: $search, type: ANIME, sort: SEARCH_MATCH) {
@@ -27,33 +44,7 @@ export class AnilistApi {
             episodes
           }
         }`;
-
-        const variables = { search: title };
-
-        try {
-            const res = await fetch('https://graphql.anilist.co', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                },
-                body: JSON.stringify({ query, variables })
-            });
-
-            if (!res.ok) {
-                return null;
-            }
-
-            const data = await res.json();
-            if (data.data && data.data.Media) {
-                apiCache.set(cacheKey, data.data.Media);
-                return data.data.Media;
-            }
-            return null;
-        } catch (err) {
-            console.error("Anilist API fetch failed for", title, err);
-            return null;
-        }
+        return this._fetch(cacheKey, query, { search: title });
     }
 
     /**
@@ -64,10 +55,6 @@ export class AnilistApi {
     static async fetchMediaById(id) {
         if (!id) return null;
         const cacheKey = `id:${id}`;
-        if (apiCache.has(cacheKey)) {
-            return apiCache.get(cacheKey);
-        }
-
         const query = `
         query ($id: Int) {
           Media (id: $id, type: ANIME) {
@@ -78,32 +65,6 @@ export class AnilistApi {
             episodes
           }
         }`;
-
-        const variables = { id: parseInt(id) };
-
-        try {
-            const res = await fetch('https://graphql.anilist.co', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                },
-                body: JSON.stringify({ query, variables })
-            });
-
-            if (!res.ok) {
-                return null;
-            }
-
-            const data = await res.json();
-            if (data.data && data.data.Media) {
-                apiCache.set(cacheKey, data.data.Media);
-                return data.data.Media;
-            }
-            return null;
-        } catch (err) {
-            console.error("Anilist API fetch by ID failed for", id, err);
-            return null;
-        }
+        return this._fetch(cacheKey, query, { id: parseInt(id) });
     }
 }

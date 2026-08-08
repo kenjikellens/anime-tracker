@@ -24,6 +24,9 @@
         <symbol id="icon-bell" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
         </symbol>
+        <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+        </symbol>
         <symbol id="icon-chevron-down" viewBox="0 0 24 24" fill="currentColor">
             <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
         </symbol>
@@ -87,93 +90,7 @@
     </header>
 
     <div id="app">
-        <!-- Main controls: status filters, sort selector, grid/list toggle, size selector -->
-        <div class="toolbar">
-            <!-- Status filters map to anime.status values in `js/app.js` -->
-            <div class="filter-group">
-                <button class="filter-btn active ultimate-hover-effect" data-filter="all">Alles</button>
-                <button class="filter-btn ultimate-hover-effect" data-filter="airing">Airing</button>
-                <button class="filter-btn ultimate-hover-effect" data-filter="upcoming">Upcoming</button>
-                <button class="filter-btn ultimate-hover-effect" data-filter="-1">Te Bekijken</button>
-                <button class="filter-btn ultimate-hover-effect" data-filter="0">Bezig</button>
-                <button class="filter-btn ultimate-hover-effect" data-filter="1">Bekeken</button>
-            </div>
-
-            <!-- Sort order controls the repository result order before render -->
-            <div class="sort-group">
-                <select id="sort-select" class="app-dropdown ultimate-hover-effect">
-                    <option value="default">Sorteren: Standaard</option>
-                    <option value="title-asc">Titel A→Z</option>
-                    <option value="title-desc">Titel Z→A</option>
-                    <option value="rating-desc">Beoordeling ↓</option>
-                    <option value="rating-asc">Beoordeling ↑</option>
-                    <option value="status">Status</option>
-                </select>
-            </div>
-
-            <div class="toolbar-right">
-                <!-- Grid sizing is only visible while the grid layout is active -->
-                <div class="size-toggle" id="size-toggle-container">
-                    <span class="size-toggle-label">Grid:</span>
-                    <button class="size-btn ultimate-hover-effect" id="grid-cols-minus" title="Minder kolommen">&minus;</button>
-                    <span id="grid-cols-val" class="size-val">5</span>
-                    <button class="size-btn ultimate-hover-effect" id="grid-cols-plus" title="Meer kolommen">+</button>
-                </div>
-
-                <!-- Grid/list toggle changes the container class in `js/app.js` -->
-                <div class="view-toggle">
-                    <button class="view-btn active ultimate-hover-effect" id="grid-btn" title="Grid view"><svg class="svg-icon-large"><use href="#icon-grid"></use></svg></button>
-                    <button class="view-btn ultimate-hover-effect" id="list-btn" title="List view"><svg class="svg-icon-large"><use href="#icon-list"></use></svg></button>
-                </div>
-
-                <span class="item-count" id="item-count">0 items</span>
-            </div>
-        </div>
-
-        <!-- Main content area: filled dynamically by `CardRenderer.renderAll` -->
-        <main>
-            <!-- General app loader displayed during initial data initialization -->
-            <div id="general-app-loader" class="general-app-loader" data-visible="true">
-                <svg width="48" height="48" viewBox="0 0 32 32" class="card-spinner-svg">
-                    <circle cx="16" cy="16" r="12" class="card-spinner-circle" />
-                </svg>
-            </div>
-            <div id="anime-container" class="grid-view">
-                <!-- Dynamically filled by JavaScript -->
-            </div>
-        </main>
-
-        <!-- Template used by CardRenderer to populate the anime list dynamically -->
-        <template id="anime-card-template">
-            <div class="anime-card-wrapper">
-                <div class="anime-card ultimate-hover-effect">
-                    <div class="card-poster">
-                        <div class="card-internal-loader">
-                            <svg width="32" height="32" viewBox="0 0 32 32" class="card-spinner-svg">
-                                <circle cx="16" cy="16" r="12" class="card-spinner-circle" />
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="card-info">
-                        <div class="card-header">
-                            <div class="card-title"><span></span></div>
-                        </div>
-                        <div class="card-subtitle"></div>
-                        <div class="card-status-cell"></div>
-                        <div class="card-actions">
-                            <div class="avg-rating-text" title="Gemiddelde item-rating">
-                                <svg class="svg-icon svg-icon-margin"><use href="#icon-star-half"></use></svg>
-                                <span class="avg-rating-val"></span>
-                            </div>
-                            <div class="rating-badge ultimate-hover-effect" title="Beoordeel deze anime">
-                                <svg class="svg-icon svg-icon-margin"><use href="#icon-star"></use></svg>
-                                <span class="rating-val"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </template>
+        <!-- Content is loaded dynamically based on route (home.html or card.html) -->
     </div>
 
     <footer>
@@ -222,22 +139,12 @@
         </div>
     </div>
 
-    <!-- Detail modal shell: currently reserved for detail overlays -->
-    <div id="detail-overlay" class="hidden">
-        <div class="modal modal-detail">
-            <div class="modal-detail-header">
-                <h3 id="detail-title"></h3>
-                <button id="close-detail" class="btn-close ultimate-hover-effect">&times;</button>
-            </div>
-            <div id="detail-content"></div>
-        </div>
-    </div>
+
 
 
     <!-- Logic & domain scripts -->
     <script type="module" src="js/app.js"></script>
 
-    <!-- Global dropdown portal used by status menus rendered from JavaScript -->
-    <div id="global-status-menu" class="status-menu shadow-lg"></div>
+
 </body>
 </html>
