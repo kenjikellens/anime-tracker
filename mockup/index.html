@@ -7,51 +7,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Directe referentie naar de echte CSS van het project -->
+    <link rel="stylesheet" href="../css/styles.css">
+
     <style>
-        :root {
-            --bg: #f0f0f0;
-            --surface: #ffffff;
-            --surface-card: #e5e5e5;
-            --surface-hover: #d5d5d5;
-            --surface-2: #e8e8e8;
-            --text: #1a1a1a;
-            --text-muted: #666666;
-            --white: #1a1a1a;
-            --header-bg: #e0e0e0;
-            --primary: #1a1a1a;
-            --status-btn-bg: #1a1a1a;
-            --status-btn-color: #ffffff;
-        }
-
-        [data-theme="dark"] {
-            --bg: #121212;
-            --surface: #1e1e1e;
-            --surface-card: #252525;
-            --surface-hover: #383838;
-            --surface-2: #282828;
-            --text: #e0e0e0;
-            --text-muted: #aaaaaa;
-            --white: #ffffff;
-            --header-bg: #282828;
-            --primary: #ffffff;
-            --status-btn-bg: #e8e8e8;
-            --status-btn-color: #121212;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Outfit', sans-serif;
-        }
-
+        /* Enkel layout styling voor het mockup overzicht */
         body {
-            background-color: var(--bg);
-            color: var(--text);
             padding: 40px 20px;
             max-width: 900px;
             margin: 0 auto;
-            transition: background-color 0.2s ease, color 0.2s ease;
         }
 
         header {
@@ -61,11 +26,6 @@
             margin-bottom: 32px;
             padding-bottom: 16px;
             border-bottom: 1px solid var(--surface-2);
-        }
-
-        h1 {
-            font-size: 24px;
-            font-weight: 800;
         }
 
         .theme-btn {
@@ -100,164 +60,6 @@
             gap: 12px;
             align-items: center;
         }
-
-        /* --- ITEM TYPE BADGES --- */
-        .item-type-badge {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            background: var(--surface-2);
-            color: var(--text-muted);
-            text-align: center;
-            min-width: 60px;
-        }
-
-        /* Type: SERIE (Purple Accent) */
-        .item-type-badge.type-serie {
-            background: rgba(157, 78, 221, 0.18);
-            color: #b5179e;
-        }
-        [data-theme="dark"] .item-type-badge.type-serie {
-            background: rgba(157, 78, 221, 0.25);
-            color: #d884ff;
-        }
-
-        /* Type: FILM / MOVIE (Blue Accent) */
-        .item-type-badge.type-film,
-        .item-type-badge.type-movie {
-            background: rgba(0, 122, 204, 0.18);
-            color: #007acc;
-        }
-        [data-theme="dark"] .item-type-badge.type-film,
-        [data-theme="dark"] .item-type-badge.type-movie {
-            background: rgba(0, 150, 255, 0.25);
-            color: #64b5f6;
-        }
-
-        /* Type: OVA (Emerald Accent) */
-        .item-type-badge.type-ova {
-            background: rgba(46, 204, 113, 0.18);
-            color: #27ae60;
-        }
-        [data-theme="dark"] .item-type-badge.type-ova {
-            background: rgba(46, 204, 113, 0.25);
-            color: #2ecc71;
-        }
-
-        /* Type: SPECIAL (Amber / Gold Accent) */
-        .item-type-badge.type-special {
-            background: rgba(241, 196, 15, 0.18);
-            color: #d35400;
-        }
-        [data-theme="dark"] .item-type-badge.type-special {
-            background: rgba(241, 196, 15, 0.25);
-            color: #f39c12;
-        }
-
-        /* Type: ONA (Cyan Accent) */
-        .item-type-badge.type-ona {
-            background: rgba(22, 160, 133, 0.18);
-            color: #16a085;
-        }
-        [data-theme="dark"] .item-type-badge.type-ona {
-            background: rgba(26, 188, 156, 0.25);
-            color: #1abc9c;
-        }
-
-        /* --- STATUS BADGES --- */
-        .status-badge {
-            font-size: 12px;
-            font-weight: 700;
-            padding: 4px 12px;
-            border-radius: 20px;
-            background: var(--surface-2);
-            color: var(--text);
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .status-badge.status-airing {
-            background: rgba(52, 152, 219, 0.2);
-            color: #3498db;
-        }
-
-        .status-badge.status-upcoming {
-            background: rgba(155, 89, 182, 0.2);
-            color: #9b59b6;
-        }
-
-        .status-badge.status-watching {
-            background: rgba(241, 196, 15, 0.2);
-            color: #f1c40f;
-        }
-
-        .status-badge.status-done {
-            background: rgba(46, 204, 113, 0.2);
-            color: #2ecc71;
-        }
-
-        .status-badge.status-plan {
-            background: var(--surface-2);
-            color: var(--text-muted);
-        }
-
-        /* --- RATING BADGES --- */
-        .rating-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 800;
-        }
-
-        .rating-badge.r-cinema { background: linear-gradient(135deg, #ffe066 0%, #ffd700 50%, #b38f00 100%); color: #1a1a1a; }
-        .rating-badge.r-awesome { background: #27ae60; color: #1a1a1a; }
-        .rating-badge.r-great { background: #2ecc71; color: #1a1a1a; }
-        .rating-badge.r-good { background: #a2d149; color: #1a1a1a; }
-        .rating-badge.r-regular { background: #f1c40f; color: #1a1a1a; }
-        .rating-badge.r-bad { background: #e67e22; color: #ffffff; }
-        .rating-badge.r-garbage { background: #e74c3c; color: #ffffff; }
-        .rating-badge.r-unrated { background: var(--surface-2); color: var(--text-muted); }
-
-        /* --- GENRE BADGES --- */
-        .genre-badge {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 11px;
-            font-weight: 700;
-            background-color: var(--surface-2);
-            color: var(--text);
-        }
-
-        /* --- ROW PREVIEW SAMPLE --- */
-        .sample-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 14px 18px;
-            background: var(--surface-2);
-            border-radius: 12px;
-            margin-bottom: 10px;
-        }
-
-        .sample-title-wrap {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .sample-title {
-            font-weight: 700;
-            font-size: 15px;
-        }
     </style>
 </head>
 <body>
@@ -267,9 +69,9 @@
         <button class="theme-btn" id="toggle-theme">Thema: Dark</button>
     </header>
 
-    <!-- SECTION 1: ITEM TYPES -->
+    <!-- SECTION 1: ITEM TYPES (Media Formats) -->
     <div class="section">
-        <div class="section-title">Item Types (Media Format Badges)</div>
+        <div class="section-title">Item Types (Media Formaten)</div>
         <div class="badge-grid">
             <span class="item-type-badge type-serie">SERIE</span>
             <span class="item-type-badge type-film">FILM</span>
@@ -279,30 +81,31 @@
         </div>
     </div>
 
-    <!-- SECTION 2: STATUS BADGES -->
+    <!-- SECTION 2: STATUS FILTER BUTTONS & PILLS -->
     <div class="section">
-        <div class="section-title">Status Pills</div>
+        <div class="section-title">Status Pills & Filter Knoppen</div>
         <div class="badge-grid">
-            <span class="status-badge status-airing">● Airing</span>
-            <span class="status-badge status-upcoming">● Upcoming</span>
-            <span class="status-badge status-plan">Te Bekijken</span>
-            <span class="status-badge status-watching">Bezig</span>
-            <span class="status-badge status-done">✓ Bekeken</span>
+            <button class="filter-btn active ultimate-hover-effect">Alles</button>
+            <button class="filter-btn ultimate-hover-effect">Airing</button>
+            <button class="filter-btn ultimate-hover-effect">Upcoming</button>
+            <button class="filter-btn ultimate-hover-effect">Te Bekijken</button>
+            <button class="filter-btn ultimate-hover-effect">Bezig</button>
+            <button class="filter-btn ultimate-hover-effect">Bekeken</button>
         </div>
     </div>
 
     <!-- SECTION 3: RATING BADGES -->
     <div class="section">
-        <div class="section-title">Rating Tiers</div>
+        <div class="section-title">Rating Badges (Beoordelingen)</div>
         <div class="badge-grid">
-            <span class="rating-badge r-cinema">★ 10.0</span>
-            <span class="rating-badge r-awesome">★ 9.0</span>
-            <span class="rating-badge r-great">★ 8.0</span>
-            <span class="rating-badge r-good">★ 7.0</span>
-            <span class="rating-badge r-regular">★ 6.0</span>
-            <span class="rating-badge r-bad">★ 5.0</span>
-            <span class="rating-badge r-garbage">★ 3.0</span>
-            <span class="rating-badge r-unrated">NR</span>
+            <span class="rating-badge ultimate-hover-effect r-cinema" data-rating-tier="cinema">★ 10.0</span>
+            <span class="rating-badge ultimate-hover-effect r-awesome" data-rating-tier="awesome">★ 9.0</span>
+            <span class="rating-badge ultimate-hover-effect r-great" data-rating-tier="great">★ 8.0</span>
+            <span class="rating-badge ultimate-hover-effect r-good" data-rating-tier="good">★ 7.0</span>
+            <span class="rating-badge ultimate-hover-effect r-regular" data-rating-tier="regular">★ 6.0</span>
+            <span class="rating-badge ultimate-hover-effect r-bad" data-rating-tier="bad">★ 5.0</span>
+            <span class="rating-badge ultimate-hover-effect r-garbage" data-rating-tier="garbage">★ 3.0</span>
+            <span class="rating-badge ultimate-hover-effect unrated" data-rating-tier="unrated">NR</span>
         </div>
     </div>
 
@@ -317,55 +120,6 @@
             <span class="genre-badge">Fantasy</span>
             <span class="genre-badge">Slice of Life</span>
             <span class="genre-badge">Supernatural</span>
-        </div>
-    </div>
-
-    <!-- SECTION 5: ACCORDION ROW PREVIEWS -->
-    <div class="section">
-        <div class="section-title">Accordion Row Samples</div>
-        
-        <div class="sample-row">
-            <div class="sample-title-wrap">
-                <span class="item-type-badge type-serie">SERIE</span>
-                <span class="sample-title">Seizoen 1</span>
-            </div>
-            <div class="badge-grid">
-                <span class="status-badge status-done">✓ Bekeken</span>
-                <span class="rating-badge r-awesome">★ 9.0</span>
-            </div>
-        </div>
-
-        <div class="sample-row">
-            <div class="sample-title-wrap">
-                <span class="item-type-badge type-film">FILM</span>
-                <span class="sample-title">The Movie: Infinity Castle</span>
-            </div>
-            <div class="badge-grid">
-                <span class="status-badge status-airing">● Airing</span>
-                <span class="rating-badge r-cinema">★ 10.0</span>
-            </div>
-        </div>
-
-        <div class="sample-row">
-            <div class="sample-title-wrap">
-                <span class="item-type-badge type-ova">OVA</span>
-                <span class="sample-title">Memory Snow OVA</span>
-            </div>
-            <div class="badge-grid">
-                <span class="status-badge status-plan">Te Bekijken</span>
-                <span class="rating-badge r-unrated">NR</span>
-            </div>
-        </div>
-
-        <div class="sample-row">
-            <div class="sample-title-wrap">
-                <span class="item-type-badge type-special">SPECIAL</span>
-                <span class="sample-title">Valentine Special</span>
-            </div>
-            <div class="badge-grid">
-                <span class="status-badge status-watching">Bezig</span>
-                <span class="rating-badge r-good">★ 7.5</span>
-            </div>
         </div>
     </div>
 
