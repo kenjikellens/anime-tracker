@@ -30,10 +30,10 @@ This workflow checks all tracked anime franchises for new releases (seasons, mov
 >    - Execute EXACTLY ONE search call for ONE anime at a time.
 >    - Immediately update `data/data.json`, `DOCS/data/`, and `task.md` for THAT anime if needed.
 >    - IMMEDIATELY move to the next anime without calling multiple searches in parallel and without stopping until ALL anime in `task.md` are completed `[x]`.
-> 8. **NEW ITEMS ON COMPLETED ANIME MUST BE AIRING OR UPCOMING**: When adding a new item (season/movie/OVA/special) to an anime where all existing items are already watched (status `1`), ALWAYS assign status `2` (Upcoming) or `3` (Airing) — NEVER `-1` (To Watch). This preserves the parent anime status as `1` (Watched).
+> 8. **SKIP FULLY WATCHED ANIME**: NEVER automatically modify, update, or add items to an anime where the parent status is `1` (Watched) or where all items are fully watched. Fully watched anime must be completely skipped by automatic updates.
 
 ### Item Rules for Airing & Upcoming
-* **New Items for Completed Anime**: If all previous items in the anime have status `1` (Watched), any newly discovered item MUST be added as status `2` (Upcoming) or `3` (Airing). It is up to the user to manually change the status to `-1` (To Watch) when they decide to start watching.
+* **Do Not Touch Completed Anime**: If an anime has status `1` (Watched) or all its items are marked watched, DO NOT check for new items or update it automatically.
 * **Airing (status `3`)**: The item MUST already include `episodesCount` with the total announced episode count (even if not all episodes have aired yet).
 * **Upcoming (status `2`)**: The item MUST be created with `episodesCount` set to the announced count (or `1` for movies). If unknown, set `episodesCount` to `0`.
 
