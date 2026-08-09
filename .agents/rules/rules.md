@@ -8,5 +8,8 @@ Never use AniList API to automatically or directly update existing entries or us
 
 status `2` means item-only Upcoming and status `3` means item-only Airing. Never use "New" as a data status, and never assign `2` or `3` to a parent anime object.
 
+When adding new items (seasons/movies/OVAs) to an anime where all existing items are already watched (status 1), ALWAYS assign status `2` (Upcoming) or `3` (Airing) — NEVER `-1` (To Watch). This preserves the parent anime's status as 1 (Watched).
+
 Never duplicate or copy-paste CSS rules across specific selectors to copy a style. Always reuse existing CSS classes directly in HTML/JS elements to apply styles, and delete unused CSS rules afterwards.
+
 
