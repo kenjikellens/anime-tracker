@@ -1,5 +1,5 @@
 ---
-description: Anime release checker — verifies all tracked anime for new releases, status changes, and upcoming content per anime via web search (primary) or AniList API (secondary).
+description: Anime release checker — verifies all tracked anime for new releases, status changes, and upcoming content per anime via web search (primary). AniList API is reserved ONLY for fetching metadata when adding a specific new item.
 ---
 
 # Anime Release Checker Workflow
@@ -24,8 +24,9 @@ This workflow checks all tracked anime franchises for new releases (seasons, mov
 > 2. Never use `"New"` as a data status string.
 > 3. Do NOT use web browser / DOM to verify changes; ask the user to verify instead.
 > 4. Always use **English titles** for anime and item names in `data/data.json`.
-> 5. **CHECK EXISTING DATA FIRST**: Always inspect `data/data.json` for the current anime entry to know its exact existing items, episode counts, and statuses BEFORE performing web search lookups.
-> 6. **NON-STOP STRICT SEQUENTIAL EXECUTION**:
+> 5. **NEVER USE ANILIST API TO AUTO-UPDATE EXISTING ENTRIES OR USER WATCH PROGRESS IN `data.json`**: AniList API is strictly reserved ONLY for fetching metadata when adding a specific new item.
+> 6. **CHECK EXISTING DATA FIRST**: Always inspect `data/data.json` for the current anime entry to know its exact existing items, episode counts, and statuses BEFORE performing web search lookups.
+> 7. **NON-STOP STRICT SEQUENTIAL EXECUTION**:
 >    - Execute EXACTLY ONE search call for ONE anime at a time.
 >    - Immediately update `data/data.json`, `DOCS/data/`, and `task.md` for THAT anime if needed.
 >    - IMMEDIATELY move to the next anime without calling multiple searches in parallel and without stopping until ALL anime in `task.md` are completed `[x]`.
