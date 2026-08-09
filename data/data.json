@@ -1,11 +1,15 @@
 [
     {
         "id": "nukitashi-the-animation",
+        "anilistId": null,
         "title": "Nukitashi THE ANIMATION",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx174188-fZg8iePD9Dca.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "nukitashi-the-animation",
@@ -29,11 +33,15 @@
     },
     {
         "id": "worlds-end-harem",
+        "anilistId": null,
         "title": "World's End Harem",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx118465-EGB0OajA5rei.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "worlds-end-harem-serie",
@@ -48,11 +56,15 @@
     },
     {
         "id": "how-a-realist-hero-rebuilt-the-kingdom",
+        "anilistId": null,
         "title": "How a Realist Hero Rebuilt the Kingdom",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx117612-MCbAaq2ypJlp.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "how-a-realist-hero-rebuilt-the-kingdom-season-1",
@@ -76,11 +88,15 @@
     },
     {
         "id": "undefeated-bahamut-chronicle",
+        "anilistId": null,
         "title": "Undefeated Bahamut Chronicle",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21188-VFUo0sASxOfO.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "undefeated-bahamut-chronicle-serie",
@@ -95,11 +111,15 @@
     },
     {
         "id": "studio-apartment-good-lighting-angel-included",
+        "anilistId": null,
         "title": "Studio Apartment, Good Lighting, Angel Included",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx169927-3FwBuKn4x5LL.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "studio-apartment-good-lighting-angel-included-serie",
@@ -114,11 +134,15 @@
     },
     {
         "id": "rascal-does-not-dream",
+        "anilistId": null,
         "title": "Rascal Does Not Dream",
         "status": 1,
         "rating": 9.7,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx101291-wfEdgPqtfU0l.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "rascal-does-not-dream-of-bunny-girl-senpai",
@@ -178,11 +202,15 @@
     },
     {
         "id": "horimiya",
+        "anilistId": null,
         "title": "Horimiya",
         "status": 1,
         "rating": 9.6,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx124080-3i22mRVPBS0T.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "horimiya-horimiya",
@@ -206,11 +234,15 @@
     },
     {
         "id": "my-teen-romantic-comedy-snafu-oregairu",
+        "anilistId": null,
         "title": "My Teen Romantic Comedy SNAFU",
         "status": 1,
         "rating": 9,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx14813-3mNvcKNEQcDs.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "my-teen-romantic-comedy-snafu-oregairu-my-teen-romantic-comedy-snafu",
@@ -284,11 +316,15 @@
     },
     {
         "id": "konosuba-god-s-blessing-on-this-wonderful-world",
+        "anilistId": null,
         "title": "KonoSuba: God's Blessing on This Wonderful World!",
         "status": 1,
         "rating": 9.2,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21202-mPOr80AEjUcZ.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "konosuba-god-s-blessing-on-this-wonderful-world-s1",
@@ -357,11 +393,15 @@
     },
     {
         "id": "the-100-girlfriends-who-really-really-really-really-really-love-you",
+        "anilistId": null,
         "title": "The 100 Girlfriends Who Really, Really, Really, Really, Really Love You",
         "status": 1,
         "rating": 8.8,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx162694-QFBei5pbjSh8.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "the-100-girlfriends-who-really-really-really-really-really-love-you-s1",
@@ -394,11 +434,15 @@
     },
     {
         "id": "high-school-dxd",
+        "anilistId": null,
         "title": "High School DxD",
         "status": 1,
         "rating": 8.5,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx11617-nmxMU9Zh3H5R.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "high-school-dxd-s1",
@@ -494,11 +538,15 @@
     },
     {
         "id": "kaguya-sama-love-is-war",
+        "anilistId": null,
         "title": "Kaguya-sama: Love is War",
         "status": 1,
         "rating": 8.6,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx101921-ufrjLzhSz7L1.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "kaguya-sama-s1",
@@ -558,11 +606,15 @@
     },
     {
         "id": "fruits-basket-2019",
+        "anilistId": null,
         "title": "Fruits Basket (2019)",
         "status": 1,
         "rating": 8.4,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx105334-AZwEdMu4KFtV.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "fruits-basket-1st-season",
@@ -604,11 +656,15 @@
     },
     {
         "id": "toradora",
+        "anilistId": null,
         "title": "Toradora!",
         "status": 1,
         "rating": 8.3,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx4224-PXVMBLNwy2aF.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "toradora-series",
@@ -641,11 +697,15 @@
     },
     {
         "id": "the-angel-next-door-spoils-me-rotten",
+        "anilistId": null,
         "title": "The Angel Next Door Spoils Me Rotten",
         "status": 1,
         "rating": 8,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx143338-zhyDVYgEzsm5.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "the-angel-next-door-s1",
@@ -669,11 +729,15 @@
     },
     {
         "id": "alya-sometimes-hides-her-feelings-in-russian",
+        "anilistId": null,
         "title": "Alya Sometimes Hides Her Feelings in Russian",
         "status": 1,
         "rating": 8,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx162804-TBeptcAfvqTd.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "alya-sometimes-hides-her-feelings-in-russian-series",
@@ -697,11 +761,15 @@
     },
     {
         "id": "relife",
+        "anilistId": null,
         "title": "ReLIFE",
         "status": 1,
         "rating": 8.1,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21049-4AHSLeiDE9eg.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "relife-series",
@@ -725,11 +793,15 @@
     },
     {
         "id": "the-fragrant-flower-blooms-with-dignity",
+        "anilistId": null,
         "title": "The Fragrant Flower Blooms with Dignity",
         "status": 1,
         "rating": 8,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx181444-Ut9DDUZdfHwg.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "the-fragrant-flower-blooms-with-dignity-series",
@@ -744,11 +816,15 @@
     },
     {
         "id": "the-pet-girl-of-sakurasou",
+        "anilistId": null,
         "title": "The Pet Girl of Sakurasou",
         "status": 1,
         "rating": 7.8,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx13759-xNf0gJK4Axt2.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "the-pet-girl-of-sakurasou-series",
@@ -763,11 +839,15 @@
     },
     {
         "id": "my-dress-up-darling",
+        "anilistId": null,
         "title": "My Dress-Up Darling",
         "status": 1,
         "rating": 7.7,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx132405-qP7FQYGmNI3d.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "my-dress-up-darling-series",
@@ -791,11 +871,15 @@
     },
     {
         "id": "a-couple-of-cuckoos",
+        "anilistId": null,
         "title": "A Couple of Cuckoos",
         "status": 1,
         "rating": 7.8,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx132052-3gDTi19HyW6E.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "a-couple-of-cuckoos-series",
@@ -828,11 +912,15 @@
     },
     {
         "id": "class-president-is-a-maid",
+        "anilistId": null,
         "title": "Class President is a Maid!",
         "status": 1,
         "rating": 7.6,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx7054-GW4D7VAZG19W.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "class-president-is-a-maid-series",
@@ -865,11 +953,15 @@
     },
     {
         "id": "and-you-thought-there-is-never-a-girl-online",
+        "anilistId": null,
         "title": "And you thought there is never a girl online?",
         "status": 1,
         "rating": 7.4,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21290-R6qYWnylwpbL.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "and-you-thought-there-is-never-a-girl-online-series",
@@ -884,11 +976,15 @@
     },
     {
         "id": "love-chunibyo-other-delusions",
+        "anilistId": null,
         "title": "Love, Chunibyo & Other Delusions!",
         "status": 1,
         "rating": 7.5,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx14741-CGXEIeUe2roA.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "love-chunibyo-other-delusions-series",
@@ -975,11 +1071,15 @@
     },
     {
         "id": "the-iceblade-sorcerer-shall-rule-the-world",
+        "anilistId": null,
         "title": "The Iceblade Sorcerer Shall Rule the World",
         "status": 1,
         "rating": 7.5,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx148116-t6E73U8SJhYD.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "the-iceblade-sorcerer-shall-rule-the-world-series",
@@ -994,11 +1094,15 @@
     },
     {
         "id": "danganronpa",
+        "anilistId": null,
         "title": "Danganronpa",
         "status": 1,
         "rating": 7,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx16592-mFn1gfMXlKtw.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "danganronpa-the-animation",
@@ -1049,11 +1153,15 @@
     },
     {
         "id": "my-little-sister-can-t-be-this-cute-oreimo",
+        "anilistId": null,
         "title": "My Little Sister Can't Be This Cute",
         "status": 1,
         "rating": 7.7,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx8769-Lat76qlOwdBN.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "oreimo-s1",
@@ -1095,11 +1203,15 @@
     },
     {
         "id": "the-dreaming-boy-is-a-realist",
+        "anilistId": null,
         "title": "The Dreaming Boy is a Realist",
         "status": 1,
         "rating": 7,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx157397-L1ZUMTuxf8OK.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "the-dreaming-boy-is-a-realist-series",
@@ -1114,11 +1226,15 @@
     },
     {
         "id": "pseudo-harem",
+        "anilistId": null,
         "title": "Pseudo Harem",
         "status": 1,
         "rating": 6.9,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx163623-pzR6vIHoJh0b.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "pseudo-harem-series",
@@ -1133,11 +1249,15 @@
     },
     {
         "id": "trinity-seven",
+        "anilistId": null,
         "title": "Trinity Seven",
         "status": 1,
         "rating": 6.9,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20631-LdCiy3goitcT.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "trinity-seven-series",
@@ -1179,11 +1299,15 @@
     },
     {
         "id": "akashic-records-of-bastard-magic-instructor",
+        "anilistId": null,
         "title": "Akashic Records of Bastard Magic Instructor",
         "status": 1,
         "rating": 7.2,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21700-HhTEXPZKxupP.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "akashic-records-of-bastard-magic-instructor-series",
@@ -1198,11 +1322,15 @@
     },
     {
         "id": "masamune-kun-s-revenge",
+        "anilistId": null,
         "title": "Masamune-kun's Revenge",
         "status": 1,
         "rating": 6.8,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21857-haPDVD7DKDpg.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "masamune-kun-s-revenge-series",
@@ -1235,11 +1363,15 @@
     },
     {
         "id": "shikimori-s-not-just-a-cutie",
+        "anilistId": null,
         "title": "Shikimori's Not Just a Cutie",
         "status": 1,
         "rating": 6.6,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx127911-qfJDzUt0qCna.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "shikimori-s-not-just-a-cutie-series",
@@ -1254,11 +1386,15 @@
     },
     {
         "id": "the-dangers-in-my-heart",
+        "anilistId": null,
         "title": "The Dangers in My Heart",
         "status": 1,
         "rating": 7,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b209247-WvEUGMipZDl9.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "the-dangers-in-my-heart-s1",
@@ -1291,11 +1427,15 @@
     },
     {
         "id": "more-than-a-married-couple-but-not-lovers",
+        "anilistId": null,
         "title": "More than a married couple, but not lovers.",
         "status": 1,
         "rating": 6.8,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx141949-tViCIRHPZAyG.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "more-than-a-married-couple-but-not-lovers-series",
@@ -1310,11 +1450,15 @@
     },
     {
         "id": "golden-time",
+        "anilistId": null,
         "title": "Golden Time",
         "status": 1,
         "rating": 6.5,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx17895-M8yjOyMxHf5X.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "golden-time-series",
@@ -1329,11 +1473,15 @@
     },
     {
         "id": "haganai-i-don-t-have-many-friends",
+        "anilistId": null,
         "title": "Haganai: I don't have many friends",
         "status": 1,
         "rating": 7.2,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx10719-aNf9gOOw62Fs.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "haganai-s1",
@@ -1375,11 +1523,15 @@
     },
     {
         "id": "eromanga-sensei",
+        "anilistId": null,
         "title": "Eromanga Sensei",
         "status": 1,
         "rating": 6.4,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21685-h1SrcpaNnrIq.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "eromanga-sensei-series",
@@ -1403,11 +1555,15 @@
     },
     {
         "id": "shimoneta-a-boring-world-where-the-concept-of-dirty-jokes-doesn-t-exist",
+        "anilistId": null,
         "title": "SHIMONETA: A Boring World Where the Concept of Dirty Jokes Doesn't Exist",
         "status": 1,
         "rating": 6.2,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20910-U7txwG3o9gma.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "shimoneta-series",
@@ -1422,11 +1578,15 @@
     },
     {
         "id": "prison-school",
+        "anilistId": null,
         "title": "Prison School",
         "status": 1,
         "rating": 5.5,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20807-8nFoO0AUdGsy.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "prison-school-series",
@@ -1450,11 +1610,15 @@
     },
     {
         "id": "the-genius-prince-s-guide-to-raising-a-nation-out-of-debt",
+        "anilistId": null,
         "title": "The Genius Prince's Guide to Raising a Nation Out of Debt",
         "status": 1,
         "rating": 5.9,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx129190-UnaPbNhTCTOR.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "the-genius-prince-s-guide-to-raising-a-nation-out-of-debt-series",
@@ -1469,11 +1633,15 @@
     },
     {
         "id": "don-t-toy-with-me-miss-nagatoro",
+        "anilistId": null,
         "title": "Don't Toy with Me, Miss Nagatoro",
         "status": 1,
         "rating": 6,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx120697-BA2TqxB1I5bJ.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "don-t-toy-with-me-miss-nagatoro-s1",
@@ -1497,11 +1665,15 @@
     },
     {
         "id": "medaka-kuroiwa-is-impervious-to-my-charms",
+        "anilistId": null,
         "title": "Medaka Kuroiwa is Impervious to My Charms",
         "status": 1,
         "rating": 6,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx177552-7XiOf3dGXmNs.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "medaka-kuroiwa-is-impervious-to-my-charms-s1",
@@ -1525,11 +1697,15 @@
     },
     {
         "id": "my-girlfriend-is-shobitch",
+        "anilistId": null,
         "title": "My Girlfriend is Shobitch",
         "status": 1,
         "rating": 6.2,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx98951-EeoDeSyF97ZS.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "my-girlfriend-is-shobitch-series",
@@ -1553,11 +1729,15 @@
     },
     {
         "id": "bottom-tier-character-tomozaki",
+        "anilistId": null,
         "title": "Bottom-Tier Character Tomozaki",
         "status": 1,
         "rating": 6.5,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx143866-75E3G6nYEUVr.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "bottom-tier-character-tomozaki-s1",
@@ -1590,11 +1770,15 @@
     },
     {
         "id": "can-a-boy-and-girl-friendship-hold-up-no-it-can-t",
+        "anilistId": null,
         "title": "Can a Boy and Girl Friendship Hold Up? (No, It Can't!!)",
         "status": 1,
         "rating": 5.9,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx153554-hHYe9aV6Gvlv.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "can-a-boy-and-girl-friendship-hold-up-series",
@@ -1609,11 +1793,15 @@
     },
     {
         "id": "hensuki-are-you-willing-to-fall-in-love-with-a-pervert-as-long-as-she-s-a-cutie",
+        "anilistId": null,
         "title": "Hensuki: Are you willing to fall in love with a pervert, as long as she's a cutie?",
         "status": 1,
         "rating": 5.8,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx121043-tKiAftJvnEaM.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "hensuki-series",
@@ -1628,11 +1816,15 @@
     },
     {
         "id": "my-little-monster",
+        "anilistId": null,
         "title": "My Little Monster",
         "status": 1,
         "rating": 6.6,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx14227-VGxPG1xDZG7v.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "my-little-monster-series",
@@ -1656,11 +1848,15 @@
     },
     {
         "id": "blue-box",
+        "anilistId": null,
         "title": "Blue Box",
         "status": 1,
         "rating": 5,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx189123-0secXELIhkIW.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "blue-box-s1",
@@ -1684,11 +1880,15 @@
     },
     {
         "id": "the-children-of-shiunji-family",
+        "anilistId": null,
         "title": "The Children of Shiunji Family",
         "status": 1,
         "rating": 5.3,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx174802-ILahIZlNWN3R.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "the-children-of-shiunji-family-series",
@@ -1703,11 +1903,15 @@
     },
     {
         "id": "gamers",
+        "anilistId": null,
         "title": "Gamers!",
         "status": 1,
         "rating": 5.8,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx97766-AKr0m3uHkKyW.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "gamers-series",
@@ -1722,11 +1926,15 @@
     },
     {
         "id": "redo-of-healer",
+        "anilistId": null,
         "title": "Redo of Healer",
         "status": 1,
         "rating": 4.7,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx113425-tYGRUa5pgZje.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "redo-of-healer-series",
@@ -1741,11 +1949,15 @@
     },
     {
         "id": "kiss-x-sis",
+        "anilistId": null,
         "title": "Kiss x Sis",
         "status": 1,
         "rating": 4,
         "releaseDate": "",
-        "coverImage": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx5042-FZ8XdXStvn0u.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "kiss-x-sis-tv",
@@ -1769,11 +1981,15 @@
     },
     {
         "id": "rent-a-girlfriend",
+        "anilistId": null,
         "title": "Rent-a-Girlfriend",
         "status": 1,
         "rating": 0.1,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx199029-8eMkhHlD62Ik.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "rent-a-girlfriend-s1",
@@ -1837,11 +2053,15 @@
     },
     {
         "id": "your-lie-in-april-shigatsu-wa-kimi-no-uso",
+        "anilistId": null,
         "title": "Your Lie in April",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20665-TLgkL8T8IRFd.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "your-lie-in-april-series",
@@ -1865,11 +2085,15 @@
     },
     {
         "id": "orange",
+        "anilistId": null,
         "title": "Orange",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21647-zMUXNhcVyRyv.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "orange-series",
@@ -1893,11 +2117,15 @@
     },
     {
         "id": "a-silent-voice-koe-no-katachi",
+        "anilistId": null,
         "title": "A Silent Voice",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20954-sYRfE5jQRtSB.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "a-silent-voice-movie",
@@ -1912,11 +2140,15 @@
     },
     {
         "id": "i-want-to-eat-your-pancreas-kimi-no-suizou-wo-tabetai",
+        "anilistId": null,
         "title": "I want to eat your pancreas",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx99750-pNyly9d3MEgV.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "i-want-to-eat-your-pancreas-movie",
@@ -1931,11 +2163,15 @@
     },
     {
         "id": "inexpressive-kashiwada-and-expressive-oota",
+        "anilistId": null,
         "title": "Inexpressive Kashiwada and Expressive Oota",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx187940-3ugUhO9h0luh.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "inexpressive-kashiwada-and-expressive-oota-series",
@@ -1950,11 +2186,15 @@
     },
     {
         "id": "umamusume-pretty-derby",
+        "anilistId": null,
         "title": "Umamusume: Pretty Derby",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx124223-XMOEUPopjtrI.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "umamusume-pretty-derby-s1",
@@ -2014,11 +2254,15 @@
     },
     {
         "id": "my-matchmaking-partner-is-my-student-an-aggressive-trouble-maker",
+        "anilistId": null,
         "title": "My Matchmaking Partner Is My Student, An Aggressive Trouble-Maker",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx99894-yj4obqfIZ6KI.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "my-matchmaking-partner-is-my-student-series",
@@ -2033,11 +2277,15 @@
     },
     {
         "id": "chitose-is-in-the-ramune-bottle",
+        "anilistId": null,
         "title": "Chitose Is in the Ramune Bottle",
         "status": 1,
         "rating": 7,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx198727-pazIoPmgWAsa.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "chitose-is-in-the-ramune-bottle-cour-1",
@@ -2061,11 +2309,15 @@
     },
     {
         "id": "food-for-the-soul",
+        "anilistId": null,
         "title": "Food for the Soul",
         "status": 0,
         "rating": 6,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx185939-hqt1He153el8.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "food-for-the-soul-series",
@@ -2085,11 +2337,15 @@
     },
     {
         "id": "makeine-too-many-losing-heroines",
+        "anilistId": null,
         "title": "Makeine: Too Many Losing Heroines!",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx189796-cVlT7CY7n8pd.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "makeine-too-many-losing-heroines-s1",
@@ -2113,11 +2369,15 @@
     },
     {
         "id": "the-melancholy-of-haruhi-suzumiya",
+        "anilistId": null,
         "title": "The Melancholy of Haruhi Suzumiya",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx849-wQM3GqLvl62P.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "the-melancholy-of-haruhi-suzumiya-series",
@@ -2168,11 +2428,15 @@
     },
     {
         "id": "classroom-of-the-elite",
+        "anilistId": null,
         "title": "Classroom of the Elite",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx145545-DGl3LVvFlnHi.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "classroom-of-the-elite-s1",
@@ -2214,11 +2478,15 @@
     },
     {
         "id": "azumanga-daioh",
+        "anilistId": null,
         "title": "Azumanga Daioh",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx66-ZqYQWl6LsfeI.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "azumanga-daioh-series",
@@ -2242,11 +2510,15 @@
     },
     {
         "id": "teasing-master-takagi-san",
+        "anilistId": null,
         "title": "Teasing Master Takagi-san",
         "status": 1,
         "rating": 5.6,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx107068-KJq0eFP0GTjL.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "teasing-master-takagi-san-s1",
@@ -2340,11 +2612,15 @@
     },
     {
         "id": "clannad",
+        "anilistId": null,
         "title": "Clannad",
         "status": 1,
         "rating": 5.5,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx2167-pSDBcyc0vjej.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "clannad-series",
@@ -2450,11 +2726,15 @@
     },
     {
         "id": "the-ryuo-s-work-is-never-done",
+        "anilistId": null,
         "title": "The Ryuo's Work is Never Done!",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx99507-ETGckHFiP5yd.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "the-ryuo-s-work-is-never-done-series",
@@ -2469,11 +2749,15 @@
     },
     {
         "id": "tune-in-to-the-midnight-heart",
+        "anilistId": null,
         "title": "Tune In to the Midnight Heart",
         "status": 1,
         "rating": 8.2,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx209762-2S7ni7yc9Kvi.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "tune-in-to-the-midnight-heart-season-1",
@@ -2510,11 +2794,15 @@
     },
     {
         "id": "aho-girl",
+        "anilistId": null,
         "title": "AHO-GIRL",
         "status": 1,
         "rating": 8.1,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b98251-6miVBNYEXzaF.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "aho-girl-series",
@@ -2542,11 +2830,15 @@
     },
     {
         "id": "ghost-stories",
+        "anilistId": null,
         "title": "Ghost Stories",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx1281-1D6fuMnHwor0.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "ghost-stories-series",
@@ -2561,11 +2853,15 @@
     },
     {
         "id": "the-comic-artist-and-his-assistants",
+        "anilistId": null,
         "title": "The Comic Artist and His Assistants",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20537-yvOZSoYCEndC.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "the-comic-artist-and-his-assistants-series",
@@ -2589,11 +2885,15 @@
     },
     {
         "id": "re-zero-starting-life-in-another-world",
+        "anilistId": null,
         "title": "Re:ZERO - Starting Life in Another World",
         "status": 0,
         "rating": 6.8,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx163134-yieRFbvUOH9a.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "re-zero-season-1",
@@ -2693,11 +2993,15 @@
     },
     {
         "id": "spy-x-family",
+        "anilistId": null,
         "title": "Spy x Family",
         "status": 1,
         "rating": 9.1,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b158927-lfO85WVguYgc.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "spy-x-family-season-1",
@@ -2803,11 +3107,15 @@
     },
     {
         "id": "our-last-crusade-or-the-rise-of-a-new-world",
+        "anilistId": null,
         "title": "Our Last Crusade or the Rise of a New World",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx112667-GYFeAlZ38mXK.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "our-last-crusade-or-the-rise-of-a-new-world-season-1",
@@ -2831,11 +3139,15 @@
     },
     {
         "id": "love-is-like-a-cocktail",
+        "anilistId": null,
         "title": "Love is Like a Cocktail",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx98657-P9OayeslJ79r.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "love-is-like-a-cocktail-series",
@@ -2850,11 +3162,15 @@
     },
     {
         "id": "mom-i-m-sorry",
+        "anilistId": null,
         "title": "Mom, I'm Sorry",
         "status": -1,
         "rating": 0,
         "releaseDate": "2024-05-23",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b177512-RN4AsUAyhl71.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "mom-i-m-sorry-season-1",
@@ -2869,11 +3185,15 @@
     },
     {
         "id": "9-nine-ruler-s-crown",
+        "anilistId": null,
         "title": "9-nine- Ruler's Crown",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx177761-KdJxyWwdBdiS.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "9-nine-ruler-s-crown-season-1",
@@ -2888,11 +3208,15 @@
     },
     {
         "id": "quintessential-quintuplets",
+        "anilistId": null,
         "title": "The Quintessential Quintuplets",
         "status": 1,
         "rating": 6,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx103572-cchriAdH95cQ.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "the-quintessential-quintuplets-season-1",
@@ -2965,11 +3289,15 @@
     },
     {
         "id": "yamada-kun-lv999",
+        "anilistId": null,
         "title": "My Love Story with Yamada-kun at Lv999",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx154965-vZbBRjtmLp7S.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "my-love-story-with-yamada-kun-at-lv999-season-1",
@@ -2984,11 +3312,15 @@
     },
     {
         "id": "blade-dance-of-the-elementalers",
+        "anilistId": null,
         "title": "Blade Dance of the Elementalers",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20663-8vTzInvb2Nxr.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "blade-dance-of-the-elementalers-series",
@@ -3003,11 +3335,15 @@
     },
     {
         "id": "to-love-ru",
+        "anilistId": null,
         "title": "To Love Ru",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx3455-oNiJmsZZTAAj.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "to-love-ru-series",
@@ -3085,11 +3421,15 @@
     },
     {
         "id": "date-a-live",
+        "anilistId": null,
         "title": "Date A Live",
         "status": 0,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx15583-Sxd2J4RJdRhj.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "date-a-live-series",
@@ -3198,11 +3538,15 @@
     },
     {
         "id": "gridman-universe",
+        "anilistId": null,
         "title": "Gridman Universe",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx99424-9bV9lbUhynar.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "ssss-gridman",
@@ -3235,11 +3579,15 @@
     },
     {
         "id": "i-made-friends-with-the-second-prettiest-girl-in-my-class",
+        "anilistId": null,
         "title": "I Made Friends with the Second Prettiest Girl in My Class",
         "status": 1,
         "rating": 7.4,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx169580-nXxpmqu6UVux.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "i-made-friends-with-the-second-prettiest-girl-in-my-class-series",
@@ -3267,11 +3615,15 @@
     },
     {
         "id": "the-warrior-princess-and-the-barbaric-king",
+        "anilistId": null,
         "title": "The Warrior Princess and the Barbaric King",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx182483-La7chs6htDWr.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "the-warrior-princess-and-the-barbaric-king-series",
@@ -3286,11 +3638,15 @@
     },
     {
         "id": "domestic-girlfriend",
+        "anilistId": null,
         "title": "Domestic Girlfriend",
         "status": 1,
         "rating": 6.2,
         "releaseDate": "2019-01-12",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx103139-2TfvRyGTE1qp.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "domestic-girlfriend-series",
@@ -3318,11 +3674,15 @@
     },
     {
         "id": "acchi-kocchi",
+        "anilistId": null,
         "title": "Acchi Kocchi",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx12291-NKo7qYW674Wo.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "acchi-kocchi-series",
@@ -3355,11 +3715,15 @@
     },
     {
         "id": "oshi-no-ko",
+        "anilistId": null,
         "title": "Oshi no Ko",
         "status": 1,
         "rating": 9.3,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx166531-dAL5MsqDHUkj.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "oshi-no-ko-season-1",
@@ -3439,11 +3803,15 @@
     },
     {
         "id": "baka-to-test-to-shoukanjuu",
+        "anilistId": null,
         "title": "Baka to Test to Shoukanjuu",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx6347-DCSHLkCY7UT3.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "baka-to-test-to-shoukanjuu-series",
@@ -3503,11 +3871,15 @@
     },
     {
         "id": "nisekoi",
+        "anilistId": null,
         "title": "Nisekoi",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx18897-G2Fx2ZACsXBU.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "nisekoi-series",
@@ -3558,11 +3930,15 @@
     },
     {
         "id": "mayo-chiki",
+        "anilistId": null,
         "title": "Mayo Chiki!",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx10110-BXC37EbeTL3h.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "mayo-chiki-series",
@@ -3577,11 +3953,15 @@
     },
     {
         "id": "oreshura",
+        "anilistId": null,
         "title": "Oreshura",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx14749-aq6aPtIPPVOY.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "oreshura-series",
@@ -3596,11 +3976,15 @@
     },
     {
         "id": "ladies-versus-butlers",
+        "anilistId": null,
         "title": "Ladies versus Butlers!",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx7148-nLJGo6aO9FQX.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "ladies-versus-butlers-series",
@@ -3624,11 +4008,15 @@
     },
     {
         "id": "yosuga-no-sora",
+        "anilistId": null,
         "title": "Yosuga no Sora",
         "status": 1,
         "rating": 4.2,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx8861-DZKseZpdtBwp.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "yosuga-no-sora-series",
@@ -3656,11 +4044,15 @@
     },
     {
         "id": "abnormal-physiology-seminar",
+        "anilistId": null,
         "title": "Abnormal Physiology Seminar",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx10187-Ce3On9xbKNrK.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "abnormal-physiology-seminar-ova",
@@ -3684,11 +4076,15 @@
     },
     {
         "id": "my-wife-is-the-student-council-president",
+        "anilistId": null,
         "title": "My Wife is the Student Council President",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20984-oLzyyYGcrLDe.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "my-wife-is-the-student-council-president-series",
@@ -3730,11 +4126,15 @@
     },
     {
         "id": "a-sister-s-all-you-need",
+        "anilistId": null,
         "title": "A Sister's All You Need",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx98596-E2aZouOyuQ8G.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "a-sister-s-all-you-need-series",
@@ -3767,11 +4167,15 @@
     },
     {
         "id": "food-wars",
+        "anilistId": null,
         "title": "Food Wars!",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20923-pNT38pjW3RFH.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "food-wars-series",
@@ -3858,11 +4262,15 @@
     },
     {
         "id": "nisekoi",
+        "anilistId": null,
         "title": "Nisekoi",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx18897-G2Fx2ZACsXBU.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "nisekoi-s1",
@@ -3913,11 +4321,15 @@
     },
     {
         "id": "gj-club",
+        "anilistId": null,
         "title": "GJ Club",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx14811-lTAtgO4OHE3I.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "gj-club-ep-0",
@@ -3941,11 +4353,15 @@
     },
     {
         "id": "campione",
+        "anilistId": null,
         "title": "Campione!",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx12293-DKc0XJ0cacSZ.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "campione",
@@ -3960,11 +4376,15 @@
     },
     {
         "id": "monogatari",
+        "anilistId": null,
         "title": "Monogatari Series",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx5081-9GocceQ5Z865.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "bakemonogatari",
@@ -4123,11 +4543,15 @@
     },
     {
         "id": "nisekoi",
+        "anilistId": null,
         "title": "Nisekoi: False Love",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx18897-G2Fx2ZACsXBU.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "nisekoi-series",
@@ -4178,11 +4602,15 @@
     },
     {
         "id": "higehiro",
+        "anilistId": null,
         "title": "Higehiro: After Being Rejected, I Shaved and Took in a High School Runaway",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx114232-2rm50ZD1cQgP.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "higehiro-series",
@@ -4197,11 +4625,15 @@
     },
     {
         "id": "itazura-na-kiss",
+        "anilistId": null,
         "title": "Itazura na Kiss",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx3731-aCN5LnCn08qm.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "itazura-na-kiss-series",
@@ -4216,11 +4648,15 @@
     },
     {
         "id": "tomo-chan-is-a-girl",
+        "anilistId": null,
         "title": "Tomo-chan is a Girl!",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx151806-IAMi2ctI5xJI.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "tomo-chan-is-a-girl-series",
@@ -4235,11 +4671,15 @@
     },
     {
         "id": "my-friends-little-sister-has-it-in-for-me",
+        "anilistId": null,
         "title": "My Friend's Little Sister Has It In For Me",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx129195-9BT4wE1QTLj2.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "my-friends-little-sister-has-it-in-for-me-series",
@@ -4254,11 +4694,15 @@
     },
     {
         "id": "mistress-kanan-is-devilishly-easy",
+        "anilistId": null,
         "title": "Mistress Kanan is Devilishly Easy",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx190704-Ts1VvkrNdnCZ.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "mistress-kanan-is-devilishly-easy-series",
@@ -4273,11 +4717,15 @@
     },
     {
         "id": "worlds-end-harem",
+        "anilistId": null,
         "title": "World's End Harem",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx118465-EGB0OajA5rei.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "worlds-end-harem-series",
@@ -4292,11 +4740,15 @@
     },
     {
         "id": "saekano",
+        "anilistId": null,
         "title": "Saekano: How to Raise a Boring Girlfriend",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx20657-pMZBj6K6mLhi.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "saekano-s1",
@@ -4329,11 +4781,15 @@
     },
     {
         "id": "seitokai-yakuindomo",
+        "anilistId": null,
         "title": "Seitokai Yakuindomo",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx8675-5H2QSLvXA7bH.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "seitokai-yakuindomo-s1",
@@ -4393,11 +4849,15 @@
     },
     {
         "id": "dealing-with-mikadono-sisters-is-a-breeze",
+        "anilistId": null,
         "title": "Dealing with Mikadono Sisters is a Breeze",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx178886-KjzSXyEB61zX.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "dealing-with-mikadono-sisters-is-a-breeze-series",
@@ -4412,11 +4872,15 @@
     },
     {
         "id": "nisekoi-false-love",
+        "anilistId": null,
         "title": "Nisekoi: False Love",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx18897-G2Fx2ZACsXBU.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "nisekoi-s1",
@@ -4467,11 +4931,15 @@
     },
     {
         "id": "yamada-kun-and-the-seven-witches",
+        "anilistId": null,
         "title": "Yamada-kun and the Seven Witches",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20966-HboUtUzEKWl6.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "yamada-kun-series",
@@ -4513,11 +4981,15 @@
     },
     {
         "id": "the-cafe-terrace-and-its-goddesses",
+        "anilistId": null,
         "title": "The CafÃ© Terrace and Its Goddesses",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154412-bEMQkJWOStDR.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "the-cafe-terrace-and-its-goddesses-s1",
@@ -4541,11 +5013,15 @@
     },
     {
         "id": "oresuki-are-you-the-only-one-who-loves-me",
+        "anilistId": null,
         "title": "ORESUKI: Are you the only one who loves me?",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx104464-UdOCt3uyA2K9.png",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "oresuki-series",
@@ -4578,11 +5054,15 @@
     },
     {
         "id": "from-me-to-you",
+        "anilistId": null,
         "title": "From Me to You",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx6045-JujXjoWtslUM.jpg",
+        "studio": "",
+        "year": null,
+        "genres": [],
         "items": [
             {
                 "id": "from-me-to-you-season-1",
@@ -4624,11 +5104,18 @@
     },
     {
         "id": "oh-boy-was-i-wrong-about-her",
+        "anilistId": 169583,
         "title": "Oh Boy, Was I Wrong About Her",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx169583-0ZTdBGrKNIbe.jpg",
+        "studio": "project No.9",
+        "year": 2026,
+        "genres": [
+            "Comedy",
+            "Romance"
+        ],
         "items": [
             {
                 "id": "oh-boy-was-i-wrong-about-her-season-1",
@@ -4639,22 +5126,22 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ],
-        "studio": "project No.9",
-        "year": 2026,
-        "genres": [
-            "Comedy",
-            "Romance"
-        ],
-        "anilistId": 169583
+        ]
     },
     {
         "id": "castle-town-dandelion",
+        "anilistId": 20951,
         "title": "Castle Town Dandelion",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20951-ZlzLXi9rG09L.png",
+        "studio": "Production IMS",
+        "year": 2015,
+        "genres": [
+            "Comedy",
+            "Slice of Life"
+        ],
         "items": [
             {
                 "id": "castle-town-dandelion-serie",
@@ -4665,22 +5152,24 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ],
-        "studio": "Production IMS",
-        "year": 2015,
-        "genres": [
-            "Comedy",
-            "Slice of Life"
-        ],
-        "anilistId": 20951
+        ]
     },
     {
         "id": "the-testament-of-sister-new-devil",
+        "anilistId": 20678,
         "title": "The Testament of Sister New Devil",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20678-58D9Yhi4GcH2.png",
+        "studio": "Production IMS",
+        "year": 2015,
+        "genres": [
+            "Action",
+            "Ecchi",
+            "Fantasy",
+            "Romance"
+        ],
         "items": [
             {
                 "id": "the-testament-of-sister-new-devil-season-1",
@@ -4718,24 +5207,22 @@
                 "watchedEpisodes": [],
                 "episodesCount": 1
             }
-        ],
-        "studio": "Production IMS",
-        "year": 2015,
-        "genres": [
-            "Action",
-            "Ecchi",
-            "Fantasy",
-            "Romance"
-        ],
-        "anilistId": 20678
+        ]
     },
     {
         "id": "rich-girl-caretaker",
+        "anilistId": 201514,
         "title": "Rich Girl Caretaker",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx201514-BHAeWhSbcBrT.png",
+        "studio": "Brain's Base",
+        "year": 2026,
+        "genres": [
+            "Comedy",
+            "Romance"
+        ],
         "items": [
             {
                 "id": "rich-girl-caretaker-season-1",
@@ -4746,22 +5233,24 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ],
-        "studio": "Brain's Base",
-        "year": 2026,
-        "genres": [
-            "Comedy",
-            "Romance"
-        ],
-        "anilistId": 201514
+        ]
     },
     {
         "id": "kono-oto-tomare-sounds-of-life",
+        "anilistId": 103302,
         "title": "Kono Oto Tomare!: Sounds of Life",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx103302-RVGwGRDGdMQq.jpg",
+        "studio": "Platinum Vision",
+        "year": 2019,
+        "genres": [
+            "Drama",
+            "Music",
+            "Romance",
+            "Slice of Life"
+        ],
         "items": [
             {
                 "id": "kono-oto-tomare-sounds-of-life-season-1",
@@ -4781,24 +5270,23 @@
                 "watchedEpisodes": [],
                 "episodesCount": 13
             }
-        ],
-        "studio": "Platinum Vision",
-        "year": 2019,
-        "genres": [
-            "Drama",
-            "Music",
-            "Romance",
-            "Slice of Life"
-        ],
-        "anilistId": 103302
+        ]
     },
     {
         "id": "black-summoner",
+        "anilistId": 145260,
         "title": "Black Summoner",
         "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx145260-Yt5W8aQQKqF2.jpg",
+        "studio": "Satelight",
+        "year": 2022,
+        "genres": [
+            "Action",
+            "Adventure",
+            "Fantasy"
+        ],
         "items": [
             {
                 "id": "black-summoner-serie",
@@ -4809,14 +5297,6 @@
                 "watchedEpisodes": [],
                 "episodesCount": 12
             }
-        ],
-        "studio": "Satelight",
-        "year": 2022,
-        "genres": [
-            "Action",
-            "Adventure",
-            "Fantasy"
-        ],
-        "anilistId": 145260
+        ]
     }
 ]
