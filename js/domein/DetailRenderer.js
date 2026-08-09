@@ -106,7 +106,7 @@ export class DetailRenderer {
             };
 
             const getScoreColor = (score) => {
-                if (!score || score === 0) return 'var(--text-muted)';
+                if (!score || score === 0) return 'var(--nr-color)';
                 if (score >= 9.0) return '#ffd700';
                 if (score >= 8.0) return '#27ae60';
                 if (score >= 7.0) return '#2ecc71';

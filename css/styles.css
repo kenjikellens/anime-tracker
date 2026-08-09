@@ -35,7 +35,8 @@
     --status-btn-hover: #333333;
     --search-bg: #f5f5f5;
     --search-hover-bg: #ffffff;
-    --nr-color: #1a1a1a;
+    --nr-bg: #1a1a1a;
+    --nr-color: #ffffff;
 }
 
 [data-theme="dark"] {
@@ -66,7 +67,8 @@
     --status-btn-hover: #ffffff;
     --search-bg: #353535;
     --search-hover-bg: #454545;
-    --nr-color: #ffffff;
+    --nr-bg: #ffffff;
+    --nr-color: #121212;
 }
 
 /* --------------------------------------------------------------------------
@@ -1253,7 +1255,7 @@ select[data-bound] {
 
 .rating-badge.unrated,
 .rating-badge[data-rating-tier="unrated"] {
-    background: var(--surface-2);
+    background: var(--nr-bg);
     color: var(--nr-color);
 }
 
