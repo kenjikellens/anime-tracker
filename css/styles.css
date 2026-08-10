@@ -1055,16 +1055,6 @@ select[data-bound] {
     flex-shrink: 0;
 }
 
-/* Fixed column width & matching 36px height for item rating badge */
-.item-actions-group .rating-badge {
-    width: 72px;
-    height: 36px;
-    flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
 
 /* Fixed column width for item status select dropdown wrapper */
 .item-actions-group .custom-select-wrapper {
@@ -1192,12 +1182,17 @@ select[data-bound] {
    -------------------------------------------------------------------------- */
 /* Rating Badges — Base Styling */
 .rating-badge {
+    width: 72px;
+    height: 36px;
+    flex-shrink: 0;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    text-align: center;
     gap: 4px;
-    padding: 4px 8px;
+    padding: 0 8px;
     border-radius: 6px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     border: none;
     background: var(--surface-2);

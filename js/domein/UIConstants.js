@@ -22,6 +22,7 @@ export const UI_CLASSES = {
     },
     RATING: {
         BADGE: 'rating-badge',
+        ACTIONABLE: 'rating-actionable',
         CINEMA: 'r-cinema',
         AWESOME: 'r-awesome',
         GREAT: 'r-great',
