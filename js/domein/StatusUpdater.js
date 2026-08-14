@@ -6,12 +6,12 @@ export class StatusUpdater {
     static RELEASE_STATUSES = [2, 3];
 
     /**
-     * Applies one global status and cascades the change to every non-release item.
-     * Affects the global status of the anime and the status of all non-upcoming items.
+     * Applies one global status and cascades the change to every non-release item if set to watched or unstarted.
+     * Affects the global status of the anime.
      */
     static updateGlobalStatus(anime, newStatus) {
         const parsedStatus = parseInt(newStatus, 10);
-        const s = [-1, 0, 1].includes(parsedStatus) ? parsedStatus : -1;
+        const s = [-1, 0, 1, 4].includes(parsedStatus) ? parsedStatus : -1;
         anime.setGlobalStatus(s);
 
         if (s === 1) {
@@ -33,7 +33,7 @@ export class StatusUpdater {
 
     /**
      * Applies one item status and adjusts its episode state.
-     * Clears episodes for unstarted and release statuses, and triggers parent anime status sync.
+     * Item status changes do not automatically mutate the parent anime status.
      */
     static updateItemStatus(item, newStatus, anime) {
         const s = parseInt(newStatus, 10);
@@ -48,14 +48,11 @@ export class StatusUpdater {
                 item.setFirstWatched();
             }
         }
-
-        if (anime) {
-            this.syncAnimeStatus(anime);
-        }
     }
 
     /**
      * Toggles one episode and derives the item status from progress.
+     * Does not automatically mutate the parent anime status.
      */
     static toggleEpisode(item, episodeNum, anime) {
         item.toggleEpisode(episodeNum);
@@ -70,69 +67,20 @@ export class StatusUpdater {
         } else {
             item.setStatus(0);
         }
-
-        if (anime) {
-            this.syncAnimeStatus(anime);
-        }
     }
 
     /**
-     * Derives the anime-level watch status from the collection of item statuses.
-     */
-    static syncAnimeStatus(anime) {
-        if (!anime.items || anime.items.length === 0) return;
-
-        anime.setGlobalStatus(this.deriveAnimeStatus(anime));
-    }
-
-    /**
-     * Normalizes top-level anime statuses to calculated watch statuses.
+     * Normalizes top-level anime status to ensure it is a valid watch status integer.
+     * Preserves the user's explicitly set status without overwriting it from child items.
      */
     static normalizeAnimeStatuses(anime) {
         let changed = false;
 
-        if (![ -1, 0, 1 ].includes(anime.status)) {
+        if (![-1, 0, 1, 4].includes(anime.status)) {
             anime.setGlobalStatus(-1);
             changed = true;
         }
 
-        if (!anime.items || anime.items.length === 0) {
-            return changed;
-        }
-
-        const nextStatus = this.deriveAnimeStatus(anime);
-        if (anime.status !== nextStatus) {
-            anime.setGlobalStatus(nextStatus);
-            changed = true;
-        }
-
         return changed;
-    }
-
-    /**
-     * Derives the anime-level status from the collection of item statuses.
-     * Ignores release-only items so the global status represents released watch progress.
-     */
-    static deriveAnimeStatus(anime) {
-        const watchItems = anime.items ? anime.items.filter(i => !this.RELEASE_STATUSES.includes(i.status)) : [];
-        if (watchItems.length === 0) {
-            return -1;
-        }
-        const statuses = watchItems.map(i => i.status);
-        const hasBusy = statuses.includes(0);
-        const hasWatched = statuses.includes(1);
-        const hasUnstarted = statuses.includes(-1);
-        const allWatched = statuses.every(status => status === 1);
-
-        if (hasBusy) {
-            return 0;
-        }
-        if (hasWatched && hasUnstarted) {
-            return 0;
-        }
-        if (allWatched) {
-            return 1;
-        }
-        return -1;
     }
 }

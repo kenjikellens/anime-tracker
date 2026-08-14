@@ -221,6 +221,7 @@ export class DetailRenderer {
                         <option value="2" ${item.status === 2 ? 'selected' : ''}>Upcoming</option>
                         <option value="-1" ${item.status === -1 ? 'selected' : ''}>Te Bekijken</option>
                         <option value="0" ${item.status === 0 ? 'selected' : ''}>Bezig</option>
+                        <option value="4" ${item.status === 4 ? 'selected' : ''}>Verder Kijken</option>
                         <option value="1" ${item.status === 1 ? 'selected' : ''}>Bekeken</option>
                     </select>
                 `;

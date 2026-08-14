@@ -12,7 +12,7 @@ export class Anime {
         this.id = data.id;
         this.anilistId = data.anilistId || null;
         this.title = data.title;
-        this.status = [-1, 0, 1].includes(data.status) ? data.status : -1;
+        this.status = [-1, 0, 1, 4].includes(data.status) ? data.status : -1;
         this.rating = data.rating || 0;
         this.releaseDate = data.releaseDate || "";
         this.coverImage = data.coverImage || "";

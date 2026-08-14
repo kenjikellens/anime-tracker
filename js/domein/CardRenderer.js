@@ -139,6 +139,8 @@ export class CardRenderer {
         }
         if (anime.status === 1) {
             mainCard.classList.add("status-watched");
+        } else if (anime.status === 4) {
+            mainCard.classList.add("status-onhold");
         }
 
         const posterDiv = wrapper.querySelector('.card-poster');
@@ -167,8 +169,13 @@ export class CardRenderer {
             let statusText = 'Te Bekijken';
             if (anime.status === 1) statusText = 'Bekeken';
             else if (anime.status === 0) statusText = 'Bezig';
-            if (anime.items.some(item => item.status === 3)) statusText = 'Airing';
-            if (anime.items.some(item => item.status === 2)) statusText = 'Upcoming';
+            else if (anime.status === 4) statusText = 'Verder Kijken';
+
+            if (anime.items.some(item => item.status === 3)) {
+                statusText = anime.status === 1 ? 'Bekeken (Airing)' : 'Airing';
+            } else if (anime.items.some(item => item.status === 2)) {
+                statusText = anime.status === 1 ? 'Bekeken (Upcoming)' : 'Upcoming';
+            }
             statusCell.textContent = statusText;
         }
 
