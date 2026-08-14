@@ -11,7 +11,14 @@ export class DropdownManager {
      * @param {HTMLSelectElement} select - The target select element to enhance.
      */
     static bind(select) {
-        if (!select || select.dataset.customDropdownBound === 'true') return;
+        if (!select) return;
+
+        // Clean up any previously attached custom wrapper for this select
+        const existingWrapper = select.nextElementSibling;
+        if (existingWrapper && existingWrapper.classList.contains(UI_CLASSES.DROPDOWN.WRAPPER)) {
+            existingWrapper.remove();
+        }
+
         select.dataset.customDropdownBound = 'true';
         select.dataset.bound = 'true';
 

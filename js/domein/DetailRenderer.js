@@ -70,12 +70,10 @@ export class DetailRenderer {
         const ratingsContainer = layout.querySelector('.sidebar-ratings-container');
         
         if (gSelect) {
-            const newGSelect = gSelect.cloneNode(true);
-            newGSelect.value = String(anime.status);
-            gSelect.parentNode.replaceChild(newGSelect, gSelect);
-            newGSelect.addEventListener('change', (e) => {
+            gSelect.value = String(anime.status);
+            gSelect.onchange = (e) => {
                 onGlobalStatusChange(anime, e.target.value);
-            });
+            };
         }
         if (ratingsContainer) {
             const createSegmentsHtml = (score, isSmall = false) => {

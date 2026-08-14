@@ -70,7 +70,6 @@ async function handleRoute() {
             appContainer.innerHTML = await response.text();
 
             renderDetail(cardLoadStartTime);
-            DropdownManager.bindAll(appContainer);
 
             // Fetch missing poster/episode data for this one record only.
             let needSave = false;
