@@ -116,6 +116,7 @@ async function init() {
     setupRatingModal();
     setupDownloadBtn();
     setupSearch();
+    setupBackToTop();
     filterManagerInstance = FilterManager.setup(repository, () => {
         renderData();
     });
@@ -125,6 +126,24 @@ async function init() {
     await handleRoute();
 
     hydrateAnilistData();
+}
+
+/**
+ * Sets up the floating back to top button with scroll tracking and smooth scroll.
+ */
+function setupBackToTop() {
+    const btn = document.getElementById('back-to-top');
+    if (!btn) return;
+
+    window.addEventListener('scroll', () => {
+        const isScrolled = window.scrollY > 300;
+        btn.classList.toggle('visible', isScrolled);
+        btn.dataset.visible = isScrolled ? 'true' : 'false';
+    }, { passive: true });
+
+    btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 }
 
 /**
