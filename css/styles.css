@@ -1443,8 +1443,9 @@ select[data-bound] {
 
 /* Filter category group box */
 .filter-section {
-    background: var(--surface-2);
-    border-radius: 10px;
+    background: transparent;
+    border: 1px solid var(--surface-2);
+    border-radius: 8px;
     padding: 14px 16px;
 }
 
@@ -1477,6 +1478,7 @@ select[data-bound] {
 
 /* Modal filter chip button with hidden checkbox reusing .filter-btn styling */
 .filter-chip-btn {
+    background: var(--surface-2);
     display: inline-flex;
     align-items: center;
     cursor: pointer;
