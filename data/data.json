@@ -4550,7 +4550,7 @@
         "id": "tomo-chan-is-a-girl",
         "anilistId": null,
         "title": "Tomo-chan is a Girl!",
-        "status": -1,
+        "status": 0,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx151806-IAMi2ctI5xJI.jpg",
@@ -4561,10 +4561,12 @@
             {
                 "id": "tomo-chan-is-a-girl-series",
                 "title": "Tomo-chan is a Girl!",
-                "status": -1,
+                "status": 0,
                 "type": "SERIE",
                 "rating": 0,
-                "watchedEpisodes": [],
+                "watchedEpisodes": [
+                    1
+                ],
                 "episodesCount": 13
             }
         ]
