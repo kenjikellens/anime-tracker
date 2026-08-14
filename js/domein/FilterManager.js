@@ -10,7 +10,6 @@ export class FilterManager {
      */
     static getDefaultOptions() {
         return {
-            franchiseStatuses: [],
             itemStatuses: [],
             itemTypes: [],
             ratingTiers: [],
@@ -59,7 +58,6 @@ export class FilterManager {
     static getActiveCount(options) {
         if (!options) return 0;
         let count = 0;
-        if (options.franchiseStatuses && options.franchiseStatuses.length > 0) count += options.franchiseStatuses.length;
         if (options.itemStatuses && options.itemStatuses.length > 0) count += options.itemStatuses.length;
         if (options.itemTypes && options.itemTypes.length > 0) count += options.itemTypes.length;
         if (options.ratingTiers && options.ratingTiers.length > 0) count += options.ratingTiers.length;
@@ -104,7 +102,8 @@ export class FilterManager {
                 badge.style.display = count > 0 ? 'inline-block' : 'none';
             }
             if (filterBtn) {
-                filterBtn.classList.toggle('has-active-filters', count > 0);
+                filterBtn.classList.toggle('active', count > 0);
+                filterBtn.dataset.active = count > 0 ? 'true' : 'false';
             }
         };
 
@@ -136,6 +135,17 @@ export class FilterManager {
 
         overlay.addEventListener('click', (e) => {
             if (e.target === overlay) closeModal();
+        });
+
+        // Listen for checkbox changes in modal to toggle active class on chips
+        overlay.addEventListener('change', (e) => {
+            if (e.target && e.target.type === 'checkbox') {
+                const label = e.target.closest('.filter-chip-btn');
+                if (label) {
+                    label.classList.toggle('active', e.target.checked);
+                    label.dataset.active = e.target.checked ? 'true' : 'false';
+                }
+            }
         });
 
         if (resetBtn) {
@@ -179,34 +189,40 @@ export class FilterManager {
      * @param {Object} options - Current active filter options.
      */
     static populateModalOptions(overlay, repository, options) {
-        // 1. Franchise Status checkboxes
-        overlay.querySelectorAll('input[name="filter-franchise-status"]').forEach(cb => {
-            cb.checked = options.franchiseStatuses && options.franchiseStatuses.includes(cb.value);
-        });
+        // Sync helper to update checkbox and label active states
+        const syncCheckboxGroup = (name, activeValues) => {
+            overlay.querySelectorAll(`input[name="${name}"]`).forEach(cb => {
+                cb.checked = activeValues && activeValues.includes(cb.value);
+                const label = cb.closest('.filter-chip-btn');
+                if (label) {
+                    label.classList.toggle('active', cb.checked);
+                    label.dataset.active = cb.checked ? 'true' : 'false';
+                }
+            });
+        };
 
-        // 2. Item Status checkboxes
-        overlay.querySelectorAll('input[name="filter-item-status"]').forEach(cb => {
-            cb.checked = options.itemStatuses && options.itemStatuses.includes(cb.value);
-        });
+        // 1. Item Status checkboxes
+        syncCheckboxGroup('filter-item-status', options.itemStatuses);
 
-        // 3. Item Types
+        // 2. Item Types
         const typesContainer = overlay.querySelector('#filter-types-container');
         if (typesContainer) {
             const types = repository.getUniqueItemTypes();
-            typesContainer.innerHTML = types.map(type => `
-                <label class="filter-chip-checkbox ultimate-hover-effect">
-                    <input type="checkbox" name="filter-item-type" value="${type}" ${(options.itemTypes || []).includes(type) ? 'checked' : ''}>
-                    <span>${type}</span>
-                </label>
-            `).join('');
+            typesContainer.innerHTML = types.map(type => {
+                const isChecked = (options.itemTypes || []).includes(type);
+                return `
+                    <label class="filter-chip-btn filter-btn ultimate-hover-effect ${isChecked ? 'active' : ''}" data-active="${isChecked ? 'true' : 'false'}">
+                        <input type="checkbox" name="filter-item-type" value="${type}" ${isChecked ? 'checked' : ''}>
+                        <span>${type}</span>
+                    </label>
+                `;
+            }).join('');
         }
 
-        // 4. Rating tiers
-        overlay.querySelectorAll('input[name="filter-rating-tier"]').forEach(cb => {
-            cb.checked = options.ratingTiers && options.ratingTiers.includes(cb.value);
-        });
+        // 3. Rating tiers
+        syncCheckboxGroup('filter-rating-tier', options.ratingTiers);
 
-        // 5. Min Rating slider/number
+        // 4. Min Rating slider
         const minRatingInput = overlay.querySelector('#filter-min-rating');
         const minRatingDisplay = overlay.querySelector('#filter-min-rating-val');
         if (minRatingInput) {
@@ -218,19 +234,22 @@ export class FilterManager {
             };
         }
 
-        // 6. Genres
+        // 5. Genres
         const genresContainer = overlay.querySelector('#filter-genres-container');
         if (genresContainer) {
             const genres = repository.getUniqueGenres();
-            genresContainer.innerHTML = genres.map(genre => `
-                <label class="filter-chip-checkbox ultimate-hover-effect">
-                    <input type="checkbox" name="filter-genre" value="${genre}" ${(options.genres || []).includes(genre) ? 'checked' : ''}>
-                    <span>${genre}</span>
-                </label>
-            `).join('');
+            genresContainer.innerHTML = genres.map(genre => {
+                const isChecked = (options.genres || []).includes(genre);
+                return `
+                    <label class="filter-chip-btn filter-btn ultimate-hover-effect ${isChecked ? 'active' : ''}" data-active="${isChecked ? 'true' : 'false'}">
+                        <input type="checkbox" name="filter-genre" value="${genre}" ${isChecked ? 'checked' : ''}>
+                        <span>${genre}</span>
+                    </label>
+                `;
+            }).join('');
         }
 
-        // 7. Studios
+        // 6. Studios
         const studioSelect = overlay.querySelector('#filter-studio-select');
         if (studioSelect) {
             const studios = repository.getUniqueStudios();
@@ -239,7 +258,7 @@ export class FilterManager {
             `).join('');
         }
 
-        // 8. Years
+        // 7. Years
         const yearSelect = overlay.querySelector('#filter-year-select');
         if (yearSelect) {
             const years = repository.getUniqueYears();
@@ -248,10 +267,8 @@ export class FilterManager {
             `).join('');
         }
 
-        // 9. Progress
-        overlay.querySelectorAll('input[name="filter-progress"]').forEach(cb => {
-            cb.checked = options.progress && options.progress.includes(cb.value);
-        });
+        // 8. Progress
+        syncCheckboxGroup('filter-progress', options.progress);
     }
 
     /**
@@ -264,7 +281,6 @@ export class FilterManager {
             return Array.from(overlay.querySelectorAll(`input[name="${name}"]:checked`)).map(cb => cb.value);
         };
 
-        const franchiseStatuses = getCheckedValues('filter-franchise-status');
         const itemStatuses = getCheckedValues('filter-item-status');
         const itemTypes = getCheckedValues('filter-item-type');
         const ratingTiers = getCheckedValues('filter-rating-tier');
@@ -281,7 +297,6 @@ export class FilterManager {
         const years = yearSelect && yearSelect.value ? [yearSelect.value] : [];
 
         return {
-            franchiseStatuses,
             itemStatuses,
             itemTypes,
             ratingTiers,

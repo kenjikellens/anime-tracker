@@ -1374,11 +1374,14 @@ select[data-bound] {
     font-weight: 700;
     cursor: pointer;
     line-height: 1;
-    padding: 0 4px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: color 0.15s ease, background-color 0.15s ease;
 }
 
 .modal-close-btn:hover {
-    color: var(--text);
+    color: #e74c3c;
+    background-color: rgba(231, 76, 60, 0.12);
 }
 
 /* Advanced Filter Modal layout container */
@@ -1448,32 +1451,19 @@ select[data-bound] {
     padding-right: 4px;
 }
 
-/* Interactive chip checkbox label */
-.filter-chip-checkbox {
+/* Modal filter chip button with hidden checkbox reusing .filter-btn styling */
+.filter-chip-btn {
     display: inline-flex;
     align-items: center;
-    background: var(--surface);
-    border-radius: 20px;
-    padding: 6px 14px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-muted);
     cursor: pointer;
     user-select: none;
-    border: 1px solid transparent;
-    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    padding: 6px 14px;
+    font-size: 13px;
 }
 
 /* Hide native checkbox within custom chip */
-.filter-chip-checkbox input[type="checkbox"] {
+.filter-chip-btn input[type="checkbox"] {
     display: none;
-}
-
-/* Active checked state for filter chip */
-.filter-chip-checkbox:has(input:checked) {
-    background: var(--active-bg);
-    color: var(--active-color);
-    border-color: var(--primary);
 }
 
 /* Two-column row for studio and year selects */
@@ -1511,27 +1501,6 @@ select[data-bound] {
     margin-top: 16px;
     padding-top: 16px;
     border-top: 1px solid var(--border);
-}
-
-/* Toolbar trigger button for opening the filter modal */
-.filter-trigger-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    cursor: pointer;
-}
-
-/* Active indicator on filter trigger button */
-.filter-btn.has-active-filters {
-    border: 1px solid var(--primary);
-    color: var(--primary);
-}
-
-/* Badge displaying active count on filter trigger button */
-.filter-count-badge {
-    font-size: 11px;
-    font-weight: 800;
-    color: var(--primary);
 }
 
 /* Airing badge highlight color */
@@ -1678,7 +1647,12 @@ footer {
     color: var(--text-muted);
     text-decoration: none;
     font-size: 14px;
-    transition: color 0.15s ease;
+    transition: color 0.15s ease, text-decoration 0.15s ease;
+}
+
+.footer-col a:hover {
+    color: var(--text);
+    text-decoration: underline;
 }
 
 .provider-brand {

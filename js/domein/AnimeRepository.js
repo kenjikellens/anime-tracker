@@ -106,19 +106,7 @@ export class AnimeRepository {
         if (!options || Object.keys(options).length === 0) return animes;
 
         return animes.filter(anime => {
-            // 1. Franchise status filter (OR within selected franchise statuses)
-            if (options.franchiseStatuses && options.franchiseStatuses.length > 0) {
-                const matchesFranchise = options.franchiseStatuses.some(statusVal => {
-                    const s = parseInt(statusVal, 10);
-                    if (s === 4) {
-                        return anime.status === 4 || (anime.status === 1 && anime.items.some(i => i.status === 3));
-                    }
-                    return anime.status === s;
-                });
-                if (!matchesFranchise) return false;
-            }
-
-            // 2. Item status filter (OR within selected item statuses)
+            // 1. Item status filter (OR within selected item statuses)
             if (options.itemStatuses && options.itemStatuses.length > 0) {
                 const itemStatusInts = options.itemStatuses.map(s => parseInt(s, 10));
                 const hasMatchingItemStatus = anime.items.some(item => itemStatusInts.includes(item.status));

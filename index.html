@@ -111,12 +111,11 @@
             <div class="footer-col footer-links">
                 <h4>Navigatie</h4>
                 <ul>
-                    <li><a href="#/" class="ultimate-hover-effect">Alles</a></li>
-                    <li><a href="#/" class="ultimate-hover-effect" onclick="document.querySelector('[data-filter=\'airing\']')?.click(); return false;">Airing</a></li>
-                    <li><a href="#/" class="ultimate-hover-effect" onclick="document.querySelector('[data-filter=\'upcoming\']')?.click(); return false;">Upcoming</a></li>
-                    <li><a href="#/" class="ultimate-hover-effect" onclick="document.querySelector('[data-filter=\'-1\']')?.click(); return false;">Te Bekijken</a></li>
-                    <li><a href="#/" class="ultimate-hover-effect" onclick="document.querySelector('[data-filter=\'0\']')?.click(); return false;">Bezig</a></li>
-                    <li><a href="#/" class="ultimate-hover-effect" onclick="document.querySelector('[data-filter=\'1\']')?.click(); return false;">Bekeken</a></li>
+                    <li><a href="#/">Alles</a></li>
+                    <li><a href="#/" onclick="document.querySelector('[data-filter=\'-1\']')?.click(); return false;">Te Bekijken</a></li>
+                    <li><a href="#/" onclick="document.querySelector('[data-filter=\'0\']')?.click(); return false;">Bezig</a></li>
+                    <li><a href="#/" onclick="document.querySelector('[data-filter=\'4\']')?.click(); return false;">Verder Kijken</a></li>
+                    <li><a href="#/" onclick="document.querySelector('[data-filter=\'1\']')?.click(); return false;">Bekeken</a></li>
                 </ul>
             </div>
             <div class="footer-col footer-credits">
@@ -153,40 +152,29 @@
         <div class="modal filter-modal">
             <div class="filter-modal-header">
                 <h3><svg class="svg-icon svg-icon-margin"><use href="#icon-filter"></use></svg> Geavanceerde Filters</h3>
-                <button id="close-filter-modal" class="modal-close-btn ultimate-hover-effect" title="Sluiten">&times;</button>
+                <button id="close-filter-modal" class="modal-close-btn" title="Sluiten">&times;</button>
             </div>
             <div class="filter-modal-body">
-                <!-- 1. Franchise Status -->
-                <div class="filter-section">
-                    <h4 class="filter-section-title">Franchise Status (Algemeen)</h4>
-                    <div class="filter-chips-grid">
-                        <label class="filter-chip-checkbox ultimate-hover-effect"><input type="checkbox" name="filter-franchise-status" value="-1"><span>Te Bekijken</span></label>
-                        <label class="filter-chip-checkbox ultimate-hover-effect"><input type="checkbox" name="filter-franchise-status" value="0"><span>Bezig</span></label>
-                        <label class="filter-chip-checkbox ultimate-hover-effect"><input type="checkbox" name="filter-franchise-status" value="4"><span>Verder Kijken</span></label>
-                        <label class="filter-chip-checkbox ultimate-hover-effect"><input type="checkbox" name="filter-franchise-status" value="1"><span>Bekeken</span></label>
-                    </div>
-                </div>
-
-                <!-- 2. Item Status -->
+                <!-- 1. Item Status -->
                 <div class="filter-section">
                     <h4 class="filter-section-title">Item Status (Seizoenen / Films)</h4>
                     <div class="filter-chips-grid">
-                        <label class="filter-chip-checkbox ultimate-hover-effect"><input type="checkbox" name="filter-item-status" value="3"><span class="badge-airing">Airing</span></label>
-                        <label class="filter-chip-checkbox ultimate-hover-effect"><input type="checkbox" name="filter-item-status" value="2"><span class="badge-upcoming">Upcoming</span></label>
-                        <label class="filter-chip-checkbox ultimate-hover-effect"><input type="checkbox" name="filter-item-status" value="-1"><span>Te Bekijken</span></label>
-                        <label class="filter-chip-checkbox ultimate-hover-effect"><input type="checkbox" name="filter-item-status" value="0"><span>Bezig</span></label>
-                        <label class="filter-chip-checkbox ultimate-hover-effect"><input type="checkbox" name="filter-item-status" value="4"><span>Verder Kijken</span></label>
-                        <label class="filter-chip-checkbox ultimate-hover-effect"><input type="checkbox" name="filter-item-status" value="1"><span>Bekeken</span></label>
+                        <label class="filter-chip-btn filter-btn ultimate-hover-effect"><input type="checkbox" name="filter-item-status" value="3"><span class="badge-airing">Airing</span></label>
+                        <label class="filter-chip-btn filter-btn ultimate-hover-effect"><input type="checkbox" name="filter-item-status" value="2"><span class="badge-upcoming">Upcoming</span></label>
+                        <label class="filter-chip-btn filter-btn ultimate-hover-effect"><input type="checkbox" name="filter-item-status" value="-1"><span>Te Bekijken</span></label>
+                        <label class="filter-chip-btn filter-btn ultimate-hover-effect"><input type="checkbox" name="filter-item-status" value="0"><span>Bezig</span></label>
+                        <label class="filter-chip-btn filter-btn ultimate-hover-effect"><input type="checkbox" name="filter-item-status" value="4"><span>Verder Kijken</span></label>
+                        <label class="filter-chip-btn filter-btn ultimate-hover-effect"><input type="checkbox" name="filter-item-status" value="1"><span>Bekeken</span></label>
                     </div>
                 </div>
 
-                <!-- 3. Item Type -->
+                <!-- 2. Item Type -->
                 <div class="filter-section">
                     <h4 class="filter-section-title">Type</h4>
                     <div id="filter-types-container" class="filter-chips-grid"></div>
                 </div>
 
-                <!-- 4. Rating -->
+                <!-- 3. Rating -->
                 <div class="filter-section">
                     <h4 class="filter-section-title">Beoordeling</h4>
                     <div class="filter-range-wrap">
@@ -194,14 +182,14 @@
                         <input type="range" id="filter-min-rating" min="0" max="10" step="0.5" value="0" class="filter-slider">
                     </div>
                     <div class="filter-chips-grid" style="margin-top: 8px;">
-                        <label class="filter-chip-checkbox ultimate-hover-effect"><input type="checkbox" name="filter-rating-tier" value="high"><span>Masterpiece (8.5+)</span></label>
-                        <label class="filter-chip-checkbox ultimate-hover-effect"><input type="checkbox" name="filter-rating-tier" value="good"><span>Goed (7.0 - 8.4)</span></label>
-                        <label class="filter-chip-checkbox ultimate-hover-effect"><input type="checkbox" name="filter-rating-tier" value="avg"><span>Gemiddeld (5.0 - 6.9)</span></label>
-                        <label class="filter-chip-checkbox ultimate-hover-effect"><input type="checkbox" name="filter-rating-tier" value="nr"><span>Geen Rating (NR)</span></label>
+                        <label class="filter-chip-btn filter-btn ultimate-hover-effect"><input type="checkbox" name="filter-rating-tier" value="high"><span>Masterpiece (8.5+)</span></label>
+                        <label class="filter-chip-btn filter-btn ultimate-hover-effect"><input type="checkbox" name="filter-rating-tier" value="good"><span>Goed (7.0 - 8.4)</span></label>
+                        <label class="filter-chip-btn filter-btn ultimate-hover-effect"><input type="checkbox" name="filter-rating-tier" value="avg"><span>Gemiddeld (5.0 - 6.9)</span></label>
+                        <label class="filter-chip-btn filter-btn ultimate-hover-effect"><input type="checkbox" name="filter-rating-tier" value="nr"><span>Geen Rating (NR)</span></label>
                     </div>
                 </div>
 
-                <!-- 5. Metadata: Genres, Studio, Jaar -->
+                <!-- 4. Metadata: Genres, Studio, Jaar -->
                 <div class="filter-section">
                     <h4 class="filter-section-title">Genres</h4>
                     <div id="filter-genres-container" class="filter-chips-scrollable"></div>
@@ -218,13 +206,13 @@
                     </div>
                 </div>
 
-                <!-- 6. Voortgang -->
+                <!-- 5. Voortgang -->
                 <div class="filter-section">
                     <h4 class="filter-section-title">Voortgang & Afleveringen</h4>
                     <div class="filter-chips-grid">
-                        <label class="filter-chip-checkbox ultimate-hover-effect"><input type="checkbox" name="filter-progress" value="unwatched_eps"><span>Heeft onbekeken afleveringen</span></label>
-                        <label class="filter-chip-checkbox ultimate-hover-effect"><input type="checkbox" name="filter-progress" value="has_in_progress_items"><span>Heeft gestarte seizoenen</span></label>
-                        <label class="filter-chip-checkbox ultimate-hover-effect"><input type="checkbox" name="filter-progress" value="has_unstarted_items"><span>Heeft ongestarte seizoenen</span></label>
+                        <label class="filter-chip-btn filter-btn ultimate-hover-effect"><input type="checkbox" name="filter-progress" value="unwatched_eps"><span>Heeft onbekeken afleveringen</span></label>
+                        <label class="filter-chip-btn filter-btn ultimate-hover-effect"><input type="checkbox" name="filter-progress" value="has_in_progress_items"><span>Heeft gestarte seizoenen</span></label>
+                        <label class="filter-chip-btn filter-btn ultimate-hover-effect"><input type="checkbox" name="filter-progress" value="has_unstarted_items"><span>Heeft ongestarte seizoenen</span></label>
                     </div>
                 </div>
             </div>
