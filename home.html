@@ -3,11 +3,15 @@
     <!-- Status filters map to anime.status values in `js/app.js` -->
     <div class="filter-group">
         <button class="filter-btn active ultimate-hover-effect" data-filter="all">Alles</button>
-        <button class="filter-btn ultimate-hover-effect" data-filter="airing">Airing</button>
-        <button class="filter-btn ultimate-hover-effect" data-filter="upcoming">Upcoming</button>
         <button class="filter-btn ultimate-hover-effect" data-filter="-1">Te Bekijken</button>
         <button class="filter-btn ultimate-hover-effect" data-filter="0">Bezig</button>
+        <button class="filter-btn ultimate-hover-effect" data-filter="4">Verder Kijken</button>
         <button class="filter-btn ultimate-hover-effect" data-filter="1">Bekeken</button>
+        <button class="filter-btn filter-trigger-btn ultimate-hover-effect" id="filter-popup-btn" title="Geavanceerde filters">
+            <svg class="svg-icon svg-icon-margin"><use href="#icon-filter"></use></svg>
+            <span>Filters</span>
+            <span id="filter-active-count" class="filter-count-badge" style="display: none;"></span>
+        </button>
     </div>
 
     <!-- Sort order controls the repository result order before render -->
