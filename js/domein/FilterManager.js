@@ -87,7 +87,6 @@ export class FilterManager {
      */
     static setup(repository, onApplyCallback) {
         const overlay = document.getElementById('filter-modal-overlay');
-        const filterBtn = document.getElementById('filter-popup-btn');
         const closeBtn = document.getElementById('close-filter-modal');
         const resetBtn = document.getElementById('reset-filters-btn');
         const applyBtn = document.getElementById('apply-filters-btn');
@@ -99,6 +98,7 @@ export class FilterManager {
         const updateFilterButtonBadge = () => {
             const count = this.getActiveCount(activeOptions);
             const badge = document.getElementById('filter-active-count');
+            const filterBtn = document.getElementById('filter-popup-btn');
             if (badge) {
                 badge.textContent = count > 0 ? `(${count})` : '';
                 badge.style.display = count > 0 ? 'inline-block' : 'none';
@@ -121,9 +121,14 @@ export class FilterManager {
             overlay.dataset.visible = 'false';
         };
 
-        if (filterBtn) {
-            filterBtn.addEventListener('click', openModal);
-        }
+        // Delegated click on document so dynamic buttons in home.html always trigger
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('#filter-popup-btn');
+            if (btn) {
+                e.preventDefault();
+                openModal();
+            }
+        });
 
         if (closeBtn) {
             closeBtn.addEventListener('click', closeModal);
@@ -156,6 +161,8 @@ export class FilterManager {
 
         return {
             getActiveOptions: () => activeOptions,
+            updateBadge: () => updateFilterButtonBadge(),
+            open: () => openModal(),
             reset: () => {
                 activeOptions = this.getDefaultOptions();
                 this.saveOptions(activeOptions);

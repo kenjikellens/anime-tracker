@@ -7,6 +7,7 @@ import { SearchManager } from './domein/SearchManager.js';
 import { ThemeManager } from './domein/ThemeManager.js';
 import { CookieManager } from './domein/CookieManager.js';
 import { DropdownManager } from './domein/DropdownManager.js';
+import { FilterManager } from './domein/FilterManager.js';
 import { UI_CLASSES } from './domein/UIConstants.js';
 
 // Overview page state. Persisted in cookies so the UI survives refreshes.
@@ -16,6 +17,7 @@ let currentSearchQuery = '';
 let currentSort = CookieManager.get('sortOrder') || 'default';
 let currentViewMode = CookieManager.get('viewMode') || 'grid';
 let currentGridCols = CookieManager.get('gridCols') || '5';
+let filterManagerInstance = null;
 
 // Detail page state.
 let currentDetailAnime = null;
@@ -29,7 +31,7 @@ let currentRatingType = null;
  * @returns {string} The normalized filter value.
  */
 function normalizeStoredFilter(filter) {
-    const validFilters = ['all', 'airing', 'upcoming', '-1', '0', '1'];
+    const validFilters = ['all', 'airing', 'upcoming', '-1', '0', '1', '4'];
     return validFilters.includes(filter) ? filter : 'all';
 }
 
@@ -114,6 +116,9 @@ async function init() {
     setupRatingModal();
     setupDownloadBtn();
     setupSearch();
+    filterManagerInstance = FilterManager.setup(repository, () => {
+        renderData();
+    });
     ThemeManager.bindToggle('theme-toggle');
 
     window.addEventListener('hashchange', handleRoute);
@@ -321,6 +326,8 @@ function renderData() {
     }
 
     let animes = repository.filterByStatus(currentFilter);
+    const activeFilterOptions = FilterManager.loadOptions();
+    animes = AnimeRepository.filterByAdvancedOptions(animes, activeFilterOptions);
     animes = AnimeRepository.filterByQuery(animes, currentSearchQuery);
     animes = AnimeRepository.sort(animes, currentSort);
 
@@ -330,6 +337,10 @@ function renderData() {
     const itemCountEl = document.getElementById('item-count');
     if (itemCountEl) {
         itemCountEl.textContent = `${animes.length} items`;
+    }
+
+    if (filterManagerInstance) {
+        filterManagerInstance.updateBadge();
     }
 
     const genLoader = document.getElementById('general-app-loader');
@@ -378,7 +389,7 @@ function setupSorting() {
  * Binds the status filter buttons in the toolbar.
  */
 function setupFilters() {
-    const filterBtns = document.querySelectorAll('.filter-btn');
+    const filterBtns = document.querySelectorAll('.filter-btn[data-filter]');
     filterBtns.forEach(btn => {
         const isActive = btn.getAttribute('data-filter') === currentFilter;
         btn.dataset.active = isActive ? 'true' : 'false';
