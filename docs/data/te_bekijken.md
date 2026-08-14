@@ -26,10 +26,6 @@
 ## My Matchmaking Partner Is My Student, An Aggressive Trouble-Maker
 - [ ] My Matchmaking Partner Is My Student, An Aggressive Trouble-Maker (TV Series - 12 eps)
 
-## Chitose Is in the Ramune Bottle
-- [ ] Chitose Is in the Ramune Bottle Cour 1 (12 eps)
-- [ ] Chitose Is in the Ramune Bottle Cour 2 (Announced - 2026)
-
 ## Food for the Soul
 - [ ] Food for the Soul (TV Series - 12 eps)
 
@@ -54,22 +50,8 @@
 - [ ] Azumanga Daioh (TV Series - 26 eps)
 - [ ] Azumanga Daioh: The Very Short Movie (Special)
 
-## Teasing Master Takagi-san
-- [ ] Teasing Master Takagi-san Season 1 (12 eps)
-- [ ] Teasing Master Takagi-san OVA: Water Slide
-- [ ] Teasing Master Takagi-san Season 2 (12 eps)
-- [ ] Teasing Master Takagi-san Season 3 (12 eps)
-- [ ] Teasing Master Takagi-san (Movie)
-
 ## The Ryuo's Work is Never Done!
 - [ ] The Ryuo's Work is Never Done! (TV Series - 12 eps)
-
-## Tune In to the Midnight Heart
-- [ ] Tune In to the Midnight Heart Season 1 (12 eps)
-- [ ] Tune In to the Midnight Heart Season 2 (Announced)
-
-## AHO-GIRL
-- [ ] AHO-GIRL (TV Series - 12 eps)
 
 ## Ghost Stories
 - [ ] Ghost Stories (TV Series - 20 eps)
@@ -86,13 +68,6 @@
 - [ ] Re:ZERO Season 3 (18 eps
 - [ ] Re:ZERO Season 4 (Announced - Starting April 8, 2026)
 
-## Spy x Family
-- [ ] Spy x Family Season 1 (25 eps)
-- [ ] Spy x Family Season 2 (12 eps)
-- [ ] Spy x Family: Code: White (Movie)
-- [ ] Spy x Family Season 3 (12 eps)
-- [ ] Spy x Family Season 4 (Announced)
-
 ## Berserk
 - [ ] Berserk (TV Series 1997 - 25 eps)
 - [ ] Berserk: The Golden Age Arc I - The Egg of the King (Movie)
@@ -101,9 +76,6 @@
 - [ ] Berserk (TV Series 2016 - 12 eps)
 - [ ] Berserk (TV Series 2017 - 12 eps)
 - [ ] Berserk: The Golden Age Arc - Memorial Edition (Special Edition - 13 eps)
-
-## I Made Friends with the Second Prettiest Girl in My Class
-- [ ] I Made Friends with the Second Prettiest Girl in My Class (TV Series - 12 eps)
 
 ## The Warrior Princess and the Barbaric King
 - [ ] The Warrior Princess and the Barbaric King (TV Series - 12 eps)
@@ -120,12 +92,6 @@
 
 ## 9-nine- Ruler's Crown
 - [ ] 9-nine- Ruler's Crown (13 eps)
-
-## The Quintessential Quintuplets
-- [ ] The Quintessential Quintuplets Season 1 (12 eps)
-- [ ] The Quintessential Quintuplets Season 2 (12 eps)
-- [ ] The Quintessential Quintuplets Movie (1 ep)
-- [ ] The Quintessential Quintuplets Specials (2 eps)
 
 ## My Love Story with Yamada-kun at Lv999
 - [ ] My Love Story with Yamada-kun at Lv999 (13 eps)
@@ -165,12 +131,6 @@
 - [ ] Acchi Kocchi: Place=Place (OVA - 1 ep)
 - [ ] Acchi Kocchi Youchien (SPECIAL - 12 eps)
  
-## Oshi no Ko
-- [ ] Oshi no Ko Season 1 (TV Series - 11 eps)
-- [ ] Oshi no Ko Season 2 (TV Series - 13 eps)
-- [ ] Oshi no Ko Season 3 (TV Series - 11 eps)
-- [ ] Oshi no Ko Final Season (Announced)
- 
 ## Baka to Test to Shoukanjuu
 - [ ] Baka to Test to Shoukanjuu (TV Series - 13 eps)
 - [ ] Baka to Test to Shoukanjuu Specials (6 eps)
@@ -195,12 +155,6 @@
 ## Ladies versus Butlers!
 - [ ] Ladies versus Butlers! (TV Series - 12 eps)
 - [ ] Ladies versus Butlers! Specials (6 eps)
-
-## Yosuga no Sora
-- [ ] Yosuga no Sora (TV Series - 12 eps)
-
-
-
 
 ## Abnormal Physiology Seminar
 - [ ] Abnormal Physiology Seminar OVA (OVA - 2 eps)
@@ -351,4 +305,3 @@
 
 ## Black Summoner
 - [ ] Black Summoner (SERIE - 12 eps)
-

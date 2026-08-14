@@ -424,7 +424,7 @@
             {
                 "id": "the-100-girlfriends-who-really-really-really-really-really-love-you-s3",
                 "title": "The 100 Girlfriends Who Really, Really, Really, Really, REALLY Love You Season 3",
-                "status": 2,
+                "status": 3,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -3888,65 +3888,6 @@
         ]
     },
     {
-        "id": "nisekoi",
-        "anilistId": null,
-        "title": "Nisekoi",
-        "status": -1,
-        "rating": 0,
-        "releaseDate": "",
-        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx18897-G2Fx2ZACsXBU.jpg",
-        "studio": "",
-        "year": null,
-        "genres": [],
-        "items": [
-            {
-                "id": "nisekoi-series",
-                "title": "Nisekoi",
-                "status": -1,
-                "type": "SERIE",
-                "rating": 0,
-                "watchedEpisodes": [],
-                "episodesCount": 20
-            },
-            {
-                "id": "nisekoi-ova",
-                "title": "Nisekoi OVA",
-                "status": -1,
-                "type": "OVA",
-                "rating": 0,
-                "watchedEpisodes": [],
-                "episodesCount": 3
-            },
-            {
-                "id": "nisekoi-season-2",
-                "title": "Nisekoi:",
-                "status": -1,
-                "type": "SERIE",
-                "rating": 0,
-                "watchedEpisodes": [],
-                "episodesCount": 12
-            },
-            {
-                "id": "nisekoi-season-2-ova",
-                "title": "Nisekoi: OVA",
-                "status": -1,
-                "type": "OVA",
-                "rating": 0,
-                "watchedEpisodes": [],
-                "episodesCount": 2
-            },
-            {
-                "id": "nisekoimonogatari",
-                "title": "Nisekoimonogatari",
-                "status": -1,
-                "type": "ONA",
-                "rating": 0,
-                "watchedEpisodes": [],
-                "episodesCount": 1
-            }
-        ]
-    },
-    {
         "id": "mayo-chiki",
         "anilistId": null,
         "title": "Mayo Chiki!",
@@ -4272,65 +4213,6 @@
                 "title": "Food Wars! The Third Plate: Erina at Polar Star Dormitory",
                 "status": -1,
                 "type": "OVA",
-                "rating": 0,
-                "watchedEpisodes": [],
-                "episodesCount": 1
-            }
-        ]
-    },
-    {
-        "id": "nisekoi",
-        "anilistId": null,
-        "title": "Nisekoi",
-        "status": -1,
-        "rating": 0,
-        "releaseDate": "",
-        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx18897-G2Fx2ZACsXBU.jpg",
-        "studio": "",
-        "year": null,
-        "genres": [],
-        "items": [
-            {
-                "id": "nisekoi-s1",
-                "title": "Nisekoi",
-                "status": -1,
-                "type": "SERIE",
-                "rating": 0,
-                "watchedEpisodes": [],
-                "episodesCount": 20
-            },
-            {
-                "id": "nisekoi-ova",
-                "title": "Nisekoi OVA",
-                "status": -1,
-                "type": "OVA",
-                "rating": 0,
-                "watchedEpisodes": [],
-                "episodesCount": 3
-            },
-            {
-                "id": "nisekoi-s2",
-                "title": "Nisekoi:",
-                "status": -1,
-                "type": "SERIE",
-                "rating": 0,
-                "watchedEpisodes": [],
-                "episodesCount": 12
-            },
-            {
-                "id": "nisekoi-s2-ova",
-                "title": "Nisekoi: OVA",
-                "status": -1,
-                "type": "OVA",
-                "rating": 0,
-                "watchedEpisodes": [],
-                "episodesCount": 2
-            },
-            {
-                "id": "nisekoimonogatari",
-                "title": "Nisekoimonogatari",
-                "status": -1,
-                "type": "ONA",
                 "rating": 0,
                 "watchedEpisodes": [],
                 "episodesCount": 1
@@ -4734,29 +4616,6 @@
         ]
     },
     {
-        "id": "worlds-end-harem",
-        "anilistId": null,
-        "title": "World's End Harem",
-        "status": -1,
-        "rating": 0,
-        "releaseDate": "",
-        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx118465-EGB0OajA5rei.jpg",
-        "studio": "",
-        "year": null,
-        "genres": [],
-        "items": [
-            {
-                "id": "worlds-end-harem-series",
-                "title": "World's End Harem",
-                "status": -1,
-                "type": "SERIE",
-                "rating": 0,
-                "watchedEpisodes": [],
-                "episodesCount": 11
-            }
-        ]
-    },
-    {
         "id": "saekano",
         "anilistId": null,
         "title": "Saekano: How to Raise a Boring Girlfriend",
@@ -4885,65 +4744,6 @@
                 "rating": 0,
                 "watchedEpisodes": [],
                 "episodesCount": 12
-            }
-        ]
-    },
-    {
-        "id": "nisekoi-false-love",
-        "anilistId": null,
-        "title": "Nisekoi: False Love",
-        "status": -1,
-        "rating": 0,
-        "releaseDate": "",
-        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx18897-G2Fx2ZACsXBU.jpg",
-        "studio": "",
-        "year": null,
-        "genres": [],
-        "items": [
-            {
-                "id": "nisekoi-s1",
-                "title": "Nisekoi",
-                "status": -1,
-                "type": "SERIE",
-                "rating": 0,
-                "watchedEpisodes": [],
-                "episodesCount": 20
-            },
-            {
-                "id": "nisekoi-ova-1",
-                "title": "Nisekoi OVA",
-                "status": -1,
-                "type": "OVA",
-                "rating": 0,
-                "watchedEpisodes": [],
-                "episodesCount": 3
-            },
-            {
-                "id": "nisekoi-s2",
-                "title": "Nisekoi:",
-                "status": -1,
-                "type": "SERIE",
-                "rating": 0,
-                "watchedEpisodes": [],
-                "episodesCount": 12
-            },
-            {
-                "id": "nisekoi-ova-2",
-                "title": "Nisekoi: OVA",
-                "status": -1,
-                "type": "OVA",
-                "rating": 0,
-                "watchedEpisodes": [],
-                "episodesCount": 2
-            },
-            {
-                "id": "nisekoi-monogatari",
-                "title": "Nisekoimonogatari",
-                "status": -1,
-                "type": "ONA",
-                "rating": 0,
-                "watchedEpisodes": [],
-                "episodesCount": 1
             }
         ]
     },

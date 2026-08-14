@@ -1542,7 +1542,7 @@ select[data-bound] {
     border-left: 3px solid #e67e22;
 }
 
-/* Floating circular back to top button */
+/* Floating circular back to top button reusing inverted active theme colors */
 .back-to-top-btn {
     position: fixed !important;
     bottom: 32px !important;
@@ -1552,8 +1552,8 @@ select[data-bound] {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: var(--surface);
-    color: var(--text);
+    background: var(--active-bg);
+    color: var(--active-color);
     border: none;
     display: none;
     align-items: center;
@@ -1561,13 +1561,11 @@ select[data-bound] {
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
     z-index: 9999;
     cursor: pointer;
-    transition: background-color 0.15s ease, color 0.15s ease, filter 0.15s ease;
+    transition: filter 0.15s ease;
 }
 
 .back-to-top-btn:hover {
-    background-color: var(--surface-hover);
-    color: var(--primary);
-    filter: brightness(1.15);
+    filter: brightness(1.2) saturate(1.1);
 }
 
 .back-to-top-btn[data-visible="true"],

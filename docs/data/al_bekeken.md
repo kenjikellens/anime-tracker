@@ -244,3 +244,46 @@ Hieronder staat de volledige lijst van anime series die je hebt bekeken, inclusi
 - [ ] Clannad (Movie)
 ## Domestic Girlfriend
 - [ ] Domestic Girlfriend (TV Series - 12 eps)
+
+## Chitose Is in the Ramune Bottle
+- [x] Chitose Is in the Ramune Bottle Cour 1 (12 eps)
+- [x] Chitose Is in the Ramune Bottle Cour 2 (Announced - 2026)
+
+## Teasing Master Takagi-san
+- [x] Teasing Master Takagi-san Season 1 (12 eps)
+- [x] Teasing Master Takagi-san OVA: Water Slide
+- [x] Teasing Master Takagi-san Season 2 (12 eps)
+- [x] Teasing Master Takagi-san Season 3 (12 eps)
+- [x] Teasing Master Takagi-san (Movie)
+
+## Tune In to the Midnight Heart
+- [x] Tune In to the Midnight Heart Season 1 (12 eps)
+- [x] Tune In to the Midnight Heart Season 2 (Announced)
+
+## AHO-GIRL
+- [x] AHO-GIRL (TV Series - 12 eps)
+
+## Spy x Family
+- [x] Spy x Family Season 1 (25 eps)
+- [x] Spy x Family Season 2 (12 eps)
+- [x] Spy x Family: Code: White (Movie)
+- [x] Spy x Family Season 3 (12 eps)
+- [x] Spy x Family Season 4 (Announced)
+
+## The Quintessential Quintuplets
+- [x] The Quintessential Quintuplets Season 1 (12 eps)
+- [x] The Quintessential Quintuplets Season 2 (12 eps)
+- [x] The Quintessential Quintuplets Movie (1 ep)
+- [x] The Quintessential Quintuplets Specials (2 eps)
+
+## I Made Friends with the Second Prettiest Girl in My Class
+- [x] I Made Friends with the Second Prettiest Girl in My Class (TV Series - 12 eps)
+
+## Oshi no Ko
+- [x] Oshi no Ko Season 1 (TV Series - 11 eps)
+- [x] Oshi no Ko Season 2 (TV Series - 13 eps)
+- [x] Oshi no Ko Season 3 (TV Series - 11 eps)
+- [x] Oshi no Ko Final Season (Announced)
+
+## Yosuga no Sora
+- [x] Yosuga no Sora (TV Series - 12 eps)
