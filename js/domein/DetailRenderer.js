@@ -70,9 +70,8 @@ export class DetailRenderer {
         const ratingsContainer = layout.querySelector('.sidebar-ratings-container');
         
         if (gSelect) {
-            gSelect.value = anime.status;
-            
             const newGSelect = gSelect.cloneNode(true);
+            newGSelect.value = String(anime.status);
             gSelect.parentNode.replaceChild(newGSelect, gSelect);
             newGSelect.addEventListener('change', (e) => {
                 onGlobalStatusChange(anime, e.target.value);
