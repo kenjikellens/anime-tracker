@@ -49,13 +49,16 @@ export class DropdownManager {
         const menu = document.createElement('div');
         menu.className = UI_CLASSES.DROPDOWN.MENU;
 
-        // Render option items
+        /**
+         * Renders the interactive option items inside the custom dropdown popup menu.
+         * Updates the menu DOM tree with option buttons, active state, and ultimate hover effects.
+         */
         const renderMenu = () => {
             menu.innerHTML = '';
             Array.from(select.options).forEach((opt, idx) => {
                 const isSelected = idx === select.selectedIndex;
                 const item = document.createElement('div');
-                item.className = UI_CLASSES.DROPDOWN.OPTION;
+                item.className = `${UI_CLASSES.DROPDOWN.OPTION} ${UI_CLASSES.ULTIMATE_HOVER}${isSelected ? ' active' : ''}`;
                 if (isSelected) {
                     item.dataset.active = 'true';
                 }

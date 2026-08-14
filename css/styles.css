@@ -486,6 +486,9 @@ select[data-bound] {
     pointer-events: none;
     transition: opacity 0.18s ease;
     border: 1px solid rgba(255, 255, 255, 0.12);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
 /* Elevated z-index and positioning for open dropdown wrapper container and parent rows */
@@ -523,7 +526,7 @@ select[data-bound] {
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    padding: 8px 14px;
+    padding: 6px 14px;
     border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
@@ -531,10 +534,6 @@ select[data-bound] {
     color: var(--text);
     transition: background-color 0.15s ease;
     white-space: nowrap;
-}
-
-.custom-select-option:hover {
-    background-color: var(--surface-hover);
 }
 
 /* Active selected dropdown option item */
@@ -1598,13 +1597,14 @@ footer {
 }
 
 /* Standard surface elements (excludes active/selected elements, rating badges & primary buttons): apply surface hover background */
-.ultimate-hover-effect:not(.rating-badge):not(.btn-primary):not(.active):hover,
-.ultimate-hover-effect:not(.rating-badge):not(.btn-primary):not(.active):hover::before {
+.ultimate-hover-effect:not(.rating-badge):not(.btn-primary):not(.active):not([data-active="true"]):hover,
+.ultimate-hover-effect:not(.rating-badge):not(.btn-primary):not(.active):not([data-active="true"]):hover::before {
     background-color: var(--surface-hover);
 }
 
 /* Active/selected elements, rating badges & primary buttons: preserve natural background & illuminate on hover */
 .ultimate-hover-effect.active:hover,
+.ultimate-hover-effect[data-active="true"]:hover,
 .ultimate-hover-effect.rating-badge:hover,
 .ultimate-hover-effect.btn-primary:hover {
     filter: brightness(1.2) saturate(1.1);
