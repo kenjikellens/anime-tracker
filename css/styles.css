@@ -1544,31 +1544,40 @@ select[data-bound] {
 
 /* Floating circular back to top button */
 .back-to-top-btn {
-    position: fixed;
-    bottom: 28px;
-    right: 28px;
-    width: 44px;
-    height: 44px;
+    position: fixed !important;
+    bottom: 32px !important;
+    right: 32px !important;
+    left: auto !important;
+    top: auto !important;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     background: var(--surface);
     color: var(--text);
     border: none;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
-    box-shadow: var(--shadow);
-    z-index: 900;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.25s ease, visibility 0.25s ease, background-color 0.15s ease, color 0.15s ease;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease, filter 0.15s ease;
+}
+
+.back-to-top-btn:hover {
+    background-color: var(--surface-hover);
+    color: var(--primary);
+    filter: brightness(1.15);
 }
 
 .back-to-top-btn[data-visible="true"],
 .back-to-top-btn.visible {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+    display: flex !important;
+}
+
+.back-to-top-btn .svg-icon {
+    width: 22px;
+    height: 22px;
 }
 
 .modal h3 {

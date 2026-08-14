@@ -135,14 +135,21 @@ function setupBackToTop() {
     const btn = document.getElementById('back-to-top');
     if (!btn) return;
 
-    window.addEventListener('scroll', () => {
-        const isScrolled = window.scrollY > 300;
+    const handleScroll = () => {
+        const scrollPos = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        const isScrolled = scrollPos > 150;
         btn.classList.toggle('visible', isScrolled);
         btn.dataset.visible = isScrolled ? 'true' : 'false';
-    }, { passive: true });
+    };
 
-    btn.addEventListener('click', () => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    document.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
     });
 }
 
