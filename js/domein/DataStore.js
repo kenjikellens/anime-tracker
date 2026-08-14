@@ -38,22 +38,15 @@ export class DataStore {
         // Immediate local storage update
         localStorage.setItem('rascal_anime_data', JSON.stringify(data));
 
-        // Debounce server API save request to batch rapid updates
-        clearTimeout(saveTimeoutId);
-        return new Promise((resolve) => {
-            saveTimeoutId = setTimeout(async () => {
-                try {
-                    await fetch('/api/save', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(data)
-                    });
-                } catch (err) {
-                    // Server not running, ignore.
-                }
-                resolve();
-            }, 150);
-        });
+        try {
+            await fetch('/api/save', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+        } catch (err) {
+            // Backend offline, fallback to local storage
+        }
     }
 
     /**
