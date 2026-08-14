@@ -90,6 +90,30 @@ body {
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
+/* Custom sleek scrollbar for whole page and scrollable elements */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--surface-hover);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--surface-hover) transparent;
+}
+
 /* Universal pointer cursor for interactive elements */
 a,
 button,
@@ -1516,6 +1540,35 @@ select[data-bound] {
 /* Status 4 (Verder Kijken / On Hold) card styling */
 .anime-card.status-onhold {
     border-left: 3px solid #e67e22;
+}
+
+/* Floating circular back to top button */
+.back-to-top-btn {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--surface);
+    color: var(--text);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    z-index: 900;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.back-to-top-btn[data-visible="true"],
+.back-to-top-btn.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 .modal h3 {

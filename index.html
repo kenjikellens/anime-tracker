@@ -69,6 +69,10 @@
         <symbol id="icon-filter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
         </symbol>
+        <symbol id="icon-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+        </symbol>
     </defs>
     </svg>
 
@@ -225,6 +229,11 @@
 
 
 
+
+    <!-- Floating circular back to top button -->
+    <button id="back-to-top" class="back-to-top-btn ultimate-hover-effect" data-visible="false" title="Terug naar boven">
+        <svg class="svg-icon svg-icon-large"><use href="#icon-arrow-up"></use></svg>
+    </button>
 
     <!-- Logic & domain scripts -->
     <script type="module" src="js/app.js"></script>
