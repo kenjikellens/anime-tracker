@@ -395,7 +395,7 @@
         "id": "the-100-girlfriends-who-really-really-really-really-really-love-you",
         "anilistId": null,
         "title": "The 100 Girlfriends Who Really, Really, Really, Really, Really Love You",
-        "status": 1,
+        "status": 0,
         "rating": 8.8,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx162694-QFBei5pbjSh8.png",
@@ -424,10 +424,12 @@
             {
                 "id": "the-100-girlfriends-who-really-really-really-really-really-love-you-s3",
                 "title": "The 100 Girlfriends Who Really, Really, Really, Really, REALLY Love You Season 3",
-                "status": 3,
+                "status": 0,
                 "type": "SERIE",
                 "rating": 0,
-                "watchedEpisodes": [],
+                "watchedEpisodes": [
+                    1
+                ],
                 "episodesCount": 1
             }
         ]
@@ -2311,7 +2313,7 @@
         "id": "food-for-the-soul",
         "anilistId": null,
         "title": "Food for the Soul",
-        "status": 0,
+        "status": 1,
         "rating": 6,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx185939-hqt1He153el8.jpg",
@@ -2322,14 +2324,22 @@
             {
                 "id": "food-for-the-soul-series",
                 "title": "Food for the Soul",
-                "status": 0,
+                "status": 1,
                 "type": "SERIE",
-                "rating": 0,
+                "rating": 6,
                 "watchedEpisodes": [
                     1,
                     2,
                     3,
-                    4
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12
                 ],
                 "episodesCount": 12
             }
@@ -4550,8 +4560,8 @@
         "id": "tomo-chan-is-a-girl",
         "anilistId": null,
         "title": "Tomo-chan is a Girl!",
-        "status": 0,
-        "rating": 0,
+        "status": 1,
+        "rating": 8.3,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx151806-IAMi2ctI5xJI.jpg",
         "studio": "",
@@ -4561,11 +4571,23 @@
             {
                 "id": "tomo-chan-is-a-girl-series",
                 "title": "Tomo-chan is a Girl!",
-                "status": 0,
+                "status": 1,
                 "type": "SERIE",
-                "rating": 0,
+                "rating": 8.3,
                 "watchedEpisodes": [
-                    1
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13
                 ],
                 "episodesCount": 13
             }
