@@ -428,7 +428,11 @@
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [
-                    1
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
                 ],
                 "episodesCount": 12
             }
