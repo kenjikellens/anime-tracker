@@ -1824,7 +1824,7 @@ footer {
 
 /* Expands inset layer by 2px on hover for all ultimate hover elements */
 .ultimate-hover-effect:hover::before {
-    inset: -1px;
+    inset: -1.25px;
 }
 
 /* Standard surface elements (excludes active/selected elements, rating badges & primary buttons): apply surface hover background */
