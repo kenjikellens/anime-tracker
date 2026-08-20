@@ -298,6 +298,201 @@
 
 ## The Warrior Princess and the Barbaric King
 - [ ] The Warrior Princess and the Barbaric King (SERIE - 12 eps)
+- [ ] To Love Ru Darkness (12 eps)
+- [ ] To Love Ru Darkness OVA (6 eps)
+- [ ] To Love Ru Darkness 2nd (14 eps)
+- [ ] To Love Ru Darkness 2nd OVA (3 eps)
+- [ ] To Love Ru: Multiplication - Mae kara Ushiro kara (1 ep)
+
+## Date A Live
+- [ ] Date A Live (SERIE - 12 eps)
+- [ ] Date A Live: Date to Date (OVA)
+- [ ] Date A Live II (SERIE - 10 eps)
+- [ ] Date A Live II: Kurumi Star Festival (OVA)
+- [ ] Date A Live Movie: Mayuri Judgment (MOVIE)
+- [ ] Date A Live III (SERIE - 12 eps)
+- [ ] Date A Bullet: Dead or Bullet (MOVIE)
+- [ ] Date A Bullet: Nightmare or Queen (MOVIE)
+- [ ] Date A Live IV (SERIE - 12 eps)
+- [ ] Date A Live V (SERIE - 12 eps)
+
+## Gridman Universe
+- [ ] SSSS.GRIDMAN (SERIE - 12 eps)
+- [ ] SSSS.DYNAZENON (SERIE - 12 eps)
+- [ ] Gridman Universe (MOVIE - 1 ep)
+
+## Acchi Kocchi
+- [ ] Acchi Kocchi (SERIE - 12 eps)
+- [ ] Acchi Kocchi: Place=Place (OVA - 1 ep)
+- [ ] Acchi Kocchi Youchien (SPECIAL - 12 eps)
+ 
+## Baka to Test to Shoukanjuu
+- [ ] Baka to Test to Shoukanjuu (TV Series - 13 eps)
+- [ ] Baka to Test to Shoukanjuu Specials (6 eps)
+- [ ] Baka to Test to Shoukanjuu: Matsuri (OVA - 2 eps)
+- [ ] Baka to Test to Shoukanjuu Ni! (TV Series - 13 eps)
+- [ ] Baka to Test to Shoukanjuu Ni! Specials (6 eps)
+- [ ] Baka to Test to Shoukanjuu: Christmas Special (1 ep)
+ 
+## Nisekoi: False Love
+- [ ] Nisekoi (SERIE - 20 eps)
+- [ ] Nisekoi OVA (OVA - 3 eps)
+- [ ] Nisekoi: (SERIE - 12 eps)
+- [ ] Nisekoi: OVA (OVA - 2 eps)
+- [ ] Nisekoimonogatari (ONA - 1 ep)
+ 
+## Mayo Chiki!
+- [ ] Mayo Chiki! (TV Series - 13 eps)
+
+## Oreshura
+- [ ] Oreshura (TV Series - 13 eps)
+
+## Ladies versus Butlers!
+- [ ] Ladies versus Butlers! (TV Series - 12 eps)
+- [ ] Ladies versus Butlers! Specials (6 eps)
+
+## Abnormal Physiology Seminar
+- [ ] Abnormal Physiology Seminar OVA (OVA - 2 eps)
+- [ ] Abnormal Physiology Seminar (TV Series - 13 eps)
+
+## My Wife is the Student Council President
+- [ ] My Wife is the Student Council President (TV Series - 12 eps)
+- [ ] My Wife is the Student Council President OVA (OVA - 1 ep)
+- [ ] My Wife is the Student Council President+! (TV Series - 12 eps)
+- [ ] My Wife is the Student Council President: Wife Theater (Special - 12 eps)
+
+## A Sister's All You Need
+- [ ] A Sister's All You Need (TV Series - 12 eps)
+- [ ] A Sister's All You Need Specials (Special - 2 eps)
+- [ ] ◯◯ sae Ireba Ii. (ONA - 6 eps)
+
+## Food Wars!
+- [ ] Food Wars! (TV Series - 24 eps)
+- [ ] Food Wars! The Second Plate (TV Series - 13 eps)
+- [ ] Food Wars! The Third Plate (TV Series - 12 eps)
+- [ ] Food Wars! The Third Plate: Totsuki Train Arc (TV Series - 12 eps)
+- [ ] Food Wars! The Fourth Plate (TV Series - 12 eps)
+- [ ] Food Wars! The Fifth Plate (TV Series - 13 eps)
+- [ ] Food Wars! OVA (OVA - 2 eps)
+- [ ] Food Wars! The Second Plate OVA (OVA - 2 eps)
+- [ ] Food Wars! The Third Plate: Erina at Polar Star Dormitory (OVA - 1 ep)
+
+## GJ Club
+- [ ] GJ Club (TV Series - 12 eps)
+- [ ] GJ-bu@ (Special - 1 ep)
+
+## Campione!
+- [ ] Campione! (TV Series - 13 eps)
+
+## Monogatari Series
+- [ ] Bakemonogatari (TV Series - 15 eps)
+- [ ] Nisemonogatari (TV Series - 11 eps)
+- [ ] Nekomonogatari Black (TV Series - 4 eps)
+- [ ] Monogatari Series Second Season (TV Series - 26 eps)
+- [ ] Hanamonogatari (TV Series - 5 eps)
+- [ ] Tsukimonogatari (TV Series - 4 eps)
+- [ ] Owarimonogatari (TV Series - 12 eps)
+- [ ] Koyomimonogatari (ONA - 12 eps)
+- [ ] Kizumonogatari Part 1: Tekketsu (Movie)
+- [ ] Kizumonogatari Part 2: Nekketsu (Movie)
+- [ ] Kizumonogatari Part 3: Reiketsu (Movie)
+- [ ] Owarimonogatari Second Season (TV Series - 7 eps)
+- [ ] Zoku Owarimonogatari (OVA - 6 eps)
+- [ ] MONOGATARI Series: OFF & MONSTER Season (ONA - 14 eps)
+- [ ] Koyomi History (Special - 1 ep)
+- [ ] MONOGATARI Series: OFF & MONSTER Season - Zankoku Douwa: Utsukushi-hime (Special - 1 ep)
+- [ ] Monogatari Series: Off & Monster Season Shin Episode (Special - 0 eps)
+
+## Higehiro: After Being Rejected, I Shaved and Took in a High School Runaway
+- [ ] Higehiro: After Being Rejected, I Shaved and Took in a High School Runaway (TV Series - 13 eps)
+
+## Itazura na Kiss
+- [ ] ItaKiss (TV Series - 25 eps)
+
+## Tomo-chan is a Girl!
+- [ ] Tomo-chan Is a Girl! (TV Series - 13 eps)
+
+## My Friend's Little Sister Has It In For Me
+- [ ] My Friend's Little Sister Has It In for Me! (TV Series - 12 eps)
+
+## Mistress Kanan is Devilishly Easy
+- [ ] Mistress Kanan is Devilishly Easy (TV Series - 12 eps)
+
+## World's End Harem
+- [ ] World's End Harem (TV Series - 11 eps)
+
+## Saekano: How to Raise a Boring Girlfriend
+- [ ] Saekano: How to Raise a Boring Girlfriend (TV Series - 13 eps)
+- [ ] Saekano: How to Raise a Boring Girlfriend ♭ (TV Series - 12 eps)
+- [ ] Saekano the Movie: Finale (Movie)
+
+## Seitokai Yakuindomo
+- [ ] Seitokai Yakuindomo (TV Series - 13 eps)
+- [ ] Seitokai Yakuindomo OVA (OVA - 8 eps)
+- [ ] Seitokai Yakuindomo* (TV Series - 13 eps)
+- [ ] Seitokai Yakuindomo* OVA (OVA - 10 eps)
+- [ ] Seitokai Yakuindomo Movie (Movie)
+- [ ] Seitokai Yakuindomo Movie 2 (Movie)
+
+## Dealing with Mikadono Sisters is a Breeze
+- [ ] Dealing with Mikadono Sisters Is a Breeze (TV Series - 12 eps)
+
+## Yamada-kun and the Seven Witches
+- [ ] Yamada and the Seven Witches (TV Series - 12 eps)
+- [ ] Yamada and the Seven Witches (OVA - 2 eps)
+- [ ] Yamada-kun to 7-nin no Majo (ONA - 1 ep)
+- [ ] Yankee-kun na Yamada-kun to Megane-chan to Majo (Special - 1 ep)
+
+
+## ORESUKI: Are you the only one who loves me?
+- [ ] ORESUKI: Are you the only one who loves me? (TV Series - 12 eps)
+- [ ] ORESUKI: Are you the only one who loves me? OVA (1 ep)
+- [ ] ORESUKI: Are you the only one who loves me? Special (1 ep)
+
+## The Café Terrace and Its Goddesses
+- [ ] The Café Terrace and Its Goddesses Season 1 (12 eps)
+- [ ] The Café Terrace and Its Goddesses Season 2 (12 eps)
+
+## From Me to You
+- [ ] From Me to You Season 1 (SERIE - 25 eps)
+- [ ] From Me to You Season 2 (SERIE - 12 eps)
+- [ ] From Me to You 2nd Season Specials (SPECIAL - 3 eps)
+- [ ] From Me to You Season 3 (ONA - 5 eps)
+
+## Studio Apartment, Good Lighting, Angel Included
+- [ ] Studio Apartment, Good Lighting, Angel Included (SERIE - 12 eps)
+
+## Undefeated Bahamut Chronicle
+- [ ] Undefeated Bahamut Chronicle (SERIE - 12 eps)
+
+## How a Realist Hero Rebuilt the Kingdom
+- [ ] How a Realist Hero Rebuilt the Kingdom Season 1 (SERIE - 13 eps)
+- [ ] How a Realist Hero Rebuilt the Kingdom Part 2 (SERIE - 13 eps)
+
+## Nukitashi THE ANIMATION
+- [ ] Nukitashi THE ANIMATION (SERIE - 11 eps)
+- [ ] Nukitashi THE ANIMATION OVAs (OVA - 4 eps)
+
+## World's End Harem
+- [ ] World's End Harem (SERIE - 11 eps)
+
+## Oh Boy, Was I Wrong About Her
+- [ ] Oh Boy, Was I Wrong About Her (SERIE - 12 eps)
+
+## Castle Town Dandelion
+- [ ] Castle Town Dandelion (SERIE - 12 eps)
+
+## The Testament of Sister New Devil
+- [ ] The Testament of Sister New Devil (SERIE - 12 eps)
+- [ ] The Testament of Sister New Devil OVA (OVA - 1 ep)
+- [ ] The Testament of Sister New Devil BURST (SERIE - 10 eps)
+- [ ] The Testament of Sister New Devil DEPARTURES (OVA - 1 ep)
+
+## Rich Girl Caretaker
+- [ ] Rich Girl Caretaker (SERIE - 12 eps)
+
+## The Warrior Princess and the Barbaric King
+- [ ] The Warrior Princess and the Barbaric King (SERIE - 12 eps)
 
 ## Kono Oto Tomare!: Sounds of Life
 - [ ] Kono Oto Tomare!: Sounds of Life Season 1 (SERIE - 13 eps)
@@ -305,3 +500,6 @@
 
 ## Black Summoner
 - [ ] Black Summoner (SERIE - 12 eps)
+
+## Higehiro: After Being Rejected, I Shaved and Took in a High School Runaway
+- [ ] Higehiro: After Being Rejected, I Shaved and Took in a High School Runaway (SERIE - 13 eps)

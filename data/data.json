@@ -5167,5 +5167,32 @@
                 "episodesCount": 12
             }
         ]
+    },
+    {
+        "id": "higehiro-after-being-rejected-i-shaved-and-took-in-a-high-school-runaway",
+        "anilistId": 114232,
+        "title": "Higehiro: After Being Rejected, I Shaved and Took in a High School Runaway",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx114232-tFTh1ZFWnmwc.jpg",
+        "studio": "project No.9",
+        "year": 2021,
+        "genres": [
+            "Drama",
+            "Romance",
+            "Slice of Life"
+        ],
+        "items": [
+            {
+                "id": "higehiro-after-being-rejected-i-shaved-and-took-in-a-high-school-runaway-serie",
+                "title": "Higehiro: After Being Rejected, I Shaved and Took in a High School Runaway",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 13
+            }
+        ]
     }
 ]
