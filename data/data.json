@@ -3683,7 +3683,7 @@
         "id": "to-love-ru",
         "anilistId": null,
         "title": "To Love Ru",
-        "status": 0,
+        "status": -1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx3455-oNiJmsZZTAAj.png",
@@ -3700,12 +3700,10 @@
             {
                 "id": "to-love-ru-series",
                 "title": "To Love Ru",
-                "status": 0,
+                "status": -1,
                 "type": "SERIE",
                 "rating": 0,
-                "watchedEpisodes": [
-                    1
-                ],
+                "watchedEpisodes": [],
                 "episodesCount": 26
             },
             {
