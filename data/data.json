@@ -5692,5 +5692,31 @@
                 "episodesCount": 13
             }
         ]
+    },
+    {
+        "id": "my-stepmoms-daughter-is-my-ex",
+        "anilistId": 136934,
+        "title": "My Stepmom's Daughter Is My Ex",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx136934-BXmmENtggiHr.jpg",
+        "studio": "project No.9",
+        "year": 2022,
+        "genres": [
+            "Comedy",
+            "Romance"
+        ],
+        "items": [
+            {
+                "id": "my-stepmoms-daughter-is-my-ex-serie",
+                "title": "My Stepmom's Daughter Is My Ex",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            }
+        ]
     }
 ]

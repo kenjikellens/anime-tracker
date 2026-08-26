@@ -66,6 +66,7 @@
 - My Little Sister Can't Be This Cute (OreImo)
 - My Love Story with Yamada-kun at Lv999
 - My Matchmaking Partner Is My Student, An Aggressive Trouble-Maker
+- My Stepmom's Daughter Is My Ex
 - My Teen Romantic Comedy SNAFU (Oregairu)
 - Nisekoi: False Love
 - Nukitashi THE ANIMATION

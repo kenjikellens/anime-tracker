@@ -503,3 +503,6 @@
 
 ## Higehiro: After Being Rejected, I Shaved and Took in a High School Runaway
 - [ ] Higehiro: After Being Rejected, I Shaved and Took in a High School Runaway (SERIE - 13 eps)
+
+## My Stepmom's Daughter Is My Ex
+- [ ] My Stepmom's Daughter Is My Ex (SERIE - 12 eps)
