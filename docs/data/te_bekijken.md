@@ -1,3 +1,9 @@
+## Himouto! Umaru-chan
+- [ ] Himouto! Umaru-chan (TV Series - 12 eps)
+- [ ] Himouto! Umaru-chanS (Special - 12 eps)
+- [ ] Himouto! Umaru-chan OVA (OVA - 2 eps)
+- [ ] Himouto! Umaru-chan R (TV Series - 12 eps)
+
 ## Your Lie in April (Shigatsu wa Kimi no Uso)
 - [ ] Your Lie in April (TV Series - 22 eps)
 - [ ] Your Lie in April: Moments (OVA)

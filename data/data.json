@@ -1,5 +1,58 @@
 [
     {
+        "id": "himouto-umaru-chan",
+        "anilistId": 20987,
+        "title": "Himouto! Umaru-chan",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20987-9Tq7kZTeJPMo.jpg",
+        "studio": "Doga Kobo",
+        "year": 2015,
+        "genres": [
+            "Comedy",
+            "Slice of Life"
+        ],
+        "items": [
+            {
+                "id": "himouto-umaru-chan",
+                "title": "Himouto! Umaru-chan",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "himouto-umaru-chans",
+                "title": "Himouto! Umaru-chanS",
+                "status": -1,
+                "type": "SPECIAL",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "himouto-umaru-chan-ova",
+                "title": "Himouto! Umaru-chan OVA",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 2
+            },
+            {
+                "id": "himouto-umaru-chan-r",
+                "title": "Himouto! Umaru-chan R",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            }
+        ]
+    },
+    {
         "id": "nukitashi-the-animation",
         "anilistId": null,
         "title": "Nukitashi THE ANIMATION",
