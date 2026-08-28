@@ -5133,7 +5133,7 @@
         "id": "my-friends-little-sister-has-it-in-for-me",
         "anilistId": null,
         "title": "My Friend's Little Sister Has It In For Me",
-        "status": 0,
+        "status": 1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx129195-9BT4wE1QTLj2.jpg",
@@ -5147,18 +5147,22 @@
             {
                 "id": "my-friends-little-sister-has-it-in-for-me-series",
                 "title": "My Friend's Little Sister Has It In For Me",
-                "status": 0,
+                "status": 1,
                 "type": "SERIE",
-                "rating": 0,
+                "rating": 6.7,
                 "watchedEpisodes": [
                     1,
                     2,
                     3,
                     4,
+                    5,
                     6,
                     7,
                     8,
-                    5
+                    9,
+                    10,
+                    11,
+                    12
                 ],
                 "episodesCount": 12
             }
