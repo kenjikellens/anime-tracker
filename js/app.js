@@ -8,6 +8,7 @@ import { ThemeManager } from './domein/ThemeManager.js';
 import { CookieManager } from './domein/CookieManager.js';
 import { DropdownManager } from './domein/DropdownManager.js';
 import { FilterManager } from './domein/FilterManager.js';
+import { QueueManager } from './domein/QueueManager.js';
 import { UI_CLASSES } from './domein/UIConstants.js';
 
 // Overview page state. Persisted in cookies so the UI survives refreshes.
@@ -18,6 +19,7 @@ let currentSort = CookieManager.get('sortOrder') || 'default';
 let currentViewMode = CookieManager.get('viewMode') || 'grid';
 let currentGridCols = CookieManager.get('gridCols') || '5';
 let filterManagerInstance = null;
+let queueManagerInstance = null;
 
 // Detail page state.
 let currentDetailAnime = null;
@@ -118,6 +120,13 @@ async function init() {
     setupBackToTop();
     filterManagerInstance = FilterManager.setup(repository, () => {
         renderData();
+    });
+    queueManagerInstance = QueueManager.setup(repository, async () => {
+        await DataStore.save(repository);
+        renderData();
+        if (window.location.hash.startsWith('#/anime/')) {
+            renderDetail();
+        }
     });
     ThemeManager.bindToggle('theme-toggle');
 
@@ -310,6 +319,26 @@ let allFilteredAnimes = [];
 const RENDER_BATCH_SIZE = 12;
 
 /**
+ * Handles toggling an anime's membership in the Top Watch Queue.
+ * @param {Anime} anime - The anime model to toggle.
+ */
+async function handleQueueToggle(anime) {
+    if (typeof anime.watchRank === 'number' && anime.watchRank > 0) {
+        repository.removeFromWatchQueue(anime.id);
+    } else {
+        repository.addToWatchQueue(anime.id);
+    }
+    await DataStore.save(repository);
+    if (queueManagerInstance) {
+        queueManagerInstance.render();
+    }
+    renderData();
+    if (window.location.hash.startsWith('#/anime/')) {
+        renderDetail();
+    }
+}
+
+/**
  * Loads and appends the next batch of anime cards to the container.
  * This affects the `#anime-container` DOM element by adding card components.
  * @param {boolean} [isFirst=false] - Whether this is the first batch to load.
@@ -321,7 +350,7 @@ function loadNextBatch(isFirst = false) {
     const nextBatch = allFilteredAnimes.slice(currentRenderIndex, currentRenderIndex + RENDER_BATCH_SIZE);
     
     if (nextBatch.length > 0) {
-        CardRenderer.renderBatch(container, nextBatch, (anime) => openRatingModal(anime, 'anime'), isFirst);
+        CardRenderer.renderBatch(container, nextBatch, (anime) => openRatingModal(anime, 'anime'), isFirst, handleQueueToggle);
         currentRenderIndex += nextBatch.length;
     }
 
@@ -567,7 +596,8 @@ function renderDetail(loadStartTime = null) {
             openGlobalRatingModal,
             openItemIds,
             openItemRatingModal,
-            loadStartTime
+            loadStartTime,
+            handleQueueToggle
         );
     });
 }

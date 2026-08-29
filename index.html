@@ -91,6 +91,11 @@
                 </div>
             </div>
             <div class="header-right">
+                <!-- Toggle Top Watch Queue Sidebar -->
+                <button id="queue-toggle-btn" class="queue-toggle-btn ultimate-hover-effect" title="Mijn Top Kijklijst openen">
+                    <svg class="svg-icon-large"><use href="#icon-list"></use></svg>
+                    <span id="header-queue-count" class="queue-count-badge">0</span>
+                </button>
                 <!-- Opens a JSON backup download via `DataStore.triggerBackup` -->
                 <button id="download-btn" class="hidden ultimate-hover-effect" title="Download backup"><svg class="svg-icon-large"><use href="#icon-download"></use></svg></button>
                 <!-- Toggles the global light/dark theme -->
@@ -105,6 +110,28 @@
     <div id="app">
         <!-- Content is loaded dynamically based on route (home.html or card.html) -->
     </div>
+
+    <!-- Top Kijkvolgorde Ranked Sidebar Drawer -->
+    <aside id="queue-sidebar" class="queue-sidebar">
+        <div class="queue-header">
+            <div class="queue-header-title">
+                <h3>Volgende om te Bekijken</h3>
+                <span id="sidebar-queue-count" class="sidebar-queue-count">0</span>
+            </div>
+            <button class="queue-close-btn" id="queue-close-btn" title="Sluit sidebar">✕</button>
+        </div>
+        <div class="queue-subtext">
+            Sleep items (<strong>Drag & Drop</strong>) om de volgorde te wijzigen. Alleen geconfigureerde series staan in deze lijst.
+        </div>
+        <div class="queue-add-section">
+            <div class="queue-add-input-wrap">
+                <span class="queue-add-icon">+</span>
+                <input type="text" class="queue-add-input" id="queue-search-add" placeholder="Serie toevoegen aan Top lijst..." autocomplete="off">
+            </div>
+            <div class="queue-autocomplete-list" id="queue-autocomplete"></div>
+        </div>
+        <div class="queue-list" id="queue-list-container"></div>
+    </aside>
 
     <footer>
         <div class="footer-row">

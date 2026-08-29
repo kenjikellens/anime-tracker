@@ -19,7 +19,15 @@ export class Anime {
         this.studio = data.studio || "";
         this.year = data.year || null;
         this.genres = Array.isArray(data.genres) ? data.genres : [];
+        this.watchRank = (typeof data.watchRank === 'number' && data.watchRank > 0) ? data.watchRank : null;
         this.items = data.items ? data.items.map(item => new AnimeItem(item.id, item.title, item.watched, item.status, item.type, item.watchedEpisodes, item.episodesCount, item.rating)) : [];
+    }
+
+    /**
+     * Updates the custom watch ranking position for this anime.
+     */
+    setWatchRank(rank) {
+        this.watchRank = (typeof rank === 'number' && rank > 0) ? rank : null;
     }
 
     /**

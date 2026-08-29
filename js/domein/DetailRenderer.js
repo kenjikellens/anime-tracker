@@ -23,7 +23,7 @@ export class DetailRenderer {
      * Builds the full detailed sidebar, item accordions, and status dropdowns for an anime group.
      * Restricts the global dropdown to watch statuses, and includes item-only release statuses.
      */
-    static async renderDetail(container, anime, onItemStatusChange, onGlobalStatusChange, onRatingChange, onEpisodeToggle, onRatingClick = null, openItemIds = [], onItemRatingClick = null, minLoadStartTime = null) {
+    static async renderDetail(container, anime, onItemStatusChange, onGlobalStatusChange, onRatingChange, onEpisodeToggle, onRatingClick = null, openItemIds = [], onItemRatingClick = null, minLoadStartTime = null, onQueueToggle = null) {
         const layout = container.querySelector('.anime-detail-layout-v3');
         if (!layout) return;
 
@@ -75,6 +75,27 @@ export class DetailRenderer {
                 onGlobalStatusChange(anime, e.target.value);
             };
         }
+
+        // Top Queue Button
+        const queueBtn = layout.querySelector('#detail-queue-btn');
+        const queueText = layout.querySelector('#detail-queue-text');
+        const inQueue = typeof anime.watchRank === 'number' && anime.watchRank > 0;
+        if (queueBtn) {
+            if (inQueue) {
+                queueBtn.classList.add('in-queue');
+                if (queueText) queueText.textContent = `✓ In Top Kijklijst (#${anime.watchRank})`;
+                queueBtn.title = `In Top Kijklijst (#${anime.watchRank}) - Klik om te verwijderen`;
+            } else {
+                queueBtn.classList.remove('in-queue');
+                if (queueText) queueText.textContent = '+ Naar Top Kijklijst';
+                queueBtn.title = 'Toevoegen aan Top Kijklijst';
+            }
+            queueBtn.onclick = (e) => {
+                e.stopPropagation();
+                if (onQueueToggle) onQueueToggle(anime);
+            };
+        }
+
         if (ratingsContainer) {
             const createSegmentsHtml = (score, isSmall = false) => {
                 let html = `<div class="segmented-rating-bar${isSmall ? ' small' : ''}">`;

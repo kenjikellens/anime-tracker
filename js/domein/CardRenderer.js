@@ -44,8 +44,9 @@ export class CardRenderer {
      * @param {Array} animes - Array of anime models.
      * @param {Function} onRatingClick - Rating click handler.
      * @param {boolean} [isFirstBatch=false] - Whether this is the initial batch.
+     * @param {Function} [onQueueToggle=null] - Top queue toggle handler.
      */
-    static renderBatch(container, animes, onRatingClick, isFirstBatch = false) {
+    static renderBatch(container, animes, onRatingClick, isFirstBatch = false, onQueueToggle = null) {
         if (isFirstBatch) {
             container.innerHTML = '';
             if (animes.length === 0) {
@@ -66,7 +67,7 @@ export class CardRenderer {
         
         const fragment = document.createDocumentFragment();
         animes.forEach(anime => {
-            fragment.appendChild(this.createCard(anime, onRatingClick));
+            fragment.appendChild(this.createCard(anime, onRatingClick, onQueueToggle));
         });
         wrapper.appendChild(fragment);
     }
@@ -76,9 +77,10 @@ export class CardRenderer {
      * @param {HTMLElement} container - Target container element.
      * @param {Array} animes - Array of anime models.
      * @param {Function} onRatingClick - Rating click handler.
+     * @param {Function} [onQueueToggle=null] - Top queue toggle handler.
      */
-    static renderAll(container, animes, onRatingClick) {
-        this.renderBatch(container, animes, onRatingClick, true);
+    static renderAll(container, animes, onRatingClick, onQueueToggle = null) {
+        this.renderBatch(container, animes, onRatingClick, true, onQueueToggle);
     }
 
     /**
@@ -110,9 +112,10 @@ export class CardRenderer {
      * Creates a fully structured card wrapper with backing deck layers and the main card.
      * @param {Object} anime - The anime model data to render.
      * @param {Function} onRatingClick - Callback trigger when the rating badge is clicked.
+     * @param {Function} [onQueueToggle=null] - Callback trigger when the queue button is clicked.
      * @returns {HTMLElement} The populated anime card wrapper element.
      */
-    static createCard(anime, onRatingClick) {
+    static createCard(anime, onRatingClick, onQueueToggle = null) {
         const template = document.getElementById('anime-card-template');
         if (!template) {
             throw new Error('anime-card-template not found in document');
@@ -161,6 +164,15 @@ export class CardRenderer {
             }
         }
 
+        // Top Watch Queue badge on poster
+        const inQueue = typeof anime.watchRank === 'number' && anime.watchRank > 0;
+        const queueBadge = document.createElement('div');
+        queueBadge.className = `card-queue-badge${anime.watchRank === 1 ? ' rank-top' : ''}`;
+        if (inQueue) {
+            queueBadge.textContent = `#${anime.watchRank}`;
+            posterDiv.appendChild(queueBadge);
+        }
+
         wrapper.querySelector('.card-title span').textContent = anime.title;
         wrapper.querySelector('.card-subtitle').textContent = `${itemCount} items`;
 
@@ -195,6 +207,26 @@ export class CardRenderer {
             e.stopPropagation();
             if (onRatingClick) onRatingClick(anime);
         });
+
+        // Top Queue toggle button on card
+        const queueBtn = wrapper.querySelector('.card-queue-btn');
+        if (queueBtn) {
+            const queueText = queueBtn.querySelector('.card-queue-text');
+            if (inQueue) {
+                queueBtn.classList.add('in-queue');
+                if (queueText) queueText.textContent = `✓ #${anime.watchRank}`;
+                queueBtn.title = `In Top Kijklijst (#${anime.watchRank}) - Klik om te verwijderen`;
+            } else {
+                queueBtn.classList.remove('in-queue');
+                if (queueText) queueText.textContent = '+ Top';
+                queueBtn.title = 'Toevoegen aan Top Kijklijst';
+            }
+
+            queueBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (onQueueToggle) onQueueToggle(anime);
+            });
+        }
 
         mainCard.addEventListener('click', () => {
             window.location.hash = `#/anime/${anime.id}`;

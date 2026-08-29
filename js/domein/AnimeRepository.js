@@ -232,6 +232,70 @@ export class AnimeRepository {
     }
 
     /**
+     * Returns all anime currently in the ranked watch queue, ordered by watchRank (1..N).
+     * @returns {Array<Anime>}
+     */
+    getRankedWatchQueue() {
+        return this.animes
+            .filter(a => typeof a.watchRank === 'number' && a.watchRank > 0)
+            .sort((a, b) => a.watchRank - b.watchRank);
+    }
+
+    /**
+     * Adds an anime to the end of the ranked watch queue.
+     * @param {string} animeId - The ID of the anime to add.
+     */
+    addToWatchQueue(animeId) {
+        const anime = this.getById(animeId);
+        if (!anime) return;
+        if (typeof anime.watchRank === 'number' && anime.watchRank > 0) return;
+
+        const currentQueue = this.getRankedWatchQueue();
+        anime.setWatchRank(currentQueue.length + 1);
+    }
+
+    /**
+     * Removes an anime from the ranked watch queue and compacts remaining ranks.
+     * @param {string} animeId - The ID of the anime to remove.
+     */
+    removeFromWatchQueue(animeId) {
+        const anime = this.getById(animeId);
+        if (anime) {
+            anime.setWatchRank(null);
+        }
+        this.compactWatchRanks();
+    }
+
+    /**
+     * Reorders an item in the watch queue from fromIndex to toIndex.
+     * @param {number} fromIndex - Source index in the sorted queue.
+     * @param {number} toIndex - Destination index in the sorted queue.
+     */
+    reorderWatchRank(fromIndex, toIndex) {
+        const queue = this.getRankedWatchQueue();
+        if (fromIndex < 0 || fromIndex >= queue.length || toIndex < 0 || toIndex >= queue.length) {
+            return;
+        }
+
+        const [movedItem] = queue.splice(fromIndex, 1);
+        queue.splice(toIndex, 0, movedItem);
+
+        queue.forEach((item, idx) => {
+            item.setWatchRank(idx + 1);
+        });
+    }
+
+    /**
+     * Ensures all ranked anime have contiguous 1..N ranks.
+     */
+    compactWatchRanks() {
+        const queue = this.getRankedWatchQueue();
+        queue.forEach((item, idx) => {
+            item.setWatchRank(idx + 1);
+        });
+    }
+
+    /**
      * Sorts anime records for the toolbar sort selector.
      * @param {Array<Anime>} animes - The list of animes to sort.
      * @param {string} criteria - The sort criteria identifier.
@@ -240,6 +304,13 @@ export class AnimeRepository {
     static sort(animes, criteria) {
         const list = [...animes];
         switch (criteria) {
+            case 'watch-rank':
+                return list.sort((a, b) => {
+                    const aRank = (typeof a.watchRank === 'number' && a.watchRank > 0) ? a.watchRank : Infinity;
+                    const bRank = (typeof b.watchRank === 'number' && b.watchRank > 0) ? b.watchRank : Infinity;
+                    if (aRank !== bRank) return aRank - bRank;
+                    return a.title.localeCompare(b.title);
+                });
             case 'title-asc':
                 return list.sort((a, b) => a.title.localeCompare(b.title));
             case 'title-desc':
@@ -271,6 +342,7 @@ export class AnimeRepository {
             studio: a.studio || "",
             year: a.year || null,
             genres: a.genres || [],
+            watchRank: (typeof a.watchRank === 'number' && a.watchRank > 0) ? a.watchRank : null,
 
             items: a.items.map(i => ({ id: i.id, title: i.title, status: i.status, type: i.type, rating: i.rating, watchedEpisodes: i.watchedEpisodes, episodesCount: i.episodesCount }))
         }));
