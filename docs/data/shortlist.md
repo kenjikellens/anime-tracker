@@ -3,13 +3,14 @@
 - 9-nine- Ruler's Crown
 - A Couple of Cuckoos
 - A Silent Voice (Koe no Katachi)
-- AHO-GIRL
 - Acchi Kocchi
+- AHO-GIRL
 - Akashic Records of Bastard Magic Instructor
 - Alya Sometimes Hides Her Feelings in Russian
 - And you thought there is never a girl online?
 - Azumanga Daioh
 - Baka to Test to Shoukanjuu
+- Banished from the Hero's Party, I Decided to Live a Quiet Life in the Countryside
 - Berserk
 - Black Summoner
 - Blade Dance of the Elementalers
@@ -27,6 +28,7 @@
 - Domestic Girlfriend
 - Don't Toy with Me, Miss Nagatoro
 - Eromanga Sensei
+- Fate/stay night
 - Food for the Soul
 - Food Wars!
 - From Me to You
@@ -59,6 +61,7 @@
 - Mistress Kanan is Devilishly Easy
 - Mom, I'm Sorry
 - More than a married couple, but not lovers.
+- My Awkward Senpai
 - My Dress-Up Darling
 - My Friend's Little Sister Has It In For Me
 - My Girlfriend is Shobitch
@@ -79,15 +82,16 @@
 - Pseudo Harem
 - Rascal Does Not Dream
 - Re:ZERO - Starting Life in Another World
-- ReLIFE
 - Redo of Healer
+- ReLIFE
 - Rent-a-Girlfriend
 - Rich Girl Caretaker
 - Saekano: How to Raise a Boring Girlfriend
 - Seitokai Yakuindomo
-- SHIMONETA: A Boring World Where the Concept of Dirty Jokes Doesn't Exist
 - Shikimori's Not Just a Cutie
+- SHIMONETA: A Boring World Where the Concept of Dirty Jokes Doesn't Exist
 - Spy x Family
+- Steins;Gate
 - Studio Apartment, Good Lighting, Angel Included
 - Teasing Master Takagi-san
 - The 100 Girlfriends Who Really, Really, Really, Really, Really Love You
@@ -115,5 +119,5 @@
 - Undefeated Bahamut Chronicle
 - World's End Harem
 - Yamada-kun and the Seven Witches
-- Your Lie in April (Shigatsu wa Kimi no Uso)
 - Yosuga no Sora
+- Your Lie in April (Shigatsu wa Kimi no Uso)

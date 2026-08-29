@@ -5131,7 +5131,7 @@
     },
     {
         "id": "saekano",
-        "anilistId": null,
+        "anilistId": 20657,
         "title": "Saekano: How to Raise a Boring Girlfriend",
         "status": -1,
         "rating": 0,
@@ -5157,7 +5157,7 @@
             },
             {
                 "id": "saekano-s2",
-                "title": "Saekano: How to Raise a Boring Girlfriend â™­",
+                "title": "Saekano: How to Raise a Boring Girlfriend ♭",
                 "status": -1,
                 "type": "SERIE",
                 "rating": 0,
@@ -5686,6 +5686,252 @@
                 "rating": 0,
                 "watchedEpisodes": [],
                 "episodesCount": 13
+            }
+        ]
+    },
+    {
+        "id": "fate-stay-night",
+        "anilistId": 356,
+        "title": "Fate/stay night",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx356-mTpMvtillumS.png",
+        "studio": "Studio DEEN, ufotable",
+        "year": 2006,
+        "genres": [
+            "Action",
+            "Fantasy",
+            "Romance",
+            "Supernatural"
+        ],
+        "items": [
+            {
+                "id": "fate-zero",
+                "title": "Fate/Zero",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 13
+            },
+            {
+                "id": "fate-zero-season-2",
+                "title": "Fate/Zero Season 2",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "fate-stay-night-2006",
+                "title": "Fate/stay night",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 24
+            },
+            {
+                "id": "fate-stay-night-unlimited-blade-works",
+                "title": "Fate/stay night: Unlimited Blade Works",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 13
+            },
+            {
+                "id": "fate-stay-night-unlimited-blade-works-season-2",
+                "title": "Fate/stay night: Unlimited Blade Works 2nd Season",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 13
+            },
+            {
+                "id": "fate-stay-night-unlimited-blade-works-sunny-day",
+                "title": "Fate/stay night: Unlimited Blade Works 2nd Season - Sunny Day",
+                "status": -1,
+                "type": "SPECIAL",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "fate-stay-night-movie-heavens-feel-i-presage-flower",
+                "title": "Fate/stay night Movie: Heaven's Feel - I. Presage Flower",
+                "status": -1,
+                "type": "MOVIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "fate-stay-night-movie-heavens-feel-ii-lost-butterfly",
+                "title": "Fate/stay night Movie: Heaven's Feel - II. Lost Butterfly",
+                "status": -1,
+                "type": "MOVIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "fate-stay-night-movie-heavens-feel-iii-spring-song",
+                "title": "Fate/stay night Movie: Heaven's Feel - III. Spring Song",
+                "status": -1,
+                "type": "MOVIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            }
+        ]
+    },
+    {
+        "id": "steins-gate",
+        "anilistId": 9253,
+        "title": "Steins;Gate",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx9253-tIUXF2gfU8Sg.jpg",
+        "studio": "WHITE FOX",
+        "year": 2011,
+        "genres": [
+            "Drama",
+            "Psychological",
+            "Sci-Fi",
+            "Thriller"
+        ],
+        "items": [
+            {
+                "id": "steins-gate-serie",
+                "title": "Steins;Gate",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 24
+            },
+            {
+                "id": "steins-gate-egoistic-poriomania",
+                "title": "Steins;Gate: Egoistic Poriomania",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "steins-gate-soumei-eichi-no-cognitive-computing",
+                "title": "Steins;Gate: Soumei Eichi no Cognitive Computing",
+                "status": -1,
+                "type": "ONA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 4
+            },
+            {
+                "id": "steins-gate-the-movie-load-region-of-deja-vu",
+                "title": "Steins;Gate: The Movie - Load Region of Déjà Vu",
+                "status": -1,
+                "type": "MOVIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "steins-gate-open-the-missing-link-divide-by-zero",
+                "title": "Steins;Gate 0: 23β -Divide by Zero-",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "steins-gate-0",
+                "title": "Steins;Gate 0",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 23
+            },
+            {
+                "id": "steins-gate-0-valentines-of-crystal-polymorphism",
+                "title": "Steins;Gate 0: Valentine's of Crystal Polymorphism -Bittersweet Intermedio-",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            }
+        ]
+    },
+    {
+        "id": "my-awkward-senpai",
+        "anilistId": 185575,
+        "title": "My Awkward Senpai",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx185575-moQeN8f5xRBv.jpg",
+        "studio": "Studio elle",
+        "year": 2025,
+        "genres": [
+            "Comedy",
+            "Romance"
+        ],
+        "items": [
+            {
+                "id": "my-awkward-senpai-serie",
+                "title": "My Awkward Senpai",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            }
+        ]
+    },
+    {
+        "id": "banished-from-the-heros-party-i-decided-to-live-a-quiet-life-in-the-countryside",
+        "anilistId": 126213,
+        "title": "Banished from the Hero's Party, I Decided to Live a Quiet Life in the Countryside",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx126213-cXF3hsCcOipI.jpg",
+        "studio": "WolfsBane, Studio Flad",
+        "year": 2021,
+        "genres": [
+            "Action",
+            "Adventure",
+            "Fantasy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "items": [
+            {
+                "id": "banished-from-the-heros-party-season-1",
+                "title": "Banished from the Hero's Party, I Decided to Live a Quiet Life in the Countryside Season 1",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 13
+            },
+            {
+                "id": "banished-from-the-heros-party-season-2",
+                "title": "Banished from the Hero's Party, I Decided to Live a Quiet Life in the Countryside Season 2",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
             }
         ]
     }

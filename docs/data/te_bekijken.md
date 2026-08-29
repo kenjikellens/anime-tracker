@@ -403,56 +403,6 @@
 - [ ] MONOGATARI Series: OFF & MONSTER Season - Zankoku Douwa: Utsukushi-hime (Special - 1 ep)
 - [ ] Monogatari Series: Off & Monster Season Shin Episode (Special - 0 eps)
 
-## Higehiro: After Being Rejected, I Shaved and Took in a High School Runaway
-- [ ] Higehiro: After Being Rejected, I Shaved and Took in a High School Runaway (TV Series - 13 eps)
-
-## Itazura na Kiss
-- [ ] ItaKiss (TV Series - 25 eps)
-
-## Tomo-chan is a Girl!
-- [ ] Tomo-chan Is a Girl! (TV Series - 13 eps)
-
-## My Friend's Little Sister Has It In For Me
-- [ ] My Friend's Little Sister Has It In for Me! (TV Series - 12 eps)
-
-## Mistress Kanan is Devilishly Easy
-- [ ] Mistress Kanan is Devilishly Easy (TV Series - 12 eps)
-
-## World's End Harem
-- [ ] World's End Harem (TV Series - 11 eps)
-
-## Saekano: How to Raise a Boring Girlfriend
-- [ ] Saekano: How to Raise a Boring Girlfriend (TV Series - 13 eps)
-- [ ] Saekano: How to Raise a Boring Girlfriend ♭ (TV Series - 12 eps)
-- [ ] Saekano the Movie: Finale (Movie)
-
-## Seitokai Yakuindomo
-- [ ] Seitokai Yakuindomo (TV Series - 13 eps)
-- [ ] Seitokai Yakuindomo OVA (OVA - 8 eps)
-- [ ] Seitokai Yakuindomo* (TV Series - 13 eps)
-- [ ] Seitokai Yakuindomo* OVA (OVA - 10 eps)
-- [ ] Seitokai Yakuindomo Movie (Movie)
-- [ ] Seitokai Yakuindomo Movie 2 (Movie)
-
-## Dealing with Mikadono Sisters is a Breeze
-- [ ] Dealing with Mikadono Sisters Is a Breeze (TV Series - 12 eps)
-
-## Yamada-kun and the Seven Witches
-- [ ] Yamada and the Seven Witches (TV Series - 12 eps)
-- [ ] Yamada and the Seven Witches (OVA - 2 eps)
-- [ ] Yamada-kun to 7-nin no Majo (ONA - 1 ep)
-- [ ] Yankee-kun na Yamada-kun to Megane-chan to Majo (Special - 1 ep)
-
-
-## ORESUKI: Are you the only one who loves me?
-- [ ] ORESUKI: Are you the only one who loves me? (TV Series - 12 eps)
-- [ ] ORESUKI: Are you the only one who loves me? OVA (1 ep)
-- [ ] ORESUKI: Are you the only one who loves me? Special (1 ep)
-
-## The Café Terrace and Its Goddesses
-- [ ] The Café Terrace and Its Goddesses Season 1 (12 eps)
-- [ ] The Café Terrace and Its Goddesses Season 2 (12 eps)
-
 ## From Me to You
 - [ ] From Me to You Season 1 (SERIE - 25 eps)
 - [ ] From Me to You Season 2 (SERIE - 12 eps)
@@ -472,9 +422,6 @@
 ## Nukitashi THE ANIMATION
 - [ ] Nukitashi THE ANIMATION (SERIE - 11 eps)
 - [ ] Nukitashi THE ANIMATION OVAs (OVA - 4 eps)
-
-## World's End Harem
-- [ ] World's End Harem (SERIE - 11 eps)
 
 ## Oh Boy, Was I Wrong About Her
 - [ ] Oh Boy, Was I Wrong About Her (SERIE - 12 eps)
@@ -501,5 +448,30 @@
 ## Black Summoner
 - [ ] Black Summoner (SERIE - 12 eps)
 
-## Higehiro: After Being Rejected, I Shaved and Took in a High School Runaway
-- [ ] Higehiro: After Being Rejected, I Shaved and Took in a High School Runaway (SERIE - 13 eps)
+## Fate/stay night
+- [ ] Fate/Zero (SERIE - 13 eps)
+- [ ] Fate/Zero Season 2 (SERIE - 12 eps)
+- [ ] Fate/stay night (SERIE - 24 eps)
+- [ ] Fate/stay night: Unlimited Blade Works (SERIE - 13 eps)
+- [ ] Fate/stay night: Unlimited Blade Works 2nd Season (SERIE - 13 eps)
+- [ ] Fate/stay night: Unlimited Blade Works 2nd Season - Sunny Day (SPECIAL - 1 ep)
+- [ ] Fate/stay night Movie: Heaven's Feel - I. Presage Flower (MOVIE - 1 ep)
+- [ ] Fate/stay night Movie: Heaven's Feel - II. Lost Butterfly (MOVIE - 1 ep)
+- [ ] Fate/stay night Movie: Heaven's Feel - III. Spring Song (MOVIE - 1 ep)
+
+## Steins;Gate
+- [ ] Steins;Gate (SERIE - 24 eps)
+- [ ] Steins;Gate: Egoistic Poriomania (OVA - 1 ep)
+- [ ] Steins;Gate: Soumei Eichi no Cognitive Computing (ONA - 4 eps)
+- [ ] Steins;Gate: The Movie - Load Region of Déjà Vu (MOVIE - 1 ep)
+- [ ] Steins;Gate 0: 23β -Divide by Zero- (OVA - 1 ep)
+- [ ] Steins;Gate 0 (SERIE - 23 eps)
+- [ ] Steins;Gate 0: Valentine's of Crystal Polymorphism -Bittersweet Intermedio- (OVA - 1 ep)
+
+## My Awkward Senpai
+- [ ] My Awkward Senpai (SERIE - 12 eps)
+
+## Banished from the Hero's Party, I Decided to Live a Quiet Life in the Countryside
+- [ ] Banished from the Hero's Party, I Decided to Live a Quiet Life in the Countryside Season 1 (SERIE - 13 eps)
+- [ ] Banished from the Hero's Party, I Decided to Live a Quiet Life in the Countryside Season 2 (SERIE - 12 eps)
+
