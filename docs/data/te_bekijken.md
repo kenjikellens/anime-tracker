@@ -1,3 +1,9 @@
+## Himouto! Umaru-chan
+- [ ] Himouto! Umaru-chan (TV Series - 12 eps)
+- [ ] Himouto! Umaru-chanS (Special - 12 eps)
+- [ ] Himouto! Umaru-chan OVA (OVA - 2 eps)
+- [ ] Himouto! Umaru-chan R (TV Series - 12 eps)
+
 ## Your Lie in April (Shigatsu wa Kimi no Uso)
 - [ ] Your Lie in April (TV Series - 22 eps)
 - [ ] Your Lie in April: Moments (OVA)
@@ -448,6 +454,9 @@
 ## Black Summoner
 - [ ] Black Summoner (SERIE - 12 eps)
 
+## My Stepmom's Daughter Is My Ex
+- [ ] My Stepmom's Daughter Is My Ex (SERIE - 12 eps)
+
 ## Fate/stay night
 - [ ] Fate/Zero (SERIE - 13 eps)
 - [ ] Fate/Zero Season 2 (SERIE - 12 eps)
@@ -474,4 +483,3 @@
 ## Banished from the Hero's Party, I Decided to Live a Quiet Life in the Countryside
 - [ ] Banished from the Hero's Party, I Decided to Live a Quiet Life in the Countryside Season 1 (SERIE - 13 eps)
 - [ ] Banished from the Hero's Party, I Decided to Live a Quiet Life in the Countryside Season 2 (SERIE - 12 eps)
-

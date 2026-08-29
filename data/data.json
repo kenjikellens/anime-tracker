@@ -1,5 +1,58 @@
 [
     {
+        "id": "himouto-umaru-chan",
+        "anilistId": 20987,
+        "title": "Himouto! Umaru-chan",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx20987-9Tq7kZTeJPMo.jpg",
+        "studio": "Doga Kobo",
+        "year": 2015,
+        "genres": [
+            "Comedy",
+            "Slice of Life"
+        ],
+        "items": [
+            {
+                "id": "himouto-umaru-chan",
+                "title": "Himouto! Umaru-chan",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "himouto-umaru-chans",
+                "title": "Himouto! Umaru-chanS",
+                "status": -1,
+                "type": "SPECIAL",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "himouto-umaru-chan-ova",
+                "title": "Himouto! Umaru-chan OVA",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 2
+            },
+            {
+                "id": "himouto-umaru-chan-r",
+                "title": "Himouto! Umaru-chan R",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            }
+        ]
+    },
+    {
         "id": "nukitashi-the-animation",
         "anilistId": null,
         "title": "Nukitashi THE ANIMATION",
@@ -5080,7 +5133,7 @@
         "id": "my-friends-little-sister-has-it-in-for-me",
         "anilistId": null,
         "title": "My Friend's Little Sister Has It In For Me",
-        "status": -1,
+        "status": 1,
         "rating": 0,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx129195-9BT4wE1QTLj2.jpg",
@@ -5094,10 +5147,23 @@
             {
                 "id": "my-friends-little-sister-has-it-in-for-me-series",
                 "title": "My Friend's Little Sister Has It In For Me",
-                "status": -1,
+                "status": 1,
                 "type": "SERIE",
-                "rating": 0,
-                "watchedEpisodes": [],
+                "rating": 6.7,
+                "watchedEpisodes": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12
+                ],
                 "episodesCount": 12
             }
         ]
@@ -5686,6 +5752,32 @@
                 "rating": 0,
                 "watchedEpisodes": [],
                 "episodesCount": 13
+            }
+        ]
+    },
+    {
+        "id": "my-stepmoms-daughter-is-my-ex",
+        "anilistId": 136934,
+        "title": "My Stepmom's Daughter Is My Ex",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx136934-BXmmENtggiHr.jpg",
+        "studio": "project No.9",
+        "year": 2022,
+        "genres": [
+            "Comedy",
+            "Romance"
+        ],
+        "items": [
+            {
+                "id": "my-stepmoms-daughter-is-my-ex-serie",
+                "title": "My Stepmom's Daughter Is My Ex",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
             }
         ]
     },

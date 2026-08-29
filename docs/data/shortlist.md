@@ -41,6 +41,7 @@
 - Hensuki: Are you willing to fall in love with a pervert, as long as she's a cutie?
 - Higehiro: After Being Rejected, I Shaved and Took in a High School Runaway
 - High School DxD
+- Himouto! Umaru-chan
 - Horimiya
 - How a Realist Hero Rebuilt the Kingdom
 - I Made Friends with the Second Prettiest Girl in My Class
@@ -69,6 +70,7 @@
 - My Little Sister Can't Be This Cute (OreImo)
 - My Love Story with Yamada-kun at Lv999
 - My Matchmaking Partner Is My Student, An Aggressive Trouble-Maker
+- My Stepmom's Daughter Is My Ex
 - My Teen Romantic Comedy SNAFU (Oregairu)
 - Nisekoi: False Love
 - Nukitashi THE ANIMATION
