@@ -6154,5 +6154,32 @@
                 "episodesCount": 12
             }
         ]
+    },
+    {
+        "id": "love-is-indivisible-by-twins",
+        "anilistId": 167144,
+        "title": "Love Is Indivisible by Twins",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "2024-07-10",
+        "coverImage": "",
+        "studio": "ROLL2",
+        "year": 2024,
+        "genres": [
+            "Comedy",
+            "Romance"
+        ],
+        "watchRank": null,
+        "items": [
+            {
+                "id": "love-is-indivisible-by-twins",
+                "title": "Love Is Indivisible by Twins",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            }
+        ]
     }
 ]

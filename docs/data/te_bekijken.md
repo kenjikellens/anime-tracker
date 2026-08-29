@@ -483,3 +483,7 @@
 ## Banished from the Hero's Party, I Decided to Live a Quiet Life in the Countryside
 - [ ] Banished from the Hero's Party, I Decided to Live a Quiet Life in the Countryside Season 1 (SERIE - 13 eps)
 - [ ] Banished from the Hero's Party, I Decided to Live a Quiet Life in the Countryside Season 2 (SERIE - 12 eps)
+
+## Love Is Indivisible by Twins
+- [ ] Love Is Indivisible by Twins (SERIE - 12 eps)
+

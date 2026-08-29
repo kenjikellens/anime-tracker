@@ -54,6 +54,7 @@
 - KonoSuba: God's Blessing on This Wonderful World!
 - Ladies versus Butlers!
 - Love is Like a Cocktail
+- Love Is Indivisible by Twins
 - Love, Chunibyo & Other Delusions!
 - Makeine: Too Many Losing Heroines!
 - Masamune-kun's Revenge
