@@ -208,26 +208,6 @@ export class CardRenderer {
             if (onRatingClick) onRatingClick(anime);
         });
 
-        // Top Queue toggle button on card
-        const queueBtn = wrapper.querySelector('.card-queue-btn');
-        if (queueBtn) {
-            const queueText = queueBtn.querySelector('.card-queue-text');
-            if (inQueue) {
-                queueBtn.classList.add('in-queue');
-                if (queueText) queueText.textContent = `✓ #${anime.watchRank}`;
-                queueBtn.title = `In Top Kijklijst (#${anime.watchRank}) - Klik om te verwijderen`;
-            } else {
-                queueBtn.classList.remove('in-queue');
-                if (queueText) queueText.textContent = '+ Top';
-                queueBtn.title = 'Toevoegen aan Top Kijklijst';
-            }
-
-            queueBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                if (onQueueToggle) onQueueToggle(anime);
-            });
-        }
-
         mainCard.addEventListener('click', () => {
             window.location.hash = `#/anime/${anime.id}`;
         });

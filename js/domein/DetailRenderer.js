@@ -76,26 +76,6 @@ export class DetailRenderer {
             };
         }
 
-        // Top Queue Button
-        const queueBtn = layout.querySelector('#detail-queue-btn');
-        const queueText = layout.querySelector('#detail-queue-text');
-        const inQueue = typeof anime.watchRank === 'number' && anime.watchRank > 0;
-        if (queueBtn) {
-            if (inQueue) {
-                queueBtn.classList.add('in-queue');
-                if (queueText) queueText.textContent = `✓ In Top Kijklijst (#${anime.watchRank})`;
-                queueBtn.title = `In Top Kijklijst (#${anime.watchRank}) - Klik om te verwijderen`;
-            } else {
-                queueBtn.classList.remove('in-queue');
-                if (queueText) queueText.textContent = '+ Naar Top Kijklijst';
-                queueBtn.title = 'Toevoegen aan Top Kijklijst';
-            }
-            queueBtn.onclick = (e) => {
-                e.stopPropagation();
-                if (onQueueToggle) onQueueToggle(anime);
-            };
-        }
-
         if (ratingsContainer) {
             const createSegmentsHtml = (score, isSmall = false) => {
                 let html = `<div class="segmented-rating-bar${isSmall ? ' small' : ''}">`;

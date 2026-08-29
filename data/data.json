@@ -6162,7 +6162,7 @@
         "status": -1,
         "rating": 0,
         "releaseDate": "2024-07-10",
-        "coverImage": "",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx167144-tKDxH7M9z1Hb.png",
         "studio": "ROLL2",
         "year": 2024,
         "genres": [
@@ -6174,6 +6174,127 @@
             {
                 "id": "love-is-indivisible-by-twins",
                 "title": "Love Is Indivisible by Twins",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            }
+        ]
+    },
+    {
+        "id": "gonna-be-the-twin-tail",
+        "anilistId": 20565,
+        "title": "Gonna be the Twin-Tail!!",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "2014-10-09",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx20565-iJKtIuGW5n1p.jpg",
+        "studio": "Production IMS",
+        "year": 2014,
+        "genres": [
+            "Action",
+            "Comedy",
+            "Fantasy",
+            "Sci-Fi"
+        ],
+        "watchRank": null,
+        "items": [
+            {
+                "id": "gonna-be-the-twin-tail",
+                "title": "Gonna be the Twin-Tail!!",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            }
+        ]
+    },
+    {
+        "id": "dagashi-kashi",
+        "anilistId": 21365,
+        "title": "Dagashi Kashi",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "2016-01-08",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21365-FRalqWQn0lf9.jpg",
+        "studio": "feel.",
+        "year": 2016,
+        "genres": [
+            "Comedy",
+            "Slice of Life"
+        ],
+        "watchRank": null,
+        "items": [
+            {
+                "id": "dagashi-kashi-season-1",
+                "title": "Dagashi Kashi Season 1",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "dagashi-kashi-season-2",
+                "title": "Dagashi Kashi Season 2",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            }
+        ]
+    },
+    {
+        "id": "tokyo-ravens",
+        "anilistId": 16011,
+        "title": "Tokyo Ravens",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "2013-10-09",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx16011-orxVpks3jG9U.jpg",
+        "studio": "Eight Bit",
+        "year": 2013,
+        "genres": [
+            "Action",
+            "Comedy",
+            "Supernatural"
+        ],
+        "watchRank": null,
+        "items": [
+            {
+                "id": "tokyo-ravens",
+                "title": "Tokyo Ravens",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 24
+            }
+        ]
+    },
+    {
+        "id": "yano-kuns-ordinary-days",
+        "anilistId": 189578,
+        "title": "Yano-kun's Ordinary Days",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "2025-10-01",
+        "coverImage": "",
+        "studio": "Ajia-do",
+        "year": 2025,
+        "genres": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "watchRank": null,
+        "items": [
+            {
+                "id": "yano-kuns-ordinary-days",
+                "title": "Yano-kun's Ordinary Days",
                 "status": -1,
                 "type": "SERIE",
                 "rating": 0,

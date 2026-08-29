@@ -487,3 +487,16 @@
 ## Love Is Indivisible by Twins
 - [ ] Love Is Indivisible by Twins (SERIE - 12 eps)
 
+## Gonna be the Twin-Tail!!
+- [ ] Gonna be the Twin-Tail!! (SERIE - 12 eps)
+
+## Dagashi Kashi
+- [ ] Dagashi Kashi Season 1 (SERIE - 12 eps)
+- [ ] Dagashi Kashi Season 2 (SERIE - 12 eps)
+
+## Tokyo Ravens
+- [ ] Tokyo Ravens (SERIE - 24 eps)
+
+## Yano-kun's Ordinary Days
+- [ ] Yano-kun's Ordinary Days (SERIE - 12 eps)
+

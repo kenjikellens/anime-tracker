@@ -22,6 +22,7 @@
 - Clannad
 - Class President is a Maid!
 - Classroom of the Elite
+- Dagashi Kashi
 - Danganronpa
 - Date A Live
 - Dealing with Mikadono Sisters is a Breeze
@@ -36,6 +37,7 @@
 - Gamers!
 - Ghost Stories
 - Golden Time
+- Gonna be the Twin-Tail!!
 - Gridman Universe
 - Haganai: I don't have many friends
 - Hensuki: Are you willing to fall in love with a pervert, as long as she's a cutie?
@@ -114,6 +116,7 @@
 - The Testament of Sister New Devil
 - The Warrior Princess and the Barbaric King
 - To Love Ru
+- Tokyo Ravens
 - Tomo-chan is a Girl!
 - Toradora!
 - Trinity Seven
@@ -122,5 +125,6 @@
 - Undefeated Bahamut Chronicle
 - World's End Harem
 - Yamada-kun and the Seven Witches
+- Yano-kun's Ordinary Days
 - Yosuga no Sora
 - Your Lie in April (Shigatsu wa Kimi no Uso)
