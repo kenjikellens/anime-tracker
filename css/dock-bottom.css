@@ -1,0 +1,96 @@
+/* ==========================================================================
+   RASCAL — DOCK BOTTOM LAYOUT OVERHAUL
+   Transforms the right-hand queue drawer into a horizontal Netflix-style bottom dock
+   and reshapes the top header into a floating island bar.
+   ========================================================================== */
+
+/* Floating Island Header centered at top of viewport */
+.header-main {
+    max-width: 1280px !important;
+    margin: 16px auto !important;
+    border-radius: 20px !important;
+    position: sticky !important;
+    top: 16px !important;
+    background: var(--surface) !important;
+    border: 1px solid var(--surface-2) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+    z-index: 1000 !important;
+}
+
+/* Adjust top padding on main app wrapper to account for floating header */
+#app {
+    padding-top: 8px !important;
+}
+
+/* Bottom Dock queue container spanning full width across the bottom */
+.queue-sidebar {
+    top: auto !important;
+    bottom: -340px !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 340px !important;
+    border-left: none !important;
+    border-top: 2px solid var(--surface-2) !important;
+    box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.4) !important;
+    transform: none !important;
+    transition: bottom 0.28s ease !important;
+    z-index: 10050 !important;
+}
+
+/* Open state positioning bottom dock flush against screen edge */
+.queue-sidebar.open {
+    bottom: 0 !important;
+    transform: none !important;
+}
+
+/* App container bottom margin adjustment when dock is open */
+#app.sidebar-open {
+    margin-right: 0 !important;
+    margin-bottom: 340px !important;
+    transition: margin-bottom 0.28s ease !important;
+}
+
+/* Compact header area for the bottom dock */
+.queue-header {
+    padding: 12px 24px !important;
+    border-bottom: 1px solid var(--surface-2) !important;
+}
+
+/* Subtext banner inside bottom dock */
+.queue-subtext {
+    padding: 6px 24px !important;
+    font-size: 11px !important;
+}
+
+/* Compact search and add bar inside bottom dock */
+.queue-add-section {
+    padding: 8px 24px !important;
+}
+
+/* Horizontal scrollable carousel strip for queue items */
+.queue-list {
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding: 14px 24px !important;
+    gap: 14px !important;
+    align-items: stretch !important;
+}
+
+/* Horizontal media card format for queue items in bottom dock */
+.queue-item {
+    min-width: 240px !important;
+    max-width: 280px !important;
+    flex-shrink: 0 !important;
+    border-radius: 12px !important;
+    padding: 12px 16px !important;
+    background: var(--surface-card) !important;
+    border: 1px solid var(--surface-2) !important;
+}
+
+/* Rounded corners for card elements in dock mode */
+.anime-card {
+    border-radius: 16px !important;
+}

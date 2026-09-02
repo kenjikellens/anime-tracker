@@ -1,0 +1,124 @@
+/* ==========================================================================
+   RASCAL — OLED LUXURY THEME OVERRIDE
+   ========================================================================== */
+
+/* OLED luxury pitch-black and gold color tokens */
+:root,
+[data-theme="dark"] {
+    --bg: #000000;
+    --surface: #0a0a0c;
+    --surface-card: #111114;
+    --surface-hover: #1c1b18;
+    --surface-2: #161618;
+    --border: rgba(212, 175, 55, 0.22);
+    --text: #ffffff;
+    --text-muted: #9c9484;
+    --white: #ffffff;
+    --primary: #d4af37;
+    --primary-rgb: 212, 175, 55;
+    --header-bg: #050506;
+    --search-bg: #121214;
+    --search-hover-bg: #1a1a1d;
+    --active-bg: #d4af37;
+    --active-color: #000000;
+    --status-btn-bg: #121214;
+    --status-btn-color: #d4af37;
+    --status-btn-hover: #d4af37;
+    --shadow: 0 4px 25px rgba(212, 175, 55, 0.08);
+    --modal-bg: rgba(0, 0, 0, 0.85);
+}
+
+/* OLED luxury light mode variant with warm cream and antique gold */
+[data-theme="light"] {
+    --bg: #080809;
+    --surface: #0f0f12;
+    --surface-card: #151518;
+    --surface-hover: #202025;
+    --surface-2: #1a1a1d;
+    --border: rgba(229, 193, 88, 0.25);
+    --text: #f8f6f0;
+    --text-muted: #aba290;
+    --white: #ffffff;
+    --primary: #e5c158;
+    --primary-rgb: 229, 193, 88;
+    --header-bg: #0b0b0d;
+    --search-bg: #161619;
+    --search-hover-bg: #1f1f23;
+    --active-bg: #e5c158;
+    --active-color: #000000;
+    --status-btn-bg: #161619;
+    --status-btn-color: #e5c158;
+    --status-btn-hover: #e5c158;
+    --shadow: 0 4px 25px rgba(229, 193, 88, 0.1);
+}
+
+/* Subtle gold border on main header */
+.header-main {
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+/* Warm gold glow for the brand logo */
+.logo-rascal .cal {
+    color: var(--primary);
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+/* Luxury gold border on search bar */
+.search-bar input {
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+/* Search bar focus glow in champagne gold */
+.search-bar input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 14px rgba(212, 175, 55, 0.25);
+}
+
+/* Gold border accent for theme picker icon button in OLED theme */
+.theme-picker-dropdown-wrap button {
+    border: 1px solid rgba(212, 175, 55, 0.25) !important;
+}
+
+/* Gold hover glow for theme picker icon button in OLED theme */
+.theme-picker-dropdown-wrap button:hover {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.3);
+}
+
+/* Floating theme picker menu styling in OLED luxury theme */
+.theme-picker-menu {
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(212, 175, 55, 0.12);
+}
+
+/* Deep black anime cards with subtle gold perimeter borders */
+.anime-card {
+    border: 1px solid rgba(212, 175, 55, 0.12);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+/* Gold border highlight when hovering over anime cards */
+.anime-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 6px 25px rgba(212, 175, 55, 0.18);
+}
+
+/* Active filter button golden border */
+.filter-btn.active,
+.filter-chip-btn input:checked + span {
+    border: 1px solid var(--primary);
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.25);
+}
+
+/* Custom dropdown floating menus with refined gold border */
+.custom-select-menu {
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.85);
+}
+
+/* Watch queue sidebar border in OLED luxury theme */
+.queue-sidebar {
+    border-left: 1px solid var(--border);
+    box-shadow: -4px 0 30px rgba(0, 0, 0, 0.8);
+}

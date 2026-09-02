@@ -140,12 +140,15 @@ export class ThemeManager {
 
         // Fallback: If /api/themes is not reached (e.g. server hasn't been restarted yet), probe static files
         const fallbackThemes = [DEFAULT_THEME_CSS];
-        try {
-            const testNeon = await fetch('css/neon.css');
-            if (testNeon.ok && !fallbackThemes.includes('neon.css')) {
-                fallbackThemes.push('neon.css');
-            }
-        } catch (_) {}
+        const probeList = ['neon.css', 'oled-luxury.css', 'dock-bottom.css', 'vertical-nav.css'];
+        for (const file of probeList) {
+            try {
+                const res = await fetch(`css/${file}`);
+                if (res.ok && !fallbackThemes.includes(file)) {
+                    fallbackThemes.push(file);
+                }
+            } catch (_) {}
+        }
 
         return fallbackThemes;
     }
@@ -158,7 +161,14 @@ export class ThemeManager {
      */
     static formatThemeName(filename) {
         if (filename === DEFAULT_THEME_CSS) return 'Standaard (styles.css)';
-        const baseName = filename.replace(/\.css$/i, '');
+        const labels = {
+            'neon.css': 'Neon Cyber (neon.css)',
+            'oled-luxury.css': 'OLED Luxury (oled-luxury.css)',
+            'dock-bottom.css': 'Dock Bottom Layout (dock-bottom.css)',
+            'vertical-nav.css': 'Vertical Nav Dashboard (vertical-nav.css)',
+        };
+        if (labels[filename]) return labels[filename];
+        const baseName = filename.replace(/\.css$/i, '').replace(/[-_]/g, ' ');
         const capitalized = baseName.charAt(0).toUpperCase() + baseName.slice(1);
         return `${capitalized} (${filename})`;
     }
