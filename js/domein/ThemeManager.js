@@ -140,7 +140,7 @@ export class ThemeManager {
 
         // Fallback: If /api/themes is not reached (e.g. server hasn't been restarted yet), probe static files
         const fallbackThemes = [DEFAULT_THEME_CSS];
-        const probeList = ['neon.css', 'oled-luxury.css', 'dock-bottom.css', 'vertical-nav.css'];
+        const probeList = ['neon.css', 'oled-luxury.css', 'cinema-browse.css', 'vertical-nav.css'];
         for (const file of probeList) {
             try {
                 const res = await fetch(`css/${file}`);
@@ -162,10 +162,10 @@ export class ThemeManager {
     static formatThemeName(filename) {
         if (filename === DEFAULT_THEME_CSS) return 'Standaard (styles.css)';
         const labels = {
-            'neon.css': 'Neon Cyber (neon.css)',
+            'neon.css': 'Cyber Neon (neon.css)',
             'oled-luxury.css': 'OLED Luxury (oled-luxury.css)',
-            'dock-bottom.css': 'Dock Bottom Layout (dock-bottom.css)',
-            'vertical-nav.css': 'Vertical Nav Dashboard (vertical-nav.css)',
+            'cinema-browse.css': 'Cinema Showcase (cinema-browse.css)',
+            'vertical-nav.css': 'Desktop Sidebar (vertical-nav.css)',
         };
         if (labels[filename]) return labels[filename];
         const baseName = filename.replace(/\.css$/i, '').replace(/[-_]/g, ' ');

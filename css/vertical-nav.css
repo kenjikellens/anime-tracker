@@ -1,10 +1,10 @@
 /* ==========================================================================
-   RASCAL — VERTICAL NAVIGATION DASHBOARD LAYOUT OVERHAUL
-   Transforms the top navigation bar into a left-hand desktop sidebar (like Spotify/Discord)
-   and shifts main content and footer into a dashboard layout.
+   RASCAL — DESKTOP SIDEBAR NAVIGATION LAYOUT OVERHAUL
+   Transforms the top navigation bar into a Spotify/Discord-style left sidebar
+   with integrated search, bottom tool dock, and clean desktop ergonomics.
    ========================================================================== */
 
-/* Fixed left vertical sidebar navigation */
+/* Fixed left vertical sidebar navigation rail */
 .header-main {
     position: fixed !important;
     top: 0 !important;
@@ -15,64 +15,90 @@
     background: var(--surface) !important;
     border-right: 1px solid var(--surface-2) !important;
     border-bottom: none !important;
-    padding: 24px 16px !important;
+    padding: 24px 18px !important;
     display: flex !important;
     flex-direction: column !important;
-    z-index: 1000 !important;
-    overflow-y: auto !important;
+    z-index: 999 !important;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15) !important;
 }
 
-/* Inner sidebar flex container layout */
+/* Sidebar flex layout container */
 .header-content {
     display: flex !important;
     flex-direction: column !important;
     height: 100% !important;
     width: 100% !important;
-    gap: 20px !important;
+    gap: 18px !important;
     padding: 0 !important;
 }
 
-/* Sidebar header brand logo area */
+/* Sidebar logo area */
 .header-left {
     display: flex !important;
     align-items: center !important;
-    justify-content: center !important;
-    padding-bottom: 8px !important;
+    padding-bottom: 6px !important;
+}
+
+/* Sidebar brand logo typography */
+.logo-rascal {
+    font-size: 24px !important;
+    font-weight: 800 !important;
 }
 
 /* Sidebar search bar container */
 .header-center {
     width: 100% !important;
     display: flex !important;
-    flex-direction: column !important;
 }
 
-/* Full-width search bar input wrap */
-.search-bar {
+/* Constrained search bar wrapper preventing horizontal expansion in sidebar */
+.search-bar,
+.search-bar:focus-within {
     width: 100% !important;
     max-width: 100% !important;
 }
 
-/* Action buttons pinned to bottom of sidebar */
+/* Compact search input styled for vertical sidebar width */
+.search-bar input {
+    width: 100% !important;
+    padding: 10px 14px 10px 36px !important;
+    border-radius: 10px !important;
+    font-size: 13px !important;
+}
+
+/* Search icon position inside sidebar input */
+.search-bar .search-icon {
+    left: 12px !important;
+}
+
+/* Four-column tool dock pinned to bottom of left navigation rail */
 .header-right {
     margin-top: auto !important;
-    display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
     gap: 8px !important;
+    width: 100% !important;
     padding-top: 16px !important;
     border-top: 1px solid var(--surface-2) !important;
 }
 
-/* Main app container shifted right to accommodate vertical sidebar */
+/* Compact button dimensions inside bottom tool dock */
+.header-right button,
+.theme-picker-dropdown-wrap button {
+    width: 100% !important;
+    height: 38px !important;
+    border-radius: 8px !important;
+}
+
+/* Main app content container shifted right */
 #app {
     margin-left: 250px !important;
     width: calc(100% - 250px) !important;
     max-width: calc(100% - 250px) !important;
-    padding: 28px 32px !important;
+    padding: 28px 36px !important;
 }
 
-/* Shifted app container when queue sidebar drawer is open */
+/* Content layout adjustment when watch queue sidebar is open */
 #app.sidebar-open {
     margin-left: 250px !important;
     margin-right: 380px !important;
@@ -85,10 +111,10 @@ footer {
     width: calc(100% - 250px) !important;
 }
 
-/* Theme picker menu opens upward from bottom of vertical sidebar */
+/* Theme picker popup menu floats upward from bottom tool dock */
 .theme-picker-menu {
     top: auto !important;
-    bottom: calc(100% + 8px) !important;
+    bottom: calc(100% + 10px) !important;
     left: 0 !important;
     right: auto !important;
 }
