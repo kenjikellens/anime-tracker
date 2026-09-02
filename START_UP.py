@@ -29,6 +29,27 @@ def serve_static(path):
     return send_from_directory(BASE_DIR, path)
 
 
+# Scans the css directory and returns all detected CSS stylesheets as available themes.
+# This affects client-side theme selection and enables automatic discovery of custom stylesheets.
+@app.route('/api/themes', methods=['GET'])
+def list_themes():
+    """Return all available CSS files in the css directory."""
+    css_dir = os.path.join(BASE_DIR, 'css')
+    try:
+        files = [
+            f for f in os.listdir(css_dir)
+            if f.endswith('.css') and os.path.isfile(os.path.join(css_dir, f))
+        ]
+        if 'styles.css' in files:
+            files.remove('styles.css')
+            files.insert(0, 'styles.css')
+        return jsonify({"themes": files}), 200
+    except Exception as e:
+        print(f"Error listing themes: {str(e)}")
+        return jsonify({"themes": ["styles.css"]}), 200
+
+
+
 # Persists the user's updated anime data back into the local data.json file.
 # This modifies the local JSON dataset on disk when the user saves changes.
 @app.route('/api/save', methods=['POST'])

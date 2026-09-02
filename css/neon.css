@@ -1,0 +1,124 @@
+/* ==========================================================================
+   RASCAL — NEON CYBER THEME OVERRIDE
+   ========================================================================== */
+
+/* Neon dark cyber color tokens and theme overrides */
+:root,
+[data-theme="dark"] {
+    --bg: #070814;
+    --surface: #0e1124;
+    --surface-card: #131732;
+    --surface-hover: #1c224a;
+    --surface-2: #161c3d;
+    --border: rgba(0, 240, 255, 0.25);
+    --text: #eaf8ff;
+    --text-muted: #7f95b7;
+    --white: #ffffff;
+    --primary: #00f0ff;
+    --primary-rgb: 0, 240, 255;
+    --header-bg: #0b0d1e;
+    --search-bg: #141936;
+    --search-hover-bg: #1a2147;
+    --active-bg: #00f0ff;
+    --active-color: #070814;
+    --status-btn-bg: #141936;
+    --status-btn-color: #00f0ff;
+    --status-btn-hover: #00f0ff;
+    --shadow: 0 4px 25px rgba(0, 240, 255, 0.12);
+    --modal-bg: rgba(7, 8, 20, 0.85);
+}
+
+/* Neon light mode color palette with magenta primary accent */
+[data-theme="light"] {
+    --bg: #0d122b;
+    --surface: #141b3d;
+    --surface-card: #1b244f;
+    --surface-hover: #243068;
+    --surface-2: #1e2857;
+    --border: rgba(255, 0, 127, 0.25);
+    --text: #f5f8ff;
+    --text-muted: #8b9ec2;
+    --white: #ffffff;
+    --primary: #ff007f;
+    --primary-rgb: 255, 0, 127;
+    --header-bg: #111736;
+    --search-bg: #1a224a;
+    --search-hover-bg: #222d61;
+    --active-bg: #ff007f;
+    --active-color: #ffffff;
+    --status-btn-bg: #1a224a;
+    --status-btn-color: #ff007f;
+    --status-btn-hover: #ff007f;
+    --shadow: 0 4px 25px rgba(255, 0, 127, 0.12);
+}
+
+/* Glowing neon border and bottom shadow for the main navigation header */
+.header-main {
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 240, 255, 0.08);
+}
+
+/* Glowing neon highlight on brand logo text */
+.logo-rascal .cal {
+    color: var(--primary);
+    text-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
+}
+
+/* Glowing border accent for search input */
+.search-bar input {
+    border: 1px solid rgba(0, 240, 255, 0.2);
+}
+
+/* Focus glow on search input */
+.search-bar input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.35);
+}
+
+/* Glowing border accent for theme picker icon button in neon theme */
+.theme-picker-dropdown-wrap button {
+    border: 1px solid rgba(0, 240, 255, 0.2) !important;
+}
+
+/* Hover glow for theme picker icon button in neon theme */
+.theme-picker-dropdown-wrap button:hover {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.35);
+}
+
+/* Glowing border and elevated shadow for theme picker floating popup menu */
+.theme-picker-menu {
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 240, 255, 0.15);
+}
+
+/* Glowing outline and shadow for anime cards */
+.anime-card {
+    border: 1px solid rgba(0, 240, 255, 0.15);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Neon glow enhancement when hovering over anime cards */
+.anime-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 6px 25px rgba(0, 240, 255, 0.25);
+}
+
+/* Neon glow border and shadow for active filter buttons */
+.filter-btn.active,
+.filter-chip-btn input:checked + span {
+    border: 1px solid var(--primary);
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+}
+
+/* Glowing border and elevated shadow for custom dropdown floating menus */
+.custom-select-menu {
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 240, 255, 0.15);
+}
+
+/* Neon accent and shadow for watch queue sidebar */
+.queue-sidebar {
+    border-left: 1px solid var(--border);
+    box-shadow: -4px 0 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 240, 255, 0.08);
+}

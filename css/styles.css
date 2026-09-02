@@ -335,6 +335,90 @@ select[data-bound] {
     color: var(--text) !important;
 }
 
+/* Container wrapper for the theme picker icon button and dropdown menu */
+.theme-picker-dropdown-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Theme picker button icon dimensions and layout matching header buttons */
+.theme-picker-dropdown-wrap button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background-color: var(--search-bg) !important;
+    color: var(--text) !important;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Pseudo-element matching search-bg for ultimate-hover-effect */
+.theme-picker-dropdown-wrap button::before {
+    background-color: var(--search-bg) !important;
+    border-radius: 10px;
+}
+
+/* Hover state for theme picker icon button (never pure white, matches header search-hover-bg) */
+.theme-picker-dropdown-wrap button:hover,
+.theme-picker-dropdown-wrap button:hover::before {
+    background-color: var(--search-hover-bg) !important;
+    color: var(--text) !important;
+}
+
+/* Floating theme selection menu positioned below the header palette icon button */
+.theme-picker-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    left: auto;
+    min-width: 200px;
+    background: var(--surface);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    padding: 6px;
+    z-index: 10005 !important;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease;
+}
+
+/* Active open state displaying the theme picker floating popup menu */
+.theme-picker-menu.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Options inside the theme picker menu */
+.theme-picker-menu .custom-select-option {
+    color: var(--text) !important;
+    background: transparent;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* Hover background on theme options (dark surface hover, never white!) */
+.theme-picker-menu .custom-select-option:hover {
+    background-color: var(--surface-hover) !important;
+    color: var(--text) !important;
+}
+
+/* Active selected theme option in dropdown menu */
+.theme-picker-menu .custom-select-option.active {
+    background-color: var(--surface-2) !important;
+    color: var(--primary) !important;
+}
+
 /* Theme Toggle Button Icon Visibility */
 
 /* Displays the sun icon in light mode */

@@ -129,6 +129,7 @@ async function init() {
         }
     });
     ThemeManager.bindToggle('theme-toggle');
+    await ThemeManager.initThemePicker('theme-picker-btn', 'theme-picker-menu');
 
     window.addEventListener('hashchange', handleRoute);
     await handleRoute();
