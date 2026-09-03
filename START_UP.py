@@ -29,6 +29,17 @@ def serve_static(path):
     return send_from_directory(BASE_DIR, path)
 
 
+# Disables browser caching on static assets during development to ensure instant CSS and JS updates.
+# This modifies HTTP response headers for all served routes and assets.
+@app.after_request
+def add_no_cache_headers(response):
+    """Ensure browser does not aggressively cache CSS/JS files during active changes."""
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+    return response
+
+
 # Scans the css directory and returns all detected CSS stylesheets as available themes.
 # This affects client-side theme selection and enables automatic discovery of custom stylesheets.
 @app.route('/api/themes', methods=['GET'])

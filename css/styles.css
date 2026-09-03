@@ -371,25 +371,28 @@ select[data-bound] {
     color: var(--text) !important;
 }
 
-/* Floating theme selection menu positioned below the header palette icon button */
+/* Floating theme selection menu dynamically sized to the longest theme title */
 .theme-picker-menu {
     position: absolute;
     top: calc(100% + 8px);
     right: 0;
     left: auto;
-    min-width: 200px;
+    width: max-content !important;
+    min-width: max-content !important;
+    max-width: 90vw !important;
     background: var(--surface);
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
-    padding: 6px;
+    padding: 8px;
     z-index: 10005 !important;
     border: 1px solid rgba(255, 255, 255, 0.12);
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 4px;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.18s ease;
+    box-sizing: border-box !important;
 }
 
 /* Active open state displaying the theme picker floating popup menu */
@@ -398,13 +401,32 @@ select[data-bound] {
     pointer-events: auto;
 }
 
-/* Options inside the theme picker menu */
+/* Options inside the theme picker menu dynamically fitting their content without wrapping */
 .theme-picker-menu .custom-select-option {
     color: var(--text) !important;
     background: transparent;
-    padding: 8px 14px;
+    padding: 8px 16px !important;
     border-radius: 8px;
     transition: background-color 0.15s ease, color 0.15s ease;
+    white-space: nowrap !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 24px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Option text span inside the theme picker menu with guaranteed non-shrinking width */
+.theme-picker-menu .custom-select-option span {
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+}
+
+/* Option checkmark icon inside the theme picker menu */
+.theme-picker-menu .custom-select-option svg {
+    flex-shrink: 0 !important;
+    margin-left: auto !important;
 }
 
 /* Hover background on theme options (dark surface hover, never white!) */

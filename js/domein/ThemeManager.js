@@ -122,7 +122,7 @@ export class ThemeManager {
 
     /**
      * Fetches the list of available CSS theme files from the backend API.
-     * This queries the server to discover stylesheets in the css directory, with a static fallback check.
+     * This queries the server dynamically to discover all stylesheets in the css directory.
      * @returns {Promise<string[]>} Array of available CSS file names.
      */
     static async fetchAvailableThemes() {
@@ -135,42 +135,23 @@ export class ThemeManager {
                 }
             }
         } catch (err) {
-            console.warn('Could not fetch themes from API, checking fallback:', err);
+            console.warn('Could not fetch themes from API, falling back to default:', err);
         }
-
-        // Fallback: If /api/themes is not reached (e.g. server hasn't been restarted yet), probe static files
-        const fallbackThemes = [DEFAULT_THEME_CSS];
-        const probeList = ['neon.css', 'oled-luxury.css', 'cinema-browse.css', 'vertical-nav.css'];
-        for (const file of probeList) {
-            try {
-                const res = await fetch(`css/${file}`);
-                if (res.ok && !fallbackThemes.includes(file)) {
-                    fallbackThemes.push(file);
-                }
-            } catch (_) {}
-        }
-
-        return fallbackThemes;
+        return [DEFAULT_THEME_CSS];
     }
 
     /**
-     * Formats a CSS filename into a human-readable display label for the UI selector.
-     * This affects option label text in the theme selector dropdown.
+     * Formats a CSS filename dynamically into a human-readable display label for the UI selector.
+     * Capitalizes words, handles dashes and underscores, and shows the filename dynamically without hardcoded mappings.
      * @param {string} filename - The CSS file name.
      * @returns {string} The formatted display label.
      */
     static formatThemeName(filename) {
         if (filename === DEFAULT_THEME_CSS) return 'Standaard (styles.css)';
-        const labels = {
-            'neon.css': 'Cyber Neon (neon.css)',
-            'oled-luxury.css': 'OLED Luxury (oled-luxury.css)',
-            'cinema-browse.css': 'Cinema Showcase (cinema-browse.css)',
-            'vertical-nav.css': 'Desktop Sidebar (vertical-nav.css)',
-        };
-        if (labels[filename]) return labels[filename];
-        const baseName = filename.replace(/\.css$/i, '').replace(/[-_]/g, ' ');
-        const capitalized = baseName.charAt(0).toUpperCase() + baseName.slice(1);
-        return `${capitalized} (${filename})`;
+        const cleanBase = filename.replace(/\.css$/i, '').replace(/[-_]+/g, ' ').trim();
+        const words = cleanBase.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+        const formattedTitle = words.join(' ');
+        return `${formattedTitle} (${filename})`;
     }
 
     /**
@@ -190,20 +171,30 @@ export class ThemeManager {
 
         const renderMenu = () => {
             menu.innerHTML = '';
+            menu.style.width = 'max-content';
+            menu.style.minWidth = 'max-content';
             themes.forEach(themeFile => {
                 const isSelected = themeFile === currentSavedFile;
                 const item = document.createElement('div');
                 item.className = `custom-select-option ${isSelected ? 'active' : ''}`;
+                item.style.whiteSpace = 'nowrap';
+                item.style.display = 'flex';
+                item.style.alignItems = 'center';
+                item.style.justifyContent = 'space-between';
+                item.style.gap = '24px';
+                item.style.width = 'auto';
                 if (isSelected) item.dataset.active = 'true';
                 item.dataset.value = themeFile;
 
                 const textSpan = document.createElement('span');
                 textSpan.textContent = this.formatThemeName(themeFile);
+                textSpan.style.whiteSpace = 'nowrap';
+                textSpan.style.flexShrink = '0';
                 item.appendChild(textSpan);
 
                 if (isSelected) {
                     const checkSvg = `
-                        <svg class="custom-select-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="custom-select-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-left: auto;">
                             <use href="#icon-check"></use>
                         </svg>
                     `;
