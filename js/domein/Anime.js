@@ -20,7 +20,18 @@ export class Anime {
         this.year = data.year || null;
         this.genres = Array.isArray(data.genres) ? data.genres : [];
         this.watchRank = (typeof data.watchRank === 'number' && data.watchRank > 0) ? data.watchRank : null;
+        this.timesWatched = (typeof data.timesWatched === 'number' && data.timesWatched >= 0) ? data.timesWatched : 0;
         this.items = data.items ? data.items.map(item => new AnimeItem(item.id, item.title, item.watched, item.status, item.type, item.watchedEpisodes, item.episodesCount, item.rating)) : [];
+    }
+
+    /**
+     * Updates the number of times this anime has been watched.
+     * Modifies the timesWatched counter on this anime model instance.
+     * @param {number} count - The non-negative watch count.
+     */
+    setTimesWatched(count) {
+        const parsed = parseInt(count, 10);
+        this.timesWatched = (!isNaN(parsed) && parsed >= 0) ? parsed : 0;
     }
 
     /**

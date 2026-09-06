@@ -598,9 +598,20 @@ function renderDetail(loadStartTime = null) {
             openItemIds,
             openItemRatingModal,
             loadStartTime,
-            handleQueueToggle
+            handleQueueToggle,
+            handleTimesWatchedChange
         );
     });
+}
+
+/**
+ * Persists watch count updates when the user adjusts times watched on the detail page.
+ * Modifies repository storage and triggers DataStore save.
+ * @param {Anime} anime - The target anime franchise.
+ * @param {number} newCount - The updated watch count.
+ */
+async function handleTimesWatchedChange(anime, newCount) {
+    await DataStore.save(repository);
 }
 
 async function withStatusUpdater(fn) {

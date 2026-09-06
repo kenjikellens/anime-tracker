@@ -23,7 +23,7 @@ export class DetailRenderer {
      * Builds the full detailed sidebar, item accordions, and status dropdowns for an anime group.
      * Restricts the global dropdown to watch statuses, and includes item-only release statuses.
      */
-    static async renderDetail(container, anime, onItemStatusChange, onGlobalStatusChange, onRatingChange, onEpisodeToggle, onRatingClick = null, openItemIds = [], onItemRatingClick = null, minLoadStartTime = null, onQueueToggle = null) {
+    static async renderDetail(container, anime, onItemStatusChange, onGlobalStatusChange, onRatingChange, onEpisodeToggle, onRatingClick = null, openItemIds = [], onItemRatingClick = null, minLoadStartTime = null, onQueueToggle = null, onTimesWatchedChange = null) {
         const layout = container.querySelector('.anime-detail-layout-v3');
         if (!layout) return;
 
@@ -173,6 +173,35 @@ export class DetailRenderer {
                 genresContainer.innerHTML = '';
                 genresContainer.style.display = 'none';
             }
+        }
+
+        // Render Times Watched metadata stepper
+        const timesWatchedDisplay = layout.querySelector('#times-watched-display');
+        const minusBtn = layout.querySelector('#times-watched-minus');
+        const plusBtn = layout.querySelector('#times-watched-plus');
+
+        if (timesWatchedDisplay) {
+            timesWatchedDisplay.textContent = typeof anime.timesWatched === 'number' ? anime.timesWatched : 0;
+        }
+
+        if (minusBtn) {
+            minusBtn.onclick = () => {
+                const current = typeof anime.timesWatched === 'number' ? anime.timesWatched : 0;
+                const next = Math.max(0, current - 1);
+                anime.setTimesWatched(next);
+                if (timesWatchedDisplay) timesWatchedDisplay.textContent = next;
+                if (onTimesWatchedChange) onTimesWatchedChange(anime, next);
+            };
+        }
+
+        if (plusBtn) {
+            plusBtn.onclick = () => {
+                const current = typeof anime.timesWatched === 'number' ? anime.timesWatched : 0;
+                const next = current + 1;
+                anime.setTimesWatched(next);
+                if (timesWatchedDisplay) timesWatchedDisplay.textContent = next;
+                if (onTimesWatchedChange) onTimesWatchedChange(anime, next);
+            };
         }
 
         // Render episodes/accordion list

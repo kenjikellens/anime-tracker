@@ -321,6 +321,18 @@ export class AnimeRepository {
                 return list.sort((a, b) => (a.rating || 0) - (b.rating || 0));
             case 'status':
                 return list.sort((a, b) => a.status - b.status);
+            case 'times-watched-desc':
+                return list.sort((a, b) => {
+                    const diff = (b.timesWatched || 0) - (a.timesWatched || 0);
+                    if (diff !== 0) return diff;
+                    return a.title.localeCompare(b.title);
+                });
+            case 'times-watched-asc':
+                return list.sort((a, b) => {
+                    const diff = (a.timesWatched || 0) - (b.timesWatched || 0);
+                    if (diff !== 0) return diff;
+                    return a.title.localeCompare(b.title);
+                });
             default:
                 return list;
         }
@@ -343,6 +355,7 @@ export class AnimeRepository {
             year: a.year || null,
             genres: a.genres || [],
             watchRank: (typeof a.watchRank === 'number' && a.watchRank > 0) ? a.watchRank : null,
+            timesWatched: (typeof a.timesWatched === 'number' && a.timesWatched >= 0) ? a.timesWatched : 0,
 
             items: a.items.map(i => ({ id: i.id, title: i.title, status: i.status, type: i.type, rating: i.rating, watchedEpisodes: i.watchedEpisodes, episodesCount: i.episodesCount }))
         }));

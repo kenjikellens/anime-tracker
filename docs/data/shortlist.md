@@ -112,6 +112,7 @@
 - The Melancholy of Haruhi Suzumiya
 - The Pet Girl of Sakurasou
 - The Quintessential Quintuplets
+- The Ramparts of Ice
 - The Ryuo's Work is Never Done!
 - The Testament of Sister New Devil
 - The Warrior Princess and the Barbaric King

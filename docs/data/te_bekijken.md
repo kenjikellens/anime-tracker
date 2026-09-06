@@ -500,3 +500,6 @@
 ## Yano-kun's Ordinary Days
 - [ ] Yano-kun's Ordinary Days (SERIE - 12 eps)
 
+## The Ramparts of Ice
+- [ ] The Ramparts of Ice Season 1 (SERIE - 14 eps)
+- [ ] The Ramparts of Ice Season 2 (SERIE - Announced)

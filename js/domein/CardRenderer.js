@@ -173,6 +173,14 @@ export class CardRenderer {
             posterDiv.appendChild(queueBadge);
         }
 
+        // Subtle rewatch badge for multi-watch franchises
+        if (typeof anime.timesWatched === 'number' && anime.timesWatched > 1) {
+            const rewatchBadge = document.createElement('div');
+            rewatchBadge.className = 'card-times-watched-badge';
+            rewatchBadge.textContent = `${anime.timesWatched}x`;
+            posterDiv.appendChild(rewatchBadge);
+        }
+
         wrapper.querySelector('.card-title span').textContent = anime.title;
         wrapper.querySelector('.card-subtitle').textContent = `${itemCount} items`;
 
