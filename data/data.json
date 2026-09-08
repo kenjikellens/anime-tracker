@@ -5417,8 +5417,8 @@
         "id": "saekano",
         "anilistId": 20657,
         "title": "Saekano: How to Raise a Boring Girlfriend",
-        "status": 0,
-        "rating": 0,
+        "status": 1,
+        "rating": 6.7,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx20657-pMZBj6K6mLhi.jpg",
         "studio": "A-1 Pictures",
@@ -5435,9 +5435,9 @@
             {
                 "id": "saekano-s1",
                 "title": "Saekano: How to Raise a Boring Girlfriend",
-                "status": 0,
+                "status": 1,
                 "type": "SERIE",
-                "rating": 0,
+                "rating": 7.3,
                 "watchedEpisodes": [
                     1,
                     2,
@@ -5449,26 +5449,43 @@
                     8,
                     9,
                     10,
-                    11
+                    11,
+                    12,
+                    13
                 ],
                 "episodesCount": 13
             },
             {
                 "id": "saekano-s2",
                 "title": "Saekano: How to Raise a Boring Girlfriend ♭",
-                "status": -1,
+                "status": 1,
                 "type": "SERIE",
-                "rating": 0,
-                "watchedEpisodes": [],
+                "rating": 5,
+                "watchedEpisodes": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12
+                ],
                 "episodesCount": 12
             },
             {
                 "id": "saekano-movie-finale",
                 "title": "Saekano the Movie: Finale",
-                "status": -1,
+                "status": 1,
                 "type": "MOVIE",
                 "rating": 0,
-                "watchedEpisodes": [],
+                "watchedEpisodes": [
+                    1
+                ],
                 "episodesCount": 1
             }
         ]
@@ -6470,10 +6487,12 @@
             {
                 "id": "the-ramparts-of-ice-season-1",
                 "title": "The Ramparts of Ice Season 1",
-                "status": -1,
+                "status": 0,
                 "type": "SERIE",
                 "rating": 0,
-                "watchedEpisodes": [],
+                "watchedEpisodes": [
+                    1
+                ],
                 "episodesCount": 14
             },
             {

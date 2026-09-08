@@ -32,10 +32,14 @@ export class StatusUpdater {
     }
 
     /**
-     * Applies one item status and adjusts its episode state.
-     * Item status changes do not automatically mutate the parent anime status.
+     * Updates an item's status, adjusts watched episodes, and transitions the parent anime to 'Bezig' (0) if both were 'Te Bekijken' (-1).
+     * Modifies the item's status, episode progress, and optionally the parent anime's global status.
+     * @param {Object} item - The detail item model.
+     * @param {number|string} newStatus - The new status to apply.
+     * @param {Object} [anime] - The parent anime model instance.
      */
     static updateItemStatus(item, newStatus, anime) {
+        const prevStatus = item.status;
         const s = parseInt(newStatus, 10);
         item.setStatus(s);
 
@@ -48,13 +52,21 @@ export class StatusUpdater {
                 item.setFirstWatched();
             }
         }
+
+        if (prevStatus === -1 && s === 0 && anime && anime.status === -1) {
+            anime.setGlobalStatus(0);
+        }
     }
 
     /**
-     * Toggles one episode and derives the item status from progress.
-     * Does not automatically mutate the parent anime status.
+     * Toggles one episode's watched status, adjusts the item status, and transitions the parent anime to 'Bezig' (0) if both were 'Te Bekijken' (-1).
+     * Modifies the item's watched episode list, item status, and optionally the parent anime's global status.
+     * @param {Object} item - The detail item model.
+     * @param {number} episodeNum - The episode number to toggle.
+     * @param {Object} [anime] - The parent anime model instance.
      */
     static toggleEpisode(item, episodeNum, anime) {
+        const prevStatus = item.status;
         item.toggleEpisode(episodeNum);
 
         const watchedCount = item.watchedEpisodes.length;
@@ -66,6 +78,10 @@ export class StatusUpdater {
             item.setStatus(1);
         } else {
             item.setStatus(0);
+        }
+
+        if (prevStatus === -1 && item.status === 0 && anime && anime.status === -1) {
+            anime.setGlobalStatus(0);
         }
     }
 
