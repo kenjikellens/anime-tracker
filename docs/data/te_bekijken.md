@@ -503,3 +503,6 @@
 ## The Ramparts of Ice
 - [ ] The Ramparts of Ice Season 1 (SERIE - 14 eps)
 - [ ] The Ramparts of Ice Season 2 (SERIE - Announced)
+
+## Nyan Koi!
+- [ ] Nyan Koi! (SERIE - 12 eps)

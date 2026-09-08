@@ -77,6 +77,7 @@
 - My Teen Romantic Comedy SNAFU (Oregairu)
 - Nisekoi: False Love
 - Nukitashi THE ANIMATION
+- Nyan Koi!
 - Oh Boy, Was I Wrong About Her
 - Orange
 - Oreshura
