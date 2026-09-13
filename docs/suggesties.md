@@ -20,7 +20,7 @@ Hier kunnen we ideeën en suggesties verzamelen voor nieuwe functionaliteiten of
     - *Synopsis:* Een jongen met een extreme fobie voor vrouwen ontdekt het geheim van de knappe conciërge op school: ze is eigenlijk een meisje dat verkleed gaat als butler. Ze dwingen hem dit geheim te bewaren, wat leidt tot constante awkward situaties.
 - [ ] **Boarding School Juliet**
     - *Synopsis:* Op een kostschool vechten twee rivaliserende kampen constant met elkaar. De leiders van beide kampen zijn echter stiekem verliefd en moeten hun relatie geheim houden voor hun bondgenoten. Veel actie, tsunderes en nerveuze momenten.
-- [ ] **We Never Learn (Bokuben)**
+- [x] **We Never Learn (Bokuben)**
     - *Synopsis:* Een arme student moet drie geniale meiden bijles geven in de vakken waar ze juist heel slecht in zijn. Vergelijkbaar met *The Quintessential Quintuplets*, maar met veel meer flustered focus.
 - [ ] **Saekano: How to Raise a Boring Girlfriend**
     - *Synopsis:* Een otaku wil de ultieme dating-sim maken en vraagt een paar getalenteerde meiden om te helpen. Veel meta-humor over de anime-industrie en klassieke harem-momenten.

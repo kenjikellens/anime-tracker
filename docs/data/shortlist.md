@@ -125,6 +125,7 @@
 - Tune In to the Midnight Heart
 - Umamusume: Pretty Derby
 - Undefeated Bahamut Chronicle
+- We Never Learn: BOKUBEN
 - World's End Harem
 - Yamada-kun and the Seven Witches
 - Yano-kun's Ordinary Days

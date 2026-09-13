@@ -506,3 +506,8 @@
 
 ## Nyan Koi!
 - [ ] Nyan Koi! (SERIE - 12 eps)
+
+## We Never Learn: BOKUBEN
+- [ ] We Never Learn: BOKUBEN Season 1 (SERIE - 13 eps)
+- [ ] We Never Learn!: BOKUBEN Season 2 (SERIE - 13 eps)
+- [ ] We Never Learn: BOKUBEN OVAs (OVA - 2 eps)

@@ -6518,5 +6518,53 @@
                 "episodesCount": 1
             }
         ]
+    },
+    {
+        "id": "we-never-learn-bokuben",
+        "anilistId": 103900,
+        "title": "We Never Learn: BOKUBEN",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "2019-04-07",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx103900-E3rqgpq4X0Py.jpg",
+        "studio": "Studio Silver, Arvo Animation",
+        "year": 2019,
+        "genres": [
+            "Comedy",
+            "Ecchi",
+            "Romance",
+            "Slice of Life"
+        ],
+        "watchRank": null,
+        "timesWatched": 0,
+        "items": [
+            {
+                "id": "we-never-learn-bokuben-season-1",
+                "title": "We Never Learn: BOKUBEN Season 1",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 13
+            },
+            {
+                "id": "we-never-learn-bokuben-season-2",
+                "title": "We Never Learn!: BOKUBEN Season 2",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 13
+            },
+            {
+                "id": "we-never-learn-bokuben-ovas",
+                "title": "We Never Learn: BOKUBEN OVAs",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 2
+            }
+        ]
     }
 ]
