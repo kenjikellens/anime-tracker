@@ -6566,5 +6566,70 @@
                 "episodesCount": 2
             }
         ]
+    },
+    {
+        "id": "tonikawa-over-the-moon-for-you",
+        "anilistId": 116267,
+        "title": "TONIKAWA: Over The Moon For You",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "2020-10-03",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx116267-Eo1biPBTlL4i.jpg",
+        "studio": "Seven Arcs",
+        "year": 2020,
+        "genres": [
+            "Comedy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "watchRank": null,
+        "timesWatched": 0,
+        "items": [
+            {
+                "id": "tonikawa-over-the-moon-for-you-season-1",
+                "title": "TONIKAWA: Over The Moon For You Season 1",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "tonikawa-over-the-moon-for-you-sns",
+                "title": "TONIKAWA: Over The Moon For You ~SNS~",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "tonikawa-over-the-moon-for-you-uniform",
+                "title": "TONIKAWA: Over The Moon For You ~Uniform~",
+                "status": -1,
+                "type": "SPECIAL",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "tonikawa-over-the-moon-for-you-season-2",
+                "title": "TONIKAWA: Over The Moon For You Season 2",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "tonikawa-over-the-moon-for-you-high-school-days",
+                "title": "TONIKAWA: Over The Moon For You ~High School Days~",
+                "status": -1,
+                "type": "ONA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 4
+            }
+        ]
     }
 ]

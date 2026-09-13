@@ -120,6 +120,7 @@
 - To Love Ru
 - Tokyo Ravens
 - Tomo-chan is a Girl!
+- TONIKAWA: Over The Moon For You
 - Toradora!
 - Trinity Seven
 - Tune In to the Midnight Heart

@@ -511,3 +511,11 @@
 - [ ] We Never Learn: BOKUBEN Season 1 (SERIE - 13 eps)
 - [ ] We Never Learn!: BOKUBEN Season 2 (SERIE - 13 eps)
 - [ ] We Never Learn: BOKUBEN OVAs (OVA - 2 eps)
+
+## TONIKAWA: Over The Moon For You
+- [ ] TONIKAWA: Over The Moon For You Season 1 (SERIE - 12 eps)
+- [ ] TONIKAWA: Over The Moon For You ~SNS~ (OVA - 1 eps)
+- [ ] TONIKAWA: Over The Moon For You ~Uniform~ (SPECIAL - 1 eps)
+- [ ] TONIKAWA: Over The Moon For You Season 2 (SERIE - 12 eps)
+- [ ] TONIKAWA: Over The Moon For You ~High School Days~ (ONA - 4 eps)
+
