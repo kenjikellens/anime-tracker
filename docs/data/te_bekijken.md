@@ -519,3 +519,11 @@
 - [ ] TONIKAWA: Over The Moon For You Season 2 (SERIE - 12 eps)
 - [ ] TONIKAWA: Over The Moon For You ~High School Days~ (ONA - 4 eps)
 
+## Carnival Phantasm
+- [ ] Carnival Phantasm (OVA - 12 eps)
+- [ ] Carnival Phantasm EX Season (OVA - 1 eps)
+- [ ] Carnival Phantasm: HibiChika Special (SPECIAL - 1 eps)
+- [ ] Fate/Prototype (SPECIAL - 1 eps)
+- [ ] Fate/Grand Carnival (SPIN-OFF - 4 eps)
+
+

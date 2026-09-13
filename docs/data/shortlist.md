@@ -17,6 +17,7 @@
 - Blue Box
 - Bottom-Tier Character Tomozaki
 - Can a Boy and Girl Friendship Hold Up? (No, It Can't!!)
+- Carnival Phantasm
 - Castle Town Dandelion
 - Chitose Is in the Ramune Bottle
 - Clannad

@@ -6631,5 +6631,69 @@
                 "episodesCount": 4
             }
         ]
+    },
+    {
+        "id": "carnival-phantasm",
+        "anilistId": 10012,
+        "title": "Carnival Phantasm",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "2011-08-14",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx10012-MNLVctKXaIAf.jpg",
+        "studio": "Lerche",
+        "year": 2011,
+        "genres": [
+            "Comedy",
+            "Supernatural"
+        ],
+        "watchRank": null,
+        "timesWatched": 0,
+        "items": [
+            {
+                "id": "carnival-phantasm-ova",
+                "title": "Carnival Phantasm",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "carnival-phantasm-ex-season",
+                "title": "Carnival Phantasm EX Season",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "carnival-phantasm-hibichika-special",
+                "title": "Carnival Phantasm: HibiChika Special",
+                "status": -1,
+                "type": "SPECIAL",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "carnival-phantasm-fate-prototype",
+                "title": "Fate/Prototype",
+                "status": -1,
+                "type": "SPECIAL",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "fate-grand-carnival",
+                "title": "Fate/Grand Carnival",
+                "status": -1,
+                "type": "SPIN-OFF",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 4
+            }
+        ]
     }
 ]
