@@ -80,6 +80,7 @@
 - Nukitashi THE ANIMATION
 - Nyan Koi!
 - Oh Boy, Was I Wrong About Her
+- One Room
 - Orange
 - Oreshura
 - ORESUKI: Are you the only one who loves me?

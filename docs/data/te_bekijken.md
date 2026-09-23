@@ -526,4 +526,13 @@
 - [ ] Fate/Prototype (SPECIAL - 1 eps)
 - [ ] Fate/Grand Carnival (SPIN-OFF - 4 eps)
 
+## One Room
+- [ ] One Room Season 1 (SERIE - 12 eps)
+- [ ] One Room: another (OVA - 1 eps)
+- [ ] Room Mate (SPIN-OFF - 12 eps)
+- [ ] One Room Season 2 (SERIE - 12 eps)
+- [ ] One Room: Second Season -extra- (OVA - 1 eps)
+- [ ] One Room Season 3 (SERIE - 12 eps)
+
+
 
