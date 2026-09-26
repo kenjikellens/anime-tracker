@@ -509,7 +509,7 @@
         "id": "the-100-girlfriends-who-really-really-really-really-really-love-you",
         "anilistId": null,
         "title": "The 100 Girlfriends Who Really, Really, Really, Really, Really Love You",
-        "status": 0,
+        "status": 1,
         "rating": 8.8,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx162694-QFBei5pbjSh8.png",
@@ -531,7 +531,20 @@
                 "status": 1,
                 "type": "SERIE",
                 "rating": 9,
-                "watchedEpisodes": [],
+                "watchedEpisodes": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12
+                ],
                 "episodesCount": 12
             },
             {
@@ -540,21 +553,41 @@
                 "status": 1,
                 "type": "SERIE",
                 "rating": 8.4,
-                "watchedEpisodes": [],
-                "episodesCount": 12
-            },
-            {
-                "id": "the-100-girlfriends-who-really-really-really-really-really-love-you-s3",
-                "title": "The 100 Girlfriends Who Really, Really, Really, Really, REALLY Love You Season 3",
-                "status": 0,
-                "type": "SERIE",
-                "rating": 0,
                 "watchedEpisodes": [
                     1,
                     2,
                     3,
                     4,
-                    5
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12
+                ],
+                "episodesCount": 12
+            },
+            {
+                "id": "the-100-girlfriends-who-really-really-really-really-really-love-you-s3",
+                "title": "The 100 Girlfriends Who Really, Really, Really, Really, REALLY Love You Season 3",
+                "status": 1,
+                "type": "SERIE",
+                "rating": 8.2,
+                "watchedEpisodes": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12
                 ],
                 "episodesCount": 12
             }
