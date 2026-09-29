@@ -99,10 +99,20 @@ def add_header(response):
 
 # Finds the first available TCP port starting from the given port by incrementing it.
 # This prevents port conflict errors and ensures the Flask server starts successfully.
-def find_free_port(start_port):
-    """Find a free port starting from start_port by incrementing by 1."""
+def find_free_port(start_port=5000):
+    """Find the first available TCP port, starting from start_port."""
     port = start_port
+
     while True:
+        # First check whether something is already listening on this port.
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.settimeout(0.2)
+
+            if s.connect_ex(('127.0.0.1', port)) == 0:
+                port += 1
+                continue
+
+        # Then verify that we can actually bind to the port.
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             try:
                 s.bind(('127.0.0.1', port))
