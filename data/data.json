@@ -6829,5 +6829,72 @@
                 "episodesCount": 12
             }
         ]
+    },
+    {
+        "id": "dark-gathering",
+        "anilistId": 152802,
+        "title": "Dark Gathering",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "2023-07-10",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx152802-ENRcnqD5axhQ.jpg",
+        "studio": "OLM",
+        "year": 2023,
+        "genres": [
+            "Adventure",
+            "Horror",
+            "Supernatural"
+        ],
+        "watchRank": null,
+        "timesWatched": 0,
+        "items": [
+            {
+                "id": "dark-gathering-season-1",
+                "title": "Dark Gathering Season 1",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 25
+            },
+            {
+                "id": "dark-gathering-season-2",
+                "title": "Dark Gathering Season 2",
+                "status": 2,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            }
+        ]
+    },
+    {
+        "id": "now-that-i-can-control-reality-with-a-mouse-cursor-i-m-gonna-click-away-on-the-girls",
+        "anilistId": 206774,
+        "title": "Now That I Can Control Reality With A Mouse Cursor, I'm Gonna Click Away On The Girls!",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "2026-10-05",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx206774-gXVdrySlLY6y.jpg",
+        "studio": "Studio Houkiboshi",
+        "year": 2026,
+        "genres": [
+            "Ecchi",
+            "Romance",
+            "Supernatural"
+        ],
+        "watchRank": null,
+        "timesWatched": 0,
+        "items": [
+            {
+                "id": "now-that-i-can-control-reality-with-a-mouse-cursor-i-m-gonna-click-away-on-the-girls",
+                "title": "Now That I Can Control Reality With A Mouse Cursor, I'm Gonna Click Away On The Girls!",
+                "status": 3,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 8
+            }
+        ]
     }
 ]

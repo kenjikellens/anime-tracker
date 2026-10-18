@@ -25,6 +25,7 @@
 - Classroom of the Elite
 - Dagashi Kashi
 - Danganronpa
+- Dark Gathering
 - Date A Live
 - Dealing with Mikadono Sisters is a Breeze
 - Domestic Girlfriend
@@ -77,6 +78,7 @@
 - My Stepmom's Daughter Is My Ex
 - My Teen Romantic Comedy SNAFU (Oregairu)
 - Nisekoi: False Love
+- Now That I Can Control Reality With A Mouse Cursor, I'm Gonna Click Away On The Girls!
 - Nukitashi THE ANIMATION
 - Nyan Koi!
 - Oh Boy, Was I Wrong About Her

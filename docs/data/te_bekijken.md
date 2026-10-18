@@ -534,5 +534,9 @@
 - [ ] One Room: Second Season -extra- (OVA - 1 eps)
 - [ ] One Room Season 3 (SERIE - 12 eps)
 
+## Dark Gathering
+- [ ] Dark Gathering Season 1 (SERIE - 25 eps)
+- [ ] Dark Gathering Season 2 (SERIE - Announced)
 
-
+## Now That I Can Control Reality With A Mouse Cursor, I'm Gonna Click Away On The Girls!
+- [ ] Now That I Can Control Reality With A Mouse Cursor, I'm Gonna Click Away On The Girls! (SERIE - 8 eps)
