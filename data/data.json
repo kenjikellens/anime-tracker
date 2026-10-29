@@ -6896,5 +6896,62 @@
                 "episodesCount": 8
             }
         ]
+    },
+    {
+        "id": "chainsaw-man",
+        "anilistId": 127230,
+        "title": "Chainsaw Man",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "2022-10-12",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx127230-DdP4vAdssLoz.png",
+        "studio": "MAPPA",
+        "year": 2022,
+        "genres": [
+            "Action",
+            "Drama",
+            "Horror",
+            "Supernatural"
+        ],
+        "watchRank": null,
+        "timesWatched": 0,
+        "items": [
+            {
+                "id": "chainsaw-man-season-1",
+                "title": "Chainsaw Man Season 1",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "chainsaw-man-the-movie-reze-arc",
+                "title": "Chainsaw Man - The Movie: Reze Arc",
+                "status": -1,
+                "type": "MOVIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "chainsaw-days",
+                "title": "Chainsaw Days",
+                "status": -1,
+                "type": "ONA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 5
+            },
+            {
+                "id": "chainsaw-man-assassins-arc",
+                "title": "Chainsaw Man: Assassins Arc",
+                "status": 2,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            }
+        ]
     }
 ]

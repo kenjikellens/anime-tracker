@@ -19,6 +19,7 @@
 - Can a Boy and Girl Friendship Hold Up? (No, It Can't!!)
 - Carnival Phantasm
 - Castle Town Dandelion
+- Chainsaw Man
 - Chitose Is in the Ramune Bottle
 - Clannad
 - Class President is a Maid!

@@ -540,3 +540,9 @@
 
 ## Now That I Can Control Reality With A Mouse Cursor, I'm Gonna Click Away On The Girls!
 - [ ] Now That I Can Control Reality With A Mouse Cursor, I'm Gonna Click Away On The Girls! (SERIE - 8 eps)
+
+## Chainsaw Man
+- [ ] Chainsaw Man Season 1 (SERIE - 12 eps)
+- [ ] Chainsaw Man - The Movie: Reze Arc (Movie)
+- [ ] Chainsaw Days (ONA - 5 eps)
+- [ ] Chainsaw Man: Assassins Arc (SERIE - Announced)
