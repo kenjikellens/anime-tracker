@@ -213,3 +213,4 @@ Insert the exact English title into the list in **strict alphabetical order**.
 1. **JSON Syntax**: Execute a JSON parse check to ensure `data/data.json` remains strictly valid.
 2. **Title Alignment**: Confirm that `data.json` `title` exactly matches the `## Header` in `te_bekijken.md` and the line in `shortlist.md`.
 3. **Report to User**: Summarize the additions and prompt the user to verify in the application UI (do not use browser subagents for UI verification).
+
