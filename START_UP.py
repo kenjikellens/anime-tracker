@@ -128,11 +128,22 @@ def open_browser(port):
     webbrowser.open_new(f"http://localhost:{port}")
 
 
+# Starts the web server using Waitress for production-grade WSGI serving, falling back to Flask if unavailable.
+# This eliminates the development server warning and handles concurrent requests efficiently.
+def start_server(port):
+    """Start the server using Waitress WSGI server or fallback to Flask."""
+    try:
+        from waitress import serve
+        serve(app, host='127.0.0.1', port=port, threads=4)
+    except ImportError:
+        app.run(host='127.0.0.1', port=port, debug=False, use_reloader=False)
+
+
 if __name__ == '__main__':
     port = find_free_port(5000)
     print("---------------------------------------------")
-    print("Anime Tracker Server is running!")
+    print("Anime Tracker Server is running (Waitress WSGI)!")
     print(f"URL: http://localhost:{port}")
     print("---------------------------------------------")
     Timer(1, lambda: open_browser(port)).start()
-    app.run(port=port, debug=True, use_reloader=False)
+    start_server(port)
