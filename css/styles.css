@@ -800,7 +800,88 @@ select[data-bound] {
 }
 
 .card-spinner-svg {
-    animation: card-spinner-rotate 0.8s linear infinite;
+    display: block;
+    overflow: visible;
+}
+
+/* Subtle outer guide track for geometric precision */
+.card-spinner-track {
+    fill: none;
+    stroke: var(--text);
+    stroke-width: 1.5;
+    opacity: 0.12;
+}
+
+/* Primary outer rotating and pulsing arc */
+.card-spinner-circle {
+    fill: none;
+    stroke: var(--text);
+    stroke-width: 2;
+    stroke-linecap: round;
+    transform-box: view-box;
+    transform-origin: 16px 16px;
+    animation: card-spinner-rotate 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite,
+               card-spinner-dash 1.6s ease-in-out infinite;
+}
+
+/* Subtle inner concentric guide track */
+.card-spinner-inner-track {
+    fill: none;
+    stroke: var(--text);
+    stroke-width: 1.25;
+    opacity: 0.08;
+}
+
+/* Secondary inner counter-rotating accent arc */
+.card-spinner-inner {
+    fill: none;
+    stroke: var(--text-muted);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-dasharray: 14 26.84;
+    transform-box: view-box;
+    transform-origin: 16px 16px;
+    animation: card-spinner-inner-rotate 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite reverse;
+}
+
+/* Smooth outer rotation cycle */
+@keyframes card-spinner-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Dynamic arc expansion and contraction */
+@keyframes card-spinner-dash {
+    0% {
+        stroke-dasharray: 6 75.68;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 56 25.68;
+        stroke-dashoffset: -14;
+    }
+    100% {
+        stroke-dasharray: 6 75.68;
+        stroke-dashoffset: -81.68;
+    }
+}
+
+/* Counter-cadence inner rotation cycle */
+@keyframes card-spinner-inner-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Old spinner definitions to be removed */
+/*
 }
 
 .card-spinner-circle {
@@ -818,6 +899,8 @@ select[data-bound] {
     }
 }
 
+*/
+
 .poster-img {
     width: 100%;
     height: 100%;
@@ -826,11 +909,15 @@ select[data-bound] {
     transition: opacity 0.25s ease;
 }
 
-[data-card-loading="true"] .poster-img {
+[data-card-loading="true"]
+
+.poster-img {
     opacity: 0;
 }
 
-[data-card-loading="false"] .poster-img {
+[data-card-loading="false"]
+
+.poster-img {
     opacity: 1;
 }
 
@@ -1041,6 +1128,9 @@ select[data-bound] {
     width: 100%;
     min-height: 200px;
     padding: 32px 0;
+    gap: 10px;
+    color: var(--text-muted);
+    font-size: 14px;
 }
 
 /* Detail item wrapper container with visible overflow for floating dropdown menus */

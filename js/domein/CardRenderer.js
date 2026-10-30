@@ -26,7 +26,10 @@ export class CardRenderer {
         const loaderHtml = `
             <div class="card-internal-loader">
                 <svg width="32" height="32" viewBox="0 0 32 32" class="card-spinner-svg">
-                    <circle cx="16" cy="16" r="12" class="card-spinner-circle" />
+                    <circle cx="16" cy="16" r="13" class="card-spinner-track" />
+                    <circle cx="16" cy="16" r="13" class="card-spinner-circle" />
+                    <circle cx="16" cy="16" r="6.5" class="card-spinner-inner-track" />
+                    <circle cx="16" cy="16" r="6.5" class="card-spinner-inner" />
                 </svg>
             </div>
         `;
