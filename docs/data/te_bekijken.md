@@ -28,6 +28,7 @@
 - [ ] Umamusume: Pretty Derby Season 3 (13 eps)
 - [ ] Umamusume: Pretty Derby - Road to the Top (ONA - 4 eps)
 - [ ] Umamusume: Pretty Derby - Beginning of a New Era (Movie)
+- [ ] Umamusume: Cinderella Gray (Spin-Off - 23 eps)
 
 ## My Matchmaking Partner Is My Student, An Aggressive Trouble-Maker
 - [ ] My Matchmaking Partner Is My Student, An Aggressive Trouble-Maker (TV Series - 12 eps)
@@ -51,6 +52,7 @@
 - [ ] Classroom of the Elite Season 2 (13 eps)
 - [ ] Classroom of the Elite Season 3 (13 eps)
 - [ ] Classroom of the Elite Season 4 (16 eps)
+- [ ] Classroom of the Elite Season 5 (Upcoming)
 
 ## Azumanga Daioh
 - [ ] Azumanga Daioh (TV Series - 26 eps)
@@ -72,7 +74,8 @@
 - [ ] Re:ZERO OVA 2: Frozen Bond
 - [ ] Re:ZERO Season 2 (25 eps)
 - [ ] Re:ZERO Season 3 (18 eps
-- [ ] Re:ZERO Season 4 (Announced - Starting April 8, 2026)
+- [ ] Re:ZERO Season 4 (19 eps)
+- [ ] Re:ZERO Season 5 (Upcoming)
 
 ## Berserk
 - [ ] Berserk (TV Series 1997 - 25 eps)
@@ -89,6 +92,7 @@
 ## Our Last Crusade or the Rise of a New World
 - [ ] Season 1 (12 eps)
 - [ ] Season 2 (12 eps)
+- [ ] Season 3 (Upcoming)
 
 ## Love is Like a Cocktail
 - [ ] Love is Like a Cocktail (Shorts - 13 eps)

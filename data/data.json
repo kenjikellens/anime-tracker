@@ -2707,6 +2707,15 @@
                 "rating": 0,
                 "watchedEpisodes": [],
                 "episodesCount": 1
+            },
+            {
+                "id": "umamusume-cinderella-gray",
+                "title": "Umamusume: Cinderella Gray",
+                "status": -1,
+                "type": "SPIN-OFF",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 23
             }
         ]
     },
@@ -2857,7 +2866,7 @@
             {
                 "id": "makeine-too-many-losing-heroines-s2",
                 "title": "Makeine: Too Many Losing Heroines! Season 2",
-                "status": -1,
+                "status": 2,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -2984,6 +2993,15 @@
                 "rating": 0,
                 "watchedEpisodes": [],
                 "episodesCount": 16
+            },
+            {
+                "id": "classroom-of-the-elite-s5",
+                "title": "Classroom of the Elite Season 5",
+                "status": 2,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
             }
         ]
     },
@@ -3511,7 +3529,7 @@
                 "title": "Re:ZERO OVA 2: Frozen Bond",
                 "status": 1,
                 "type": "OVA",
-                "rating": 0,
+                "rating": 6.5,
                 "watchedEpisodes": [
                     1
                 ],
@@ -3534,14 +3552,17 @@
                     8,
                     9,
                     10,
-                    11
+                    11,
+                    12,
+                    13,
+                    14
                 ],
                 "episodesCount": 25
             },
             {
                 "id": "re-zero-season-3",
                 "title": "Re:ZERO Season 3",
-                "status": 3,
+                "status": -1,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -3550,11 +3571,20 @@
             {
                 "id": "re-zero-season-4",
                 "title": "Re:ZERO Season 4",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 19
+            },
+            {
+                "id": "re-zero-season-5",
+                "title": "Re:ZERO Season 5",
                 "status": 2,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
-                "episodesCount": 0
+                "episodesCount": 1
             }
         ]
     },
@@ -3712,6 +3742,15 @@
                 "rating": 0,
                 "watchedEpisodes": [],
                 "episodesCount": 12
+            },
+            {
+                "id": "our-last-crusade-or-the-rise-of-a-new-world-season-3",
+                "title": "Our Last Crusade or the Rise of a New World Season 3",
+                "status": 2,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
             }
         ]
     },
@@ -3945,6 +3984,15 @@
                 "rating": 0,
                 "watchedEpisodes": [],
                 "episodesCount": 12
+            },
+            {
+                "id": "blade-dance-of-the-elementalers-specials",
+                "title": "Blade Dance of the Elementalers Specials",
+                "status": -1,
+                "type": "SPECIAL",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 6
             }
         ]
     },
@@ -4185,6 +4233,15 @@
                 "rating": 0,
                 "watchedEpisodes": [],
                 "episodesCount": 12
+            },
+            {
+                "id": "date-a-live-f-last-date",
+                "title": "Date A Live F Last Date",
+                "status": 2,
+                "type": "MOVIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
             }
         ]
     },
@@ -5205,11 +5262,11 @@
             {
                 "id": "monogatari-series-off-monster-season-shin-episode",
                 "title": "Monogatari Series: Off & Monster Season Shin Episode",
-                "status": -1,
+                "status": 2,
                 "type": "SPECIAL",
                 "rating": 0,
                 "watchedEpisodes": [],
-                "episodesCount": 0
+                "episodesCount": 1
             }
         ]
     },
@@ -5458,6 +5515,15 @@
                 "rating": 0,
                 "watchedEpisodes": [],
                 "episodesCount": 12
+            },
+            {
+                "id": "mistress-kanan-is-devilishly-easy-2-easy",
+                "title": "Mistress Kanan is Devilishly Easy 2 EASY",
+                "status": 2,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
             }
         ]
     },
@@ -5876,7 +5942,7 @@
             {
                 "id": "oh-boy-was-i-wrong-about-her-season-1",
                 "title": "Oh Boy, Was I Wrong About Her",
-                "status": 3,
+                "status": -1,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
@@ -5989,7 +6055,7 @@
             {
                 "id": "rich-girl-caretaker-season-1",
                 "title": "Rich Girl Caretaker",
-                "status": 3,
+                "status": -1,
                 "type": "SERIE",
                 "rating": 0,
                 "watchedEpisodes": [],
