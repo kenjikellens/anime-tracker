@@ -1,122 +1,126 @@
 /* ==========================================================================
    RASCAL — DESKTOP SIDEBAR NAVIGATION LAYOUT OVERHAUL
-   Transforms the top navigation bar into a Spotify/Discord-style left sidebar
-   with integrated search, bottom tool dock, and clean desktop ergonomics.
+   Transforms the top navigation bar into a left sidebar on desktop (>= 1024px)
+   and preserves the responsive top header on tablet/mobile.
    ========================================================================== */
 
-/* Fixed left vertical sidebar navigation rail */
-.header-main {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    bottom: 0 !important;
-    width: 250px !important;
-    height: 100vh !important;
-    background: var(--surface) !important;
-    border-right: 1px solid var(--surface-2) !important;
-    border-bottom: none !important;
-    padding: 24px 18px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    z-index: 999 !important;
-    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15) !important;
-}
+@layer theme {
+@media (min-width: 1024px) {
+    /* Fixed left vertical sidebar navigation rail */
+    .header-main {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 250px;
+        height: 100vh;
+        background: var(--surface);
+        border-right: 1px solid var(--surface-2);
+        border-bottom: none;
+        padding: 24px 18px;
+        display: flex;
+        flex-direction: column;
+        z-index: 999;
+        box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+    }
 
-/* Sidebar flex layout container */
-.header-content {
-    display: flex !important;
-    flex-direction: column !important;
-    height: 100% !important;
-    width: 100% !important;
-    gap: 18px !important;
-    padding: 0 !important;
-}
+    /* Sidebar flex layout container */
+    .header-content {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+        gap: 18px;
+        padding: 0;
+    }
 
-/* Sidebar logo area */
-.header-left {
-    display: flex !important;
-    align-items: center !important;
-    padding-bottom: 6px !important;
-}
+    /* Sidebar logo area */
+    .header-left {
+        display: flex;
+        align-items: center;
+        padding-bottom: 6px;
+    }
 
-/* Sidebar brand logo typography */
-.logo-rascal {
-    font-size: 24px !important;
-    font-weight: 800 !important;
-}
+    /* Sidebar brand logo typography */
+    .logo-rascal {
+        font-size: 24px;
+        font-weight: 800;
+    }
 
-/* Sidebar search bar container */
-.header-center {
-    width: 100% !important;
-    display: flex !important;
-}
+    /* Sidebar search bar container */
+    .header-center {
+        width: 100%;
+        display: flex;
+    }
 
-/* Constrained search bar wrapper preventing horizontal expansion in sidebar */
-.search-bar,
-.search-bar:focus-within {
-    width: 100% !important;
-    max-width: 100% !important;
-}
+    /* Constrained search bar wrapper preventing horizontal expansion in sidebar */
+    .search-bar,
+    .search-bar:focus-within {
+        width: 100%;
+        max-width: 100%;
+    }
 
-/* Compact search input styled for vertical sidebar width */
-.search-bar input {
-    width: 100% !important;
-    padding: 10px 14px 10px 36px !important;
-    border-radius: 10px !important;
-    font-size: 13px !important;
-}
+    /* Compact search input styled for vertical sidebar width */
+    .search-bar input {
+        width: 100%;
+        padding: 10px 14px 10px 36px;
+        border-radius: 10px;
+        font-size: 13px;
+    }
 
-/* Search icon position inside sidebar input */
-.search-bar .search-icon {
-    left: 12px !important;
-}
+    /* Search icon position inside sidebar input */
+    .search-bar .search-icon {
+        left: 12px;
+    }
 
-/* Four-column tool dock pinned to bottom of left navigation rail */
-.header-right {
-    margin-top: auto !important;
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 8px !important;
-    width: 100% !important;
-    padding-top: 16px !important;
-    border-top: 1px solid var(--surface-2) !important;
-}
+    /* Four-column tool dock pinned to bottom of left navigation rail */
+    .header-right {
+        margin-top: auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        width: 100%;
+        padding-top: 16px;
+        border-top: 1px solid var(--surface-2);
+    }
 
-/* Compact button dimensions inside bottom tool dock */
-.header-right button,
-.theme-picker-dropdown-wrap button {
-    width: 100% !important;
-    height: 38px !important;
-    border-radius: 8px !important;
-}
+    /* Compact button dimensions inside bottom tool dock */
+    .header-right button,
+    .theme-picker-dropdown-wrap button {
+        width: 100%;
+        height: 38px;
+        border-radius: 8px;
+    }
 
-/* Main app content container shifted right */
-#app {
-    margin-left: 250px !important;
-    width: calc(100% - 250px) !important;
-    max-width: calc(100% - 250px) !important;
-    padding: 28px 36px !important;
-}
+    /* Main app content container shifted right */
+    #app {
+        margin-left: 250px;
+        width: calc(100% - 250px);
+        max-width: calc(100% - 250px);
+        padding: 28px 36px;
+    }
 
-/* Content layout adjustment when watch queue sidebar is open */
-#app.sidebar-open {
-    margin-left: 250px !important;
-    margin-right: 380px !important;
-    width: calc(100% - 630px) !important;
-}
+    /* Content layout adjustment when watch queue sidebar is open */
+    #app.sidebar-open {
+        margin-left: 250px;
+        margin-right: 380px;
+        width: calc(100% - 630px);
+    }
 
-/* Footer aligned with main content area */
-footer {
-    margin-left: 250px !important;
-    width: calc(100% - 250px) !important;
-}
+    /* Footer aligned with main content area */
+    footer {
+        margin-left: 250px;
+        width: calc(100% - 250px);
+    }
 
-/* Theme picker popup menu floats upward from bottom tool dock and sizes dynamically */
-.theme-picker-menu {
-    top: auto !important;
-    bottom: calc(100% + 10px) !important;
-    left: 0 !important;
-    right: auto !important;
-    width: max-content !important;
-    max-width: 90vw !important;
+    /* Theme picker popup menu floats upward from bottom tool dock */
+    .theme-picker-menu {
+        top: auto;
+        bottom: calc(100% + 10px);
+        left: 0;
+        right: auto;
+        width: max-content;
+        max-width: 90vw;
+    }
+}
 }

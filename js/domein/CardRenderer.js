@@ -1,13 +1,5 @@
 import { RatingManager } from './RatingManager.js';
-import { DATA_ATTRS } from './UIConstants.js';
-
-const SVG_ICONS = {
-    star: `<svg class="svg-icon svg-icon-margin"><use href="#icon-star"></use></svg>`,
-    starHalf: `<svg class="svg-icon svg-icon-margin svg-icon-half"><use href="#icon-star-half"></use></svg>`,
-    play: `<svg class="svg-icon"><use href="#icon-play"></use></svg>`,
-    bell: `<svg class="svg-icon"><use href="#icon-bell"></use></svg>`,
-    chevronRight: `<svg class="expand-icon svg-icon-large"><use href="#icon-chevron-right"></use></svg>`
-};
+import { DATA_ATTRS, escapeHtml } from './UIConstants.js';
 
 /**
  * Renders overview cards for the anime list page.
@@ -20,24 +12,22 @@ export class CardRenderer {
      * @returns {string} HTML markup string for poster image or fallback.
      */
     static getPosterMarkup(anime) {
-        const hash = anime.title.split('').reduce((acc, char) => char.charCodeAt(0) + acc, 0);
+        const title = anime?.title || '';
+        const hash = title.split('').reduce((acc, char) => char.charCodeAt(0) + acc, 0);
         const hue = hash % 360;
 
         const loaderHtml = `
             <div class="card-internal-loader">
-                <svg width="32" height="32" viewBox="0 0 32 32" class="card-spinner-svg">
-                    <circle cx="16" cy="16" r="13" class="card-spinner-track" />
-                    <circle cx="16" cy="16" r="13" class="card-spinner-circle" />
-                    <circle cx="16" cy="16" r="6.5" class="card-spinner-inner-track" />
-                    <circle cx="16" cy="16" r="6.5" class="card-spinner-inner" />
+                <svg width="32" height="32" class="card-spinner-svg" aria-hidden="true">
+                    <use href="#icon-spinner"></use>
                 </svg>
             </div>
         `;
 
         if (anime.coverImage) {
-            return `${loaderHtml}<img src="${anime.coverImage}" class="poster-img" loading="lazy" />`;
+            return `${loaderHtml}<img src="${escapeHtml(anime.coverImage)}" alt="${escapeHtml(title)} cover" class="poster-img" loading="lazy" />`;
         }
-        return `<div class="poster-fallback" style="--poster-hue: ${hue};">${anime.title.substring(0,2)}</div>`;
+        return `<div class="poster-fallback" style="--poster-hue: ${hue};" aria-hidden="true">${escapeHtml(title.substring(0, 2))}</div>`;
     }
 
     /**
@@ -67,7 +57,7 @@ export class CardRenderer {
             wrapper.className = 'status-column';
             container.appendChild(wrapper);
         }
-        
+
         const fragment = document.createDocumentFragment();
         animes.forEach(anime => {
             fragment.appendChild(this.createCard(anime, onRatingClick, onQueueToggle));
@@ -135,7 +125,8 @@ export class CardRenderer {
         mainCard.setAttribute(DATA_ATTRS.STATUS, anime.status);
         mainCard.setAttribute('data-has-airing', anime.items.some(item => item.status === 3) ? 'true' : 'false');
         mainCard.setAttribute('data-has-upcoming', anime.items.some(item => item.status === 2) ? 'true' : 'false');
-        
+        mainCard.setAttribute('aria-label', `${anime.title} (${itemCount} items)`);
+
         mainCard.dataset.cardLoading = anime.coverImage ? 'true' : 'false';
 
         const cardClass = RatingManager.getCardClass(anime.rating);
@@ -144,9 +135,9 @@ export class CardRenderer {
             mainCard.classList.add(cardClass);
         }
         if (anime.status === 1) {
-            mainCard.classList.add("status-watched");
+            mainCard.classList.add('status-watched');
         } else if (anime.status === 4) {
-            mainCard.classList.add("status-onhold");
+            mainCard.classList.add('status-onhold');
         }
 
         const posterDiv = wrapper.querySelector('.card-poster');
@@ -155,11 +146,8 @@ export class CardRenderer {
         const imgEl = posterDiv.querySelector('.poster-img');
         if (imgEl) {
             if (imgEl.complete) {
-                // Ensure initial frame paint of card shell and spinner before fading loader
                 requestAnimationFrame(() => {
-                    setTimeout(() => {
-                        mainCard.dataset.cardLoading = 'false';
-                    }, 50);
+                    mainCard.dataset.cardLoading = 'false';
                 });
             } else {
                 imgEl.onload = () => { mainCard.dataset.cardLoading = 'false'; };
@@ -169,9 +157,9 @@ export class CardRenderer {
 
         // Top Watch Queue badge on poster
         const inQueue = typeof anime.watchRank === 'number' && anime.watchRank > 0;
-        const queueBadge = document.createElement('div');
-        queueBadge.className = `card-queue-badge${anime.watchRank === 1 ? ' rank-top' : ''}`;
         if (inQueue) {
+            const queueBadge = document.createElement('div');
+            queueBadge.className = `card-queue-badge${anime.watchRank === 1 ? ' rank-top' : ''}`;
             queueBadge.textContent = `#${anime.watchRank}`;
             posterDiv.appendChild(queueBadge);
         }
@@ -209,6 +197,7 @@ export class CardRenderer {
         ratingValSpan.textContent = anime.rating > 0 ? anime.rating.toFixed(1) : 'NR';
 
         const ratingBtn = wrapper.querySelector('.rating-badge');
+        ratingBtn.setAttribute('aria-label', `Beoordeel ${anime.title}`);
         const badgeTier = RatingManager.getBadgeClass(anime.rating);
         if (badgeTier) {
             ratingBtn.dataset.ratingTier = badgeTier;
@@ -219,8 +208,16 @@ export class CardRenderer {
             if (onRatingClick) onRatingClick(anime);
         });
 
-        mainCard.addEventListener('click', () => {
+        const navigateToDetail = () => {
             window.location.hash = `#/anime/${anime.id}`;
+        };
+
+        mainCard.addEventListener('click', navigateToDetail);
+        mainCard.addEventListener('keydown', (e) => {
+            if (e.target === mainCard && (e.key === 'Enter' || e.key === ' ')) {
+                e.preventDefault();
+                navigateToDetail();
+            }
         });
 
         return wrapper;

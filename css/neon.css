@@ -2,6 +2,7 @@
    RASCAL — CYBER NEON THEME (REFINED SYNTHWAVE & GLASSMORPHISM)
    ========================================================================== */
 
+@layer theme {
 /* Cyber Neon deep midnight color tokens and custom properties */
 :root,
 [data-theme="dark"] {
@@ -11,8 +12,9 @@
     --surface-hover: #1f2240;
     --surface-2: #191c36;
     --border: rgba(0, 240, 255, 0.16);
+    --surface-border: rgba(0, 240, 255, 0.16);
     --text: #eaf8ff;
-    --text-muted: #8295b8;
+    --text-muted: #8fa3c7;
     --white: #ffffff;
     --primary: #00f0ff;
     --primary-rgb: 0, 240, 255;
@@ -24,101 +26,110 @@
     --status-btn-bg: #161933;
     --status-btn-color: #00f0ff;
     --status-btn-hover: #00f0ff;
+    --status-btn-hover-color: #0b0c16;
     --shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
     --modal-bg: rgba(9, 10, 20, 0.85);
+    --segment-track: rgba(255, 255, 255, 0.12);
+    --focus-ring: #00f0ff;
 }
 
-/* Cyber Neon light theme variant with soft magenta-cyan balance */
+/* Cyber Neon light theme variant with high-contrast daylight slate & magenta */
 [data-theme="light"] {
-    --bg: #0e1022;
-    --surface: #151830;
-    --surface-card: #1b1e3c;
-    --surface-hover: #242950;
-    --surface-2: #1e2244;
-    --border: rgba(255, 42, 133, 0.2);
-    --text: #f5f8ff;
-    --text-muted: #8f9fc2;
-    --white: #ffffff;
-    --primary: #ff2a85;
-    --primary-rgb: 255, 42, 133;
-    --header-bg: rgba(17, 20, 40, 0.92);
-    --search-bg: #1d2142;
-    --search-hover-bg: #252b55;
-    --active-bg: #ff2a85;
+    --bg: #f3f5fc;
+    --surface: #ffffff;
+    --surface-card: #eaedf8;
+    --surface-hover: #dce2f4;
+    --surface-2: #e2e6f5;
+    --border: rgba(196, 15, 92, 0.22);
+    --surface-border: rgba(196, 15, 92, 0.22);
+    --text: #11162b;
+    --text-muted: #4c5675;
+    --white: #11162b;
+    --primary: #c40f5c;
+    --primary-rgb: 196, 15, 92;
+    --header-bg: rgba(255, 255, 255, 0.94);
+    --search-bg: #e8ecf8;
+    --search-hover-bg: #dce2f4;
+    --active-bg: #c40f5c;
     --active-color: #ffffff;
-    --status-btn-bg: #1d2142;
-    --status-btn-color: #ff2a85;
-    --status-btn-hover: #ff2a85;
-    --shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+    --status-btn-bg: #e8ecf8;
+    --status-btn-color: #c40f5c;
+    --status-btn-hover: #c40f5c;
+    --status-btn-hover-color: #ffffff;
+    --shadow: 0 8px 24px rgba(17, 22, 43, 0.08);
+    --modal-bg: rgba(17, 22, 43, 0.55);
+    --segment-track: rgba(17, 22, 43, 0.12);
+    --focus-ring: #c40f5c;
 }
 
-/* Translucent glassmorphic header with subtle bottom cyan glow */
+/* Translucent glassmorphic header with subtle bottom accent glow */
 .header-main {
     border-bottom: 1px solid var(--border);
     backdrop-filter: blur(14px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 16px rgba(0, 240, 255, 0.06);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25), 0 0 16px rgba(var(--primary-rgb), 0.08);
 }
 
-/* Glowing cyberpunk typography on the logo accent */
+/* Glowing accent typography on the logo */
 .logo-rascal .cal {
     color: var(--primary);
-    text-shadow: 0 0 12px rgba(0, 240, 255, 0.55);
+    text-shadow: 0 0 12px rgba(var(--primary-rgb), 0.45);
 }
 
 /* Subtle glowing border on search bar input */
 .search-bar input {
-    border: 1px solid rgba(0, 240, 255, 0.18);
+    border: 1px solid rgba(var(--primary-rgb), 0.2);
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* Ambient focus glow on search bar input */
 .search-bar input:focus {
     border-color: var(--primary);
-    box-shadow: 0 0 16px rgba(0, 240, 255, 0.3);
+    box-shadow: 0 0 16px rgba(var(--primary-rgb), 0.28);
 }
 
-/* Glassmorphic card container with subtle glowing micro-border */
+/* Card container with subtle glowing micro-border */
 .anime-card {
-    border: 1px solid rgba(0, 240, 255, 0.12);
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(var(--primary-rgb), 0.14);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22);
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Elegant ambient cyan glow when hovering over an anime card */
+/* Ambient accent glow when hovering over an anime card */
 .anime-card:hover {
-    border-color: rgba(0, 240, 255, 0.4);
-    box-shadow: 0 8px 26px rgba(0, 240, 255, 0.16);
+    border-color: rgba(var(--primary-rgb), 0.45);
+    box-shadow: 0 8px 26px rgba(var(--primary-rgb), 0.16);
 }
 
-/* Filter chip buttons with glowing active cyan pill state */
+/* Filter chip buttons with glowing active pill state */
 .filter-btn.active,
 .filter-chip-btn input:checked + span {
-    background: rgba(0, 240, 255, 0.14) !important;
-    border: 1px solid var(--primary) !important;
-    color: var(--primary) !important;
-    box-shadow: 0 0 14px rgba(0, 240, 255, 0.25);
+    background: rgba(var(--primary-rgb), 0.14);
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    box-shadow: 0 0 14px rgba(var(--primary-rgb), 0.22);
 }
 
-/* Sleek cyber border for theme picker dropdown icon button */
+/* Sleek border for theme picker dropdown icon button */
 .theme-picker-dropdown-wrap button {
-    border: 1px solid rgba(0, 240, 255, 0.2) !important;
+    border: 1px solid rgba(var(--primary-rgb), 0.2);
 }
 
 /* Hover border glow on theme picker button */
 .theme-picker-dropdown-wrap button:hover {
-    border-color: var(--primary) !important;
-    box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+    border-color: var(--primary);
+    box-shadow: 0 0 12px rgba(var(--primary-rgb), 0.28);
 }
 
-/* Floating dropdown menu with refined neon outline and blur */
+/* Floating dropdown menu with refined outline and blur */
 .theme-picker-menu {
-    border: 1px solid rgba(0, 240, 255, 0.25);
+    border: 1px solid rgba(var(--primary-rgb), 0.25);
     backdrop-filter: blur(14px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 16px rgba(0, 240, 255, 0.12);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), 0 0 16px rgba(var(--primary-rgb), 0.12);
 }
 
 /* Watch queue sidebar drawer border with subtle vertical ambient light */
 .queue-sidebar {
     border-left: 1px solid var(--border);
-    box-shadow: -6px 0 32px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 240, 255, 0.06);
+    box-shadow: -6px 0 32px rgba(0, 0, 0, 0.45), 0 0 20px rgba(var(--primary-rgb), 0.08);
+}
 }

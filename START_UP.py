@@ -86,17 +86,6 @@ def save_data():
         return jsonify({"error": str(e)}), 500
 
 
-# Modifies outgoing responses to add headers that disable browser caching.
-# This ensures that frontend changes (CSS/JS) are immediately loaded upon refresh.
-@app.after_request
-def add_header(response):
-    """Add headers to disable caching for local development."""
-    response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0, max-age=0'
-    response.headers['Pragma'] = 'no-cache'
-    response.headers['Expires'] = '0'
-    return response
-
-
 # Finds the first available TCP port starting from the given port by incrementing it.
 # This prevents port conflict errors and ensures the Flask server starts successfully.
 def find_free_port(start_port=5000):

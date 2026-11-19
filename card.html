@@ -1,18 +1,14 @@
 <!-- Back navigation returned by the detail page -->
-<a href="#/" class="back-btn ultimate-hover-effect"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon svg-icon-margin"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Terug naar overzicht</a>
+<a href="#/" class="back-btn ultimate-hover-effect"><svg class="svg-icon svg-icon-margin" aria-hidden="true"><use href="#icon-arrow-left"></use></svg> Terug naar overzicht</a>
 
 <!-- Detail content is populated by DetailRenderer -->
 <div id="detail-container">
     <div class="anime-detail-layout-v3">
-        <!-- --- SIDEBAR --- -->
         <aside class="anime-detail-sidebar-v3">
             <div class="sidebar-poster-wrap" data-card-loading="true">
                 <div class="card-internal-loader">
-                    <svg width="32" height="32" viewBox="0 0 32 32" class="card-spinner-svg">
-                        <circle cx="16" cy="16" r="13" class="card-spinner-track" />
-                        <circle cx="16" cy="16" r="13" class="card-spinner-circle" />
-                        <circle cx="16" cy="16" r="6.5" class="card-spinner-inner-track" />
-                        <circle cx="16" cy="16" r="6.5" class="card-spinner-inner" />
+                    <svg width="32" height="32" class="card-spinner-svg" aria-hidden="true">
+                        <use href="#icon-spinner"></use>
                     </svg>
                 </div>
             </div>
@@ -20,7 +16,7 @@
                 <h2 class="sidebar-title"></h2>
                 <div class="sidebar-actions-v3">
                     <div class="status-alinea">
-                        <select class="app-dropdown full-width ultimate-hover-effect" id="global-status-select">
+                        <select class="app-dropdown full-width ultimate-hover-effect" id="global-status-select" aria-label="Globale kijkstatus">
                             <option value="-1">Te Bekijken</option>
                             <option value="0">Bezig</option>
                             <option value="4">Verder Kijken</option>
@@ -28,19 +24,19 @@
                         </select>
                     </div>
                     <div class="sidebar-ratings-container">
-                        <div class="sidebar-rating-block rating-actionable ultimate-hover-effect" title="Klik om te beoordelen">
+                        <button type="button" class="sidebar-rating-block rating-actionable ultimate-hover-effect" title="Klik om te beoordelen" aria-label="Jouw beoordeling aanpassen">
                             <div class="sidebar-rating-label">
                                 <span>Jouw Beoordeling</span>
                                 <span class="sidebar-rating-val">NR</span>
                             </div>
-                            <div class="user-segmented-bar"></div>
-                        </div>
-                        <div class="sidebar-rating-block" title="Gemiddelde rating">
+                            <div class="user-segmented-bar" aria-hidden="true"></div>
+                        </button>
+                        <div class="sidebar-rating-block" title="Gemiddelde score van onderdelen">
                             <div class="sidebar-rating-label">
                                 <span>Gemiddelde</span>
                                 <span class="sidebar-rating-val">—</span>
                             </div>
-                            <div class="avg-segmented-bar"></div>
+                            <div class="avg-segmented-bar" aria-hidden="true"></div>
                         </div>
                     </div>
                     <div class="sidebar-metadata">
@@ -55,9 +51,9 @@
                         <div class="sidebar-meta-row" id="sidebar-meta-times-watched">
                             <span class="meta-label">Keer Bekeken:</span>
                             <div class="times-watched-stepper">
-                                <button type="button" class="stepper-btn ultimate-hover-effect" id="times-watched-minus" title="Verminder aantal">&minus;</button>
-                                <span class="times-watched-val" id="times-watched-display">0</span>
-                                <button type="button" class="stepper-btn ultimate-hover-effect" id="times-watched-plus" title="Verhoog aantal">+</button>
+                                <button type="button" class="stepper-btn ultimate-hover-effect" id="times-watched-minus" title="Verminder aantal" aria-label="Verminder aantal keer bekeken">&minus;</button>
+                                <span class="times-watched-val" id="times-watched-display" aria-live="polite">0</span>
+                                <button type="button" class="stepper-btn ultimate-hover-effect" id="times-watched-plus" title="Verhoog aantal" aria-label="Verhoog aantal keer bekeken">+</button>
                             </div>
                         </div>
                         <div class="sidebar-meta-genres" id="sidebar-genres-container"></div>
@@ -66,15 +62,11 @@
             </div>
         </aside>
 
-        <!-- --- MAIN CONTENT --- -->
         <main class="anime-detail-main-v3">
             <div class="episodes-list-v3">
-                <div class="items-list-loader">
-                    <svg width="32" height="32" viewBox="0 0 32 32" class="card-spinner-svg">
-                        <circle cx="16" cy="16" r="13" class="card-spinner-track" />
-                        <circle cx="16" cy="16" r="13" class="card-spinner-circle" />
-                        <circle cx="16" cy="16" r="6.5" class="card-spinner-inner-track" />
-                        <circle cx="16" cy="16" r="6.5" class="card-spinner-inner" />
+                <div class="items-list-loader" aria-label="Laden">
+                    <svg width="32" height="32" class="card-spinner-svg" aria-hidden="true">
+                        <use href="#icon-spinner"></use>
                     </svg>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 import { RatingManager } from './RatingManager.js';
 import { DropdownManager } from './DropdownManager.js';
-import { DATA_ATTRS } from './UIConstants.js';
+import { escapeHtml } from './UIConstants.js';
 
 // WATCH_PROVIDER_DOMAIN: The base domain of the streaming provider for playing anime.
 const WATCH_PROVIDER_DOMAIN = "miruro.ru";
@@ -9,9 +9,9 @@ const WATCH_PROVIDER_DOMAIN = "miruro.ru";
 const WATCH_PROVIDER_SEARCH_PATH = "/search?query=";
 
 const SVG_ICONS = {
-    star: `<svg class="svg-icon svg-icon-margin"><use href="#icon-star"></use></svg>`,
-    play: `<svg class="svg-icon"><use href="#icon-play"></use></svg>`,
-    chevronDown: `<svg class="accordion-icon svg-icon-large"><use href="#icon-chevron-down"></use></svg>`
+    star: `<svg class="svg-icon svg-icon-margin" aria-hidden="true"><use href="#icon-star"></use></svg>`,
+    play: `<svg class="svg-icon" aria-hidden="true"><use href="#icon-play"></use></svg>`,
+    chevronDown: `<svg class="accordion-icon svg-icon-large" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>`
 };
 
 /**
@@ -25,7 +25,7 @@ export class DetailRenderer {
      */
     static async renderDetail(container, anime, onItemStatusChange, onGlobalStatusChange, onRatingChange, onEpisodeToggle, onRatingClick = null, openItemIds = [], onItemRatingClick = null, minLoadStartTime = null, onQueueToggle = null, onTimesWatchedChange = null) {
         const layout = container.querySelector('.anime-detail-layout-v3');
-        if (!layout) return;
+        if (!layout || !container.isConnected) return;
 
         // Set sidebar rating glow
         const sidebar = layout.querySelector('.anime-detail-sidebar-v3');
@@ -41,18 +41,15 @@ export class DetailRenderer {
         const posterWrap = layout.querySelector('.sidebar-poster-wrap');
         const loaderHtml = `
             <div class="card-internal-loader">
-                <svg width="32" height="32" viewBox="0 0 32 32" class="card-spinner-svg">
-                    <circle cx="16" cy="16" r="13" class="card-spinner-track" />
-                    <circle cx="16" cy="16" r="13" class="card-spinner-circle" />
-                    <circle cx="16" cy="16" r="6.5" class="card-spinner-inner-track" />
-                    <circle cx="16" cy="16" r="6.5" class="card-spinner-inner" />
+                <svg width="32" height="32" class="card-spinner-svg" aria-hidden="true">
+                    <use href="#icon-spinner"></use>
                 </svg>
             </div>
         `;
         posterWrap.dataset.cardLoading = anime.coverImage ? 'true' : 'false';
         posterWrap.innerHTML = anime.coverImage
-            ? `${loaderHtml}<img class="detail-poster" src="${anime.coverImage}" alt="${title} cover" loading="lazy" />`
-            : `<div class="detail-poster-fallback" style="--poster-hue: ${hue};">${initials}</div>`;
+            ? `${loaderHtml}<img class="detail-poster" src="${escapeHtml(anime.coverImage)}" alt="${escapeHtml(title)} cover" loading="lazy" />`
+            : `<div class="detail-poster-fallback" style="--poster-hue: ${hue};" aria-hidden="true">${escapeHtml(initials)}</div>`;
 
         const detailImgEl = posterWrap.querySelector('.detail-poster');
         if (detailImgEl) {
@@ -71,7 +68,7 @@ export class DetailRenderer {
         // Global status select & ratings
         const gSelect = layout.querySelector('#global-status-select');
         const ratingsContainer = layout.querySelector('.sidebar-ratings-container');
-        
+
         if (gSelect) {
             gSelect.value = String(anime.status);
             gSelect.onchange = (e) => {
@@ -80,6 +77,7 @@ export class DetailRenderer {
         }
 
         if (ratingsContainer) {
+            const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             const createSegmentsHtml = (score, isSmall = false) => {
                 let html = `<div class="segmented-rating-bar${isSmall ? ' small' : ''}">`;
                 const colors = [
@@ -92,13 +90,15 @@ export class DetailRenderer {
                     'linear-gradient(130deg, #ffe066 0%, #ffd700 50%, #b38f00 100%)'
                 ];
                 for (let i = 1; i <= 10; i++) {
-                    const fillWidth = Math.min(100, Math.max(0, (score - (i - 1)) * 100));
+                    const fillRatio = Math.min(1, Math.max(0, score - (i - 1)));
                     const color = colors[i - 1];
                     const isGold = (i === 10);
                     const extraStyle = isGold ? 'box-shadow: 0 0 8px rgba(255, 215, 0, 0.7);' : '';
+                    const delay = prefersReducedMotion ? '0s' : `${(i - 1) * 0.06}s`;
+                    const initialScale = prefersReducedMotion ? fillRatio : 0;
                     html += `
                         <div class="segment">
-                            <div class="segment-fill" style="width: 0%; background: ${color}; ${extraStyle} transition: width 0.10s linear; transition-delay: ${(i - 1) * 0.10}s;" data-width="${fillWidth}%"></div>
+                            <div class="segment-fill" style="background: ${color}; ${extraStyle} transform: scaleX(${initialScale}); transition-delay: ${delay};" data-scale="${fillRatio}"></div>
                         </div>
                     `;
                 }
@@ -170,11 +170,11 @@ export class DetailRenderer {
         const genresContainer = layout.querySelector('#sidebar-genres-container');
         if (genresContainer) {
             if (Array.isArray(anime.genres) && anime.genres.length > 0) {
-                genresContainer.innerHTML = anime.genres.map(g => `<span class="genre-badge">${g}</span>`).join('');
-                genresContainer.style.display = 'flex';
+                genresContainer.innerHTML = anime.genres.map(g => `<span class="genre-badge">${escapeHtml(g)}</span>`).join('');
+                genresContainer.classList.remove('hidden');
             } else {
                 genresContainer.innerHTML = '';
-                genresContainer.style.display = 'none';
+                genresContainer.classList.add('hidden');
             }
         }
 
@@ -207,29 +207,20 @@ export class DetailRenderer {
             };
         }
 
-        // Render episodes/accordion list
+        // Render episodes/accordion list immediately without artificial delay
         const listDiv = layout.querySelector('.episodes-list-v3');
-        if (listDiv) {
-            if (minLoadStartTime) {
-                const elapsed = Date.now() - minLoadStartTime;
-                const remaining = Math.max(0, 500 - elapsed);
-                if (remaining > 0) {
-                    await new Promise(resolve => setTimeout(resolve, remaining));
-                }
-            }
+        if (!listDiv) return;
+        listDiv.innerHTML = '';
 
-            if (!container.isConnected) return;
-
-            listDiv.innerHTML = '';
-        }
         if (anime.items.length === 0) {
             const emptyP = document.createElement('p');
             emptyP.className = 'text-muted';
-            emptyP.textContent = 'Geen episoden/seizoenen gevonden in deze groep.';
+            emptyP.dataset.empty = 'true';
+            emptyP.textContent = 'Geen afleveringen of seizoenen gevonden in deze groep.';
             listDiv.appendChild(emptyP);
         } else {
             const fragment = document.createDocumentFragment();
-            anime.items.forEach((item, index) => {
+            anime.items.forEach((item) => {
                 const isOpen = openItemIds.includes(item.id);
                 const rowWrapper = document.createElement('details');
                 rowWrapper.className = 'item-accordion-wrapper';
@@ -237,16 +228,17 @@ export class DetailRenderer {
                 if (isOpen) {
                     rowWrapper.setAttribute('open', '');
                 }
-                
-                const typeClass = `type-${(item.type || 'serie').toLowerCase()}`;
-                const typeHtml = item.type ? `<span class="item-type-badge ${typeClass}">${item.type}</span>` : '';
-                
+
+                const rawType = (item.type || 'serie').toLowerCase().replace(/[^a-z0-9-]/g, '');
+                const typeClass = `type-${rawType || 'serie'}`;
+                const typeHtml = item.type ? `<span class="item-type-badge ${typeClass}">${escapeHtml(item.type)}</span>` : '';
+
                 const rowHeader = document.createElement('summary');
                 rowHeader.className = `detail-item-row ultimate-hover-effect ${item.status === 1 ? 'watched' : ''}`;
                 rowHeader.dataset.watched = item.status === 1 ? 'true' : 'false';
-                
-                let itemStatusSelect = `
-                    <select class="app-dropdown item-status-select ultimate-hover-effect" id="status-${item.id}">
+
+                const itemStatusSelect = `
+                    <select class="app-dropdown item-status-select ultimate-hover-effect" id="status-${escapeHtml(item.id)}" aria-label="Status voor ${escapeHtml(item.title)}">
                         <option value="3" ${item.status === 3 ? 'selected' : ''}>Airing</option>
                         <option value="2" ${item.status === 2 ? 'selected' : ''}>Upcoming</option>
                         <option value="-1" ${item.status === -1 ? 'selected' : ''}>Te Bekijken</option>
@@ -258,28 +250,28 @@ export class DetailRenderer {
 
                 let searchTitle = item.title.replace(/(^|\s+)Season\s+\d+/i, '').replace(/(^|\s+)Cour\s+\d+/i, '').trim();
                 if (!searchTitle) searchTitle = anime.title;
-                let keyword = encodeURIComponent(searchTitle).replace(/%20/g, '+');
-                let watchUrl = `https://${WATCH_PROVIDER_DOMAIN}${WATCH_PROVIDER_SEARCH_PATH}${keyword}`;
+                const keyword = encodeURIComponent(searchTitle).replace(/%20/g, '+');
+                const watchUrl = `https://${WATCH_PROVIDER_DOMAIN}${WATCH_PROVIDER_SEARCH_PATH}${keyword}`;
 
-                let playBtn = `
-                    <a href="${watchUrl}" target="_blank" class="item-play-btn status-btn-style ultimate-hover-effect" onclick="event.stopPropagation()" title="Zoek op ${WATCH_PROVIDER_DOMAIN}">
+                const playBtn = `
+                    <a href="${watchUrl}" target="_blank" rel="noopener noreferrer" class="item-play-btn status-btn-style ultimate-hover-effect" title="Zoek op ${WATCH_PROVIDER_DOMAIN}" aria-label="Zoek ${escapeHtml(item.title)} op ${WATCH_PROVIDER_DOMAIN}">
                         ${SVG_ICONS.play}
                     </a>
                 `;
 
                 const itemRatingTier = RatingManager.getBadgeClass(item.rating);
-                let itemRatingBtn = `
-                    <div class="rating-badge item-rating-badge ultimate-hover-effect r-${itemRatingTier}" data-rating-tier="${itemRatingTier}" title="Beoordeel dit item" data-item-id="${item.id}">
-                        ${SVG_ICONS.star} 
+                const itemRatingBtn = `
+                    <button type="button" class="rating-badge item-rating-badge ultimate-hover-effect r-${itemRatingTier}" data-rating-tier="${itemRatingTier}" title="Beoordeel dit onderdeel" aria-label="Beoordeel ${escapeHtml(item.title)}" data-item-id="${escapeHtml(item.id)}">
+                        ${SVG_ICONS.star}
                         <span>${item.rating > 0 ? item.rating.toFixed(1) : 'NR'}</span>
-                    </div>
+                    </button>
                 `;
 
                 rowHeader.innerHTML = `
                     ${SVG_ICONS.chevronDown}
                     <div class="title-badge-group">
                         <div class="badge-area">${typeHtml}</div>
-                        <div class="detail-item-title">${item.title}</div>
+                        <div class="detail-item-title">${escapeHtml(item.title)}</div>
                     </div>
                     <div class="item-actions-group">
                         ${itemRatingBtn}
@@ -287,7 +279,7 @@ export class DetailRenderer {
                         ${playBtn}
                     </div>
                 `;
-                
+
                 const ratingBadge = rowHeader.querySelector('.item-rating-badge');
                 if (ratingBadge && onItemRatingClick) {
                     ratingBadge.addEventListener('click', (e) => {
@@ -296,7 +288,7 @@ export class DetailRenderer {
                         onItemRatingClick(item);
                     });
                 }
-                
+
                 const itemSelect = rowHeader.querySelector('.item-status-select');
                 itemSelect.addEventListener('click', e => e.stopPropagation());
                 itemSelect.addEventListener('change', (e) => {
@@ -307,28 +299,34 @@ export class DetailRenderer {
                 if (playBtnElement) {
                     playBtnElement.addEventListener('click', e => e.stopPropagation());
                 }
-                
+
                 const episodesContainer = document.createElement('div');
                 episodesContainer.className = 'episodes-container';
-                
+
                 const epCount = item.episodesCount || 12;
                 for (let i = 1; i <= epCount; i++) {
                     const isChecked = item.watchedEpisodes.includes(i) || item.status === 1;
                     const epDiv = document.createElement('div');
-                    epDiv.className = "episode-checkbox-wrap";
-                    epDiv.innerHTML = `
-                        <input type="checkbox" id="ep-${item.id}-${i}" data-ep="${i}" ${isChecked ? 'checked' : ''}>
-                        <label for="ep-${item.id}-${i}">Episode ${i}</label>
-                    `;
-                    
-                    const cb = epDiv.querySelector('input');
-                    cb.addEventListener('change', (e) => {
+                    epDiv.className = 'episode-checkbox-wrap';
+
+                    const cb = document.createElement('input');
+                    cb.type = 'checkbox';
+                    cb.id = `ep-${item.id}-${i}`;
+                    cb.dataset.ep = String(i);
+                    cb.checked = isChecked;
+                    cb.addEventListener('change', () => {
                         onEpisodeToggle(item, i);
                     });
-                    
+
+                    const label = document.createElement('label');
+                    label.htmlFor = cb.id;
+                    label.textContent = `Aflevering ${i}`;
+
+                    epDiv.appendChild(cb);
+                    epDiv.appendChild(label);
                     episodesContainer.appendChild(epDiv);
                 }
-                
+
                 rowWrapper.appendChild(rowHeader);
                 rowWrapper.appendChild(episodesContainer);
                 fragment.appendChild(rowWrapper);
@@ -339,16 +337,14 @@ export class DetailRenderer {
         // Bind all custom dropdown components in detail view
         DropdownManager.bindAll(container);
 
-        // Staggered loading animation for ratings
+        // Compositor-only transform animation for segmented rating bars
         requestAnimationFrame(() => {
-            setTimeout(() => {
-                container.querySelectorAll('.segment-fill').forEach(fill => {
-                    const targetWidth = fill.getAttribute('data-width');
-                    if (targetWidth) {
-                        fill.style.width = targetWidth;
-                    }
-                });
-            }, 50);
+            container.querySelectorAll('.segment-fill').forEach(fill => {
+                const targetScale = fill.getAttribute('data-scale');
+                if (targetScale !== null) {
+                    fill.style.transform = `scaleX(${targetScale})`;
+                }
+            });
         });
     }
 }

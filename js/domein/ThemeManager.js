@@ -1,5 +1,4 @@
 import { CookieManager } from './CookieManager.js';
-import { DropdownManager } from './DropdownManager.js';
 
 const THEME_KEY = 'theme';
 const THEME_CSS_KEY = 'theme_css';
@@ -15,7 +14,7 @@ const THEMES = {
  * @returns {string} The tooltip title.
  */
 function getThemeTitle(theme) {
-    return theme === THEMES.DARK ? 'Switch to light mode' : 'Switch to dark mode';
+    return theme === THEMES.DARK ? 'Schakel naar licht thema' : 'Schakel naar donker thema';
 }
 
 /**
@@ -24,7 +23,7 @@ function getThemeTitle(theme) {
  */
 export class ThemeManager {
     /**
-     * Retrieves the theme saved in the cookies. Falls back to light theme.
+     * Retrieves the theme saved in the cookies. Falls back to dark theme.
      * @returns {string} The saved theme ('light' or 'dark').
      */
     static getSavedTheme() {
@@ -87,7 +86,6 @@ export class ThemeManager {
 
     /**
      * Retrieves the saved CSS theme file name from cookies, falling back to 'styles.css'.
-     * This affects which stylesheet is loaded on startup.
      * @returns {string} The active CSS file name.
      */
     static getSavedThemeFile() {
@@ -96,7 +94,6 @@ export class ThemeManager {
 
     /**
      * Applies the specified CSS file as the active theme override and persists the choice in cookies.
-     * This modifies the theme override <link> tag in the document head and updates application styling.
      * @param {string} filename - The name of the CSS file to load.
      * @returns {string} The applied filename.
      */
@@ -122,7 +119,6 @@ export class ThemeManager {
 
     /**
      * Fetches the list of available CSS theme files from the backend API.
-     * This queries the server dynamically to discover all stylesheets in the css directory.
      * @returns {Promise<string[]>} Array of available CSS file names.
      */
     static async fetchAvailableThemes() {
@@ -142,7 +138,6 @@ export class ThemeManager {
 
     /**
      * Formats a CSS filename dynamically into a human-readable display label for the UI selector.
-     * Capitalizes words, handles dashes and underscores, and shows the filename dynamically without hardcoded mappings.
      * @param {string} filename - The CSS file name.
      * @returns {string} The formatted display label.
      */
@@ -156,7 +151,6 @@ export class ThemeManager {
 
     /**
      * Initializes the theme picker icon button and floating popup menu.
-     * This handles opening the theme menu, rendering theme options with checkmarks, and applying themes.
      * @param {string} [buttonId='theme-picker-btn'] - ID of the theme picker icon button.
      * @param {string} [menuId='theme-picker-menu'] - ID of the theme picker floating menu container.
      */
@@ -169,73 +163,106 @@ export class ThemeManager {
         let currentSavedFile = this.getSavedThemeFile();
         this.applyThemeFile(currentSavedFile);
 
+        const closeMenu = (restoreFocus = false) => {
+            menu.classList.remove('open');
+            btn.setAttribute('aria-expanded', 'false');
+            if (restoreFocus) btn.focus();
+        };
+
         const renderMenu = () => {
             menu.innerHTML = '';
-            menu.style.width = 'max-content';
-            menu.style.minWidth = 'max-content';
             themes.forEach(themeFile => {
                 const isSelected = themeFile === currentSavedFile;
-                const item = document.createElement('div');
+                const item = document.createElement('button');
+                item.type = 'button';
                 item.className = `custom-select-option ${isSelected ? 'active' : ''}`;
-                item.style.whiteSpace = 'nowrap';
-                item.style.display = 'flex';
-                item.style.alignItems = 'center';
-                item.style.justifyContent = 'space-between';
-                item.style.gap = '24px';
-                item.style.width = 'auto';
+                item.setAttribute('role', 'menuitemradio');
+                item.setAttribute('aria-checked', isSelected ? 'true' : 'false');
                 if (isSelected) item.dataset.active = 'true';
                 item.dataset.value = themeFile;
 
                 const textSpan = document.createElement('span');
                 textSpan.textContent = this.formatThemeName(themeFile);
-                textSpan.style.whiteSpace = 'nowrap';
-                textSpan.style.flexShrink = '0';
                 item.appendChild(textSpan);
 
                 if (isSelected) {
                     const checkSvg = `
-                        <svg class="custom-select-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-left: auto;">
+                        <svg class="custom-select-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <use href="#icon-check"></use>
                         </svg>
                     `;
                     item.insertAdjacentHTML('beforeend', checkSvg);
                 }
 
-                item.addEventListener('click', (e) => {
-                    e.stopPropagation();
+                const selectTheme = () => {
                     currentSavedFile = themeFile;
                     this.applyThemeFile(themeFile);
-                    closeMenu();
+                    closeMenu(true);
                     renderMenu();
+                };
+
+                item.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    selectTheme();
+                });
+
+                item.addEventListener('keydown', (e) => {
+                    const items = Array.from(menu.querySelectorAll('[role="menuitemradio"]'));
+                    const idx = items.indexOf(item);
+                    if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        items[(idx + 1) % items.length]?.focus();
+                    } else if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        items[(idx - 1 + items.length) % items.length]?.focus();
+                    } else if (e.key === 'Home') {
+                        e.preventDefault();
+                        items[0]?.focus();
+                    } else if (e.key === 'End') {
+                        e.preventDefault();
+                        items[items.length - 1]?.focus();
+                    } else if (e.key === 'Escape') {
+                        e.preventDefault();
+                        closeMenu(true);
+                    }
                 });
 
                 menu.appendChild(item);
             });
         };
 
-        const toggleMenu = (e) => {
-            e.stopPropagation();
-            const isOpen = menu.classList.contains('open');
-            if (isOpen) {
-                closeMenu();
-            } else {
-                openMenu();
-            }
-        };
-
-        const openMenu = async () => {
+        const openMenu = async (focusFirst = false) => {
             themes = await this.fetchAvailableThemes();
             renderMenu();
             menu.classList.add('open');
+            btn.setAttribute('aria-expanded', 'true');
+            if (focusFirst) {
+                const activeItem = menu.querySelector('[aria-checked="true"]') || menu.querySelector('[role="menuitemradio"]');
+                if (activeItem) activeItem.focus();
+            }
         };
 
-        const closeMenu = () => {
-            menu.classList.remove('open');
+        const toggleMenu = (e) => {
+            e.stopPropagation();
+            if (menu.classList.contains('open')) {
+                closeMenu(false);
+            } else {
+                openMenu(false);
+            }
         };
 
         btn.addEventListener('click', toggleMenu);
+        btn.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                e.stopPropagation();
+                openMenu(true);
+            } else if (e.key === 'Escape') {
+                closeMenu(true);
+            }
+        });
+
         menu.addEventListener('click', (e) => e.stopPropagation());
-        document.addEventListener('click', closeMenu);
+        document.addEventListener('click', () => closeMenu(false));
     }
 }
-

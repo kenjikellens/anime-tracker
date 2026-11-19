@@ -15,7 +15,7 @@
     </script>
 
     <!-- Design & Fonts -->
-    <link rel="stylesheet" href="css/styles.css?v=2.0.5">
+    <link rel="stylesheet" href="css/styles.css?v=2.1.0">
     <link id="theme-override-stylesheet" rel="stylesheet" href="">
     <script>
         (function() {
@@ -33,7 +33,7 @@
 </head>
 <body>
     <!-- SVG sprite sheet loaded once and reused via <use> tags -->
-    <svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+    <svg class="sr-only" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
     <defs>
         <symbol id="icon-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
@@ -91,42 +91,45 @@
             <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/>
             <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>
         </symbol>
+        <symbol id="icon-spinner" viewBox="0 0 32 32">
+            <circle cx="16" cy="16" r="13" class="card-spinner-track" />
+            <circle cx="16" cy="16" r="13" class="card-spinner-circle" />
+            <circle cx="16" cy="16" r="6.5" class="card-spinner-inner-track" />
+            <circle cx="16" cy="16" r="6.5" class="card-spinner-inner" />
+        </symbol>
     </defs>
     </svg>
 
-    <!-- Top-level navigation: logo, search, theme toggle, backup trigger, AniList sync placeholder -->
+    <!-- Top-level navigation: logo, search, theme toggle, backup trigger -->
     <header class="header-main">
         <div class="header-content">
             <div class="header-left">
-                <!-- Brand mark used throughout the app -->
                 <h1 class="logo-rascal"><span class="ras">RAS</span><span class="cal">CAL</span></h1>
             </div>
             <div class="header-center">
-                <!-- Search is bound in `js/app.js` via `SearchManager.setup` -->
                 <div class="search-bar">
-                    <svg class="search-icon svg-icon"><use href="#icon-search"></use></svg>
+                    <label for="search-input" class="sr-only">Zoek in je lijst</label>
+                    <svg class="search-icon svg-icon" aria-hidden="true"><use href="#icon-search"></use></svg>
                     <input type="text" id="search-input" class="ultimate-hover-effect" placeholder="Zoek in je lijst...">
                 </div>
             </div>
             <div class="header-right">
-                <!-- Theme style selector icon button & dropdown menu -->
                 <div class="theme-picker-dropdown-wrap" id="theme-picker-wrap">
-                    <button id="theme-picker-btn" class="ultimate-hover-effect" title="Kies UI Stijl / Thema" aria-label="Kies UI Stijl / Thema">
-                        <svg class="svg-icon-large"><use href="#icon-palette"></use></svg>
+                    <button type="button" id="theme-picker-btn" class="ultimate-hover-effect" title="Kies UI-stijl / Thema" aria-label="Kies UI-stijl / Thema" aria-expanded="false" aria-controls="theme-picker-menu">
+                        <svg class="svg-icon-large" aria-hidden="true"><use href="#icon-palette"></use></svg>
                     </button>
-                    <div id="theme-picker-menu" class="theme-picker-menu"></div>
+                    <div id="theme-picker-menu" class="theme-picker-menu" role="menu" aria-label="UI-stijlen"></div>
                 </div>
-                <!-- Toggle Top Watch Queue Sidebar -->
-                <button id="queue-toggle-btn" class="queue-toggle-btn ultimate-hover-effect" title="Mijn Top Kijklijst openen">
-                    <svg class="svg-icon-large"><use href="#icon-list"></use></svg>
+                <button type="button" id="queue-toggle-btn" class="queue-toggle-btn ultimate-hover-effect" title="Mijn Top Kijklijst openen" aria-label="Mijn Top Kijklijst openen" aria-expanded="false" aria-controls="queue-sidebar">
+                    <svg class="svg-icon-large" aria-hidden="true"><use href="#icon-list"></use></svg>
                     <span id="header-queue-count" class="queue-count-badge">0</span>
                 </button>
-                <!-- Opens a JSON backup download via `DataStore.triggerBackup` -->
-                <button id="download-btn" class="hidden ultimate-hover-effect" title="Download backup"><svg class="svg-icon-large"><use href="#icon-download"></use></svg></button>
-                <!-- Toggles the global light/dark theme -->
-                <button id="theme-toggle" class="ultimate-hover-effect" title="Switch theme">
-                    <svg class="theme-icon icon-sun svg-icon-large"><use href="#icon-sun"></use></svg>
-                    <svg class="theme-icon icon-moon svg-icon-large"><use href="#icon-moon"></use></svg>
+                <button type="button" id="download-btn" class="hidden ultimate-hover-effect" title="Download back-up" aria-label="Download back-up">
+                    <svg class="svg-icon-large" aria-hidden="true"><use href="#icon-download"></use></svg>
+                </button>
+                <button type="button" id="theme-toggle" class="ultimate-hover-effect" title="Schakel licht/donker thema" aria-label="Schakel licht/donker thema">
+                    <svg class="theme-icon icon-sun svg-icon-large" aria-hidden="true"><use href="#icon-sun"></use></svg>
+                    <svg class="theme-icon icon-moon svg-icon-large" aria-hidden="true"><use href="#icon-moon"></use></svg>
                 </button>
             </div>
         </div>
@@ -137,23 +140,24 @@
     </div>
 
     <!-- Top Kijkvolgorde Ranked Sidebar Drawer -->
-    <aside id="queue-sidebar" class="queue-sidebar">
+    <aside id="queue-sidebar" class="queue-sidebar" aria-label="Mijn Top Kijklijst" inert>
         <div class="queue-header">
             <div class="queue-header-title">
                 <h3>Volgende om te Bekijken</h3>
                 <span id="sidebar-queue-count" class="sidebar-queue-count">0</span>
             </div>
-            <button class="queue-close-btn" id="queue-close-btn" title="Sluit sidebar">✕</button>
+            <button type="button" class="queue-close-btn" id="queue-close-btn" title="Sluit zijbalk" aria-label="Sluit zijbalk">✕</button>
         </div>
         <div class="queue-subtext">
-            Sleep items (<strong>Drag & Drop</strong>) om de volgorde te wijzigen. Alleen geconfigureerde series staan in deze lijst.
+            Sleep items of gebruik de pijltjes om de volgorde te wijzigen. Alleen geconfigureerde series staan in deze lijst.
         </div>
         <div class="queue-add-section">
             <div class="queue-add-input-wrap">
-                <span class="queue-add-icon">+</span>
+                <label for="queue-search-add" class="sr-only">Serie toevoegen aan Top lijst</label>
+                <span class="queue-add-icon" aria-hidden="true">+</span>
                 <input type="text" class="queue-add-input" id="queue-search-add" placeholder="Serie toevoegen aan Top lijst..." autocomplete="off">
             </div>
-            <div class="queue-autocomplete-list" id="queue-autocomplete"></div>
+            <div class="queue-autocomplete-list" id="queue-autocomplete" role="listbox" aria-label="Zoekresultaten"></div>
         </div>
         <div class="queue-list" id="queue-list-container"></div>
     </aside>
@@ -167,11 +171,11 @@
             <div class="footer-col footer-links">
                 <h4>Navigatie</h4>
                 <ul>
-                    <li><a href="#/">Alles</a></li>
-                    <li><a href="#/" onclick="document.querySelector('[data-filter=\'-1\']')?.click(); return false;">Te Bekijken</a></li>
-                    <li><a href="#/" onclick="document.querySelector('[data-filter=\'0\']')?.click(); return false;">Bezig</a></li>
-                    <li><a href="#/" onclick="document.querySelector('[data-filter=\'4\']')?.click(); return false;">Verder Kijken</a></li>
-                    <li><a href="#/" onclick="document.querySelector('[data-filter=\'1\']')?.click(); return false;">Bekeken</a></li>
+                    <li><a href="#/" data-footer-filter="all">Alles</a></li>
+                    <li><a href="#/" data-footer-filter="-1">Te Bekijken</a></li>
+                    <li><a href="#/" data-footer-filter="0">Bezig</a></li>
+                    <li><a href="#/" data-footer-filter="4">Verder Kijken</a></li>
+                    <li><a href="#/" data-footer-filter="1">Bekeken</a></li>
                 </ul>
             </div>
             <div class="footer-col footer-credits">
@@ -180,35 +184,34 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 RASCAL Anime Tracker &bull; Volledig lokaal &amp; privacy-vriendelijk</p>
+            <p>&copy; 2026 RASCAL Anime Tracker &bull; Volledig lokaal &amp; privacyvriendelijk</p>
         </div>
     </footer>
 
-    <!-- Shared modals: rating modal and filter modal -->
-    
-    <!-- Rating modal: used for global anime scores -->
-    <div id="modal-overlay" class="hidden">
+    <!-- Rating modal: used for global anime and item scores -->
+    <div id="modal-overlay" class="hidden" data-visible="false" role="dialog" aria-modal="true" aria-labelledby="rating-modal-heading">
         <div class="modal">
-            <h3>Deze anime beoordelen?</h3>
+            <h3 id="rating-modal-heading">Deze anime beoordelen?</h3>
             <p id="modal-title"></p>
             <div class="rating-input">
+                <label for="rating-number" class="sr-only">Beoordeling van 0 tot 10</label>
                 <input type="number" id="rating-number" min="0" max="10" step="0.1" value="7.0">
                 <span class="max-rating">/ 10</span>
             </div>
             <div class="modal-buttons">
-                <button id="clear-rating" class="btn-secondary ultimate-hover-effect" style="margin-right:auto; color:var(--text-muted); border-color:var(--border);">Wissen</button>
-                <button id="cancel-rating" class="btn-secondary ultimate-hover-effect">Annuleren</button>
-                <button id="save-rating" class="btn-primary ultimate-hover-effect">Opslaan</button>
+                <button type="button" id="clear-rating" class="btn-secondary btn-clear-rating ultimate-hover-effect">Wissen</button>
+                <button type="button" id="cancel-rating" class="btn-secondary ultimate-hover-effect">Annuleren</button>
+                <button type="button" id="save-rating" class="btn-primary ultimate-hover-effect">Opslaan</button>
             </div>
         </div>
     </div>
 
     <!-- Filter modal: multi-dimensional filters for franchise & items -->
-    <div id="filter-modal-overlay" class="modal-overlay hidden" data-visible="false">
+    <div id="filter-modal-overlay" class="modal-overlay hidden" data-visible="false" role="dialog" aria-modal="true" aria-labelledby="filter-modal-heading">
         <div class="modal filter-modal">
             <div class="filter-modal-header">
-                <h3><svg class="svg-icon svg-icon-margin"><use href="#icon-filter"></use></svg> Geavanceerde Filters</h3>
-                <button id="close-filter-modal" class="modal-close-btn" title="Sluiten">&times;</button>
+                <h3 id="filter-modal-heading"><svg class="svg-icon svg-icon-margin" aria-hidden="true"><use href="#icon-filter"></use></svg> Geavanceerde Filters</h3>
+                <button type="button" id="close-filter-modal" class="modal-close-btn" title="Sluiten" aria-label="Sluiten">&times;</button>
             </div>
             <div class="filter-modal-body">
                 <!-- 1. Item Status -->
@@ -237,11 +240,11 @@
                         <label for="filter-min-rating">Minimale score: <span id="filter-min-rating-val">Alles</span></label>
                         <input type="range" id="filter-min-rating" min="0" max="10" step="0.5" value="0" class="filter-slider">
                     </div>
-                    <div class="filter-chips-grid" style="margin-top: 8px;">
-                        <label class="filter-chip-btn filter-btn ultimate-hover-effect"><input type="checkbox" name="filter-rating-tier" value="high"><span>Masterpiece (8.5+)</span></label>
+                    <div class="filter-chips-grid filter-chips-spaced">
+                        <label class="filter-chip-btn filter-btn ultimate-hover-effect"><input type="checkbox" name="filter-rating-tier" value="high"><span>Meesterwerk (8.5+)</span></label>
                         <label class="filter-chip-btn filter-btn ultimate-hover-effect"><input type="checkbox" name="filter-rating-tier" value="good"><span>Goed (7.0 - 8.4)</span></label>
                         <label class="filter-chip-btn filter-btn ultimate-hover-effect"><input type="checkbox" name="filter-rating-tier" value="avg"><span>Gemiddeld (5.0 - 6.9)</span></label>
-                        <label class="filter-chip-btn filter-btn ultimate-hover-effect"><input type="checkbox" name="filter-rating-tier" value="nr"><span>Geen Rating (NR)</span></label>
+                        <label class="filter-chip-btn filter-btn ultimate-hover-effect"><input type="checkbox" name="filter-rating-tier" value="nr"><span>Geen Score (NR)</span></label>
                     </div>
                 </div>
 
@@ -254,17 +257,17 @@
                 <div class="filter-section-row">
                     <div class="filter-section filter-col-half">
                         <h4 class="filter-section-title">Studio</h4>
-                        <select id="filter-studio-select" class="app-dropdown full-width"></select>
+                        <select id="filter-studio-select" class="app-dropdown full-width" aria-label="Filter op studio"></select>
                     </div>
                     <div class="filter-section filter-col-half">
                         <h4 class="filter-section-title">Jaar</h4>
-                        <select id="filter-year-select" class="app-dropdown full-width"></select>
+                        <select id="filter-year-select" class="app-dropdown full-width" aria-label="Filter op jaar"></select>
                     </div>
                 </div>
 
                 <!-- 5. Voortgang -->
                 <div class="filter-section">
-                    <h4 class="filter-section-title">Voortgang & Afleveringen</h4>
+                    <h4 class="filter-section-title">Voortgang &amp; Afleveringen</h4>
                     <div class="filter-chips-grid">
                         <label class="filter-chip-btn filter-btn ultimate-hover-effect"><input type="checkbox" name="filter-progress" value="unwatched_eps"><span>Heeft onbekeken afleveringen</span></label>
                         <label class="filter-chip-btn filter-btn ultimate-hover-effect"><input type="checkbox" name="filter-progress" value="has_in_progress_items"><span>Heeft gestarte seizoenen</span></label>
@@ -273,23 +276,18 @@
                 </div>
             </div>
             <div class="filter-modal-footer">
-                <button id="reset-filters-btn" class="btn-secondary ultimate-hover-effect">Alles Wissen</button>
-                <button id="apply-filters-btn" class="btn-primary ultimate-hover-effect">Filters Toepassen</button>
+                <button type="button" id="reset-filters-btn" class="btn-secondary ultimate-hover-effect">Alles Wissen</button>
+                <button type="button" id="apply-filters-btn" class="btn-primary ultimate-hover-effect">Filters Toepassen</button>
             </div>
         </div>
     </div>
 
-
-
-
     <!-- Floating circular back to top button -->
-    <button id="back-to-top" class="back-to-top-btn" data-visible="false" title="Terug naar boven">
-        <svg class="svg-icon svg-icon-large"><use href="#icon-arrow-up"></use></svg>
+    <button type="button" id="back-to-top" class="back-to-top-btn" data-visible="false" title="Terug naar boven" aria-label="Terug naar boven">
+        <svg class="svg-icon svg-icon-large" aria-hidden="true"><use href="#icon-arrow-up"></use></svg>
     </button>
 
     <!-- Logic & domain scripts -->
     <script type="module" src="js/app.js"></script>
-
-
 </body>
 </html>

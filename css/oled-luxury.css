@@ -2,6 +2,7 @@
    RASCAL — OLED LUXURY THEME (CINEMA NOIR & CHAMPAGNE GOLD)
    ========================================================================== */
 
+@layer theme {
 /* True pitch-black OLED background with refined champagne gold tokens */
 :root,
 [data-theme="dark"] {
@@ -11,8 +12,9 @@
     --surface-hover: #19191d;
     --surface-2: #141417;
     --border: rgba(212, 175, 55, 0.18);
+    --surface-border: rgba(212, 175, 55, 0.18);
     --text: #ffffff;
-    --text-muted: #8e887a;
+    --text-muted: #a09887;
     --white: #ffffff;
     --primary: #d4af37;
     --primary-rgb: 212, 175, 55;
@@ -24,38 +26,46 @@
     --status-btn-bg: #111114;
     --status-btn-color: #d4af37;
     --status-btn-hover: #d4af37;
+    --status-btn-hover-color: #000000;
     --shadow: 0 8px 32px rgba(0, 0, 0, 0.85);
     --modal-bg: rgba(0, 0, 0, 0.9);
+    --segment-track: rgba(255, 255, 255, 0.12);
+    --focus-ring: #d4af37;
 }
 
-/* OLED luxury light variant with warm obsidian and antique gold */
+/* Warm ivory & antique bronze light theme variant */
 [data-theme="light"] {
-    --bg: #070709;
-    --surface: #0e0e11;
-    --surface-card: #141418;
-    --surface-hover: #1e1e24;
-    --surface-2: #17171b;
-    --border: rgba(229, 193, 88, 0.2);
-    --text: #f8f6f0;
-    --text-muted: #9c9483;
-    --white: #ffffff;
-    --primary: #e5c158;
-    --primary-rgb: 229, 193, 88;
-    --header-bg: #09090b;
-    --search-bg: #141418;
-    --search-hover-bg: #1c1c22;
-    --active-bg: #e5c158;
-    --active-color: #000000;
-    --status-btn-bg: #141418;
-    --status-btn-color: #e5c158;
-    --status-btn-hover: #e5c158;
-    --shadow: 0 8px 32px rgba(0, 0, 0, 0.85);
+    --bg: #f6f3ec;
+    --surface: #ffffff;
+    --surface-card: #ede8dc;
+    --surface-hover: #e1dac9;
+    --surface-2: #e7e1d3;
+    --border: rgba(138, 102, 18, 0.24);
+    --surface-border: rgba(138, 102, 18, 0.24);
+    --text: #1c1914;
+    --text-muted: #5c5446;
+    --white: #1c1914;
+    --primary: #8a6612;
+    --primary-rgb: 138, 102, 18;
+    --header-bg: #faf8f3;
+    --search-bg: #ebe5d8;
+    --search-hover-bg: #dfd7c6;
+    --active-bg: #8a6612;
+    --active-color: #ffffff;
+    --status-btn-bg: #ebe5d8;
+    --status-btn-color: #8a6612;
+    --status-btn-hover: #8a6612;
+    --status-btn-hover-color: #ffffff;
+    --shadow: 0 8px 28px rgba(28, 25, 20, 0.08);
+    --modal-bg: rgba(28, 25, 20, 0.55);
+    --segment-track: rgba(28, 25, 20, 0.12);
+    --focus-ring: #8a6612;
 }
 
-/* Seamless dark header with micro-border */
+/* Seamless header with micro-border */
 .header-main {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
+    border-bottom: 1px solid rgba(var(--primary-rgb), 0.14);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
 }
 
 /* Warm champagne gold typography on the brand logo */
@@ -64,57 +74,58 @@
     letter-spacing: 1.5px;
 }
 
-/* Minimalist search bar in deep dark surface */
+/* Minimalist search bar */
 .search-bar input {
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(var(--primary-rgb), 0.16);
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* Subtle gold focus outline on search bar */
 .search-bar input:focus {
-    border-color: rgba(212, 175, 55, 0.5);
-    box-shadow: 0 0 12px rgba(212, 175, 55, 0.15);
+    border-color: rgba(var(--primary-rgb), 0.55);
+    box-shadow: 0 0 12px rgba(var(--primary-rgb), 0.18);
 }
 
-/* Pitch-black cards with subtle micro-border */
+/* Cards with subtle micro-border */
 .anime-card {
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(var(--primary-rgb), 0.14);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* Gentle gold perimeter highlight on hover */
 .anime-card:hover {
-    border-color: rgba(212, 175, 55, 0.3);
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.9), 0 0 14px rgba(212, 175, 55, 0.08);
+    border-color: rgba(var(--primary-rgb), 0.4);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45), 0 0 14px rgba(var(--primary-rgb), 0.1);
 }
 
 /* Active filter buttons in refined gold outline */
 .filter-btn.active,
 .filter-chip-btn input:checked + span {
-    background: rgba(212, 175, 55, 0.12) !important;
-    border: 1px solid var(--primary) !important;
-    color: var(--primary) !important;
+    background: rgba(var(--primary-rgb), 0.14);
+    border: 1px solid var(--primary);
+    color: var(--primary);
 }
 
 /* Minimalist theme picker button with gold accent */
 .theme-picker-dropdown-wrap button {
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(var(--primary-rgb), 0.2);
 }
 
 /* Gold hover outline on theme picker button */
 .theme-picker-dropdown-wrap button:hover {
-    border-color: var(--primary) !important;
+    border-color: var(--primary);
 }
 
-/* Floating theme picker menu in obsidian finish */
+/* Floating theme picker menu */
 .theme-picker-menu {
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.95);
+    border: 1px solid rgba(var(--primary-rgb), 0.22);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55);
 }
 
-/* Watch queue sidebar in pure dark aesthetic */
+/* Watch queue sidebar */
 .queue-sidebar {
-    border-left: 1px solid rgba(255, 255, 255, 0.06);
-    box-shadow: -8px 0 36px rgba(0, 0, 0, 0.9);
+    border-left: 1px solid rgba(var(--primary-rgb), 0.14);
+    box-shadow: -8px 0 36px rgba(0, 0, 0, 0.55);
+}
 }

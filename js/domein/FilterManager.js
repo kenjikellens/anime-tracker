@@ -1,3 +1,5 @@
+import { escapeHtml } from './UIConstants.js';
+
 /**
  * Manages the advanced filter popup modal, options state, localStorage persistence,
  * and multi-dimensional filter evaluations.
@@ -92,6 +94,7 @@ export class FilterManager {
         if (!overlay) return;
 
         let activeOptions = this.loadOptions();
+        let lastFocusedEl = null;
 
         const updateFilterButtonBadge = () => {
             const count = this.getActiveCount(activeOptions);
@@ -99,7 +102,7 @@ export class FilterManager {
             const filterBtn = document.getElementById('filter-popup-btn');
             if (badge) {
                 badge.textContent = count > 0 ? `(${count})` : '';
-                badge.style.display = count > 0 ? 'inline-block' : 'none';
+                badge.classList.toggle('hidden', count === 0);
             }
             if (filterBtn) {
                 filterBtn.classList.toggle('active', count > 0);
@@ -110,14 +113,19 @@ export class FilterManager {
         updateFilterButtonBadge();
 
         const openModal = () => {
+            lastFocusedEl = document.activeElement;
             this.populateModalOptions(overlay, repository, activeOptions);
             overlay.classList.remove('hidden');
             overlay.dataset.visible = 'true';
+            if (closeBtn) closeBtn.focus();
         };
 
         const closeModal = () => {
             overlay.classList.add('hidden');
             overlay.dataset.visible = 'false';
+            if (lastFocusedEl && typeof lastFocusedEl.focus === 'function') {
+                lastFocusedEl.focus();
+            }
         };
 
         // Delegated click on document so dynamic buttons in home.html always trigger
@@ -126,6 +134,12 @@ export class FilterManager {
             if (btn) {
                 e.preventDefault();
                 openModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && overlay.dataset.visible === 'true') {
+                closeModal();
             }
         });
 
@@ -189,7 +203,6 @@ export class FilterManager {
      * @param {Object} options - Current active filter options.
      */
     static populateModalOptions(overlay, repository, options) {
-        // Sync helper to update checkbox and label active states
         const syncCheckboxGroup = (name, activeValues) => {
             overlay.querySelectorAll(`input[name="${name}"]`).forEach(cb => {
                 cb.checked = activeValues && activeValues.includes(cb.value);
@@ -210,10 +223,11 @@ export class FilterManager {
             const types = repository.getUniqueItemTypes();
             typesContainer.innerHTML = types.map(type => {
                 const isChecked = (options.itemTypes || []).includes(type);
+                const safeType = escapeHtml(type);
                 return `
                     <label class="filter-chip-btn filter-btn ultimate-hover-effect ${isChecked ? 'active' : ''}" data-active="${isChecked ? 'true' : 'false'}">
-                        <input type="checkbox" name="filter-item-type" value="${type}" ${isChecked ? 'checked' : ''}>
-                        <span>${type}</span>
+                        <input type="checkbox" name="filter-item-type" value="${safeType}" ${isChecked ? 'checked' : ''}>
+                        <span>${safeType}</span>
                     </label>
                 `;
             }).join('');
@@ -240,10 +254,11 @@ export class FilterManager {
             const genres = repository.getUniqueGenres();
             genresContainer.innerHTML = genres.map(genre => {
                 const isChecked = (options.genres || []).includes(genre);
+                const safeGenre = escapeHtml(genre);
                 return `
                     <label class="filter-chip-btn filter-btn ultimate-hover-effect ${isChecked ? 'active' : ''}" data-active="${isChecked ? 'true' : 'false'}">
-                        <input type="checkbox" name="filter-genre" value="${genre}" ${isChecked ? 'checked' : ''}>
-                        <span>${genre}</span>
+                        <input type="checkbox" name="filter-genre" value="${safeGenre}" ${isChecked ? 'checked' : ''}>
+                        <span>${safeGenre}</span>
                     </label>
                 `;
             }).join('');
@@ -253,18 +268,20 @@ export class FilterManager {
         const studioSelect = overlay.querySelector('#filter-studio-select');
         if (studioSelect) {
             const studios = repository.getUniqueStudios();
-            studioSelect.innerHTML = `<option value="">Alle Studio's</option>` + studios.map(s => `
-                <option value="${s}" ${(options.studios || []).includes(s) ? 'selected' : ''}>${s}</option>
-            `).join('');
+            studioSelect.innerHTML = `<option value="">Alle Studio's</option>` + studios.map(s => {
+                const safeStudio = escapeHtml(s);
+                return `<option value="${safeStudio}" ${(options.studios || []).includes(s) ? 'selected' : ''}>${safeStudio}</option>`;
+            }).join('');
         }
 
         // 7. Years
         const yearSelect = overlay.querySelector('#filter-year-select');
         if (yearSelect) {
             const years = repository.getUniqueYears();
-            yearSelect.innerHTML = `<option value="">Alle Jaren</option>` + years.map(y => `
-                <option value="${y}" ${(options.years || []).includes(y.toString()) ? 'selected' : ''}>${y}</option>
-            `).join('');
+            yearSelect.innerHTML = `<option value="">Alle Jaren</option>` + years.map(y => {
+                const safeYear = escapeHtml(y);
+                return `<option value="${safeYear}" ${(options.years || []).includes(y.toString()) ? 'selected' : ''}>${safeYear}</option>`;
+            }).join('');
         }
 
         // 8. Progress

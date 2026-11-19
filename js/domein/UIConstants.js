@@ -1,6 +1,6 @@
 /**
  * UIConstants module.
- * Centralized registry of UI class tokens, dataset attributes, and status mappings.
+ * Centralized registry of UI class tokens, dataset attributes, and escaping helpers.
  * Decouples styling string literals from application logic.
  */
 export const UI_CLASSES = {
@@ -43,3 +43,17 @@ export const DATA_ATTRS = {
     EPISODE: 'data-ep',
     THEME: 'data-theme'
 };
+
+/**
+ * Escapes HTML special characters to prevent XSS in template literals.
+ * @param {string|number} value - Raw text value to escape.
+ * @returns {string} HTML-safe escaped string.
+ */
+export function escapeHtml(value) {
+    return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}

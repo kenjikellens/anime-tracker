@@ -26,9 +26,12 @@ let currentDetailAnime = null;
 let currentRatingTarget = null;
 let currentRatingType = null;
 
+// Cached view templates.
+let homeLayoutHtml = null;
+let detailLayoutHtml = null;
+
 /**
  * Normalizes legacy or missing filter values to prevent UI inconsistencies.
- * If the filter is unrecognized, it falls back to 'all'.
  * @param {string} filter - The filter value to normalize.
  * @returns {string} The normalized filter value.
  */
@@ -39,10 +42,7 @@ function normalizeStoredFilter(filter) {
 
 /**
  * Routes and handles rendering of views based on the window location hash.
- * Fetches dynamic templates for home.html or card.html and renders the layout.
  */
-let homeLayoutHtml = null;
-
 async function handleRoute() {
     const hash = window.location.hash || '#/';
     const appContainer = document.getElementById('app');
@@ -55,23 +55,25 @@ async function handleRoute() {
                 homeLayoutHtml = await response.text();
             }
             appContainer.innerHTML = homeLayoutHtml;
+            setupFilters();
+            setupSorting();
+            setupViewToggles();
+            DropdownManager.bindAll(appContainer);
         }
 
         renderData();
-        setupFilters();
-        setupSorting();
-        setupViewToggles();
-        DropdownManager.bindAll(appContainer);
     } else if (hash.startsWith('#/anime/')) {
         const id = hash.replace('#/anime/', '');
         currentDetailAnime = repository.getById(id);
 
         if (currentDetailAnime) {
-            const cardLoadStartTime = Date.now();
-            const response = await fetch('card.html');
-            appContainer.innerHTML = await response.text();
+            if (!detailLayoutHtml) {
+                const response = await fetch('card.html');
+                detailLayoutHtml = await response.text();
+            }
+            appContainer.innerHTML = detailLayoutHtml;
 
-            renderDetail(cardLoadStartTime);
+            renderDetail();
 
             // Fetch missing poster/episode data for this one record only.
             let needSave = false;
@@ -118,6 +120,7 @@ async function init() {
     setupDownloadBtn();
     setupSearch();
     setupBackToTop();
+    setupFooterFilters();
     filterManagerInstance = FilterManager.setup(repository, () => {
         renderData();
     });
@@ -138,33 +141,59 @@ async function init() {
 }
 
 /**
- * Sets up the floating back to top button with scroll tracking and smooth scroll.
+ * Connects footer status filter links so they work cleanly from any route.
+ */
+function setupFooterFilters() {
+    document.querySelectorAll('[data-footer-filter]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const filterVal = link.getAttribute('data-footer-filter');
+            currentFilter = normalizeStoredFilter(filterVal);
+            CookieManager.set('activeFilter', currentFilter);
+
+            if (window.location.hash === '#/' || window.location.hash === '') {
+                const targetBtn = document.querySelector(`.filter-btn[data-filter="${currentFilter}"]`);
+                if (targetBtn) {
+                    targetBtn.click();
+                } else {
+                    renderData();
+                }
+            } else {
+                window.location.hash = '#/';
+            }
+
+            const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        });
+    });
+}
+
+/**
+ * Sets up the floating back to top button with scroll tracking and reduced-motion support.
  */
 function setupBackToTop() {
     const btn = document.getElementById('back-to-top');
     if (!btn) return;
 
     const handleScroll = () => {
-        const scrollPos = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        const scrollPos = window.scrollY || document.documentElement.scrollTop || 0;
         const isScrolled = scrollPos > 150;
         btn.classList.toggle('visible', isScrolled);
         btn.dataset.visible = isScrolled ? 'true' : 'false';
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    document.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
     btn.addEventListener('click', (e) => {
         e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
+        const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
     });
 }
 
 /**
  * Fetches missing cover art and episode counts from AniList using rate-limit throttling and batch saving.
- * Linked to: AniList GraphQL and `CardRenderer.updateCardImage`.
  */
 async function hydrateAnilistData() {
     const missing = repository.getAll().filter(a => !a.coverImage);
@@ -210,6 +239,8 @@ async function hydrateAnilistData() {
     }
 }
 
+let lastRatingFocusEl = null;
+
 /**
  * Opens the shared rating modal for a specific target (anime or item).
  * @param {Object} target - The anime or item model to rate.
@@ -221,35 +252,30 @@ function openRatingModal(target, type = 'anime') {
     const ratingInput = document.getElementById('rating-number');
 
     if (overlay && modalTitle && ratingInput) {
+        lastRatingFocusEl = document.activeElement;
         currentRatingTarget = target;
         currentRatingType = type;
         modalTitle.textContent = target.title;
-        ratingInput.value = target.rating > 0 ? target.rating : "";
+        ratingInput.value = target.rating > 0 ? target.rating : '';
         overlay.dataset.visible = 'true';
         overlay.classList.remove('hidden');
+        ratingInput.focus();
+        ratingInput.select();
     }
 }
 
-/**
- * Opens the shared rating modal for the global/current detail anime.
- */
 function openGlobalRatingModal() {
     if (currentDetailAnime) {
         openRatingModal(currentDetailAnime, 'anime');
     }
 }
 
-/**
- * Opens the shared rating modal for a specific detail item.
- * @param {Object} item - The detail item model to rate.
- */
 function openItemRatingModal(item) {
     openRatingModal(item, 'item');
 }
 
 /**
- * Sets up rating modal events dynamically, removing dependency on global window objects.
- * This binds click events to the save, clear, and cancel buttons.
+ * Sets up rating modal events including Escape-to-close and focus restoration.
  */
 function setupRatingModal() {
     const overlay = document.getElementById('modal-overlay');
@@ -260,10 +286,19 @@ function setupRatingModal() {
         overlay.classList.add('hidden');
         currentRatingTarget = null;
         currentRatingType = null;
+        if (lastRatingFocusEl && typeof lastRatingFocusEl.focus === 'function') {
+            lastRatingFocusEl.focus();
+        }
     };
 
     overlay.addEventListener('click', (e) => {
         if (e.target === overlay) closeRatingModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.dataset.visible === 'true') {
+            closeRatingModal();
+        }
     });
 
     const cancelBtn = document.getElementById('cancel-rating');
@@ -273,7 +308,10 @@ function setupRatingModal() {
     if (clearBtn) {
         clearBtn.addEventListener('click', () => {
             const ratingInput = document.getElementById('rating-number');
-            if (ratingInput) ratingInput.value = '';
+            if (ratingInput) {
+                ratingInput.value = '';
+                ratingInput.focus();
+            }
         });
     }
 
@@ -295,7 +333,7 @@ function setupRatingModal() {
                     }
 
                     await DataStore.save(repository);
-                    
+
                     if (window.location.hash.startsWith('#/anime/')) {
                         renderDetail();
                     } else {
@@ -341,7 +379,6 @@ async function handleQueueToggle(anime) {
 
 /**
  * Loads and appends the next batch of anime cards to the container.
- * This affects the `#anime-container` DOM element by adding card components.
  * @param {boolean} [isFirst=false] - Whether this is the first batch to load.
  */
 function loadNextBatch(isFirst = false) {
@@ -349,7 +386,7 @@ function loadNextBatch(isFirst = false) {
     if (!container) return;
 
     const nextBatch = allFilteredAnimes.slice(currentRenderIndex, currentRenderIndex + RENDER_BATCH_SIZE);
-    
+
     if (nextBatch.length > 0) {
         CardRenderer.renderBatch(container, nextBatch, (anime) => openRatingModal(anime, 'anime'), isFirst, handleQueueToggle);
         currentRenderIndex += nextBatch.length;
@@ -369,7 +406,6 @@ function loadNextBatch(isFirst = false) {
 
 /**
  * Applies the current filter, search, and sort state, then renders cards.
- * This resets the lazy loading pagination state and sets up a new IntersectionObserver.
  */
 function renderData() {
     const container = document.getElementById('anime-container');
@@ -448,11 +484,7 @@ function setupFilters() {
     filterBtns.forEach(btn => {
         const isActive = btn.getAttribute('data-filter') === currentFilter;
         btn.dataset.active = isActive ? 'true' : 'false';
-        if (isActive) {
-            btn.classList.add(UI_CLASSES.ACTIVE);
-        } else {
-            btn.classList.remove(UI_CLASSES.ACTIVE);
-        }
+        btn.classList.toggle(UI_CLASSES.ACTIVE, isActive);
 
         btn.addEventListener('click', (e) => {
             filterBtns.forEach(b => {
@@ -479,7 +511,6 @@ function setupSearch() {
         if (window.location.hash === '#/' || window.location.hash === '') {
             renderData();
         } else {
-            // Redirect to home and search if we search from detail page
             window.location.hash = '#/';
         }
     });
@@ -499,7 +530,7 @@ function setupViewToggles() {
 
     if (!container) return;
 
-    colsVal.textContent = currentGridCols;
+    if (colsVal) colsVal.textContent = currentGridCols;
     container.style.setProperty('--grid-cols', currentGridCols);
 
     function applyViewMode(mode) {
@@ -507,10 +538,12 @@ function setupViewToggles() {
         if (gridBtn) {
             gridBtn.dataset.active = isGrid ? 'true' : 'false';
             gridBtn.classList.toggle(UI_CLASSES.ACTIVE, isGrid);
+            gridBtn.setAttribute('aria-pressed', isGrid ? 'true' : 'false');
         }
         if (listBtn) {
             listBtn.dataset.active = isGrid ? 'false' : 'true';
             listBtn.classList.toggle(UI_CLASSES.ACTIVE, !isGrid);
+            listBtn.setAttribute('aria-pressed', !isGrid ? 'true' : 'false');
         }
         container.dataset.view = mode;
         container.classList.toggle(UI_CLASSES.GRID_VIEW, isGrid);
@@ -550,13 +583,13 @@ function setupViewToggles() {
 
     if (minusBtn) {
         minusBtn.addEventListener('click', () => {
-            updateGridCols(parseInt(currentGridCols) - 1);
+            updateGridCols(parseInt(currentGridCols, 10) - 1);
         });
     }
-    
+
     if (plusBtn) {
         plusBtn.addEventListener('click', () => {
-            updateGridCols(parseInt(currentGridCols) + 1);
+            updateGridCols(parseInt(currentGridCols, 10) + 1);
         });
     }
 }
@@ -577,12 +610,11 @@ function setupDownloadBtn() {
 
 /**
  * Renders the detail page content and accordion elements.
- * @param {number|null} [loadStartTime=null] - Optional start timestamp to enforce minimum loader duration.
  */
-function renderDetail(loadStartTime = null) {
+function renderDetail() {
     const container = document.getElementById('detail-container');
     if (!container || !currentDetailAnime) return;
-    
+
     const openItemIds = Array.from(container.querySelectorAll('.item-accordion-wrapper[open]'))
         .map(wrapper => wrapper.getAttribute('data-item-id'));
 
@@ -597,20 +629,14 @@ function renderDetail(loadStartTime = null) {
             openGlobalRatingModal,
             openItemIds,
             openItemRatingModal,
-            loadStartTime,
+            null,
             handleQueueToggle,
             handleTimesWatchedChange
         );
     });
 }
 
-/**
- * Persists watch count updates when the user adjusts times watched on the detail page.
- * Modifies repository storage and triggers DataStore save.
- * @param {Anime} anime - The target anime franchise.
- * @param {number} newCount - The updated watch count.
- */
-async function handleTimesWatchedChange(anime, newCount) {
+async function handleTimesWatchedChange() {
     await DataStore.save(repository);
 }
 
@@ -621,33 +647,18 @@ async function withStatusUpdater(fn) {
     renderDetail();
 }
 
-/**
- * Toggles an episode check status for a specific detail item.
- * @param {Object} item - The detail item model.
- * @param {number} episodeNum - The episode number.
- */
 function handleEpisodeToggle(item, episodeNum) {
     if (currentDetailAnime) {
         withStatusUpdater(s => s.toggleEpisode(item, episodeNum, currentDetailAnime));
     }
 }
 
-/**
- * Updates status of a detail item (e.g., season or movie).
- * @param {Object} item - The detail item model.
- * @param {string} newStatus - The new status value.
- */
 function handleItemStatus(item, newStatus) {
     if (currentDetailAnime) {
         withStatusUpdater(s => s.updateItemStatus(item, newStatus, currentDetailAnime));
     }
 }
 
-/**
- * Updates global status of the anime franchise.
- * @param {Object} anime - The parent anime model.
- * @param {string} newStatus - The new status value.
- */
 function handleGlobalStatus(anime, newStatus) {
     withStatusUpdater(s => s.updateGlobalStatus(anime, newStatus));
 }

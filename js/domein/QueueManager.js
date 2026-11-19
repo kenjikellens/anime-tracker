@@ -1,6 +1,8 @@
+import { escapeHtml } from './UIConstants.js';
+
 /**
  * Manages the "Top Kijkvolgorde / Volgende om te Bekijken" sidebar drawer.
- * Supports HTML5 Drag & Drop reordering and searchable autocomplete to add series.
+ * Supports Drag & Drop, keyboard/touch move buttons, and searchable autocomplete.
  */
 export class QueueManager {
     /**
@@ -42,6 +44,13 @@ export class QueueManager {
             this.closeBtn.addEventListener('click', () => this.toggleSidebar(false));
         }
 
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.sidebarEl && this.sidebarEl.classList.contains('open')) {
+                this.toggleSidebar(false);
+                if (this.toggleBtn) this.toggleBtn.focus();
+            }
+        });
+
         this.setupSearchAdd();
         this.render();
     }
@@ -54,11 +63,16 @@ export class QueueManager {
         if (!this.sidebarEl) return;
         const isOpen = forceState !== undefined ? forceState : !this.sidebarEl.classList.contains('open');
         this.sidebarEl.classList.toggle('open', isOpen);
+        this.sidebarEl.inert = !isOpen;
         if (this.toggleBtn) {
             this.toggleBtn.classList.toggle('active', isOpen);
+            this.toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         }
         if (this.mainContent) {
             this.mainContent.classList.toggle('sidebar-open', isOpen);
+        }
+        if (isOpen && this.closeBtn) {
+            this.closeBtn.focus();
         }
     }
 
@@ -81,7 +95,7 @@ export class QueueManager {
             this.listContainer.innerHTML = `
                 <div class="queue-empty-state">
                     <p>Nog geen anime in je Top Kijklijst.</p>
-                    <p style="font-size: 11px;">Typ een serienaam hierboven of klik op "+ Naar Top Lijst" op een animekaart.</p>
+                    <p class="queue-empty-sub">Typ een serienaam hierboven om een serie toe te voegen.</p>
                 </div>
             `;
             return;
@@ -90,13 +104,18 @@ export class QueueManager {
         this.listContainer.innerHTML = queue.map((anime, index) => {
             const rank = index + 1;
             const isTop = rank === 1;
+            const isLast = index === queue.length - 1;
+            const safeTitle = escapeHtml(anime.title);
+            const safeId = escapeHtml(anime.id);
             return `
-                <div class="queue-item" draggable="true" data-id="${anime.id}" data-index="${index}">
-                    <div class="queue-drag-handle" title="Sleep om volgorde te wijzigen">⋮⋮</div>
+                <div class="queue-item" draggable="true" data-id="${safeId}" data-index="${index}">
+                    <div class="queue-drag-handle" title="Sleep om volgorde te wijzigen" aria-hidden="true">⋮⋮</div>
                     <span class="queue-item-rank ${isTop ? 'rank-top' : ''}">#${rank}</span>
-                    <span class="queue-item-title" title="${anime.title}">${anime.title}</span>
+                    <span class="queue-item-title" title="${safeTitle}">${safeTitle}</span>
                     <div class="queue-item-actions">
-                        <button class="queue-action-btn btn-remove" data-remove-id="${anime.id}" title="Verwijderen uit Top lijst">✕</button>
+                        <button type="button" class="queue-action-btn btn-move" data-move-index="${index}" data-dir="-1" title="Omhoog" aria-label="${safeTitle} omhoog verplaatsen" ${index === 0 ? 'disabled' : ''}>↑</button>
+                        <button type="button" class="queue-action-btn btn-move" data-move-index="${index}" data-dir="1" title="Omlaag" aria-label="${safeTitle} omlaag verplaatsen" ${isLast ? 'disabled' : ''}>↓</button>
+                        <button type="button" class="queue-action-btn btn-remove" data-remove-id="${safeId}" title="Verwijderen uit Top lijst" aria-label="${safeTitle} verwijderen uit Top lijst">✕</button>
                     </div>
                 </div>
             `;
@@ -106,10 +125,25 @@ export class QueueManager {
     }
 
     /**
-     * Binds Drag & Drop and removal events to rendered queue items.
+     * Binds Drag & Drop, touch/keyboard move buttons, and removal events.
      */
     bindItemEvents() {
         if (!this.listContainer) return;
+
+        // Touch/keyboard move up/down buttons
+        this.listContainer.querySelectorAll('[data-move-index]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const fromIndex = parseInt(btn.getAttribute('data-move-index'), 10);
+                const dir = parseInt(btn.getAttribute('data-dir'), 10);
+                const toIndex = fromIndex + dir;
+                const queue = this.repository.getRankedWatchQueue();
+                if (toIndex < 0 || toIndex >= queue.length) return;
+                this.repository.reorderWatchRank(fromIndex, toIndex);
+                this.render();
+                if (this.onUpdate) this.onUpdate();
+            });
+        });
 
         // Removal buttons
         const removeBtns = this.listContainer.querySelectorAll('[data-remove-id]');
@@ -210,13 +244,14 @@ export class QueueManager {
                 this.autocompleteList.innerHTML = `<div class="queue-autocomplete-empty">Geen niet-toegevoegde series gevonden.</div>`;
             } else {
                 this.autocompleteList.innerHTML = unqueued.slice(0, 15).map(a => `
-                    <div class="queue-autocomplete-item" data-add-id="${a.id}">
-                        <span>${a.title}</span>
-                        <span style="color: var(--primary); font-weight: 700;">+ Toevoegen</span>
-                    </div>
+                    <button type="button" role="option" class="queue-autocomplete-item" data-add-id="${escapeHtml(a.id)}">
+                        <span>${escapeHtml(a.title)}</span>
+                        <span class="queue-autocomplete-add">+ Toevoegen</span>
+                    </button>
                 `).join('');
 
-                this.autocompleteList.querySelectorAll('[data-add-id]').forEach(el => {
+                const options = Array.from(this.autocompleteList.querySelectorAll('[data-add-id]'));
+                options.forEach((el, idx) => {
                     el.addEventListener('click', () => {
                         const animeId = el.getAttribute('data-add-id');
                         this.repository.addToWatchQueue(animeId);
@@ -224,10 +259,40 @@ export class QueueManager {
                         this.autocompleteList.classList.remove('visible');
                         this.render();
                         if (this.onUpdate) this.onUpdate();
+                        this.searchAddInput.focus();
+                    });
+
+                    el.addEventListener('keydown', (ev) => {
+                        if (ev.key === 'ArrowDown') {
+                            ev.preventDefault();
+                            options[(idx + 1) % options.length]?.focus();
+                        } else if (ev.key === 'ArrowUp') {
+                            ev.preventDefault();
+                            if (idx === 0) {
+                                this.searchAddInput.focus();
+                            } else {
+                                options[idx - 1]?.focus();
+                            }
+                        } else if (ev.key === 'Escape') {
+                            this.autocompleteList.classList.remove('visible');
+                            this.searchAddInput.focus();
+                        }
                     });
                 });
             }
             this.autocompleteList.classList.add('visible');
+        });
+
+        this.searchAddInput.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown' && this.autocompleteList.classList.contains('visible')) {
+                const firstOpt = this.autocompleteList.querySelector('[data-add-id]');
+                if (firstOpt) {
+                    e.preventDefault();
+                    firstOpt.focus();
+                }
+            } else if (e.key === 'Escape') {
+                this.autocompleteList.classList.remove('visible');
+            }
         });
 
         this.searchAddInput.addEventListener('focus', () => {
