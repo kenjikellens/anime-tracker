@@ -8,6 +8,7 @@
 - Akashic Records of Bastard Magic Instructor
 - Alya Sometimes Hides Her Feelings in Russian
 - And you thought there is never a girl online?
+- Aria the Scarlet Ammo
 - Azumanga Daioh
 - Baka to Test to Shoukanjuu
 - Banished from the Hero's Party, I Decided to Live a Quiet Life in the Countryside
@@ -20,6 +21,7 @@
 - Carnival Phantasm
 - Castle Town Dandelion
 - Chainsaw Man
+- Chivalry of a Failed Knight
 - Chitose Is in the Ramune Bottle
 - Clannad
 - Class President is a Maid!
@@ -29,6 +31,7 @@
 - Dark Gathering
 - Date A Live
 - Dealing with Mikadono Sisters is a Breeze
+- Death March to the Parallel World Rhapsody
 - Domestic Girlfriend
 - Don't Toy with Me, Miss Nagatoro
 - Eromanga Sensei
@@ -49,6 +52,7 @@
 - Himouto! Umaru-chan
 - Horimiya
 - How a Realist Hero Rebuilt the Kingdom
+- Hundred
 - I Made Friends with the Second Prettiest Girl in My Class
 - I want to eat your pancreas (Kimi no Suizou wo Tabetai)
 - Inexpressive Kashiwada and Expressive Oota
@@ -78,10 +82,12 @@
 - My Matchmaking Partner Is My Student, An Aggressive Trouble-Maker
 - My Stepmom's Daughter Is My Ex
 - My Teen Romantic Comedy SNAFU (Oregairu)
+- Nagasarete Airanto
 - Nisekoi: False Love
 - Now That I Can Control Reality With A Mouse Cursor, I'm Gonna Click Away On The Girls!
 - Nukitashi THE ANIMATION
 - Nyan Koi!
+- Nyaruko: Crawling with Love!
 - Oh Boy, Was I Wrong About Her
 - One Room
 - Orange
@@ -111,9 +117,11 @@
 - The Children of Shiunji Family
 - The Comic Artist and His Assistants
 - The Dangers in My Heart
+- The Devil is a Part-Timer!
 - The Dreaming Boy is a Realist
 - The Fragrant Flower Blooms with Dignity
 - The Genius Prince's Guide to Raising a Nation Out of Debt
+- The Honor at Magic High School
 - The Iceblade Sorcerer Shall Rule the World
 - The Melancholy of Haruhi Suzumiya
 - The Pet Girl of Sakurasou
@@ -128,7 +136,9 @@
 - TONIKAWA: Over The Moon For You
 - Toradora!
 - Trinity Seven
+- Tsuredure Children
 - Tune In to the Midnight Heart
+- Twin Star Exorcists
 - Umamusume: Pretty Derby
 - Undefeated Bahamut Chronicle
 - We Never Learn: BOKUBEN

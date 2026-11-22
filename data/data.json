@@ -7040,5 +7040,422 @@
                 "episodesCount": 1
             }
         ]
+    },
+    {
+        "id": "aria-the-scarlet-ammo",
+        "anilistId": 8630,
+        "title": "Aria the Scarlet Ammo",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "2011-04-15",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx8630-n8Ipf0NlVXjy.jpg",
+        "studio": "J.C.STAFF",
+        "year": 2011,
+        "genres": [
+            "Action",
+            "Comedy",
+            "Ecchi",
+            "Romance"
+        ],
+        "watchRank": null,
+        "timesWatched": 0,
+        "items": [
+            {
+                "id": "aria-the-scarlet-ammo-season-1",
+                "title": "Aria the Scarlet Ammo",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "aria-the-scarlet-ammo-special",
+                "title": "Aria the Scarlet Ammo Special",
+                "status": -1,
+                "type": "SPECIAL",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "aria-the-scarlet-ammo-aa",
+                "title": "Aria the Scarlet Ammo AA",
+                "status": -1,
+                "type": "SPIN-OFF",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "hidan-no-aria-corto",
+                "title": "Hidan no Aria Corto",
+                "status": 2,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 0
+            }
+        ]
+    },
+    {
+        "id": "the-devil-is-a-part-timer",
+        "anilistId": 15809,
+        "title": "The Devil is a Part-Timer!",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "2013-04-04",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx15809-ECv3HyOYJKrk.jpg",
+        "studio": "WHITE FOX",
+        "year": 2013,
+        "genres": [
+            "Comedy",
+            "Fantasy",
+            "Romance",
+            "Slice of Life"
+        ],
+        "watchRank": null,
+        "timesWatched": 0,
+        "items": [
+            {
+                "id": "the-devil-is-a-part-timer-season-1",
+                "title": "The Devil is a Part-Timer!",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 13
+            },
+            {
+                "id": "the-devil-is-a-part-timer-season-2",
+                "title": "The Devil is a Part-Timer! Season 2",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "chiichai-maou-sama",
+                "title": "Chiichai! Maou-sama!!",
+                "status": -1,
+                "type": "ONA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 24
+            },
+            {
+                "id": "the-devil-is-a-part-timer-season-2-part-2",
+                "title": "The Devil is a Part-Timer! Season 2 Part 2",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            }
+        ]
+    },
+    {
+        "id": "chivalry-of-a-failed-knight",
+        "anilistId": 21092,
+        "title": "Chivalry of a Failed Knight",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "2015-10-03",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21092-1NML6TdngmBq.jpg",
+        "studio": "SILVER LINK.",
+        "year": 2015,
+        "genres": [
+            "Action",
+            "Ecchi",
+            "Fantasy",
+            "Romance"
+        ],
+        "watchRank": null,
+        "timesWatched": 0,
+        "items": [
+            {
+                "id": "chivalry-of-a-failed-knight-season-1",
+                "title": "Chivalry of a Failed Knight",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            }
+        ]
+    },
+    {
+        "id": "tsuredure-children",
+        "anilistId": 98291,
+        "title": "Tsuredure Children",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "2017-07-04",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx98291-LY6txxZTX8We.jpg",
+        "studio": "Studio Gokumi",
+        "year": 2017,
+        "genres": [
+            "Comedy",
+            "Drama",
+            "Romance",
+            "Slice of Life"
+        ],
+        "watchRank": null,
+        "timesWatched": 0,
+        "items": [
+            {
+                "id": "tsuredure-children-season-1",
+                "title": "Tsuredure Children",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            }
+        ]
+    },
+    {
+        "id": "the-honor-at-magic-high-school",
+        "anilistId": 127688,
+        "title": "The Honor at Magic High School",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "2021-07-03",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx127688-WDZFupRhW3eX.jpg",
+        "studio": "CONNECT",
+        "year": 2021,
+        "genres": [
+            "Fantasy",
+            "Sci-Fi"
+        ],
+        "watchRank": null,
+        "timesWatched": 0,
+        "items": [
+            {
+                "id": "the-honor-at-magic-high-school-season-1",
+                "title": "The Honor at Magic High School",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 13
+            }
+        ]
+    },
+    {
+        "id": "twin-star-exorcists",
+        "anilistId": 21499,
+        "title": "Twin Star Exorcists",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "2016-04-06",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21499-JCxvIXc27mVT.jpg",
+        "studio": "Studio Pierrot",
+        "year": 2016,
+        "genres": [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Drama",
+            "Fantasy",
+            "Romance",
+            "Supernatural"
+        ],
+        "watchRank": null,
+        "timesWatched": 0,
+        "items": [
+            {
+                "id": "twin-star-exorcists-season-1",
+                "title": "Twin Star Exorcists",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 50
+            }
+        ]
+    },
+    {
+        "id": "nyaruko-crawling-with-love",
+        "anilistId": 11785,
+        "title": "Nyaruko: Crawling with Love!",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "2012-04-10",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx11785-cBfqpOetdIeF.jpg",
+        "studio": "Xebec",
+        "year": 2012,
+        "genres": [
+            "Comedy",
+            "Romance",
+            "Sci-Fi"
+        ],
+        "watchRank": null,
+        "timesWatched": 0,
+        "items": [
+            {
+                "id": "haiyoru-nyaruani",
+                "title": "Haiyoru! Nyaruani",
+                "status": -1,
+                "type": "ONA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 9
+            },
+            {
+                "id": "haiyoru-nyaruani-remember-my-mr-lovecraft",
+                "title": "Haiyoru! Nyaruani: Remember My Mr. Lovecraft",
+                "status": -1,
+                "type": "ONA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 11
+            },
+            {
+                "id": "nyaruko-crawling-with-love-season-1",
+                "title": "Nyaruko: Crawling with Love!",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "haiyore-nyaruko-san-ova",
+                "title": "Haiyore! Nyaruko-san: Yasashii Teki no Shitome-kata",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "nyarko-san-another-crawling-chaos-w",
+                "title": "Nyarko-san: Another Crawling Chaos W",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "haiyore-nyaruko-san-w-ova",
+                "title": "Haiyore! Nyaruko-san W OVA",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            },
+            {
+                "id": "haiyore-nyaruko-san-f",
+                "title": "Haiyore! Nyaruko-san F",
+                "status": -1,
+                "type": "OVA",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 1
+            }
+        ]
+    },
+    {
+        "id": "nagasarete-airanto",
+        "anilistId": 1722,
+        "title": "Nagasarete Airanto",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "2007-04-05",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx1722-6ODyx4oSLQIh.png",
+        "studio": "feel.",
+        "year": 2007,
+        "genres": [
+            "Comedy",
+            "Ecchi",
+            "Fantasy",
+            "Romance"
+        ],
+        "watchRank": null,
+        "timesWatched": 0,
+        "items": [
+            {
+                "id": "nagasarete-airanto-season-1",
+                "title": "Nagasarete Airanto",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 26
+            }
+        ]
+    },
+    {
+        "id": "death-march-to-the-parallel-world-rhapsody",
+        "anilistId": 97907,
+        "title": "Death March to the Parallel World Rhapsody",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "2018-01-11",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx97907-MAOO4oDANGXm.png",
+        "studio": "SILVER LINK.",
+        "year": 2018,
+        "genres": [
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Fantasy"
+        ],
+        "watchRank": null,
+        "timesWatched": 0,
+        "items": [
+            {
+                "id": "death-march-to-the-parallel-world-rhapsody-season-1",
+                "title": "Death March to the Parallel World Rhapsody",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            },
+            {
+                "id": "death-march-to-the-parallel-world-rhapsody-sequel",
+                "title": "Death March Kara Hajimaru Isekai Kyousoukyoku (Zoku-hen)",
+                "status": 2,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 0
+            }
+        ]
+    },
+    {
+        "id": "hundred",
+        "anilistId": 21362,
+        "title": "Hundred",
+        "status": -1,
+        "rating": 0,
+        "releaseDate": "2016-04-05",
+        "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21362-7YZq4TZ112Il.png",
+        "studio": "Production IMS",
+        "year": 2016,
+        "genres": [
+            "Action",
+            "Ecchi",
+            "Mecha",
+            "Sci-Fi"
+        ],
+        "watchRank": null,
+        "timesWatched": 0,
+        "items": [
+            {
+                "id": "hundred-season-1",
+                "title": "Hundred",
+                "status": -1,
+                "type": "SERIE",
+                "rating": 0,
+                "watchedEpisodes": [],
+                "episodesCount": 12
+            }
+        ]
     }
 ]

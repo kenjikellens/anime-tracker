@@ -550,3 +550,46 @@
 - [ ] Chainsaw Man - The Movie: Reze Arc (Movie)
 - [ ] Chainsaw Days (ONA - 5 eps)
 - [ ] Chainsaw Man: Assassins Arc (SERIE - Announced)
+
+## Aria the Scarlet Ammo
+- [ ] Aria the Scarlet Ammo (SERIE - 12 eps)
+- [ ] Aria the Scarlet Ammo Special (SPECIAL - 1 eps)
+- [ ] Aria the Scarlet Ammo AA (SPIN-OFF - 12 eps)
+- [ ] Hidan no Aria Corto (SERIE - Announced)
+
+## The Devil is a Part-Timer!
+- [ ] The Devil is a Part-Timer! (SERIE - 13 eps)
+- [ ] The Devil is a Part-Timer! Season 2 (SERIE - 12 eps)
+- [ ] Chiichai! Maou-sama!! (ONA - 24 eps)
+- [ ] The Devil is a Part-Timer! Season 2 Part 2 (SERIE - 12 eps)
+
+## Chivalry of a Failed Knight
+- [ ] Chivalry of a Failed Knight (SERIE - 12 eps)
+
+## Tsuredure Children
+- [ ] Tsuredure Children (SERIE - 12 eps)
+
+## The Honor at Magic High School
+- [ ] The Honor at Magic High School (SERIE - 13 eps)
+
+## Twin Star Exorcists
+- [ ] Twin Star Exorcists (SERIE - 50 eps)
+
+## Nyaruko: Crawling with Love!
+- [ ] Haiyoru! Nyaruani (ONA - 9 eps)
+- [ ] Haiyoru! Nyaruani: Remember My Mr. Lovecraft (ONA - 11 eps)
+- [ ] Nyaruko: Crawling with Love! (SERIE - 12 eps)
+- [ ] Haiyore! Nyaruko-san: Yasashii Teki no Shitome-kata (OVA - 1 eps)
+- [ ] Nyarko-san: Another Crawling Chaos W (SERIE - 12 eps)
+- [ ] Haiyore! Nyaruko-san W OVA (OVA - 1 eps)
+- [ ] Haiyore! Nyaruko-san F (OVA - 1 eps)
+
+## Nagasarete Airanto
+- [ ] Nagasarete Airanto (SERIE - 26 eps)
+
+## Death March to the Parallel World Rhapsody
+- [ ] Death March to the Parallel World Rhapsody (SERIE - 12 eps)
+- [ ] Death March Kara Hajimaru Isekai Kyousoukyoku (Zoku-hen) (SERIE - Announced)
+
+## Hundred
+- [ ] Hundred (SERIE - 12 eps)
