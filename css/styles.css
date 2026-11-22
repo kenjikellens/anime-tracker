@@ -351,8 +351,9 @@ select[data-bound] {
     background-color: var(--search-bg);
 }
 
-.header-right button:hover,
-.header-right button:hover::before {
+/* Header Action Buttons Hover - Highlights inactive header buttons without overriding active toggle state */
+.header-right button:not(.active):hover,
+.header-right button:not(.active):hover::before {
     background-color: var(--search-hover-bg);
     color: var(--text);
 }
@@ -487,24 +488,26 @@ select[data-bound] {
     gap: 6px;
 }
 
+/* Filter Pill Button - Uses transparent 1px border at rest to prevent layout shift when themed */
 .filter-btn {
     background: var(--surface);
-    border: none;
+    border: 1px solid transparent;
     color: var(--text-muted);
     padding: 8px 16px;
     border-radius: 8px;
     font-weight: 600;
     font-size: 14px;
-    transition: background-color 0.15s ease, color 0.15s ease;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
+/* Active Filter & View Buttons - Applies high-contrast active tokens without layout shift */
 .filter-btn.active,
 .filter-btn[data-active="true"],
 .view-btn.active,
 .view-btn[data-active="true"] {
     background: var(--active-bg);
     color: var(--active-color);
-    border: none;
+    border-color: transparent;
 }
 
 /* Unified application dropdown selector with custom SVG chevron arrow */
@@ -574,17 +577,19 @@ select[data-bound] {
     color: inherit;
 }
 
-/* Custom Dropdown Trigger & Action Button Hover */
+/* Custom Dropdown Trigger & Action Button Hover - Uses status button hover tokens on direct trigger/button hover or focus */
 .status-btn-style:hover,
 .status-btn-style:hover::before,
 .status-btn-style:focus-visible,
 .status-btn-style:focus-visible::before,
 .custom-select-trigger:hover,
 .custom-select-trigger:hover::before,
+.custom-select-trigger:focus-visible,
+.custom-select-trigger:focus-visible::before,
 .item-play-btn:hover,
 .item-play-btn:hover::before,
-.custom-select-wrapper:hover .custom-select-trigger,
-.custom-select-wrapper:hover .custom-select-trigger::before {
+.item-play-btn:focus-visible,
+.item-play-btn:focus-visible::before {
     background-color: var(--status-btn-hover);
     color: var(--status-btn-hover-color);
 }
@@ -1047,6 +1052,7 @@ select[data-bound] {
 /* --------------------------------------------------------------------------
    5. DETAIL PAGE & ACCORDION SYSTEM (card.html & DetailRenderer.js)
    -------------------------------------------------------------------------- */
+/* Back Navigation Button - Returns to overview list with subtle muted styling */
 .back-btn {
     display: inline-flex;
     align-self: flex-start;
@@ -1063,6 +1069,11 @@ select[data-bound] {
     border: none;
     border-radius: 8px;
     transition: color 0.15s ease, background 0.15s ease;
+}
+
+/* Back Navigation Hover - Brightens label and icon on pointer hover */
+.back-btn:hover {
+    color: var(--text);
 }
 
 .episodes-list-v3 {
@@ -1747,9 +1758,15 @@ select[data-bound] {
     gap: 10px;
 }
 
+/* Clear Rating Button - Aligns left in modal footer with muted text at rest */
 .btn-clear-rating {
     margin-right: auto;
     color: var(--text-muted);
+}
+
+/* Clear Rating Hover - Brightens text to full foreground on hover */
+.btn-clear-rating:hover {
+    color: var(--text);
 }
 
 .btn-primary {
@@ -1999,20 +2016,35 @@ footer {
     pointer-events: none;
 }
 
+/* Ultimate Hover Scale - Gently scales button/card pseudo-element without overflowing dropdown menus */
 .ultimate-hover-effect:hover::before {
     transform: scale(1.015);
 }
 
-.ultimate-hover-effect:not(.rating-badge):not(.btn-primary):not(.active):not([data-active="true"]):hover,
-.ultimate-hover-effect:not(.rating-badge):not(.btn-primary):not(.active):not([data-active="true"]):hover::before {
+/* Dropdown Option Hover Reset - Prevents menu options from scaling outside their menu container */
+.custom-select-option.ultimate-hover-effect:hover::before {
+    transform: none;
+}
+
+/* Toolbar Inactive Button Hover - Brightens muted icon/label text to primary text on hover */
+.filter-btn:not(.active):not([data-active="true"]):hover,
+.view-btn:not(.active):not([data-active="true"]):hover,
+.size-btn:hover {
+    color: var(--text);
+}
+
+/* Ultimate Hover Neutral Surface - Uses :where() so component-specific hover rules keep priority */
+.ultimate-hover-effect:where(:not(.rating-badge):not(.btn-primary):not(.active):not([data-active="true"]):not(.status-btn-style):not(.custom-select-trigger):not(.item-play-btn)):hover,
+.ultimate-hover-effect:where(:not(.rating-badge):not(.btn-primary):not(.active):not([data-active="true"]):not(.status-btn-style):not(.custom-select-trigger):not(.item-play-btn)):hover::before {
     background-color: var(--surface-hover);
 }
 
+/* Ultimate Hover Accent Feedback - Subtle brightness lift on active pills, ratings, and primary buttons */
 .ultimate-hover-effect.active:hover,
 .ultimate-hover-effect[data-active="true"]:hover,
 .ultimate-hover-effect.rating-badge:hover,
 .ultimate-hover-effect.btn-primary:hover {
-    filter: brightness(1.2) saturate(1.1);
+    filter: brightness(1.12) saturate(1.08);
 }
 
 /* --------------------------------------------------------------------------
@@ -2338,12 +2370,14 @@ footer {
     transition: background 0.15s ease, color 0.15s ease;
 }
 
-.queue-action-btn:hover {
+/* Queue Action Hover - Highlights remove button only when enabled */
+.queue-action-btn:not(:disabled):hover {
     background: var(--surface-2);
     color: #f44336;
 }
 
-.queue-action-btn.btn-move:hover {
+/* Queue Move Hover - Highlights up/down reorder buttons in accent color only when enabled */
+.queue-action-btn.btn-move:not(:disabled):hover {
     color: var(--primary);
 }
 
@@ -2431,6 +2465,11 @@ footer {
     transition: background 0.15s ease, color 0.15s ease;
     padding: 0;
     line-height: 1;
+}
+
+/* Stepper Button Hover - Accents +/- rewatch buttons on pointer hover */
+.stepper-btn:hover {
+    color: var(--primary);
 }
 
 .times-watched-val {

@@ -99,9 +99,9 @@
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45), 0 0 14px rgba(var(--primary-rgb), 0.1);
 }
 
-/* Active filter buttons in refined gold outline */
+/* Filter Pill Active State - Styles active filter chips in gold without doubling inner span borders */
 .filter-btn.active,
-.filter-chip-btn input:checked + span {
+.filter-btn[data-active="true"] {
     background: rgba(var(--primary-rgb), 0.14);
     border: 1px solid var(--primary);
     color: var(--primary);

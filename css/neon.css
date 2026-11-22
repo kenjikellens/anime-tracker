@@ -100,9 +100,9 @@
     box-shadow: 0 8px 26px rgba(var(--primary-rgb), 0.16);
 }
 
-/* Filter chip buttons with glowing active pill state */
+/* Filter Pill Active State - Styles active filter chips without doubling inner span borders */
 .filter-btn.active,
-.filter-chip-btn input:checked + span {
+.filter-btn[data-active="true"] {
     background: rgba(var(--primary-rgb), 0.14);
     border: 1px solid var(--primary);
     color: var(--primary);
