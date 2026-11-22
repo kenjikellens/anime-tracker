@@ -2,6 +2,10 @@
  * Domain model for one item inside an anime group.
  */
 export class AnimeItem {
+    /**
+     * Initializes an AnimeItem with validated status and episode progress.
+     * Guards against non-numeric status values by defaulting to -1 (Te Bekijken).
+     */
     constructor(id, title, watched, status, type, watchedEpisodes, episodesCount, rating) {
         this.id = id;
         this.title = title;
@@ -10,8 +14,9 @@ export class AnimeItem {
         this.watchedEpisodes = Array.isArray(watchedEpisodes) ? watchedEpisodes : [];
         this.rating = rating || 0;
 
-        if (status !== undefined) {
-            this.status = parseInt(status, 10);
+        if (status !== undefined && status !== null) {
+            const parsed = parseInt(status, 10);
+            this.status = Number.isNaN(parsed) ? -1 : parsed;
         } else if (watched !== undefined) {
             this.status = watched ? 1 : -1;
         } else {
@@ -20,17 +25,18 @@ export class AnimeItem {
     }
 
     /**
-     * Updates the item string.
+     * Updates the numeric item rating, defaulting invalid inputs to 0.
      */
     setRating(newRating) {
         this.rating = parseFloat(newRating) || 0;
     }
 
     /**
-     * Updates the item status.
+     * Updates the item watch/release status, guarding against NaN inputs.
      */
     setStatus(newStatus) {
-        this.status = parseInt(newStatus, 10);
+        const parsed = parseInt(newStatus, 10);
+        this.status = Number.isNaN(parsed) ? -1 : parsed;
     }
 
     /**

@@ -84,6 +84,19 @@
             <line x1="12" y1="19" x2="12" y2="5"></line>
             <polyline points="5 12 12 5 19 12"></polyline>
         </symbol>
+        <symbol id="icon-arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <polyline points="19 12 12 19 5 12"></polyline>
+        </symbol>
+        <symbol id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+        </symbol>
+        <symbol id="icon-grip" viewBox="0 0 24 24" fill="currentColor">
+            <circle cx="9" cy="6" r="1.5"/><circle cx="15" cy="6" r="1.5"/>
+            <circle cx="9" cy="12" r="1.5"/><circle cx="15" cy="12" r="1.5"/>
+            <circle cx="9" cy="18" r="1.5"/><circle cx="15" cy="18" r="1.5"/>
+        </symbol>
         <symbol id="icon-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/>
             <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/>
@@ -143,10 +156,10 @@
     <aside id="queue-sidebar" class="queue-sidebar" aria-label="Mijn Top Kijklijst" inert>
         <div class="queue-header">
             <div class="queue-header-title">
-                <h3>Volgende om te Bekijken</h3>
+                <h2>Volgende om te Bekijken</h2>
                 <span id="sidebar-queue-count" class="sidebar-queue-count">0</span>
             </div>
-            <button type="button" class="queue-close-btn" id="queue-close-btn" title="Sluit zijbalk" aria-label="Sluit zijbalk">✕</button>
+            <button type="button" class="queue-close-btn" id="queue-close-btn" title="Sluit zijbalk" aria-label="Sluit zijbalk"><svg class="svg-icon" aria-hidden="true"><use href="#icon-close"></use></svg></button>
         </div>
         <div class="queue-subtext">
             Sleep items of gebruik de pijltjes om de volgorde te wijzigen. Alleen geconfigureerde series staan in deze lijst.
@@ -165,11 +178,11 @@
     <footer>
         <div class="footer-row">
             <div class="footer-col brand-info">
-                <h3><span class="ras">RAS</span><span class="cal">CAL</span></h3>
+                <h2><span class="ras">RAS</span><span class="cal">CAL</span></h2>
                 <p>Jouw ultieme offline-first anime-bibliotheek voor het bijhouden van franchises, seizoenen, films en afleveringen.</p>
             </div>
             <div class="footer-col footer-links">
-                <h4>Navigatie</h4>
+                <h3>Navigatie</h3>
                 <ul>
                     <li><a href="#/" data-footer-filter="all">Alles</a></li>
                     <li><a href="#/" data-footer-filter="-1">Te Bekijken</a></li>
@@ -179,7 +192,7 @@
                 </ul>
             </div>
             <div class="footer-col footer-credits">
-                <h4>Data &amp; Media</h4>
+                <h3>Data &amp; Media</h3>
                 <p>Streaming en info via <span class="provider-brand">Miruro.ru</span> en metadata/covers via de <span class="provider-brand">AniList GraphQL API</span>.</p>
             </div>
         </div>
@@ -191,7 +204,7 @@
     <!-- Rating modal: used for global anime and item scores -->
     <div id="modal-overlay" class="hidden" data-visible="false" role="dialog" aria-modal="true" aria-labelledby="rating-modal-heading">
         <div class="modal">
-            <h3 id="rating-modal-heading">Deze anime beoordelen?</h3>
+            <h2 id="rating-modal-heading">Deze anime beoordelen?</h2>
             <p id="modal-title"></p>
             <div class="rating-input">
                 <label for="rating-number" class="sr-only">Beoordeling van 0 tot 10</label>
@@ -210,13 +223,13 @@
     <div id="filter-modal-overlay" class="modal-overlay hidden" data-visible="false" role="dialog" aria-modal="true" aria-labelledby="filter-modal-heading">
         <div class="modal filter-modal">
             <div class="filter-modal-header">
-                <h3 id="filter-modal-heading"><svg class="svg-icon svg-icon-margin" aria-hidden="true"><use href="#icon-filter"></use></svg> Geavanceerde Filters</h3>
-                <button type="button" id="close-filter-modal" class="modal-close-btn" title="Sluiten" aria-label="Sluiten">&times;</button>
+                <h2 id="filter-modal-heading"><svg class="svg-icon svg-icon-margin" aria-hidden="true"><use href="#icon-filter"></use></svg> Geavanceerde Filters</h2>
+                <button type="button" id="close-filter-modal" class="modal-close-btn" title="Sluiten" aria-label="Sluiten"><svg class="svg-icon" aria-hidden="true"><use href="#icon-close"></use></svg></button>
             </div>
             <div class="filter-modal-body">
                 <!-- 1. Item Status -->
                 <div class="filter-section">
-                    <h4 class="filter-section-title">Item Status (Seizoenen / Films)</h4>
+                    <h3 class="filter-section-title">Item Status (Seizoenen / Films)</h3>
                     <div class="filter-chips-grid">
                         <label class="filter-chip-btn filter-btn ultimate-hover-effect"><input type="checkbox" name="filter-item-status" value="3"><span class="badge-airing">Airing</span></label>
                         <label class="filter-chip-btn filter-btn ultimate-hover-effect"><input type="checkbox" name="filter-item-status" value="2"><span class="badge-upcoming">Upcoming</span></label>
@@ -229,13 +242,13 @@
 
                 <!-- 2. Item Type -->
                 <div class="filter-section">
-                    <h4 class="filter-section-title">Type</h4>
+                    <h3 class="filter-section-title">Type</h3>
                     <div id="filter-types-container" class="filter-chips-grid"></div>
                 </div>
 
                 <!-- 3. Rating -->
                 <div class="filter-section">
-                    <h4 class="filter-section-title">Beoordeling</h4>
+                    <h3 class="filter-section-title">Beoordeling</h3>
                     <div class="filter-range-wrap">
                         <label for="filter-min-rating">Minimale score: <span id="filter-min-rating-val">Alles</span></label>
                         <input type="range" id="filter-min-rating" min="0" max="10" step="0.5" value="0" class="filter-slider">
@@ -250,24 +263,24 @@
 
                 <!-- 4. Metadata: Genres, Studio, Jaar -->
                 <div class="filter-section">
-                    <h4 class="filter-section-title">Genres</h4>
+                    <h3 class="filter-section-title">Genres</h3>
                     <div id="filter-genres-container" class="filter-chips-scrollable"></div>
                 </div>
 
                 <div class="filter-section-row">
                     <div class="filter-section filter-col-half">
-                        <h4 class="filter-section-title">Studio</h4>
+                        <h3 class="filter-section-title">Studio</h3>
                         <select id="filter-studio-select" class="app-dropdown full-width" aria-label="Filter op studio"></select>
                     </div>
                     <div class="filter-section filter-col-half">
-                        <h4 class="filter-section-title">Jaar</h4>
+                        <h3 class="filter-section-title">Jaar</h3>
                         <select id="filter-year-select" class="app-dropdown full-width" aria-label="Filter op jaar"></select>
                     </div>
                 </div>
 
                 <!-- 5. Voortgang -->
                 <div class="filter-section">
-                    <h4 class="filter-section-title">Voortgang &amp; Afleveringen</h4>
+                    <h3 class="filter-section-title">Voortgang &amp; Afleveringen</h3>
                     <div class="filter-chips-grid">
                         <label class="filter-chip-btn filter-btn ultimate-hover-effect"><input type="checkbox" name="filter-progress" value="unwatched_eps"><span>Heeft onbekeken afleveringen</span></label>
                         <label class="filter-chip-btn filter-btn ultimate-hover-effect"><input type="checkbox" name="filter-progress" value="has_in_progress_items"><span>Heeft gestarte seizoenen</span></label>

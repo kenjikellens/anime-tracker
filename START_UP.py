@@ -3,8 +3,12 @@ from flask import Flask, request, jsonify, send_from_directory
 import json
 import os
 import socket
+import sys
 import webbrowser
 from threading import Timer
+
+ALLOWED_STATIC_FILES = {'index.html', 'home.html', 'card.html', 'favicon.ico'}
+ALLOWED_STATIC_PREFIXES = ('css/', 'js/', 'data/', 'svg/')
 
 # Small Flask host used by the app for static files and JSON persistence.
 # Linked to: `DataStore.save()` and the frontend entrypoints.
@@ -25,8 +29,11 @@ def index():
 # This affects resource loading for the entire frontend application.
 @app.route('/<path:path>')
 def serve_static(path):
-    """Serve CSS, JS, HTML, and other static files from the project root."""
-    return send_from_directory(BASE_DIR, path)
+    """Serve allowed HTML templates and frontend asset directories from the project root."""
+    normalized = path.replace('\\', '/').lstrip('/')
+    if normalized not in ALLOWED_STATIC_FILES and not normalized.startswith(ALLOWED_STATIC_PREFIXES):
+        return jsonify({"error": "Not found"}), 404
+    return send_from_directory(BASE_DIR, normalized)
 
 
 # Disables browser caching on static assets during development to ensure instant CSS and JS updates.
@@ -55,8 +62,8 @@ def list_themes():
             files.remove('styles.css')
             files.insert(0, 'styles.css')
         return jsonify({"themes": files}), 200
-    except Exception as e:
-        print(f"Error listing themes: {str(e)}")
+    except OSError as e:
+        print(f"Error listing themes: {str(e)}", file=sys.stderr)
         return jsonify({"themes": ["styles.css"]}), 200
 
 
@@ -65,16 +72,16 @@ def list_themes():
 # This modifies the local JSON dataset on disk when the user saves changes.
 @app.route('/api/save', methods=['POST'])
 def save_data():
-    """Persist the current anime dataset back into data/data.json."""
+    """Persist the current anime dataset back into data/data.json using atomic replacement."""
+    temp_file = DATA_FILE + '.tmp'
     try:
-        new_data = request.get_json()
-        if not new_data:
-            return jsonify({"error": "No data provided"}), 400
+        new_data = request.get_json(silent=True)
+        if new_data is None or not isinstance(new_data, list):
+            return jsonify({"error": "Invalid data format: expected a JSON array"}), 400
 
         os.makedirs(os.path.dirname(DATA_FILE), exist_ok=True)
 
         # Write to a temporary file first, then replace atomically to prevent corruption.
-        temp_file = DATA_FILE + '.tmp'
         with open(temp_file, 'w', encoding='utf-8') as f:
             json.dump(new_data, f, indent=4, ensure_ascii=False)
         os.replace(temp_file, DATA_FILE)
@@ -82,23 +89,24 @@ def save_data():
         print(f"Data saved successfully to {DATA_FILE}")
         return jsonify({"message": "Data saved successfully"}), 200
     except Exception as e:
-        print(f"Error saving data: {str(e)}")
+        if os.path.exists(temp_file):
+            try:
+                os.remove(temp_file)
+            except OSError:
+                pass
+        print(f"Error saving data: {str(e)}", file=sys.stderr)
         return jsonify({"error": str(e)}), 500
 
 
 # Finds the first available TCP port starting from the given port by incrementing it.
 # This prevents port conflict errors and ensures the Flask server starts successfully.
-def find_free_port(start_port=5000):
-    """Find the first available TCP port, starting from start_port."""
-    port = start_port
-
-    while True:
+def find_free_port(start_port=5000, max_port=65535):
+    """Find the first available TCP port in [start_port, max_port]."""
+    for port in range(start_port, max_port + 1):
         # First check whether something is already listening on this port.
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.settimeout(0.2)
-
             if s.connect_ex(('127.0.0.1', port)) == 0:
-                port += 1
                 continue
 
         # Then verify that we can actually bind to the port.
@@ -107,7 +115,8 @@ def find_free_port(start_port=5000):
                 s.bind(('127.0.0.1', port))
                 return port
             except OSError:
-                port += 1
+                continue
+    raise RuntimeError(f"No free TCP port found between {start_port} and {max_port}")
 
 
 # Opens the application's root URL in the user's default web browser at the specified port.

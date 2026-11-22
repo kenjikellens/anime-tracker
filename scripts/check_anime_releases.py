@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 import time
@@ -18,7 +19,7 @@ DATA_FILE = PROJECT_ROOT / "data" / "data.json"
 STATUS_UPCOMING = 2
 STATUS_AIRING = 3
 RELEASE_STATUSES = {STATUS_UPCOMING, STATUS_AIRING}
-WATCH_STATUSES = {-1, 0, 1}
+WATCH_STATUSES = {-1, 0, 1, 4}
 STOPWORDS = {
     "a",
     "an",
@@ -196,9 +197,25 @@ def load_data() -> list[dict]:
 
 
 def save_data(data: list[dict]) -> None:
-    with DATA_FILE.open("w", encoding="utf-8") as handle:
-        json.dump(data, handle, indent=4, ensure_ascii=False)
-        handle.write("\n")
+    """Persist the anime dataset to DATA_FILE using an atomic temporary file replacement."""
+    temp_file = DATA_FILE.with_suffix(".json.tmp")
+    try:
+        with temp_file.open("w", encoding="utf-8") as handle:
+            json.dump(data, handle, indent=4, ensure_ascii=False)
+            handle.write("\n")
+        os.replace(temp_file, DATA_FILE)
+    except Exception:
+        if temp_file.exists():
+            temp_file.unlink()
+        raise
+
+
+def is_fully_watched(anime: dict) -> bool:
+    """Return True if the anime parent status is Watched (1) or every child item is Watched (1)."""
+    if anime.get("status") == 1:
+        return True
+    items = anime.get("items") or []
+    return bool(items) and all(item.get("status") == 1 for item in items)
 
 
 def existing_titles(anime: dict) -> set[str]:
@@ -312,10 +329,15 @@ def media_to_item(media: dict, existing_ids: set[str]) -> dict:
 
 
 def apply_updates(data: list[dict], delay: float, deep: bool, retries: int, retry_delay: float) -> dict:
+    """Check AniList releases for non-watched anime entries and update data in place."""
     report = {"added": [], "updated": [], "skipped": [], "errors": []}
 
     for anime in data:
         anime_id = anime.get("id")
+        if is_fully_watched(anime):
+            report["skipped"].append({"anime": anime_id, "title": anime.get("title"), "reason": "fully watched anime is immutable"})
+            continue
+
         if anime.get("status") not in WATCH_STATUSES:
             anime["status"] = -1
             report["updated"].append({"anime": anime_id, "title": anime.get("title"), "field": "status", "to": -1})

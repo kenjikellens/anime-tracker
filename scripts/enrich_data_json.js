@@ -35,9 +35,40 @@ query ($search: String) {
   }
 }`;
 
+/**
+ * Checks whether an anime franchise is fully watched and therefore immutable.
+ * Evaluates both the parent watch status and all child item statuses.
+ * @param {Object} anime - Anime franchise entry from data.json.
+ * @returns {boolean} True if parent status is 1 or all items have status 1.
+ */
+function isFullyWatched(anime) {
+    if (anime.status === 1) return true;
+    return Array.isArray(anime.items) && anime.items.length > 0 && anime.items.every(item => item.status === 1);
+}
+
+/**
+ * Atomically writes the anime dataset to data/data.json via a temporary file.
+ * Prevents partial JSON corruption if the process is interrupted mid-write.
+ * @param {Array<Object>} data - Full anime dataset array.
+ */
+function writeDataAtomic(data) {
+    const tmpPath = `${DATA_PATH}.tmp`;
+    fs.writeFileSync(tmpPath, JSON.stringify(data, null, 4), 'utf-8');
+    fs.renameSync(tmpPath, DATA_PATH);
+}
+
+/**
+ * Fetches studio, release year, and genre metadata from AniList with retry and timeout.
+ * Depends on the external AniList GraphQL endpoint.
+ * @param {string} title - Anime title fallback for search queries.
+ * @param {number|string|null} anilistId - Optional AniList media ID for direct lookup.
+ * @returns {Promise<Object|null>} Metadata object or null on failure.
+ */
 async function fetchAniListMetadata(title, anilistId) {
-    const query = anilistId ? QUERY_BY_ID : QUERY_BY_SEARCH;
-    const variables = anilistId ? { id: parseInt(anilistId) } : { search: title };
+    const parsedId = anilistId ? parseInt(anilistId, 10) : NaN;
+    const useId = !Number.isNaN(parsedId);
+    const query = useId ? QUERY_BY_ID : QUERY_BY_SEARCH;
+    const variables = useId ? { id: parsedId } : { search: title };
 
     for (let attempt = 1; attempt <= 3; attempt++) {
         try {
@@ -47,7 +78,8 @@ async function fetchAniListMetadata(title, anilistId) {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
                 },
-                body: JSON.stringify({ query, variables })
+                body: JSON.stringify({ query, variables }),
+                signal: AbortSignal.timeout(15000)
             });
 
             if (response.status === 429) {
@@ -83,6 +115,10 @@ async function fetchAniListMetadata(title, anilistId) {
     return null;
 }
 
+/**
+ * Enriches non-watched anime entries in data.json with missing studio, year, and genre metadata.
+ * Mutates data.json on disk using atomic writes while preserving immutable watched entries.
+ */
 async function main() {
     console.log('Reading data.json...');
     const rawData = fs.readFileSync(DATA_PATH, 'utf-8');
@@ -93,6 +129,9 @@ async function main() {
 
     for (let i = 0; i < animes.length; i++) {
         const anime = animes[i];
+        if (isFullyWatched(anime)) {
+            continue;
+        }
         
         // Skip if already enriched with studio, year, and genres
         if (anime.studio && anime.year && Array.isArray(anime.genres) && anime.genres.length > 0) {
@@ -115,9 +154,9 @@ async function main() {
             anime.genres = anime.genres || [];
         }
 
-        // Save progress to data.json periodically every 10 items
+        // Save progress to data.json periodically every 5 items
         if ((i + 1) % 5 === 0) {
-            fs.writeFileSync(DATA_PATH, JSON.stringify(animes, null, 4), 'utf-8');
+            writeDataAtomic(animes);
         }
 
         // Delay 1000ms to strictly observe AniList rate limits
@@ -125,7 +164,7 @@ async function main() {
     }
 
     console.log(`Enrichment finished. Updated ${updatedCount} entries.`);
-    fs.writeFileSync(DATA_PATH, JSON.stringify(animes, null, 4), 'utf-8');
+    writeDataAtomic(animes);
     console.log('Saved data.json successfully!');
 }
 

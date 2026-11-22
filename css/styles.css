@@ -1539,7 +1539,8 @@ select[data-bound] {
     margin-bottom: 16px;
 }
 
-.filter-modal-header h3 {
+/* Filter Modal Title - Aligns icon and heading inside the filter modal header */
+.filter-modal-header h2 {
     margin-bottom: 0;
     display: flex;
     align-items: center;
@@ -1700,7 +1701,8 @@ select[data-bound] {
     height: 22px;
 }
 
-.modal h3 {
+/* Modal Title - Styles the primary heading inside rating and dialog modals */
+.modal h2 {
     font-size: 20px;
     font-weight: 800;
     margin-bottom: 8px;
@@ -1802,17 +1804,20 @@ footer {
     margin-bottom: 32px;
 }
 
-.footer-col h3,
-.footer-col h4 {
+/* Footer Headings - Sets consistent weight and spacing on footer section headings */
+.footer-col h2,
+.footer-col h3 {
     font-weight: 700;
     margin-bottom: 12px;
 }
 
-.footer-col h3 .ras {
+/* Footer Brand Prefix - Highlights the first brand syllable in primary accent color */
+.footer-col h2 .ras {
     color: var(--primary);
 }
 
-.footer-col h3 .cal {
+/* Footer Brand Suffix - Keeps the second brand syllable in standard foreground text */
+.footer-col h2 .cal {
     color: var(--text);
 }
 
@@ -2104,7 +2109,8 @@ footer {
     gap: 10px;
 }
 
-.queue-header-title h3 {
+/* Queue Sidebar Title - Styles the watch-queue drawer heading */
+.queue-header-title h2 {
     font-size: 16px;
     font-weight: 700;
     color: var(--text);
@@ -2435,31 +2441,53 @@ footer {
     text-align: center;
 }
 
-/* Touch device minimum target size adjustments (WCAG 2.5.8) */
 @media (pointer: coarse) {
+    /* Touch Controls - Ensures minimum 40px touch target size on coarse pointer devices */
     .stepper-btn,
     .queue-action-btn,
-    .queue-close-btn {
+    .queue-close-btn,
+    .view-btn,
+    .size-btn,
+    .modal-close-btn,
+    .back-to-top-btn,
+    #theme-toggle,
+    #theme-picker-btn,
+    #queue-toggle-btn,
+    #download-btn {
         min-width: 40px;
+        min-height: 40px;
+    }
+
+    /* Touch Pills - Expands filter chips and rating badges to 40px minimum height on touch */
+    .filter-btn,
+    .rating-badge {
         min-height: 40px;
     }
 }
 
-/* Respect OS reduced-motion preference */
+/* Respect OS reduced-motion preference without destroying state feedback */
 @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
+    /* Root Scroll - Disables smooth scrolling when reduced motion is requested */
+    html {
+        scroll-behavior: auto;
     }
 
+    /* Animated Surfaces - Removes transition motion while preserving instant state updates */
+    body,
+    .anime-card,
+    .queue-sidebar,
+    .back-to-top-btn,
+    .segment-fill,
+    .ultimate-hover-effect,
+    .ultimate-hover-effect::before {
+        transition-duration: 0.01ms;
+    }
+
+    /* Spinner Rings - Replaces infinite rotation with static partial arc indicator */
     .card-spinner-circle,
     .card-spinner-inner {
-        animation: none !important;
-        stroke-dasharray: 42 40 !important;
+        animation: none;
+        stroke-dasharray: 42 40;
     }
 }
 

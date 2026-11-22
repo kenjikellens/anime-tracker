@@ -1,5 +1,3 @@
-let saveTimeoutId = null;
-
 /**
  * Storage helper for loading, saving, and exporting anime data.
  * Linked to: `data/data.json`, `localStorage`, and Flask `/api/save`.
@@ -12,14 +10,16 @@ export class DataStore {
     static async loadInitialData() {
         try {
             const res = await fetch('data/data.json?v=' + Date.now());
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
             const fileData = await res.json();
-            return fileData;
+            return Array.isArray(fileData) ? fileData : [];
         } catch (e) {
             console.warn("Could not load data.json, checking localStorage", e);
             const localData = localStorage.getItem('rascal_anime_data');
             if (localData) {
                 try {
-                    return JSON.parse(localData);
+                    const parsed = JSON.parse(localData);
+                    return Array.isArray(parsed) ? parsed : [];
                 } catch (e2) {
                     console.error("Local data parsing also failed", e2);
                 }
@@ -29,8 +29,9 @@ export class DataStore {
     }
 
     /**
-     * Persists the repository to localStorage immediately and debounces network saves.
+     * Persists the repository to localStorage immediately and posts to Flask `/api/save`.
      * @param {Object} repository - The anime repository instance to save.
+     * @returns {Promise<boolean>} True if backend persistence succeeded, false if local-only.
      */
     static async save(repository) {
         const data = repository.exportToData();
@@ -39,13 +40,19 @@ export class DataStore {
         localStorage.setItem('rascal_anime_data', JSON.stringify(data));
 
         try {
-            await fetch('/api/save', {
+            const res = await fetch('/api/save', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             });
+            if (!res.ok) {
+                console.warn(`Backend save failed with HTTP ${res.status}; kept in localStorage.`);
+                return false;
+            }
+            return true;
         } catch (err) {
-            // Backend offline, fallback to local storage
+            console.warn('Backend offline during save; persisted to localStorage only.', err);
+            return false;
         }
     }
 
@@ -62,6 +69,6 @@ export class DataStore {
         a.href = url;
         a.download = "data.json";
         a.click();
-        URL.revokeObjectURL(url);
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
     }
 }

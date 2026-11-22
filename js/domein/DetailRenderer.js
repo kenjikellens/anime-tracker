@@ -145,14 +145,12 @@ export class DetailRenderer {
 
             const ratingBlock = layout.querySelector('.rating-actionable');
             if (ratingBlock) {
-                const newRatingBlock = ratingBlock.cloneNode(true);
-                ratingBlock.parentNode.replaceChild(newRatingBlock, ratingBlock);
-                if (onRatingClick) {
-                    newRatingBlock.addEventListener('click', (e) => {
+                ratingBlock.onclick = onRatingClick
+                    ? (e) => {
                         e.stopPropagation();
                         onRatingClick(anime);
-                    });
-                }
+                    }
+                    : null;
             }
         }
 
@@ -309,9 +307,10 @@ export class DetailRenderer {
                     const epDiv = document.createElement('div');
                     epDiv.className = 'episode-checkbox-wrap';
 
+                    const safeDomId = String(item.id || '').replace(/[^a-zA-Z0-9_-]/g, '-');
                     const cb = document.createElement('input');
                     cb.type = 'checkbox';
-                    cb.id = `ep-${item.id}-${i}`;
+                    cb.id = `ep-${safeDomId}-${i}`;
                     cb.dataset.ep = String(i);
                     cb.checked = isChecked;
                     cb.addEventListener('change', () => {

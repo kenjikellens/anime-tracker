@@ -5,13 +5,18 @@ const apiCache = new Map();
  * Uses in-memory Map caching to eliminate duplicate GraphQL requests.
  */
 export class AnilistApi {
+    /**
+     * Executes a cached GraphQL POST request against AniList with a 10s timeout.
+     * Populates the module-level apiCache Map on success.
+     */
     static async _fetch(cacheKey, query, variables) {
         if (apiCache.has(cacheKey)) return apiCache.get(cacheKey);
         try {
             const res = await fetch('https://graphql.anilist.co', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                body: JSON.stringify({ query, variables })
+                body: JSON.stringify({ query, variables }),
+                signal: typeof AbortSignal !== 'undefined' && AbortSignal.timeout ? AbortSignal.timeout(10000) : undefined
             });
             if (!res.ok) return null;
             const data = await res.json();
@@ -53,8 +58,9 @@ export class AnilistApi {
      * @returns {Promise<Object|null>} AniList media payload or null.
      */
     static async fetchMediaById(id) {
-        if (!id) return null;
-        const cacheKey = `id:${id}`;
+        const parsedId = parseInt(id, 10);
+        if (Number.isNaN(parsedId) || parsedId <= 0) return null;
+        const cacheKey = `id:${parsedId}`;
         const query = `
         query ($id: Int) {
           Media (id: $id, type: ANIME) {
@@ -65,6 +71,6 @@ export class AnilistApi {
             episodes
           }
         }`;
-        return this._fetch(cacheKey, query, { id: parseInt(id) });
+        return this._fetch(cacheKey, query, { id: parsedId });
     }
 }

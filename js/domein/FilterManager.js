@@ -239,11 +239,12 @@ export class FilterManager {
         // 4. Min Rating slider
         const minRatingInput = overlay.querySelector('#filter-min-rating');
         const minRatingDisplay = overlay.querySelector('#filter-min-rating-val');
+        const minRating = Number(options.minRating) || 0;
         if (minRatingInput) {
-            minRatingInput.value = options.minRating || 0;
-            if (minRatingDisplay) minRatingDisplay.textContent = options.minRating > 0 ? options.minRating.toFixed(1) : 'Alles';
+            minRatingInput.value = minRating;
+            if (minRatingDisplay) minRatingDisplay.textContent = minRating > 0 ? minRating.toFixed(1) : 'Alles';
             minRatingInput.oninput = (e) => {
-                const val = parseFloat(e.target.value);
+                const val = parseFloat(e.target.value) || 0;
                 if (minRatingDisplay) minRatingDisplay.textContent = val > 0 ? val.toFixed(1) : 'Alles';
             };
         }

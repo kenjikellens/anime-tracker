@@ -2,6 +2,8 @@ import { AnimeRepository } from './domein/AnimeRepository.js';
 import { RatingManager } from './domein/RatingManager.js';
 import { DataStore } from './domein/DataStore.js';
 import { CardRenderer } from './domein/CardRenderer.js';
+import { DetailRenderer } from './domein/DetailRenderer.js';
+import { StatusUpdater } from './domein/StatusUpdater.js';
 import { AnilistApi } from './domein/AnilistApi.js';
 import { SearchManager } from './domein/SearchManager.js';
 import { ThemeManager } from './domein/ThemeManager.js';
@@ -80,8 +82,11 @@ async function handleRoute() {
             if (currentDetailAnime.items.some(i => !i.episodesCount || i.episodesCount === 0)) {
                 const searchTerm = currentDetailAnime.items.length > 0 ? currentDetailAnime.items[0].title : currentDetailAnime.title;
                 const apiData = await AnilistApi.fetchMediaByTitle(searchTerm);
+                if (currentDetailAnime?.id !== id) return;
                 if (apiData) {
-                    currentDetailAnime.coverImage = apiData.coverImage.large;
+                    if (apiData.coverImage?.large) {
+                        currentDetailAnime.coverImage = apiData.coverImage.large;
+                    }
 
                     if (currentDetailAnime.items.length > 0 && (!currentDetailAnime.items[0].episodesCount || currentDetailAnime.items[0].episodesCount === 0)) {
                         currentDetailAnime.items[0].episodesCount = apiData.episodes || 12;
@@ -218,7 +223,9 @@ async function hydrateAnilistData() {
             }
 
             if (apiData) {
-                anime.coverImage = apiData.coverImage.large;
+                if (apiData.coverImage?.large) {
+                    anime.coverImage = apiData.coverImage.large;
+                }
                 if (anime.items.length > 0 && (anime.items[0].episodesCount === 0 || !anime.items[0].episodesCount)) {
                     anime.items[0].episodesCount = apiData.episodes || 0;
                 }
@@ -316,6 +323,15 @@ function setupRatingModal() {
     }
 
     const saveBtn = document.getElementById('save-rating');
+    const ratingInput = document.getElementById('rating-number');
+    if (ratingInput && saveBtn) {
+        ratingInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                saveBtn.click();
+            }
+        });
+    }
     if (saveBtn) {
         saveBtn.addEventListener('click', async () => {
             const ratingInput = document.getElementById('rating-number');
@@ -609,7 +625,8 @@ function setupDownloadBtn() {
 }
 
 /**
- * Renders the detail page content and accordion elements.
+ * Renders the detail page content and accordion elements using the static DetailRenderer.
+ * Updates `#detail-container` synchronously to avoid async import race conditions.
  */
 function renderDetail() {
     const container = document.getElementById('detail-container');
@@ -618,30 +635,34 @@ function renderDetail() {
     const openItemIds = Array.from(container.querySelectorAll('.item-accordion-wrapper[open]'))
         .map(wrapper => wrapper.getAttribute('data-item-id'));
 
-    import('./domein/DetailRenderer.js').then(module => {
-        module.DetailRenderer.renderDetail(
-            container,
-            currentDetailAnime,
-            handleItemStatus,
-            handleGlobalStatus,
-            null,
-            handleEpisodeToggle,
-            openGlobalRatingModal,
-            openItemIds,
-            openItemRatingModal,
-            null,
-            handleQueueToggle,
-            handleTimesWatchedChange
-        );
-    });
+    DetailRenderer.renderDetail(
+        container,
+        currentDetailAnime,
+        handleItemStatus,
+        handleGlobalStatus,
+        null,
+        handleEpisodeToggle,
+        openGlobalRatingModal,
+        openItemIds,
+        openItemRatingModal,
+        null,
+        handleQueueToggle,
+        handleTimesWatchedChange
+    );
 }
 
+/**
+ * Persists changes after the user updates the rewatch counter on the detail page.
+ */
 async function handleTimesWatchedChange() {
     await DataStore.save(repository);
 }
 
+/**
+ * Applies a StatusUpdater mutation, persists the repository, and re-renders the detail view.
+ * Mutates repository state, localStorage/backend persistence, and `#detail-container`.
+ */
 async function withStatusUpdater(fn) {
-    const { StatusUpdater } = await import('./domein/StatusUpdater.js');
     fn(StatusUpdater);
     await DataStore.save(repository);
     renderDetail();

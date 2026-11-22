@@ -78,10 +78,12 @@ export class CardRenderer {
 
     /**
      * Re-renders and updates the poster image area for a specific anime card.
+     * Uses CSS.escape on the ID selector to handle special characters safely.
      * @param {Object} anime - The anime model whose card image should be updated.
      */
     static updateCardImage(anime) {
-        const div = document.querySelector(`.anime-card[${DATA_ATTRS.ITEM_ID}="${anime.id}"]`);
+        const safeSelectorId = typeof CSS !== 'undefined' && CSS.escape ? CSS.escape(String(anime.id)) : String(anime.id).replace(/"/g, '\\"');
+        const div = document.querySelector(`.anime-card[${DATA_ATTRS.ITEM_ID}="${safeSelectorId}"]`);
         if (div) {
             const posterDiv = div.querySelector('.card-poster');
             if (posterDiv) {

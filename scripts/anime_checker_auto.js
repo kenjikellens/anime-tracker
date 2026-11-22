@@ -2,11 +2,36 @@ const fs = require('fs');
 const path = require('path');
 
 const DATA_PATH = path.join(__dirname, '../data/data.json');
-const TE_BEKIJKEN_PATH = path.join(__dirname, '../DOCS/data/te_bekijken.md');
-const AL_BEKEKEN_PATH = path.join(__dirname, '../DOCS/data/al_bekeken.md');
-const SHORTLIST_PATH = path.join(__dirname, '../DOCS/data/shortlist.md');
 
-// Helper for AniList GraphQL requests
+/**
+ * Checks whether an anime franchise is fully watched and therefore immutable.
+ * Evaluates both the parent watch status and all child item statuses.
+ * @param {Object} anime - Anime franchise entry from data.json.
+ * @returns {boolean} True if parent status is 1 or all items have status 1.
+ */
+function isFullyWatched(anime) {
+    if (anime.status === 1) return true;
+    return Array.isArray(anime.items) && anime.items.length > 0 && anime.items.every(item => item.status === 1);
+}
+
+/**
+ * Atomically writes the anime dataset to data/data.json via a temporary file.
+ * Prevents partial JSON corruption if the process is interrupted mid-write.
+ * @param {Array<Object>} data - Full anime dataset array.
+ */
+function writeDataAtomic(data) {
+    const tmpPath = `${DATA_PATH}.tmp`;
+    fs.writeFileSync(tmpPath, JSON.stringify(data, null, 4), 'utf-8');
+    fs.renameSync(tmpPath, DATA_PATH);
+}
+
+/**
+ * Executes an AniList GraphQL request with timeout and rate-limit handling.
+ * Depends on the external AniList GraphQL endpoint.
+ * @param {string} query - GraphQL query string.
+ * @param {Object} variables - GraphQL query variables.
+ * @returns {Promise<Object|null>} Parsed JSON payload or null on non-OK HTTP status.
+ */
 async function fetchAniList(query, variables = {}) {
     const response = await fetch('https://graphql.anilist.co', {
         method: 'POST',
@@ -14,8 +39,13 @@ async function fetchAniList(query, variables = {}) {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
         },
-        body: JSON.stringify({ query, variables })
+        body: JSON.stringify({ query, variables }),
+        signal: AbortSignal.timeout(15000)
     });
+    if (!response.ok) {
+        console.warn(`  AniList HTTP ${response.status}`);
+        return null;
+    }
     return response.json();
 }
 
@@ -46,6 +76,10 @@ query ($search: String) {
 }
 `;
 
+/**
+ * Scans non-watched anime entries in data.json for new sequels or airing status transitions.
+ * Mutates data.json on disk only for non-immutable entries when changes are detected.
+ */
 async function main() {
     console.log('Loading data.json...');
     const data = JSON.parse(fs.readFileSync(DATA_PATH, 'utf-8'));
@@ -55,13 +89,21 @@ async function main() {
 
     for (let i = 0; i < data.length; i++) {
         const anime = data[i];
+        if (isFullyWatched(anime)) {
+            console.log(`[${i + 1}/${data.length}] Skipping immutable watched entry: ${anime.title}`);
+            continue;
+        }
         console.log(`[${i + 1}/${data.length}] Checking: ${anime.title}...`);
 
         try {
             const res = await fetchAniList(SEARCH_QUERY, { search: anime.title });
-            if (!res.data || !res.data.Media) {
+            if (!res || !res.data || !res.data.Media) {
                 console.log(`  No AniList data found for ${anime.title}`);
                 continue;
+            }
+
+            if (!Array.isArray(anime.items)) {
+                anime.items = [];
             }
 
             const media = res.data.Media;
@@ -69,6 +111,8 @@ async function main() {
                 anime.anilistId = media.id;
                 changesMade = true;
             }
+
+            const existingIds = new Set(anime.items.map(item => item.id).filter(Boolean));
 
             // Check relations for sequels/spinoffs
             const relations = media.relations?.edges || [];
@@ -79,6 +123,7 @@ async function main() {
                 if (['PREQUEL', 'PARENT', 'CHARACTER'].includes(rel.relationType)) continue;
 
                 const englishTitle = node.title.english || node.title.romaji;
+                if (!englishTitle) continue;
                 
                 // Check if already in items
                 const existing = anime.items.find(item => 
@@ -92,7 +137,14 @@ async function main() {
                 else if (node.status === 'FINISHED') status = -1;
 
                 if (!existing) {
-                    const slug = englishTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+                    const baseSlug = englishTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'untitled';
+                    let slug = baseSlug;
+                    let suffix = 2;
+                    while (existingIds.has(slug)) {
+                        slug = `${baseSlug}-${suffix++}`;
+                    }
+                    existingIds.add(slug);
+
                     let type = 'SERIE';
                     if (node.format === 'MOVIE') type = 'MOVIE';
                     else if (node.format === 'OVA') type = 'OVA';
@@ -141,11 +193,14 @@ async function main() {
 
     if (changesMade) {
         console.log('Saving updated data.json...');
-        fs.writeFileSync(DATA_PATH, JSON.stringify(data, null, 4), 'utf-8');
+        writeDataAtomic(data);
         console.log('Successfully updated data.json!');
     } else {
         console.log('No new items or status changes needed.');
     }
 }
 
-main();
+main().catch(err => {
+    console.error('Fatal error in anime_checker_auto:', err);
+    process.exit(1);
+});

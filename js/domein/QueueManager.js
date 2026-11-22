@@ -109,13 +109,13 @@ export class QueueManager {
             const safeId = escapeHtml(anime.id);
             return `
                 <div class="queue-item" draggable="true" data-id="${safeId}" data-index="${index}">
-                    <div class="queue-drag-handle" title="Sleep om volgorde te wijzigen" aria-hidden="true">⋮⋮</div>
+                    <div class="queue-drag-handle" title="Sleep om volgorde te wijzigen" aria-hidden="true"><svg class="svg-icon" aria-hidden="true"><use href="#icon-grip"></use></svg></div>
                     <span class="queue-item-rank ${isTop ? 'rank-top' : ''}">#${rank}</span>
                     <span class="queue-item-title" title="${safeTitle}">${safeTitle}</span>
                     <div class="queue-item-actions">
-                        <button type="button" class="queue-action-btn btn-move" data-move-index="${index}" data-dir="-1" title="Omhoog" aria-label="${safeTitle} omhoog verplaatsen" ${index === 0 ? 'disabled' : ''}>↑</button>
-                        <button type="button" class="queue-action-btn btn-move" data-move-index="${index}" data-dir="1" title="Omlaag" aria-label="${safeTitle} omlaag verplaatsen" ${isLast ? 'disabled' : ''}>↓</button>
-                        <button type="button" class="queue-action-btn btn-remove" data-remove-id="${safeId}" title="Verwijderen uit Top lijst" aria-label="${safeTitle} verwijderen uit Top lijst">✕</button>
+                        <button type="button" class="queue-action-btn btn-move" data-move-index="${index}" data-dir="-1" title="Omhoog" aria-label="${safeTitle} omhoog verplaatsen" ${index === 0 ? 'disabled' : ''}><svg class="svg-icon" aria-hidden="true"><use href="#icon-arrow-up"></use></svg></button>
+                        <button type="button" class="queue-action-btn btn-move" data-move-index="${index}" data-dir="1" title="Omlaag" aria-label="${safeTitle} omlaag verplaatsen" ${isLast ? 'disabled' : ''}><svg class="svg-icon" aria-hidden="true"><use href="#icon-arrow-down"></use></svg></button>
+                        <button type="button" class="queue-action-btn btn-remove" data-remove-id="${safeId}" title="Verwijderen uit Top lijst" aria-label="${safeTitle} verwijderen uit Top lijst"><svg class="svg-icon" aria-hidden="true"><use href="#icon-close"></use></svg></button>
                     </div>
                 </div>
             `;
