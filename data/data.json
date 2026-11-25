@@ -4099,7 +4099,7 @@
         "id": "date-a-live",
         "anilistId": null,
         "title": "Date A Live",
-        "status": 4,
+        "status": 1,
         "rating": 5.6,
         "releaseDate": "",
         "coverImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx15583-Sxd2J4RJdRhj.jpg",
@@ -4143,10 +4143,12 @@
             {
                 "id": "date-a-live-date-to-date",
                 "title": "Date A Live: Date to Date",
-                "status": -1,
+                "status": 1,
                 "type": "OVA",
-                "rating": 0,
-                "watchedEpisodes": [],
+                "rating": 8.8,
+                "watchedEpisodes": [
+                    1
+                ],
                 "episodesCount": 1
             },
             {
@@ -4172,34 +4174,51 @@
             {
                 "id": "date-a-live-ii-kurumi-star-festival",
                 "title": "Date A Live II: Kurumi Star Festival",
-                "status": -1,
+                "status": 1,
                 "type": "OVA",
                 "rating": 0,
-                "watchedEpisodes": [],
+                "watchedEpisodes": [
+                    1
+                ],
                 "episodesCount": 1
             },
             {
                 "id": "date-a-live-movie-mayuri-judgment",
                 "title": "Date A Live Movie: Mayuri Judgment",
-                "status": -1,
+                "status": 1,
                 "type": "MOVIE",
                 "rating": 0,
-                "watchedEpisodes": [],
+                "watchedEpisodes": [
+                    1
+                ],
                 "episodesCount": 1
             },
             {
                 "id": "date-a-live-iii",
                 "title": "Date A Live III",
-                "status": -1,
+                "status": 1,
                 "type": "SERIE",
                 "rating": 6.4,
-                "watchedEpisodes": [],
+                "watchedEpisodes": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12
+                ],
                 "episodesCount": 12
             },
             {
                 "id": "date-a-live-iv",
                 "title": "Date A Live IV",
-                "status": 4,
+                "status": 1,
                 "type": "SERIE",
                 "rating": 3,
                 "watchedEpisodes": [
@@ -4208,17 +4227,36 @@
                     3,
                     4,
                     5,
-                    6
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12
                 ],
                 "episodesCount": 12
             },
             {
                 "id": "date-a-live-v",
                 "title": "Date A Live V",
-                "status": -1,
+                "status": 1,
                 "type": "SERIE",
-                "rating": 0,
-                "watchedEpisodes": [],
+                "rating": 3.8,
+                "watchedEpisodes": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12
+                ],
                 "episodesCount": 12
             },
             {
