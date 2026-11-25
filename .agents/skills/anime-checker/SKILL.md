@@ -6,7 +6,7 @@ description: >-
 
 # Anime Release Checker
 
-Deze skill controleert anime in de database op nieuwe releases (seizoenen, films, OVA's, specials) en actuele uitzendstatussen.
+Deze skill controleert anime in de database op nieuwe releases (seizoenen, films, OVA's, specials) en actuele uitzendstatussen alsook het fixen van data.
 
 ---
 

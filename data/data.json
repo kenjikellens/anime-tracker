@@ -4197,24 +4197,6 @@
                 "episodesCount": 12
             },
             {
-                "id": "date-a-bullet-dead-or-bullet",
-                "title": "Date A Bullet: Dead or Bullet",
-                "status": -1,
-                "type": "MOVIE",
-                "rating": 0,
-                "watchedEpisodes": [],
-                "episodesCount": 1
-            },
-            {
-                "id": "date-a-bullet-nightmare-or-queen",
-                "title": "Date A Bullet: Nightmare or Queen",
-                "status": -1,
-                "type": "MOVIE",
-                "rating": 0,
-                "watchedEpisodes": [],
-                "episodesCount": 1
-            },
-            {
                 "id": "date-a-live-iv",
                 "title": "Date A Live IV",
                 "status": 4,

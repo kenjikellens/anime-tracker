@@ -126,8 +126,6 @@
 - [ ] Date A Live II: Kurumi Star Festival (OVA)
 - [ ] Date A Live Movie: Mayuri Judgment (MOVIE)
 - [ ] Date A Live III (SERIE - 12 eps)
-- [ ] Date A Bullet: Dead or Bullet (MOVIE)
-- [ ] Date A Bullet: Nightmare or Queen (MOVIE)
 - [ ] Date A Live IV (SERIE - 12 eps)
 - [ ] Date A Live V (SERIE - 12 eps)
 
@@ -321,8 +319,6 @@
 - [ ] Date A Live II: Kurumi Star Festival (OVA)
 - [ ] Date A Live Movie: Mayuri Judgment (MOVIE)
 - [ ] Date A Live III (SERIE - 12 eps)
-- [ ] Date A Bullet: Dead or Bullet (MOVIE)
-- [ ] Date A Bullet: Nightmare or Queen (MOVIE)
 - [ ] Date A Live IV (SERIE - 12 eps)
 - [ ] Date A Live V (SERIE - 12 eps)
 
