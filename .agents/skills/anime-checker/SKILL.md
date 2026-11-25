@@ -1,7 +1,7 @@
 ---
 name: anime-checker
 description: >-
-  Controleert bijgehouden anime franchises op nieuwe seizoenen, films, OVA's, ONA's en statuswijzigingen (Airing/Upcoming). Gebruik bij /anime-checker of bij controle op updates.
+  Controleert bijgehouden anime franchises op nieuwe seizoenen, films, OVA's, ONA's, statuswijzigingen (Airing/Upcoming) en data-integriteit (juistheid van items, titels, types en aantallen). Gebruik bij /anime-checker of bij controle op updates of foutieve data.
 ---
 
 # Anime Release Checker
@@ -54,9 +54,10 @@ Maak een overzichtelijke `task.md` artifact met alle te controleren anime uit `d
 Voor elke anime in de lijst:
 1. Lees het anime-object in `data/data.json`.
 2. Als status `1` is of alle items zijn bekeken: direct overslaan.
-3. Zoek gericht via het web naar recente aankondigingen of nieuwe releases voor die specifieke franchise.
-4. Update `data/data.json` en de bijbehorende documentatie (`docs/data/`) als er nieuwe releases of statuswijzigingen zijn.
-5. Vink `[x]` af in `task.md`.
+3. **Data-integriteit controleren**: Controleer of alle items onder de parent anime daadwerkelijk bij die franchise horen (geen losse spin-offs of verkeerd gekoppelde titels), of de Engelse titels, `type` (`SERIE`, `MOVIE`, `OVA`, etc.) en `episodesCount` kloppen, en of `docs/data/` synchroon loopt met `data/data.json`.
+4. Zoek gericht via het web naar recente aankondigingen of nieuwe releases voor die specifieke franchise (of verifieer twijfelachtige items).
+5. Update `data/data.json` en de bijbehorende documentatie (`docs/data/`) als er fouten, nieuwe releases of statuswijzigingen zijn.
+6. Vink `[x]` af in `task.md`.
 
 ### Stap 3: Afronding en samenvatting
 Geef na afloop een kort, vlot overzicht van:
