@@ -1,65 +1,65 @@
 ---
 name: anime-checker
 description: >-
-  Sequential workflow for checking tracked anime franchises for new seasons, movies, OVAs, ONAs, and upcoming/airing status changes. Use when checking for updates or when the user invokes /anime-checker.
+  Controleert bijgehouden anime franchises op nieuwe seizoenen, films, OVA's, ONA's en statuswijzigingen (Airing/Upcoming). Gebruik bij /anime-checker of bij controle op updates.
 ---
 
-# Anime Release Checker Workflow
+# Anime Release Checker
 
-This skill checks all tracked anime franchises for new releases (seasons, movies, OVAs, ONAs, specials) and status updates.
-
----
-
-## 1. Core Principles & Status Rules
-
-### Status Codes
-* **Parent Anime Objects** (`data/data.json`): May only use watch-progress status codes:
-  * `-1` = **To Watch**
-  * `0` = **Watching**
-  * `1` = **Watched**
-* **Item Objects** (`data/data.json`): May use watch-progress codes (`-1`, `0`, `1`) and release-state codes:
-  * `2` = **Upcoming** (announced but not yet released)
-  * `3` = **Airing** (currently releasing episodes)
-
-> [!CRITICAL]
-> 1. Never assign status `2` or `3` to a parent anime object.
-> 2. Never use `"New"` as a data status string.
-> 3. Do NOT use web browser / DOM to verify changes; ask the user to verify instead.
-> 4. Always use **English titles** for anime and item names in `data/data.json`.
-> 5. **NEVER USE ANILIST API TO AUTO-UPDATE EXISTING ENTRIES OR USER WATCH PROGRESS IN `data.json`**: AniList API is strictly reserved ONLY for fetching metadata when adding a specific new item.
-> 6. **CHECK EXISTING DATA FIRST**: Always inspect `data/data.json` for the current anime entry to know its exact existing items, episode counts, and statuses BEFORE performing web search lookups.
-> 7. **NON-STOP STRICT SEQUENTIAL EXECUTION**:
->    - Execute EXACTLY ONE search call for ONE anime at a time.
->    - Immediately update `data/data.json`, `docs/data/`, and `task.md` for THAT anime if needed.
->    - IMMEDIATELY move to the next anime without calling multiple searches in parallel and without stopping until ALL anime in `task.md` are completed `[x]`.
-> 8. **SKIP FULLY WATCHED ANIME**: NEVER automatically modify, update, or add items to an anime where the parent status is `1` (Watched) or where all items are fully watched. Fully watched anime must be completely skipped by automatic updates.
-
-### Item Rules for Airing & Upcoming
-* **Do Not Touch Completed Anime**: If an anime has status `1` (Watched) or all its items are marked watched, DO NOT check for new items or update it automatically.
-* **Airing (status `3`)**: The item MUST already include `episodesCount` with the total announced episode count (even if not all episodes have aired yet).
-* **Upcoming (status `2`)**: The item MUST be created with `episodesCount` set to the announced count (or `1` for movies). If unknown, set `episodesCount` to `1`.
+Deze skill controleert anime in de database op nieuwe releases (seizoenen, films, OVA's, specials) en actuele uitzendstatussen.
 
 ---
 
-## 2. Step 1: Create Task List (MANDATORY UI ARTIFACT)
-
-Before doing any lookups, create a `task.md` artifact (using `write_file` with `ArtifactMetadata` where `UserFacing: true`) listing **every anime** from `data/data.json`. Each entry starts as `[ ]` (unchecked) and gets marked `[x]` after it has been searched and processed.
-
----
-
-## 3. Step 2: Non-Stop Sequential Loop
-
-For each remaining unchecked anime in `task.md`:
-1. Read the anime's entry in `data/data.json` to inspect existing items and statuses.
-2. Execute ONE search (`search_web`) for THAT single anime.
-3. Update `data/data.json` if new seasons/OVAs/movies or status changes are found.
-4. Update `docs/data/` files if needed.
-5. Mark `[x]` in `task.md`.
-6. Repeat for the next anime immediately without searching multiple anime at once.
+## Communicatiestijl & Toon
+- **Natuurlijk & beknopt**: Praat in normale, heldere taal zonder stijve bureaucratische termen of robotachtige headers.
+- **Duidelijk overzicht**: Toon wijzigingen of voortgang in een vlot en overzichtelijk lijstje.
+- **Geen onnodige dramatiek**: Rapporteer direct wat er gevonden is of dat alles up-to-date is.
 
 ---
 
-## 4. Step 3: Final Summary Report
+## 1. Belangrijke Regels & Statuscodes
 
-Once all entries in `task.md` are checked `[x]`, output the full summary report of all added items and status updates to the user.
+### Statuscodes
+* **Parent Anime** (`data/data.json`): Mag alleen kijkstatus hebben:
+  * `-1` = **Te bekijken** (To Watch)
+  * `0` = **Bezig met kijken** (Watching)
+  * `1` = **Bekeken** (Watched)
+* **Items** (`data/data.json`): Mogen zowel kijkstatus als release-status hebben:
+  * `-1`, `0`, `1`
+  * `2` = **Upcoming** (aangekondigd, nog niet uitgezonden)
+  * `3` = **Airing** (huidig bezig met uitzenden)
 
+### Kernregels
+1. Geef een parent anime **nooit** status `2` of `3`.
+2. Gebruik nooit `"New"` als statuswaarde.
+3. Gebruik geen browser / DOM om wijzigingen te controleren; vraag de gebruiker om te verifiëren in de UI.
+4. Gebruik altijd **Engelse titels** in `data/data.json`.
+5. **Gebruik AniList API NOOIT om bestaande items of kijkvoortgang automatisch te overschrijven**: AniList API is enkel toegestaan voor metadata bij het toevoegen van een specifiek nieuw item.
+6. **Bekijk eerst de bestaande data**: Lees altijd eerst het huidige anime-object in `data/data.json` om te weten wat er al in staat vóórdat je online zoekt.
+7. **Sla volledig bekeken anime over**: Pas NOOIT automatisch anime aan met parent status `1` of waarvan alle items al bekeken zijn.
+8. **Stap-voor-stap afhandelen**: Doorloop de lijst rustig per anime zodat data consistent blijft.
+
+### Regels voor Airing & Upcoming items
+- **Airing (status `3`)**: Het item moet `episodesCount` bevatten met het totaal aangekondigde aantal afleveringen.
+- **Upcoming (status `2`)**: Het item moet `episodesCount` hebben (of `1` voor films). Indien nog onbekend, zet op `1`.
+
+---
+
+## 2. Stappenplan
+
+### Stap 1: Takenlijst opstellen (`task.md`)
+Maak een overzichtelijke `task.md` artifact met alle te controleren anime uit `data/data.json`. Elk item start als `[ ]` en wordt na controle gemarkeerd als `[x]`.
+
+### Stap 2: Per anime controleren
+Voor elke anime in de lijst:
+1. Lees het anime-object in `data/data.json`.
+2. Als status `1` is of alle items zijn bekeken: direct overslaan.
+3. Zoek gericht via het web naar recente aankondigingen of nieuwe releases voor die specifieke franchise.
+4. Update `data/data.json` en de bijbehorende documentatie (`docs/data/`) als er nieuwe releases of statuswijzigingen zijn.
+5. Vink `[x]` af in `task.md`.
+
+### Stap 3: Afronding en samenvatting
+Geef na afloop een kort, vlot overzicht van:
+- Welke nieuwe seizoenen of films zijn toegevoegd.
+- Welke items een statusupdate kregen (bijv. naar Airing of Upcoming).
+- Of alles up-to-date was als er niets nieuws te melden is.

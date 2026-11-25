@@ -1,158 +1,81 @@
 ---
 name: anime-adder
 description: >-
-  Standardized SOP for verifying, discovering, and adding anime franchises to database and documentation with strict duplicate prevention. Use when the user requests adding an anime franchise or asks to run /anime-adder.
+  Stappenplan om anime franchises op te zoeken, te controleren op duplicaten en netjes toe te voegen aan de database en documentatie. Gebruik bij /anime-adder of wanneer de gebruiker een anime wil toevoegen.
 ---
 
-# Anime Adder Standard Operating Procedure (SOP)
+# Anime Adder Workflow
 
-This skill defines the mandatory, step-by-step protocol for adding anime franchises and their associated releases (TV series, movies, OVAs, ONAs, specials) into the application ecosystem.
+Deze skill beschrijft hoe je nieuwe anime franchises en bijbehorende seizoenen, films, OVA's en specials toevoegt aan de applicatie.
 
 ---
 
-## 1. Visual Workflow Architecture
+## Communicatiestijl & Toon (Belangrijk!)
+- **Natuurlijk & menselijk**: Gebruik normale, vlotte en beknopte zinnen.
+- **Geen robotische vaktaal**: Vermijd termen zoals "Pre-Flight Duplicate Audit", "Strict Stop Policy", "Synchronized Atomic Persistence" of overdreven formele protocollen in je antwoorden naar de gebruiker.
+- **Duidelijk overzicht**: Als een anime al bestaat, meld dit gewoon direct en helder (bijv. *"Deze anime staat er al in: [kort overzicht]. Wil je dat ik controleer of er nieuwe seizoenen of films zijn?"*).
+
+---
+
+## 1. Workflow Schema
 
 ```mermaid
 flowchart TD
-    Start([User Requests Adding Anime]) --> P0[Phase 0: Pre-Flight Duplicate Audit]
+    Start([Gebruiker wil anime toevoegen]) --> Check[Stap 1: Controleren of anime al bestaat]
     
-    subgraph Phase0 [Phase 0: Search & Existence Verification]
-        P0 --> S1[Search data.json, shortlist.md, te_bekijken.md]
-        S1 --> S2{Exists in Database\nor Docs?}
-    end
-
-    %% Existing Branch
-    S2 -- YES --> Halt[🛑 HALT: Stop All File Edits Immediately]
-    Halt --> Report[Report Current Status, ID & Existing Items to User]
-    Report --> PromptUser[❓ Ask User: 'Deze anime staat al in de lijst. Moet ik controleren of er nieuwe/ontbrekende seizoenen, OVAs, films of specials zijn?']
-    PromptUser --> EndHalt([Wait for User Instruction])
-
-    %% New Anime Branch
-    S2 -- NO --> P1[Phase 1: Web Franchise Discovery]
+    Check --> Exists{Staat al in\ndata/docs?}
     
-    subgraph Phase1 [Phase 1: Complete Franchise Discovery]
-        P1 --> F1[Search Web: TV, Movies, OVAs, ONAs, Specials, Spin-offs]
-        F1 --> F2[Fetch Metadata via AniList API: ID, Cover, Studio, Genres, Year]
-    end
-
-    subgraph Phase2 [Phase 2: Synchronized Atomic Persistence]
-        F2 --> W1[1. Insert into data/data.json with status -1 and rating 0]
-        W1 --> W2[2. Append to docs/data/te_bekijken.md]
-        W2 --> W3[3. Insert in docs/data/shortlist.md in Alphabetical Order]
-    end
-
-    subgraph Phase3 [Phase 3: Validation & Reporting]
-        W3 --> V1[Validate JSON Syntax & Slug Uniqueness]
-        V1 --> RepDone[Present Added Franchise & Item Summary to User]
-    end
-
-    RepDone --> Success([Complete])
+    %% Al aanwezig
+    Exists -- Ja --> ReportExisting[Geef kort overzicht van bestaande anime]
+    ReportExisting --> AskCheck[Vraag of er gecheckt moet worden op nieuwe/ontbrekende seizoenen]
+    
+    %% Nieuwe anime
+    Exists -- Nee --> Discover[Stap 2: Franchise en releases opzoeken]
+    Discover --> AniList[Metadata ophalen via AniList API]
+    AniList --> SaveData[Stap 3: Opslaan in data.json, te_bekijken.md & shortlist.md]
+    SaveData --> Summary[Stap 4: Kort en helder overzicht tonen aan gebruiker]
 ```
 
 ---
 
-## 2. Pseudocode Execution Algorithm
+## 2. Stappenplan
 
-```typescript
-function processAddAnimeRequest(requestedAnimeName: string): void {
-    // PHASE 0: PRE-FLIGHT AUDIT
-    const normalizedQuery = normalizeString(requestedAnimeName);
-    const existingEntry = findInDatabase({
-        titles: [requestedAnimeName, getRomajiTitle(requestedAnimeName), getEnglishTitle(requestedAnimeName)],
-        slugVariants: generatePossibleSlugs(requestedAnimeName),
-        files: ["data/data.json", "docs/data/shortlist.md", "docs/data/te_bekijken.md"]
-    });
+### Stap 1: Controleer of de anime al bestaat
+Zoek eerst in `data/data.json`, `docs/data/shortlist.md` en `docs/data/te_bekijken.md` op:
+- Engelse titel
+- Romaji / Japanse titel
+- Slugs / id varianten
 
-    if (existingEntry) {
-        // STRICT STOP POLICY
-        abortFileModifications();
-        logWarning(`Anime "${existingEntry.title}" already exists in the system (ID: ${existingEntry.id}).`);
-        displayEntryDetails(existingEntry);
-        askUser(
-            "Deze anime staat al in de lijst. Moet ik controleren of er nieuwe of ontbrekende seizoenen, OVAs, films of specials zijn aangekondigd/uitgekomen?"
-        );
-        return; // HALT EXECUTION
-    }
-
-    // PHASE 1: DISCOVERY & METADATA
-    const allReleases = searchWebForCompleteFranchise(requestedAnimeName); // TV, OVA, Movie, ONA, Special
-    const anilistMetadata = fetchAniListMetadata(requestedAnimeName); // ONLY for new item addition
-
-    // PHASE 2: ATOMIC PERSISTENCE
-    const newAnimeObject = buildParentAnimeObject({
-        id: generateCanonicalSlug(anilistMetadata.englishTitle || requestedAnimeName),
-        anilistId: anilistMetadata.id,
-        title: anilistMetadata.englishTitle,
-        status: -1, // To Watch
-        rating: 0,
-        coverImage: anilistMetadata.coverImageMedium,
-        studio: anilistMetadata.studio,
-        year: anilistMetadata.year,
-        genres: anilistMetadata.genres,
-        items: buildItemsArray(allReleases)
-    });
-
-    appendEntryToDataJson("data/data.json", newAnimeObject);
-    appendEntryToTeBekijken("docs/data/te_bekijken.md", newAnimeObject);
-    insertAlphabeticallyInShortlist("docs/data/shortlist.md", newAnimeObject.title);
-
-    // PHASE 3: VALIDATION
-    verifyJsonIntegrity("data/data.json");
-    reportSuccessToUser(newAnimeObject);
-}
-```
+**Als de anime al bestaat**:
+1. Pas **geen** bestanden aan.
+2. Laat in normale, beknopte taal weten dat de anime al in de lijst staat met een kort overzicht:
+   - Titel en ID
+   - Status (bijv. Te bekijken / Bezig / Bekeken)
+   - Reeds aanwezige seizoenen / items
+3. Vraag vriendelijk:
+   > *"Deze anime staat al in de lijst. Wil je dat ik controleer of er nieuwe of ontbrekende seizoenen, films, OVA's of specials zijn?"*
+4. Wacht op antwoord van de gebruiker.
 
 ---
 
-## 3. Detailed Execution Phases
-
-### Phase 0: Pre-Flight Duplicate Audit (Mandatory First Step)
-> [!CRITICAL]
-> You must **NEVER** edit files or add entries before conducting a multi-key search across the workspace.
-
-1. **Multi-Key Lookup**:
-   * Search `data/data.json`, `docs/data/shortlist.md`, and `docs/data/te_bekijken.md`.
-   * Check all naming variants:
-     * English Title (e.g., *"The Ryuo's Work is Never Done!"*)
-     * Romaji / Japanese Title (e.g., *"Ryuuou no Oshigoto!"*)
-     * Hyphenated Slugs (e.g., `the-ryuos-work-is-never-done`, `the-ryuo-s-work-is-never-done`, `ryuuou-no-oshigoto`)
-     * AniList Media ID (if known).
-
-2. **If Franchise Already Exists**:
-   * **STOP IMMEDIATELY**: Do not touch any file.
-   * **Present Existing Data**: Output the found title, ID, parent status, and existing item list.
-   * **Inquire**: Ask the user:
-     > *"Deze anime staat al in de lijst. Moet ik controleren of er nieuwe of ontbrekende seizoenen, OVAs, films of specials zijn aangekondigd/uitgekomen?"*
+### Stap 2: Franchise en metadata opzoeken (alleen bij nieuwe anime)
+Als de anime nog **niet** bestaat:
+1. **Zoek de complete franchise op**:
+   - Zoek via web/MAL/AniList naar alle officiële onderdelen (seizoenen, films, OVA's, ONA's, specials, spin-offs).
+2. **Haal metadata op via AniList API**:
+   - Officiële Engelse titel, AniList ID, cover image URL (`medium`/`large`), studio, jaar, genres en startdatum.
+   - *Let op*: AniList API wordt uitsluitend gebruikt voor het ophalen van metadata bij het toevoegen van nieuwe items.
 
 ---
 
-### Phase 1: Comprehensive Franchise Discovery
-If and **only if** the anime does NOT exist:
+### Stap 3: Gegevens opslaan
 
-1. **Deep Franchise Search**:
-   * Conduct web searches across official and database sources (MAL, AniList, ANN) to identify **every** piece of media in the franchise:
-     * Main TV Seasons
-     * Movies / Theatrical Features
-     * OVAs (Original Video Animations)
-     * ONAs (Web Anime / Shorts)
-     * Specials & Bonus Episodes
-     * Spin-offs
-   * *Rule*: Never assume you know all releases without verifying.
-
-2. **Fetch Metadata via AniList API**:
-   * Fetch official English title, Romaji title, AniList ID, cover image URL (`coverImage.medium` / `large`), primary studio, release year, genres, and start date.
-   * *Rule*: AniList API is strictly reserved for metadata retrieval of new items.
-
----
-
-### Phase 2: Synchronized Persistence
-
-#### 1. Database Object: `data/data.json`
-Construct the parent entry and its `items` array following strict typing:
+#### 1. In `data/data.json`
+Voeg het anime object toe met status `-1` (Te bekijken) en rating `0`:
 
 ```json
 {
-    "id": "canonical-lowercase-slug",
+    "id": "canonical-slug",
     "anilistId": 12345,
     "title": "Official English Title",
     "status": -1,
@@ -178,39 +101,33 @@ Construct the parent entry and its `items` array following strict typing:
 }
 ```
 
-##### Allowed Enum Values & Status Matrix
-* **Item Types**: `SERIE`, `MOVIE`, `OVA`, `SPECIAL`, `ONA`, `SPIN-OFF`.
-* **Status Codes**:
+##### Statuscodes & Regels:
+- **Toegestane types**: `SERIE`, `MOVIE`, `OVA`, `SPECIAL`, `ONA`, `SPIN-OFF`.
+- **Statuscodes**:
+  - `-1` = Te bekijken (standaard voor nieuwe anime)
+  - `0` = Bezig met kijken
+  - `1` = Bekeken
+  - `2` = Upcoming (alleen voor items)
+  - `3` = Airing (alleen voor items)
+- **Belangrijk**:
+  - Geef een parent anime **nooit** status `2` of `3`.
+  - Gebruik nooit tekst zoals `"New"` als status.
+  - Pas nooit automatisch anime aan waarvan de parent status `1` is of waar alle items al bekeken zijn.
 
-| Code | Status Label | Allowed On | Description |
-| :---: | :--- | :---: | :--- |
-| **`-1`** | **To Watch** | Parent & Item | Planned to watch (default initial state). |
-| **`0`** | **Watching** | Parent & Item | Active watch progress in `watchedEpisodes`. |
-| **`1`** | **Watched** | Parent & Item | Completely finished. |
-| **`2`** | **Upcoming** | **Items Only** | Announced / scheduled, not yet released. |
-| **`3`** | **Airing** | **Items Only** | Currently broadcasting episodes. |
-
-> [!CAUTION]
-> - Never set a parent anime's `status` to `2` or `3`.
-> - Never use strings like `"New"` for data status.
-> - NEVER automatically modify, update, or add items to an anime where the parent status is 1 (Watched) or where all items are fully watched. Fully watched anime are strictly immutable for automated scripts and workflows.
-
-#### 2. Documentation: `docs/data/te_bekijken.md`
-Append the franchise and its unchecked items:
+#### 2. In `docs/data/te_bekijken.md`
+Voeg de franchise toe met ongecheckte items:
 ```markdown
 ## Official English Title
 - [ ] Official English Title Season 1 (SERIE - 12 eps)
-- [ ] Item Title (OVA - 1 eps)
-- [ ] Movie Title (Movie)
+- [ ] Movie Title (MOVIE)
 ```
 
-#### 3. Shortlist: `docs/data/shortlist.md`
-Insert the exact English title into the list in **strict alphabetical order**.
+#### 3. In `docs/data/shortlist.md`
+Voeg de exacte Engelse titel in op de juiste **alfabetische** plek.
 
 ---
 
-### Phase 3: Integrity Validation
-1. **JSON Syntax**: Execute a JSON parse check to ensure `data/data.json` remains strictly valid.
-2. **Title Alignment**: Confirm that `data.json` `title` exactly matches the `## Header` in `te_bekijken.md` and the line in `shortlist.md`.
-3. **Report to User**: Summarize the additions and prompt the user to verify in the application UI (do not use browser subagents for UI verification).
-
+### Stap 4: Afronding & overzicht
+1. Valideer dat de JSON in `data/data.json` geldig is.
+2. Geef de gebruiker een kort, duidelijk overzicht van wat er is toegevoegd.
+3. Vraag de gebruiker om het resultaat in de app te bekijken (gebruik geen browser subagents voor DOM-verificatie).
