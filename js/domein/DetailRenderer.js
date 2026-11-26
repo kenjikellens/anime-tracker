@@ -166,13 +166,29 @@ export class DetailRenderer {
         }
 
         const genresContainer = layout.querySelector('#sidebar-genres-container');
+        const genresWrap = layout.querySelector('#sidebar-genres-wrap');
         if (genresContainer) {
             if (Array.isArray(anime.genres) && anime.genres.length > 0) {
                 genresContainer.innerHTML = anime.genres.map(g => `<span class="genre-badge">${escapeHtml(g)}</span>`).join('');
                 genresContainer.classList.remove('hidden');
+                if (genresWrap) genresWrap.classList.remove('hidden');
             } else {
                 genresContainer.innerHTML = '';
                 genresContainer.classList.add('hidden');
+                if (genresWrap) genresWrap.classList.add('hidden');
+            }
+        }
+
+        const summaryContainer = layout.querySelector('#sidebar-summary-container');
+        const summaryTextEl = layout.querySelector('#sidebar-summary-text');
+        if (summaryContainer && summaryTextEl) {
+            const summaryText = typeof anime.summary === 'string' ? anime.summary.trim() : '';
+            if (summaryText) {
+                summaryTextEl.textContent = summaryText;
+                summaryContainer.classList.remove('hidden');
+            } else {
+                summaryTextEl.textContent = '';
+                summaryContainer.classList.add('hidden');
             }
         }
 

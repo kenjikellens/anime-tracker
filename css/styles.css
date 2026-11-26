@@ -1274,37 +1274,65 @@ select[data-bound] {
     width: 100%;
 }
 
+/* Sidebar Metadata Container - Uniform vertical stack of small-caps labels and values below ratings */
 .sidebar-metadata {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 14px;
     margin-top: 16px;
-    padding-top: 14px;
+    padding-top: 16px;
     border-top: 1px solid var(--surface-2);
 }
 
-.sidebar-meta-row {
+/* Sidebar Metadata Item - Stacks small uppercase label directly above its value or control */
+.sidebar-meta-item {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 13px;
-    font-weight: 600;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    min-width: 0;
 }
 
-.sidebar-meta-row .meta-label {
-    color: var(--text-muted);
-}
-
-.sidebar-meta-row .meta-value {
-    color: var(--white);
+/* Sidebar Metadata Label - Small uppercase muted label above metadata values */
+.sidebar-metadata .meta-label {
+    font-size: 10.5px;
     font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    line-height: 1.2;
 }
 
+/* Sidebar Metadata Value - High-contrast value text below small-caps label */
+.sidebar-metadata .meta-value {
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.3;
+    word-break: break-word;
+}
+
+/* Sidebar Genres List - Wraps genre badges cleanly under the Genres label */
 .sidebar-meta-genres {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
-    margin-top: 4px;
+    margin-top: 1px;
+}
+
+/* Sidebar Summary Container - Separates Samenvatting block cleanly at bottom of metadata */
+.sidebar-meta-summary {
+    padding-top: 12px;
+    border-top: 1px solid var(--surface-2);
+}
+
+/* Sidebar Summary Text - Renders readable muted synopsis with preserved line breaks */
+.sidebar-summary-text {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--text-muted);
+    white-space: pre-line;
 }
 
 .genre-badge {
@@ -2011,19 +2039,19 @@ footer {
     inset: 0;
     background: inherit;
     border-radius: inherit;
-    transition: transform 0.15s ease, background-color 0.15s ease, filter 0.15s ease;
+    transition: inset 0.15s ease, background-color 0.15s ease, filter 0.15s ease;
     z-index: -1;
     pointer-events: none;
 }
 
-/* Ultimate Hover Scale - Gently scales button/card pseudo-element without overflowing dropdown menus */
+/* Ultimate Hover Expand - Expands button/card pseudo-element by exactly 1px on all sides on hover */
 .ultimate-hover-effect:hover::before {
-    transform: scale(1.015);
+    inset: -1px;
 }
 
-/* Dropdown Option Hover Reset - Prevents menu options from scaling outside their menu container */
+/* Dropdown Option Hover Reset - Prevents menu options from expanding outside their menu container */
 .custom-select-option.ultimate-hover-effect:hover::before {
-    transform: none;
+    inset: 0;
 }
 
 /* Toolbar Inactive Button Hover - Brightens muted icon/label text to primary text on hover */

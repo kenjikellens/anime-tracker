@@ -40,23 +40,30 @@
                         </div>
                     </div>
                     <div class="sidebar-metadata">
-                        <div class="sidebar-meta-row" id="sidebar-meta-studio">
-                            <span class="meta-label">Studio:</span>
+                        <div class="sidebar-meta-item" id="sidebar-meta-studio">
+                            <span class="meta-label">Studio</span>
                             <span class="meta-value" id="sidebar-studio-val">—</span>
                         </div>
-                        <div class="sidebar-meta-row" id="sidebar-meta-year">
-                            <span class="meta-label">Jaar:</span>
+                        <div class="sidebar-meta-item" id="sidebar-meta-year">
+                            <span class="meta-label">Jaar</span>
                             <span class="meta-value" id="sidebar-year-val">—</span>
                         </div>
-                        <div class="sidebar-meta-row" id="sidebar-meta-times-watched">
-                            <span class="meta-label">Keer Bekeken:</span>
+                        <div class="sidebar-meta-item" id="sidebar-meta-times-watched">
+                            <span class="meta-label">Keer Bekeken</span>
                             <div class="times-watched-stepper">
                                 <button type="button" class="stepper-btn ultimate-hover-effect" id="times-watched-minus" title="Verminder aantal" aria-label="Verminder aantal keer bekeken">&minus;</button>
                                 <span class="times-watched-val" id="times-watched-display" aria-live="polite">0</span>
                                 <button type="button" class="stepper-btn ultimate-hover-effect" id="times-watched-plus" title="Verhoog aantal" aria-label="Verhoog aantal keer bekeken">+</button>
                             </div>
                         </div>
-                        <div class="sidebar-meta-genres" id="sidebar-genres-container"></div>
+                        <div class="sidebar-meta-item" id="sidebar-genres-wrap">
+                            <span class="meta-label">Genres</span>
+                            <div class="sidebar-meta-genres" id="sidebar-genres-container"></div>
+                        </div>
+                        <div class="sidebar-meta-item sidebar-meta-summary hidden" id="sidebar-summary-container">
+                            <span class="meta-label">Samenvatting</span>
+                            <p class="sidebar-summary-text" id="sidebar-summary-text"></p>
+                        </div>
                     </div>
                 </div>
             </div>

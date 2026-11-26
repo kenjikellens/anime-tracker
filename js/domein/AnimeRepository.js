@@ -354,6 +354,7 @@ export class AnimeRepository {
             studio: a.studio || "",
             year: a.year || null,
             genres: a.genres || [],
+            summary: a.summary || "",
             watchRank: (typeof a.watchRank === 'number' && a.watchRank > 0) ? a.watchRank : null,
             timesWatched: (typeof a.timesWatched === 'number' && a.timesWatched >= 0) ? a.timesWatched : 0,
 

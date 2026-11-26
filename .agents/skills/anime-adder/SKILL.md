@@ -63,7 +63,7 @@ Als de anime nog **niet** bestaat:
 1. **Zoek de complete franchise op**:
    - Zoek via web/MAL/AniList naar alle officiële onderdelen (seizoenen, films, OVA's, ONA's, specials, spin-offs).
 2. **Haal metadata op via AniList API**:
-   - Officiële Engelse titel, AniList ID, cover image URL (`medium`/`large`), studio, jaar, genres en startdatum.
+   - Officiële Engelse titel, AniList ID, cover image URL (`medium`/`large`), studio, jaar, genres, korte samenvatting (`summary`, via `description(asHtml: false)` zonder HTML/bronnotities) en startdatum.
    - *Let op*: AniList API wordt uitsluitend gebruikt voor het ophalen van metadata bij het toevoegen van nieuwe items.
 
 ---
@@ -85,6 +85,7 @@ Voeg het anime object toe met status `-1` (Te bekijken) en rating `0`:
     "studio": "Main Studio Name",
     "year": 2024,
     "genres": ["Genre1", "Genre2"],
+    "summary": "Korte omschrijving van de anime.",
     "watchRank": null,
     "timesWatched": 0,
     "items": [
